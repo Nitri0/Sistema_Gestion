@@ -4,13 +4,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Avances extends Model {
 
-	protected $table = "t_detalle_avance";
-	protected $primaryKey = "id_detalle_avance";
+	protected $table = "t_avances";
+	protected $primaryKey = "id_avance";
 	public $timestamps = false;
-	protected $fillable = array('notificacion_avance',
-								'id_cliente',
+	protected $fillable = array('id_proyecto',
+								'asunto_avance'
 								'descripcion_avance',
-								'fecha_avance',
+								'check_copia_cliente_avance'
 								);
 
 

@@ -14,22 +14,6 @@
 
 			<br><br>
 			<div class="from-group">
-				<label for="">Cliente</label>
-				<select class="form-control" name="id_cliente"   ng-model="dominio.id_cliente">
-					<option class="option" value="">Seleccione un cliente</option>
-					@foreach($clientes as $cliente)
-						<option class="option" value="{{$cliente->id_cliente}}">
-							{{ $cliente->nombre_cliente }}
-						</option>;
-					@endforeach
-				</select>
-				<button >
-					<a href="{{ url('/clientes/create') }}">Agregar un cliente</a>
-				</button>
-			</div>			
-			<br>
-
-			<div class="from-group">
 				<label for="">Empresa proveedora</label>
 				<select class="form-control" name="id_empresa_proveedora" ng-model="dominio.id_empresa_provedora">
 					<option class="option" value="">Seleccione una empresa proveedora</option>

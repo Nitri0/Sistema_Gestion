@@ -7,83 +7,51 @@ use App\Clientes;
 use App\Avances;
 use Session;
 use redirect;
-
-use Carbon\Carbon;
+//use Carbon\Carbon;
 
 class AvancesController extends Controller {
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return Response
-	 */
+
+	public function __construct(){
+		$this->beforeFilter('@find', ['only' => ['show','update','edit','destroy']]);
+	}
+
+	public function find(Route $route){
+		$this->avance = Proyectos::find($route->getParameter('avances'));
+	}
+
 	public function index(){
 		$avances = Avances::paginate(3);
 		return view('avances.list', compact('avances'));
 	}
 
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return Response
-	 */
 	public function create(){
 		$avance = "";
 		$clientes = Clientes::all();
-		return view('avances.create', compact('avance','clientes'));
+		return view('avances.create', ['avance'=>$this->avance,
+									   'clientes'=>$clientes]);
 	}
 
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Response
-	 */
 	public function store(Request $request){
-		$request["fecha_avance"] = Carbon::now();
+		//$request["fecha_avance"] = Carbon::now();
 		$avances = Avances::create($request->all());
 		Session::flash('mensaje', 'Avance creado exitosamente');
 		return redirect('/avances');
 	}
 
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
 	public function show($id){
-		$avances = Avances::find($id);
-		return view('avances.detalle', compact('avances'));
+		return view('avances.detalle', ['avance'=>$this->avance]);
 	}
 
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
 	public function edit($id){
-		$avances = Avances::find($id);
-		return view('avances.create', compact('avances'));
+		return view('avances.create', ['avance'=>$this->avance]);
 	}
 
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
 	public function update($id, Request $request){
-		$avances = Avances::find($id)->update($request->all());
+		$this->avance->update($request->all());
 		Session::flash('mensaje', 'Avances editado exitosamente');
 		return redirect("/avances");
 	}
 
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
 	public function destroy($id)
 	{
 		//

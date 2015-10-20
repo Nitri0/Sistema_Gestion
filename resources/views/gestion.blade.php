@@ -23,7 +23,17 @@
 				</div>	
 
 				<div class="title">
-						<h3>Dominios por vencerse</h3>
+						<h3>Proyectos</h3>
+						<li>
+							<a href="{{ url('proyectos') }}">
+								Listar
+							</a>	
+						</li>
+						<li>
+							<a href="{{ url('proyectos/create') }}">
+								Crear
+							</a>	
+						</li>						
 				</div>	
 
 			</div>

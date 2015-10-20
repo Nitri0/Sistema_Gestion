@@ -8,9 +8,9 @@ class Dominios extends Model {
 	protected $primaryKey = "id_dominio";
 	public $timestamps = false;
 	protected $fillable = array('nombre_dominio',
-								'id_cliente',
 								'id_empresa_proveedora',
 								'fecha_dominio',
+								'habilitado_dominio'
 								);
 
 

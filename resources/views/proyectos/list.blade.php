@@ -19,9 +19,9 @@
 		@endif
 				
 		<div class="row">
-			<div class="col-md-8"> <h2>Lista de clientes</h2></div>
+			<div class="col-md-8"> <h2>Lista de proyectos</h2></div>
 			<div class="col-md-4">
-				<a class="btn btn-sm btn-success" href="{{ url( '/clientes/create' ) }}"> Agregar</a>
+				<a class="btn btn-sm btn-success" href="{{ url( '/proyectos/create' ) }}"> Agregar</a>
 			</div>
 
 		</div>
@@ -31,30 +31,25 @@
 		<table class="table table-hover">
 		    <thead>
 		      <tr>
-		        <th>Nombre</th>
-		        <th>CI / RIF</th>
-		        <th>Email</th>
-		        <th>Contacto</th>
+		        <th>Nombre Proyecto</th>
+		        <th>Fecha de creación</th>
 		        <th >Operaciones</th>
 		      </tr>
 		    </thead>
 		    <tbody>
-		    	@foreach($clientes as $cliente)
+		    	@foreach($proyectos as $proyecto)
 			    	<tr>
-						<td>{{$cliente->nombre_cliente}}</td>
-						<td>{{$cliente->ci_rif_cliente}}</td>
-			        	<td>{{$cliente->email_cliente}}</td>
-			        	<td>{{$cliente->contacto_cliente}}</td>
+						<td>{{$proyecto->nombre_proyecto}}</td>
+						<td>{{$proyecto->fecha_creacion_proyecto}}</td>
 			        	<td >
-			        		<a class="btn btn-sm btn-info" href="{{ url( '/clientes/'.$cliente->id_cliente ) }}"> Detalle</a>
-			        		<a class="btn btn-sm btn-info" href="{{ url( '/clientes/'.$cliente->id_cliente.'/edit' ) }}"> Editar </a>
+			        		<a class="btn btn-sm btn-info" href="{{ url( '/avances/'.$avance->id_avance ) }}"> Detalle</a>
 			        	</td>
 			        </tr>
 				@endforeach
 		    </tbody>
 		</table>
 
-		<div align="center">{!! $clientes->render() !!}</div>
+		<div align="center">{!! $proyectos->render() !!}</div>
 	</div>
 	
 @stop

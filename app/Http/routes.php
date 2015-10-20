@@ -14,8 +14,9 @@
 Route::get('/', 'VistasController@index');
 Route::get('gestion', 'VistasController@gestion');
 Route::resource('clientes', 'ClientesController');
-Route::resource('clientes', 'ClientesController');
+Route::resource('dominios', 'DominiosController');
 Route::resource('avances', 'AvancesController');
+Route::resource('proyectos', 'ProyectosController');
 Route::resource('empresas_proveedoras', 'EmpresasProveedorasController');
 
 Route::controllers([

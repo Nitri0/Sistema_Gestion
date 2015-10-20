@@ -18,53 +18,27 @@ class ClientesController extends Controller {
 	public function find(Route $route){
 		$this->cliente = Clientes::find($route->getParameter('clientes'));
 	}
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return Response
-	 */
+
 	public function index(){
 		$clientes = Clientes::paginate(3);
 		return view('clientes.list', compact('clientes'));
 	}
 
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return Response
-	 */
 	public function create(){
 		$cliente = "";
 		return view('clientes.create', compact('cliente'));
 	}
 
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Response
-	 */
 	public function store(Request $request){
 		Clientes::create($request->all());
 		Session::flash('mensaje', 'Cliente creado exitosamente');
 		return redirect('clientes');
 	}
 
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
 	public function show($id){
 		return view('clientes.detalle',['cliente'=>$this->cliente]);
 	}
 
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
 	public function edit($id){
 		return view('clientes.create',['cliente'=>$this->cliente]);
 	}
