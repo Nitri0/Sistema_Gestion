@@ -10,13 +10,17 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 
 	use Authenticatable, CanResetPassword;
 
-
+		//agregar roles de usuario en esta tabla
 	protected $connection = 'permisologia';
-
 	protected $table = 't_usuario';
 	protected $primaryKey = "id_usuario";
-	protected $fillable = ['correo_usuario', 'clave_usuario'];
-	protected $hidden = ['clave_usuario', 'remember_token'];
+	protected $fillable = ['correo_usuario', 'password'];
+	protected $hidden = ['password', 'remember_token'];
 	public $timestamps = false;
 
+
+	public function getPerfil(){
+		$perfil = Perfil::where('id_usuario',$this->id_usuario)->first();
+		return $perfil;
+	}
 }

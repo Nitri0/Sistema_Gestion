@@ -38,7 +38,7 @@
 			</div>			
 			<br>
 			<div class="from-group">
-				<label for="">Cliente</label>
+				<label for="">dominio</label>
 				<select class="form-control" ng-model="proyecto.id_dominio" name="id_dominio">
 					<option class="option" value="">Seleccione un dominio</option>
 					@foreach($dominios as $key)
@@ -48,7 +48,7 @@
 					@endforeach
 				</select>
 				<button >
-					<a href="{{ url('/clientes/create') }}">Agregar un cliente</a>
+					<a href="{{ url('/dominios/create') }}">Agregar un dominio</a>
 				</button>
 			</div>	
 			<br>
@@ -62,11 +62,11 @@
 			<div class="from-group">
 				<label for="">Persona</label>
 				<select class="form-control" name="id_usuario">
-					<option class="option" value="">Seleccione una persona</option>
-						<option class="option" value="1">
-							usuario 1
-						</option>;
-
+					@foreach($usuarios as $usuario)
+						<option class="option" value="{{$usuario->id_usuario}}">
+							{{ $usuario->getPerfil()->fullName() }}
+						</option>
+					@endforeach
 				</select>
 				<label for="">rol que cumplirá</label>
 				<select class="form-control" name="rol">

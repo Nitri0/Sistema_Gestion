@@ -3,7 +3,7 @@
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Clientes;
+use App\Proyectos;
 use App\Avances;
 use Session;
 use redirect;
@@ -25,10 +25,9 @@ class AvancesController extends Controller {
 	}
 
 	public function create(){
-		$avance = "";
-		$clientes = Clientes::all();
-		return view('avances.create', ['avance'=>$this->avance,
-									   'clientes'=>$clientes]);
+		$proyecto = "";
+		$proyecto = Proyectos::where('habilitado_proyecto',1)->get();
+		return view('avances.create', ['proyecto'=>$proyecto]);
 	}
 
 	public function store(Request $request){
@@ -42,9 +41,6 @@ class AvancesController extends Controller {
 		return view('avances.detalle', ['avance'=>$this->avance]);
 	}
 
-	public function edit($id){
-		return view('avances.create', ['avance'=>$this->avance]);
-	}
 
 	public function update($id, Request $request){
 		$this->avance->update($request->all());

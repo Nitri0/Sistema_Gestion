@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 use App\Proyectos;
 use App\Clientes;
 use App\Dominios;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Route;
 use Session;
@@ -27,8 +28,8 @@ class ProyectosController extends Controller {
 	public function create(){
 		$clientes = Clientes::all();
 		$dominios = Dominios::where('habilitado_dominio',1)->get();
-		return view('proyectos.create',['clientes'=>$clientes,
-										'dominios'=> $dominios]);
+		$usuarios = User::all();
+		return view('proyectos.create',compact('clientes', 'dominios', 'usuarios'));
 	}
 
 	public function edit($id){
@@ -44,9 +45,9 @@ class ProyectosController extends Controller {
 		
 		//dd($request->all());
 		Proyectos::create($request->all());
-		// if ($request['id_dominio']){			
-		// 	Dominios::where('id_dominio',$request['id_dominio'])->update(['habilitado_dominio'=>0]);
-		// }
+		if ($request['id_dominio']){			
+		 	Dominios::where('id_dominio',$request['id_dominio'])->update(['habilitado_dominio'=>0]);
+		};
 
 		Session::flash('mensaje', 'Proyecto creado exitosamente');
 		return redirect('/proyectos');

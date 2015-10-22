@@ -15,6 +15,9 @@ Route::get('/', 'VistasController@index');
 
 $router->group(['middleware' => 'auth'], function() {
 
+	Route::get( 'perfil', 'UserController@perfil');
+	Route::post('perfil', 'UserController@postPerfil');
+
 	Route::get('gestion', 'VistasController@gestion');
 	Route::resource('clientes', 'ClientesController');
 	Route::resource('dominios', 'DominiosController');

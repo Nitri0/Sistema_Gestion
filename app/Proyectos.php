@@ -15,7 +15,6 @@ class Proyectos extends Model {
 
 
 	public function getEstatus(){
-
 		$estatus = [
 					'Dominio creado',
 					'Levantamiento de requerimientos',

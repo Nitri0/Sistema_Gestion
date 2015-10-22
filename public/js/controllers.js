@@ -23,5 +23,10 @@ coreApp.controller('AvanceController', function ($scope, $log) {
 
 coreApp.controller('ProyectoController', function ($scope, $log) {
 	console.log("Proyecto");
-	$scope.Proyecto={};
+	$scope.proyecto={};
+});
+
+coreApp.controller('PerfilController', function ($scope, $log) {
+	console.log("perfil");
+	$scope.perfil={};
 });

@@ -7,13 +7,6 @@ use Illuminate\Http\Request;
 
 class VistasController extends Controller {
 
-
-	public function __construct()
-	{
-	//	$this->middleware('auth');
-		$this->middleware('Authenticate');
-	}
-
 	public function index(){
 		
 		return view('index');
