@@ -32,7 +32,7 @@ class DominiosController extends Controller {
 	public function store(Request $request){
 		$dominio = Dominios::create($request->all());
 		//dd($request->all());
-		return redirect('dominios');
+		return redirect('/proyectos/create');
 	}
 
 	public function show($id){

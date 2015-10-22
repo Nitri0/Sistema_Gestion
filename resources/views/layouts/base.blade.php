@@ -34,9 +34,8 @@
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
 					<li><a href="{{ url('/gestion') }}">Gestion</a></li>
-					<li><a href="{{ url('/empresas_proveedoras') }}">Empresas Proveedoras</a></li>					
-					<li><a href="{{ url('/clientes') }}">Clientes</a></li>
-					<li><a href="{{ url('/dominios') }}">Dominios</a></li>
+					<li><a href="{{ url('/proyectos') }}">Proyectos</a></li>
+
 				</ul>
 			</div>
 		</div>

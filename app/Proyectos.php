@@ -13,4 +13,17 @@ class Proyectos extends Model {
 								);
 	public $timestamps = false;
 
+
+	public function getEstatus(){
+
+		$estatus = [
+					'Dominio creado',
+					'Levantamiento de requerimientos',
+					'Maquetacion',
+					'Desarrollo de plantilla',
+					'Finalizado'
+					];
+
+		return $estatus[$this->estatus_proyecto];
+	}
 }

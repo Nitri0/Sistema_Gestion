@@ -33,6 +33,7 @@
 		      <tr>
 		        <th>Nombre Proyecto</th>
 		        <th>Fecha de creación</th>
+		        <th>Estatus</th>
 		        <th >Operaciones</th>
 		      </tr>
 		    </thead>
@@ -41,8 +42,9 @@
 			    	<tr>
 						<td>{{$proyecto->nombre_proyecto}}</td>
 						<td>{{$proyecto->fecha_creacion_proyecto}}</td>
+						<td>{{$proyecto->getEstatus()}}</td>
 			        	<td >
-			        		<a class="btn btn-sm btn-info" href="{{ url( '/avances/'.$avance->id_avance ) }}"> Detalle</a>
+			        		<a class="btn btn-sm btn-info" href="{{ url( '/proyectos/'.$proyecto->id_proyecto ) }}"> Detalle</a>
 			        	</td>
 			        </tr>
 				@endforeach

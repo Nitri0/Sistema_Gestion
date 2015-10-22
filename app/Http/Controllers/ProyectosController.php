@@ -41,7 +41,7 @@ class ProyectosController extends Controller {
 
 	public function store(Request $request){
 		//$request["fecha_avance"] = Carbon::now();
-		$request['estatus_proyecto'] = 1;
+		
 		//dd($request->all());
 		Proyectos::create($request->all());
 		// if ($request['id_dominio']){			

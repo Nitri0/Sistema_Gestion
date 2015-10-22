@@ -20,3 +20,8 @@ coreApp.controller('AvanceController', function ($scope, $log) {
 	console.log("Avance");
 	$scope.avance={};
 });
+
+coreApp.controller('ProyectoController', function ($scope, $log) {
+	console.log("Proyecto");
+	$scope.Proyecto={};
+});

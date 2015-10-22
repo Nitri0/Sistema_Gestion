@@ -32,7 +32,7 @@ class ClientesController extends Controller {
 	public function store(Request $request){
 		Clientes::create($request->all());
 		Session::flash('mensaje', 'Cliente creado exitosamente');
-		return redirect('clientes');
+		return redirect('/proyectos/create');
 	}
 
 	public function show($id){
@@ -43,24 +43,12 @@ class ClientesController extends Controller {
 		return view('clientes.create',['cliente'=>$this->cliente]);
 	}
 
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
 	public function update($id, Request $request){
 		$cliente = Clientes::find($id)->update($request->all());
 		Session::flash('mensaje', 'Cliente editado exitosamente');
 		return redirect("/clientes");
 	}
 
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
 	public function destroy($id){
 		//
 	}
