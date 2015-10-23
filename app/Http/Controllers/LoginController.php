@@ -28,7 +28,8 @@ class LoginController extends Controller {
 			Auth::login($usuario);
 			return redirect("/proyectos");
 		}
-		return redirect("/");
+		Session::flash('mensaje-error', 'Credenciales incorrectas, intentalo de nuevo.');
+		return redirect("/login");
 		//return $request->correo_usuario;
 	}
 

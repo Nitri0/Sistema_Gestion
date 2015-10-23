@@ -19,7 +19,7 @@
 					<option class="option" value="">Seleccione una empresa proveedora</option>
 					@foreach($empresas_proveedoras as $proveedor)
 						<option class="option" value="{{$proveedor->id_empresa_proveedora}}">
-							{{ $proveedor->nombres_empresa_proveedora }}
+							{{ $proveedor->nombres_empresa_proveedora }} {{$proveedor->id_empresa_proveedora}}
 						</option>;
 					@endforeach
 				</select>

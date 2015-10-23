@@ -6,6 +6,9 @@ use App\Proyectos;
 use App\Clientes;
 use App\Dominios;
 use App\User;
+use App\Tipo;
+use App\Roles;
+use App\Master;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Route;
 use Session;
@@ -29,7 +32,9 @@ class ProyectosController extends Controller {
 		$clientes = Clientes::all();
 		$dominios = Dominios::where('habilitado_dominio',1)->get();
 		$usuarios = User::all();
-		return view('proyectos.create',compact('clientes', 'dominios', 'usuarios'));
+		$id_maestro = Master::where('nombre_maestro','Roles')->first()->id_maestro;
+		$roles = Tipo::where('id_maestro',$id_maestro)->get();
+		return view('proyectos.create',compact('clientes', 'dominios', 'usuarios', 'roles'));
 	}
 
 	public function edit($id){
@@ -42,13 +47,20 @@ class ProyectosController extends Controller {
 
 	public function store(Request $request){
 		//$request["fecha_avance"] = Carbon::now();
-		
 		//dd($request->all());
-		Proyectos::create($request->all());
+		$proyecto = Proyectos::create($request->all());
 		if ($request['id_dominio']){			
 		 	Dominios::where('id_dominio',$request['id_dominio'])->update(['habilitado_dominio'=>0]);
 		};
 
+		if ($request->cantidad>0){
+			foreach (range(0, $request->cantidad-1) as $index) {
+				Roles::create(['id_usuario' => $request['id_usuario'.$index],
+							'id_tipo_rol' => $request['id_rol'.$index],
+							'id_proyecto'=> $proyecto->id_proyecto]);
+						};
+		};
+		
 		Session::flash('mensaje', 'Proyecto creado exitosamente');
 		return redirect('/proyectos');
 	}

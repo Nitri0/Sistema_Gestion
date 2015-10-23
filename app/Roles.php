@@ -1,6 +1,7 @@
 <?php namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Tipo;
 
 class Roles extends Model {
 
@@ -8,8 +9,12 @@ class Roles extends Model {
 	protected $primaryKey = "id_rol_usuario";
 	protected $fillable = array('id_usuario',
 								'id_proyecto',
-								'id_tipo_rol',
-								);
+								'id_tipo_rol');
 	public $timestamps = false;
+
+
+	public function getRolname(){
+		return Tipo::find($this->id_tipo_rol)->nombre_tipo;
+	}
 
 }

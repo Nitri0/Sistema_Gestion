@@ -59,26 +59,40 @@
 			<br>
 			grupo de trabajo
 			<br>
-			<div class="from-group">
-				<label for="">Persona</label>
-				<select class="form-control" name="id_usuario">
-					@foreach($usuarios as $usuario)
-						<option class="option" value="{{$usuario->id_usuario}}">
-							{{ $usuario->getPerfil()->fullName() }}
-						</option>
-					@endforeach
-				</select>
-				<label for="">rol que cumplirá</label>
-				<select class="form-control" name="rol">
-					<option class="option" value="">Seleccione un rol</option>
-						<option class="option" value="1">
-							rol 1
-						</option>
-				</select>
-			</div>	
 
+			<button type="button" ng-click="agregar_integrantes()"> Agregar integrante</button>
+			<button type="button" ng-show="cantidad>=1" ng-click="eliminar_integrantes()"> Eliminar integrante</button>
+			<input type="hidden" class="form-control" name="cantidad" ng-value="cantidad">
+			<div ng-repeat="persona in personas track by $index" >
+				<div class="from-group">
+					<label for="">Integrante [[$index+1]]</label>
+					<select class="form-control" name="id_usuario[[$index]]">
+						<option class="option" value="">Seleccione un Usuario</option>
+						@foreach($usuarios as $usuario)
+							<option class="option" value="{{$usuario->id_usuario}}">
+								{{ $usuario->getPerfil()->fullName() }}
+							</option>
+						@endforeach
+					</select>
+					<label for="">Rol que cumplirá</label>
+					<select class="form-control" name="id_rol[[$index]]">
+						<option class="option" value="">Seleccione un Rol</option>
+						@foreach($roles as $rol)
+							<option class="option" value="{{$rol->id_tipo}}">
+								{{ $rol->nombre_tipo }} 
+							</option>
+						@endforeach
+					</select>
+					<button >
+						<a href="{{ url('/roles') }}">Agregar un rol</a>
+					</button>					
+				</div>	
+			</div>
+			<br>
+			<br>
+			<br>
 			<button type="submit">
-					Registrar
+				Registrar
 			</button>
 		</form>
 	</div>

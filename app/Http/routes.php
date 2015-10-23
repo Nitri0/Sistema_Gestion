@@ -18,6 +18,10 @@ $router->group(['middleware' => 'auth'], function() {
 	Route::get( 'perfil', 'UserController@perfil');
 	Route::post('perfil', 'UserController@postPerfil');
 
+	Route::get( 'roles', 'UserController@roles');
+	Route::post('roles', 'UserController@postRoles');
+	Route::get(  'mis-proyectos', 'UserController@misProyectos');
+
 	Route::get('gestion', 'VistasController@gestion');
 	Route::resource('clientes', 'ClientesController');
 	Route::resource('dominios', 'DominiosController');

@@ -4,6 +4,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\EmpresasProveedoras;
 use Illuminate\Http\Request;
+use Session;
 
 class EmpresasProveedorasController extends Controller {
 
@@ -19,6 +20,7 @@ class EmpresasProveedorasController extends Controller {
 
 	public function store(Request $request){
 		$empresa_proveedora = EmpresasProveedoras::create($request->all());
+		Session::flash('mensaje', 'Empresa proveedora creada exitosamente');
 		return redirect('/dominios/create');
 	}
 

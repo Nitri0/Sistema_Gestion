@@ -6,6 +6,7 @@ use App\Dominios;
 use App\Clientes;
 use App\EmpresasProveedoras;
 use Illuminate\Http\Request;
+use Session;
 
 class DominiosController extends Controller {
 
@@ -31,7 +32,7 @@ class DominiosController extends Controller {
 
 	public function store(Request $request){
 		$dominio = Dominios::create($request->all());
-		//dd($request->all());
+		Session::flash('mensaje', 'Dominio creado exitosamente');
 		return redirect('/proyectos/create');
 	}
 

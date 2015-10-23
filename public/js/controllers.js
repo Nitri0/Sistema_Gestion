@@ -23,7 +23,19 @@ coreApp.controller('AvanceController', function ($scope, $log) {
 
 coreApp.controller('ProyectoController', function ($scope, $log) {
 	console.log("Proyecto");
+	$scope.personas=[];
+	$scope.cantidad=0;
 	$scope.proyecto={};
+	
+	$scope.agregar_integrantes= function(argument) {
+		$scope.personas.push(1);
+		$scope.cantidad = $scope.personas.length;
+	};
+
+	$scope.eliminar_integrantes= function(argument) {
+		$scope.personas.pop();
+		$scope.cantidad = $scope.personas.length;
+	};
 });
 
 coreApp.controller('PerfilController', function ($scope, $log) {
