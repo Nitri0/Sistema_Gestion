@@ -14,7 +14,7 @@ class Dominios extends Model {
 								);
 
 
-	public function nombre_cliente(){
+	public function nombreCliente(){
 		$cliente = Clientes::find($this->id_cliente);
 		if ($cliente){
 			return $cliente->nombre_cliente;	
@@ -22,7 +22,7 @@ class Dominios extends Model {
 		return "cliente no existente";
 	}
 
-	public function empresa_proveedora(){
+	public function empresaProveedora(){
 		$proveedor = EmpresasProveedoras::find($this->id_empresa_proveedora);
 		if ($proveedor){
 			return $proveedor->nombres_empresa_proveedora;	

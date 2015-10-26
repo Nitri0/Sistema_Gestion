@@ -15,17 +15,30 @@ Route::get('/', 'VistasController@index');
 
 $router->group(['middleware' => 'auth'], function() {
 
-	Route::get( 'perfil', 'UserController@perfil');
-	Route::post('perfil', 'UserController@postPerfil');
+	Route::get('/gestion', 'VistasController@gestion');
+	Route::get( '/perfil', 'UserController@perfil');
+	Route::post('/perfil', 'UserController@postPerfil');
+	Route::get( '/roles', 'UserController@roles');
+	Route::post('/roles', 'UserController@postRoles');
+	
+	Route::get('/plantillas/{id?}', 'UserController@plantillas');
+	Route::post('/plantillas', 'UserController@postPlantillas');
+	Route::post('/plantillas/{id}', 'UserController@putPlantillas');
+	Route::get('/plantillas/preview/{id_proyecto}/{id_plantilla}', 'UserController@previewPlantillas');
 
-	Route::get( 'roles', 'UserController@roles');
-	Route::post('roles', 'UserController@postRoles');
-	Route::get(  'mis-proyectos', 'UserController@misProyectos');
 
-	Route::get('gestion', 'VistasController@gestion');
+	Route::get( '/mis-proyectos', 'UserController@misProyectos');
+	Route::get( '/mis-proyectos/{id}', 'UserController@detalleMisProyectos');
+	Route::get( '/mis-proyectos/avances/{id_proyecto}/', 'UserController@avancesMisProyectos');
+	Route::get( '/mis-proyectos/avances/{id_proyecto}/create', 'UserController@createAvancesMisProyectos');
+	Route::Post('/mis-proyectos/avances/{id_proyecto}/create', 'UserController@postCreateAvancesMisProyectos');
+	Route::get( '/mis-proyectos/avances/{id_proyecto}/{id_avance}', 'UserController@detalleAvancesMisProyectos');
+
+
+	//___________________ Cruds _____________________________
 	Route::resource('clientes', 'ClientesController');
 	Route::resource('dominios', 'DominiosController');
-	Route::resource('avances', 'AvancesController');
+	//Route::resource('avances', 'AvancesController');
 	Route::resource('proyectos', 'ProyectosController');
 	Route::resource('empresas_proveedoras', 'EmpresasProveedorasController');
 });

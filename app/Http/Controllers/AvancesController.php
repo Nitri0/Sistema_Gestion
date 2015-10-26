@@ -34,7 +34,7 @@ class AvancesController extends Controller {
 		//$request["fecha_avance"] = Carbon::now();
 		$avances = Avances::create($request->all());
 		Session::flash('mensaje', 'Avance creado exitosamente');
-		return redirect('/avances');
+		return redirect('/mis-proyectos/'.$request->id_proyecto);
 	}
 
 	public function show($id){
@@ -45,7 +45,7 @@ class AvancesController extends Controller {
 	public function update($id, Request $request){
 		$this->avance->update($request->all());
 		Session::flash('mensaje', 'Avances editado exitosamente');
-		return redirect("/avances");
+		return redirect("/pruyeba");
 	}
 
 	public function destroy($id)

@@ -1,6 +1,7 @@
 <?php namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Roles;
 
 class Proyectos extends Model {
 
@@ -24,5 +25,15 @@ class Proyectos extends Model {
 					];
 
 		return $estatus[$this->estatus_proyecto];
+	}
+
+	public function getClienteData(){
+		# code...
+	}
+
+
+	public function getRol($id_usuario){
+		$rol = Roles::where('id_proyecto',$this->id_proyecto)->where('id_usuario', $id_usuario)->first();
+		return $rol->getRolName();
 	}
 }

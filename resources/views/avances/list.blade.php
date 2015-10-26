@@ -21,7 +21,7 @@
 		<div class="row">
 			<div class="col-md-8"> <h2>Lista de avances</h2></div>
 			<div class="col-md-4">
-				<a class="btn btn-sm btn-success" href="{{ url( '/avances/create' ) }}"> Agregar</a>
+				<a class="btn btn-sm btn-success" href="{{ url( '/mis-proyectos/avances/'.$id_proyecto.'/create' ) }}"> Agregar</a>
 			</div>
 
 		</div>
@@ -31,7 +31,7 @@
 		<table class="table table-hover">
 		    <thead>
 		      <tr>
-		        <th>Cliente</th>
+		        <th>Asunto</th>
 		        <th>Fecha de creación</th>
 		        <th >Operaciones</th>
 		      </tr>
@@ -39,7 +39,7 @@
 		    <tbody>
 		    	@foreach($avances as $avance)
 			    	<tr>
-						<td>{{$avance->nombre_cliente()}}</td>
+						<td>{{$avance->asunto_avance }}</td>
 						<td>{{$avance->fecha_avance}}</td>
 			        	<td >
 			        		<a class="btn btn-sm btn-info" href="{{ url( '/avances/'.$avance->id_avance ) }}"> Detalle</a>

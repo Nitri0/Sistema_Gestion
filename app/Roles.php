@@ -13,7 +13,7 @@ class Roles extends Model {
 	public $timestamps = false;
 
 
-	public function getRolname(){
+	public function getRolName(){
 		return Tipo::find($this->id_tipo_rol)->nombre_tipo;
 	}
 

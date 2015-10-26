@@ -32,7 +32,12 @@ class ProyectosController extends Controller {
 		$clientes = Clientes::all();
 		$dominios = Dominios::where('habilitado_dominio',1)->get();
 		$usuarios = User::all();
-		$id_maestro = Master::where('nombre_maestro','Roles')->first()->id_maestro;
+		$maestro = Master::where('nombre_maestro','Roles')->first();
+		if (!$maestro){
+			$id_maestro = Master::create(['nombre_maestro','Roles'])->id_maestro;
+		}else{
+			$id_maestro = $maestro->id_maestro;
+		};
 		$roles = Tipo::where('id_maestro',$id_maestro)->get();
 		return view('proyectos.create',compact('clientes', 'dominios', 'usuarios', 'roles'));
 	}

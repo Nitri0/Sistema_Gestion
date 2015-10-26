@@ -19,6 +19,7 @@ coreApp.controller('ProveedorController', function ($scope, $log) {
 coreApp.controller('AvanceController', function ($scope, $log) {
 	console.log("Avance");
 	$scope.avance={};
+	$scope.check=0;
 });
 
 coreApp.controller('ProyectoController', function ($scope, $log) {
@@ -41,4 +42,9 @@ coreApp.controller('ProyectoController', function ($scope, $log) {
 coreApp.controller('PerfilController', function ($scope, $log) {
 	console.log("perfil");
 	$scope.perfil={};
+});
+
+coreApp.controller('PlantillasController', function ($scope, $log) {
+	console.log("plantillas");
+	$scope.plantilla={};
 });

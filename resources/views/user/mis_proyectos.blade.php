@@ -9,10 +9,6 @@
 				
 		<div class="row">
 			<div class="col-md-8"> <h2>Lista de mis proyectos</h2></div>
-			<div class="col-md-4">
-				<a class="btn btn-sm btn-success" href="{{ url( '/proyectos/create' ) }}"> Agregar</a>
-			</div>
-
 		</div>
 		<br>
 		<br>
@@ -22,6 +18,7 @@
 		      <tr>
 		        <th>Nombre Proyecto</th>
 		        <th>Fecha de creación</th>
+		        <th>Rol</th>
 		        <th>Estatus</th>
 		        <th >Operaciones</th>
 		      </tr>
@@ -31,9 +28,10 @@
 			    	<tr>
 						<td>{{$proyecto->nombre_proyecto}}</td>
 						<td>{{$proyecto->fecha_creacion_proyecto}}</td>
+						<td>{{$proyecto->getRol( Auth::user()->id_usuario )}}</td>
 						<td>{{$proyecto->getEstatus()}}</td>
 			        	<td >
-			        		<a class="btn btn-sm btn-info" href="{{ url( '/proyectos/'.$proyecto->id_proyecto ) }}"> Detalle</a>
+			        		<a class="btn btn-sm btn-info" href="{{ url( '/mis-proyectos/'.$proyecto->id_proyecto ) }}"> Gestionar</a>
 			        	</td>
 			        </tr>
 				@endforeach

@@ -14,7 +14,10 @@ class Avances extends Model {
 								);
 
 
-	public function nombre_cliente(){
+
+
+
+	public function nombreCliente(){
 		$cliente = Clientes::find($this->id_cliente);
 		if ($cliente){
 			return $cliente->nombre_cliente;	
