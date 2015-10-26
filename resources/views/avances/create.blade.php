@@ -53,6 +53,7 @@
 				<textarea rows="10" cols="50" class="form-control" ng-model="avance.descripcion_avance" name="descripcion_avance">
 				</textarea>
 			</div>	
+				<a class="btn btn-sm btn-success" ng-if="id_plantilla" target="_blank" href="{{ url( '/plantillas/preview-full/[[avance.id_proyecto]]/[[id_plantilla]]/' ) }}"> preview</a>			
 			<br>
 			
 			<button type="submit">
