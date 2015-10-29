@@ -9,6 +9,7 @@ use App\User;
 use App\Tipo;
 use App\Roles;
 use App\Master;
+use App\GrupoEtapas;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Route;
 use Session;
@@ -39,7 +40,8 @@ class ProyectosController extends Controller {
 			$id_maestro = $maestro->id_maestro;
 		};
 		$roles = Tipo::where('id_maestro',$id_maestro)->get();
-		return view('proyectos.create',compact('clientes', 'dominios', 'usuarios', 'roles'));
+		$grupo_etapas = GrupoEtapas::all();
+		return view('proyectos.create',compact('clientes', 'dominios', 'usuarios', 'roles','grupo_etapas'));
 	}
 
 	public function edit($id){

@@ -38,6 +38,8 @@
 
 					@if(Auth::check())
 					<li><a href="{{ url('/mis-proyectos') }}">Mis proyectos</a></li>
+					<li><a href="{{ url('/dominios') }}">Dominios</a></li>
+					<li><a href="{{ url('/grupo_etapas') }}">Grupo de Etapas</a></li>
 					<li class="dropdown navbar-user">
 						<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
 							<span class="hidden-xs">{{ Auth::user()->getPerfil()->fullName()}}</span> <b class="caret"></b>

@@ -48,3 +48,20 @@ coreApp.controller('PlantillasController', function ($scope, $log) {
 	console.log("plantillas");
 	$scope.plantilla={};
 });
+
+coreApp.controller('GrupoEtapasController', function ($scope, $log) {
+	console.log("Grupo de etapas");
+	$scope.etapas=[];
+	$scope.cantidad=0;
+	$scope.GrpEtapas={};
+	
+	$scope.agregar_etapa= function(argument) {
+		$scope.etapas.push(1);
+		$scope.cantidad = $scope.etapas.length;
+	};
+
+	$scope.eliminar_etapa= function(argument) {
+		$scope.etapas.pop();
+		$scope.cantidad = $scope.etapas.length;
+	};
+});

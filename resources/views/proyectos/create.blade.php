@@ -18,7 +18,7 @@
 		@endif
 		
 
-			<h2>Crear proyecto</h2>
+			<h2>Crear proyecto web</h2>
 			<form action="{{ url('proyectos/') }}" method="POST">		
 
 			<br><br>
@@ -38,8 +38,8 @@
 			</div>			
 			<br>
 			<div class="from-group">
-				<label for="">dominio</label>
-				<select class="form-control" ng-model="proyecto.id_dominio" name="id_dominio">
+				<label for="">Dominio</label>
+				<select class="form-control" ng-model="proyecto.id_dominio" name="id_dominio" required>
 					<option class="option" value="">Seleccione un dominio</option>
 					@foreach($dominios as $key)
 						<option class="option" value="{{$key->id_dominio}}">
@@ -47,17 +47,26 @@
 						</option>
 					@endforeach
 				</select>
-				<button >
-					<a href="{{ url('/dominios/create') }}">Agregar un dominio</a>
-				</button>
 			</div>	
 			<br>
+			<div class="from-group">
+				<label for="">Grupo de etapas (sprints/pasos/etapas)</label>
+				<select class="form-control" ng-model="proyecto.id_grupo_etapas" name="id_grupo_etapas" required>
+					<option class="option" value="">Seleccione un grupo</option>
+					@foreach($grupo_etapas as $key)
+						<option class="option" value="{{$key->id_grupo_etapas}}">
+							{{ $key->nombre_grupo_etapas }}
+						</option>
+					@endforeach
+				</select>
+			</div>	
+			<br>			
 			<div class="from-group">
 				<label for="">Nombre del proyecto</label>
 				<input type="text" class="form-control" name="nombre_proyecto">
 			</div>
 			<br>
-			grupo de trabajo
+			Grupo de trabajo
 			<br>
 
 			<button type="button" ng-click="agregar_integrantes()"> Agregar integrante</button>

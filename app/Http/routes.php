@@ -37,6 +37,7 @@ $router->group(['middleware' => 'auth'], function() {
 
 	//___________________ Cruds _____________________________
 	Route::resource('clientes', 'ClientesController');
+	Route::resource('grupo_etapas', 'EtapasController');
 	Route::resource('dominios', 'DominiosController');
 	//Route::resource('avances', 'AvancesController');
 	Route::resource('proyectos', 'ProyectosController');

@@ -19,7 +19,7 @@ class DominiosController extends Controller {
 	}
 	
 	public function index(){
-		$dominios = Dominios::paginate(3);;
+		$dominios = Dominios::paginate(10);;
 		return view('dominios.list', compact('dominios'));
 	}
 
@@ -33,7 +33,7 @@ class DominiosController extends Controller {
 	public function store(Request $request){
 		$dominio = Dominios::create($request->all());
 		Session::flash('mensaje', 'Dominio creado exitosamente');
-		return redirect('/proyectos/create');
+		return redirect('/dominios');
 	}
 
 	public function show($id){

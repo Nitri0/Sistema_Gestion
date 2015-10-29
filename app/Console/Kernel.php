@@ -24,6 +24,9 @@ class Kernel extends ConsoleKernel {
 	{
 		$schedule->command('inspire')
 				 ->hourly();
+
+		$schedule->command('comprobar_dominios')
+				 ->daily();
 	}
 
 }
