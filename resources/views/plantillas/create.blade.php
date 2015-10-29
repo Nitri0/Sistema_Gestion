@@ -36,7 +36,7 @@
 			para colocar la data es necesario usar doble {{}} y dentro colocar la variable que se desea imprimir<br>
 			{{ $cliente->nombre_cliente } } <br>
 
-			<srong>no olvidar colocar la etiqueta { { $data}} en el lugar donde estará la data que se llenará automaticamente al crear un avance</srong><br><br><br>
+			<srong>no olvidar colocar la etiqueta { { $data} } en el lugar donde estará la data que se llenará automaticamente al crear un avance</srong><br><br><br>
 			<button type="submit">
 					Registrar
 			</button>
