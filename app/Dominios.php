@@ -1,6 +1,7 @@
 <?php namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Proyectos;
 
 class Dominios extends Model {
 
@@ -14,12 +15,12 @@ class Dominios extends Model {
 								);
 
 
-	public function nombreCliente(){
-		$cliente = Clientes::find($this->id_cliente);
-		if ($cliente){
-			return $cliente->nombre_cliente;	
+	public function proyectoAsociado(){
+		$proyecto = Proyectos::where('id_dominio',$this->id_dominio)->first();
+		if ($proyecto){
+			return $proyecto->nombre_proyecto;	
 		}
-		return "cliente no existente";
+		return "Dominio no asociado";
 	}
 
 	public function empresaProveedora(){

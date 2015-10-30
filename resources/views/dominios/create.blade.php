@@ -15,7 +15,7 @@
 			<br><br>
 			<div class="from-group">
 				<label for="">Empresa proveedora</label>
-				<select class="form-control" name="id_empresa_proveedora" ng-model="dominio.id_empresa_provedora">
+				<select class="form-control" name="id_empresa_proveedora" ng-model="dominio.id_empresa_proveedora">
 					<option class="option" value="">Seleccione una empresa proveedora</option>
 					@foreach($empresas_proveedoras as $proveedor)
 						<option class="option" value="{{$proveedor->id_empresa_proveedora}}">
@@ -37,7 +37,7 @@
 
 			<div class="from-group">
 				<label for="">Fecha de creacion de dominio</label>
-				<input type="date" class="form-control" ng-model="dominio.fecha_dominio" name="fecha_dominio">
+				<input type="date" class="form-control" ng-value="dominio.fecha_dominio" name="fecha_dominio">
 			</div>	
 
 			<button type="submit">

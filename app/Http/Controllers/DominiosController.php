@@ -6,6 +6,7 @@ use App\Dominios;
 use App\Clientes;
 use App\EmpresasProveedoras;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Route;
 use Session;
 
 class DominiosController extends Controller {
@@ -41,11 +42,17 @@ class DominiosController extends Controller {
 	}
 
 	public function edit($id){
-		return view('dominios.create', ['dominio'=>$this->dominio]);
+		$dominio = Dominios::find($id);
+		$clientes = Clientes::all();
+		$empresas_proveedoras = EmpresasProveedoras::all();
+
+		return view('dominios.create', compact('dominio','clientes','empresas_proveedoras'));
 	}
 
-	public function update($id){
-		//
+	public function update($id, Request $request){
+		Dominios::find($id)->update($request->all());
+		Session::flash('mensaje', 'Dominio editado exitosamente');
+		return redirect("/dominios");
 	}
 
 	public function destroy($id)
