@@ -19,6 +19,10 @@ class Proyectos extends Model {
 	public function getEstatus(){
 		$etapa = Etapas::where('id_grupo_etapas',$this->id_grupo_etapas)->
 						where('numero_orden_etapa', $this->estatus_proyecto)->first();
+		if (!$etapa){
+			return "no disponible";
+		}
+		
 		return $etapa->nombre_etapa;
 	}
 
