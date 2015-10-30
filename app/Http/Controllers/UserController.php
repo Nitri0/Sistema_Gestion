@@ -56,6 +56,7 @@ class UserController extends Controller {
 		$proyectos_id = Roles::where('id_usuario',$user->id_usuario)->lists('id_proyecto');
 		$proyectos = Proyectos::where('habilitado_proyecto',1)
 								->whereIn('id_proyecto',$proyectos_id)
+								->orderBy('id_proyecto', 'desc')
 								->paginate(10);
 		return view('user.mis_proyectos',compact('proyectos'));
 	}
@@ -81,7 +82,7 @@ class UserController extends Controller {
 	public function avancesMisProyectos($id_proyecto){
 
 		//$proyecto = Proyectos::find($id_proyecto);
-		$avances  = Avances::where('id_proyecto',$id_proyecto)->paginate(10);
+		$avances  = Avances::where('id_proyecto',$id_proyecto)->orderBy('id_proyecto', 'desc')->paginate(10);
 
 		return view('avances.list',compact('avances', 'id_proyecto'));
 	}
