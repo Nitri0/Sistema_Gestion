@@ -98,16 +98,15 @@ class UserController extends Controller {
 
 	public function postCreateAvancesMisProyectos(Request $request,$id_proyecto){
 
-		
-
 		$proyecto = Proyectos::find($id_proyecto);
 
 		if ($request->check_cierre_etapa==1){
-			unset($request['check_cierre_etapa']);
+			
 			$proyecto = Proyectos::find($request->id_proyecto);
 			$proyecto->estatus_proyecto = $proyecto->estatus_proyecto + 1;
 			$proyecto->save();
 		}
+		unset($request['check_cierre_etapa']);
 		$cliente = Clientes::find($proyecto->id_cliente);
 
 		if ($request->check_copia_cliente_avance){

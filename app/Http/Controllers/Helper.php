@@ -25,7 +25,7 @@ class Helper extends Controller {
 	public static function SendEmail($receptor, $nombreReceptor, $asunto, $plantilla, $parametros){
 		
 		Mail::send($plantilla, $parametros , function($mensaje) use ($receptor, $nombreReceptor, $asunto){
-			$mensaje->to($receptor, $nombreReceptor)->from(array('address' => Auth::user()->correo_usuario, 'name' => Auth::user()->getFullName())
+			$mensaje->to($receptor, $nombreReceptor)->from(array('address' => Auth::user()->correo_usuario, 'name' => Auth::user()->getFullName()))
 					->subject($asunto);
 
 				//Auth::user()->correo_usuario)
