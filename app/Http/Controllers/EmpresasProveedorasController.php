@@ -9,7 +9,7 @@ use Session;
 class EmpresasProveedorasController extends Controller {
 
 	public function index(){
-		$empresas_proveedoras = EmpresasProveedoras::paginate(3);;
+		$empresas_proveedoras = EmpresasProveedoras::orderBy('id_empresa_proveedora', 'desc')->paginate(3);;
 		return view('empresas_proveedoras.list', compact('empresas_proveedoras'));
 	}
 

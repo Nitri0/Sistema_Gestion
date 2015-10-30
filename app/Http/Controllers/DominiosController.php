@@ -20,7 +20,7 @@ class DominiosController extends Controller {
 	}
 	
 	public function index(){
-		$dominios = Dominios::paginate(10);;
+		$dominios = Dominios::orderBy('id_dominio', 'desc')->paginate(10);;
 		return view('dominios.list', compact('dominios'));
 	}
 
