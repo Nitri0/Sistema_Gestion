@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Eloquent\Model;
 use App\Roles;
+use App\Etapas;
 
 class Proyectos extends Model {
 
@@ -15,17 +16,16 @@ class Proyectos extends Model {
 								);
 	public $timestamps = false;
 
-
 	public function getEstatus(){
-		$estatus = [
-					'Dominio creado',
-					'Levantamiento de requerimientos',
-					'Maquetacion',
-					'Desarrollo de plantilla',
-					'Finalizado'
-					];
+		$etapa = Etapas::where('id_grupo_etapas',$this->id_grupo_etapas)->
+						where('numero_orden_etapa', $this->estatus_proyecto)->first();
+		return $etapa->nombre_etapa;
+	}
 
-		return $estatus[$this->estatus_proyecto];
+	public function getIdEtapa(){
+		$etapa = Etapas::where('id_grupo_etapas',$this->id_grupo_etapas)->
+						where('numero_orden_etapa', $this->estatus_proyecto)->first();
+		return $etapa->id_etapa;
 	}
 
 	public function getClienteData(){

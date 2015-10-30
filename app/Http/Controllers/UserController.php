@@ -11,6 +11,7 @@ use App\Avances;
 use Input;
 use App\Perfil;
 use App\Clientes;
+use App\GrupoEtapas;
 use App\Plantillas;
 use Session;
 use URL;
@@ -63,15 +64,17 @@ class UserController extends Controller {
 	public function detalleMisProyectos($id_proyecto){
 
 		$user = Auth::user();
-		$rol = Roles::where('id_usuario',$user->id_usuario)->where('id_proyecto',$id_proyecto)->first();
+		$rol = Roles::where('id_usuario',$user->id_usuario)->where('id_proyecto',$id_proyecto)->get();
+		/*
 		if (!$rol){
 			return redirect('mis-proyectos/');
 		}
-
+		*/
 		$proyecto = Proyectos::find($id_proyecto);
-		$avances  = Avances::where('id_proyecto',$id_proyecto)->paginate(3);
+		$etapas = GrupoEtapas::find($proyecto->id_grupo_etapas);
 
-		return view('user.detalle_proyecto',compact('proyecto','avances','id_proyecto'));
+
+		return view('user.detalle_proyecto',compact('proyecto','id_proyecto', 'rol', 'etapas'));
 	}
 
 	//__________________________________ CRUD AVANCES ____________________
@@ -87,16 +90,22 @@ class UserController extends Controller {
 		$user = Auth::user();
 		$plantillas = Plantillas::all();
 		$proyectos_id = Roles::where('id_usuario',$user->id_usuario)->lists('id_proyecto');
-		$proyectos = Proyectos::where('habilitado_proyecto',1)
-								->whereIn('id_proyecto',$proyectos_id)
-								->get();
-		return view('avances.create',compact('id_proyecto', 'proyectos','plantillas'));
+		$proyecto = Proyectos::find($id_proyecto);//aqui siempre trae un solo proyecto... arreglar
+		$etapas = GrupoEtapas::find($proyecto->id_grupo_etapas)->getEtapas();
+		return view('avances.create',compact('id_proyecto', 'proyecto','plantillas','etapas'));
 	}	
 
 	public function postCreateAvancesMisProyectos(Request $request,$id_proyecto){
+
 		$avances = Avances::create($request->all());
 
 		$proyecto = Proyectos::find($id_proyecto);
+
+		if ($request->check_cierre_etapa==1){
+			$proyecto = Proyectos::find($request->id_proyecto);
+			$proyecto->estatus_proyecto = $proyecto->estatus_proyecto + 1;
+			$proyecto->save();
+		}
 		$cliente = Clientes::find($proyecto->id_cliente);
 		$plantilla = Plantillas::find($request->id_plantilla);
 

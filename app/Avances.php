@@ -8,6 +8,7 @@ class Avances extends Model {
 	protected $primaryKey = "id_avance";
 	public $timestamps = false;
 	protected $fillable = array('id_proyecto',
+								'id_etapa',
 								'asunto_avance',
 								'descripcion_avance',
 								'check_copia_cliente_avance',

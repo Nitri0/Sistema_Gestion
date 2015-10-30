@@ -23,4 +23,8 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 		$perfil = Perfil::where('id_usuario',$this->id_usuario)->first();
 		return $perfil;
 	}
+
+	public function getName(){
+		Perfil::find($this->id_usuario);
+	}
 }

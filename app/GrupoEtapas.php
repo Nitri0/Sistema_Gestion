@@ -1,5 +1,6 @@
 <?php namespace App;
 
+use App\Etapas;
 use Illuminate\Database\Eloquent\Model;
 
 class GrupoEtapas extends Model {
@@ -13,8 +14,7 @@ class GrupoEtapas extends Model {
 								'cantidad_etapas',
 								);
 
-	public function getEtapas(){		
-		return Etapas::where('id_grupo_etapas',$this->id_grupo_etapas)->get();
+	public function getEtapas(){
+		return Etapas::where('id_grupo_etapas', $this->id_grupo_etapas)->get();
 	}
-
 }

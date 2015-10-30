@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Eloquent\Model;
 use App\Tipo;
+use App\Perfil;
 
 class Roles extends Model {
 
@@ -16,5 +17,10 @@ class Roles extends Model {
 	public function getRolName(){
 		return Tipo::find($this->id_tipo_rol)->nombre_tipo;
 	}
+
+	public function getUserName(){
+		return Perfil::where('id_usuario',$this->id_usuario)->first()->nombre_perfil;
+	}
+
 
 }

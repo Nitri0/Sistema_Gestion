@@ -2,22 +2,28 @@
 
 @section('content')
 	<div class="container" ng-controller="AvanceController">
-		<div ng-init = "avance.id_proyecto =  '{{$id_proyecto}}'"></div>
 			
 			<h2>Crear avance</h2>
 			<form action="{{ url('/mis-proyectos/avances/'.$id_proyecto.'/create') }}" method="POST">		
 			<br><br>
 			<div class="from-group">
-				<label for="">Proyecto </label>
-				<select class="form-control" ng-model="avance.id_proyecto" name="id_proyecto" disabled>
-					<option class="option" value="">Seleccione un Proyecto</option>
-					@foreach($proyectos as $proyecto)
-							<option class="option" value="{{$proyecto->id_proyecto}}">
-								{{ $proyecto->nombre_proyecto }}
-							</option>							
-					@endforeach
-				</select>
+				<label for="">Proyecto: </label><br>
+				<label for="">{{$proyecto->nombre_proyecto}} </label>
+				
 			</div>			
+			<br>
+			<div class="from-group">
+				<label for="">Etapa/Sprint/Paso: </label><br>
+				<label for="">{{$proyecto->getEstatus()}}</label>
+				<input type="hidden" class="form-control" name="id_etapa" ng-value='{{$proyecto->getIdEtapa()}}'>
+			</div>			
+			<br>
+			<div class="from-group">
+				<label for="">¿Avance de cierre de etapa?</label><br>
+
+				<input type="radio" name="check_cierre_etapa" value="1">si
+				<input type="radio" name="check_cierre_etapa" value="0" checked="checked">no
+			</div>	
 			<br>			
 			<div class="from-group">
 				<label for="">Asunto </label>
@@ -30,7 +36,7 @@
 				<input type="radio" name="check_copia_cliente_avance" ng-model="check" value="1">si
 				<input type="radio" name="check_copia_cliente_avance" ng-model="check" value="0" checked="checked">no
 			</div>	
-			<br>	
+			<br>			
 			<div class="from-group" ng-if="check==1">
 				<label for="">Plantillas </label>
 				<select class="form-control" name="id_plantilla" ng-model="id_plantilla">
