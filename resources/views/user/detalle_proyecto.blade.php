@@ -25,7 +25,9 @@
 		{{$integrante->getUserName()}} - {{$integrante->getRolName()}}
 	@endforeach
 	<br><br>
-	<a href="/mis-proyectos/avances/{{$proyecto->id_proyecto}}/create">crear avance</a>
-
+	@if($proyecto->getEstatus()!="Finalizado")
+		<a class="btn btn-success" href="/mis-proyectos/avances/{{$proyecto->id_proyecto}}/create">crear avance</a>
+	@endif
+	
 </div>
 @stop
