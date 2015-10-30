@@ -98,7 +98,23 @@ class UserController extends Controller {
 
 	public function postCreateAvancesMisProyectos(Request $request,$id_proyecto){
 
-		$avances = Avances::create($request->all());
+
+		if ($request->check_copia_cliente_avance){
+			$plantilla = Plantillas::find($request->id_plantilla);
+
+			$parametros_plantilla = ['proyecto'=>$proyecto,
+									 'cliente' =>$cliente,
+									 'data'    =>$request->descripcion_avance];			
+			Helper::SendEmail(
+							$cliente->email_cliente,
+							$cliente->persona_contacto_cliente,
+							$request->asunto_avance,
+							'emails.'.$plantilla->nombre_plantilla,
+							$parametros_plantilla
+							);
+		};
+
+		$avances = Avances::firstOrCreate($request->all());
 
 		$proyecto = Proyectos::find($id_proyecto);
 
@@ -108,21 +124,8 @@ class UserController extends Controller {
 			$proyecto->save();
 		}
 		$cliente = Clientes::find($proyecto->id_cliente);
-		$plantilla = Plantillas::find($request->id_plantilla);
 
-		$parametros_plantilla = ['proyecto'=>$proyecto,
-								 'cliente' =>$cliente,
-								 'data'    =>$request->descripcion_avance];
 
-		if ($request->check_copia_cliente_avance){
-			Helper::SendEmail(
-							$cliente->email_cliente,
-							$cliente->persona_contacto_cliente,
-							$request->asunto_avance,
-							'emails.'.$plantilla->nombre_plantilla,
-							$parametros_plantilla
-							);
-		}
 		Session::flash('mensaje', 'Avance creado exitosamente');
 		return redirect('/mis-proyectos/'.$id_proyecto);
 	}

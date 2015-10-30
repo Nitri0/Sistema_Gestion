@@ -30,7 +30,7 @@
 		    <thead>
 		      <tr>
 		        <th>Nombre Dominio</th>
-		        <th>Nombre Cliente</th>
+		        <th>Proyecto asignado</th>
 		        <th>Proveedor</th>
 		        <th>Fecha creación</th>
 		        <th >Operaciones</th>
