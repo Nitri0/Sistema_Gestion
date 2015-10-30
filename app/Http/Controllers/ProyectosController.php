@@ -8,6 +8,7 @@ use App\Dominios;
 use App\User;
 use App\Tipo;
 use App\Roles;
+use App\Avances;
 use App\Master;
 use App\GrupoEtapas;
 use Illuminate\Http\Request;
@@ -90,6 +91,12 @@ class ProyectosController extends Controller {
 
 	public function destroy($id){
 		$proyecto = Proyectos::find($id);
+		Avances::where('id_proyecto',$proyecto->id_proyecto)->delete();
+		Roles::where('id_proyecto',$proyecto->id_proyecto)->delete();
+		Dominios::find($proyecto->id_dominio)->update(['habilitado_dominio'=>1,]);
+		$proyecto->delete();
+
+		return redirect('/proyectos');
 		//Dominios::destroy($proyecto->)
 	}		
 }

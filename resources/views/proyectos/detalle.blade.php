@@ -25,12 +25,10 @@
 		{{$integrante->getUser()->getFullName()}} - {{$integrante->getRolName()}} <br>
 	@endforeach
 	<br><br>
-	@if($proyecto->getEstatus()!="Finalizado")
-		<form action="/proyectos/{{$proyecto->id_proyecto}}" method="post">
-			<input type="hidden" name="_method" value="delete">
-			<button type="submit" class="btn btn-success" href="/proyectos/avances/{{$proyecto->id_proyecto}}/create">Eliminar Proyecto</a>
-		</form>
-	@endif
+	<form action="/proyectos/{{$proyecto->id_proyecto}}" method="post">
+		<input type="hidden" name="_method" value="delete">
+		<button type="submit" class="btn btn-success">Eliminar Proyecto</a>
+	</form>
 	
 </div>
 @stop
