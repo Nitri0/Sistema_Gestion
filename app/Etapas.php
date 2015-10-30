@@ -15,7 +15,8 @@ class Etapas extends Model {
 								'id_grupo_etapas'
 								);
 
-	public function getAvances(){
-		return Avances::where('id_etapa',$this->id_etapa)->get();
+	public function getAvances($id_proyecto){
+		return Avances::where('id_etapa',$this->id_etapa)
+						->where('id_proyecto',$id_proyecto)->get();
 	}
 }

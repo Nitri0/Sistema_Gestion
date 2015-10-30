@@ -65,7 +65,7 @@ class UserController extends Controller {
 	public function detalleMisProyectos($id_proyecto){
 
 		$user = Auth::user();
-		$rol = Roles::where('id_usuario',$user->id_usuario)->where('id_proyecto',$id_proyecto)->get();
+		$rol = Roles::where('id_proyecto',$id_proyecto)->get();
 		/*
 		if (!$rol){
 			return redirect('mis-proyectos/');

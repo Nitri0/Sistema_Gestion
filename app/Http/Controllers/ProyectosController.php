@@ -48,8 +48,18 @@ class ProyectosController extends Controller {
 		return view('proyectos.edit', ['proyecto'=>$this->proyecto]);
 	}
 
-	public function show($id){
-		return view('proyectos.detalle', ['proyecto'=>$this->proyecto]);
+	public function show($id_proyecto){
+		$rol = Roles::where('id_proyecto',$id_proyecto)->get();
+		/*
+		if (!$rol){
+			return redirect('mis-proyectos/');
+		}
+		*/
+		$proyecto = Proyectos::find($id_proyecto);
+		$etapas = GrupoEtapas::find($proyecto->id_grupo_etapas);
+
+
+		return view('proyectos.detalle',compact('proyecto','id_proyecto', 'rol', 'etapas'));
 	}
 
 	public function store(Request $request){
@@ -77,4 +87,9 @@ class ProyectosController extends Controller {
 		Session::flash('mensaje', 'Proyecto creado exitosamente');
 		return redirect('/proyectos');
 	}	
+
+	public function destroy($id){
+		$proyecto = Proyectos::find($id);
+		//Dominios::destroy($proyecto->)
+	}		
 }
