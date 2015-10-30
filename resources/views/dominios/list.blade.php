@@ -40,11 +40,10 @@
 		    	@foreach($dominios as $dominio)
 			    	<tr>
 						<td>{{$dominio->nombre_dominio}}</td>
-						<td>{{$dominio->nombreCliente()}}</td>
+						<td>{{$dominio->proyectoAsociado()}}</td>
 						<td>{{$dominio->empresaProveedora()}}</td>
 						<td>{{$dominio->fecha_dominio}}</td>
 			        	<td >
-							<a class="btn btn-sm btn-info" href="{{ url( '/dominios/'.$dominio->id_dominio ) }}"> Detalle</a>		        		
 			        		<a class="btn btn-sm btn-info" href="{{ url( '/dominios/'.$dominio->id_dominio.'/edit' ) }}"> Editar</a>
 			        	</td>
 			        </tr>
