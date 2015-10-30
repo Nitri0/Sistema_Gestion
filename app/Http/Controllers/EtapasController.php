@@ -55,9 +55,11 @@ class EtapasController extends Controller {
 	}
 
 
-	public function destroy($id)
-	{
-		//
+	public function destroy($id){
+		Etapas::where('id_grupo_etapas',$id)->delete();
+		GrupoEtapas::find($id)->delete();
+		return redirect('/grupo_etapas');
+		//Dominios::destroy($proyecto->)
 	}
 
 }

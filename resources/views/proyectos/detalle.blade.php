@@ -2,14 +2,33 @@
 
 @section('content')
 <div class="container">
+	<h2>INFORMACION BASICA</h2><br>
 	nombre: {{ $proyecto->nombre_proyecto }} <br>
-	direccion: {{ $proyecto->direccion_proyecto}} <br>
-	email: {{ $proyecto->email_proyecto}} <br>
-	telefono: {{ $proyecto->telefono_proyecto}} <br>
-	telefono 2: {{ $proyecto->telefono_2_proyecto}} <br>
-	rif/ci: {{ $proyecto->ci_rif_proyecto}} <br>
-	Persona de contacto: {{ $proyecto->persona_contacto_proyecto}} <br>
-	
+	descripcion: {{ $proyecto->direccion_proyecto}} <br>
+	Etapa actual de proyecto: {{ $proyecto->getEstatus()}} <br><br><br>
+
+	Etapas: <br><br>
+	@foreach($etapas->getEtapas() as $etapa)
+		{{$etapa->nombre_etapa}} <br>
+		@if ($etapa->getAvances($proyecto->id_proyecto)->first())
+		  -- Avances:<br>
+		@endif
+		@foreach($etapa->getAvances($proyecto->id_proyecto) as $avance)
+			---- {{$avance->asunto_avance}} - {{$avance->descripcion_avance}} - {{$avance->fecha_creacion_avance}}<br>
+		@endforeach
+		<br>
+	@endforeach
+
+	<br><br>
+	integrantes: <br>
+	@foreach($rol as $integrante)
+		{{$integrante->getUser()->getFullName()}} - {{$integrante->getRolName()}} <br>
+	@endforeach
+	<br><br>
+	<form action="/proyectos/{{$proyecto->id_proyecto}}" method="post">
+		<input type="hidden" name="_method" value="delete">
+		<button type="submit" class="btn btn-success">Eliminar Proyecto</a>
+	</form>
 	
 </div>
 @stop

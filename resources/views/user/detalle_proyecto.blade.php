@@ -10,10 +10,10 @@
 	Etapas: <br><br>
 	@foreach($etapas->getEtapas() as $etapa)
 		{{$etapa->nombre_etapa}} <br>
-		@if ($etapa->getAvances()->first())
+		@if ($etapa->getAvances($proyecto->id_proyecto)->first())
 		  -- Avances:<br>
 		@endif
-		@foreach($etapa->getAvances() as $avance)
+		@foreach($etapa->getAvances($proyecto->id_proyecto) as $avance)
 			---- {{$avance->asunto_avance}} - {{$avance->descripcion_avance}} - {{$avance->fecha_creacion_avance}}<br>
 		@endforeach
 		<br>
@@ -22,7 +22,7 @@
 	<br><br>
 	integrantes: <br>
 	@foreach($rol as $integrante)
-		{{$integrante->getUserName()}} - {{$integrante->getRolName()}}
+		{{$integrante->getUser()->getFullName()}}  - {{$integrante->getRolName()}} <br>
 	@endforeach
 	<br><br>
 	@if($proyecto->getEstatus()!="Finalizado")

@@ -9,7 +9,7 @@
 			<div class="from-group">
 				<label for="">Proyecto: </label><br>
 				<label for="">{{$proyecto->nombre_proyecto}} </label>
-				
+				<input type="hidden" class="form-control" name="id_proyecto" ng-value='{{$proyecto->id_proyecto}}'>
 			</div>			
 			<br>
 			<div class="from-group">

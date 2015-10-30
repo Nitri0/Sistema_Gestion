@@ -5,6 +5,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Auth\Passwords\CanResetPassword;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
+use App\Perfil;
 
 class User extends Model implements AuthenticatableContract, CanResetPasswordContract {
 
@@ -24,7 +25,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 		return $perfil;
 	}
 
-	public function getName(){
-		Perfil::find($this->id_usuario);
+	public function getFullName(){
+		return Perfil::where('id_usuario',$this->id_usuario)->first()->fullName();
 	}
 }

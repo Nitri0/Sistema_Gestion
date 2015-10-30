@@ -8,6 +8,7 @@ use App\Dominios;
 use App\User;
 use App\Tipo;
 use App\Roles;
+use App\Avances;
 use App\Master;
 use App\GrupoEtapas;
 use Illuminate\Http\Request;
@@ -48,8 +49,18 @@ class ProyectosController extends Controller {
 		return view('proyectos.edit', ['proyecto'=>$this->proyecto]);
 	}
 
-	public function show($id){
-		return view('proyectos.detalle', ['proyecto'=>$this->proyecto]);
+	public function show($id_proyecto){
+		$rol = Roles::where('id_proyecto',$id_proyecto)->get();
+		/*
+		if (!$rol){
+			return redirect('mis-proyectos/');
+		}
+		*/
+		$proyecto = Proyectos::find($id_proyecto);
+		$etapas = GrupoEtapas::find($proyecto->id_grupo_etapas);
+
+
+		return view('proyectos.detalle',compact('proyecto','id_proyecto', 'rol', 'etapas'));
 	}
 
 	public function store(Request $request){
@@ -77,4 +88,15 @@ class ProyectosController extends Controller {
 		Session::flash('mensaje', 'Proyecto creado exitosamente');
 		return redirect('/proyectos');
 	}	
+
+	public function destroy($id){
+		$proyecto = Proyectos::find($id);
+		Avances::where('id_proyecto',$proyecto->id_proyecto)->delete();
+		Roles::where('id_proyecto',$proyecto->id_proyecto)->delete();
+		Dominios::find($proyecto->id_dominio)->update(['habilitado_dominio'=>1,]);
+		$proyecto->delete();
+
+		return redirect('/proyectos');
+		//Dominios::destroy($proyecto->)
+	}		
 }

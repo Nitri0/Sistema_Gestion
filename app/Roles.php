@@ -18,8 +18,8 @@ class Roles extends Model {
 		return Tipo::find($this->id_tipo_rol)->nombre_tipo;
 	}
 
-	public function getUserName(){
-		return Perfil::where('id_usuario',$this->id_usuario)->first()->nombre_perfil;
+	public function getUser(){
+		return User::find($this->id_usuario);
 	}
 
 
