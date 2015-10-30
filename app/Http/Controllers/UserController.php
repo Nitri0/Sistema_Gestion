@@ -103,6 +103,7 @@ class UserController extends Controller {
 		$proyecto = Proyectos::find($id_proyecto);
 
 		if ($request->check_cierre_etapa==1){
+			unset($request['check_cierre_etapa']);
 			$proyecto = Proyectos::find($request->id_proyecto);
 			$proyecto->estatus_proyecto = $proyecto->estatus_proyecto + 1;
 			$proyecto->save();
@@ -110,7 +111,7 @@ class UserController extends Controller {
 		$cliente = Clientes::find($proyecto->id_cliente);
 
 		if ($request->check_copia_cliente_avance){
-			unset($request['check_copia_cliente_avance']);
+			
 			$plantilla = Plantillas::find($request->id_plantilla);
 
 			$parametros_plantilla = ['proyecto'=>$proyecto,
