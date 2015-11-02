@@ -41,7 +41,7 @@ class DominiosController extends Controller {
 	}
 
 	public function edit($id){
-		$dominio = (string) Dominios::find($id);
+		$dominio = Dominios::find($id)->toJson();
 		$empresas_proveedoras = EmpresasProveedoras::all();
 		return view('dominios.create', compact('dominio','empresas_proveedoras'));
 	}
@@ -52,9 +52,9 @@ class DominiosController extends Controller {
 		return redirect("/dominios");
 	}
 
-	public function destroy($id)
-	{
-		//
+	public function destroy($id){
+		Dominios::find($id)->delete();
+		return redirect("/dominios");
 	}
 
 }
