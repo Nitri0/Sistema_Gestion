@@ -41,14 +41,14 @@
 			Etiquetas de data del proyecto: <br><br>
 			$proyecto->nombre_proyecto <br>
 			<br>	<br>
-			Etiquetas de datos propios:
-			$mi_correo}
-			$mis_datos->fullName() = nombre completo
-			$mis_datos->telefono_perfil 
-			$mis_datos->cedula_perfil 
+			Etiquetas de datos propios: <br> <br>
+			$mi_correo  <br>
+			$mis_datos->fullName() = nombre completo <br>
+			$mis_datos->telefono_perfil  <br>
+			$mis_datos->cedula_perfil  <br>
 			<br>	<br>
-			Etiquetas de datos del dominio:
-			$dominio->nombre_dominio
+			Etiquetas de datos del dominio: <br> <br>
+			$dominio->nombre_dominio <br>
 
 
 			<br>	<br>

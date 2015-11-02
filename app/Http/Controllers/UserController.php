@@ -8,6 +8,7 @@ use App\Master;
 use App\Proyectos;
 use App\Roles;
 use App\Avances;
+use App\Dominios;
 use Input;
 use App\Perfil;
 use App\Clientes;
@@ -93,8 +94,8 @@ class UserController extends Controller {
 
 		$proyecto = Proyectos::find($id_proyecto);//aqui siempre trae un solo proyecto... arreglar
 		$etapas = GrupoEtapas::find($proyecto->id_grupo_etapas)->getEtapas();
-		$dominio = Dominio::find($proyecto->id_dominio);
-		$mis_datos = Auth::user()->getPerfil()
+		$dominio = Dominios::find($proyecto->id_dominio);
+		$mis_datos = Auth::user()->getPerfil();
 		$mi_correo = Auth::user()->correo_usuario;
 		return view('avances.create',compact('id_proyecto','proyecto','plantillas','etapas', 'mi_correo', 'mis_datos', 'dominio'));
 	}	
@@ -103,8 +104,8 @@ class UserController extends Controller {
 
 		$proyecto = Proyectos::find($id_proyecto);
 
-		$dominio = Dominio::find($proyecto->id_dominio);
-		$mis_datos = Auth::user()->getPerfil()
+		$dominio = Dominios::find($proyecto->id_dominio);
+		$mis_datos = Auth::user()->getPerfil();
 		$mi_correo = Auth::user()->correo_usuario;
 
 		if ($request->check_cierre_etapa==1){
@@ -113,7 +114,7 @@ class UserController extends Controller {
 			$proyecto->estatus_proyecto = $proyecto->estatus_proyecto + 1;
 			$proyecto->save();
 		}
-		unset($request['check_cierre_etapa']);
+
 		$cliente = Clientes::find($proyecto->id_cliente);
 
 		if ($request->check_copia_cliente_avance){
@@ -135,7 +136,7 @@ class UserController extends Controller {
 							);
 		};
 
-		$avances = Avances::firstOrCreate($request->all());
+		$avances = Avances::firstOrCreate($request->except('check_cierre_etapa'));
 
 		Session::flash('mensaje', 'Avance creado exitosamente');
 		return redirect('/mis-proyectos/'.$id_proyecto);
