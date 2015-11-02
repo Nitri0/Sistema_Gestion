@@ -26,9 +26,8 @@ class DominiosController extends Controller {
 
 	public function create(){
 		$dominio = "";
-		$clientes = Clientes::all();
 		$empresas_proveedoras = EmpresasProveedoras::all();
-		return view('dominios.create', compact('dominio','clientes','empresas_proveedoras'));
+		return view('dominios.create', compact('dominio', 'empresas_proveedoras'));
 	}
 
 	public function store(Request $request){
@@ -42,11 +41,9 @@ class DominiosController extends Controller {
 	}
 
 	public function edit($id){
-		$dominio = Dominios::find($id);
-		$clientes = Clientes::all();
+		$dominio = Dominios::find($id)->toJson();
 		$empresas_proveedoras = EmpresasProveedoras::all();
-
-		return view('dominios.create', compact('dominio','clientes','empresas_proveedoras'));
+		return view('dominios.create', compact('dominio','empresas_proveedoras'));
 	}
 
 	public function update($id, Request $request){
@@ -55,9 +52,9 @@ class DominiosController extends Controller {
 		return redirect("/dominios");
 	}
 
-	public function destroy($id)
-	{
-		//
+	public function destroy($id){
+		Dominios::find($id)->delete();
+		return redirect("/dominios");
 	}
 
 }
