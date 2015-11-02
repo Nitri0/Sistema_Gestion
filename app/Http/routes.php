@@ -21,11 +21,17 @@ $router->group(['middleware' => 'auth'], function() {
 	Route::get( '/roles', 'UserController@roles');
 	Route::post('/roles', 'UserController@postRoles');
 	
-	Route::get('/plantillas/{id?}', 'UserController@plantillas');
-	Route::post('/plantillas', 'UserController@postPlantillas');
-	Route::post('/plantillas/{id}', 'UserController@putPlantillas');
-	Route::get('/plantillas/preview/{id_proyecto}/{id_plantilla}', 'UserController@previewPlantillas');
 
+	route::resource('/plantillas','PlantillasController');
+	Route::get('/plantillas/preview/{id_plantilla}', 'PlantillasController@previewPlantillas');
+	Route::get('/plantillas/preview/{id_proyecto}/{id_plantilla}', 'PlantillasController@previewRealDataPlantillas');
+	/*
+	Route::get('/plantillas/', 'PlantillasController@listPlantillas');
+	Route::get('/plantillas/create/{id?}', 'PlantillasController@plantillas');
+	Route::post('/plantillas', 'PlantillasController@postPlantillas');
+	Route::post('/plantillas/{id}', 'PlantillasController@putPlantillas');
+	
+*/
 
 	Route::get( '/mis-proyectos', 'UserController@misProyectos');
 	Route::get( '/mis-proyectos/{id}', 'UserController@detalleMisProyectos');

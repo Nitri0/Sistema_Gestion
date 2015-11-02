@@ -17,7 +17,6 @@ use Session;
 use URL;
 use Illuminate\Http\Request;
 
-define ('SITE_EMAILS', realpath("../resources/views/emails/"));
 
 class UserController extends Controller {
 
@@ -131,46 +130,5 @@ class UserController extends Controller {
 		return redirect('/mis-proyectos/'.$id_proyecto);
 	}
 	//__________________________________END CRUD AVANCES ____________________
-	//__________________________________ CRUD PLANTILLAS ____________________
-	public function plantillas($id=0){
-		$plantilla="";
-		if ($id){
-			$plantilla = Plantillas::find($id);
-		}
-		Session::flash('history-back',URL::previous());
-		return view('plantillas.create')->with('plantillas',$plantilla);
-	}
-
-	public function postPlantillas(Request $request){
-		$plantillas = Plantillas::create($request->all());
-        //$url = "uploads/temp/";
-        $path = SITE_EMAILS."/".$request->nombre_plantilla.".blade.php";
-		file_put_contents($path,$request->raw_data_plantilla);
-
-		if (Session::has('history-back')){
-			return redirect(Session::get('history-back'));
-		}
-		return redirect('/mis-proyectos');
-	}	
-
-	public function putPlantillas(Request $request, $id){
-		Plantillas::where('id_plantilla',$id)->update($request->all());
-		$path = SITE_EMAILS."/".$request->nombre_plantilla.".blade.php";
-		file_put_contents($path,$request->raw_data_plantilla);
-		if (Session::has('history-back')){
-			return redirect(Session::get('history-back'));
-		}
-		return redirect('/mis-proyectos');
-	}	
-
-	public function previewPlantillas( $id_proyecto,$id_plantilla){
-		//dd($id_plantilla, $id_proyecto);
-		$plantilla = Plantillas::find($id_plantilla);
-		$proyecto = Proyectos::find($id_proyecto);
-		$cliente = Clientes::find($proyecto->id_cliente);
-		$data = "<Strong>Aqui va la descripcion del mensaje</strong>";
-		return view('emails.'.$plantilla->nombre_plantilla,compact('proyecto','cliente','data'));
-	}		
-	//__________________________________END CRUD PLANTILLAS ____________________	
 }
 

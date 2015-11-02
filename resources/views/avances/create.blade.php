@@ -47,8 +47,6 @@
 							</option>							
 					@endforeach							
 				</select>
-				<a class="btn btn-sm btn-success" href="{{ url( '/plantillas' ) }}"> Agregar</a>				
-				<a class="btn btn-sm btn-success" ng-if="id_plantilla" href="{{ url( '/plantillas/[[id_plantilla]]' ) }}"> editar</a>
 				<a class="btn btn-sm btn-success" ng-if="id_plantilla" target="_blank" href="{{ url( '/plantillas/preview/'.$proyecto->id_proyecto.'/[[id_plantilla]]/' ) }}"> preview</a>
 			</div>				
 			<br>	
