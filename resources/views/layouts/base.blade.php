@@ -33,7 +33,7 @@
 
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
-					<li><a href="{{ url('/proyectos') }}">Proyectos</a></li>
+					<li><a href="{{ url('/proyectos') }}">Todos los Proyectos</a></li>
 
 					@if(Auth::check())
 					<li><a href="{{ url('/mis-proyectos') }}">Mis proyectos</a></li>
