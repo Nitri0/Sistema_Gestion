@@ -32,9 +32,6 @@
 						</option>
 					@endforeach
 				</select>
-				<button >
-					<a href="{{ url('/clientes/create') }}">Agregar un cliente</a>
-				</button>
 			</div>			
 			<br>
 			<div class="from-group">
