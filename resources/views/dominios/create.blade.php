@@ -6,7 +6,7 @@
 		@if($dominio)
 			<h2>Editar Dominio</h2>
 			<div ng-init="dominio={{ $dominio }}"></div>
-			<form action="{{ url('dominios/'.$dominio->id_cliente) }}" method="Post" novalidate>
+			<form ng-action="{{ url('dominios/[[dominio.id_dominio]]') }}" method="Post" novalidate>
 			<input type="hidden" name="_method" value="PUT">
 		@else
 			<h2>Crear Dominio</h2>

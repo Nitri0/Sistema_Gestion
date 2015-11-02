@@ -9,13 +9,6 @@ coreApp.controller('ClienteController', function ($scope, $log) {
 coreApp.controller('DominioController', function ($scope, $log) {
 	console.log("dominio");
 	$scope.dominio={};
-	$scope.init= function(data){
-		if(data){
-			$scope.dominio = data;
-			console.log(data);
-			$scope.dominio.id_empresa_proveedora = $scope.dominio.id_empresa_proveedora.toString();
-		}
-	};
 });
 
 coreApp.controller('ProveedorController', function ($scope, $log) {
