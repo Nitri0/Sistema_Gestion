@@ -29,5 +29,13 @@ class Dominios extends Model {
 			return $proveedor->nombres_empresa_proveedora;	
 		}
 		return "cliente no existente";
+	}
+
+	public function hasProveedora(){
+		$proveedor = EmpresasProveedoras::find($this->id_empresa_proveedora);
+		if ($proveedor){
+			return true;	
+		}
+		return false;
 	}	
 }
