@@ -5,7 +5,7 @@
 
 		@if($empresa_proveedora)
 			<h2>Editar Empresa Proveedora</h2>
-			<div ng-init="cliente={{ $empresa_proveedora }}"></div>
+			<div ng-init="empresa_proveedora={{ $empresa_proveedora }}"></div>
 			<form action="{{ url('empresas_proveedoras/'.$empresa_proveedora->id_cliente) }}" method="PUT">
 		@else
 			<h2>Crear Empresa Proveedora</h2>

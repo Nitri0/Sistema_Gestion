@@ -32,8 +32,8 @@ class Proyectos extends Model {
 		return $etapa->id_etapa;
 	}
 
-	public function getClienteData(){
-		# code...
+	public function getCliente(){
+		return Clientes::find($this->id_cliente);
 	}
 
 

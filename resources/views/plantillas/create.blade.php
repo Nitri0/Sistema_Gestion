@@ -6,7 +6,8 @@
 		<h2>Crear plantilla</h2>
 			@if($plantillas)
 				<div ng-init="plantilla={{$plantillas}}"></div>
-				<form action="{{ url('/plantillas/'.$plantillas->id_plantilla) }}" method="POST">		
+				<form action="{{ url('/plantillas/'.$plantillas->id_plantilla) }}" method="POST">
+				<input type="hidden" name="_method" value="PUT">	
 			@else
 				<form action="{{ url('/plantillas/') }}" method="POST">		
 			@endif
@@ -29,14 +30,21 @@
 				</textarea>
 			</div>	
 			<br>	
-			data del cliente: <br>
-			$cliente->nombre_cliente  $cliente->email_cliente   $cliente->persona_contacto_cliente   $cliente->telefono_cliente    $cliente->direccion_cliente <br>	<br>	
-			data del proyecto: <br>
-			$proyecto->nombre_proyecto <br><br>	
-			para colocar la data es necesario usar doble {{}} y dentro colocar la variable que se desea imprimir<br>
-			{{ $cliente->nombre_cliente } } <br>
+			Etiquetas de data del cliente: <br><br>
+			$cliente->nombre_cliente <br>
+			$cliente->email_cliente <br>
+			$cliente->persona_contacto_cliente <br>
+			$cliente->telefono_cliente <br>
+			$cliente->telefono_2_cliente <br>
+			$cliente->direccion_cliente <br>	
+			<br>	<br>
+			Etiquetas de data del proyecto: <br><br>
+			$proyecto->nombre_proyecto <br>
+			<br>	<br>
+			<strong>Para colocar la data es necesario usar doble {{}} y dentro colocar la variable que se desea imprimir<br>
+			ejemplo: {{ $cliente->nombre_cliente } } (sin espacios) </strong><br><br>
 
-			<srong>no olvidar colocar la etiqueta { { $data} } en el lugar donde estará la data que se llenará automaticamente al crear un avance</srong><br><br><br>
+			<strong>P.D: no olvidar colocar la etiqueta { !! $data !! } (sin espacios) en el lugar donde estará la data que se llenará automaticamente al crear un avance</strong><br><br><br>
 			<button type="submit">
 					Registrar
 			</button>

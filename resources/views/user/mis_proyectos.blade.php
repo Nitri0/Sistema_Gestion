@@ -17,6 +17,7 @@
 		    <thead>
 		      <tr>
 		        <th>Nombre Proyecto</th>
+		        <th>Cliente Asociado</th>
 		        <th>Fecha de creación</th>
 		        <th>Rol</th>
 		        <th>Estatus</th>
@@ -27,6 +28,7 @@
 		    	@foreach($proyectos as $proyecto)
 			    	<tr>
 						<td>{{$proyecto->nombre_proyecto}}</td>
+						<td>{{$proyecto->getCliente()->nombre_cliente}}</td>
 						<td>{{$proyecto->fecha_creacion_proyecto}}</td>
 						<td>{{$proyecto->getRol( Auth::user()->id_usuario )}}</td>
 						<td>{{$proyecto->getEstatus()}}</td>
