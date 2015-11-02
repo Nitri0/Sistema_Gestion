@@ -19,7 +19,7 @@
 				<select class="form-control" name="id_empresa_proveedora" ng-model="dominio.id_empresa_proveedora">
 					<option class="option" value="">Seleccione una empresa proveedora</option>
 					@foreach($empresas_proveedoras as $proveedor)
-						<option class="option" value="{{$proveedor->id_empresa_proveedora}}">
+						<option class="option" ng-value="{{$proveedor->id_empresa_proveedora}}">
 							{{ $proveedor->nombres_empresa_proveedora }} {{$proveedor->id_empresa_proveedora}}
 						</option>;
 					@endforeach
