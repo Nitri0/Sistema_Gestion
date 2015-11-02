@@ -41,6 +41,17 @@
 			Etiquetas de data del proyecto: <br><br>
 			$proyecto->nombre_proyecto <br>
 			<br>	<br>
+			Etiquetas de datos propios:
+			$mi_correo}
+			$mis_datos->fullName() = nombre completo
+			$mis_datos->telefono_perfil 
+			$mis_datos->cedula_perfil 
+			<br>	<br>
+			Etiquetas de datos del dominio:
+			$dominio->nombre_dominio
+
+
+			<br>	<br>
 			<strong>Para colocar la data es necesario usar doble {{}} y dentro colocar la variable que se desea imprimir<br>
 			ejemplo: {{ $cliente->nombre_cliente } } (sin espacios) </strong><br><br>
 

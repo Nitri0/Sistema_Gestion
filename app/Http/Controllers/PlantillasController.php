@@ -67,8 +67,12 @@ class PlantillasController extends Controller {
 		$cliente->direccion_cliente = "DIRECCION_DE_PRUEBA";
 		$cliente->persona_contacto_cliente = "NOMBRE_CONTACTO_PRUEBA";
 		$cliente->email_cliente = "EMAIL_DE_PRUEBA";
+		$dominio = new Dominio();
+		$dominio->nombre_dominio = "DOMINIO_DE_PRUEBA";
+		$mis_datos = Auth::user()->getPerfil();
+		$mi_correo = Auth::user()->correo_usuario;				
 		$data = "<Strong>Aqui va la descripcion del mensaje</strong>";
-		return view('emails.'.$plantilla->nombre_plantilla,compact('proyecto','cliente','data'));
+		return view('emails.'.$plantilla->nombre_plantilla,compact('proyecto','cliente','data','dominio','mis_datos','mi_correo'));
 	}	
 
 	public function previewRealDataPlantillas( $id_proyecto,$id_plantilla){
@@ -76,8 +80,11 @@ class PlantillasController extends Controller {
 		$plantilla = Plantillas::find($id_plantilla);
 		$proyecto = Proyectos::find($id_proyecto);
 		$cliente = Clientes::find($proyecto->id_cliente);
+		$dominio = Dominio::find($proyecto->id_dominio);
+		$mis_datos = Auth::user()->getPerfil();
+		$mi_correo = Auth::user()->correo_usuario;		
 		$data = "<Strong>Aqui va la descripcion del mensaje</strong>";
-		return view('emails.'.$plantilla->nombre_plantilla,compact('proyecto','cliente','data'));
+		return view('emails.'.$plantilla->nombre_plantilla,compact('proyecto','cliente','data','dominio','mis_datos','mi_correo'));
 	}		
 	//__________________________________END CRUD PLANTILLAS ____________________	
 }

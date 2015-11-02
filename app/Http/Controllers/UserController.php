@@ -90,14 +90,22 @@ class UserController extends Controller {
 		$user = Auth::user();
 		$plantillas = Plantillas::all();
 		$proyectos_id = Roles::where('id_usuario',$user->id_usuario)->lists('id_proyecto');
+
 		$proyecto = Proyectos::find($id_proyecto);//aqui siempre trae un solo proyecto... arreglar
 		$etapas = GrupoEtapas::find($proyecto->id_grupo_etapas)->getEtapas();
-		return view('avances.create',compact('id_proyecto', 'proyecto','plantillas','etapas'));
+		$dominio = Dominio::find($proyecto->id_dominio);
+		$mis_datos = Auth::user()->getPerfil()
+		$mi_correo = Auth::user()->correo_usuario;
+		return view('avances.create',compact('id_proyecto','proyecto','plantillas','etapas', 'mi_correo', 'mis_datos', 'dominio'));
 	}	
 
 	public function postCreateAvancesMisProyectos(Request $request,$id_proyecto){
 
 		$proyecto = Proyectos::find($id_proyecto);
+
+		$dominio = Dominio::find($proyecto->id_dominio);
+		$mis_datos = Auth::user()->getPerfil()
+		$mi_correo = Auth::user()->correo_usuario;
 
 		if ($request->check_cierre_etapa==1){
 			
@@ -114,6 +122,9 @@ class UserController extends Controller {
 
 			$parametros_plantilla = ['proyecto'=>$proyecto,
 									 'cliente' =>$cliente,
+									 'dominio' =>$dominio,
+									 'mis_datos' =>$mis_datos,
+									 'mi_correo' =>$mi_correo,
 									 'data'    =>$request->descripcion_avance];			
 			Helper::SendEmail(
 							$cliente->email_cliente,
