@@ -38,10 +38,10 @@ class Proyectos extends Model {
 		return Clientes::find($this->id_cliente);
 	}
 
-	public function getDominio(){
+	public function getNombreDominio(){
 		$dominio = Dominios::where('id_proyecto',$this->id_proyecto)->first();
 		if ($dominio){
-			return $dominio;
+			return $dominio->nombre_dominio;
 		};
 		return "No asignado";
 	}
