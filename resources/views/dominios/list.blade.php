@@ -43,12 +43,12 @@
 						<td>{{$dominio->proyectoAsociado()}}</td>
 						<td>{{$dominio->empresaProveedora()}}</td>
 						<td>{{$dominio->fecha_dominio}}</td>
-			        	<td align="center">
-			        		<a class="btn btn-sm btn-info" href="{{ url( '/dominios/'.$dominio->id_dominio.'/edit' ) }}"> Editar (en prueba)</a>
-			        		@if($dominio->hasProveedora())
+			        	<td >
+			        		<a class="btn btn-sm btn-info" href="{{ url( '/dominios/'.$dominio->id_dominio.'/edit' ) }}">Editar</a>
+			        		@if(!$dominio->hasProyecto())
 								<form action="/dominios/{{$dominio->id_dominio}}" method="post">
 									<input type="hidden" name="_method" value="delete">
-									<button type="submit" class="btn btn-danger" >Eliminar</a>
+									<button type="submit" class="btn btn-sm btn-danger" >Eliminar</a>
 								</form>
 							@endif
 			        	</td>

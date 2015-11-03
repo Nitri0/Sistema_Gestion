@@ -41,7 +41,7 @@ class DominiosController extends Controller {
 	}
 
 	public function edit($id){
-		$dominio = Dominios::find($id)->toJson();
+		$dominio = Dominios::find($id);
 		$empresas_proveedoras = EmpresasProveedoras::all();
 		return view('dominios.create', compact('dominio','empresas_proveedoras'));
 	}

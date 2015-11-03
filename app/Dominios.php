@@ -31,9 +31,9 @@ class Dominios extends Model {
 		return "cliente no existente";
 	}
 
-	public function hasProveedora(){
-		$proveedor = EmpresasProveedoras::find($this->id_empresa_proveedora);
-		if ($proveedor){
+	public function hasProyecto(){
+		$proyecto = Proyectos::where('id_dominio',$this->id_dominio)->first();
+		if ($proyecto){
 			return true;	
 		}
 		return false;

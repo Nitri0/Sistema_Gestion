@@ -6,11 +6,8 @@
 		@if($dominio)
 			<h2>Editar Dominio</h2>
 			<div ng-init="dominio={{$dominio}}"></div>
-			<div ng-init="empresas_proveedoras={{ $empresas_proveedoras }}"></div>
 			
-
-			[[dominio]]
-			<form ng-action="{{ url('dominios/[[dominio.id_dominio]]') }}" method="Post" novalidate>
+			<form ng-action="{{ url('dominios/'.$dominio->id_dominio) }}" method="Post" novalidate>
 			<input type="hidden" name="_method" value="PUT">
 		@else
 			<h2>Crear Dominio</h2>
@@ -20,10 +17,15 @@
 			<br><br>
 			<div class="from-group">
 				<label for="">Empresa proveedora</label>
-				<select class="form-control" name="id_empresa_proveedora" 
-					ng-options="item as item.nombres_empresa_proveedora for item in empresas_proveedoras track by item.id_empresa_proveedora"
-					ng-model="dominio.id_empresa_proveedora">
+				<select class="form-control" name="id_empresa_proveedora" @if($dominio) disabled @endif>
 					<option class="option" value="">Seleccione una empresa proveedora</option>
+					@foreach($empresas_proveedoras as $key)
+						<option class="option" value="{{$key->id_empresa_proveedora}}"
+						@if($dominio && $dominio->id_empresa_proveedora==$key->id_empresa_proveedora) 
+							selected 
+						@endif >
+							{{$key->nombres_empresa_proveedora}}</option>
+					@endforeach
 		
 				</select>
 				<button >
