@@ -16,11 +16,12 @@ class Dominios extends Model {
 								);
 
 
-	public function getProyecto(){
+	public function getNombreProyecto(){
 		$proyecto = Proyectos::find($this->id_proyecto);
 		if ($proyecto){
-			return $proyecto;
+			return $proyecto->nombre_proyecto;
 		};
+		return "Sin asignar";
 	}
 
 	public function empresaProveedora(){
