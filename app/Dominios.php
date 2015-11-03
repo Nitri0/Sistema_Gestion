@@ -17,7 +17,8 @@ class Dominios extends Model {
 	protected $dates = ['fecha_creacion_dominio'];
 
 	public function getNombreProyecto(){
-		return $this->id_proyecto;
+
+
 		$proyecto = Proyectos::find($this->id_proyecto);
 		if ($proyecto){
 			return $proyecto->nombre_proyecto;
