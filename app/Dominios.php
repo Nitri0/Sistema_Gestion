@@ -17,10 +17,10 @@ class Dominios extends Model {
 
 
 	public function getProyecto(){
-		$proyecto = Proyectos::find($this->id_proyecto)->first();
+		$proyecto = Proyectos::find($this->id_proyecto);
 		if ($proyecto){
-			return $proyecto;	
-		}
+			return $proyecto;
+		};
 	}
 
 	public function empresaProveedora(){
