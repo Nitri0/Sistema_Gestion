@@ -39,7 +39,11 @@ class Proyectos extends Model {
 	}
 
 	public function getDominio(){
-		return Dominios::where('id_proyecto',$this->id_proyecto)->first();
+		$dominio = Dominios::where('id_proyecto',$this->id_proyecto)->first();
+		if ($dominio){
+			return $dominio;
+		};
+		return "No asignado";
 	}
 
 	public function getUltimoAvance(){

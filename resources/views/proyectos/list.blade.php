@@ -33,7 +33,7 @@
 			    	<tr>
 						<td>{{$proyecto->nombre_proyecto}}</td>
 						<td>{{$proyecto->getCliente()->nombre_cliente}}</td>
-						<td></td>
+						<td>{{$proyecto->getDominio()->nombre_dominio}}</td>
 						<td>{{$proyecto->getUltimoAvance()}}</td>
 						<td>{{$proyecto->getEstatus()}}</td>
 			        	<td >
