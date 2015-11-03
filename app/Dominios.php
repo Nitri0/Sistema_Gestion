@@ -14,7 +14,7 @@ class Dominios extends Model {
 								'fecha_dominio',
 								'habilitado_dominio'
 								);
-
+	protected $dates = ['fecha_creacion_dominio'];
 
 	public function getNombreProyecto(){
 		return $this->id_proyecto;
