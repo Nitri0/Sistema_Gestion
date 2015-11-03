@@ -40,7 +40,7 @@
 		    	@foreach($dominios as $dominio)
 			    	<tr>
 						<td>{{$dominio->nombre_dominio}}</td>
-						<td></td>
+						<td>{{$dominio->getNombreProyecto()}}</td>
 						<td>{{$dominio->empresaProveedora()}}</td>
 						<td>{{$dominio->fecha_dominio}}</td>
 			        	<td >
