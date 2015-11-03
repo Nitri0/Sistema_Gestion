@@ -50,7 +50,8 @@ class ClientesController extends Controller {
 	}
 
 	public function destroy($id){
-		//
+		Clientes::find($id)->delete();
+		return redirect("/clientes");
 	}
 
 }
