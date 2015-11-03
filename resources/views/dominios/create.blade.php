@@ -15,6 +15,21 @@
 		@endif
 
 			<br><br>
+
+			<div class="from-group">
+				<label for="">Proyecto</label>
+				<select class="form-control" name="id_proyecto" required>
+					<option class="option" value="">Seleccione un proyecto</option>
+					@foreach($proyectos as $key)
+						<option class="option" value="{{$key->id_proyecto}}"
+						@if($proyecto && $proyecto->id_proyecto==$key->id_proyecto) 
+							selected 
+						@endif >
+							{{$key->nombre_proyecto}}</option>
+					@endforeach
+				</select>
+			</div>	
+			<br>			
 			<div class="from-group">
 				<label for="">Empresa proveedora</label>
 				<select class="form-control" name="id_empresa_proveedora" @if($dominio) disabled @endif>

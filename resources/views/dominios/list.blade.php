@@ -40,17 +40,15 @@
 		    	@foreach($dominios as $dominio)
 			    	<tr>
 						<td>{{$dominio->nombre_dominio}}</td>
-						<td>{{$dominio->proyectoAsociado()}}</td>
+						<td>{{$dominio->getProyecto()->nombre_proyecto}}</td>
 						<td>{{$dominio->empresaProveedora()}}</td>
 						<td>{{$dominio->fecha_dominio}}</td>
 			        	<td >
 			        		<a class="btn btn-sm btn-info" href="{{ url( '/dominios/'.$dominio->id_dominio.'/edit' ) }}">Editar</a>
-			        		@if(!$dominio->hasProyecto())
-								<form action="/dominios/{{$dominio->id_dominio}}" method="post">
-									<input type="hidden" name="_method" value="delete">
-									<button type="submit" class="btn btn-sm btn-danger" >Eliminar</a>
-								</form>
-							@endif
+							<form action="/dominios/{{$dominio->id_dominio}}" method="post">
+								<input type="hidden" name="_method" value="delete">
+								<button type="submit" class="btn btn-sm btn-danger" >Eliminar</a>
+							</form>
 			        	</td>
 			        </tr>
 				@endforeach

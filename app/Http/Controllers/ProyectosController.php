@@ -32,7 +32,7 @@ class ProyectosController extends Controller {
 
 	public function create(){
 		$clientes = Clientes::all();
-		$dominios = Dominios::where('habilitado_dominio',1)->get();
+		
 		$usuarios = User::all();
 		$maestro = Master::where('nombre_maestro','Roles')->first();
 		if (!$maestro){
@@ -42,7 +42,7 @@ class ProyectosController extends Controller {
 		};
 		$roles = Tipo::where('id_maestro',$id_maestro)->get();
 		$grupo_etapas = GrupoEtapas::all();
-		return view('proyectos.create',compact('clientes', 'dominios', 'usuarios', 'roles','grupo_etapas'));
+		return view('proyectos.create',compact('clientes', 'usuarios', 'roles','grupo_etapas'));
 	}
 
 	public function edit($id){

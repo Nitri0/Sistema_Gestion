@@ -22,7 +22,8 @@
 		      <tr>
 		        <th>Nombre Proyecto</th>
 		        <th>Cliente Asociado</th>
-		        <th>Fecha de creación</th>
+		        <th>Dominio Asociado</th>
+		        <th>Fecha ultimo avance</th>
 		        <th>Estatus</th>
 		        <th >Operaciones</th>
 		      </tr>
@@ -32,7 +33,8 @@
 			    	<tr>
 						<td>{{$proyecto->nombre_proyecto}}</td>
 						<td>{{$proyecto->getCliente()->nombre_cliente}}</td>
-						<td>{{$proyecto->fecha_creacion_proyecto}}</td>
+						<td>{{$proyecto->getDominio()->nombre_dominio}}</td>
+						<td>{{$proyecto->getUltimoAvance()}}</td>
 						<td>{{$proyecto->getEstatus()}}</td>
 			        	<td >
 			        		<a class="btn btn-sm btn-info" href="{{ url( '/proyectos/'.$proyecto->id_proyecto ) }}"> Detalle</a>

@@ -10,17 +10,17 @@ class Dominios extends Model {
 	public $timestamps = false;
 	protected $fillable = array('nombre_dominio',
 								'id_empresa_proveedora',
+								'id_proyecto',
 								'fecha_dominio',
 								'habilitado_dominio'
 								);
 
 
-	public function proyectoAsociado(){
-		$proyecto = Proyectos::where('id_dominio',$this->id_dominio)->first();
+	public function getProyecto(){
+		$proyecto = Proyectos::find($this->id_proyecto)->first();
 		if ($proyecto){
-			return $proyecto->nombre_proyecto;	
+			return $proyecto;	
 		}
-		return "Dominio no asociado";
 	}
 
 	public function empresaProveedora(){
@@ -30,12 +30,4 @@ class Dominios extends Model {
 		}
 		return "cliente no existente";
 	}
-
-	public function hasProyecto(){
-		$proyecto = Proyectos::where('id_dominio',$this->id_dominio)->first();
-		if ($proyecto){
-			return true;	
-		}
-		return false;
-	}	
 }

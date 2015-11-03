@@ -58,6 +58,7 @@ class UserController extends Controller {
 								->whereIn('id_proyecto',$proyectos_id)
 								->orderBy('id_proyecto', 'desc')
 								->paginate(10);
+		//dd($proyectos);
 		return view('user.mis_proyectos',compact('proyectos'));
 	}
 

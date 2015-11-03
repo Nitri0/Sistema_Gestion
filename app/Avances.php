@@ -15,7 +15,7 @@ class Avances extends Model {
 								);
 
 
-
+	protected $dates = ['fecha_creacion_avance'];
 
 
 	public function nombreCliente(){

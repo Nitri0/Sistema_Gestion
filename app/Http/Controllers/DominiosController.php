@@ -4,6 +4,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Dominios;
 use App\Clientes;
+use App\Proyectos;
 use App\EmpresasProveedoras;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Route;
@@ -26,8 +27,10 @@ class DominiosController extends Controller {
 
 	public function create(){
 		$dominio = "";
+		$proyecto = "";
 		$empresas_proveedoras = EmpresasProveedoras::all();
-		return view('dominios.create', compact('dominio', 'empresas_proveedoras'));
+		$proyectos = Proyectos::where('habilitado_proyecto',1)->get();
+		return view('dominios.create', compact('dominio', 'empresas_proveedoras', 'proyectos','proyecto'));
 	}
 
 	public function store(Request $request){
@@ -42,8 +45,10 @@ class DominiosController extends Controller {
 
 	public function edit($id){
 		$dominio = Dominios::find($id);
+		$proyecto = Proyectos::find($dominio->id_proyecto);
 		$empresas_proveedoras = EmpresasProveedoras::all();
-		return view('dominios.create', compact('dominio','empresas_proveedoras'));
+		$proyectos = Proyectos::where('habilitado_proyecto',1)->get();
+		return view('dominios.create', compact('dominio','empresas_proveedoras','proyectos','proyecto'));
 	}
 
 	public function update($id, Request $request){
