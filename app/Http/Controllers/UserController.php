@@ -134,7 +134,7 @@ class UserController extends Controller {
 							$parametros_plantilla
 							);
 		};
-
+		$request['id_usuario'] = Auth::user()->id_usuario;
 		$avances = Avances::firstOrCreate($request->except('check_cierre_etapa'));
 
 		Session::flash('mensaje', 'Avance creado exitosamente');

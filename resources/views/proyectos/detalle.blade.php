@@ -14,7 +14,7 @@
 		  -- Avances:<br>
 		@endif
 		@foreach($etapa->getAvances($proyecto->id_proyecto) as $avance)
-			---- {{$avance->asunto_avance}} - {{$avance->descripcion_avance}} - {{$avance->fecha_creacion_avance}}<br>
+			---- {{$avance->asunto_avance}} - {{$avance->descripcion_avance}} - {{$avance->fecha_creacion_avance}} - {{$avance->getNombreCreador()}}<br>
 		@endforeach
 		<br>
 	@endforeach
