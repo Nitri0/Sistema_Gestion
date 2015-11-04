@@ -7,7 +7,7 @@
 			<h2>Editar Dominio</h2>
 			<div ng-init="dominio={{$dominio}}"></div>
 			
-			<form ng-action="{{ url('dominios/'.$dominio->id_dominio) }}" method="Post" novalidate>
+			<form action="{{ url('dominios/'.$dominio->id_dominio) }}" method="POST" novalidate>
 			<input type="hidden" name="_method" value="PUT">
 		@else
 			<h2>Crear Dominio</h2>
