@@ -32,7 +32,7 @@
 			<br>			
 			<div class="from-group">
 				<label for="">Empresa proveedora</label>
-				<select class="form-control" name="id_empresa_proveedora" @if($dominio) disabled @endif>
+				<select class="form-control" name="id_empresa_proveedora">
 					<option class="option" value="">Seleccione una empresa proveedora</option>
 					@foreach($empresas_proveedoras as $key)
 						<option class="option" value="{{$key->id_empresa_proveedora}}"
