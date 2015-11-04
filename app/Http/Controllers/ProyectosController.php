@@ -33,13 +33,13 @@ class ProyectosController extends Controller {
 	public function create(){
 		$clientes = Clientes::all();
 		
-		$usuarios = User::all();
 		$maestro = Master::where('nombre_maestro','Roles')->first();
 		if (!$maestro){
 			$id_maestro = Master::create(['nombre_maestro','Roles'])->id_maestro;
 		}else{
 			$id_maestro = $maestro->id_maestro;
 		};
+		$usuarios = User::all();
 		$roles = Tipo::where('id_maestro',$id_maestro)->get();
 		$grupo_etapas = GrupoEtapas::all();
 		return view('proyectos.create',compact('clientes', 'usuarios', 'roles','grupo_etapas'));
@@ -56,11 +56,14 @@ class ProyectosController extends Controller {
 			return redirect('mis-proyectos/');
 		}
 		*/
+		$maestro = Master::where('nombre_maestro','Roles')->first();
 		$proyecto = Proyectos::find($id_proyecto);
 		$etapas = GrupoEtapas::find($proyecto->id_grupo_etapas);
+		$usuarios = User::all();
+		$roles = Tipo::where('id_maestro',$maestro->id_maestro)->get();
 
+		return view('proyectos.detalle',compact('proyecto','id_proyecto', 'rol', 'etapas','roles','usuarios' ));
 
-		return view('proyectos.detalle',compact('proyecto','id_proyecto', 'rol', 'etapas'));
 	}
 
 	public function store(Request $request){

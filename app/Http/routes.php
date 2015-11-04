@@ -21,8 +21,7 @@ $router->group(['middleware' => 'auth'], function() {
 	Route::get( '/roles', 'UserController@roles');
 	Route::post('/roles', 'UserController@postRoles');
 	
-
-	route::resource('/plantillas','PlantillasController');
+	//___________________ Preview Plantillas _____________________________	
 	Route::get('/plantillas/preview/{id_plantilla}', 'PlantillasController@previewPlantillas');
 	Route::get('/plantillas/preview/{id_proyecto}/{id_plantilla}', 'PlantillasController@previewRealDataPlantillas');
 	/*
@@ -42,6 +41,8 @@ $router->group(['middleware' => 'auth'], function() {
 
 
 	//___________________ Cruds _____________________________
+	route::resource('/plantillas','PlantillasController');
+	route::resource('integrantes','IntegrantesController');
 	Route::resource('clientes', 'ClientesController');
 	Route::resource('grupo_etapas', 'EtapasController');
 	Route::resource('dominios', 'DominiosController');

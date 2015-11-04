@@ -74,9 +74,7 @@ class UserController extends Controller {
 		*/
 		$proyecto = Proyectos::find($id_proyecto);
 		$etapas = GrupoEtapas::find($proyecto->id_grupo_etapas);
-
-
-		return view('user.detalle_proyecto',compact('proyecto','id_proyecto', 'rol', 'etapas'));
+		return view('user.detalle_proyecto',compact('proyecto','id_proyecto', 'rol', 'etapas' ));
 	}
 
 	//__________________________________ CRUD AVANCES ____________________
