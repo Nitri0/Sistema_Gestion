@@ -13,7 +13,8 @@ class Proyectos extends Model {
 	protected $fillable = array('id_cliente',
 								'id_grupo_etapas',
 								'nombre_proyecto',
-								'estatus_proyecto'
+								'estatus_proyecto',
+								'usable_proyecto'
 								);
 	protected $dates = ['fecha_creacion_proyecto'];
 	public $timestamps = false;

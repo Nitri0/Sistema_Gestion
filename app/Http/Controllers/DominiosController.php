@@ -29,13 +29,14 @@ class DominiosController extends Controller {
 		$dominio = "";
 		$proyecto = "";
 		$empresas_proveedoras = EmpresasProveedoras::all();
-		$proyectos = Proyectos::where('habilitado_proyecto',1)->get();
+		$proyectos = Proyectos::where('usable_proyecto',1)->get();
 		return view('dominios.create', compact('dominio', 'empresas_proveedoras', 'proyectos','proyecto'));
 	}
 
 	public function store(Request $request){
 		$dominio = Dominios::create($request->all());
 		Session::flash('mensaje', 'Dominio creado exitosamente');
+		Proyectos::find($request->id_proyecto)->update(['usable_proyecto'=>0,]);		
 		return redirect('/dominios');
 	}
 
@@ -47,12 +48,16 @@ class DominiosController extends Controller {
 		$dominio = Dominios::find($id);
 		$proyecto = Proyectos::find($dominio->id_proyecto);
 		$empresas_proveedoras = EmpresasProveedoras::all();
-		$proyectos = Proyectos::where('habilitado_proyecto',1)->get();
+		$proyectos = Proyectos::where('usable_proyecto',1)->get();
 		return view('dominios.create', compact('dominio','empresas_proveedoras','proyectos','proyecto'));
 	}
 
 	public function update($id, Request $request){
-		Dominios::find($id)->update($request->all());
+		$dominio = Dominios::find($id);
+		Proyectos::find($dominio->id_proyecto)->update(['usable_proyecto'=>1,]);
+		Proyectos::find($request->id_proyecto)->update(['usable_proyecto'=>0,]);
+		$dominio->update($request->all());
+
 		Session::flash('mensaje', 'Dominio editado exitosamente');
 		return redirect("/dominios");
 	}
