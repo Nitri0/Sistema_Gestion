@@ -93,10 +93,9 @@ class ProyectosController extends Controller {
 		$proyecto = Proyectos::find($id);
 		Avances::where('id_proyecto',$proyecto->id_proyecto)->delete();
 		Roles::where('id_proyecto',$proyecto->id_proyecto)->delete();
-		Dominios::find($proyecto->id_dominio)->update(['habilitado_dominio'=>1,]);
+		Dominios::where('id_proyecto',$proyecto->id_proyecto)->update(['habilitado_dominio'=>1,]);
 		$proyecto->delete();
 
 		return redirect('/proyectos');
-		//Dominios::destroy($proyecto->)
 	}		
 }
