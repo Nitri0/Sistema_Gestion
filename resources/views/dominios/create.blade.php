@@ -12,23 +12,26 @@
 		@else
 			<h2>Crear Dominio</h2>
 			<form action="{{ url('dominios/') }}" method="POST" novalidate>
-		@endif
 
+		@endif
 			<br><br>
 
+		@if($proyecto)
+			<label for="">Proyecto:</label>
+			<label for="">{{$proyecto->nombre_proyecto}} - {{$key->getCliente()->nombre_cliente}}</label>
+		@else
 			<div class="from-group">
 				<label for="">Proyecto</label>
 				<select class="form-control" name="id_proyecto" required>
 					<option class="option" value="">Seleccione un proyecto</option>
 					@foreach($proyectos as $key)
-						<option class="option" value="{{$key->id_proyecto}}"
-						@if($proyecto && $proyecto->id_proyecto==$key->id_proyecto) 
-							selected 
-						@endif >
-							{{$key->nombre_proyecto}}</option>
+						<option class="option" value="{{$key->id_proyecto}}">
+							{{$key->nombre_proyecto}} - {{$key->getCliente()->nombre_cliente}}</option>
 					@endforeach
 				</select>
-			</div>	
+			</div>					
+		@endif
+					
 			<br>			
 			<div class="from-group">
 				<label for="">Empresa proveedora</label>

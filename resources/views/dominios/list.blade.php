@@ -32,6 +32,7 @@
 		        <th>Nombre Dominio</th>
 		        <th>Proyecto asignado</th>
 		        <th>Proveedor</th>
+		        <th>Cliente</th>
 		        <th>Fecha creación</th>
 		        <th >Operaciones</th>
 		      </tr>
@@ -42,6 +43,7 @@
 						<td>{{$dominio->nombre_dominio}}</td>
 						<td>{{$dominio->getNombreProyecto()}}</td>
 						<td>{{$dominio->empresaProveedora()}}</td>
+						<td>{{$dominio->getNombreCliente()}}</td>
 						<td>{{$dominio->fecha_dominio}}</td>
 			        	<td >
 			        		<a class="btn btn-sm btn-info" href="{{ url( '/dominios/'.$dominio->id_dominio.'/edit' ) }}">Editar</a>

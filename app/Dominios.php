@@ -26,6 +26,15 @@ class Dominios extends Model {
 		return "Sin asignar";
 	}
 
+	public function getNombreCliente(){
+		$proyecto = Proyectos::find($this->id_proyecto);
+		if ($proyecto){
+
+			return Clientes::find($proyecto->id_cliente)->nombre_cliente;
+		};
+		return "Sin asignar";
+	}	
+
 	public function empresaProveedora(){
 		$proveedor = EmpresasProveedoras::find($this->id_empresa_proveedora);
 		if ($proveedor){
