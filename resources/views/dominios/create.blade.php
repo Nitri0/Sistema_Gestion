@@ -18,7 +18,7 @@
 
 		@if($proyecto)
 			<label for="">Proyecto:</label>
-			<label for="">{{$proyecto->nombre_proyecto}} - {{$key->getCliente()->nombre_cliente}}</label>
+			<label for="">{{$proyecto->nombre_proyecto}} - {{$proyecto->getCliente()->nombre_cliente}}</label>
 		@else
 			<div class="from-group">
 				<label for="">Proyecto</label>
