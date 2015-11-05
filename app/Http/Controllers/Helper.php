@@ -25,10 +25,9 @@ class Helper extends Controller {
 	public static function SendEmail($receptor, $nombreReceptor, $asunto, $plantilla, $parametros){
 		
 		Mail::send($plantilla, $parametros , function($mensaje) use ($receptor, $nombreReceptor, $asunto){
-			$mensaje->from(Auth::user()->correo_usuario, Auth::user()->getFullName())
-					->to($receptor, $nombreReceptor)
-					->cco(Auth::user()->correo_usuario)
-					->subject($asunto);
+			$mensaje->from(Auth::user()->correo_usuario, Auth::user()->getFullName());
+			$mensaje->to($receptor, $nombreReceptor)->bcc(Auth::user()->correo_usuario)
+			$mensaje->subject($asunto);
 		});		
 	}
 }
