@@ -33,7 +33,9 @@
 						<td>{{$proyecto->getRol( Auth::user()->id_usuario )}}</td>
 						<td>{{$proyecto->getEstatus()}}</td>
 			        	<td >
+
 			        		<a class="btn btn-sm btn-info" href="{{ url( '/mis-proyectos/'.$proyecto->id_proyecto ) }}"> Gestionar</a>
+			        		<a class="btn btn-success" href="{{ url( '/mis-proyectos/avances/'.$proyecto->id_proyecto.'/create' ) }}">Crear avance</a>
 			        	</td>
 			        </tr>
 				@endforeach

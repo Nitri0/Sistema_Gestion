@@ -55,7 +55,7 @@ class UserController extends Controller {
 		$proyectos_id = Roles::where('id_usuario',$user->id_usuario)->lists('id_proyecto');
 		$proyectos = Proyectos::where('habilitado_proyecto',1)
 								->whereIn('id_proyecto',$proyectos_id)
-								->orderBy('id_proyecto', 'desc')
+								->orderBy('id_avance', 'asc')
 								->paginate(10);
 		return view('user.mis_proyectos',compact('proyectos'));
 	}
