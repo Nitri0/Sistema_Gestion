@@ -27,7 +27,7 @@ class ProyectosController extends Controller {
 
 	public function index(){
 		$proyectos = Proyectos::where('habilitado_proyecto',1)
-								->orderBy('id_ultimo_avance', 'desc')
+								->orderBy('id_avance', 'desc')
 								->paginate(10);
 		return view('proyectos.list',['proyectos'=>$proyectos]);
 	}
