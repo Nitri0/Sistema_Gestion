@@ -10,18 +10,30 @@ class Dominios extends Model {
 	public $timestamps = false;
 	protected $fillable = array('nombre_dominio',
 								'id_empresa_proveedora',
+								'id_proyecto',
 								'fecha_dominio',
 								'habilitado_dominio'
 								);
+	protected $dates = ['fecha_creacion_dominio'];
+
+	public function getNombreProyecto(){
 
 
-	public function proyectoAsociado(){
-		$proyecto = Proyectos::where('id_dominio',$this->id_dominio)->first();
+		$proyecto = Proyectos::find($this->id_proyecto);
 		if ($proyecto){
-			return $proyecto->nombre_proyecto;	
-		}
-		return "Dominio no asociado";
+			return $proyecto->nombre_proyecto;
+		};
+		return "Sin asignar";
 	}
+
+	public function getNombreCliente(){
+		$proyecto = Proyectos::find($this->id_proyecto);
+		if ($proyecto){
+
+			return Clientes::find($proyecto->id_cliente)->nombre_cliente;
+		};
+		return "Sin asignar";
+	}	
 
 	public function empresaProveedora(){
 		$proveedor = EmpresasProveedoras::find($this->id_empresa_proveedora);
@@ -30,12 +42,4 @@ class Dominios extends Model {
 		}
 		return "cliente no existente";
 	}
-
-	public function hasProveedora(){
-		$proveedor = EmpresasProveedoras::find($this->id_empresa_proveedora);
-		if ($proveedor){
-			return true;	
-		}
-		return false;
-	}	
 }

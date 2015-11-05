@@ -26,23 +26,45 @@ class ProyectosController extends Controller {
 	}
 
 	public function index(){
-		$proyectos = Proyectos::where('habilitado_proyecto',1)->orderBy('id_proyecto', 'desc')->paginate(10);
+
+
+
+		// $proyectos = \DB::table('t_proyectos')
+		// 					->where('t_proyectos.habilitado_proyecto','=',1)
+		// 					->join('t_avances',function($join){
+		// 						$join->on('t_avances.id_proyecto','=','t_proyectos.id_proyecto')
+		// 							 ->max('a.view');  
+		// 					})
+
+		// 					->join('t_clientes', 't_clientes.id_cliente', '=', 't_proyectos.id_cliente')
+		// 					->join('t_dominios', 't_dominios.id_proyecto', '=', 't_proyectos.id_proyecto')
+		// 					->max('t_avances.id_avance')
+		// 					->orderBy('t_avances.id_avance','desc')
+		// 					->paginate(10)
+		// 					;
+							
+
+
+
+		$proyectos = Proyectos::where('habilitado_proyecto',1)
+								->orderBy('id_avance', 'asc')
+								->paginate(10);
 		return view('proyectos.list',['proyectos'=>$proyectos]);
 	}
 
 	public function create(){
 		$clientes = Clientes::all();
-		$dominios = Dominios::where('habilitado_dominio',1)->get();
-		$usuarios = User::all();
+		
 		$maestro = Master::where('nombre_maestro','Roles')->first();
 		if (!$maestro){
 			$id_maestro = Master::create(['nombre_maestro','Roles'])->id_maestro;
 		}else{
 			$id_maestro = $maestro->id_maestro;
 		};
+		$usuarios = User::all();
 		$roles = Tipo::where('id_maestro',$id_maestro)->get();
 		$grupo_etapas = GrupoEtapas::all();
-		return view('proyectos.create',compact('clientes', 'dominios', 'usuarios', 'roles','grupo_etapas'));
+		return view('proyectos.create',compact('clientes', 'usuarios', 'roles','grupo_etapas'));
 	}
 
 	public function edit($id){
@@ -56,11 +78,14 @@ class ProyectosController extends Controller {
 			return redirect('mis-proyectos/');
 		}
 		*/
+		$maestro = Master::where('nombre_maestro','Roles')->first();
 		$proyecto = Proyectos::find($id_proyecto);
 		$etapas = GrupoEtapas::find($proyecto->id_grupo_etapas);
+		$usuarios = User::all();
+		$roles = Tipo::where('id_maestro',$maestro->id_maestro)->get();
 
+		return view('proyectos.detalle',compact('proyecto','id_proyecto', 'rol', 'etapas','roles','usuarios' ));
 
-		return view('proyectos.detalle',compact('proyecto','id_proyecto', 'rol', 'etapas'));
 	}
 
 	public function store(Request $request){
@@ -93,10 +118,9 @@ class ProyectosController extends Controller {
 		$proyecto = Proyectos::find($id);
 		Avances::where('id_proyecto',$proyecto->id_proyecto)->delete();
 		Roles::where('id_proyecto',$proyecto->id_proyecto)->delete();
-		Dominios::find($proyecto->id_dominio)->update(['habilitado_dominio'=>1,]);
+		Dominios::where('id_proyecto',$proyecto->id_proyecto)->update(['habilitado_dominio'=>1, 'id_proyecto' => NULL]);
 		$proyecto->delete();
 
 		return redirect('/proyectos');
-		//Dominios::destroy($proyecto->)
 	}		
 }

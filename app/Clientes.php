@@ -15,4 +15,21 @@ class Clientes extends Model {
 								'direccion_cliente');
 	public $timestamps = false;
 
+	public function getProyecto(){
+		$proyecto = Proyectos::where('id_Cliente',$this->id_cliente)->first();
+		if ($proyecto){
+			return $proyecto->nombre_proyecto;	
+		}
+		return "Cliente no asociado";
+	}
+
+
+	public function hasProyecto(){
+		$proyecto = Proyectos::where('id_cliente',$this->id_cliente)->first();
+		if ($proyecto){
+			return true;	
+		}
+		return false;
+	}	
+
 }

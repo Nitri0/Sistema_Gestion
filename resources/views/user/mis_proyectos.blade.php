@@ -18,7 +18,8 @@
 		      <tr>
 		        <th>Nombre Proyecto</th>
 		        <th>Cliente Asociado</th>
-		        <th>Fecha de creación</th>
+		        <th>Dominio Asociado</th>
+		        <th>Ultimo avance</th>
 		        <th>Rol</th>
 		        <th>Estatus</th>
 		        <th >Operaciones</th>
@@ -29,8 +30,9 @@
 			    	<tr>
 						<td>{{$proyecto->nombre_proyecto}}</td>
 						<td>{{$proyecto->getCliente()->nombre_cliente}}</td>
-						<td>{{$proyecto->fecha_creacion_proyecto}}</td>
-						<td>{{$proyecto->getRol( Auth::user()->id_usuario )}}</td>
+						<td>{{$proyecto->getNombreDominio()}}</td>
+						<td>{{$proyecto->getUltimoAvance()}}</td>
+						<td>{{$proyecto->getRol()}}</td>
 						<td>{{$proyecto->getEstatus()}}</td>
 			        	<td >
 
