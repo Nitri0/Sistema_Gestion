@@ -32,19 +32,7 @@
 						</option>
 					@endforeach
 				</select>
-			</div>			
-			<br>
-			<div class="from-group">
-				<label for="">Dominio</label>
-				<select class="form-control" ng-model="proyecto.id_dominio" name="id_dominio" required>
-					<option class="option" value="">Seleccione un dominio</option>
-					@foreach($dominios as $key)
-						<option class="option" value="{{$key->id_dominio}}">
-							{{ $key->nombre_dominio }}
-						</option>
-					@endforeach
-				</select>
-			</div>	
+			</div>
 			<br>
 			<div class="from-group">
 				<label for="">Grupo de etapas (sprints/pasos/etapas)</label>

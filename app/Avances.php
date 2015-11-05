@@ -1,7 +1,7 @@
 <?php namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-
+use App\User;
 class Avances extends Model {
 
 	protected $table = "t_avances";
@@ -9,21 +9,22 @@ class Avances extends Model {
 	public $timestamps = false;
 	protected $fillable = array('id_proyecto',
 								'id_etapa',
+								'id_usuario',
 								'asunto_avance',
 								'descripcion_avance',
 								'check_copia_cliente_avance',
 								);
 
 
+	protected $dates = ['fecha_creacion_avance'];
 
 
-
-	public function nombreCliente(){
-		$cliente = Clientes::find($this->id_cliente);
-		if ($cliente){
-			return $cliente->nombre_cliente;	
+	public function getNombreCreador(){
+		$usuario = User::find($this->id_usuario);
+		if ($usuario){
+			return $usuario->getFullName();	
 		};
-		return "cliente no existente";
+		return "Usuario no existente";
 	}
 
 }
