@@ -111,7 +111,6 @@ class UserController extends Controller {
 			
 			$proyecto = Proyectos::find($request->id_proyecto);
 			$proyecto->estatus_proyecto = $proyecto->estatus_proyecto + 1;
-			$proyecto->save();
 		}
 
 		$cliente = Clientes::find($proyecto->id_cliente);
@@ -136,6 +135,9 @@ class UserController extends Controller {
 		};
 		$request['id_usuario'] = Auth::user()->id_usuario;
 		$avances = Avances::firstOrCreate($request->except('check_cierre_etapa'));
+
+		$proyecto->id_avance = $avances->id_avance;
+		$proyecto->save();
 
 		Session::flash('mensaje', 'Avance creado exitosamente');
 		return redirect('/mis-proyectos/'.$id_proyecto);

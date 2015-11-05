@@ -26,8 +26,28 @@ class ProyectosController extends Controller {
 	}
 
 	public function index(){
+
+
+
+		// $proyectos = \DB::table('t_proyectos')
+		// 					->where('t_proyectos.habilitado_proyecto','=',1)
+		// 					->join('t_avances',function($join){
+		// 						$join->on('t_avances.id_proyecto','=','t_proyectos.id_proyecto')
+		// 							 ->max('a.view');  
+		// 					})
+
+		// 					->join('t_clientes', 't_clientes.id_cliente', '=', 't_proyectos.id_cliente')
+		// 					->join('t_dominios', 't_dominios.id_proyecto', '=', 't_proyectos.id_proyecto')
+		// 					->max('t_avances.id_avance')
+		// 					->orderBy('t_avances.id_avance','desc')
+		// 					->paginate(10)
+		// 					;
+							
+
+
+
 		$proyectos = Proyectos::where('habilitado_proyecto',1)
-								->orderBy('id_avance', 'desc')
+								->orderBy('id_avance', 'asc')
 								->paginate(10);
 		return view('proyectos.list',['proyectos'=>$proyectos]);
 	}
