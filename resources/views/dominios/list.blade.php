@@ -46,11 +46,13 @@
 						<td>{{$dominio->getNombreCliente()}}</td>
 						<td>{{$dominio->fecha_dominio}}</td>
 			        	<td >
+			        		<div class="row">
 			        		<a class="btn btn-sm btn-info" href="{{ url( '/dominios/'.$dominio->id_dominio.'/edit' ) }}">Editar</a>
 							<form action="/dominios/{{$dominio->id_dominio}}" method="post">
 								<input type="hidden" name="_method" value="delete">
 								<button type="submit" class="btn btn-sm btn-danger" >Eliminar</a>
 							</form>
+							</div>
 			        	</td>
 			        </tr>
 				@endforeach
