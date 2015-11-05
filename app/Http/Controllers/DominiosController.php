@@ -34,11 +34,13 @@ class DominiosController extends Controller {
 	}
 
 	public function store(Request $request){
-		$dominio = Dominios::create($request->all());
+
 		Session::flash('mensaje', 'Dominio creado exitosamente');
 		if($request->has('id_proyecto')){
 			Proyectos::find($request->id_proyecto)->update(['usable_proyecto'=>0,]);		
+			$dominio = Dominios::create($request->all());
 		}
+		$dominio = Dominios::create($request->except('id_proyecto'));
 		return redirect('/dominios');
 	}
 
