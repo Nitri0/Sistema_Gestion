@@ -18,8 +18,8 @@
 		<label for="">Buscador (lo que quieras filtrar)</label>
 		<input type="text" ng-model="opciones.buscador">
 		<br>
-		<br>
 		<div ng-init = "proyectos = {{$proyectos}}"></div>
+		<div ng-init = "print({{$proyectos}})"></div>
 		<div align="center" >
 			<a href="#" ng-click="opciones.orden= inverse(opciones.orden)">invertir orden</a>
 		</div>
@@ -39,7 +39,9 @@
 		        <th>
 		        	<a href="#" ng-click="opciones.orden='fecha_creacion_avance'">Fecha ultimo avance</a>
 		        </th>
-		        <th>Estatus</th>
+		        <th>
+		        	<a href="#" ng-click="opciones.orden='nombre_etapa'">Estatus</a>
+		        </th>
 		        <th >Operaciones</th>
 		      </tr>
 		    </thead>
@@ -50,7 +52,7 @@
 						<td >[[proyecto.nombre_cliente | noAsignado]]</td>
 						<td>[[proyecto.nombre_dominio | noAsignado]]</td>
 						<td>[[proyecto.fecha_creacion_avance ]]</td>
-						<td></td>
+						<td>[[proyecto.nombre_etapa]]</td>
 			        	<td >
 			        		<a class="btn btn-sm btn-info" ng-href="{{ url( '/proyectos/[[proyecto.id_proyecto]]' ) }}"> Detalle</a>
 			        	</td>
