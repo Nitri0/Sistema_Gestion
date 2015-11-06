@@ -44,12 +44,12 @@ class ProyectosController extends Controller {
 		// 					;
 							
 
-		$proyectos = json_encode(\DB::select('CALL p_busquedas(?,?)',array('listar_todos_proyectos','')));
+		// $proyectos = json_encode(\DB::select('CALL p_busquedas(?,?)',array('listar_todos_proyectos','')));
 
 		//dd($proyectos);
-		// $proyectos = Proyectos::where('habilitado_proyecto',1)
-		// 						->orderBy('id_avance', 'asc')
-		// 						->paginate(10);
+		$proyectos = json_encode(Proyectos::where('habilitado_proyecto',1)
+								->orderBy('id_avance', 'asc')
+								->get());
 		return view('proyectos.list', compact('proyectos'));
 	}
 
@@ -93,6 +93,9 @@ class ProyectosController extends Controller {
 		//$request["fecha_avance"] = Carbon::now();
 		//dd($request->all());
 		$proyecto = Proyectos::create($request->all());
+
+		$etapa = GrupoEtapas::find($proyecto->id_grupo_etapas)->getFirstEtapa();
+
 		if ($request['id_dominio']){			
 		 	Dominios::where('id_dominio',$request['id_dominio'])->update(['habilitado_dominio'=>0]);
 		};
@@ -105,6 +108,12 @@ class ProyectosController extends Controller {
 						};
 		};
 		
+		Avances::firstOrCreate([
+								'id_proyecto'=>$proyecto->id_proyecto,
+								'asunto_avance'=>'Iniciando Proyecto',
+								'descripcion_avance'=>'Proyecto creado exitosamente',
+								'id_etapa'=>$etapa->id_etapa,
+							]);
 		Session::flash('mensaje', 'Proyecto creado exitosamente');
 		return redirect('/proyectos');
 	}
