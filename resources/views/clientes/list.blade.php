@@ -54,7 +54,7 @@
 			        		<a class="btn btn-sm btn-info" href="{{ url( '/clientes/'.$cliente->id_cliente.'/edit' ) }}"> Editar </a>
 								<form action="/clientes/{{$cliente->id_cliente}}" method="post">
 									<input type="hidden" name="_method" value="delete">
-									<button type="submit" class="btn btn-sm btn-danger" >Eliminar</a>
+									<button type="submit" class="btn btn-sm btn-danger" >Eliminar</button>
 								</form>		        		
 			        	</td>
 			        </tr>
