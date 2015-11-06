@@ -44,12 +44,13 @@ class ProyectosController extends Controller {
 		// 					;
 							
 
+		$proyectos = json_encode(\DB::select('CALL p_busquedas(?,?)',array('listar_todos_proyectos','')));
 
-
-		$proyectos = Proyectos::where('habilitado_proyecto',1)
-								->orderBy('id_avance', 'asc')
-								->paginate(10);
-		return view('proyectos.list',['proyectos'=>$proyectos]);
+		//dd($proyectos);
+		// $proyectos = Proyectos::where('habilitado_proyecto',1)
+		// 						->orderBy('id_avance', 'asc')
+		// 						->paginate(10);
+		return view('proyectos.list', compact('proyectos'));
 	}
 
 	public function create(){
