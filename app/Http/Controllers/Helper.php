@@ -65,7 +65,7 @@ class Helper extends Controller {
 		  foreach($dir_array as $key=>$filename){
 		    if($filename!=".." && $filename!="."){
 		       if(is_dir($dir."/".$filename)){
-		          $new_foldersize = foldersize($dir."/".$filename);
+		          $new_foldersize = self::foldersize($dir."/".$filename);
 		          $count_size = $count_size+ $new_foldersize;
 		        }else if(is_file($dir."/".$filename)){
 		          $count_size = $count_size + filesize($dir."/".$filename);
@@ -73,6 +73,6 @@ class Helper extends Controller {
 		        }
 		   }
 		 }
-		return $this->sizeFormat($count_size);
+		return self::sizeFormat($count_size);
 	}
 }

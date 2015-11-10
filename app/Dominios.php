@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Eloquent\Model;
 use App\Proyectos;
+use App\Http\Controllers\Helper;
 
 class Dominios extends Model {
 
@@ -44,6 +45,10 @@ class Dominios extends Model {
 	}
 
 	public function getSizeUsed(){
-		return getcwd();
+		$ruta = '/home/keypan5/public_html/'.$this->nombre_dominio;
+		if (is_dir($ruta)){
+			return Helper::folderSize( $ruta );	
+		}
+		return "ruta desconocida: ".$ruta;	
 	}
 }
