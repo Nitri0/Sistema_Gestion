@@ -95,6 +95,7 @@ class UserController extends Controller {
 
 		$proyecto = Proyectos::find($id_proyecto);//aqui siempre trae un solo proyecto... arreglar
 		$etapas = GrupoEtapas::find($proyecto->id_grupo_etapas)->getEtapas();
+
 		$dominio = Dominios::find($proyecto->id_dominio);
 		$mis_datos = Auth::user()->getPerfil();
 		$mi_correo = Auth::user()->correo_usuario;
@@ -104,6 +105,7 @@ class UserController extends Controller {
 	public function postCreateAvancesMisProyectos(Request $request,$id_proyecto){
 
 		$proyecto = Proyectos::find($id_proyecto);
+
 
 		$dominio = Dominios::find($proyecto->id_dominio);
 		$mis_datos = Auth::user()->getPerfil();

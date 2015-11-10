@@ -69,6 +69,7 @@ class PlantillasController extends Controller {
 		$cliente->direccion_cliente = "DIRECCION_DE_PRUEBA";
 		$cliente->persona_contacto_cliente = "NOMBRE_CONTACTO_PRUEBA";
 		$cliente->email_cliente = "EMAIL_DE_PRUEBA";
+
 		$dominio = new Dominios();
 		$dominio->nombre_dominio = "DOMINIO_DE_PRUEBA";
 		$mis_datos = Auth::user()->getPerfil();
