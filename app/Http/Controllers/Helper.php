@@ -73,6 +73,6 @@ class Helper extends Controller {
 		        }
 		   }
 		 }
-		return self::sizeFormat($count_size);
+		return $count_size;
 	}
 }

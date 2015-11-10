@@ -20,6 +20,7 @@
 			<div class="col-md-8"><h2>Lista de Dominios</h2></div>
 			<div class="col-md-4">
 				<a class="btn btn-sm btn-success" href="{{ url( '/dominios/create' ) }}">Agregar</a>
+				<a class="btn btn-sm btn-success" href="{{ url( '/dominios/updateData' ) }}">Actualizar</a>
 			</div>
 
 		</div>
@@ -34,6 +35,7 @@
 		        <th>Proveedor</th>
 		        <th>Cliente</th>
 		        <th>Fecha creación</th>
+		        <th>Espacio usado</th>
 		        <th >Operaciones</th>
 		      </tr>
 		    </thead>
@@ -45,6 +47,7 @@
 						<td>{{$dominio->empresaProveedora()}}</td>
 						<td>{{$dominio->getNombreCliente()}}</td>
 						<td>{{$dominio->fecha_dominio}}</td>
+						<td>{{$dominio->espacio_usado}}</td>
 			        	<td >
 			        		<div class="row">
 			        		<a class="btn btn-sm btn-info" href="{{ url( '/dominios/'.$dominio->id_dominio.'/edit' ) }}">Editar</a>

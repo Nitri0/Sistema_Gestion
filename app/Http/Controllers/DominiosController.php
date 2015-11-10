@@ -45,6 +45,8 @@ class DominiosController extends Controller {
 	}
 
 	public function show($id){
+
+
 		return view('dominios.detalle', ['dominio'=>$this->dominio]);
 	}
 
@@ -73,4 +75,17 @@ class DominiosController extends Controller {
 		return redirect("/dominios");
 	}
 
+	public function actualizarEspacioUsado(){
+		$dominios = Dominios::all();
+		foreach ($dominios as $dominio) {
+			$ruta = '/home/keypan5/public_html/'.$dominio->nombre_dominio;
+			if (is_dir($ruta)){
+				 $size =  Helper::folderSize( $ruta );	
+			}
+			$size = -1;
+			$dominio->espacio_utilizado;
+			$dominio->save();
+		}
+		return redirect("/dominios");
+	}
 }

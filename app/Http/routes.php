@@ -39,6 +39,9 @@ $router->group(['middleware' => 'auth'], function() {
 	Route::Post('/mis-proyectos/avances/{id_proyecto}/create', 'UserController@postCreateAvancesMisProyectos');
 	Route::get( '/mis-proyectos/avances/{id_proyecto}/{id_avance}', 'UserController@detalleAvancesMisProyectos');
 
+	
+	Route::get('/dominios/updateData', 'DominiosController@actualizarEspacioUsado');
+
 
 	//___________________ Cruds _____________________________
 	route::resource('/plantillas','PlantillasController');
