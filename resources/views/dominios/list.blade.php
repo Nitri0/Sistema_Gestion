@@ -34,6 +34,7 @@
 		        <th>Proveedor</th>
 		        <th>Cliente</th>
 		        <th>Fecha creación</th>
+		        <th>Espacio usado</th>
 		        <th >Operaciones</th>
 		      </tr>
 		    </thead>
@@ -45,9 +46,11 @@
 						<td>{{$dominio->empresaProveedora()}}</td>
 						<td>{{$dominio->getNombreCliente()}}</td>
 						<td>{{$dominio->fecha_dominio}}</td>
+						<td>{{$dominio->getSizeUsed()}}</td>
 			        	<td >
 			        		<div class="row">
 			        		<a class="btn btn-sm btn-info" href="{{ url( '/dominios/'.$dominio->id_dominio.'/edit' ) }}">Editar</a>
+			        		<a class="btn btn-sm btn-info" href="{{ url( '/dominios/'.$dominio->id_dominio) }}">Gestionar</a>
 							<form action="/dominios/{{$dominio->id_dominio}}" method="post">
 								<input type="hidden" name="_method" value="delete">
 								<button type="submit" class="btn btn-sm btn-danger" >Eliminar</a>

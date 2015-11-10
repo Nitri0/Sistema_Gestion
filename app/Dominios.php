@@ -49,6 +49,6 @@ class Dominios extends Model {
 		if (is_dir($ruta)){
 			return Helper::folderSize( $ruta );	
 		}
-		return "ruta desconocida: ".$ruta;	
+		return "Dominio no encontrado";	
 	}
 }
