@@ -24,9 +24,14 @@ coreApp.controller('AvanceController', function ($scope, $log) {
 
 coreApp.controller('ProyectoController', function ($scope, $log) {
 	console.log("Proyecto");
+
 	$scope.personas=[];
 	$scope.cantidad=0;
 	$scope.proyecto={};
+	$scope.print = function (argument) {
+		console.log(argument);
+		console.log(new Date());
+	};
 	
 	$scope.agregar_integrantes= function(argument) {
 		$scope.personas.push(1);

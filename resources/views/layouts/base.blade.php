@@ -73,5 +73,6 @@
 	<!-- angular Controllers -->
 	<script src="{{ asset('/js/app.js') }}"></script>
 	<script src="{{ asset('/js/controllers.js') }}"></script>
+	<script src="{{ asset('/js/filters.js') }}"></script>
 </body>
 </html>

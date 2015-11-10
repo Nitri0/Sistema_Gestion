@@ -6,24 +6,44 @@
 		@if($dominio)
 			<h2>Editar Dominio</h2>
 			<div ng-init="dominio={{$dominio}}"></div>
-			<div ng-init="empresas_proveedoras={{ $empresas_proveedoras }}"></div>
 			
-
-			[[dominio]]
-			<form ng-action="{{ url('dominios/[[dominio.id_dominio]]') }}" method="Post" novalidate>
+			<form action="{{ url('dominios/'.$dominio->id_dominio) }}" method="POST" novalidate>
 			<input type="hidden" name="_method" value="PUT">
 		@else
 			<h2>Crear Dominio</h2>
 			<form action="{{ url('dominios/') }}" method="POST" novalidate>
-		@endif
 
+		@endif
 			<br><br>
+
+		@if($proyecto)
+			<label for="">Proyecto:</label>
+			<label for="">{{$proyecto->nombre_proyecto}} - {{$proyecto->getCliente()->nombre_cliente}}</label>
+		@else
+			<div class="from-group">
+				<label for="">Proyecto</label>
+				<select class="form-control" name="id_proyecto" required>
+					<option class="option" value="">Seleccione un proyecto</option>
+					@foreach($proyectos as $key)
+						<option class="option" value="{{$key->id_proyecto}}">
+							{{$key->nombre_proyecto}} - {{$key->getCliente()->nombre_cliente}}</option>
+					@endforeach
+				</select>
+			</div>					
+		@endif
+					
+			<br>			
 			<div class="from-group">
 				<label for="">Empresa proveedora</label>
-				<select class="form-control" name="id_empresa_proveedora" 
-					ng-options="item as item.nombres_empresa_proveedora for item in empresas_proveedoras track by item.id_empresa_proveedora"
-					ng-model="dominio.id_empresa_proveedora">
+				<select class="form-control" name="id_empresa_proveedora">
 					<option class="option" value="">Seleccione una empresa proveedora</option>
+					@foreach($empresas_proveedoras as $key)
+						<option class="option" value="{{$key->id_empresa_proveedora}}"
+						@if($dominio && $dominio->id_empresa_proveedora==$key->id_empresa_proveedora) 
+							selected 
+						@endif >
+							{{$key->nombres_empresa_proveedora}}</option>
+					@endforeach
 		
 				</select>
 				<button >

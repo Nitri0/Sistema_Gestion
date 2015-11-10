@@ -52,7 +52,7 @@ class PlantillasController extends Controller {
 		if (Session::has('history-back')){
 			return redirect(Session::get('history-back'));
 		}
-		return redirect('/mis-proyectos');
+		return redirect('/plantillas');
 	}	
 
 	public function previewPlantillas($id_plantilla){

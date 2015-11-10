@@ -53,11 +53,14 @@ class UserController extends Controller {
 	public function misProyectos(){
 		$user = Auth::user();
 		//FORMA DE LISTAR LAS COLUMNAS ESPECIFICAS COMO UN ARREGLO UNIDIMENCIONAL (SOLO VALUE)
+
+		// $proyectos = json_encode(\DB::select('CALL p_busquedas(?,?)',array('listar_mis_proyectos',$user->id_usuario)));
 		$proyectos_id = Roles::where('id_usuario',$user->id_usuario)->lists('id_proyecto');
 		$proyectos = Proyectos::where('habilitado_proyecto',1)
 								->whereIn('id_proyecto',$proyectos_id)
-								->orderBy('id_proyecto', 'desc')
+								->orderBy('id_avance', 'asc')
 								->paginate(10);
+
 		return view('user.mis_proyectos',compact('proyectos'));
 	}
 
@@ -73,9 +76,7 @@ class UserController extends Controller {
 		*/
 		$proyecto = Proyectos::find($id_proyecto);
 		$etapas = GrupoEtapas::find($proyecto->id_grupo_etapas);
-
-
-		return view('user.detalle_proyecto',compact('proyecto','id_proyecto', 'rol', 'etapas'));
+		return view('user.detalle_proyecto',compact('proyecto','id_proyecto', 'rol', 'etapas' ));
 	}
 
 	//__________________________________ CRUD AVANCES ____________________
@@ -112,7 +113,6 @@ class UserController extends Controller {
 			
 			$proyecto = Proyectos::find($request->id_proyecto);
 			$proyecto->estatus_proyecto = $proyecto->estatus_proyecto + 1;
-			$proyecto->save();
 		}
 
 		$cliente = Clientes::find($proyecto->id_cliente);
@@ -135,8 +135,11 @@ class UserController extends Controller {
 							$parametros_plantilla
 							);
 		};
-
+		$request['id_usuario'] = Auth::user()->id_usuario;
 		$avances = Avances::firstOrCreate($request->except('check_cierre_etapa'));
+
+		$proyecto->id_avance = $avances->id_avance;
+		$proyecto->save();
 
 		Session::flash('mensaje', 'Avance creado exitosamente');
 		return redirect('/mis-proyectos/'.$id_proyecto);

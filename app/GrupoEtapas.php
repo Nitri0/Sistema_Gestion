@@ -17,4 +17,7 @@ class GrupoEtapas extends Model {
 	public function getEtapas(){
 		return Etapas::where('id_grupo_etapas', $this->id_grupo_etapas)->get();
 	}
+	public function getFirstEtapa(){
+		return Etapas::where('id_grupo_etapas', $this->id_grupo_etapas)->orderBy('numero_orden_etapa', 'asc')->first();
+	}
 }

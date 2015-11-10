@@ -3,17 +3,21 @@
 use Illuminate\Database\Eloquent\Model;
 use App\Roles;
 use App\Etapas;
+use Auth;
+use Carbon\Carbon;
 
 class Proyectos extends Model {
 
 	protected $table = "t_proyectos";
 	protected $primaryKey = "id_proyecto";
-	protected $fillable = array('id_dominio',
-								'id_cliente',
+	protected $fillable = array('id_cliente',
 								'id_grupo_etapas',
 								'nombre_proyecto',
-								'estatus_proyecto'
+								'estatus_proyecto',
+								'usable_proyecto',
+								'id_ultimo_avance'
 								);
+	protected $dates = ['fecha_creacion_proyecto'];
 	public $timestamps = false;
 
 	public function getEstatus(){
@@ -36,9 +40,27 @@ class Proyectos extends Model {
 		return Clientes::find($this->id_cliente);
 	}
 
+	public function getNombreDominio(){
+		$dominio = Dominios::where('id_proyecto',$this->id_proyecto)->first();
+		if ($dominio){
+			return $dominio->nombre_dominio;
+		};
+		return "No asignado";
+	}
 
-	public function getRol($id_usuario){
-		$rol = Roles::where('id_proyecto',$this->id_proyecto)->where('id_usuario', $id_usuario)->first();
+	public function getUltimoAvance(){
+		$avance = Avances::where('id_proyecto',$this->id_proyecto)->orderBy('fecha_creacion_avance', 'desc')->first();
+
+		if ($avance){
+			//return Carbon::now('VET'); ->zona horaria de venezuela
+			Carbon::setLocale('es');
+			return $avance->fecha_creacion_avance->diffForHumans();
+		}
+		return "Sin avances";
+	}
+
+	public function getRol(){
+		$rol = Roles::where('id_proyecto',$this->id_proyecto)->where('id_usuario', Auth::user()->id_usuario)->first();
 		return $rol->getRolName();
 	}
 }

@@ -2,11 +2,11 @@
 
 
 @section('content')
-	<div class="container">
+	<div class="container" ng-controller = "ProyectoController">
 
 		@include('alerts.mensaje_success')
 		@include('alerts.mensaje_error')
-				
+		
 		<div class="row">
 			<div class="col-md-8"> <h2>Lista de proyectos</h2></div>
 			<div class="col-md-4">
@@ -15,34 +15,53 @@
 
 		</div>
 		<br>
+		<label for="">Buscador (lo que quieras filtrar)</label>
+		<input type="text" ng-model="opciones.buscador">
 		<br>
-
+		<div ng-init = "proyectos = {{$proyectos}}"></div>
+		<div ng-init = "print({{$proyectos}})"></div>
+		<div align="center" >
+			<a href="#" ng-click="opciones.orden= inverse(opciones.orden)">invertir orden</a>
+		</div>
+		<br>
 		<table class="table table-hover">
 		    <thead>
 		      <tr>
-		        <th>Nombre Proyecto</th>
-		        <th>Cliente Asociado</th>
-		        <th>Fecha de creación</th>
-		        <th>Estatus</th>
+		        <th>
+		        	<a href="#" ng-click="opciones.orden='nombre_proyecto'">Nombre Proyecto</a>
+		        </th>
+		        <th>
+		        	<a href="#" ng-click="opciones.orden='nombre_cliente'">Nombre Cliente</a>
+		        </th>
+		        <th>
+		        	<a href="#" ng-click="opciones.orden='nombre_dominio'">Dominio Asociado</a>
+		        </th>
+		        <th>
+		        	<a href="#" ng-click="opciones.orden='fecha_creacion_avance'">Fecha ultimo avance</a>
+		        </th>
+		        <th>
+		        	<a href="#" ng-click="opciones.orden='nombre_etapa'">Estatus</a>
+		        </th>
 		        <th >Operaciones</th>
 		      </tr>
 		    </thead>
 		    <tbody>
-		    	@foreach($proyectos as $proyecto)
-			    	<tr>
-						<td>{{$proyecto->nombre_proyecto}}</td>
-						<td>{{$proyecto->getCliente()->nombre_cliente}}</td>
-						<td>{{$proyecto->fecha_creacion_proyecto}}</td>
-						<td>{{$proyecto->getEstatus()}}</td>
+
+			    	<tr ng-repeat="proyecto in proyectos| filter:opciones.buscador|orderBy:opciones.orden">
+						<td>[[proyecto.nombre_proyecto]]</td>
+						<td >[[proyecto.nombre_cliente | noAsignado]]</td>
+						<td>[[proyecto.nombre_dominio | noAsignado]]</td>
+						<td>[[proyecto.fecha_creacion_avance ]]</td>
+						<td>[[proyecto.nombre_etapa]]</td>
 			        	<td >
-			        		<a class="btn btn-sm btn-info" href="{{ url( '/proyectos/'.$proyecto->id_proyecto ) }}"> Detalle</a>
+			        		<a class="btn btn-sm btn-info" ng-href="{{ url( '/proyectos/[[proyecto.id_proyecto]]' ) }}"> Detalle</a>
 			        	</td>
 			        </tr>
-				@endforeach
+
 		    </tbody>
 		</table>
 
-		<div align="center">{!! $proyectos->render() !!}</div>
+
 	</div>
 	
 @stop

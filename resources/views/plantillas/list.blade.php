@@ -34,7 +34,7 @@
 						<td>{{$key->fecha_creacion_plantilla}}</td>
 			        	<td >
 			        		<a class="btn btn-sm btn-info" href="{{ url( '/plantillas/'.$key->id_plantilla.'/edit' ) }}"> Editar</a>
-			        		<a class="btn btn-sm btn-info" href="{{ url( '/plantillas/preview/'.$key->id_plantilla ) }}"> Preview</a>
+			        		<a class="btn btn-sm btn-info" target="_blank" href="{{ url( '/plantillas/preview/'.$key->id_plantilla ) }}"> Preview</a>
 			        	</td>
 			        </tr>
 				@endforeach
