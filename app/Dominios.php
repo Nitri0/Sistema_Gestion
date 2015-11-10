@@ -42,4 +42,8 @@ class Dominios extends Model {
 		}
 		return "cliente no existente";
 	}
+
+	public function getSizeUsed(){
+		return getcwd();
+	}
 }
