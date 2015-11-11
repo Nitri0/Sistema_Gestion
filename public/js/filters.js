@@ -29,7 +29,6 @@ coreApp.filter("formatSize", function(){
     return function(text) {
 
         var text = parseInt(text);
-        console.log(text)
         if (text < 0){
             return "N/A";
         }
@@ -42,16 +41,16 @@ coreApp.filter("formatSize", function(){
             return text+' B';
 
         } else if ((text >= kb) && (text < mb)) {
-            return ceil(text / kb)+' KB';
+            return Math.ceil(text / kb)+' KB';
 
         } else if ((text >= mb) && (text < gb)) {
-            return ceil(text / mb) + ' MB';
+            return Math.ceil(text / mb) + ' MB';
 
         } else if ((text >= gb) && (text < tb)) {
-            return ceil(text / gb) + ' GB';
+            return Math.ceil(text / gb) + ' GB';
 
         } else if (text >= tb) {
-            return ceil(text / tb) + ' TB';
+            return Math.ceil(text / tb) + ' TB';
         } else {
             return +text + ' B';
         }
