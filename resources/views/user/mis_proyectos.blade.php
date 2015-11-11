@@ -22,8 +22,10 @@
 		<table class="table table-hover">
 		    <thead>
 		      <tr>
-
-
+		        <th>
+		        	<a href="#" ng-click="opciones.orden='$index'">#</a>
+		        </th>
+	
 		        <th>
 		        	<a href="#" ng-click="opciones.orden='nombre_proyecto'">Proyecto</a>
 		        </th>
@@ -47,7 +49,8 @@
 		    </thead>
 		    <tbody>
 
-		    	<tr ng-repeat="proyecto in proyectos| filter:opciones.buscador|orderBy:opciones.orden">
+		    	<tr ng-repeat="proyecto in proyectos| filter:opciones.buscador|orderBy:opciones.orden  track by $index">
+					<td>[[$index+1]]</td>
 					<td>[[proyecto.nombre_proyecto]]</td>
 					<td >
 						<a href="{{url('/clientes/[[proyecto.id_cliente]]')}}">
