@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
 
-	<form action="/proyectos/{{$proyecto->id_proyecto}}/finalizar" method="post">
+	<form action="/proyectos/finalizar/{{$proyecto->id_proyecto}}" method="post">
 		<button type="submit" class="btn btn-sm btn-success">Finalizar Proyecto</button>
 	</form>
 	<br>

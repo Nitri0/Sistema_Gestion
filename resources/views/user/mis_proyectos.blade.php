@@ -56,8 +56,8 @@
 					<td>[[proyecto.nombre_etapa]]</td>
 		        	<td >
 		        		<div class="row">
-			        		<a class="btn btn-sm btn-info " href="{{ url( '/mis-proyectos/[[proyecto.id_proyecto]]' ) }}">Detalle</a>
-			        		<a class="btn btn-sm btn-success" href="{{ url( '/mis-proyectos/avances/[[proyecto.id_proyecto]]/create' ) }}">Crear avance</a>
+			        		<a class="btn btn-sm btn-info col-sm-6" href="{{ url( '/mis-proyectos/[[proyecto.id_proyecto]]' ) }}">Detalle</a>
+			        		<a class="btn btn-sm btn-success col-sm-6" href="{{ url( '/mis-proyectos/avances/[[proyecto.id_proyecto]]/create' ) }}">Crear avance</a>
 		        		</div>
 		        	</td>
 			        </tr>
