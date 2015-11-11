@@ -132,5 +132,10 @@ class ProyectosController extends Controller {
 		$proyecto->delete();
 
 		return redirect('/proyectos');
+	}	
+
+	public function finalizarProyecto($id){
+		$proyecto = Proyectos::find($id)->update(['habilitado_dominio'=>0,]);;
+		return redirect('/proyectos');
 	}		
 }

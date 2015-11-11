@@ -54,12 +54,12 @@ class UserController extends Controller {
 		$user = Auth::user();
 		//FORMA DE LISTAR LAS COLUMNAS ESPECIFICAS COMO UN ARREGLO UNIDIMENCIONAL (SOLO VALUE)
 
-		// $proyectos = json_encode(\DB::select('CALL p_busquedas(?,?)',array('listar_mis_proyectos',$user->id_usuario)));
-		$proyectos_id = Roles::where('id_usuario',$user->id_usuario)->lists('id_proyecto');
-		$proyectos = Proyectos::where('habilitado_proyecto',1)
-								->whereIn('id_proyecto',$proyectos_id)
-								->orderBy('id_avance', 'asc')
-								->paginate(10);
+		$proyectos = json_encode(\DB::select('CALL p_busquedas(?,?)',array('listar_mis_proyectos',$user->id_usuario)));
+		// $proyectos_id = Roles::where('id_usuario',$user->id_usuario)->lists('id_proyecto');
+		// $proyectos = Proyectos::where('habilitado_proyecto',1)
+		// 						->whereIn('id_proyecto',$proyectos_id)
+		// 						->orderBy('id_avance', 'asc')
+		// 						->paginate(10);
 
 		return view('user.mis_proyectos',compact('proyectos'));
 	}

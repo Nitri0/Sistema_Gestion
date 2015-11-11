@@ -31,6 +31,8 @@ $router->group(['middleware' => 'auth'], function() {
 	Route::post('/plantillas/{id}', 'PlantillasController@putPlantillas');
 	
 */
+	Route::post( '/proyectos/{id}/finalizar', 'UserController@misProyectos');
+
 
 	Route::get( '/mis-proyectos', 'UserController@misProyectos');
 	Route::get( '/mis-proyectos/{id}', 'UserController@detalleMisProyectos');
