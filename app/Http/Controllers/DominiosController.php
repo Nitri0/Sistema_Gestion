@@ -81,7 +81,7 @@ class DominiosController extends Controller {
 		foreach ($dominios as $dominio) {
 			$size = -1;
 			$ruta = '/home/keypan5/public_html/'.$dominio->nombre_dominio;
-			dd($ruta);
+		
 			if (is_dir($ruta)){
 				 $size =  Helper::folderSize( $ruta );	
 			}
