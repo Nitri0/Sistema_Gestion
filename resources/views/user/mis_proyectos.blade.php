@@ -49,8 +49,16 @@
 
 		    	<tr ng-repeat="proyecto in proyectos| filter:opciones.buscador|orderBy:opciones.orden">
 					<td>[[proyecto.nombre_proyecto]]</td>
-					<td >[[proyecto.nombre_cliente | noAsignado]]</td>
-					<td>[[proyecto.nombre_dominio | noAsignado]]</td>
+					<td >
+						<a href="{{url('/clientes/[[proyecto.id_cliente]]')}}">
+							[[proyecto.nombre_cliente | noAsignado]]
+						</a>
+					</td>
+					<td>
+						<a href="{{url('/dominios/[[proyecto.id_dominio]]')}}">
+							[[proyecto.nombre_dominio | noAsignado ]]
+						</a>
+					</td>
 					<td>[[proyecto.fecha_creacion_avance | DateForHumans]]</td>
 					<td>[[proyecto.nombre_tipo]]</td>
 					<td>[[proyecto.nombre_etapa]]</td>

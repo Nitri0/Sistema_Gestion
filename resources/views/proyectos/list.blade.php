@@ -54,8 +54,9 @@
 					</td>
 					<td>
 						<a href="{{url('/dominios/[[proyecto.id_dominio]]')}}">
-							[[proyecto.nombre_dominio | noAsignado ]]</td>
+							[[proyecto.nombre_dominio | noAsignado ]]
 						</a>
+					</td>
 					<td>[[proyecto.fecha_creacion_avance | DateForHumans]]</td>
 					<td>[[proyecto.nombre_etapa]]</td>
 		        	<td >
