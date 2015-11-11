@@ -15,6 +15,7 @@ class Dominios extends Model {
 								'fecha_dominio',
 								'espacio_usado',
 								'habilitado_dominio'
+
 								);
 	protected $dates = ['fecha_creacion_dominio'];
 

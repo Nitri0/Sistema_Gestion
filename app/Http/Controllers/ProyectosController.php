@@ -108,12 +108,13 @@ class ProyectosController extends Controller {
 						};
 		};
 		
-		Avances::firstOrCreate([
-								'id_proyecto'=>$proyecto->id_proyecto,
-								'asunto_avance'=>'Iniciando Proyecto',
-								'descripcion_avance'=>'Proyecto creado exitosamente',
-								'id_etapa'=>$etapa->id_etapa,
-							]);
+		
+		Avances::Create([
+						'id_proyecto'=>$proyecto->id_proyecto,
+						'asunto_avance'=>'Iniciando Proyecto',
+						'descripcion_avance'=>'Proyecto creado exitosamente',
+						'id_etapa'=>$etapa->id_etapa,
+					]);
 		Session::flash('mensaje', 'Proyecto creado exitosamente');
 		return redirect('/proyectos');
 	}
@@ -131,6 +132,12 @@ class ProyectosController extends Controller {
 		Dominios::where('id_proyecto',$proyecto->id_proyecto)->update(['habilitado_dominio'=>1, 'id_proyecto' => NULL]);
 		$proyecto->delete();
 
+		return redirect('/proyectos');
+	}	
+
+	public function finalizarProyecto($id){
+		$proyecto = Proyectos::where('id_proyecto',$id)->update(['habilitado_proyecto'=>0,]);
+		Session::flash('mensaje', 'Proyecto finalizado exitosamente');
 		return redirect('/proyectos');
 	}		
 }

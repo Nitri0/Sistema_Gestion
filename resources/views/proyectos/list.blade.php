@@ -15,11 +15,10 @@
 
 		</div>
 		<br>
-		<label for="">Buscador (lo que quieras filtrar)</label>
+		<label for="">Buscador</label>
 		<input type="text" ng-model="opciones.buscador">
 		<br>
 		<div ng-init = "proyectos = {{$proyectos}}"></div>
-		<div ng-init = "print({{$proyectos}})"></div>
 		<div align="center" >
 			<a href="#" ng-click="opciones.orden= inverse(opciones.orden)">invertir orden</a>
 		</div>
@@ -28,16 +27,16 @@
 		    <thead>
 		      <tr>
 		        <th>
-		        	<a href="#" ng-click="opciones.orden='nombre_proyecto'">Nombre Proyecto</a>
+		        	<a href="#" ng-click="opciones.orden='nombre_proyecto'">Proyecto</a>
 		        </th>
 		        <th>
-		        	<a href="#" ng-click="opciones.orden='nombre_cliente'">Nombre Cliente</a>
+		        	<a href="#" ng-click="opciones.orden='nombre_cliente'">Cliente</a>
 		        </th>
 		        <th>
-		        	<a href="#" ng-click="opciones.orden='nombre_dominio'">Dominio Asociado</a>
+		        	<a href="#" ng-click="opciones.orden='nombre_dominio'">Dominio</a>
 		        </th>
 		        <th>
-		        	<a href="#" ng-click="opciones.orden='fecha_creacion_avance'">Fecha ultimo avance</a>
+		        	<a href="#" ng-click="opciones.orden='fecha_creacion_avance'">Ultimo avance</a>
 		        </th>
 		        <th>
 		        	<a href="#" ng-click="opciones.orden='nombre_etapa'">Estatus</a>
@@ -46,17 +45,24 @@
 		      </tr>
 		    </thead>
 		    <tbody>
-
-			    	<tr ng-repeat="proyecto in proyectos| filter:opciones.buscador|orderBy:opciones.orden">
-						<td>[[proyecto.nombre_proyecto]]</td>
-						<td >[[proyecto.nombre_cliente | noAsignado]]</td>
-						<td>[[proyecto.nombre_dominio | noAsignado]]</td>
-						<td>[[proyecto.fecha_creacion_avance ]]</td>
-						<td>[[proyecto.nombre_etapa]]</td>
-			        	<td >
-			        		<a class="btn btn-sm btn-info" ng-href="{{ url( '/proyectos/[[proyecto.id_proyecto]]' ) }}"> Detalle</a>
-			        	</td>
-			        </tr>
+		    	<tr ng-repeat="proyecto in proyectos| filter:opciones.buscador|orderBy:opciones.orden">
+					<td>[[proyecto.nombre_proyecto]]</td>
+					<td >
+						<a href="{{url('/clientes/[[proyecto.id_cliente]]')}}">
+							[[proyecto.nombre_cliente | noAsignado]]
+						</a>
+					</td>
+					<td>
+						<a href="{{url('/dominios/[[proyecto.id_dominio]]')}}">
+							[[proyecto.nombre_dominio | noAsignado ]]
+						</a>
+					</td>
+					<td>[[proyecto.fecha_creacion_avance | DateForHumans]]</td>
+					<td>[[proyecto.nombre_etapa]]</td>
+		        	<td >
+		        		<a class="btn btn-sm btn-info" ng-href="{{ url( '/proyectos/[[proyecto.id_proyecto]]' ) }}"> Detalle</a>
+		        	</td>
+		        </tr>
 
 		    </tbody>
 		</table>
