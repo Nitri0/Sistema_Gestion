@@ -59,7 +59,7 @@
 		        	<a href="#" ng-click="opciones.orden='fecha_dominio'">Fecha creacion</a>
 		        </th>
 	        	<th>
-		        	<a href="#" ng-click="opciones.orden='espacion_usado_dominio'">Espacio usado</a>
+		        	<a href="#" ng-click="opciones.orden='espacio_usado_dominio'">Espacio usado</a>
 		        </th>		        
 		        <th >Operaciones</th>
 		      </tr>
