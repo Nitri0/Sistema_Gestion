@@ -17,6 +17,9 @@
 		@endif
 		
 		<div class="row">
+			<div ng-init="dominios={{$dominios}}"></div>
+			<div ng-init="url='{{url()}}'"></div>
+			
 			<div class="col-md-8"><h2>Lista de Dominios</h2></div>
 			<div class="col-md-4">
 				<a class="btn btn-sm btn-success" href="{{ url( '/dominios/create' ) }}">Agregar</a>
@@ -25,44 +28,65 @@
 
 		</div>
 		<br>
-
+		<label for="">Buscador</label>
+		<input type="text" ng-model="opciones.buscador">
+		<br>
+		<div align="center" >
+			<a href="#" ng-click="opciones.orden= inverse(opciones.orden)">invertir orden</a>
+		</div>		
 
 		<table class="table table-hover">
 		    <thead>
+
+
 		      <tr>
-		        <th>Nombre Dominio</th>
-		        <th>Proyecto asignado</th>
-		        <th>Proveedor</th>
-		        <th>Cliente</th>
-		        <th>Fecha creación</th>
-		        <th>Espacio usado</th>
+		        <th>
+		        	<a href="#" ng-click="opciones.orden=$index">#</a>
+		        </th>		      	
+		        <th>
+		        	<a href="#" ng-click="opciones.orden='nombre_dominio'">Dominio</a>
+		        </th>
+		        <th>
+		        	<a href="#" ng-click="opciones.orden='nombre_proyecto'">Proyecto</a>
+		        </th>
+		        <th>
+		        	<a href="#" ng-click="opciones.orden='nombres_empresa_proveedora'">Proveedor</a>
+		        </th>
+		        <th>
+		        	<a href="#" ng-click="opciones.orden='nombre_cliente'">Cliente</a>
+		        </th>
+		        <th>
+		        	<a href="#" ng-click="opciones.orden='fecha_dominio'">Fecha creacion</a>
+		        </th>
+	        	<th>
+		        	<a href="#" ng-click="opciones.orden='espacion_usado_dominio'">Espacio usado</a>
+		        </th>		        
 		        <th >Operaciones</th>
 		      </tr>
+
 		    </thead>
 		    <tbody>
-		    	@foreach($dominios as $dominio)
-			    	<tr>
-						<td>{{$dominio->nombre_dominio}}</td>
-						<td>{{$dominio->getNombreProyecto()}}</td>
-						<td>{{$dominio->empresaProveedora()}}</td>
-						<td>{{$dominio->getNombreCliente()}}</td>
-						<td>{{$dominio->fecha_dominio}}</td>
-						<td>{{$dominio->espacio_usado_dominio}}</td>
-			        	<td >
-			        		<div class="row">
-			        		<a class="btn btn-sm btn-info" href="{{ url( '/dominios/'.$dominio->id_dominio.'/edit' ) }}">Editar</a>
-			        		<a class="btn btn-sm btn-info" href="{{ url( '/dominios/'.$dominio->id_dominio) }}">Gestionar</a>
-							<form action="/dominios/{{$dominio->id_dominio}}" method="post">
-								<input type="hidden" name="_method" value="delete">
-								<button type="submit" class="btn btn-sm btn-danger" >Eliminar</a>
-							</form>
-							</div>
-			        	</td>
-			        </tr>
-				@endforeach
+		    	<tr ng-repeat="dominio in dominios| filter:opciones.buscador|orderBy:opciones.orden  track by $index">
+					<td>[[$index]]</td>
+					<td>[[dominio.nombre_dominio ]]</td>
+					<td>[[dominio.nombre_proyecto | noAsignado ]]</td>
+					<td>[[dominio.nombres_empresa_proveedora | noAsignado ]]</td>
+					<td>[[dominio.nombre_cliente | noAsignado]]</td>
+					<td>[[dominio.fecha_dominio | date:'d MMM yy']]</td>
+					<td>[[dominio.espacio_usado_dominio | formatSize]]</td>
+		        	<td >
+		        		<div class="row">
+		        		<a class="btn btn-sm btn-info" ng-href="{{ url( '/dominios/[[dominio.id_dominio]]/edit' ) }}">Editar</a>
+		        		<a class="btn btn-sm btn-info" ng-href="{{ url( '/dominios/[[dominio.id_dominio]]') }}">Gestionar</a>
+						<form action="[[url+'/dominios/'+dominio.id_dominio]]" method="post">
+							<input type="hidden" name="_method" value="delete">
+							<button type="submit" class="btn btn-sm btn-danger" >Eliminar</a>
+						</form>
+						</div>
+		        	</td>
+		        </tr>
 		    </tbody>
 		</table>
-		{!! $dominios->render() !!}
 	</div>
 	
 @stop

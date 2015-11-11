@@ -21,7 +21,24 @@ class DominiosController extends Controller {
 	}
 	
 	public function index(){
-		$dominios = Dominios::orderBy('id_dominio', 'desc')->paginate(10);;
+		// $dominios = Dominios::orderBy('id_dominio', 'desc')->paginate(10);
+		
+
+		$dominios = json_encode(\DB::table('t_dominios')
+				 					->where('t_dominios.habilitado_dominio','=',1)
+				 					->leftJoin('t_proyectos', 't_proyectos.id_proyecto', '=', 't_dominios.id_proyecto')
+				 					->leftJoin('t_clientes', 't_clientes.id_cliente', '=', 't_proyectos.id_cliente')
+				 					->join('t_empresa_proveedora', 't_empresa_proveedora.id_empresa_proveedora', '=', 't_dominios.id_empresa_proveedora')
+				 					->get());
+		
+		// 					->max('t_avances.id_avance')
+		// 					->orderBy('t_avances.id_avance','desc')
+		// 					->paginate(10)
+		// 					;
+
+
+
+
 		return view('dominios.list', compact('dominios'));
 	}
 
@@ -81,7 +98,7 @@ class DominiosController extends Controller {
 		foreach ($dominios as $dominio) {
 			$size = -1;
 			$ruta = '/home/keypan5/public_html/'.$dominio->nombre_dominio;
-		
+
 			if (is_dir($ruta)){
 				 $size =  Helper::folderSize( $ruta );	
 			}
