@@ -77,15 +77,18 @@ class DominiosController extends Controller {
 
 	public function actualizarEspacioUsado(){
 		$dominios = Dominios::all();
+		//dd($dominios);
 		foreach ($dominios as $dominio) {
+			$size = -1;
 			$ruta = '/home/keypan5/public_html/'.$dominio->nombre_dominio;
+			dd($ruta);
 			if (is_dir($ruta)){
 				 $size =  Helper::folderSize( $ruta );	
 			}
-			$size = -1;
-			$dominio->espacio_utilizado;
+			$dominio->espacio_usado_dominio = $size;
 			$dominio->save();
 		}
+		Session::flash('mensaje', 'Actualizacion exitosa');
 		return redirect("/dominios");
 	}
 }

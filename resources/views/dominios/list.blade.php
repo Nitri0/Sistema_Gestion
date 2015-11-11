@@ -47,7 +47,7 @@
 						<td>{{$dominio->empresaProveedora()}}</td>
 						<td>{{$dominio->getNombreCliente()}}</td>
 						<td>{{$dominio->fecha_dominio}}</td>
-						<td>{{$dominio->espacio_usado}}</td>
+						<td>{{$dominio->espacio_usado_dominio}}</td>
 			        	<td >
 			        		<div class="row">
 			        		<a class="btn btn-sm btn-info" href="{{ url( '/dominios/'.$dominio->id_dominio.'/edit' ) }}">Editar</a>

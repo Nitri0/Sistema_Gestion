@@ -13,7 +13,7 @@ class Dominios extends Model {
 								'id_empresa_proveedora',
 								'id_proyecto',
 								'fecha_dominio',
-								'espacio_usado',
+								'espacio_usado_dominio',
 								'habilitado_dominio'
 
 								);
