@@ -1,7 +1,7 @@
 @extends('layouts.base')
 
 @section('content')
-	<div class="container">				
+	<div class="container" ng-controller="DominioController">				
 		@if(Session::has('mensaje'))
 			<div class="alert alert-success">
 			  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
@@ -31,42 +31,38 @@
 		<label for="">Buscador</label>
 		<input type="text" ng-model="opciones.buscador">
 		<br>
-		<div align="center" >
-			<a href="#" ng-click="opciones.orden= inverse(opciones.orden)">invertir orden</a>
-		</div>		
-
 		<table class="table table-hover">
 		    <thead>
 
 
 		      <tr>
 		        <th>
-		        	<a href="#" ng-click="opciones.orden=$index">#</a>
+		        	<a href="#" ng-click="changeSort('index')">#</a>
 		        </th>		      	
 		        <th>
-		        	<a href="#" ng-click="opciones.orden='nombre_dominio'">Dominio</a>
+		        	<a href="#" ng-click="changeSort('nombre_dominio')">Dominio</a>
 		        </th>
 		        <th>
-		        	<a href="#" ng-click="opciones.orden='nombre_proyecto'">Proyecto</a>
+		        	<a href="#" ng-click="changeSort('nombre_proyecto')">Proyecto</a>
 		        </th>
 		        <th>
-		        	<a href="#" ng-click="opciones.orden='nombres_empresa_proveedora'">Proveedor</a>
+		        	<a href="#" ng-click="changeSort('nombres_empresa_proveedora')">Proveedor</a>
 		        </th>
 		        <th>
-		        	<a href="#" ng-click="opciones.orden='nombre_cliente'">Cliente</a>
+		        	<a href="#" ng-click="changeSort('nombre_cliente')">Cliente</a>
 		        </th>
 		        <th>
-		        	<a href="#" ng-click="opciones.orden='fecha_dominio'">Fecha creacion</a>
+		        	<a href="#" ng-click="changeSort('fecha_dominio')">Fecha creacion</a>
 		        </th>
 	        	<th>
-		        	<a href="#" ng-click="opciones.orden='espacio_usado_dominio'">Espacio usado</a>
+		        	<a href="#" ng-click="changeSort('espacio_usado_dominio')">Espacio usado</a>
 		        </th>		        
 		        <th >Operaciones</th>
 		      </tr>
 
 		    </thead>
 		    <tbody>
-		    	<tr ng-repeat="dominio in dominios| filter:opciones.buscador|orderBy:opciones.orden  track by $index">
+		    	<tr ng-repeat="dominio in dominios| filter:opciones.buscador | orderBy:sort:reverse  track by $index">
 					<td>[[$index]]</td>
 					<td>[[dominio.nombre_dominio ]]</td>
 					<td>[[dominio.nombre_proyecto | noAsignado ]]</td>

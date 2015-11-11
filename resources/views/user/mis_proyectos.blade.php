@@ -2,7 +2,7 @@
 
 
 @section('content')
-	<div class="container">
+	<div class="container" ng-controller = "ProyectoController">
 
 		@include('alerts.mensaje_success')
 		@include('alerts.mensaje_error')
@@ -16,40 +16,39 @@
 		<label for="">Buscador</label>
 		<input type="text" ng-model="opciones.buscador">		
 		<br>
-		<div align="center" >
-			<a href="#" ng-click="opciones.orden= inverse(opciones.orden)">invertir orden</a>
-		</div>
 		<table class="table table-hover">
 		    <thead>
 		      <tr>
 		        <th>
-		        	<a href="#" ng-click="opciones.orden='$index'">#</a>
-		        </th>
-	
+		        	<a href="#" ng-click="changeSort('index')">#</a>
+		        </th>		      	
 		        <th>
-		        	<a href="#" ng-click="opciones.orden='nombre_proyecto'">Proyecto</a>
-		        </th>
-		        <th>
-		        	<a href="#" ng-click="opciones.orden='nombre_cliente'">Cliente</a>
+		        	<a href="#" ng-click="changeSort('nombre_proyecto')">Proyecto</a>
 		        </th>
 		        <th>
-		        	<a href="#" ng-click="opciones.orden='nombre_dominio'">Dominio</a>
+		        	<a href="#" ng-click="changeSort('nombre_cliente')">Cliente</a>
 		        </th>
 		        <th>
-		        	<a href="#" ng-click="opciones.orden='fecha_creacion_avance'">Ultimo avance</a>
+		        	<a href="#" ng-click="changeSort('nombre_dominio')">Dominio</a>
 		        </th>
 		        <th>
-		        	<a href="#" ng-click="opciones.orden='fecha_creacion_avance'">Rol</a>
+		        	<a href="#" ng-click="changeSort('fecha_creacion_avance')">Ultimo avance</a>
+		        </th>
+		        <th>
+		        	<a href="#" ng-click="changeSort('tipo_nombre')">Rol</a>
 		        </th>		        
 		        <th>
-		        	<a href="#" ng-click="opciones.orden='nombre_etapa'">Estatus</a>
+		        	<a href="#" ng-click="changeSort('nombre_etapa')">Estatus</a>
 		        </th>
+
+
+
 		        <th>Operaciones</th>
 		      </tr>
 		    </thead>
 		    <tbody>
 
-		    	<tr ng-repeat="proyecto in proyectos| filter:opciones.buscador|orderBy:opciones.orden  track by $index">
+		    	<tr ng-repeat="proyecto in proyectos| filter:opciones.buscador | orderBy:sort:reverse  track by $index">
 					<td>[[$index+1]]</td>
 					<td>[[proyecto.nombre_proyecto]]</td>
 					<td >
