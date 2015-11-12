@@ -144,13 +144,13 @@ class ProyectosController extends Controller {
 
 	public function reiniciarProyecto($id){
 		$proyecto = Proyectos::where('id_proyecto',$id)->update(['habilitado_proyecto'=>1,]);
-		Session::flash('mensaje', 'Proyecto finalizado exitosamente');
+		Session::flash('mensaje', 'Proyecto reiniciado exitosamente');
 		return redirect('/proyectos-finalizados');
 	}		
 
 
 	public function indexProyectosFinalizados(){
-		$proyectos = json_encode(\DB::select('CALL p_busquedas(?,?)',array('listar_todos_proyectos','')));
+		$proyectos = json_encode(\DB::select('CALL p_busquedas(?,?)',array('listar_todos_proyectos_finalizados','')));
 		return view('proyectos.list_proyectos_finalizados', compact('proyectos'));
 	}
 }

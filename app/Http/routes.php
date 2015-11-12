@@ -32,7 +32,7 @@ $router->group(['middleware' => 'auth'], function() {
 	
 */
 	Route::post( '/proyectos/finalizar/{id}', 'ProyectosController@finalizarProyecto');
-	Route::post( '/proyectos/reabrir/{id}', 'ProyectosController@finalizarProyecto');
+	Route::post( '/proyectos/reabrir/{id}', 'ProyectosController@reiniciarProyecto');
 	Route::get( '/proyectos-finalizados', 'ProyectosController@indexProyectosFinalizados');
 
 
