@@ -150,7 +150,7 @@ class ProyectosController extends Controller {
 
 
 	public function indexProyectosFinalizados(){
-		$proyectos = json_encode(\DB::select('CALL p_busquedas(?,?)',array('listar_todos_proyectos_finalizados','')));
+		$proyectos = json_encode(\DB::select('CALL p_busquedas(?,?)',array('listar_todos_proyectos','')));
 		return view('proyectos.list_proyectos_finalizados', compact('proyectos'));
 	}
 }
