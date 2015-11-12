@@ -8,12 +8,14 @@
 		@include('alerts.mensaje_error')
 		
 		<div class="row">
-			<div class="col-md-8"> <h2>Lista de proyectos</h2></div>
+			<div class="col-md-8"> <h2>Todos los proyectos</h2></div>
 			<div class="col-md-4">
 				<a class="btn btn-sm btn-success" href="{{ url( '/proyectos/create' ) }}"> Agregar</a>
 			</div>
 
 		</div>
+		<br>
+		<a href="{{url('/proyectos-finalizados')}}">proyectos finalizados</a> 
 		<br>
 		<label for="">Buscador</label>
 		<input type="text" ng-model="opciones.buscador">

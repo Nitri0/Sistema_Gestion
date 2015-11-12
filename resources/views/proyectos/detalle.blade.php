@@ -3,9 +3,15 @@
 @section('content')
 <div class="container">
 
-	<form action="/proyectos/finalizar/{{$proyecto->id_proyecto}}" method="post">
-		<button type="submit" class="btn btn-sm btn-success">Finalizar Proyecto</button>
-	</form>
+	@if($proyecto->habilitado_proyecto)
+		<form action="/proyectos/finalizar/{{$proyecto->id_proyecto}}" method="post">
+			<button type="submit" class="btn btn-sm btn-success">Finalizar Proyecto</button>
+		</form>
+	@else
+		<form action="/proyectos/reabrir/{{$proyecto->id_proyecto}}" method="post">
+			<button type="submit" class="btn btn-sm btn-success">Habilitar Proyecto</button>
+		</form>
+	@endif
 	<br>
 	<h2>INFORMACION PROYECTO</h2><br>
 	nombre: {{ $proyecto->nombre_proyecto }} <br>

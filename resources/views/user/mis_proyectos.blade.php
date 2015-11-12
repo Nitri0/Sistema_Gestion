@@ -8,7 +8,7 @@
 		@include('alerts.mensaje_error')
 				
 		<div class="row">
-			<div class="col-md-8"> <h2>Lista de mis proyectos</h2></div>
+			<div class="col-md-8"> <h2>Mis Proyectos</h2></div>
 		</div>
 		<br>
 		<div ng-init = "proyectos = {{$proyectos}}"></div>
