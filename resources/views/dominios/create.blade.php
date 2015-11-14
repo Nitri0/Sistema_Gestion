@@ -53,8 +53,21 @@
 
 			<br>
 			<div class="from-group">
-				<label for="">Nombre Dominio</label>
+				<label for="">Nombre dominio</label>
 				<input type="text" class="form-control" ng-model="dominio.nombre_dominio" name="nombre_dominio">
+			</div>	
+			
+
+			<br>
+			<div class="from-group">
+				<label for="">Espacio de disco asignado</label>
+				<select class="form-control" name="espacio_asignado_dominio" ng-model="dominio.espacio_asignado_dominio">
+					<option class="option" value="">Seleccione un tamaño</option>
+					@foreach($tamanos as $key=> $value)
+						<option class="option" value="{{$key}}">{{$value}}</option>
+					@endforeach
+				</select>
+
 			</div>	
 			<br>
 
@@ -62,7 +75,7 @@
 				<label for="">Fecha de creacion de dominio</label>
 				<input type="date" class="form-control" ng-value="dominio.fecha_dominio" name="fecha_dominio">
 			</div>	
-
+			<br><br>
 			<button type="submit">
 				@if($dominio)
 					Actualizar

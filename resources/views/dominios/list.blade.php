@@ -19,7 +19,7 @@
 		<div class="row">
 			<div ng-init="dominios={{$dominios}}"></div>
 			<div ng-init="url='{{url()}}'"></div>
-			
+
 			<div class="col-md-8"><h2>Lista de Dominios</h2></div>
 			<div class="col-md-4">
 				<a class="btn btn-sm btn-success" href="{{ url( '/dominios/create' ) }}">Agregar</a>
@@ -69,7 +69,10 @@
 					<td>[[dominio.nombres_empresa_proveedora | noAsignado ]]</td>
 					<td>[[dominio.nombre_cliente | noAsignado]]</td>
 					<td>[[dominio.fecha_dominio | date:'d MMM yy']]</td>
-					<td>[[dominio.espacio_usado_dominio | formatSize]]</td>
+					<td>
+						[[dominio.espacio_usado_dominio | formatSize]]
+						<span ng-bind-html="dominio.espacio_usado_dominio | compareSize:dominio.espacio_asignado_dominio" ></span>			
+					</td>
 		        	<td >
 		        		<div class="row">
 		        		<a class="btn btn-sm btn-info" ng-href="{{ url( '/dominios/[[dominio.id_dominio]]/edit' ) }}">Editar</a>

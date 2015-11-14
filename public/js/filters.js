@@ -25,10 +25,27 @@ coreApp.filter("noAsignado", function(){
     }
 })
 
-coreApp.filter("formatSize", function(){
-    return function(text) {
-
+coreApp.filter("compareSize", function($sce){
+    return function(text, espacio_asignado) {
         var text = parseInt(text);
+        var espacio_asignado = parseInt(espacio_asignado);
+        var resultado;
+        
+        if (!espacio_asignado || espacio_asignado==0){
+            return $sce.trustAsHtml( "<br><strong class='btn btn-sm btn-info'>Espacio no asignado</strong>");        
+        }
+        if (text > espacio_asignado){
+            return $sce.trustAsHtml( "<br><strong class='btn btn-sm btn-danger'>Excedio el límite</strong>");
+        }
+        return "";
+
+    }
+})
+
+coreApp.filter("formatSize", function(){
+    return function(text, espacio_asignado) {
+        var text = parseInt(text);
+        var resultado;
         if (text < 0){
             return "N/A";
         }
@@ -38,21 +55,24 @@ coreApp.filter("formatSize", function(){
         var tb = gb * 1024;
 
         if ((text >= 0) && (text < kb)) {
-            return text+' B';
+            resultado= text+' B';
 
         } else if ((text >= kb) && (text < mb)) {
-            return Math.ceil(text / kb)+' KB';
+            resultado= Math.ceil(text / kb)+' KB';
 
         } else if ((text >= mb) && (text < gb)) {
-            return Math.ceil(text / mb) + ' MB';
+            resultado= Math.ceil(text / mb) + ' MB';
 
         } else if ((text >= gb) && (text < tb)) {
-            return Math.ceil(text / gb) + ' GB';
+            resultado= Math.ceil(text / gb) + ' GB';
 
         } else if (text >= tb) {
-            return Math.ceil(text / tb) + ' TB';
+            resultado= Math.ceil(text / tb) + ' TB';
         } else {
-            return +text + ' B';
+            resultado= +text + ' B';
         }
+
+        return resultado;
+
     }
 })

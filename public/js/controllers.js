@@ -13,6 +13,12 @@ coreApp.controller('DominioController', function ($scope, $log) {
 	$scope.sort = "name";
 	$scope.reverse = false;
 
+	$scope.compare = function(asignado,usado) {
+		if (usado > asignado){
+			return true;
+		}
+		return false;
+	}
 	$scope.changeSort = function(value){
 	    if ($scope.sort == value){
 	      $scope.reverse = !$scope.reverse;
