@@ -83,6 +83,14 @@ coreApp.controller('PlantillasController', function ($scope, $log) {
 	$scope.plantilla={};
 });
 
+
+coreApp.controller('AdminUsuariosController', function ($scope, $log) {
+	console.log("AdminUsuariosController");
+	$scope.print = function(argument) {
+		console.log(argument);
+	}
+});
+
 coreApp.controller('GrupoEtapasController', function ($scope, $log) {
 	console.log("Grupo de etapas");
 	$scope.etapas=[];

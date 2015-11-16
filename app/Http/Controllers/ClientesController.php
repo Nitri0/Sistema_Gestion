@@ -7,16 +7,34 @@ use Illuminate\Routing\Route;
 use App\Clientes;
 use Session;
 use redirect;
+use Gate;
 
 
 class ClientesController extends Controller {
 
 	public function __construct(){
+		$this->beforeFilter('@permisos');
 		$this->beforeFilter('@find', ['only' => ['show','update','edit','destroy']]);
 	}
 
 	public function find(Route $route){
 		$this->cliente = Clientes::find($route->getParameter('clientes'));
+	}
+
+	public function permisos(Route $route){
+		// FORMA DE OBTENER LOS METODOS DE UNA CLASE
+		// $class = new \ReflectionClass($this);
+		// $metodos = [];
+		// foreach ($class->getMethods(\ReflectionMethod::IS_PUBLIC ) as $route){
+		// 	if ($route->class == 'App\Http\Controllers\ProyectosController'){
+		// 		array_push($metodos, $route->name);
+		// 	}
+		// };
+		// dd($metodos);
+		if(Gate::denies('clientes', $route->getName()) ){
+			Session::flash("mensaje-error","No tiene permisos para acceder al modulo: ".$route->getName());
+			return redirect('/mis-proyectos');
+		};
 	}
 
 	public function index(){
@@ -32,7 +50,7 @@ class ClientesController extends Controller {
 	public function store(Request $request){
 		Clientes::create($request->all());
 		Session::flash('mensaje', 'Cliente creado exitosamente');
-		return redirect('/proyectos/create');
+		return redirect('/clientes');
 	}
 
 	public function show($id){
@@ -50,6 +68,11 @@ class ClientesController extends Controller {
 	}
 
 	public function destroy($id){
+		Clientes::find($id)->delete();
+		return redirect("/clientes");
+	}
+
+	public function prueba($id){
 		Clientes::find($id)->delete();
 		return redirect("/clientes");
 	}

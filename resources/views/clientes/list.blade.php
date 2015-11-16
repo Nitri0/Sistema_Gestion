@@ -4,19 +4,8 @@
 @section('content')
 	<div class="container">
 
-		@if(Session::has('mensaje'))
-			<div class="alert alert-success">
-			  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-			  	{{Session::get('mensaje')}}
-			</div>
-		@endif
-		
-		@if(Session::has('mensaje-error'))
-			<div class="alert alert-success">
-			  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-			  	{{Session::get('mensaje-error')}}
-			</div>
-		@endif
+		@include('alerts.mensaje_success')
+		@include('alerts.mensaje_error')
 				
 		<div class="row">
 			<div class="col-md-8"> <h2>Lista de clientes</h2></div>

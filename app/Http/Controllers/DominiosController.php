@@ -9,16 +9,35 @@ use App\EmpresasProveedoras;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Route;
 use Session;
+use Gate;
 
 class DominiosController extends Controller {
 
 	public function __construct(){
+		$this->beforeFilter('@permisos');
 		$this->beforeFilter('@find', ['only' => ['show','update','edit','destroy']]);
 	}
 
 	public function find(Route $route){
 		$this->dominio = Dominios::find($route->getParameter('dominios'));
 	}
+
+	public function permisos(Route $route){
+		// FORMA DE OBTENER LOS METODOS DE UNA CLASE
+		// $class = new \ReflectionClass($this);
+		// $metodos = [];
+		// foreach ($class->getMethods(\ReflectionMethod::IS_PUBLIC ) as $route){
+		// 	if ($route->class == 'App\Http\Controllers\ProyectosController'){
+		// 		array_push($metodos, $route->name);
+		// 	}
+		// };
+		// dd($metodos);
+		if(Gate::denies('dominios', $route->getName()) ){
+			Session::flash("mensaje-error","No tiene permisos para acceder al modulo: ".$route->getName());
+			return redirect('/mis-proyectos');
+		};
+	}
+
 	
 	public function index(){
 		$dominios = json_encode(\DB::table('t_dominios')
