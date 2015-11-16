@@ -2,6 +2,17 @@
 
 @section('content')
 <div class="container">
+
+	@if($proyecto->habilitado_proyecto)
+		<form action="/proyectos/finalizar/{{$proyecto->id_proyecto}}" method="post">
+			<button type="submit" class="btn btn-sm btn-success">Finalizar Proyecto</button>
+		</form>
+	@else
+		<form action="/proyectos/reabrir/{{$proyecto->id_proyecto}}" method="post">
+			<button type="submit" class="btn btn-sm btn-success">Habilitar Proyecto</button>
+		</form>
+	@endif
+	<br>
 	<h2>INFORMACION PROYECTO</h2><br>
 	nombre: {{ $proyecto->nombre_proyecto }} <br>
 	descripcion: {{ $proyecto->direccion_proyecto}} <br>
@@ -79,7 +90,7 @@
 	<br><br>
 	<form action="/proyectos/{{$proyecto->id_proyecto}}" method="post">
 		<input type="hidden" name="_method" value="delete">
-		<button type="submit" class="btn btn-sm btn-danger">Eliminar Proyecto</a>
+		<button type="submit" class="btn btn-sm btn-danger">Eliminar Proyecto</button>
 	</form>
 	
 </div>

@@ -53,11 +53,13 @@ class UserController extends Controller {
 	public function misProyectos(){
 		$user = Auth::user();
 		//FORMA DE LISTAR LAS COLUMNAS ESPECIFICAS COMO UN ARREGLO UNIDIMENCIONAL (SOLO VALUE)
-		$proyectos_id = Roles::where('id_usuario',$user->id_usuario)->lists('id_proyecto');
-		$proyectos = Proyectos::where('habilitado_proyecto',1)
-								->whereIn('id_proyecto',$proyectos_id)
-								->orderBy('id_avance', 'desc')
-								->paginate(10);
+
+		$proyectos = json_encode(\DB::select('CALL p_busquedas(?,?)',array('listar_mis_proyectos',$user->id_usuario)));
+		// $proyectos_id = Roles::where('id_usuario',$user->id_usuario)->lists('id_proyecto');
+		// $proyectos = Proyectos::where('habilitado_proyecto',1)
+		// 						->whereIn('id_proyecto',$proyectos_id)
+		// 						->orderBy('id_avance', 'asc')
+		// 						->paginate(10);
 
 		return view('user.mis_proyectos',compact('proyectos'));
 	}
@@ -93,6 +95,7 @@ class UserController extends Controller {
 
 		$proyecto = Proyectos::find($id_proyecto);//aqui siempre trae un solo proyecto... arreglar
 		$etapas = GrupoEtapas::find($proyecto->id_grupo_etapas)->getEtapas();
+
 		$dominio = Dominios::find($proyecto->id_dominio);
 		$mis_datos = Auth::user()->getPerfil();
 		$mi_correo = Auth::user()->correo_usuario;
@@ -102,6 +105,7 @@ class UserController extends Controller {
 	public function postCreateAvancesMisProyectos(Request $request,$id_proyecto){
 
 		$proyecto = Proyectos::find($id_proyecto);
+
 
 		$dominio = Dominios::find($proyecto->id_dominio);
 		$mis_datos = Auth::user()->getPerfil();

@@ -44,12 +44,13 @@ class ProyectosController extends Controller {
 		// 					;
 							
 
+		$proyectos = json_encode(\DB::select('CALL p_busquedas(?,?)',array('listar_todos_proyectos','')));
 
-
-		$proyectos = Proyectos::where('habilitado_proyecto',1)
-								->orderBy('id_avance', 'asc')
-								->paginate(10);
-		return view('proyectos.list',['proyectos'=>$proyectos]);
+		//dd($proyectos);
+		// $proyectos = json_encode(Proyectos::where('habilitado_proyecto',1)
+		// 						->orderBy('id_avance', 'asc')
+		// 						->get());
+		return view('proyectos.list', compact('proyectos'));
 	}
 
 	public function create(){
@@ -92,6 +93,9 @@ class ProyectosController extends Controller {
 		//$request["fecha_avance"] = Carbon::now();
 		//dd($request->all());
 		$proyecto = Proyectos::create($request->all());
+
+		$etapa = GrupoEtapas::find($proyecto->id_grupo_etapas)->getFirstEtapa();
+
 		if ($request['id_dominio']){			
 		 	Dominios::where('id_dominio',$request['id_dominio'])->update(['habilitado_dominio'=>0]);
 		};
@@ -104,6 +108,13 @@ class ProyectosController extends Controller {
 						};
 		};
 		
+		
+		Avances::Create([
+						'id_proyecto'=>$proyecto->id_proyecto,
+						'asunto_avance'=>'Iniciando Proyecto',
+						'descripcion_avance'=>'Proyecto creado exitosamente',
+						'id_etapa'=>$etapa->id_etapa,
+					]);
 		Session::flash('mensaje', 'Proyecto creado exitosamente');
 		return redirect('/proyectos');
 	}
@@ -122,5 +133,24 @@ class ProyectosController extends Controller {
 		$proyecto->delete();
 
 		return redirect('/proyectos');
+	}	
+
+	public function finalizarProyecto($id){
+		$proyecto = Proyectos::where('id_proyecto',$id)->update(['habilitado_proyecto'=>0,]);
+		Session::flash('mensaje', 'Proyecto finalizado exitosamente');
+		return redirect('/proyectos');
+	}	
+
+
+	public function reiniciarProyecto($id){
+		$proyecto = Proyectos::where('id_proyecto',$id)->update(['habilitado_proyecto'=>1,]);
+		Session::flash('mensaje', 'Proyecto reiniciado exitosamente');
+		return redirect('/proyectos-finalizados');
 	}		
+
+
+	public function indexProyectosFinalizados(){
+		$proyectos = json_encode(\DB::select('CALL p_busquedas(?,?)',array('listar_todos_proyectos_finalizados','')));
+		return view('proyectos.list_proyectos_finalizados', compact('proyectos'));
+	}
 }

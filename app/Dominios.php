@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Eloquent\Model;
 use App\Proyectos;
+use App\Http\Controllers\Helper;
 
 class Dominios extends Model {
 
@@ -12,6 +13,8 @@ class Dominios extends Model {
 								'id_empresa_proveedora',
 								'id_proyecto',
 								'fecha_dominio',
+								'espacio_usado_dominio',
+								'espacio_asignado_dominio',
 								'habilitado_dominio'
 								);
 	protected $dates = ['fecha_creacion_dominio'];
@@ -41,5 +44,13 @@ class Dominios extends Model {
 			return $proveedor->nombres_empresa_proveedora;	
 		}
 		return "cliente no existente";
+	}
+
+	public function getSizeUsed(){
+		$ruta = '/home/keypan5/public_html/'.$this->nombre_dominio;
+		if (is_dir($ruta)){
+			return Helper::folderSize( $ruta );	
+		}
+		return "Dominio no encontrado";	
 	}
 }

@@ -51,6 +51,7 @@
 			$dominio->nombre_dominio <br>
 
 
+
 			<br>	<br>
 			<strong>Para colocar la data es necesario usar doble {{}} y dentro colocar la variable que se desea imprimir<br>
 			ejemplo: {{ $cliente->nombre_cliente } } (sin espacios) </strong><br><br>

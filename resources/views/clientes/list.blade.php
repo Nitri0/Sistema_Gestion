@@ -52,12 +52,10 @@
 			        	<td >
 			        		<a class="btn btn-sm btn-info" href="{{ url( '/clientes/'.$cliente->id_cliente ) }}"> Detalle</a>
 			        		<a class="btn btn-sm btn-info" href="{{ url( '/clientes/'.$cliente->id_cliente.'/edit' ) }}"> Editar </a>
-			        		@if(!$cliente->hasProyecto())
 								<form action="/clientes/{{$cliente->id_cliente}}" method="post">
 									<input type="hidden" name="_method" value="delete">
-									<button type="submit" class="btn btn-sm btn-danger" >Eliminar</a>
-								</form>
-							@endif			        		
+									<button type="submit" class="btn btn-sm btn-danger" >Eliminar</button>
+								</form>		        		
 			        	</td>
 			        </tr>
 				@endforeach

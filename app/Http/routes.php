@@ -31,6 +31,10 @@ $router->group(['middleware' => 'auth'], function() {
 	Route::post('/plantillas/{id}', 'PlantillasController@putPlantillas');
 	
 */
+	Route::post( '/proyectos/finalizar/{id}', 'ProyectosController@finalizarProyecto');
+	Route::post( '/proyectos/reabrir/{id}', 'ProyectosController@reiniciarProyecto');
+	Route::get( '/proyectos-finalizados', 'ProyectosController@indexProyectosFinalizados');
+
 
 	Route::get( '/mis-proyectos', 'UserController@misProyectos');
 	Route::get( '/mis-proyectos/{id}', 'UserController@detalleMisProyectos');
@@ -38,6 +42,9 @@ $router->group(['middleware' => 'auth'], function() {
 	Route::get( '/mis-proyectos/avances/{id_proyecto}/create', 'UserController@createAvancesMisProyectos');
 	Route::Post('/mis-proyectos/avances/{id_proyecto}/create', 'UserController@postCreateAvancesMisProyectos');
 	Route::get( '/mis-proyectos/avances/{id_proyecto}/{id_avance}', 'UserController@detalleAvancesMisProyectos');
+
+	
+	Route::get('/dominios/updateData', 'DominiosController@actualizarEspacioUsado');
 
 
 	//___________________ Cruds _____________________________
