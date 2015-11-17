@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content='{{ csrf_token() }}'>
 
-    <title>.: Base Cliente :.</title>
+    <title>.: Sistema de Gestion :.</title>
 	
 	<link href="{{ asset('/css/app.css') }}" rel="stylesheet">
     
@@ -42,6 +42,8 @@
 	<!-- ================== BEGIN BASE JS ================== -->
 	<script src="{{ asset('/thema/frontend/one-page-parallax/assets/plugins/pace/pace.min.js') }}"></script>
 	<!-- ================== END BASE JS ================== -->
+	
+	@yield('css')
 
 	<link href="{{ asset('/css/style.css') }}" rel="stylesheet">
 

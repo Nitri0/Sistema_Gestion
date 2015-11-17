@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content='{{ csrf_token() }}'>
 
-    <title>.: Base Admin :.</title>
+    <title>.: Sistema de Gestion :.</title>
 
     <link href="{{ asset('/css/app.css') }}" rel="stylesheet">
 
@@ -48,6 +48,8 @@
 	<link href="{{ asset('/thema/admin/html/assets/plugins/bootstrap-tagsinput/bootstrap-tagsinput.css') }}" rel="stylesheet" />
 	<link href="{{ asset('/thema/admin/html/assets/plugins/jquery-tag-it/css/jquery.tagit.css') }}" rel="stylesheet" />
     <link href="{{ asset('/thema/admin/html/assets/plugins/bootstrap-daterangepicker/daterangepicker-bs3.css') }}" rel="stylesheet" />
+	
+	@yield('css')
 
 	<!-- select2 -->
 	<link href="{{ asset('/bower_components/select2/dist/css/select2.min.css') }}" rel="stylesheet" />
