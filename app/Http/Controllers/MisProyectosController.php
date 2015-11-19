@@ -17,14 +17,15 @@ use App\Plantillas;
 use Session;
 use URL;
 use Illuminate\Http\Request;
+use Gate;
 
 
-class UserController extends Controller {
+class MisProyectosController extends Controller {
 
 
 	public function perfil(Request $request){
 		$perfil = Perfil::where('id_usuario', $request->user()->id_usuario)->first();
-		return view('user.perfil',['perfil'=>$perfil]);
+		return view('mis_proyectos.perfil',['perfil'=>$perfil]);
 	}
 
 	public function postPerfil(Request $request){
@@ -34,7 +35,7 @@ class UserController extends Controller {
 	}
 
 	public function roles(){
-		return view('user.rol');
+		return view('mis_proyectos.rol');
 	}
 
 	public function postRoles(){
@@ -61,7 +62,7 @@ class UserController extends Controller {
 		// 						->orderBy('id_avance', 'asc')
 		// 						->paginate(10);
 
-		return view('user.mis_proyectos',compact('proyectos'));
+		return view('mis_proyectos.list',compact('proyectos'));
 	}
 
 
@@ -76,7 +77,7 @@ class UserController extends Controller {
 		*/
 		$proyecto = Proyectos::find($id_proyecto);
 		$etapas = GrupoEtapas::find($proyecto->id_grupo_etapas);
-		return view('user.detalle_proyecto',compact('proyecto','id_proyecto', 'rol', 'etapas' ));
+		return view('mis_proyectos.detalle_proyecto',compact('proyecto','id_proyecto', 'rol', 'etapas' ));
 	}
 
 	//__________________________________ CRUD AVANCES ____________________
@@ -146,6 +147,18 @@ class UserController extends Controller {
 		Session::flash('mensaje', 'Avance creado exitosamente');
 		return redirect('/mis-proyectos/'.$id_proyecto);
 	}
+
+	public function previewRealDataPlantillas( $id_proyecto,$id_plantilla){
+		//dd($id_plantilla, $id_proyecto);
+		$plantilla = Plantillas::find($id_plantilla);
+		$proyecto = Proyectos::find($id_proyecto);
+		$cliente = Clientes::find($proyecto->id_cliente);
+		$dominio = Dominios::find($proyecto->id_dominio);
+		$mis_datos = Auth::user()->getPerfil();
+		$mi_correo = Auth::user()->correo_usuario;		
+		$data = "<Strong>Aqui va la descripcion del mensaje</strong>";
+		return view('emails.'.$plantilla->nombre_plantilla,compact('proyecto','cliente','data','dominio','mis_datos','mi_correo'));
+	}		
 	//__________________________________END CRUD AVANCES ____________________
 }
 

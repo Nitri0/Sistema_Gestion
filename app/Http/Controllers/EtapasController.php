@@ -5,10 +5,35 @@ use App\Http\Controllers\Controller;
 use App\Etapas;
 use App\GrupoEtapas;
 use Session;
+use Illuminate\Routing\Route;
 use Illuminate\Http\Request;
+use Gate;
 
 class EtapasController extends Controller {
 
+	public function __construct(){
+		$this->beforeFilter('@permisos');
+	}
+
+	public function find(Route $route){
+		//$this->cliente = Clientes::find($route->getParameter('clientes'));
+	}
+
+	public function permisos(Route $route){
+		// FORMA DE OBTENER LOS METODOS DE UNA CLASE
+		// $class = new \ReflectionClass($this);
+		// $metodos = [];
+		// foreach ($class->getMethods(\ReflectionMethod::IS_PUBLIC ) as $route){
+		// 	if ($route->class == 'App\Http\Controllers\ProyectosController'){
+		// 		array_push($metodos, $route->name);
+		// 	}
+		// };
+		// dd($metodos);
+		if(Gate::denies('etapas', $route->getName()) ){
+			Session::flash("mensaje-error","No tiene permisos para acceder al modulo: ".$route->getName());
+			return redirect('/mis-proyectos');
+		};
+	}
 
 	public function index(){
 		$grupo_etapas = GrupoEtapas::paginate(10);

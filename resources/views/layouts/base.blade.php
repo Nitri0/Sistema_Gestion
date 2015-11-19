@@ -41,6 +41,7 @@
 					<li><a href="{{ url('/clientes') }}">Clientes</a></li>
 					<li><a href="{{ url('/plantillas') }}">Plantillas</a></li>
 					<li><a href="{{ url('/grupo_etapas') }}">Grupo de Etapas</a></li>
+					<li><a href="{{ url('/admin_usuarios') }}">Admistrar Usuarios</a></li>
 					<li class="dropdown navbar-user">
 						<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
 							<span class="hidden-xs">{{ Auth::user()->getPerfil()->fullName()}}</span> <b class="caret"></b>

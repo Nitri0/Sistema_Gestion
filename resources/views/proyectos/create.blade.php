@@ -3,20 +3,8 @@
 @section('content')
 	<div class="container" ng-controller="ProyectoController">
 
-		@if(Session::has('mensaje'))
-			<div class="alert alert-success">
-			  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-			  	{{Session::get('mensaje')}}
-			</div>
-		@endif
-		
-		@if(Session::has('mensaje-error'))
-			<div class="alert alert-success">
-			  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-			  	{{Session::get('mensaje-error')}}
-			</div>
-		@endif
-		
+		@include('alerts.mensaje_success')
+		@include('alerts.mensaje_error')
 
 			<h2>Crear proyecto web</h2>
 			<form action="{{ url('proyectos/') }}" method="POST">		
