@@ -25,9 +25,9 @@
 				    <span>Pag WEB</span>
 			    </a>
 				<ul class="sub-menu">
-				    <li><a href="">Todo los Proyectos</a></li>
-				    <li class="active"><a href="index_v2.html">Mis Proyectos</a></li>
-				    <li><a href="">Proyectos Finalizados</a></li>
+				    <li><a href="{{ url('proyectos') }}">Todo los Proyectos</a></li>
+				    <li><a href="{{ url('mis-proyectos') }}">Mis Proyectos</a></li>
+				    <li><a href="{{ url('proyectos-finalizados') }}">Proyectos Finalizados</a></li>
 				</ul>
 			</li>
 	        <!-- begin sidebar minify button -->

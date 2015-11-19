@@ -11,7 +11,7 @@
 	
 	<div id="content" class="content ng-scope">
         
-        <ol class="breadcrumb pull-right">
+        <!--<ol class="breadcrumb pull-right">
             <div class="btn-toolbar">
                 <div class="btn-group">
                     <a href="{{ url('mis-publicidades/agregar-publicidad')}}" class="btn btn-white btn-sm p-l-20 p-r-20">
@@ -24,9 +24,9 @@
                     </a>
                 </div>
             </div>
-        </ol>
+        </ol>-->
 
-        <h1 class="page-header"><i class="fa fa-laptop"></i> Mis Proyecto </h1>
+        <h1 class="page-header"><i class="fa fa-laptop"></i> Mis Proyectos </h1>
         
         <div class="row">
             <!-- begin col-12 -->
@@ -39,7 +39,7 @@
                             <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload" data-original-title="" title=""><i class="fa fa-repeat"></i></a>
                             <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse" data-original-title="" title=""><i class="fa fa-minus"></i></a>
                         </div>
-                        <h4 class="panel-title">Todas las Publicidad</h4>
+                        <h4 class="panel-title">Mis Proyectos</h4>
                     </div>
 
                     <div class="panel-body">
@@ -98,8 +98,10 @@
 									<td>[[proyecto.nombre_etapa]]</td>
 						        	<td >
 						        		<div class="row">
-							        		<a class="btn btn-sm btn-info col-sm-6" href="{{ url( '/mis-proyectos/[[proyecto.id_proyecto]]' ) }}">Detalle</a>
-							        		<a class="btn btn-sm btn-success col-sm-6" href="{{ url( '/mis-proyectos/avances/[[proyecto.id_proyecto]]/create' ) }}">Crear avance</a>
+						        			<div class="box-button">
+								        		<a class="btn btn-sm btn-info btn-custon" href="{{ url( '/mis-proyectos/[[proyecto.id_proyecto]]' ) }}" data-toggle="tooltip" data-title="Detalle"><i class="fa fa-list"></i></a>
+								        		<a class="btn btn-sm btn-success btn-custon" href="{{ url( '/mis-proyectos/avances/[[proyecto.id_proyecto]]/create' ) }}" data-toggle="tooltip" data-title="Crear Avance"><i class="fa fa-line-chart"></i></a>
+						        			</div>
 						        		</div>
 						        	</td>
 							        </tr>
