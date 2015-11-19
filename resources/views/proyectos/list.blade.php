@@ -1,76 +1,107 @@
-@extends('layouts.base')
-
+@extends('base-admin')
 
 @section('content')
-	<div class="container" ng-controller = "ProyectoController">
 
-		@include('alerts.mensaje_success')
-		@include('alerts.mensaje_error')
-		
-		<div class="row">
-			<div class="col-md-8"> <h2>Todos los proyectos</h2></div>
-			<div class="col-md-4">
-				<a class="btn btn-sm btn-success" href="{{ url( '/proyectos/create' ) }}"> Agregar</a>
-			</div>
-
-		</div>
-		<br>
-		<a href="{{url('/proyectos-finalizados')}}">proyectos finalizados</a> 
-		<br>
-		<label for="">Buscador</label>
-		<input type="text" ng-model="opciones.buscador">
-		<br>
-		<div ng-init = "proyectos = {{$proyectos}}"></div>
-		<br>
-		<table class="table table-hover">
-		    <thead>
-		      <tr>
-		        <th>
-		        	<a href="#" ng-click="changeSort('index')">#</a>
-		        </th>		      	
-		        <th>
-		        	<a href="#" ng-click="changeSort('nombre_proyecto')">Proyecto</a>
-		        </th>
-		        <th>
-		        	<a href="#" ng-click="changeSort('nombre_cliente')">Cliente</a>
-		        </th>
-		        <th>
-		        	<a href="#" ng-click="changeSort('nombre_dominio')">Dominio</a>
-		        </th>
-		        <th>
-		        	<a href="#" ng-click="changeSort('fecha_creacion_avance')">Ultimo avance</a>
-		        </th>
-		        <th>
-		        	<a href="#" ng-click="changeSort('nombre_etapa')">Estatus</a>
-		        </th>
-		        <th >Operaciones</th>
-		      </tr>
-		    </thead>
-		    <tbody>
-		    	<tr ng-repeat="proyecto in proyectos | filter:opciones.buscador | orderBy:sort:reverse  track by $index">
-					<td>[[$index+1]]</td>
-					<td>[[proyecto.nombre_proyecto]]</td>
-					<td >
-						<a href="{{url('/clientes/[[proyecto.id_cliente]]')}}">
-							[[proyecto.nombre_cliente | noAsignado]]
-						</a>
-					</td>
-					<td>
-						<a href="{{url('/dominios/[[proyecto.id_dominio]]')}}">
-							[[proyecto.nombre_dominio | noAsignado ]]
-						</a>
-					</td>
-					<td>[[proyecto.fecha_creacion_avance | DateForHumans]]</td>
-					<td>[[proyecto.nombre_etapa]]</td>
-		        	<td >
-		        		<a class="btn btn-sm btn-info" ng-href="{{ url( '/proyectos/[[proyecto.id_proyecto]]' ) }}"> Detalle</a>
-		        	</td>
-		        </tr>
-
-		    </tbody>
-		</table>
-
-
-	</div>
+<div id="page-container" class="fade page-sidebar-fixed page-header-fixed" ng-controller="ProyectoController">
 	
-@stop
+	@include('layouts/navbar-admin')
+
+    @include('layouts/sidebar-admin')
+	
+	<div id="content" class="content ng-scope">
+        
+        <ol class="breadcrumb pull-right">
+            <div class="btn-toolbar">
+                <div class="btn-group">
+                    <a href="{{ url( '/proyectos/create' ) }}" class="btn btn-success btn-sm p-l-20 p-r-20" data-toggle="tooltip" data-title="Agregar Proyecto">
+                        <i class="fa fa-plus"></i>
+                    </a>
+                </div>
+            </div>
+        </ol>
+        
+
+        <h1 class="page-header"><i class="fa fa-laptop"></i> Todos los proyectos </h1>
+        
+        <div class="row">
+            <!-- begin col-12 -->
+            <div class="col-12 ui-sortable">
+                <!-- begin panel -->
+                <div class="panel panel-inverse">
+                    <div class="panel-heading">
+                        <div class="panel-heading-btn">
+                            <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand" data-original-title="" title=""><i class="fa fa-expand"></i></a>
+                            <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload" data-original-title="" title=""><i class="fa fa-repeat"></i></a>
+                            <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse" data-original-title="" title=""><i class="fa fa-minus"></i></a>
+                        </div>
+                        <h4 class="panel-title">Proyectos</h4>
+                    </div>
+
+                    <div class="panel-body">
+
+						@include('alerts.mensaje_success')
+						@include('alerts.mensaje_error')
+						
+						<div ng-init="proyectos={{$proyectos}}"></div>
+
+						<table class="table table-hover">
+						    <thead>
+						      <tr>
+						        <th>
+						        	<a href="#" ng-click="changeSort('index')">#</a>
+						        </th>		      	
+						        <th>
+						        	<a href="#" ng-click="changeSort('nombre_proyecto')">Proyecto</a>
+						        </th>
+						        <th>
+						        	<a href="#" ng-click="changeSort('nombre_cliente')">Cliente</a>
+						        </th>
+						        <th>
+						        	<a href="#" ng-click="changeSort('nombre_dominio')">Dominio</a>
+						        </th>
+						        <th>
+						        	<a href="#" ng-click="changeSort('fecha_creacion_avance')">Ultimo avance</a>
+						        </th>
+						        <th>
+						        	<a href="#" ng-click="changeSort('nombre_etapa')">Estatus</a>
+						        </th>
+						        <th >Operaciones</th>
+						      </tr>
+						    </thead>
+						    <tbody>
+						    	<tr ng-repeat="proyecto in proyectos | filter:opciones.buscador | orderBy:sort:reverse  track by $index">
+									<td>[[$index+1]]</td>
+									<td>[[proyecto.nombre_proyecto]]</td>
+									<td >
+										<a href="{{url('/clientes/[[proyecto.id_cliente]]')}}">
+											[[proyecto.nombre_cliente | noAsignado]]
+										</a>
+									</td>
+									<td>
+										<a href="{{url('/dominios/[[proyecto.id_dominio]]')}}">
+											[[proyecto.nombre_dominio | noAsignado ]]
+										</a>
+									</td>
+									<td>[[proyecto.fecha_creacion_avance | DateForHumans]]</td>
+									<td>[[proyecto.nombre_etapa]]</td>
+						        	<td>
+						        		<div class="row">
+							        		<div class="box-button">
+						        				<a class="btn btn-sm btn-info" ng-href="{{ url( '/proyectos/[[proyecto.id_proyecto]]' ) }}" data-toggle="tooltip" data-title="Detalle"><i class="fa fa-list"></i></a>
+						        			</div>
+						        		</div>
+						        	</td>
+						        </tr>
+
+						    </tbody>
+						</table>
+	
+					</div><!-- boby -->
+                </div>
+            </div>
+        </div>
+
+    </div><!-- content -->
+	
+</div>
+@endsection
