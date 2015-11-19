@@ -83,6 +83,10 @@ $router->group(['middleware' => 'auth'], function() {
 					#____________________ cruds ____________________________	
 	Route::resource('empresas_proveedoras', 'EmpresasProveedorasController');
 
+#__________________________________ TIPO PROYECTO _______________________________________	
+					#____________________ cruds ____________________________	
+	Route::resource('tipo-proyectos', 'TipoProyectosController');	
+
 
 #________________________________ ADMINISTRADOR DE USUARIOS _____________________________________
 					#____________________ cruds ____________________________	
