@@ -5,6 +5,13 @@
   margin-top: -8px;
 }
 
+.nav-admin-logo{
+  width: 40px;
+  float: left;
+  margin-right: 10px;
+  margin-top: -5px;
+}
+
 .login-icono {
   width: 45px;
   height: 45px;

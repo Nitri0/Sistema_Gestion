@@ -9,7 +9,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a href="index.html" class="navbar-brand">
+                <a href="{{ url ('/') }}" class="navbar-brand">
                     <img class="nav-cliente-logo" src="{{ url('img/logo.png') }}">
                     <span class="brand-text">
                         <span class="text-theme">Key</span> Systems

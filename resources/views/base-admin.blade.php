@@ -90,6 +90,7 @@
     <script src="{{ asset('/js/controllers.js') }}"></script>
     <script src="{{ asset('/js/service.js') }}"></script>
     <script src="{{ asset('/js/directives.js') }}"></script>
+    <script src="{{ asset('/js/filters.js') }}"></script>
 
     <!-- angular modules -->
     <script src="{{ asset('/bower_components/ngImgCrop/compile/minified/ng-img-crop.js') }}"></script>
@@ -146,7 +147,7 @@
 	<script>
 		$(document).ready(function() {
 			App.init();
-			DashboardV2.init(); /*quitar cuando no se usan elmentos de esta vista*/
+			/*DashboardV2.init(); quitar cuando no se usan elmentos de esta vista*/
 		});
 	</script>
 	
