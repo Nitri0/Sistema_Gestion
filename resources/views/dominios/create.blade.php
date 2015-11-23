@@ -1,7 +1,33 @@
-@extends('layouts.base')
+@extends('base-admin')
 
 @section('content')
-	<div class="container" ng-controller="DominioController">
+
+
+<div id="page-container" class="fade page-sidebar-fixed page-header-fixed" ng-controller="DominioController">
+	
+	@include('layouts/navbar-admin')
+
+    @include('layouts/sidebar-admin')
+	
+	<div id="content" class="content ng-scope">
+
+        <h1 class="page-header"><i class="fa fa-link"></i> Crear Dominio </h1>
+        
+        <div class="row">
+            <!-- begin col-12 -->
+            <div class="col-12 ui-sortable">
+                <!-- begin panel -->
+                <div class="panel panel-inverse">
+                    <div class="panel-heading">
+                        <div class="panel-heading-btn">
+                            <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand" data-original-title="" title=""><i class="fa fa-expand"></i></a>
+                            <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload" data-original-title="" title=""><i class="fa fa-repeat"></i></a>
+                            <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse" data-original-title="" title=""><i class="fa fa-minus"></i></a>
+                        </div>
+                        <h4 class="panel-title">Dominio</h4>
+                    </div>
+
+                    <div class="panel-body">
 	
 		@if($dominio)
 			<h2>Editar Dominio</h2>
@@ -84,5 +110,14 @@
 				@endif
 			</button>
 		</form>
-	</div>
-@stop
+
+					</div><!-- boby -->
+                </div>
+            </div>
+        </div>
+
+    </div><!-- content -->
+	
+</div>
+
+@endsection
