@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 use App\Etapas;
 use App\GrupoEtapas;
 use App\TipoProyecto;
+
 use Session;
 use Illuminate\Routing\Route;
 use Illuminate\Http\Request;
