@@ -35,4 +35,13 @@
   background: #f0f3f4;
 }
 
+.chats .name {
+  color: #333;
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 600;
+  text-decoration: none;
+  margin-left: 76px;
+}
+
 
