@@ -8,6 +8,7 @@ use App\Dominios;
 use App\User;
 use App\Tipo;
 use App\Roles;
+use App\TipoProyecto;
 use App\Avances;
 use App\Master;
 use App\GrupoEtapas;
@@ -66,7 +67,8 @@ class ProyectosController extends Controller {
 		$usuarios = User::all();
 		$roles = Tipo::where('id_maestro',$id_maestro)->get();
 		$grupo_etapas = GrupoEtapas::all();
-		return view('proyectos.create',compact('clientes', 'usuarios', 'roles','grupo_etapas'));
+		$tipo_proyectos = TipoProyecto::all();
+		return view('proyectos.create',compact('clientes', 'usuarios', 'roles','grupo_etapas','tipo_proyectos'));
 	}
 
 	public function edit($id){
@@ -151,6 +153,11 @@ class ProyectosController extends Controller {
 
 
 	public function indexProyectosFinalizados(){
+		$proyectos = json_encode(\DB::select('CALL p_busquedas(?,?)',array('listar_todos_proyectos_finalizados','')));
+		return view('proyectos.list_proyectos_finalizados', compact('proyectos'));
+	}
+
+	public function indexProyectosPorIntegrantes(){
 		$proyectos = json_encode(\DB::select('CALL p_busquedas(?,?)',array('listar_todos_proyectos_finalizados','')));
 		return view('proyectos.list_proyectos_finalizados', compact('proyectos'));
 	}
