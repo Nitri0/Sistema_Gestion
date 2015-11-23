@@ -252,7 +252,7 @@
 								<div class="form-group">
 	                                <label class="col-md-4 control-label ng-binding">Integrante</label>
 	                                <div class="col-md-8">
-	                                    <select class="form-control" name="id_usuario0">
+	                                    <select class="form-control" name="id_usuario">
 	                                        <option value="">Seleccione un Usuario</option>
 	                                        @foreach($usuarios as $usuario)
 	                                        	<option class="option" value="{{$usuario->id_usuario}}">
