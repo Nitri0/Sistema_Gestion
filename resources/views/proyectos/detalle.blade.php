@@ -1,36 +1,154 @@
-@extends('layouts.base')
+@extends('base-admin')
 
 @section('content')
-<div class="container">
 
-	@if($proyecto->habilitado_proyecto)
-		<form action="/proyectos/finalizar/{{$proyecto->id_proyecto}}" method="post">
-			<button type="submit" class="btn btn-sm btn-success">Finalizar Proyecto</button>
-		</form>
-	@else
-		<form action="/proyectos/reabrir/{{$proyecto->id_proyecto}}" method="post">
-			<button type="submit" class="btn btn-sm btn-success">Habilitar Proyecto</button>
-		</form>
-	@endif
-	<br>
-	<h2>INFORMACION PROYECTO</h2><br>
-	nombre: {{ $proyecto->nombre_proyecto }} <br>
-	descripcion: {{ $proyecto->direccion_proyecto}} <br>
-	Etapa actual de proyecto: {{ $proyecto->getEstatus()}} <br><br><br>
+<div id="page-container" class="fade page-sidebar-fixed page-header-fixed">
+	
+	@include('layouts/navbar-admin')
 
-	<h2>INFORMACION CLIENTE</h2><br>
-	nombre: {{ $proyecto->getCliente()->nombre_cliente }} <br>
-	persona Contacto: {{ $proyecto->getCliente()->persona_contacto_cliente}} <br>
-	telefono 1: {{ $proyecto->getCliente()->telefono_cliente}} <br>
-	telefono 2: {{ $proyecto->getCliente()->telefono_cliente}} <br>
-	correo electronico: {{ $proyecto->getCliente()->email_cliente}} <br>
- 
-	<br><br><br>
+    @include('layouts/sidebar-admin')
+	
+	<div id="content" class="content ng-scope">
+        
+        <ol class="breadcrumb pull-right">
+        	
+            <div class="btn-toolbar">
+                @if($proyecto->habilitado_proyecto)
+                <div class="btn-group">
+                	<form action="/proyectos/finalizar/{{$proyecto->id_proyecto}}" method="post">
+	                    <button type="submit" class="btn btn-success btn-sm p-l-20 p-r-20" data-toggle="tooltip" data-title="Finalizar Proyecto">
+	                        <i class="fa fa-thumbs-up"></i>
+	                    </button>
+                    </form>
+                </div>
+                @else
+                <div class="btn-group">
+                	<form action="/proyectos/reabrir/{{$proyecto->id_proyecto}}" method="post">
+	                    <button  class="btn btn-warning btn-sm p-l-20 p-r-20" data-toggle="tooltip" data-title="Habilitar Proyecto">
+	                        <i class="fa fa-unlock"></i>
+	                    </button>
+                    </form>
+                </div>
+          		@endif
+                <div class="btn-group">
+                	<form action="/proyectos/{{$proyecto->id_proyecto}}" method="post">
+                		<input type="hidden" name="_method" value="delete">
+	                    <button type="submit" class="btn btn-danger btn-sm p-l-20 p-r-20" data-toggle="tooltip" data-title="Eliminar Proyecto">
+	                        <i class="fa fa-trash"></i>
+	                    </button>
+                    </form>
+                </div>
+                
+			</div>
+        </ol>
+        
 
-	<h2>INFORMACION DOMINIO</h2><br>
-	nombre: {{ $proyecto->getNombreDominio() }} <br>
- 
-	<br><br><br>
+        <h1 class="page-header"><i class="fa fa-laptop"></i> Dellate del Proyecto </h1>
+        
+		<div class="row">
+            
+            <!-- begin col-12 -->
+            <div class="col-md-6 ui-sortable">
+                <!-- begin panel -->
+                <div class="panel panel-inverse">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">Información del Proyecto</h4>
+                    </div>
+
+                    <div class="panel-body">
+                    	<br>
+                    	<div class="table-responsive">
+                            <table class="table table-profile">
+                                <tbody>
+                                    <tr class="highlight">
+                                        <td class="field">Nombre</td>
+                                        <td><a href="#">{{ $proyecto->nombre_proyecto }}</a></td>
+                                    </tr>
+                                    <tr class="divider">
+                                        <td colspan="2"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="field">Descripción</td>
+                                        <td>{{ $proyecto->direccion_proyecto}}</td>
+                                    </tr>
+                                    <tr class="divider">
+                                        <td colspan="2"></td>
+                                    </tr>
+                                    <tr class="highlight">
+                                        <td class="field">Etapa actual de proyecto</td>
+                                        <td><a href="#">{{ $proyecto->getEstatus()}}</a></td>
+                                    </tr>
+                                    <tr class="highlight">
+                                        <td class="field">Dominio</td>
+                                        <td><a href="http://{{ $proyecto->getNombreDominio() }}" target="_blank" class="label label-info" href="#">{{ $proyecto->getNombreDominio() }}</a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+					</div><!-- boby -->
+                </div>
+            </div>
+
+            <!-- begin col-12 -->
+            <div class="col-md-6 ui-sortable">
+                <!-- begin panel -->
+                <div class="panel panel-inverse">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">Información del Cliente</h4>
+                    </div>
+
+                    <div class="panel-body">
+                    	<div class="table-responsive">
+                            <table class="table table-profile">
+                                <tbody>
+                                    <tr class="highlight">
+                                        <td class="field">Nombre</td>
+                                        <td><a href="#">{{ $proyecto->getCliente()->nombre_cliente }}</a></td>
+                                    </tr>
+                                    <tr class="divider">
+                                        <td colspan="2"></td>
+                                    </tr>
+                                     <tr class="highlight">
+                                        <td class="field">Persona Contacto</td>
+                                        <td><a href="#">{{ $proyecto->getCliente()->persona_contacto_cliente}}</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="field">Telefono 1</td>
+                                        <td><i class="fa fa-mobile fa-lg m-r-5"></i> {{ $proyecto->getCliente()->telefono_cliente}}  <a href="#" class="m-l-5">Edit</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="field">Telefono 2</td>
+                                        <td><i class="fa fa-mobile fa-lg m-r-5"></i> {{ $proyecto->getCliente()->telefono_cliente}}</td>
+                                    </tr>
+                                    <tr class="divider">
+                                        <td colspan="2"></td>
+                                    </tr>
+                                    <tr class="highlight">
+                                        <td class="field">Correo Electronico</td>
+                                        <td><a href="email:{{ $proyecto->getCliente()->email_cliente}}" class="label label-danger">{{ $proyecto->getCliente()->email_cliente}}</a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+					</div><!-- boby -->
+                </div>
+            </div>
+        
+        </div>
+
+    	<div class="row">
+            
+            <!-- begin col-12 -->
+            <div class="col-12 ui-sortable">
+                <!-- begin panel -->
+                <div class="panel panel-inverse">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">Información del Proyecto</h4>
+                    </div>
+
+                    <div class="panel-body">
 
 	<h2>ETAPAS</h2><br>
 	@foreach($etapas->getEtapas() as $etapa)
@@ -85,13 +203,14 @@
 		</div>
 	</form>
 	
-	<br><br>
-	<br><br>
-	<br><br>
-	<form action="/proyectos/{{$proyecto->id_proyecto}}" method="post">
-		<input type="hidden" name="_method" value="delete">
-		<button type="submit" class="btn btn-sm btn-danger">Eliminar Proyecto</button>
-	</form>
+
+
+					</div><!-- boby -->
+                </div>
+            </div>
+        </div>
+
+    </div><!-- content -->
 	
 </div>
-@stop
+@endsection
