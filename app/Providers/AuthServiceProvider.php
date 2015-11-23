@@ -56,5 +56,9 @@ class AuthServiceProvider extends ServiceProvider
         $gate->define('AdministradorUsuarios', function ($user){
             return  $user->isAdmin();
         });
+        #_________________________________ Modulo Tipos de Proyecto ____________________________
+        $gate->define('tipo_proyectos', function ($user){
+            return  $user->isAdmin();
+        });
     }
 }
