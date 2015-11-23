@@ -4,7 +4,8 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Etapas;
 use App\GrupoEtapas;
-use App\TipoProyecto;
+use App\TipoProyectos;
+
 use Session;
 use Illuminate\Routing\Route;
 use Illuminate\Http\Request;
@@ -37,7 +38,7 @@ class TipoProyectoController extends Controller {
 	}
 
 	public function index(){
-		$tipo_proyectos = TipoProyecto::paginate(10);
+		$tipo_proyectos = TipoProyectos::paginate(10);
 		return view('tipo_proyectos.list',compact('tipo_proyectos'));
 	}
 
@@ -47,7 +48,7 @@ class TipoProyectoController extends Controller {
 
 
 	public function store(Request $request){
-		$grupoEtapas = TipoProyecto::create($request->all());
+		$grupoEtapas = TipoProyectos::create($request->all());
 
 		Session::flash('mensaje', 'Tipo de Proyecto creado exitosamente');
 		return redirect('/tipo_proyectos');
@@ -72,7 +73,7 @@ class TipoProyectoController extends Controller {
 
 	public function destroy($id){
 		Etapas::where('id_tipo_proyecto',$id)->delete();
-		GrupoEtapas::find($id)->delete();
+		TipoProyectos::find($id)->delete();
 		return redirect('/tipo_proyectos');
 	}
 
