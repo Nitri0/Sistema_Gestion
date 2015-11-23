@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Eloquent\Model;
 
-class TipoProyecto extends Model {
+class TipoProyectos extends Model {
 
 	protected $table = "t_tipo_proyecto";
 	protected $primaryKey = "id_tipo_proyecto";
