@@ -77,7 +77,7 @@
 						        		<form action="[['/proyectos/reabrir/' + proyecto.id_proyecto]]" method="post">
 							        		<div class="row">
 								        		<div class="box-button">
-									        		<a class="btn btn-sm btn-info btn-custon" ng-href="{{ url( '/proyectos/[[proyecto.id_proyecto]]' ) }}" data-toggle="tooltip" data-title="Detalle"><i class="fa fa-pencil-square-o"></i></a>
+									        		<a class="btn btn-sm btn-info btn-custon" ng-href="{{ url( '/proyectos/[[proyecto.id_proyecto]]' ) }}" data-toggle="tooltip" data-title="Detalle"><i class="fa fa-list"></i></a>
 													<button type="submit" class="btn btn-sm btn-success btn-custon" data-toggle="tooltip" data-title="Habilitar Proyecto"><i class="fa fa-external-link"></i></button>
 												</div>
 											</div>	
