@@ -145,69 +145,148 @@
                 <!-- begin panel -->
                 <div class="panel panel-inverse">
                     <div class="panel-heading">
-                        <h4 class="panel-title">Información del Proyecto</h4>
+                        <h4 class="panel-title">Etapas</h4>
                     </div>
 
-                    <div class="panel-body">
+                    <div class="panel-body color-timeline">
 
-	<h2>ETAPAS</h2><br>
-	@foreach($etapas->getEtapas() as $etapa)
-		{{$etapa->nombre_etapa}} <br>
-		@if ($etapa->getAvances($proyecto->id_proyecto)->first())
-		  -- Avances:<br>
-		@endif
-		@foreach($etapa->getAvances($proyecto->id_proyecto) as $avance)
-			---- {{$avance->asunto_avance}} - {{$avance->descripcion_avance}} - {{$avance->fecha_creacion_avance}} - {{$avance->getNombreCreador()}}<br>
-		@endforeach
-		<br>
-	@endforeach
-
-	<br><br><br>
-	<h2>INTEGRANTES</h2><br>
-	@foreach($rol as $integrante)
-		{{$integrante->getUser()->getFullName()}} - {{$integrante->getRolName()}} 
-		<form action="/integrantes/{{$integrante->id_rol_usuario}}" method="POST">
-			<input type="hidden" name="_method" value="delete">
-			<input type="hidden" name="redirect" value="{{url('/proyectos/'.$proyecto->id_proyecto )}}">
-			<button type="submit" class="btn btn-sm btn-danger">Eliminar integrante</button >
-		</form>
-		 <br>
-		 <br>
-		 <br>
-	@endforeach
-	Agregar integrante
-	<form action="/integrantes" method="POST">
-		<div class="from-group">
-			<input type="hidden" name="id_proyecto" value="{{$proyecto->id_proyecto}}">
-			<input type="hidden" name="redirect" value="{{url('/proyectos/'.$proyecto->id_proyecto )}}">
-
-			<label for="">Integrante </label>
-			<select class="form-control" name="id_usuario">
-				<option class="option" value="">Seleccione un Usuario</option>
-				@foreach($usuarios as $usuario)
-					<option class="option" value="{{$usuario->id_usuario}}">
-						{{ $usuario->getFullName()}}
-					</option>
-				@endforeach
-			</select>
-			<label for="">Rol que cumplirá</label>
-			<select class="form-control" name="id_tipo_rol">
-				<option class="option" value="">Seleccione un Rol</option>
-				@foreach($roles as $rol)
-					<option class="option" value="{{$rol->id_tipo}}">
-						{{ $rol->nombre_tipo }} 
-					</option>
-				@endforeach
-			</select>
-			<button type="submit" class="btn btn-sm btn-success">Agregar</button >				
-		</div>
-	</form>
-	
-
+                    	<ul class="timeline">
+                    		@foreach($etapas->getEtapas() as $etapa)
+						    <li>
+						        <!-- begin timeline-time -->
+						        <div class="timeline-time">
+						            <span class="date" style="padding-top: 15px; color:#00acac;">{{$etapa->nombre_etapa}}</span>
+						        </div>
+						        <!-- end timeline-time -->
+						        <!-- begin timeline-icon -->
+						        <div class="timeline-icon">
+						            <a href="javascript:;"><i class="fa fa-star"></i></a>
+						        </div>
+						        <!-- end timeline-icon -->
+						        <!-- begin timeline-body -->
+						        <div class="timeline-body">
+						           	@if ($etapa->getAvances($proyecto->id_proyecto)->first())
+										<center><h5>Avances</h5></center>
+									@endif
+									<br>
+						            <ul class="chats">
+	                                    @foreach($etapa->getAvances($proyecto->id_proyecto) as $avance)
+	                                    <li class="left">
+	                                        <span class="date-time">{{$avance->fecha_creacion_avance}}</span>
+	                                        <a href="javascript:;" class="name">{{$avance->getNombreCreador()}}</a>
+	                                        <a href="javascript:;" class="image"><img width="50" alt="" src="{{url('img/user.png')}}"></a>
+	                                        <div class="message">
+	                                        	<h5>{{$avance->asunto_avance}}</h5>
+	                                            {{$avance->asunto_avance}}
+	                                        </div>
+	                                    </li>
+	                                    @endforeach
+	                                </ul>
+						        </div>
+						        <!-- end timeline-body -->
+						    </li>
+						    @endforeach
+						    
+						    <li>
+						        <div class="timeline-icon">
+						            <a href="javascript:;"><i class="fa fa-thumbs-up"></i></a>
+						        </div>
+						    </li>
+						</ul>
 
 					</div><!-- boby -->
                 </div>
             </div>
+        </div>
+		
+
+		<div class="row">
+            
+            <!-- begin col-12 -->
+            <div class="col-md-5 ui-sortable">
+                <!-- begin panel -->
+                <div class="panel panel-inverse">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">Integrantes</h4>
+                    </div>
+
+                    <div class="panel-body color-timeline">
+						<ul class="media-list media-list-with-divider">
+							@foreach($rol as $integrante)
+							<li class="media media-sm well">
+								<a href="javascript:;" class="pull-left">
+									<img src="{{ url('/img/user.png') }}" alt="" class="sm-object rounded-corner">
+								</a>
+								<div class="media-body media-body-custon">
+									<h5 class="media-heading">{{$integrante->getUser()->getFullName()}} </h5>
+									<p>{{$integrante->getRolName()}}</p>
+								</div>
+								<div class="pull-right">
+									<form action="/integrantes/{{$integrante->id_rol_usuario}}" method="POST">
+										<input type="hidden" name="_method" value="delete">
+										<input type="hidden" name="redirect" value="{{url('/proyectos/'.$proyecto->id_proyecto )}}">
+										<button type="submit" class="btn btn-sm btn-danger" data-toggle="tooltip" data-title="Eliminar"><i class="fa fa-trash"></i></button >
+									</form>
+								</div>
+							</li>
+							@endforeach
+						</ul>
+                    </div><!-- boby -->
+                </div>
+            </div>
+
+            <div class="col-md-7">
+                <!-- begin panel -->
+                <div class="panel panel-inverse">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">Agergar Integrantes</h4>
+                    </div>
+
+                    <div class="panel-body color-timeline">
+						<div class="well">
+							<form class="form-horizontal" action="/integrantes" method="POST">
+								
+								<input type="hidden" name="id_proyecto" value="{{$proyecto->id_proyecto}}">
+								<input type="hidden" name="redirect" value="{{url('/proyectos/'.$proyecto->id_proyecto )}}">
+								
+								<div class="form-group">
+	                                <label class="col-md-4 control-label ng-binding">Integrante</label>
+	                                <div class="col-md-8">
+	                                    <select class="form-control" name="id_usuario0">
+	                                        <option value="">Seleccione un Usuario</option>
+	                                        @foreach($usuarios as $usuario)
+	                                        	<option class="option" value="{{$usuario->id_usuario}}">
+	                                        		{{ $usuario->getFullName()}}
+	                                        	</option>
+	                                        @endforeach
+										</select>
+	                                </div>
+	                            </div>
+	                            
+	                            <div class="form-group">
+	                                <label class="col-md-4 control-label ng-binding">Rol que cumplirá</label>
+	                                <div class="col-md-8">
+	                                    <select class="form-control" name="id_tipo_rol">
+	                                        <option value="">Seleccione un Usuario</option>
+	                                        @foreach($roles as $rol)
+												<option value="{{$rol->id_tipo}}">
+													{{ $rol->nombre_tipo }} 
+												</option>
+											@endforeach
+										</select>
+	                                </div>
+	                            </div>
+	                            <br>
+								<center>
+									<button type="submit"  class="btn btn-primary m-r-5 m-b-5"><i class="fa fa-plus"></i> Agregar Integrantes</button>
+								</center>		
+							</div>
+						</form>
+                    	
+                    </div><!-- boby -->
+                </div>
+            </div>
+        
         </div>
 
     </div><!-- content -->
