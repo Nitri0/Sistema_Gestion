@@ -40,25 +40,22 @@
                     	<div class="table-responsive">
                             <table class="table table-profile">
                                 <tbody>
-                                    <tr class="highlight">
+                                    <tr>
                                         <td class="field">Nombre</td>
                                         <td><a>{{ $proyecto->nombre_proyecto }}</a></td>
                                     </tr>
                                     <tr class="divider">
                                         <td colspan="2"></td>
                                     </tr>
-                                    <tr>
+                                    <tr class="highlight">
                                         <td class="field">Descripción</td>
                                         <td>{{ $proyecto->direccion_proyecto}}</td>
-                                    </tr>
-                                    <tr class="divider">
-                                        <td colspan="2"></td>
                                     </tr>
                                     <tr class="highlight">
                                         <td class="field">Etapa actual de proyecto</td>
                                         <td><span class="label label-danger">{{ $proyecto->getEstatus()}}</span></td>
                                     </tr>
-                                    <tr class="highlight">
+                                    <tr>
                                         <td class="field">Dominio</td>
                                         <td><a href="http://{{ $proyecto->getNombreDominio() }}" target="_blank" class="label label-info">{{ $proyecto->getNombreDominio() }}</a></td>
                                     </tr>
@@ -80,7 +77,7 @@
                     	<div class="table-responsive">
                             <table class="table table-profile">
                                 <tbody>
-                                    <tr class="highlight">
+                                    <tr>
                                         <td class="field">Nombre</td>
                                         <td><a>{{ $proyecto->getCliente()->nombre_cliente }}</a></td>
                                     </tr>
@@ -88,21 +85,15 @@
                                         <td class="field">Persona Contacto</td>
                                         <td><a>{{ $proyecto->getCliente()->persona_contacto_cliente}}</a></td>
                                     </tr>
-                                    <tr class="divider">
-                                        <td colspan="2"></td>
-                                    </tr>
                                     <tr>
                                         <td class="field">Telefono 1</td>
                                         <td><i class="fa fa-mobile fa-lg m-r-5"></i> {{ $proyecto->getCliente()->telefono_cliente}}</td>
                                     </tr>
-                                    <tr>
+                                    <tr class="highlight">
                                         <td class="field">Telefono 2</td>
                                         <td><i class="fa fa-mobile fa-lg m-r-5"></i> {{ $proyecto->getCliente()->telefono_cliente}}</td>
                                     </tr>
-                                    <tr class="divider">
-                                        <td colspan="2"></td>
-                                    </tr>
-                                    <tr class="highlight">
+                                    <tr>
                                         <td class="field">Correo Electronico</td>
                                         <td><span class="label label-danger">{{ $proyecto->getCliente()->email_cliente}}</span></td>
                                     </tr>

@@ -60,25 +60,22 @@
                     	<div class="table-responsive">
                             <table class="table table-profile">
                                 <tbody>
-                                    <tr class="highlight">
+                                    <tr>
                                         <td class="field">Nombre</td>
                                         <td><a href="#">{{ $proyecto->nombre_proyecto }}</a></td>
                                     </tr>
                                     <tr class="divider">
                                         <td colspan="2"></td>
                                     </tr>
-                                    <tr>
+                                    <tr class="highlight">
                                         <td class="field">Descripción</td>
                                         <td>{{ $proyecto->direccion_proyecto}}</td>
-                                    </tr>
-                                    <tr class="divider">
-                                        <td colspan="2"></td>
                                     </tr>
                                     <tr class="highlight">
                                         <td class="field">Etapa actual de proyecto</td>
                                         <td><a href="#">{{ $proyecto->getEstatus()}}</a></td>
                                     </tr>
-                                    <tr class="highlight">
+                                    <tr>
                                         <td class="field">Dominio</td>
                                         <td><a href="http://{{ $proyecto->getNombreDominio() }}" target="_blank" class="label label-info" href="#">{{ $proyecto->getNombreDominio() }}</a></td>
                                     </tr>
@@ -102,12 +99,9 @@
                     	<div class="table-responsive">
                             <table class="table table-profile">
                                 <tbody>
-                                    <tr class="highlight">
+                                    <tr>
                                         <td class="field">Nombre</td>
                                         <td><a href="#">{{ $proyecto->getCliente()->nombre_cliente }}</a></td>
-                                    </tr>
-                                    <tr class="divider">
-                                        <td colspan="2"></td>
                                     </tr>
                                      <tr class="highlight">
                                         <td class="field">Persona Contacto</td>
@@ -115,16 +109,16 @@
                                     </tr>
                                     <tr>
                                         <td class="field">Telefono 1</td>
-                                        <td><i class="fa fa-mobile fa-lg m-r-5"></i> {{ $proyecto->getCliente()->telefono_cliente}}  <a href="#" class="m-l-5">Edit</a></td>
+                                        <td><i class="fa fa-mobile fa-lg m-r-5"></i> {{ $proyecto->getCliente()->telefono_cliente}}</td>
                                     </tr>
-                                    <tr>
+                                    <tr class="highlight">
                                         <td class="field">Telefono 2</td>
                                         <td><i class="fa fa-mobile fa-lg m-r-5"></i> {{ $proyecto->getCliente()->telefono_cliente}}</td>
                                     </tr>
                                     <tr class="divider">
                                         <td colspan="2"></td>
                                     </tr>
-                                    <tr class="highlight">
+                                    <tr>
                                         <td class="field">Correo Electronico</td>
                                         <td><a href="email:{{ $proyecto->getCliente()->email_cliente}}" class="label label-danger">{{ $proyecto->getCliente()->email_cliente}}</a></td>
                                     </tr>
@@ -177,7 +171,7 @@
 	                                        <a href="javascript:;" class="image"><img width="50" alt="" src="{{url('img/user.png')}}"></a>
 	                                        <div class="message">
 	                                        	<h5>{{$avance->asunto_avance}}</h5>
-	                                            {{$avance->asunto_avance}}
+	                                            {{$avance->descripcion_avance}}
 	                                        </div>
 	                                    </li>
 	                                    @endforeach
