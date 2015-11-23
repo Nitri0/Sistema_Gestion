@@ -36,7 +36,8 @@ class AdministradorUsuariosController extends Controller
                           '\App\Http\Controllers\EmpresasProveedorasController' =>'empresas_proveedoras',
                           '\App\Http\Controllers\EtapasController'              =>'grupo_etapas',
                           '\App\Http\Controllers\PlantillasController'          =>'plantillas',
-                          '\App\Http\Controllers\ProyectosController'           =>'proyectos'];
+                          '\App\Http\Controllers\ProyectosController'           =>'proyectos',
+                          '\App\Http\Controllers\TipoProyectosController'       =>'tipo-proyectos'];
 
         $this->tipos_usuario = [
                                 'Trabajador'    =>1,
