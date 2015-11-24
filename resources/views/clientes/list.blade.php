@@ -39,44 +39,44 @@
 
                     <div class="panel-body">
 
-		@include('alerts.mensaje_success')
-		@include('alerts.mensaje_error')
+						@include('alerts.mensaje_success')
+						@include('alerts.mensaje_error')
 
-		<table class="table table-hover">
-		    <thead>
-		      <tr>
-		        <th>Nombre</th>
-		        <th>CI / RIF</th>
-		        <th>Email</th>
-		        <th>Contacto</th>
-		        <th>Proyecto(s) Asociado(s)</th>
-		        <th width="150px" >Operaciones</th>
-		      </tr>
-		    </thead>
-		    <tbody>
-		    	@foreach($clientes as $cliente)
-			    	<tr>
-						<td>{{$cliente->nombre_cliente}}</td>
-						<td>{{$cliente->ci_rif_cliente}}</td>
-			        	<td>{{$cliente->email_cliente}}</td>
-			        	<td>{{$cliente->persona_contacto_cliente}}</td>
-			        	<td>
-			        			{{$cliente->getProyecto()}}
-			        	</td>
-			        	<td width="150px">
-				        	<form action="/clientes/{{$cliente->id_cliente}}" method="post">
-				        		<a class="btn btn-sm btn-info" href="{{ url( '/clientes/'.$cliente->id_cliente ) }}" data-toggle="tooltip" data-title="Detalle"><i class="fa fa-list"></i></a>
-				        		<a class="btn btn-sm btn-success" href="{{ url( '/clientes/'.$cliente->id_cliente.'/edit' ) }}" data-toggle="tooltip" data-title="Editar"><i class="fa fa-pencil-square-o"></i></a>
-								<input type="hidden" name="_method" value="delete">
-								<button type="submit" class="btn btn-sm btn-danger" data-toggle="tooltip" data-title="Eliminar"><i class="fa fa-trash"></i></button>
-							</form>		        		
-			        	</td>
-			        </tr>
-				@endforeach
-		    </tbody>
-		</table>
+						<table class="table table-hover">
+						    <thead>
+						      <tr>
+						        <th>Nombre</th>
+						        <th>CI / RIF</th>
+						        <th>Email</th>
+						        <th>Contacto</th>
+						        <th>Proyecto(s) Asociado(s)</th>
+						        <th width="150px" >Operaciones</th>
+						      </tr>
+						    </thead>
+						    <tbody>
+						    	@foreach($clientes as $cliente)
+							    	<tr>
+										<td>{{$cliente->nombre_cliente}}</td>
+										<td>{{$cliente->ci_rif_cliente}}</td>
+							        	<td>{{$cliente->email_cliente}}</td>
+							        	<td>{{$cliente->persona_contacto_cliente}}</td>
+							        	<td>
+							        			{{$cliente->getProyecto()}}
+							        	</td>
+							        	<td width="150px">
+								        	<form action="/clientes/{{$cliente->id_cliente}}" method="post">
+								        		<a class="btn btn-sm btn-info" href="{{ url( '/clientes/'.$cliente->id_cliente ) }}" data-toggle="tooltip" data-title="Detalle"><i class="fa fa-list"></i></a>
+								        		<a class="btn btn-sm btn-success" href="{{ url( '/clientes/'.$cliente->id_cliente.'/edit' ) }}" data-toggle="tooltip" data-title="Editar"><i class="fa fa-pencil-square-o"></i></a>
+												<input type="hidden" name="_method" value="delete">
+												<button type="submit" class="btn btn-sm btn-danger" data-toggle="tooltip" data-title="Eliminar"><i class="fa fa-trash"></i></button>
+											</form>		        		
+							        	</td>
+							        </tr>
+								@endforeach
+						    </tbody>
+						</table>
 
-		<div align="center">{!! $clientes->render() !!}</div>
+						<div align="center">{!! $clientes->render() !!}</div>
 	 
 	 				</div><!-- boby -->
                 </div>
