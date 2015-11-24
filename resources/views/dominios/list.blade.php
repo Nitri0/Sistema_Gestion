@@ -91,16 +91,12 @@
 										[[dominio.espacio_usado_dominio | formatSize]]
 										<span ng-bind-html="dominio.espacio_usado_dominio | compareSize:dominio.espacio_asignado_dominio" ></span>			
 									</td>
-						        	<td>
+						        	<td width="150px">
 						        		<form action="[[url+'/dominios/'+dominio.id_dominio]]" method="post">
-							        		<div class="row">
-								        		<div class="box-button">
-									        		<a class="btn btn-sm btn-info" ng-href="{{ url( '/dominios/[[dominio.id_dominio]]/edit' ) }}" data-toggle="tooltip" data-title="Editar"><i class="fa fa-pencil-square-o"></i></a>
-									        		<a class="btn btn-sm btn-inverse" ng-href="{{ url( '/dominios/[[dominio.id_dominio]]') }}" data-toggle="tooltip" data-title="Gestionar"><i class="fa fa-cogs"></i></a>
-													<input type="hidden" name="_method" value="delete">
-													<button type="submit" class="btn btn-sm btn-danger button-dominios" data-toggle="tooltip" data-title="Eliminar"><i class="fa fa-trash"></i></button>
-												</div>
-											</div>
+							        		<a class="btn btn-sm btn-info" ng-href="{{ url( '/dominios/[[dominio.id_dominio]]/edit' ) }}" data-toggle="tooltip" data-title="Editar"><i class="fa fa-pencil-square-o"></i></a>
+							        		<a class="btn btn-sm btn-inverse" ng-href="{{ url( '/dominios/[[dominio.id_dominio]]') }}" data-toggle="tooltip" data-title="Gestionar"><i class="fa fa-cogs"></i></a>
+											<input type="hidden" name="_method" value="delete">
+											<button type="submit" class="btn btn-sm btn-danger button-dominios" data-toggle="tooltip" data-title="Eliminar"><i class="fa fa-trash"></i></button>
 										</form>
 						        	</td>
 						        </tr>
