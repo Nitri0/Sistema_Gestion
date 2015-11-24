@@ -96,7 +96,7 @@
 							        		<a class="btn btn-sm btn-info" ng-href="{{ url( '/dominios/[[dominio.id_dominio]]/edit' ) }}" data-toggle="tooltip" data-title="Editar"><i class="fa fa-pencil-square-o"></i></a>
 							        		<a class="btn btn-sm btn-inverse" ng-href="{{ url( '/dominios/[[dominio.id_dominio]]') }}" data-toggle="tooltip" data-title="Gestionar"><i class="fa fa-cogs"></i></a>
 											<input type="hidden" name="_method" value="delete">
-											<button type="submit" class="btn btn-sm btn-danger button-dominios" data-toggle="tooltip" data-title="Eliminar"><i class="fa fa-trash"></i></button>
+											<button type="submit" class="btn btn-sm btn-danger" data-toggle="tooltip" data-title="Eliminar"><i class="fa fa-trash"></i></button>
 										</form>
 						        	</td>
 						        </tr>
