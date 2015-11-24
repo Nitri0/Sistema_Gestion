@@ -29,6 +29,7 @@
 				    <li><a href="{{ url('mis-proyectos') }}">Mis Proyectos</a></li>
 				    <li><a href="{{ url('proyectos-finalizados') }}">Proyectos Finalizados</a></li>
 				    <li><a href="{{ url('dominios') }}">Dominios</a></li>
+				    <li><a href="{{ url('clientes') }}">Clientes</a></li>
 				</ul>
 			</li>
 	        <!-- begin sidebar minify button -->
