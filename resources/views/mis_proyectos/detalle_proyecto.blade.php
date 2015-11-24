@@ -91,7 +91,7 @@
                                     </tr>
                                     <tr class="highlight">
                                         <td class="field">Telefono 2</td>
-                                        <td><i class="fa fa-mobile fa-lg m-r-5"></i> {{ $proyecto->getCliente()->telefono_cliente}}</td>
+                                        <td><i class="fa fa-mobile fa-lg m-r-5"></i> {{ $proyecto->getCliente()->telefono_2_cliente}}</td>
                                     </tr>
                                     <tr>
                                         <td class="field">Correo Electronico</td>
