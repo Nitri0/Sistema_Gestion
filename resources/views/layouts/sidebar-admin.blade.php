@@ -30,6 +30,7 @@
 				    <li><a href="{{ url('proyectos-finalizados') }}">Proyectos Finalizados</a></li>
 				    <li><a href="{{ url('dominios') }}">Dominios</a></li>
 				    <li><a href="{{ url('clientes') }}">Clientes</a></li>
+				    <li><a href="{{ url('grupo_etapas') }}">Grupos de Etapas</a></li>
 				</ul>
 			</li>
 	        <!-- begin sidebar minify button -->
