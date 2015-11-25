@@ -35,4 +35,22 @@
   margin-left: 76px;
 }
 
-
+.timeline .timeline-body-eliminar {
+  margin-left: 25%;
+  margin-right: 54%;
+  background: #fff;
+  position: relative;
+  padding: 12px 30px;
+  border-radius: 4px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+}
+.timeline .timeline-body-eliminar:before {
+  content: '';
+  display: block;
+  position: absolute;
+  border: 10px solid transparent;
+  border-right-color: #fff;
+  left: -20px;
+  top: 20px;
+}
