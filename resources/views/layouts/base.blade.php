@@ -37,7 +37,6 @@
 
 					@if(Auth::check())
 					<li><a href="{{ url('/mis-proyectos') }}">Mis proyectos</a></li>
-					<li><a href="{{ url('/tipo_proyectos') }}">Tipos de Proyecto</a></li>
 					<li><a href="{{ url('/dominios') }}">Dominios</a></li>
 					<li><a href="{{ url('/clientes') }}">Clientes</a></li>
 					<li><a href="{{ url('/plantillas') }}">Plantillas</a></li>
