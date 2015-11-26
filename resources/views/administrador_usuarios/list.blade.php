@@ -21,7 +21,7 @@
         </ol>
         
 
-        <h1 class="page-header"><i class="fa fa-laptop"></i> Todos los proyectos </h1>
+        <h1 class="page-header"><i class="fa fa-users"></i> Todos los Usuarios </h1>
         
         <div class="row">
             <!-- begin col-12 -->
@@ -34,7 +34,7 @@
                             <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload" data-original-title="" title=""><i class="fa fa-repeat"></i></a>
                             <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse" data-original-title="" title=""><i class="fa fa-minus"></i></a>
                         </div>
-                        <h4 class="panel-title">Proyectos</h4>
+                        <h4 class="panel-title">Usuarios</h4>
                     </div>
 
                     <div class="panel-body">
@@ -61,7 +61,7 @@
 						    	<tr ng-repeat="usuario in usuarios| filter:opciones.buscador | orderBy:sort:reverse  track by $index">
 									<td>[[$index]]</td>
 									<td>[[usuario.correo_usuario ]]</td>
-						        	<td >
+						        	<td>
 						        		<form action="[[url+'/admin_usuarios/'+usuario.id_dominio]]" method="post">
 							        		<a class="btn btn-sm btn-info" ng-href="{{ url( '/admin_usuarios/[[usuario.id_usuario]]/edit' ) }}" data-toggle="tooltip" data-title="Editar"><i class="fa fa-pencil-square-o"></i></a>
 											<input type="hidden" name="_method" value="delete">
