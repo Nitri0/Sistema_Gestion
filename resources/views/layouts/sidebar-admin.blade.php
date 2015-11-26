@@ -1,5 +1,10 @@
+
+@section('controller')
+	<script src="{{ asset('/js/controllers/sidebarcontroller.js') }}"></script>
+@endsection
+
 <!-- begin #sidebar -->
-<div id="sidebar" class="sidebar">
+<div id="sidebar" class="sidebar" ng-controller="SidebarController">
 	<!-- begin sidebar scrollbar -->
 	<div data-scrollbar="true" data-height="100%">
 		<!-- begin sidebar user -->
@@ -18,7 +23,7 @@
 		<!-- begin sidebar nav -->
 		<ul class="nav">
 			<li class="nav-header">Proyectos</li>
-			<li class="has-sub active">
+			<li class="has-sub">
 				<a href="javascript:;">
 				    <b class="caret pull-right"></b>
 				    <i class="fa fa-laptop"></i>
@@ -31,6 +36,16 @@
 				    <li><a href="{{ url('dominios') }}">Dominios</a></li>
 				    <li><a href="{{ url('clientes') }}">Clientes</a></li>
 				    <li><a href="{{ url('grupo_etapas') }}">Grupos de Etapas</a></li>
+				</ul>
+			</li>
+			<li class="has-sub">
+				<a href="javascript:;">
+				    <b class="caret pull-right"></b>
+				    <i class="fa fa-users"></i>
+				    <span>Admistrar Usuarios</span>
+			    </a>
+				<ul class="sub-menu">
+				    <li><a href="{{ url('admin_usuarios') }}">Lista Usuarios</a></li>
 				</ul>
 			</li>
 	        <!-- begin sidebar minify button -->
