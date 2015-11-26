@@ -139,6 +139,7 @@
     <script src="{{ asset('/thema/admin/html/assets/plugins/bootstrap-daterangepicker/moment.js') }}"></script>
     <script src="{{ asset('/thema/admin/html/assets/plugins/bootstrap-daterangepicker/daterangepicker.js') }}"></script>
 	<script src="{{ asset('/thema/admin/html/assets/js/form-plugins.demo.min.js') }}"></script>
+	@yield('js')
 	<script src="{{ asset('/thema/admin/html/assets/js/apps.min.js') }}"></script>
 	
 	<!-- ===================== ANGULAR CONTROLLERS ==============================-->

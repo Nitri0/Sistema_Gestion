@@ -1,5 +1,21 @@
 @extends('base-admin')
 
+@section('js')
+	<script src="{{ asset('/thema/admin/html/assets/plugins/switchery/switchery.min.js') }}"></script>
+	<script src="{{ asset('/thema/admin/html/assets/js/form-slider-switcher.demo.min.js') }}"></script>
+
+	<script>
+		$(document).ready(function() {
+			FormSliderSwitcher.init();
+		});
+	</script>
+
+@endsection
+
+@section('css')
+	<link href="{{ asset('/thema/admin/html/assets/plugins/switchery/switchery.min.css') }}" rel="stylesheet">
+@endsection
+
 @section('content')
 
 <div id="page-container" class="fade page-sidebar-fixed page-header-fixed" ng-controller="AdminUsuariosController">
@@ -82,6 +98,7 @@
 										</select>
 	                                </div>
                             	</div>
+
 		                    </div><!-- boby -->
 		                </div>
 		            </div>
@@ -156,17 +173,24 @@
 	                            </div>
 		                        <h4 class="panel-title" style="text-transform: capitalize;"><i class="fa fa-unlock-alt"></i> {{$nombre_clase}}</h4>
 		                    </div>
-		                    <div class="panel-body">	
-								@foreach($metodos as $metodo)
-									<div class="form-group content-row">
-										<label class="col-md-4 col-md-offset-1 control-label">{{$metodo}}</label>
-										<div class="col-md-6 checkbox">
-											[[permisos_user.{{$nombre_clase}}.{{$metodo}} ]]
-											<input type="checkbox" class="form-control" name="{{'clases['.$nombre_clase.'.'.$metodo.']'}}"
-													 ng-model="permisos_user['{{$nombre_clase}}.{{$metodo}}']">
-										</div>
-									</div>
-								@endforeach
+		                    <div class="panel-body">
+								<table class="table table-bordered table-condensed m-b-0">
+									<tbody>
+										@foreach($metodos as $metodo)
+										<tr>
+											<td>
+												{{$metodo}}
+											</td>
+											<td>
+												[[permisos_user.{{$nombre_clase}}.{{$metodo}} ]]
+												<input type="checkbox" data-render="switchery" data-theme="blue" name="{{'clases['.$nombre_clase.'.'.$metodo.']'}}"
+												 ng-model="permisos_user['{{$nombre_clase}}.{{$metodo}}']">
+											</td>
+									
+										</tr>
+										@endforeach
+									</tbody>
+                    			</table>
 		                    </div><!-- boby -->
 		                </div>
 		            </div>
