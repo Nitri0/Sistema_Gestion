@@ -8,7 +8,7 @@ use App\Dominios;
 use App\User;
 use App\Tipo;
 use App\Roles;
-use App\TipoProyecto;
+use App\TipoProyectos;
 use App\Avances;
 use App\Master;
 use App\GrupoEtapas;
@@ -67,7 +67,7 @@ class ProyectosController extends Controller {
 		$usuarios = User::all();
 		$roles = Tipo::where('id_maestro',$id_maestro)->get();
 		$grupo_etapas = GrupoEtapas::all();
-		$tipo_proyectos = TipoProyecto::all();
+		$tipo_proyectos = TipoProyectos::all();
 		return view('proyectos.create',compact('clientes', 'usuarios', 'roles','grupo_etapas','tipo_proyectos'));
 	}
 
