@@ -23,8 +23,8 @@
 		<!-- begin sidebar nav -->
 		<ul class="nav">
 			<li class="nav-header">Proyectos</li>
-			<li class="has-sub">
-				<a href="javascript:;">
+			<li class="has-sub" ng-click="proyecto_active()" ng-class="{'': !proyecto, 'active': proyecto}">
+				<a href="javascript:;" >
 				    <b class="caret pull-right"></b>
 				    <i class="fa fa-laptop"></i>
 				    <span>Pag WEB</span>
@@ -38,7 +38,7 @@
 				    <li><a href="{{ url('grupo_etapas') }}">Grupos de Etapas</a></li>
 				</ul>
 			</li>
-			<li class="has-sub">
+			<li class="has-sub" ng-click="usuario_active()" ng-class="{'': !usuario, 'active': usuario}">
 				<a href="javascript:;">
 				    <b class="caret pull-right"></b>
 				    <i class="fa fa-users"></i>
