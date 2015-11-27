@@ -78,7 +78,7 @@
 										</a>
 									</td>
 									<td>
-										<a href="{{url('/dominios/[[proyecto.id_dominio]]')}}">
+										<a href="http://[[proyecto.nombre_dominio]]" target="_blank">
 											[[proyecto.nombre_dominio | noAsignado ]]
 										</a>
 									</td>

@@ -56,13 +56,12 @@
                     </div>
 
                     <div class="panel-body">
-                    	<br>
                     	<div class="table-responsive">
                             <table class="table table-profile">
                                 <tbody>
                                     <tr>
                                         <td class="field">Nombre</td>
-                                        <td><a href="#">{{ $proyecto->nombre_proyecto }}</a></td>
+                                        <td>{{ $proyecto->nombre_proyecto }}</td>
                                     </tr>
                                     <tr class="divider">
                                         <td colspan="2"></td>
@@ -73,11 +72,11 @@
                                     </tr>
                                     <tr class="highlight">
                                         <td class="field">Etapa actual de proyecto</td>
-                                        <td><a href="#">{{ $proyecto->getEstatus()}}</a></td>
+                                        <td>{{ $proyecto->getEstatus()}}</td>
                                     </tr>
                                     <tr>
                                         <td class="field">Dominio</td>
-                                        <td><a href="http://{{ $proyecto->getNombreDominio() }}" target="_blank" class="label label-info" href="#">{{ $proyecto->getNombreDominio() }}</a></td>
+                                        <td><a href="http://{{ $proyecto->getNombreDominio() }}" target="_blank" class="label label-info size-label" href="#">{{ $proyecto->getNombreDominio() }}</a></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -101,11 +100,11 @@
                                 <tbody>
                                     <tr>
                                         <td class="field">Nombre</td>
-                                        <td><a href="#">{{ $proyecto->getCliente()->nombre_cliente }}</a></td>
+                                        <td>{{ $proyecto->getCliente()->nombre_cliente }}</td>
                                     </tr>
                                      <tr class="highlight">
                                         <td class="field">Persona Contacto</td>
-                                        <td><a href="#">{{ $proyecto->getCliente()->persona_contacto_cliente}}</a></td>
+                                        <td>{{ $proyecto->getCliente()->persona_contacto_cliente}}</td>
                                     </tr>
                                     <tr>
                                         <td class="field">Telefono 1</td>
@@ -120,7 +119,7 @@
                                     </tr>
                                     <tr>
                                         <td class="field">Correo Electronico</td>
-                                        <td><a href="email:{{ $proyecto->getCliente()->email_cliente}}" class="label label-danger">{{ $proyecto->getCliente()->email_cliente}}</a></td>
+                                        <td><a href="email:{{ $proyecto->getCliente()->email_cliente}}" class="label label-danger size-label">{{ $proyecto->getCliente()->email_cliente}}</a></td>
                                     </tr>
                                 </tbody>
                             </table>

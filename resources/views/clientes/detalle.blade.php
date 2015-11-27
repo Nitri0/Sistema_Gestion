@@ -44,7 +44,7 @@
                                 <tbody>
                                     <tr>
                                         <td class="field">Nombre</td>
-                                        <td><a>{{ $cliente->nombre_cliente }}</a></td>
+                                        <td style="color:#00acac;">{{ $cliente->nombre_cliente }}</td>
                                     </tr>
                                     <tr class="divider">
                                         <td colspan="2"></td>
@@ -55,7 +55,7 @@
                                     </tr>
                                     <tr class="highlight">
                                         <td class="field">Email</td>
-                                        <td><span class="label label-danger">{{ $cliente->email_cliente}}</span></td>
+                                        <td><span class="label label-danger size-label">{{ $cliente->email_cliente}}</span></td>
                                     </tr>
                                     <tr class="highlight">
                                         <td class="field">Telefono</td>
@@ -66,12 +66,12 @@
                                         <td><i class="fa fa-mobile fa-lg m-r-5"></i> {{ $cliente->telefono_2_cliente}}</td>
                                     </tr>
                                     <tr class="highlight">
-                                        <td class="field">rif/ci</td>
-                                        <td><span class="label label-success">{{ $cliente->ci_rif_cliente}} </span></td>
+                                        <td class="field">RIF/CI</td>
+                                        <td><span class="label label-success size-label">{{ $cliente->ci_rif_cliente}} </span></td>
                                     </tr>
                                     <tr>
                                         <td class="field">Persona de contacto</td>
-                                        <td><span class="label label-danger">{{ $cliente->persona_contacto_cliente}} </span></td>
+                                        <td><span class="label label-danger size-label">{{ $cliente->persona_contacto_cliente}} </span></td>
                                     </tr>
                                 </tbody>
                             </table>
