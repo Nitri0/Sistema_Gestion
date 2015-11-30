@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Route;
 use App\Clientes;
+use App\Empresas;
 use Session;
 use redirect;
 use Gate;

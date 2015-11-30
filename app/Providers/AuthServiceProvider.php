@@ -62,7 +62,8 @@ class AuthServiceProvider extends ServiceProvider
         });
         #_________________________________ Modulo Administrar Empresas ____________________________
         $gate->define('admin_empresas', function ($user){
-            return  $user->isSuperAdmin();
+           // return  $user->isSuperAdmin();
+            return  $user->isAdmin();
         });
     }
 }

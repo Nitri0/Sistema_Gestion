@@ -32,6 +32,7 @@
 				<ul class="sub-menu">
 				    <li><a href="{{ url('proyectos') }}">Todo los Proyectos</a></li>
 				    <li><a href="{{ url('mis-proyectos') }}">Mis Proyectos</a></li>
+				    <li><a href="{{ url('admin_empresas') }}">Empresas [FALTA ESTILO]</a></li>
 				    <li><a href="{{ url('proyectos-finalizados') }}">Proyectos Finalizados</a></li>
 				    <li><a href="{{ url('dominios') }}">Dominios</a></li>
 				    <li><a href="{{ url('clientes') }}">Clientes</a></li>

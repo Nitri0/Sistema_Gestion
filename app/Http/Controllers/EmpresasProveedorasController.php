@@ -4,6 +4,7 @@ use App\Http\Requests;
 use Illuminate\Routing\Route;
 use App\Http\Controllers\Controller;
 use App\EmpresasProveedoras;
+use App\Empresas;
 use Illuminate\Http\Request;
 use Session;
 use Gate;
