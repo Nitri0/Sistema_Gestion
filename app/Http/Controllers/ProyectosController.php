@@ -163,7 +163,7 @@ class ProyectosController extends Controller {
 	}
 
 	public function roles(){
-		return view('user.rol');
+		return view('mis_proyectos.rol');
 	}
 
 	public function postRoles(){
