@@ -245,7 +245,7 @@
 								<div class="form-group">
 	                                <label class="col-md-4 control-label ng-binding">Integrante</label>
 	                                <div class="col-md-8">
-	                                    <select class="form-control" name="id_usuario">
+	                                    <select class="form-control js-example-data-array" name="id_usuario">
 	                                        <option value="">Seleccione un Usuario</option>
 	                                        @foreach($usuarios as $usuario)
 	                                        	<option class="option" value="{{$usuario->id_usuario}}">
@@ -259,7 +259,7 @@
 	                            <div class="form-group">
 	                                <label class="col-md-4 control-label ng-binding">Rol que cumplirá</label>
 	                                <div class="col-md-8">
-	                                    <select class="form-control" name="id_tipo_rol">
+	                                    <select class="form-control js-example-data-array" name="id_tipo_rol">
 	                                        <option value="">Seleccione un Usuario</option>
 	                                        @foreach($roles as $rol)
 												<option value="{{$rol->id_tipo}}">
