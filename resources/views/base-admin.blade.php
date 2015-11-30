@@ -22,6 +22,9 @@
 	<link href='//fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>
 	<link rel="shortcut icon" href="favicon.ico" />
 	<link href="{{ asset('/bower_components/font-awesome/css/font-awesome.css') }}" rel="stylesheet" type="text/css">
+
+	<!-- select2 -->
+	<link href="{{ asset('/bower_components/select2/dist/css/select2.min.css') }}" rel="stylesheet" />
 	
 	<!-- Thema CSS -->
 	<link href="{{ asset('/thema/admin/html/assets/plugins/jquery-ui/themes/base/minified/jquery-ui.min.css') }}" rel="stylesheet" />
@@ -51,8 +54,6 @@
 	
 	@yield('css')
 
-	<!-- select2 -->
-	<link href="{{ asset('/bower_components/select2/dist/css/select2.min.css') }}" rel="stylesheet" />
 	<link href="{{ asset('/css/style.css') }}" rel="stylesheet">
 
   	<!-- ui-select files -->
@@ -91,6 +92,7 @@
     <script src="{{ asset('/js/service.js') }}"></script>
     <script src="{{ asset('/js/directives.js') }}"></script>
     <script src="{{ asset('/js/filters.js') }}"></script>
+    <script src="{{ asset('/js/script.js') }}"></script>
 
     <!-- angular modules -->
     <script src="{{ asset('/bower_components/ngImgCrop/compile/minified/ng-img-crop.js') }}"></script>

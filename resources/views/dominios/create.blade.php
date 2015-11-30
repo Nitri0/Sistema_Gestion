@@ -55,7 +55,7 @@
 		                    	<div class="form-group">
 		                            <label class="col-md-4 control-label">Proyecto</label>
 		                            <div class="col-md-5">
-							            <select class="form-control" name="id_proyecto" required>
+							            <select class="form-control js-example-data-array" name="id_proyecto" required>
 											<option class="option" value="">Seleccione un proyecto</option>
 											@foreach($proyectos as $key)
 												<option class="option" value="{{$key->id_proyecto}}">
@@ -70,7 +70,7 @@
 		                        <div class="form-group">
 		                            <label class="col-md-4 control-label">Empresa proveedora</label>
 		                            <div class="col-md-5">
-		                                <select class="form-control" name="id_empresa_proveedora">
+		                                <select class="form-control js-example-data-array" name="id_empresa_proveedora">
 											<option class="option" value="">Seleccione una empresa proveedora</option>
 											@foreach($empresas_proveedoras as $key)
 												<option class="option" value="{{$key->id_empresa_proveedora}}"
@@ -93,7 +93,7 @@
 		                        <div class="form-group">
 		                            <label class="col-md-4 control-label">Espacio de disco asignado</label>
 		                            <div class="col-md-5">
-		                             	<select class="form-control" name="espacio_asignado_dominio" ng-model="dominio.espacio_asignado_dominio">
+		                             	<select class="form-control js-example-data-array" name="espacio_asignado_dominio" ng-model="dominio.espacio_asignado_dominio">
 											<option class="option" value="">Seleccione un tamaño</option>
 											@foreach($tamanos as $key=> $value)
 												<option class="option" value="{{$key}}">{{$value}}</option>

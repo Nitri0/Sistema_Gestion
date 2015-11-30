@@ -86,7 +86,7 @@
                             	<div class="form-group">
 	                                <label class="col-md-4 control-label">Tipo de Usuario</label>
 	                                <div class="col-md-8">
-										<select class="form-control"  name="id_permisologia">
+										<select class="form-control js-example-data-array"  name="id_permisologia">
 											@foreach($tipos_usuario as $nombre=>$tipo)
 												<option class="option" value="{{$tipo}}" 
 													@if($usuario && $tipo == $usuario->id_permisologia)

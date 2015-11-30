@@ -44,7 +44,7 @@
 								<div class="form-group">
 	                                <label class="col-md-4 control-label">Cliente</label>
 	                                <div class="col-md-5">
-	                                    <select class="form-control" ng-model="proyecto.id_cliente" name="id_cliente">
+	                                    <select class="form-control js-example-data-array" ng-model="proyecto.id_cliente" name="id_cliente">
 	                                        <option value="">Seleccione un cliente</option>
 	                                        @foreach($clientes as $cliente)
 												<option value="{{$cliente->id_cliente}}">
@@ -58,7 +58,7 @@
 	                            <div class="form-group">
 	                                <label class="col-md-4 control-label">Grupo de etapas (sprints/pasos/etapas)</label>
 	                                <div class="col-md-5">
-	                                    <select class="form-control" ng-model="proyecto.id_grupo_etapas" name="id_grupo_etapas" required>
+	                                    <select class="form-control js-example-data-array" ng-model="proyecto.id_grupo_etapas" name="id_grupo_etapas" required>
 	                                        <option value="">Seleccione un grupo</option>
 	                                        @foreach($grupo_etapas as $key)
 												<option value="{{$key->id_grupo_etapas}}">
@@ -100,7 +100,7 @@
 											<div class="form-group">
 				                                <label class="col-md-4 control-label">Integrante [[$index+1]]</label>
 				                                <div class="col-md-8">
-				                                    <select class="form-control" name="id_usuario[[$index]]">
+				                                    <select class="form-control js-example-data-array" name="id_usuario[[$index]]">
 				                                        <option value="">Seleccione un Usuario</option>
 				                                        @foreach($usuarios as $usuario)
 															<option value="{{$usuario->id_usuario}}">
@@ -113,7 +113,7 @@
 				                            <div class="form-group">
 				                                <label class="col-md-4 control-label">Rol que cumplirá</label>
 				                                <div class="col-md-8">
-				                                    <select class="form-control" name="id_rol[[$index]]">
+				                                    <select class="form-control js-example-data-array" name="id_rol[[$index]]">
 				                                        <option value="">Seleccione un Rol</option>
 				                                        @foreach($roles as $rol)
 															<option value="{{$rol->id_tipo}}">
