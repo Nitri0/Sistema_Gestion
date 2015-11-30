@@ -36,6 +36,7 @@
 				    <li><a href="{{ url('dominios') }}">Dominios</a></li>
 				    <li><a href="{{ url('clientes') }}">Clientes</a></li>
 				    <li><a href="{{ url('grupo_etapas') }}">Grupos de Etapas</a></li>
+				    <li><a href="{{ url('tipo_proyectos') }}">Tipo de Proyectos</a></li>
 				</ul>
 			</li>
 			<li class="has-sub"><!-- ng-click="usuario_active()" ng-class="{'': !usuario, 'active': usuario}" -->
