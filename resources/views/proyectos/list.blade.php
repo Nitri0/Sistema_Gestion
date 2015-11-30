@@ -54,6 +54,9 @@
 						        	<a href="#" ng-click="changeSort('nombre_proyecto')">Proyecto</a>
 						        </th>
 						        <th>
+						        	<a href="#" ng-click="changeSort('nombre_tipo_proyecto')">Tipo de proyecto</a>
+						        </th>						        
+						        <th>
 						        	<a href="#" ng-click="changeSort('nombre_cliente')">Cliente</a>
 						        </th>
 						        <th>
@@ -72,6 +75,7 @@
 						    	<tr ng-repeat="proyecto in proyectos | filter:opciones.buscador | orderBy:sort:reverse  track by $index">
 									<td>[[$index+1]]</td>
 									<td>[[proyecto.nombre_proyecto]]</td>
+									<td>[[proyecto.nombre_tipo_proyecto]]</td>
 									<td >
 										<a href="{{url('/clientes/[[proyecto.id_cliente]]')}}">
 											[[proyecto.nombre_cliente | noAsignado]]

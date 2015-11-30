@@ -102,7 +102,7 @@
                                 <div class="form-group" ng-if="check==1">
 									<label class="control-label col-md-4">Plantillas</label>
 									<div class="col-md-5">
-									    <select class="form-control">
+									    <select class="form-control" ng-model="id_plantilla">
                                             <option value="">Seleccione una plantilla</option>
                                             @foreach($plantillas as $plantilla)
 													<option value="{{$plantilla->id_plantilla}}">

@@ -39,6 +39,14 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
 		return false;
 	}
 
+	public function isSuperAdmin(){
+		$permisologia = Permisologia::find($this->id_permisologia);
+		if ($permisologia){
+			return $permisologia->identificador_permisologia == 'SuperAdmin';
+		}
+		return false;
+	}
+
 	public function isSocio(){
 		$permisologia = Permisologia::find($this->id_permisologia);
 		if ($permisologia){

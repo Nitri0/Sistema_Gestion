@@ -41,6 +41,18 @@
 
 	                        <div class="well">	
 								
+								<br><br>
+								<div class="from-group">
+									<label for="">Tipo de Proyecto</label>
+									<select class="form-control" ng-model="proyecto.id_tipo_proyecto" name="id_tipo_proyecto">
+										<option class="option" value="">Seleccione un tipo de proyecto</option>
+										@foreach($tipo_proyectos as $tipo_proyecto)
+											<option class="option" value="{{$tipo_proyecto->id_tipo_proyecto}}">
+												{{ $tipo_proyecto->nombre_tipo_proyecto }}
+											</option>
+										@endforeach
+									</select>
+								</div>
 								<div class="form-group">
 	                                <label class="col-md-4 control-label">Cliente</label>
 	                                <div class="col-md-5">

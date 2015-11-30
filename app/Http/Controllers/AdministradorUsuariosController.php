@@ -31,12 +31,14 @@ class AdministradorUsuariosController extends Controller
     }
 
     public function metodosClases(Route $route){
-        $controladores = ['\App\Http\Controllers\ClientesController'            =>'clientes',
-                          '\App\Http\Controllers\DominiosController'            =>'dominios',
-                          '\App\Http\Controllers\EmpresasProveedorasController' =>'empresas_proveedoras',
-                          '\App\Http\Controllers\EtapasController'              =>'grupo_etapas',
-                          '\App\Http\Controllers\PlantillasController'          =>'plantillas',
-                          '\App\Http\Controllers\ProyectosController'           =>'proyectos'];
+        $controladores = ['\App\Http\Controllers\ClientesController'                =>'clientes',
+                          '\App\Http\Controllers\DominiosController'                =>'dominios',
+                          '\App\Http\Controllers\EmpresasProveedorasController'     =>'empresas_proveedoras',
+                          '\App\Http\Controllers\EtapasController'                  =>'grupo_etapas',
+                          '\App\Http\Controllers\PlantillasController'              =>'plantillas',
+                          '\App\Http\Controllers\ProyectosController'               =>'proyectos',
+                          '\App\Http\Controllers\AdministradorEmpresasController'   =>'admin_empresas',
+                          '\App\Http\Controllers\TipoProyectoController'            =>'tipo_proyectos'];
 
         $this->tipos_usuario = [
                                 'Trabajador'    =>1,
