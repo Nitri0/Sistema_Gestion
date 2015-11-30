@@ -60,5 +60,9 @@ class AuthServiceProvider extends ServiceProvider
         $gate->define('tipo_proyectos', function ($user){
             return  $user->isAdmin();
         });
+        #_________________________________ Modulo Administrar Empresas ____________________________
+        $gate->define('admin_empresas', function ($user){
+            return  $user->isSuperAdmin();
+        });
     }
 }

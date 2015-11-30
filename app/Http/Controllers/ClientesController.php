@@ -71,10 +71,4 @@ class ClientesController extends Controller {
 		Clientes::find($id)->delete();
 		return redirect("/clientes");
 	}
-
-	public function prueba($id){
-		Clientes::find($id)->delete();
-		return redirect("/clientes");
-	}
-
 }

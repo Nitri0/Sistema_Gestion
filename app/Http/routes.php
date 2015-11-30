@@ -85,13 +85,18 @@ $router->group(['middleware' => 'auth'], function() {
 
 #____________________________________ TIPO PROYECTO _____________________________________	
 					#____________________ cruds ____________________________	
-	Route::resource('tipo_proyectos', 'TipoProyectoController');
+	Route::resource('tipo-proyectos', 'TipoProyectoController');
 
 #________________________________ ADMINISTRADOR DE USUARIOS _____________________________________
 					#____________________ cruds ____________________________	
 	Route::resource('admin_usuarios', 'AdministradorUsuariosController');
 	Route::get('admin_usuarios/{id}/permisos',  ['as'  => 'admin_usuario.editPermisos',
-												 'uses'=>'AdministradorUsuariosController@editPermisos']);
+												'uses'=>'AdministradorUsuariosController@editPermisos']);
+
+#________________________________ ADMINISTRADOR DE EMPRESAS _____________________________________
+					#____________________ cruds ____________________________	
+	Route::resource('admin_empresas', 'AdministradorEmpresasController');
+												
 
 });
 
