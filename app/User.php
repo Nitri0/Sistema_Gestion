@@ -39,7 +39,6 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
 	}
 
 
-
 	public function getIdEmpresa(){
 		//busqueda si es un usuario Registrado por un administrador (no el usuario principal de la empresa)
 		$relacion = MMEmpresaUsuarios::where('id_usuario',$this->id_usuario)->first();
@@ -58,11 +57,11 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
 		$permisologia = Permisologia::find($this->id_permisologia);
 		if ($permisologia){
 			return $permisologia->id_permisologia == 2;
-
-	public function isSuperAdmin(){
 		}
 		return false;
 	}
+
+	public function isSuperAdmin(){
 		$permisologia = Permisologia::find($this->id_permisologia);
 		if ($permisologia){
 			return $permisologia->id_permisologia == 5;
