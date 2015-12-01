@@ -8,6 +8,7 @@ use App\Clientes;
 use Session;
 use redirect;
 use Gate;
+use Auth;
 
 
 class ClientesController extends Controller {
@@ -38,7 +39,10 @@ class ClientesController extends Controller {
 	}
 
 	public function index(){
-		$clientes = Clientes::orderBy('id_cliente', 'desc')->paginate(10);
+		//dd(Auth::user()->getIdEmpresa());
+		$clientes = Clientes::where('id_empresa', Auth::user()->getIdEmpresa())
+								->orderBy('id_cliente', 'desc')
+								->paginate(10);
 		return view('clientes.list', compact('clientes'));
 	}
 
@@ -48,6 +52,8 @@ class ClientesController extends Controller {
 	}
 
 	public function store(Request $request){
+		$request['id_usuario'] = Auth::user()->id_usuario;
+		$request['id_empresa'] = Auth::user()->getIdEmpresa();
 		Clientes::create($request->all());
 		Session::flash('mensaje', 'Cliente creado exitosamente');
 		return redirect('/clientes');
@@ -62,6 +68,7 @@ class ClientesController extends Controller {
 	}
 
 	public function update($id, Request $request){
+		$request['id_usuario'] = Auth::user()->id_usuario;
 		$cliente = Clientes::find($id)->update($request->all());
 		Session::flash('mensaje', 'Cliente editado exitosamente');
 		return redirect("/clientes");

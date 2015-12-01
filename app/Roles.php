@@ -10,7 +10,8 @@ class Roles extends Model {
 	protected $primaryKey = "id_rol_usuario";
 	protected $fillable = array('id_usuario',
 								'id_proyecto',
-								'id_tipo_rol');
+								'id_tipo_rol',
+								'id_empresa');
 	public $timestamps = false;
 
 

@@ -8,6 +8,7 @@ use App\Empresas;
 use Illuminate\Http\Request;
 use Session;
 use Gate;
+use Auth;
 
 class EmpresasProveedorasController extends Controller {
 
@@ -39,7 +40,9 @@ class EmpresasProveedorasController extends Controller {
 
 	#______________________________ Metodos _________________________________
 	public function index(){
-		$empresas_proveedoras = EmpresasProveedoras::orderBy('id_empresa_proveedora', 'desc')->paginate(3);;
+		$empresas_proveedoras = EmpresasProveedoras::where('id_empresa',Auth::user()->getIdEmpresa() )
+													->orderBy('id_empresa_proveedora', 'desc')
+													->paginate(10);
 		return view('empresas_proveedoras.list', compact('empresas_proveedoras'));
 	}
 
@@ -49,19 +52,31 @@ class EmpresasProveedorasController extends Controller {
 	}
 
 	public function store(Request $request){
+		$request['id_usuario'] = Auth::user()->id_usuario;
+		$request['id_empresa'] = Auth::user()->getIdEmpresa();
 		$empresa_proveedora = EmpresasProveedoras::create($request->all());
 		Session::flash('mensaje', 'Empresa proveedora creada exitosamente');
 		return redirect('/dominios/create');
 	}
 
 	public function show($id){
-		$empresa_proveedora = EmpresasProveedoras::find($id);
-		return view('empresas_proveedoras.detalle', compact('empresa_proveedora'));
+		$empresa_proveedora = EmpresasProveedoras::where('id_empresa_proveedora',$id)
+												 ->where('id_empresa',Auth::user()->getIdEmpresa())->first();
+		if($empresas_proveedoras){
+			return view('empresas_proveedoras.detalle', compact('empresa_proveedora'));
+		}
+		Session::flash('mensaje', 'No tiene permisos para ver ese registro');
+		return redirect('/empresas_proveedoras');		
 	}
 
 	public function edit($id){
-		$empresa_proveedora = EmpresasProveedoras::find($id);
-		return view('empresas_proveedoras.create', compact('empresa_proveedora'));
+		$empresa_proveedora = EmpresasProveedoras::where('id_empresa_proveedora',$id)
+												 ->where('id_empresa',Auth::user()->getIdEmpresa())->first();
+		if($empresas_proveedoras){
+			return view('empresas_proveedoras.create', compact('empresa_proveedora'));
+		}
+		Session::flash('mensaje', 'No tiene permisos para ver ese registro');
+		return redirect('/empresas_proveedoras');
 	}
 
 	// public function update($id){

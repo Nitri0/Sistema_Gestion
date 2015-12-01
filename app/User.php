@@ -41,12 +41,12 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
 
 	public function getIdEmpresa(){
 		//busqueda si es un usuario Registrado por un administrador (no el usuario principal de la empresa)
-		$relacion = MMEmpresaUsuarios::where('id_usuario',$this->id_usuario)->first();
+		$relacion = MMEmpresasUsuarios::where('id_usuario',$this->id_usuario)->first();
 		if ($relacion){
 			return $relacion->id_empresa;
 		};
-		//busqueda si es un administrador
-		$empresa = Empresa::where('id_usuario',$this->id_usuario)->first();
+		//busqueda si es el administrador de la cuenta
+		$empresa = Empresas::where('id_usuario',$this->id_usuario)->first();
 		if ($empresa){
 			return $empresa->id_empresa;
 		}
@@ -76,11 +76,6 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
 		}
 		return false;
 	}
-	
-	public function getSocioExcepcions(){
-		return Excepciones::where('id_usuario', $this->id_usuario)->get()->pluck('modulo_excepcion')->toArray();
-	}
-
 
 	public function isTrabajador(){
 		$permisologia = Permisologia::find($this->id_permisologia);
@@ -89,4 +84,26 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
 		}
 		return false;
 	}
+	
+
+	public function validacionExcepciones($method){
+		$excepciones = Excepciones::where('id_usuario', $this->id_usuario)
+								->where('id_empresa', $this->getIdEmpresa())
+								->where('modulo_excepcion',$method)
+								->first();
+
+		if ($excepciones){
+			return true;
+		}
+		return false;
+	 }
+	// public function validacionExcepciones($method){
+	// 	Excepciones::where('id_usuario', $this->id_usuario)
+	// 					->where('id_empresa', $this->getIdEmpresa())
+	// 					->where('modulo_excepcion',$method)
+	// 					->fi
+	// 				->get()->pluck('modulo_excepcion')->toArray();
+	// 	return $user->getIdEmpresa() == 
+	// }
+
 }

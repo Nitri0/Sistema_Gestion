@@ -10,6 +10,7 @@ use Session;
 use Illuminate\Routing\Route;
 use Illuminate\Http\Request;
 use Gate;
+use Auth;
 
 class TipoProyectoController extends Controller {
 
@@ -38,7 +39,8 @@ class TipoProyectoController extends Controller {
 	}
 
 	public function index(){
-		$tipo_proyectos = TipoProyectos::paginate(10);
+		$tipo_proyectos = TipoProyectos::where('id_empresa', Auth::user()->getIdEmpresa())
+										->paginate(10);
 		return view('tipo_proyectos.list',compact('tipo_proyectos'));
 	}
 
@@ -48,6 +50,8 @@ class TipoProyectoController extends Controller {
 
 
 	public function store(Request $request){
+		$request['id_usuario'] = Auth::user()->id_usuario;
+		$request['id_empresa'] = Auth::user()->getIdEmpresa();
 		$grupoEtapas = TipoProyectos::create($request->all());
 
 		Session::flash('mensaje', 'Tipo de Proyecto creado exitosamente');

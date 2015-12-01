@@ -11,11 +11,13 @@ use App\Roles;
 use App\TipoProyectos;
 use App\Avances;
 use App\Master;
+use App\MMEmpresasUsuarios;
 use App\GrupoEtapas;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Route;
 use Session;
 use Gate;
+use Auth;
 
 class ProyectosController extends Controller {
 
@@ -51,12 +53,12 @@ class ProyectosController extends Controller {
 	#______________________________ Metodos _________________________________
 	public function index(){
 
-		$proyectos = json_encode(\DB::select('CALL p_busquedas(?,?)',array('listar_todos_proyectos','')));
+		$proyectos = json_encode(\DB::select('CALL p_busquedas(?,?,?)',array('listar_todos_proyectos','', Auth::user()->getIdEmpresa() ) ));
 		return view('proyectos.list', compact('proyectos'));
 	}
 
 	public function create(){
-		$clientes = Clientes::all();
+		$clientes = Clientes::where('id_empresa', Auth::user()->getIdEmpresa())->get();
 		
 		$maestro = Master::where('nombre_maestro','Roles')->first();
 		if (!$maestro){
@@ -64,10 +66,17 @@ class ProyectosController extends Controller {
 		}else{
 			$id_maestro = $maestro->id_maestro;
 		};
-		$usuarios = User::all();
+
+		//->get()->pluck('modulo_excepcion')->toArray();
+		$idusuarios = MMEmpresasUsuarios::where('id_empresa', Auth::user()->getIdEmpresa())
+										->get()
+										->pluck('id_usuario')
+										->toArray();
+		//dd( $idusuarios );
+		$usuarios = User::whereIn('id_usuario',$idusuarios)->get();
 		$roles = Tipo::where('id_maestro',$id_maestro)->get();
-		$grupo_etapas = GrupoEtapas::all();
-		$tipo_proyectos = TipoProyectos::all();
+		$grupo_etapas = GrupoEtapas::where('id_empresa', Auth::user()->getIdEmpresa())->get();
+		$tipo_proyectos = TipoProyectos::where('id_empresa', Auth::user()->getIdEmpresa())->get();
 		return view('proyectos.create',compact('clientes', 'usuarios', 'roles','grupo_etapas','tipo_proyectos'));
 	}
 
@@ -85,7 +94,13 @@ class ProyectosController extends Controller {
 		$maestro = Master::where('nombre_maestro','Roles')->first();
 		$proyecto = Proyectos::find($id_proyecto);
 		$etapas = GrupoEtapas::find($proyecto->id_grupo_etapas);
-		$usuarios = User::all();
+		//->get()->pluck('modulo_excepcion')->toArray();
+		$idusuarios = MMEmpresasUsuarios::where('id_empresa', Auth::user()->getIdEmpresa())
+										->get()
+										->pluck('id_usuario')
+										->toArray();
+		//dd( $idusuarios );
+		$usuarios = User::whereIn('id_usuario',$idusuarios)->get();
 		$roles = Tipo::where('id_maestro',$maestro->id_maestro)->get();
 
 		return view('proyectos.detalle',compact('proyecto','id_proyecto', 'rol', 'etapas','roles','usuarios' ));
@@ -95,6 +110,8 @@ class ProyectosController extends Controller {
 	public function store(Request $request){
 		//$request["fecha_avance"] = Carbon::now();
 		//dd($request->all());
+		$request['id_usuario'] = Auth::user()->id_usuario;
+		$request['id_empresa'] = Auth::user()->getIdEmpresa();
 		$proyecto = Proyectos::create($request->all());
 
 		$etapa = GrupoEtapas::find($proyecto->id_grupo_etapas)->getFirstEtapa();
@@ -107,7 +124,9 @@ class ProyectosController extends Controller {
 			foreach (range(0, $request->cantidad-1) as $index) {
 				Roles::create(['id_usuario' => $request['id_usuario'.$index],
 							'id_tipo_rol' => $request['id_rol'.$index],
-							'id_proyecto'=> $proyecto->id_proyecto]);
+							'id_proyecto'=> $proyecto->id_proyecto,
+							'id_empresa'=> Auth::user()->getIdEmpresa()
+							]);
 						};
 		};
 		
@@ -116,7 +135,9 @@ class ProyectosController extends Controller {
 						'id_proyecto'=>$proyecto->id_proyecto,
 						'asunto_avance'=>'Iniciando Proyecto',
 						'descripcion_avance'=>'Proyecto creado exitosamente',
+						'id_empresa'=> Auth::user()->getIdEmpresa(),
 						'id_etapa'=>$etapa->id_etapa,
+
 					]);
 		Session::flash('mensaje', 'Proyecto creado exitosamente');
 		return redirect('/proyectos');
@@ -153,12 +174,12 @@ class ProyectosController extends Controller {
 
 
 	public function indexProyectosFinalizados(){
-		$proyectos = json_encode(\DB::select('CALL p_busquedas(?,?)',array('listar_todos_proyectos_finalizados','')));
+		$proyectos = json_encode(\DB::select('CALL p_busquedas(?,?,?)',array('listar_todos_proyectos_finalizados','',Auth::user()->getIdEmpresa())));
 		return view('proyectos.list_proyectos_finalizados', compact('proyectos'));
 	}
 
 	public function indexProyectosPorIntegrantes(){
-		$proyectos = json_encode(\DB::select('CALL p_busquedas(?,?)',array('listar_todos_proyectos_finalizados','')));
+		$proyectos = json_encode(\DB::select('CALL p_busquedas(?,?,?)',array('listar_todos_proyectos_finalizados','',Auth::user()->getIdEmpresa())));
 		return view('proyectos.list_proyectos_finalizados', compact('proyectos'));
 	}
 
