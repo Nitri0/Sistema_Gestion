@@ -1,7 +1,5 @@
-@extends('base-admin')
-	@include('layouts/navbar-admin')
+@extends('layouts.base')
 
-    @include('layouts/sidebar-admin')
 
 @section('content')
 <div class="container">

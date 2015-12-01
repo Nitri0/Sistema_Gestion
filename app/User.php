@@ -24,6 +24,14 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
 	public function getPerfil(){
 		$perfil = Perfil::where('id_usuario',$this->id_usuario)->first();
 		return $perfil;
+	}	
+
+	public function fullName(){
+		$perfil = Perfil::where('id_usuario',$this->id_usuario)->first();
+		if($perfil){
+			return $perfil->fullName();
+		}
+		return $this->correo_usuario;
 	}
 
 	public function getFullName(){
@@ -31,18 +39,33 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
 	}
 
 
+
+	public function getIdEmpresa(){
+		//busqueda si es un usuario Registrado por un administrador (no el usuario principal de la empresa)
+		$relacion = MMEmpresaUsuarios::where('id_usuario',$this->id_usuario)->first();
+		if ($relacion){
+			return $relacion->id_empresa;
+		};
+		//busqueda si es un administrador
+		$empresa = Empresa::where('id_usuario',$this->id_usuario)->first();
+		if ($empresa){
+			return $empresa->id_empresa;
+		}
+
+	}
+
 	public function isAdmin(){
 		$permisologia = Permisologia::find($this->id_permisologia);
 		if ($permisologia){
-			return $permisologia->identificador_permisologia == 'admin';
+			return $permisologia->id_permisologia == 2;
+
+	public function isSuperAdmin(){
 		}
 		return false;
 	}
-
-	public function isSuperAdmin(){
 		$permisologia = Permisologia::find($this->id_permisologia);
 		if ($permisologia){
-			return $permisologia->identificador_permisologia == 'SuperAdmin';
+			return $permisologia->id_permisologia == 5;
 		}
 		return false;
 	}
@@ -50,7 +73,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
 	public function isSocio(){
 		$permisologia = Permisologia::find($this->id_permisologia);
 		if ($permisologia){
-			return $permisologia->identificador_permisologia == 'socio';
+			return $permisologia->id_permisologia == 3;
 		}
 		return false;
 	}
@@ -60,9 +83,11 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
 	}
 
 
-
-
 	public function isTrabajador(){
-		# code...
+		$permisologia = Permisologia::find($this->id_permisologia);
+		if ($permisologia){
+			return $permisologia->id_permisologia == 1;
+		}
+		return false;
 	}
 }

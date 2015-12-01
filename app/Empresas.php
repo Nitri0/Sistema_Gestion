@@ -10,9 +10,10 @@ class Empresas extends Model {
 	
 	protected $fillable = array('nombre_empresa',
 								'rif_empresa',
-								'dirccion_empresa',
+								'direccion_empresa',
 								'telefono_empresa',
-								'contacto_empresa',
+								'correo_empresa',
+								'id_usuario',
 								);
 
 

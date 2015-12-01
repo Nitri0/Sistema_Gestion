@@ -29,41 +29,41 @@ class AuthServiceProvider extends ServiceProvider
 
         #_______________________________ Modulo Proyectos ___________________________
         $gate->define('proyectos', function ($user, $method){
-            return  $user->isAdmin() || ($user->isSocio() && in_array($method,$user->getSocioExcepcions()) );
+            return $user->isSuperAdmin() || $user->isAdmin() || ($user->isSocio() && in_array($method,$user->getSocioExcepcions()) );
         });
 
         #_______________________________ Modulo Dominios ____________________________
         $gate->define('dominios', function ($user, $method){
-            return  $user->isAdmin() || ($user->isSocio() && in_array($method,$user->getSocioExcepcions()) );
+            return $user->isSuperAdmin() || $user->isAdmin() || ($user->isSocio() && in_array($method,$user->getSocioExcepcions()) );
         });        
         #_______________________________ Modulo Clientes ____________________________
         $gate->define('clientes', function ($user, $method){
-            return  $user->isAdmin() || ($user->isSocio() && in_array($method,$user->getSocioExcepcions()) );
+            return $user->isSuperAdmin() || $user->isAdmin() || ($user->isSocio() && in_array($method,$user->getSocioExcepcions()) );
         });    
         #___________________________ Modulo Empresas Proveedoras ____________________
         $gate->define('empresasProveedoras', function ($user, $method){
-            return  $user->isAdmin() || ($user->isSocio() && in_array($method,$user->getSocioExcepcions()) );
+            return $user->isSuperAdmin() || $user->isAdmin() || ($user->isSocio() && in_array($method,$user->getSocioExcepcions()) );
         });    
         #_________________________________ Modulo Etapas ____________________________
         $gate->define('etapas', function ($user, $method){
-            return  $user->isAdmin() || ($user->isSocio() && in_array($method,$user->getSocioExcepcions()) );
+            return $user->isSuperAdmin() || $user->isAdmin() || ($user->isSocio() && in_array($method,$user->getSocioExcepcions()) );
         });    
         #______________________________ Modulo Plantillas ___________________________
         $gate->define('plantillas', function ($user, $method){
-            return  $user->isAdmin() || ($user->isSocio() && in_array($method,$user->getSocioExcepcions()) );
+            return  $user->isSuperAdmin() || $user->isAdmin() || ($user->isSocio() && in_array($method,$user->getSocioExcepcions()) );
         });;    
         #_________________________________ Modulo Etapas ____________________________
         $gate->define('AdministradorUsuarios', function ($user){
-            return  $user->isAdmin();
+            return $user->isSuperAdmin() || $user->isAdmin();
         });
         #_________________________________ Modulo Tipos de Proyecto ____________________________
         $gate->define('tipo_proyectos', function ($user){
-            return  $user->isAdmin();
+            return  $user->isSuperAdmin() || $user->isAdmin();
         });
         #_________________________________ Modulo Administrar Empresas ____________________________
         $gate->define('admin_empresas', function ($user){
-           // return  $user->isSuperAdmin();
-            return  $user->isAdmin();
+            return  $user->isSuperAdmin();
+           // return  $user->isAdmin();
         });
     }
 }

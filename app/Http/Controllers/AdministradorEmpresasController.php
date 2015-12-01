@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Route;
 use App\Clientes;
 use App\Empresas;
+use App\User;
+use App\Perfil;
+use App\MMEmpresasUsuarios;
 use Session;
 use redirect;
 use Gate;
@@ -39,17 +42,34 @@ class AdministradorEmpresasController extends Controller {
 	}
 
 	public function index(){
-		$empresas = Empresas::orderBy('id_empresa', 'desc')->paginate(10);
+		$empresas = json_encode( Empresas::orderBy('id_empresa', 'desc')->get() );
 		return view('empresas.list', compact('empresas'));
 	}
 
 	public function create(){
 		$empresa = "";
-		return view('empresas.create', compact('empresa'));
+		$usuario = "";
+		return view('empresas.create', compact('empresa','usuario'));
 	}
 
 	public function store(Request $request){
-		Empresas::create($request->all());
+
+        \DB::beginTransaction();
+        try {
+			$user = User::create(['correo_usuario' => $request->correo_usuario,
+									'password' => \Hash::make($request->password),
+									'id_permisologia' => 2,
+									]);
+			Perfil::create(['id_usuario'=>$user->id_usuario]);
+			$request['id_usuario'] = $user->id_usuario;
+			$empresa = Empresas::create($request->all());
+			// MMEmpresasUsuarios::create(['id_usuario'=>$user->id_usuario,
+			// 							'id_empresa'=>$empresa->id_empresa]);
+            \DB::commit();
+        } catch (Exception $e) {
+            \DB::rollback();
+        }
+
 		Session::flash('mensaje', 'Empresa creada exitosamente');
 		return redirect('/admin_empresas');
 	}
@@ -59,12 +79,26 @@ class AdministradorEmpresasController extends Controller {
 	}
 
 	public function edit($id){
-		return view('empresas.create',['empresa'=>$this->empresa]);
+
+		$usuario = User::find($this->empresa->id_usuario);
+		//dd($this->empresa);
+		return view('empresas.create',['empresa'=>$this->empresa, 'usuario' => $usuario]);
 	}
 
 	public function update($id, Request $request){
-		Empresas::find($id)->update($request->all());
-		Session::flash('mensaje', 'Cliente editado exitosamente');
+		$empresa = Empresas::find($id);
+		$empresa->fill($request->except('_method','correo_usuario','password'));
+		$empresa->save();
+
+		$usuario = User::find($empresa->id_usuario);
+		$usuario->correo_usuario = $request->correo_usuario;
+		if ($request->password){
+
+			$usuario->password = \Hash::make($request->password);
+		}
+		$usuario->save();
+
+		Session::flash('mensaje', 'Empresa editada exitosamente');
 		return redirect("/admin_empresas");
 	}
 
