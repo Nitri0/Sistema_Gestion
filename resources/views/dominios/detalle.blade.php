@@ -27,11 +27,11 @@
 							<tbody>
 								<tr>
 									<td>Empresa Proveedora: <span class="text-success"></span></td>
-									<td><label class="label label-danger">{{ $dominio->empresaProveedora()}}</label></td>
+									<td><label class="label label-danger size-label">{{ $dominio->empresaProveedora()}}</label></td>
 								</tr>
 								<tr>
 									<td>Nombre de Dominio: <span class="text-success"></span></td>
-									<td><label class="label label-info">{{ $dominio->nombre_dominio}}</label></td>
+									<td><label class="label label-info size-label">{{ $dominio->nombre_dominio}}</label></td>
 								</tr>
 								<tr>
 									<td>Espacio Utilizado:</td>

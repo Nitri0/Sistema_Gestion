@@ -57,7 +57,7 @@
                                     </tr>
                                     <tr>
                                         <td class="field">Dominio</td>
-                                        <td><a href="http://{{ $proyecto->getNombreDominio() }}" target="_blank" class="label label-info">{{ $proyecto->getNombreDominio() }}</a></td>
+                                        <td><a href="http://{{ $proyecto->getNombreDominio() }}" target="_blank" class="label label-info size-label">{{ $proyecto->getNombreDominio() }}</a></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -95,7 +95,7 @@
                                     </tr>
                                     <tr>
                                         <td class="field">Correo Electronico</td>
-                                        <td><span class="label label-danger">{{ $proyecto->getCliente()->email_cliente}}</span></td>
+                                        <td><span class="label label-danger size-label">{{ $proyecto->getCliente()->email_cliente}}</span></td>
                                     </tr>
                                 </tbody>
                             </table>
