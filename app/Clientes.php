@@ -12,7 +12,9 @@ class Clientes extends Model {
 								'ci_rif_cliente',
 								'telefono_cliente',
 								'telefono_2_cliente',
-								'direccion_cliente');
+								'direccion_cliente',
+								'id_usuario',
+								'id_empresa');
 	public $timestamps = false;
 
 	public function getProyecto(){

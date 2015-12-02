@@ -118,7 +118,7 @@
 				                                        <option value="">Seleccione un Usuario</option>
 				                                        @foreach($usuarios as $usuario)
 															<option value="{{$usuario->id_usuario}}">
-																{{ $usuario->getFullName()}}
+																{{ $usuario->fullName()}}
 															</option>
 														@endforeach
 				                                    </select>

@@ -10,7 +10,7 @@ class Excepciones extends Model
 	protected $connection = 'permisologia';
 	protected $table = 't_excepciones';
 	protected $primaryKey = "id_excepcion";
-	protected $fillable = ['modulo_excepcion', 'id_usuario'];
+	protected $fillable = ['modulo_excepcion', 'id_usuario','id_empresa'];
 	public $timestamps = false;
 
 }

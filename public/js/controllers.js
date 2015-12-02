@@ -107,3 +107,10 @@ coreApp.controller('GrupoEtapasController', function ($scope, $log) {
 		$scope.cantidad = $scope.etapas.length;
 	};
 });
+
+coreApp.controller('EmpresaController', function ($scope, $log) {
+	console.log("EmpresaController");
+
+	
+});
+

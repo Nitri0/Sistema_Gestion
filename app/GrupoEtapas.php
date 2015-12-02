@@ -11,6 +11,8 @@ class GrupoEtapas extends Model {
 	
 	protected $fillable = array('nombre_grupo_etapas',
 								'descripcion_grupo_etapas',
+								'id_usuario',
+								'id_empresa',
 								'cantidad_etapas',
 								);
 

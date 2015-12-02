@@ -1,11 +1,14 @@
 @extends('layouts.base')
 
+
+    
 @section('content')
 	<div class="container" ng-controller="EmpresaController">
-
 		@if($empresa)
 			<h2>Editar Empresa</h2>
-			<div ng-init="model={{ $empresa }}"></div>
+			<div ng-init="model={{$empresa}}"></div>
+			<div ng-init="usuario={{$usuario}}"></div>
+			
 			<form action="{{ url('admin_empresas/'.$empresa->id_empresa) }}" method="POST">
 			<input type="hidden" name="_method" value="PUT">
 		@else
@@ -26,7 +29,7 @@
 			<br>
 			<div class="from-group">
 				<label for="">Correo de administrador</label>
-				<input type="text" class="form-control" ng-model="model.email_cliente" name="email_cliente">
+				<input type="text" class="form-control" ng-model="model.correo_empresa" name="correo_empresa">
 			</div>			
 			<br>
 			<div class="from-group">
@@ -45,12 +48,12 @@
 			<br>
 			<div class="from-group">
 				<label for="">Correo de usuario</label>
-				<input type="textarea" class="form-control" ng-model="model.correo_usuario" name="correo_usuario">
+				<input type="textarea" class="form-control" ng-model="usuario.correo_usuario" name="correo_usuario">
 			</div>
 			<br>
 			<div class="from-group">
-				<label for="">Correo de usuario</label>
-				<input type="textarea" class="form-control" ng-model="model.password" name="password">
+				<label for="">contraseña</label>
+				<input type="textarea" class="form-control" ng-model="usuario.password" name="password">
 			</div>
 
 			<button type="submit">
@@ -62,4 +65,4 @@
 			</button>
 		</form>
 	</div>
-@stop
+@endsection

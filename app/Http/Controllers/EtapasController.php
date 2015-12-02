@@ -8,6 +8,7 @@ use Session;
 use Illuminate\Routing\Route;
 use Illuminate\Http\Request;
 use Gate;
+use Auth;
 
 class EtapasController extends Controller {
 
@@ -36,7 +37,8 @@ class EtapasController extends Controller {
 	}
 
 	public function index(){
-		$grupo_etapas = GrupoEtapas::paginate(10);
+		$grupo_etapas = GrupoEtapas::where('id_empresa',Auth::user()->getIdEmpresa())
+										->paginate(10);
 		return view('etapas.list',compact('grupo_etapas'));
 	}
 
@@ -46,6 +48,8 @@ class EtapasController extends Controller {
 
 
 	public function store(Request $request){
+		$request['id_usuario'] = Auth::user()->id_usuario;
+		$request['id_empresa'] = Auth::user()->getIdEmpresa();
 		$grupoEtapas = GrupoEtapas::create($request->all());
 
 		if ($request->cantidad_etapas>0){
@@ -63,8 +67,14 @@ class EtapasController extends Controller {
 
 
 	public function show($id){
-		$grupo_etapas = GrupoEtapas::find($id);
-		return view('etapas.detalle', compact('grupo_etapas'));
+		$grupo_etapas = GrupoEtapas::where('id_grupo_etapas',$id)
+									->where('id_empresa', Auth::user()->getIdEmpresa())
+									->first();
+		if ($grupo_etapas){
+			return view('etapas.detalle', compact('grupo_etapas'));
+		}
+		Session::flash('mensaje-error', 'No tiene permisos para ver ese registro');
+		return view('/grupo_etapas', compact('grupo_etapas'));
 	}
 
 

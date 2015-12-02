@@ -1,5 +1,6 @@
 @extends('layouts.base')
 
+
 @section('content')
 <div class="container">
 	nombre: {{ $empresa->nombre_empresa }} <br>

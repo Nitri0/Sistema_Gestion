@@ -8,8 +8,10 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\User;
 use App\Perfil;
+use App\MMEmpresasUsuarios;
 use App\Excepciones;
 use Gate;
+use Auth;
 use Session;
 
 
@@ -79,7 +81,14 @@ class AdministradorUsuariosController extends Controller
 
 
     public function index(){
-        $usuarios = User::all();
+        //->get()->pluck('modulo_excepcion')->toArray();
+        $idusuarios = MMEmpresasUsuarios::where('id_empresa', Auth::user()->getIdEmpresa())
+                                            ->get()
+                                            ->pluck('id_usuario')
+                                            ->toArray();
+        //dd( $idusuarios );
+        $usuarios = User::whereIn('id_usuario',$idusuarios)->get();
+        
         return view('administrador_usuarios.list',compact('usuarios'));
     }
 
@@ -104,17 +113,24 @@ class AdministradorUsuariosController extends Controller
         };
 
         $request['password'] = \Hash::make($request['password']);
-        $user = User::create($request->all());    
+        $user = User::create($request->all());
 
         $request['id_usuario'] = $user->id_usuario;
         $perfil = Perfil::create($request->all());
         if ($request['clases']){
             foreach ($request['clases'] as $permiso=>$value ) {
                 Excepciones::firstOrCreate([
-                                    'id_usuario'=>$user->id_usuario,
+                                    'id_usuario'=> $user->id_usuario,
+                                    'id_empresa'=> Auth::user()->getIdEmpresa(),
                                     'modulo_excepcion'=>$permiso,]);
             }
         }
+
+        MMEmpresasUsuarios::firstOrCreate([
+                                'id_usuario' => $user->id_usuario,
+                                'id_empresa' => Auth::user()->getIdEmpresa()
+                                ]);
+
         //dd($permisos = Excepciones::where('id_usuario', $user->id_usuario)->get());
         Session::flash("mensaje-success","Usuario creado exitosamente");
         return redirect("/admin_usuarios");
@@ -149,6 +165,11 @@ class AdministradorUsuariosController extends Controller
         }else{
             $user->fill($request->except('password'));
         };
+
+        MMEmpresasUsuarios::firstOrCreate([
+                                        'id_usuario' => $user->id_usuario,
+                                        'id_empresa' => Auth::user()->getIdEmpresa()
+                                        ]);
         
         $user->save();
         $perfil = Perfil::where('id_usuario',$user->id_usuario)->get()->first();
@@ -160,6 +181,7 @@ class AdministradorUsuariosController extends Controller
             foreach ($request['clases'] as $permiso=>$value ) {
                 Excepciones::firstOrCreate([
                                     'id_usuario'=>$user->id_usuario,
+                                    'id_empresa'=> Auth::user()->getIdEmpresa(),
                                     'modulo_excepcion'=>$permiso,]);
             }
         };
