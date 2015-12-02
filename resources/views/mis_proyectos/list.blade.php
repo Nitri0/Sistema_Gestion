@@ -17,8 +17,6 @@
 	</script>
 @endsection
 
-
-
 @section('content')
 
 <div id="page-container" class="fade page-sidebar-fixed page-header-fixed" ng-controller="ProyectoController">
@@ -67,46 +65,46 @@
 						<div ng-init = "proyectos = {{$proyectos}}"></div>
                     	
                     	<table id="data-table" class="table table-striped table-bordered nowrap" width="100%">
-                                <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>Proyecto</th>
-                                        <th>Platform(s)</th>
-                                        <th>Cliente</th>
-                                        <th>Dominio</th>
-                                        <th>Ultimo avance</th>
-                                        <th>Rol</th>
-                                        <th>Estatus</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr class="odd gradeX" ng-repeat="proyecto in proyectos| filter:opciones.buscador | orderBy:sort:reverse  track by $index">
-                                        <td>[[$index+1]]</td>
-                                        <td>[[proyecto.nombre_proyecto]]</td>
-                                        <td>
-                                        	<a href="{{url('/clientes/[[proyecto.id_cliente]]')}}">
-												[[proyecto.nombre_cliente | noAsignado]]
-											</a>
-										</td>
-                                        <td>
-                                        	<a href="{{url('/dominios/[[proyecto.id_dominio]]')}}">
-												[[proyecto.nombre_dominio | noAsignado ]]
-											</a>
-                                        </td>
-                                        <td>[[proyecto.fecha_creacion_avance | DateForHumans]]</td>
-                                        <td>[[proyecto.nombre_tipo]]</td>
-                                        <td>[[proyecto.nombre_etapa]]</td>
-                                        <td>
-                                        	<div class="row">
-							        			<div class="box-button">
-									        		<a class="btn btn-sm btn-info btn-custon" href="{{ url( '/mis-proyectos/[[proyecto.id_proyecto]]' ) }}" data-toggle="tooltip" data-title="Detalle"><i class="fa fa-list"></i></a>
-									        		<a class="btn btn-sm btn-success btn-custon" href="{{ url( '/mis-proyectos/avances/[[proyecto.id_proyecto]]/create' ) }}" data-toggle="tooltip" data-title="Crear Avance"><i class="fa fa-line-chart"></i></a>
-							        			</div>
-							        		</div>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Proyecto</th>
+                                    <th>Platform(s)</th>
+                                    <th>Cliente</th>
+                                    <th>Dominio</th>
+                                    <th>Ultimo avance</th>
+                                    <th>Rol</th>
+                                    <th>Estatus</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="odd gradeX" ng-repeat="proyecto in proyectos| filter:opciones.buscador | orderBy:sort:reverse  track by $index">
+                                    <td>[[$index+1]]</td>
+                                    <td>[[proyecto.nombre_proyecto]]</td>
+                                    <td>
+                                    	<a href="{{url('/clientes/[[proyecto.id_cliente]]')}}">
+											[[proyecto.nombre_cliente | noAsignado]]
+										</a>
+									</td>
+                                    <td>
+                                    	<a href="{{url('/dominios/[[proyecto.id_dominio]]')}}">
+											[[proyecto.nombre_dominio | noAsignado ]]
+										</a>
+                                    </td>
+                                    <td>[[proyecto.fecha_creacion_avance | DateForHumans]]</td>
+                                    <td>[[proyecto.nombre_tipo]]</td>
+                                    <td>[[proyecto.nombre_etapa]]</td>
+                                    <td>
+                                    	<div class="row">
+						        			<div class="box-button">
+								        		<a class="btn btn-sm btn-info btn-custon" href="{{ url( '/mis-proyectos/[[proyecto.id_proyecto]]' ) }}" data-toggle="tooltip" data-title="Detalle"><i class="fa fa-list"></i></a>
+								        		<a class="btn btn-sm btn-success btn-custon" href="{{ url( '/mis-proyectos/avances/[[proyecto.id_proyecto]]/create' ) }}" data-toggle="tooltip" data-title="Crear Avance"><i class="fa fa-line-chart"></i></a>
+						        			</div>
+						        		</div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div><!-- boby -->
                 </div>
             </div>

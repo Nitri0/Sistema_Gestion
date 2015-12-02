@@ -1,7 +1,23 @@
 @extends('base-admin')
 
-@section('content')
+@section('css')
+	<link href="{{ asset('/thema/admin/html/assets/plugins/DataTables/media/css/dataTables.bootstrap.min.css') }}" rel="stylesheet" />
+	<link href="{{ asset('/thema/admin/html/assets/plugins/DataTables/extensions/Responsive/css/responsive.bootstrap.min.css') }}" rel="stylesheet" />
+@endsection
 
+@section('js')
+	<script src="{{ asset('/thema/admin/html/assets/plugins/DataTables/media/js/jquery.dataTables.js') }}"></script>
+	<script src="{{ asset('/thema/admin/html/assets/plugins/DataTables/media/js/dataTables.bootstrap.min.js') }}"></script>
+	<script src="{{ asset('/thema/admin/html/assets/plugins/DataTables/extensions/Responsive/js/dataTables.responsive.min.js') }}"></script>
+	<script src="{{ asset('/thema/admin/html/assets/js/table-manage-responsive.demo.min.js') }}"></script>
+	<script>
+		$(document).ready(function() {
+			TableManageResponsive.init();
+		});
+	</script>
+@endsection
+
+@section('content')
 
 <div id="page-container" class="fade page-sidebar-fixed page-header-fixed" ng-controller="DominioController">
 	
@@ -51,7 +67,7 @@
 						<div ng-init="dominios={{$dominios}}"></div>
 						<div ng-init="url='{{url()}}'"></div>
 
-						<table class="table table-hover">
+						<table id="data-table" class="table table-striped table-bordered nowrap" width="100%">
 						    <thead>
 						      <tr>
 						        <th>
@@ -80,7 +96,7 @@
 
 						    </thead>
 						    <tbody>
-						    	<tr ng-repeat="dominio in dominios| filter:opciones.buscador | orderBy:sort:reverse  track by $index">
+						    	<tr class="odd gradeX" ng-repeat="dominio in dominios| filter:opciones.buscador | orderBy:sort:reverse  track by $index">
 									<td>[[$index]]</td>
 									<td>[[dominio.nombre_dominio ]]</td>
 									<td>[[dominio.nombre_proyecto | noAsignado ]]</td>
@@ -91,7 +107,7 @@
 										[[dominio.espacio_usado_dominio | formatSize]]
 										<span ng-bind-html="dominio.espacio_usado_dominio | compareSize:dominio.espacio_asignado_dominio" ></span>			
 									</td>
-						        	<td width="150px">
+						        	<td>
 						        		<form action="[[url+'/dominios/'+dominio.id_dominio]]" method="post">
 							        		<a class="btn btn-sm btn-info" ng-href="{{ url( '/dominios/[[dominio.id_dominio]]/edit' ) }}" data-toggle="tooltip" data-title="Editar"><i class="fa fa-pencil-square-o"></i></a>
 							        		<a class="btn btn-sm btn-inverse" ng-href="{{ url( '/dominios/[[dominio.id_dominio]]') }}" data-toggle="tooltip" data-title="Gestionar"><i class="fa fa-cogs"></i></a>

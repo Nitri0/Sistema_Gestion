@@ -1,7 +1,23 @@
 @extends('base-admin')
 
-@section('content')
+@section('css')
+	<link href="{{ asset('/thema/admin/html/assets/plugins/DataTables/media/css/dataTables.bootstrap.min.css') }}" rel="stylesheet" />
+	<link href="{{ asset('/thema/admin/html/assets/plugins/DataTables/extensions/Responsive/css/responsive.bootstrap.min.css') }}" rel="stylesheet" />
+@endsection
 
+@section('js')
+	<script src="{{ asset('/thema/admin/html/assets/plugins/DataTables/media/js/jquery.dataTables.js') }}"></script>
+	<script src="{{ asset('/thema/admin/html/assets/plugins/DataTables/media/js/dataTables.bootstrap.min.js') }}"></script>
+	<script src="{{ asset('/thema/admin/html/assets/plugins/DataTables/extensions/Responsive/js/dataTables.responsive.min.js') }}"></script>
+	<script src="{{ asset('/thema/admin/html/assets/js/table-manage-responsive.demo.min.js') }}"></script>
+	<script>
+		$(document).ready(function() {
+			TableManageResponsive.init();
+		});
+	</script>
+@endsection
+
+@section('content')
 
 <div id="page-container" class="fade page-sidebar-fixed page-header-fixed">
 	
@@ -42,7 +58,7 @@
 						@include('alerts.mensaje_success')
 						@include('alerts.mensaje_error')
 
-						<table class="table table-hover">
+						<table id="data-table" class="table table-striped table-bordered nowrap" width="100%">
 						    <thead>
 						      <tr>
 						        <th>Nombre</th>
@@ -63,7 +79,7 @@
 							        	<td>
 							        			{{$cliente->getProyecto()}}
 							        	</td>
-							        	<td width="150px">
+							        	<td>
 								        	<form action="/clientes/{{$cliente->id_cliente}}" method="post">
 								        		<a class="btn btn-sm btn-info" href="{{ url( '/clientes/'.$cliente->id_cliente ) }}" data-toggle="tooltip" data-title="Detalle"><i class="fa fa-list"></i></a>
 								        		<a class="btn btn-sm btn-success" href="{{ url( '/clientes/'.$cliente->id_cliente.'/edit' ) }}" data-toggle="tooltip" data-title="Editar"><i class="fa fa-pencil-square-o"></i></a>

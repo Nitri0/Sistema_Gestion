@@ -1,5 +1,22 @@
 @extends('base-admin')
 
+@section('css')
+	<link href="{{ asset('/thema/admin/html/assets/plugins/DataTables/media/css/dataTables.bootstrap.min.css') }}" rel="stylesheet" />
+	<link href="{{ asset('/thema/admin/html/assets/plugins/DataTables/extensions/Responsive/css/responsive.bootstrap.min.css') }}" rel="stylesheet" />
+@endsection
+
+@section('js')
+	<script src="{{ asset('/thema/admin/html/assets/plugins/DataTables/media/js/jquery.dataTables.js') }}"></script>
+	<script src="{{ asset('/thema/admin/html/assets/plugins/DataTables/media/js/dataTables.bootstrap.min.js') }}"></script>
+	<script src="{{ asset('/thema/admin/html/assets/plugins/DataTables/extensions/Responsive/js/dataTables.responsive.min.js') }}"></script>
+	<script src="{{ asset('/thema/admin/html/assets/js/table-manage-responsive.demo.min.js') }}"></script>
+	<script>
+		$(document).ready(function() {
+			TableManageResponsive.init();
+		});
+	</script>
+@endsection
+
 @section('content')
 
 <div id="page-container" class="fade page-sidebar-fixed page-header-fixed" ng-controller="ProyectoController">
@@ -44,7 +61,7 @@
 						
 						<div ng-init="proyectos={{$proyectos}}"></div>
 
-						<table class="table table-hover">
+						<table id="data-table" class="table table-striped table-bordered nowrap" width="100%">
 						    <thead>
 						      <tr>
 						        <th>
@@ -72,7 +89,7 @@
 						      </tr>
 						    </thead>
 						    <tbody>
-						    	<tr ng-repeat="proyecto in proyectos | filter:opciones.buscador | orderBy:sort:reverse  track by $index">
+						    	<tr class="odd gradeX" ng-repeat="proyecto in proyectos | filter:opciones.buscador | orderBy:sort:reverse  track by $index">
 									<td>[[$index+1]]</td>
 									<td>[[proyecto.nombre_proyecto]]</td>
 									<td>[[proyecto.nombre_tipo_proyecto]]</td>
