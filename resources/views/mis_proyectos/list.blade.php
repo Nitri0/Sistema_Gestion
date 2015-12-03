@@ -69,12 +69,12 @@
                                 <tr>
                                     <th>#</th>
                                     <th>Proyecto</th>
-                                    <th>Platform(s)</th>
                                     <th>Cliente</th>
                                     <th>Dominio</th>
                                     <th>Ultimo avance</th>
                                     <th>Rol</th>
                                     <th>Estatus</th>
+                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody>
