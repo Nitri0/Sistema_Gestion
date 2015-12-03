@@ -19,7 +19,9 @@ class ClientesController extends Controller {
 	}
 
 	public function find(Route $route){
-		$this->cliente = Clientes::find($route->getParameter('clientes'));
+		$this->cliente = Clientes::where('id_cliente',$route->getParameter('cliente'))
+									->where('id_empresa', Auth::user()->getIdEmpresa())
+									->first();
 	}
 
 	public function permisos(Route $route){

@@ -46,7 +46,7 @@
 					<td>[[$index+1]]</td>
 					<td>[[model.nombre_empresa ]]</td>
 					<td>[[model.rif_empresa  ]]</td>
-					<td>[[model.email_empresa ]]</td>
+					<td>[[model.correo_empresa ]]</td>
 		        	<td width="150px">
 						<a class="btn btn-sm btn-info" href="{{ url( '/admin_empresas/[[model.id_empresa]]' ) }}"> Detalle</a>
 		        		<a class="btn btn-sm btn-info" href="{{ url( '/admin_empresas/[[model.id_empresa]]/edit' ) }}"> Editar </a>	

@@ -43,8 +43,9 @@ $router->group(['middleware' => 'auth'], function() {
 										'uses'=>'ProyectosController@eliminarIntegrante'] );
 
 					#____________ agregar roles a integrantes _________________
-	Route::get( '/roles', 'ProyectosController@roles');
-	Route::post('/roles', 'ProyectosController@postRoles');
+	Route::resource('/roles', 'RolesController');
+	//Route::get( '/roles', 'ProyectosController@roles');
+	//Route::post('/roles', 'ProyectosController@postRoles');
 
 					#____________________ cruds ____________________________
 	Route::resource('proyectos', 'ProyectosController');

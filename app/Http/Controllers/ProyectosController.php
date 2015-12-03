@@ -6,7 +6,7 @@ use App\Proyectos;
 use App\Clientes;
 use App\Dominios;
 use App\User;
-use App\Tipo;
+use App\TipoRoles;
 use App\Roles;
 use App\TipoProyectos;
 use App\Avances;
@@ -59,13 +59,6 @@ class ProyectosController extends Controller {
 
 	public function create(){
 		$clientes = Clientes::where('id_empresa', Auth::user()->getIdEmpresa())->get();
-		
-		$maestro = Master::where('nombre_maestro','Roles')->first();
-		if (!$maestro){
-			$id_maestro = Master::create(['nombre_maestro','Roles'])->id_maestro;
-		}else{
-			$id_maestro = $maestro->id_maestro;
-		};
 
 		//->get()->pluck('modulo_excepcion')->toArray();
 		$idusuarios = MMEmpresasUsuarios::where('id_empresa', Auth::user()->getIdEmpresa())
@@ -74,7 +67,7 @@ class ProyectosController extends Controller {
 										->toArray();
 		//dd( $idusuarios );
 		$usuarios = User::whereIn('id_usuario',$idusuarios)->get();
-		$roles = Tipo::where('id_maestro',$id_maestro)->get();
+		$roles = TipoRoles::where('id_empresa',Auth::user()->getIdEmpresa())->get();
 		$grupo_etapas = GrupoEtapas::where('id_empresa', Auth::user()->getIdEmpresa())->get();
 		$tipo_proyectos = TipoProyectos::where('id_empresa', Auth::user()->getIdEmpresa())->get();
 		return view('proyectos.create',compact('clientes', 'usuarios', 'roles','grupo_etapas','tipo_proyectos'));
@@ -91,7 +84,6 @@ class ProyectosController extends Controller {
 			return redirect('mis-proyectos/');
 		}
 		*/
-		$maestro = Master::where('nombre_maestro','Roles')->first();
 		$proyecto = Proyectos::find($id_proyecto);
 		$etapas = GrupoEtapas::find($proyecto->id_grupo_etapas);
 		//->get()->pluck('modulo_excepcion')->toArray();
@@ -101,7 +93,7 @@ class ProyectosController extends Controller {
 										->toArray();
 		//dd( $idusuarios );
 		$usuarios = User::whereIn('id_usuario',$idusuarios)->get();
-		$roles = Tipo::where('id_maestro',$maestro->id_maestro)->get();
+		$roles = TipoRoles::where('id_empresa',Auth::user()->getIdEmpresa());
 
 		return view('proyectos.detalle',compact('proyecto','id_proyecto', 'rol', 'etapas','roles','usuarios' ));
 
@@ -182,23 +174,6 @@ class ProyectosController extends Controller {
 		$proyectos = json_encode(\DB::select('CALL p_busquedas(?,?,?)',array('listar_todos_proyectos_finalizados','',Auth::user()->getIdEmpresa())));
 		return view('proyectos.list_proyectos_finalizados', compact('proyectos'));
 	}
-
-	public function roles(){
-		return view('mis_proyectos.rol');
-	}
-
-	public function postRoles(){
-		$master = Master::where('nombre_maestro','Roles')->first();
-		if(!$master){
-			$master = Master::create(['nombre_maestro'=>'Roles']);
-		}
-
-		Tipo::create(['id_maestro'  => $master->id_maestro,
-					  'nombre_tipo' => Input::get('nombre_tipo')]);
-
-		Session::flash('mensaje', 'Rol creado exitosamente');
-		return redirect("proyectos/create");	
-	}	
 
 	/**
 	 * Store a newly created resource in storage.

@@ -130,8 +130,8 @@
 				                                    <select class="form-control js-example-data-array" name="id_rol[[$index]]">
 				                                        <option value="">Seleccione un Rol</option>
 				                                        @foreach($roles as $rol)
-															<option value="{{$rol->id_tipo}}">
-																{{ $rol->nombre_tipo }} 
+															<option value="{{$rol->id_tipo_rol}}">
+																{{ $rol->nombre_tipo_rol }}
 															</option>
 														@endforeach
 				                                    </select>
