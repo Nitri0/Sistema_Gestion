@@ -128,6 +128,17 @@
 				    <li><a href="{{ url('admin_usuarios') }}">Lista Usuarios</a></li>
 				</ul>
 			</li>
+			<li class="has-sub">
+				<a href="javascript:;">
+				    <b class="caret pull-right"></b>
+				    <i class="fa fa-coffee"></i>
+				    <span>Roles [REVISAR ESTILO]</span>
+			    </a>
+				<ul class="sub-menu">
+				    <li><a href="{{ url('roles') }}">Listar de roles [REVISAR ESTILO]</a></li>
+				    <li><a href="{{ url('roles/create') }}">Agregar roles [REVISAR ESTILO]</a></li>
+				</ul>
+			</li>			
 	        <!-- begin sidebar minify button -->
 			<li><a href="javascript:;" class="sidebar-minify-btn" data-click="sidebar-minify"><i class="fa fa-angle-double-left"></i></a></li>
 	        <!-- end sidebar minify button -->

@@ -29,20 +29,16 @@ class ProyectosController extends Controller {
 
 	#______________________________ Filtros _________________________________
 	public function find(Route $route){
-		$this->proyecto = Proyectos::find($route->getParameter('proyectos'));
+		$this->proyecto = Proyectos::where('id_empresa', Auth::user()->getIdEmpresa())
+									->where('id_proyecto', $route->getParameter('proyectos'))
+									->first();
+		if (!$this->proyecto){
+			Session::flash('mensaje-error', 'No puede acceder ese registro');
+			return redirect('/proyectos');
+		}
 	}
 
 	public function permisos(Route $route){
-		// FORMA DE OBTENER LOS METODOS DE UNA CLASE
-		// $class = new \ReflectionClass($this);
-		// $metodos = [];
-		// foreach ($class->getMethods(\ReflectionMethod::IS_PUBLIC ) as $route){
-		// 	if ($route->class == 'App\Http\Controllers\ProyectosController'){
-		// 		array_push($metodos, $route->name);
-		// 	}
-		// };
-		// dd($metodos);
-		//dd($route->getName());
 		if(Gate::denies('proyectos', $route->getName()) ){
 			Session::flash("mensaje-error","No tiene permisos para acceder al modulo: ".$route->getName());
 			return redirect('/mis-proyectos');
@@ -59,13 +55,11 @@ class ProyectosController extends Controller {
 
 	public function create(){
 		$clientes = Clientes::where('id_empresa', Auth::user()->getIdEmpresa())->get();
-
-		//->get()->pluck('modulo_excepcion')->toArray();
 		$idusuarios = MMEmpresasUsuarios::where('id_empresa', Auth::user()->getIdEmpresa())
 										->get()
 										->pluck('id_usuario')
 										->toArray();
-		//dd( $idusuarios );
+
 		$usuarios = User::whereIn('id_usuario',$idusuarios)->get();
 		$roles = TipoRoles::where('id_empresa',Auth::user()->getIdEmpresa())->get();
 		$grupo_etapas = GrupoEtapas::where('id_empresa', Auth::user()->getIdEmpresa())->get();
@@ -79,11 +73,7 @@ class ProyectosController extends Controller {
 
 	public function show($id_proyecto){
 		$rol = Roles::where('id_proyecto',$id_proyecto)->get();
-		/*
-		if (!$rol){
-			return redirect('mis-proyectos/');
-		}
-		*/
+
 		$proyecto = Proyectos::find($id_proyecto);
 		$etapas = GrupoEtapas::find($proyecto->id_grupo_etapas);
 		//->get()->pluck('modulo_excepcion')->toArray();
@@ -93,7 +83,7 @@ class ProyectosController extends Controller {
 										->toArray();
 		//dd( $idusuarios );
 		$usuarios = User::whereIn('id_usuario',$idusuarios)->get();
-		$roles = TipoRoles::where('id_empresa',Auth::user()->getIdEmpresa());
+		$roles = TipoRoles::where('id_empresa',Auth::user()->getIdEmpresa())->get();
 
 		return view('proyectos.detalle',compact('proyecto','id_proyecto', 'rol', 'etapas','roles','usuarios' ));
 

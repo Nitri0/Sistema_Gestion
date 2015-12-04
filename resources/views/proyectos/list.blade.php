@@ -49,7 +49,7 @@
                             <h3 class="panel-title">
                                 <a class="accordion-toggle accordion-toggle-styled collapsed" data-toggle="collapse" data-parent="#accordion" href="#[[$index+1]]">
                                     <i class="fa fa-plus-circle pull-right"></i> 
-                                    # [[$index+1]] [[proyecto.nombre_proyecto]]
+                                    # [[$index+1]] [[proyecto.nombre_proyecto]] [[proyecto.id_proyecto]]
                                 </a>
                             </h3>
                         </div>

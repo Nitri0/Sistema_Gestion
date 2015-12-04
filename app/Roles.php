@@ -16,7 +16,7 @@ class Roles extends Model {
 
 
 	public function getRolName(){
-		return Tipo::find($this->id_tipo_rol)->nombre_tipo;
+		return TipoRoles::find($this->id_tipo_rol)->nombre_tipo_rol;
 	}
 
 	public function getUser(){

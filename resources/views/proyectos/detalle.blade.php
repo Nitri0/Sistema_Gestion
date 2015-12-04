@@ -232,7 +232,7 @@
                 <!-- begin panel -->
                 <div class="panel panel-inverse">
                     <div class="panel-heading">
-                        <h4 class="panel-title">Agergar Integrantes</h4>
+                        <h4 class="panel-title">Agregar Integrantes</h4>
                     </div>
 
                     <div class="panel-body color-timeline">
@@ -260,10 +260,10 @@
 	                                <label class="col-md-4 control-label ng-binding">Rol que cumplirá</label>
 	                                <div class="col-md-8">
 	                                    <select class="form-control js-example-data-array" name="id_tipo_rol">
-	                                        <option value="">Seleccione un Usuario</option>
-	                                        @foreach($roles as $rol)
-												<option value="{{$rol->id_tipo_rol }}">
-													{{ $rol->nombre_tipo_rol }} 
+	                                        <option value="">Seleccione un rol</option>
+	                                        @foreach($roles as $rols)
+												<option value="{{$rols->id_tipo_rol }}">
+													{{ $rols->nombre_tipo_rol }} 
 												</option>
 											@endforeach
 										</select>
