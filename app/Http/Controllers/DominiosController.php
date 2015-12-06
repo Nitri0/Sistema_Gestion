@@ -23,6 +23,11 @@ class DominiosController extends Controller {
 		$this->dominio = Dominios::where('id_dominio',$route->getParameter('dominios'))
 									->where('id_empresa', Auth::user()->getIdEmpresa())
 									->first();
+
+		if(!$this->dominio){
+			Session::flash('mensaje-error', 'No puede acceder ese registro');
+			return redirect('/dominios');
+		}									
 	}
 
 	public function permisos(Route $route){

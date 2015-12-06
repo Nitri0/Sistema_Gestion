@@ -19,9 +19,14 @@ class ClientesController extends Controller {
 	}
 
 	public function find(Route $route){
-		$this->cliente = Clientes::where('id_cliente',$route->getParameter('cliente'))
+		$this->cliente = Clientes::where('id_cliente',$route->getParameter('clientes'))
 									->where('id_empresa', Auth::user()->getIdEmpresa())
 									->first();
+		if(!$this->cliente){
+			Session::flash('mensaje-error', 'No puede acceder ese registro');
+			return redirect('/clientes');
+		}
+
 	}
 
 	public function permisos(Route $route){
@@ -34,7 +39,7 @@ class ClientesController extends Controller {
 	public function index(){
 
 		$clientes = json_encode(\DB::table('t_clientes')
-
+									->select('t_clientes.*', 't_proyectos.nombre_proyecto')
 				 					->where('t_clientes.habilitado_cliente','=',1)
 				 					->where('t_clientes.id_empresa', Auth::user()->getIdEmpresa())
 				 					->leftjoin('t_proyectos', 't_proyectos.id_cliente', '=', 't_clientes.id_cliente')
