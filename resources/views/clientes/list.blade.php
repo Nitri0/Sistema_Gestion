@@ -58,41 +58,58 @@
 						@include('alerts.mensaje_success')
 						@include('alerts.mensaje_error')
 
+
+						<div ng-init="models={{$clientes}}"></div>
+						<div ng-init="url='{{url()}}'"></div>
+
+
 						<table id="data-table" class="table table-striped table-bordered nowrap" width="100%">
 						    <thead>
 						      <tr>
-						        <th>Nombre</th>
-						        <th>CI / RIF</th>
-						        <th>Email</th>
-						        <th>Contacto</th>
-						        <th>Proyecto(s) Asociado(s)</th>
-						        <th width="150px" >Operaciones</th>
+						        <th>
+						        	<a href="#" ng-click="changeSort('index')">#</a>
+						        </th>		      	
+						        <th>
+						        	<a href="#" ng-click="changeSort('nombre_cliente')">Nombre</a>
+						        </th>
+						        <th>
+						        	<a href="#" ng-click="changeSort('ci_rif_cliente')">CI / RIF</a>
+						        </th>
+						        <th>
+						        	<a href="#" ng-click="changeSort('email_cliente')">Email</a>
+						        </th>
+						        <th>
+						        	<a href="#" ng-click="changeSort('persona_contacto_cliente')">Contacto</a>
+						        </th>
+						        <th>
+						        	<a href="#" ng-click="changeSort('nombre_proyecto')">Proyecto Asociado</a>
+						        </th>
+					        	<th>
+						        	<a href="#" ng-click="changeSort('espacio_usado_dominio')">Operaciones</a>
+						        </th>		        
+						        <th >Operaciones</th>
 						      </tr>
+
 						    </thead>
 						    <tbody>
-						    	@foreach($clientes as $cliente)
-							    	<tr>
-										<td>{{$cliente->nombre_cliente}}</td>
-										<td>{{$cliente->ci_rif_cliente}}</td>
-							        	<td>{{$cliente->email_cliente}}</td>
-							        	<td>{{$cliente->persona_contacto_cliente}}</td>
-							        	<td>
-							        			{{$cliente->getProyecto()}}
-							        	</td>
-							        	<td>
-								        	<form action="/clientes/{{$cliente->id_cliente}}" method="post">
-								        		<a class="btn btn-sm btn-info" href="{{ url( '/clientes/'.$cliente->id_cliente ) }}" data-toggle="tooltip" data-title="Detalle"><i class="fa fa-list"></i></a>
-								        		<a class="btn btn-sm btn-success" href="{{ url( '/clientes/'.$cliente->id_cliente.'/edit' ) }}" data-toggle="tooltip" data-title="Editar"><i class="fa fa-pencil-square-o"></i></a>
-												<input type="hidden" name="_method" value="delete">
-												<button type="submit" class="btn btn-sm btn-danger" data-toggle="tooltip" data-title="Eliminar"><i class="fa fa-trash"></i></button>
-											</form>		        		
-							        	</td>
-							        </tr>
-								@endforeach
+						    	<tr class="odd gradeX" ng-repeat="model in models| filter:opciones.buscador | orderBy:sort:reverse  track by $index">
+									<td>[[$index]]</td>
+									<td>[[model.nombre_cliente ]]</td>
+									<td>[[model.ci_rif_cliente ]]</td>
+									<td>[[model.email_cliente  ]]</td>
+									<td>[[model.persona_contacto_cliente ]]</td>
+									<td>[[model.nombre_proyecto | noAsignado]]</td>
+						        	<td>
+						        		<form action="[[url+'/clientes/'+model.id_cliente]]" method="post">
+							        		<a class="btn btn-sm btn-info" ng-href="{{ url( '/clientes/[[model.id_cliente]]/edit' ) }}" data-toggle="tooltip" data-title="Editar"><i class="fa fa-pencil-square-o"></i></a>
+							        		<a class="btn btn-sm btn-inverse" ng-href="{{ url( '/clientes/[[model.id_cliente]]') }}" data-toggle="tooltip" data-title="Gestionar"><i class="fa fa-cogs"></i></a>
+											<input type="hidden" name="_method" value="delete">
+											<button type="submit" class="btn btn-sm btn-danger" data-toggle="tooltip" data-title="Eliminar"><i class="fa fa-trash"></i></button>
+										</form>
+						        	</td>
+						        </tr>
 						    </tbody>
 						</table>
-
-						<div align="center">{!! $clientes->render() !!}</div>
 	 
 	 				</div><!-- boby -->
                 </div>

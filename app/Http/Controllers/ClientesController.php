@@ -25,15 +25,6 @@ class ClientesController extends Controller {
 	}
 
 	public function permisos(Route $route){
-		// FORMA DE OBTENER LOS METODOS DE UNA CLASE
-		// $class = new \ReflectionClass($this);
-		// $metodos = [];
-		// foreach ($class->getMethods(\ReflectionMethod::IS_PUBLIC ) as $route){
-		// 	if ($route->class == 'App\Http\Controllers\ProyectosController'){
-		// 		array_push($metodos, $route->name);
-		// 	}
-		// };
-		// dd($metodos);
 		if(Gate::denies('clientes', $route->getName()) ){
 			Session::flash("mensaje-error","No tiene permisos para acceder al modulo: ".$route->getName());
 			return redirect('/mis-proyectos');
@@ -41,10 +32,18 @@ class ClientesController extends Controller {
 	}
 
 	public function index(){
-		//dd(Auth::user()->getIdEmpresa());
-		$clientes = Clientes::where('id_empresa', Auth::user()->getIdEmpresa())
-								->orderBy('id_cliente', 'desc')
-								->paginate(10);
+
+		$clientes = json_encode(\DB::table('t_clientes')
+
+				 					->where('t_clientes.habilitado_cliente','=',1)
+				 					->where('t_clientes.id_empresa', Auth::user()->getIdEmpresa())
+				 					->leftjoin('t_proyectos', 't_proyectos.id_cliente', '=', 't_clientes.id_cliente')
+				 					->orderBy('t_clientes.id_cliente','desc')
+				 					->get());
+
+		// $clientes = Clientes::where('id_empresa', Auth::user()->getIdEmpresa())
+		// 						->orderBy('id_cliente', 'desc')
+		// 						->paginate(10);
 		return view('clientes.list', compact('clientes'));
 	}
 
