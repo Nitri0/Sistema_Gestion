@@ -110,12 +110,12 @@
 			<li class="has-sub"><!-- ng-click="proyecto_active()" ng-class="{'': !proyecto, 'active': proyecto}"-->
 				<a href="javascript:;" >
 				    <b class="caret pull-right"></b>
-				    <i class="fa fa-github"></i>
-				    <span>Empresas [FALTA ESTILO]</span>
+				    <i class="fa fa-coffee"></i>
+				    <span>Empresas</span>
 			    </a>
 				<ul class="sub-menu">
-				    <li><a href="{{ url('admin_empresas') }}">Empresas [FALTA ESTILO]</a></li>
-				    <li><a href="{{ url('admin_empresas/create') }}">Empresas [FALTA ESTILO]</a></li>
+				    <li><a href="{{ url('admin_empresas') }}">Listar Empresas</a></li>
+				    <li><a href="{{ url('admin_empresas/create') }}">Crear Empresas</a></li>
 				</ul>
 			</li>
 			<li class="has-sub"><!-- ng-click="usuario_active()" ng-class="{'': !usuario, 'active': usuario}" -->
@@ -126,6 +126,7 @@
 			    </a>
 				<ul class="sub-menu">
 				    <li><a href="{{ url('admin_usuarios') }}">Lista Usuarios</a></li>
+				    <li><a href="{{ url('admin_usuarios/create') }}">Crear Usuarios</a></li>
 				</ul>
 			</li>
 			<li class="has-sub">
