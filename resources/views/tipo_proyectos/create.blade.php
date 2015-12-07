@@ -30,12 +30,17 @@
 						
 						<br><br>
 
-						<form class="form-horizontal" action="{{ url('tipo_proyectos/') }}" method="POST">		
+						<form class="form-horizontal" name="formulario" id="formulario" ng-submit="submit(formulario.$valid)" action="{{ url('tipo_proyectos/') }}" method="POST">		
 	
 							<div class="form-group">
                                 <label class="col-md-4 control-label">Identificador de proyectos</label>
                                 <div class="col-md-5">
-                                    <input type="text" class="form-control" ng-model="tipo_proyecto.nombre_tipo_proyecto" name="nombre_tipo_proyecto">
+                                    <input type="text" class="form-control" ng-model="tipo_proyecto.nombre_tipo_proyecto" name="nombre_tipo_proyecto" ng-required="true" oninvalid="setCustomValidity(' ')">
+                                    <div class="error campo-requerido" ng-show="formulario.nombre_tipo_proyecto.$invalid && (formulario.nombre_tipo_proyecto.$touched || submitted)">
+                                        <small class="error" ng-show="formulario.nombre_tipo_proyecto.$error.required">
+                                            * Campo requerido.
+                                        </small>
+                                    </div>
                                 </div>
                             </div>									
 

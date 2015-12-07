@@ -96,7 +96,8 @@ coreApp.controller('GrupoEtapasController', function ($scope, $log) {
 	$scope.etapas=[];
 	$scope.cantidad=0;
 	$scope.GrpEtapas={};
-	
+	$scope.submitted = false;
+
 	$scope.agregar_etapa= function(argument) {
 		$scope.etapas.push(1);
 		$scope.cantidad = $scope.etapas.length;
