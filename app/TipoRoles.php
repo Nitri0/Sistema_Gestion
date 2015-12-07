@@ -11,6 +11,7 @@ class TipoRoles extends Model {
 	protected $fillable = array('id_usuario',
 								'nombre_tipo_rol',
 								'descripcion_tipo_rol',
+								'habilitado_tipo',
 								'id_empresa');
 	public $timestamps = false;
 

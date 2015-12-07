@@ -115,8 +115,7 @@ class MisProyectosController extends Controller {
 			return redirect('mis-proyectos');
 		}
 
-		$plantillas = Plantillas::where('id_plantilla',$request->id_plantilla)
-								->where('id_empresa',$user->getIdEmpresa())
+		$plantillas = Plantillas::where('id_empresa',$user->getIdEmpresa())
 								->get();
 
 		$etapas = GrupoEtapas::find($proyecto->id_grupo_etapas)->getEtapas();

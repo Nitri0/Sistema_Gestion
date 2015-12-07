@@ -54,8 +54,8 @@ class AdministradorEmpresasController extends Controller {
 			Perfil::create(['id_usuario'=>$user->id_usuario]);
 			$request['id_usuario'] = $user->id_usuario;
 			$empresa = Empresas::create($request->all());
-			// MMEmpresasUsuarios::create(['id_usuario'=>$user->id_usuario,
-			// 							'id_empresa'=>$empresa->id_empresa]);
+			MMEmpresasUsuarios::create(['id_usuario'=>$user->id_usuario,
+										'id_empresa'=>$empresa->id_empresa]);
             \DB::commit();
         } catch (Exception $e) {
             \DB::rollback();
@@ -94,7 +94,14 @@ class AdministradorEmpresasController extends Controller {
 	}
 
 	public function destroy($id){
-		Clientes::find($id)->delete();
+		$this->empresa->fill(['habilitado_empresa'=>0,]);
+		$this->empresa->save();
+		return redirect("/admin_empresas");
+	}
+
+	public function habilitar($id){
+		$this->empresa->fill(['habilitado_empresa'=>1,]);
+		$this->empresa->save();
 		return redirect("/admin_empresas");
 	}
 

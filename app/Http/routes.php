@@ -42,10 +42,7 @@ $router->group(['middleware' => 'auth'], function() {
 	Route::delete( '/integrantes/{id}',['as'  => 'proyectos.eliminarIntegrante',
 										'uses'=>'ProyectosController@eliminarIntegrante'] );
 
-					#____________ agregar roles a integrantes _________________
-	Route::resource('/roles', 'RolesController');
-	//Route::get( '/roles', 'ProyectosController@roles');
-	//Route::post('/roles', 'ProyectosController@postRoles');
+
 
 					#____________________ cruds ____________________________
 	Route::resource('proyectos', 'ProyectosController');
@@ -78,6 +75,7 @@ $router->group(['middleware' => 'auth'], function() {
 
 #_______________________________________ ETAPAS ________________________________________________	
 					#____________________ cruds ____________________________
+	Route::get('grupo_etapas/{grupo_etapas}/destroy', 'EtapasController@destroy');
 	Route::resource('grupo_etapas', 'EtapasController');
 
 #__________________________________ EMPRESAS PROVEEDORAS _______________________________________	
@@ -86,18 +84,28 @@ $router->group(['middleware' => 'auth'], function() {
 
 #____________________________________ TIPO PROYECTO _____________________________________	
 					#____________________ cruds ____________________________	
+	Route::get('tipo_proyectos/{tipo_proyectos}/destroy', 'TipoProyectoController@destroy');
 	Route::resource('tipo_proyectos', 'TipoProyectoController');
 
 #________________________________ ADMINISTRADOR DE USUARIOS _____________________________________
 					#____________________ cruds ____________________________	
-	Route::resource('admin_usuarios', 'AdministradorUsuariosController');
+	Route::get('admin_usuarios/{admin_usuarios}/destroy', 'AdministradorUsuariosController@destroy');
 	Route::get('admin_usuarios/{id}/permisos',  ['as'  => 'admin_usuario.editPermisos',
 												'uses'=>'AdministradorUsuariosController@editPermisos']);
+	Route::resource('admin_usuarios', 'AdministradorUsuariosController');
 
 #________________________________ ADMINISTRADOR DE EMPRESAS _____________________________________
 					#____________________ cruds ____________________________	
+	Route::get('admin_empresas/{admin_empresas}/destroy', 'AdministradorEmpresasController@destroy');
+	Route::get('admin_empresas/{admin_empresas}/habilitar', 'AdministradorEmpresasController@habilitar');
 	Route::resource('admin_empresas', 'AdministradorEmpresasController');
-												
+		
+#________________________________ ROLES DE USUARIOS _____________________________________
+					#____________ agregar roles a integrantes _________________
+	Route::get('roles/{roles}/destroy', 'RolesController@destroy');
+	Route::resource('/roles', 'RolesController');
+	//Route::get( '/roles', 'ProyectosController@roles');
+	//Route::post('/roles', 'ProyectosController@postRoles');
 
 });
 

@@ -13,6 +13,7 @@ class Empresas extends Model {
 								'direccion_empresa',
 								'telefono_empresa',
 								'correo_empresa',
+								'habilitado_empresa',
 								'id_usuario',
 								);
 

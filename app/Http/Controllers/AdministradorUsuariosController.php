@@ -29,7 +29,18 @@ class AdministradorUsuariosController extends Controller
     }
 
     public function find(Route $route){
-        $this->usuario = User::find($route->getParameter('admin_usuarios'));
+        $this->usuario = User::where('id_usuario',$route->getParameter('admin_usuarios'))
+                                
+                                ->first();
+        $this->relacion = MMEmpresasUsuarios::where('id_usuario',$route->getParameter('admin_usuarios'))
+                                ->where('id_empresa',Auth::user()->getIdEmpresa())
+                                ->first();
+
+        //dd($this->usuario , $this->relacion, Auth::user());
+        if(!$this->usuario || !$this->relacion){
+            Session::flash('mensaje-error', 'No puede acceder ese registro');
+            return redirect('/admin_usuarios');
+        }                                
     }
 
     public function metodosClases(Route $route){
@@ -78,8 +89,6 @@ class AdministradorUsuariosController extends Controller
         };
     }
 
-
-
     public function index(){
         //->get()->pluck('modulo_excepcion')->toArray();
         $idusuarios = MMEmpresasUsuarios::where('id_empresa', Auth::user()->getIdEmpresa())
@@ -87,7 +96,9 @@ class AdministradorUsuariosController extends Controller
                                             ->pluck('id_usuario')
                                             ->toArray();
         //dd( $idusuarios );
-        $usuarios = User::whereIn('id_usuario',$idusuarios)->get();
+        $usuarios = User::whereIn('id_usuario',$idusuarios)
+                            
+                            ->get();
         
         return view('administrador_usuarios.list',compact('usuarios'));
     }
@@ -128,10 +139,9 @@ class AdministradorUsuariosController extends Controller
 
         MMEmpresasUsuarios::firstOrCreate([
                                 'id_usuario' => $user->id_usuario,
-                                'id_empresa' => Auth::user()->getIdEmpresa()
+                                'id_empresa' => Auth::user()->getIdEmpresa(),
                                 ]);
 
-        //dd($permisos = Excepciones::where('id_usuario', $user->id_usuario)->get());
         Session::flash("mensaje-success","Usuario creado exitosamente");
         return redirect("/admin_usuarios");
     }
@@ -148,7 +158,7 @@ class AdministradorUsuariosController extends Controller
 
            $permisos[$excepcion]=true;
         }
-        //dd($permisos);
+
         return view('administrador_usuarios.create',['usuario'=>$this->usuario,
                                                      'permisos' =>$this->permisos,
                                                      'permisos_user' =>json_encode($permisos),
@@ -190,6 +200,8 @@ class AdministradorUsuariosController extends Controller
     }
 
     public function destroy($id){
+        $this->usuario->fill(['habilitado_usuario'=>0,]);
+        $this->usuario->save();
         return redirect("/admin_usuarios");
     }
 }

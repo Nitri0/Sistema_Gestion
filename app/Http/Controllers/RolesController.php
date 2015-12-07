@@ -22,6 +22,7 @@ class RolesController extends Controller {
 	public function find(Route $route){
 		$this->rol = TipoRoles::where('id_tipo_rol',$route->getParameter('roles'))
 									->where('id_empresa', Auth::user()->getIdEmpresa())
+									->where('habilitado_tipo', 1) 
 									->first();
 		if(!$this->rol){
 			Session::flash('mensaje-error', 'No puede acceder ese registro');
@@ -37,8 +38,8 @@ class RolesController extends Controller {
 	}
 
 	public function index(){
-		//dd(Auth::user()->getIdEmpresa());
 		$roles = json_encode( TipoRoles::where('id_empresa', Auth::user()->getIdEmpresa()) 
+								->where('habilitado_tipo', 1) 
 								->orderBy('id_tipo_rol', 'desc')
 								->get() );
 		return view('roles.list', compact('roles'));
@@ -76,7 +77,8 @@ class RolesController extends Controller {
 	}
 
 	public function destroy($id){
-		Clientes::find($id)->delete();
+		$this->rol->fill(['habilitado_tipo'=>0]);
+		$this->rol->save();
 		return redirect("/roles");
 	}
 }

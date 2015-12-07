@@ -14,6 +14,7 @@ class GrupoEtapas extends Model {
 								'id_usuario',
 								'id_empresa',
 								'cantidad_etapas',
+								'habilitado_grupo_etapas',
 								);
 
 	public function getEtapas(){

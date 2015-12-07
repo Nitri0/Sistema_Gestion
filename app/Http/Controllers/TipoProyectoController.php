@@ -20,7 +20,8 @@ class TipoProyectoController extends Controller {
 	}
 
 	public function find(Route $route){
-		$this->tipo_proyectos = TipoProyectos::where('id_tipo_rol',$route->getParameter('tipo_proyectos'))
+		$this->tipo_proyectos = TipoProyectos::where('id_tipo_proyecto',$route->getParameter('tipo_proyectos'))
+									->where('habilitado_tipo_proyecto', 1)
 									->where('id_empresa', Auth::user()->getIdEmpresa())
 									->first();
 		if(!$this->tipo_proyectos){
@@ -38,12 +39,13 @@ class TipoProyectoController extends Controller {
 
 	public function index(){
 		$tipo_proyectos = TipoProyectos::where('id_empresa', Auth::user()->getIdEmpresa())
+										->where('habilitado_tipo_proyecto', 1)
 										->paginate(10);
 		return view('tipo_proyectos.list',compact('tipo_proyectos'));
 	}
 
 	public function create(){
-		return view('tipo_proyectos.create');
+		return view('tipo_proyectos.create',['tipo_proyecto'=>'']);
 	}
 
 
@@ -61,21 +63,24 @@ class TipoProyectoController extends Controller {
 	}
 
 
-	public function edit($id)
-	{
-		//
+	public function edit($id){
+		return view('tipo_proyectos.create',['tipo_proyecto'=>$this->tipo_proyectos]);
 	}
 
 
-	public function update($id)
-	{
-		//
+	public function update(Request $request, $id){
+		//dd($this->tipo_proyectos);
+		//dd($request->nombre_tipo_proyecto);
+		$this->tipo_proyectos->fill(['nombre_tipo_proyecto'=>$request->nombre_tipo_proyecto]);
+		$this->tipo_proyectos->save();
+		return redirect('/tipo_proyectos');
 	}
 
 
 	public function destroy($id){
-		Etapas::where('id_tipo_proyecto',$id)->delete();
-		TipoProyectos::find($id)->delete();
+		
+		$this->tipo_proyectos->fill(['habilitado_tipo_proyecto'=>0,]);
+		$this->tipo_proyectos->save();
 		return redirect('/tipo_proyectos');
 	}
 
