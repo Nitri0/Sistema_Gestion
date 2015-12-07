@@ -16,22 +16,20 @@ class TipoProyectoController extends Controller {
 
 	public function __construct(){
 		$this->beforeFilter('@permisos');
+		$this->beforeFilter('@find', ['only' => ['show','update','edit','destroy']]);
 	}
 
 	public function find(Route $route){
-		//$this->cliente = Clientes::find($route->getParameter('clientes'));
+		$this->tipo_proyectos = TipoProyectos::where('id_tipo_rol',$route->getParameter('tipo_proyectos'))
+									->where('id_empresa', Auth::user()->getIdEmpresa())
+									->first();
+		if(!$this->tipo_proyectos){
+			Session::flash('mensaje-error', 'No puede acceder ese registro');
+			return redirect('/tipo_proyectos');
+		}
 	}
 
 	public function permisos(Route $route){
-		// FORMA DE OBTENER LOS METODOS DE UNA CLASE
-		// $class = new \ReflectionClass($this);
-		// $metodos = [];
-		// foreach ($class->getMethods(\ReflectionMethod::IS_PUBLIC ) as $route){
-		// 	if ($route->class == 'App\Http\Controllers\ProyectosController'){
-		// 		array_push($metodos, $route->name);
-		// 	}
-		// };
-		// dd($metodos);
 		if(Gate::denies('tipo_proyectos', $route->getName()) ){
 			Session::flash("mensaje-error","No tiene permisos para acceder al modulo: ".$route->getName());
 			return redirect('/mis-proyectos');

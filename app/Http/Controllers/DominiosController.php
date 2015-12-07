@@ -23,18 +23,14 @@ class DominiosController extends Controller {
 		$this->dominio = Dominios::where('id_dominio',$route->getParameter('dominios'))
 									->where('id_empresa', Auth::user()->getIdEmpresa())
 									->first();
+
+		if(!$this->dominio){
+			Session::flash('mensaje-error', 'No puede acceder ese registro');
+			return redirect('/dominios');
+		}									
 	}
 
 	public function permisos(Route $route){
-		// FORMA DE OBTENER LOS METODOS DE UNA CLASE
-		// $class = new \ReflectionClass($this);
-		// $metodos = [];
-		// foreach ($class->getMethods(\ReflectionMethod::IS_PUBLIC ) as $route){
-		// 	if ($route->class == 'App\Http\Controllers\ProyectosController'){
-		// 		array_push($metodos, $route->name);
-		// 	}
-		// };
-		// dd($metodos);
 		if(Gate::denies('dominios', $route->getName()) ){
 			Session::flash("mensaje-error","No tiene permisos para acceder al modulo: ".$route->getName());
 			return redirect('/mis-proyectos');

@@ -19,24 +19,22 @@ class PlantillasController extends Controller {
 
 	public function __construct(){
 		$this->beforeFilter('@permisos');
-		//$this->beforeFilter('@find', ['only' => ['show','update','edit','destroy']]);
+		$this->beforeFilter('@find', ['only' => ['show','update','edit','destroy']]);
 	}
 
 	#______________________________ Filtros _________________________________
 	public function find(Route $route){
-		//$this->cliente = Clientes::find($route->getParameter('clientes'));
+		$this->plantillas = Plantillas::where('id_plantilla',$route->getParameter('plantillas'))
+									->where('id_empresa', Auth::user()->getIdEmpresa())
+									->first();
+
+		if(!$this->plantillas){
+			Session::flash('mensaje-error', 'No puede acceder ese registro');
+			return redirect('/plantillas');
+		}	
 	}
 
 	public function permisos(Route $route){
-		// FORMA DE OBTENER LOS METODOS DE UNA CLASE
-		// $class = new \ReflectionClass($this);
-		// $metodos = [];
-		// foreach ($class->getMethods(\ReflectionMethod::IS_PUBLIC ) as $route){
-		// 	if ($route->class == 'App\Http\Controllers\ProyectosController'){
-		// 		array_push($metodos, $route->name);
-		// 	}
-		// };
-		// dd($metodos);
 		if(Gate::denies('plantillas', $route->getName()) ){
 			Session::flash("mensaje-error","No tiene permisos para acceder al modulo: ".$route->getName());
 			return redirect('/mis-proyectos');
@@ -46,7 +44,9 @@ class PlantillasController extends Controller {
 	#______________________________ Metodos _________________________________
 
 	public function index(){
-		$plantillas = Plantillas::where('habilitado_plantilla',1)->paginate(10);
+		$plantillas = Plantillas::where('id_empresa',Auth::user()->id_empresa)
+									->where('habilitado_plantilla',1)
+									->paginate(10);
 		return view('plantillas.list',compact('plantillas'));
 	}
 

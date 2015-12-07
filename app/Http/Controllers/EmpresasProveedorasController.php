@@ -14,24 +14,22 @@ class EmpresasProveedorasController extends Controller {
 
 	public function __construct(){
 		$this->beforeFilter('@permisos');
-		//$this->beforeFilter('@find', ['only' => ['show','update','edit','destroy']]);
+		$this->beforeFilter('@find', ['only' => ['show','update','edit','destroy']]);
 	}
 
 	#______________________________ Filtros _________________________________
 	public function find(Route $route){
-		//$this->cliente = Clientes::find($route->getParameter('clientes'));
+		$this->empresa_proveedora = EmpresasProveedoras::where('id_empresa_proveedora',$route->getParameter('empresas_proveedoras'))
+									->where('id_empresa', Auth::user()->getIdEmpresa())
+									->first();
+
+		if(!$this->empresa_proveedora){
+			Session::flash('mensaje-error', 'No puede acceder ese registro');
+			return redirect('/empresas_proveedoras');
+		}	
 	}
 
 	public function permisos(Route $route){
-		// FORMA DE OBTENER LOS METODOS DE UNA CLASE
-		// $class = new \ReflectionClass($this);
-		// $metodos = [];
-		// foreach ($class->getMethods(\ReflectionMethod::IS_PUBLIC ) as $route){
-		// 	if ($route->class == 'App\Http\Controllers\ProyectosController'){
-		// 		array_push($metodos, $route->name);
-		// 	}
-		// };
-		// dd($metodos);
 		if(Gate::denies('empresasProveedoras', $route->getName()) ){
 			Session::flash("mensaje-error","No tiene permisos para acceder al modulo: ".$route->getName());
 			return redirect('/mis-proyectos');
