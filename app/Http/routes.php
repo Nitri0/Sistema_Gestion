@@ -90,6 +90,7 @@ $router->group(['middleware' => 'auth'], function() {
 #________________________________ ADMINISTRADOR DE USUARIOS _____________________________________
 					#____________________ cruds ____________________________	
 	Route::get('admin_usuarios/{admin_usuarios}/destroy', 'AdministradorUsuariosController@destroy');
+	Route::get('admin_usuarios/{admin_usuarios}/habilitar', 'AdministradorUsuariosController@habilitar');
 	Route::get('admin_usuarios/{id}/permisos',  ['as'  => 'admin_usuario.editPermisos',
 												'uses'=>'AdministradorUsuariosController@editPermisos']);
 	Route::resource('admin_usuarios', 'AdministradorUsuariosController');

@@ -18,7 +18,7 @@ class AdministradorEmpresasController extends Controller {
 
 	public function __construct(){
 		$this->beforeFilter('@permisos');
-		$this->beforeFilter('@find', ['only' => ['show','update','edit','destroy']]);
+		$this->beforeFilter('@find', ['only' => ['show','update','edit','destroy','habilitar']]);
 	}
 
 	public function find(Route $route){

@@ -42,6 +42,7 @@
 	        <div ng-init="usuario={{$usuario}}"></div>
 			<div ng-init="perfil={{$perfil}}"></div>
 			<div ng-init="permisos_user={{$permisos_user}}"></div>
+			[[permiso]]
 			<div ng-init="print(permisos_user)"></div>
 			
 			<form class="form-horizontal" action="{{ url('admin_usuarios/'.$usuario->id_usuario) }}" method="POST" novalidate>
@@ -163,6 +164,7 @@
 					<h1 class="page-header"><center><i class="fa fa-unlock-alt"></i><small> Permisos (solo aplican para socios)</small></center></h1>
 
 					@foreach($permisos as $nombre_clase=>$metodos)
+
 		            <div class="col-md-6 ui-sortable">
 		                <!-- begin panel -->
 		                <div class="panel panel-inverse">
@@ -177,14 +179,15 @@
 								<table class="table table-bordered table-condensed m-b-0">
 									<tbody>
 										@foreach($metodos as $metodo)
+										{{dd($metodo)}}
 										<tr>
 											<td>
-												{{$metodo}}
+												{{$metodo->nombre_raw}}
 											</td>
 											<td>
-												[[permisos_user.{{$nombre_clase}}.{{$metodo}} ]]
-												<input type="checkbox" data-render="switchery" data-theme="blue" name="{{'clases['.$nombre_clase.'.'.$metodo.']'}}"
-												 ng-model="permisos_user['{{$nombre_clase}}.{{$metodo}}']">
+												[[permisos_user.{{$nombre_clase}}.{{$metodo->nombre_raw}} ]]
+												<input type="checkbox" data-render="switchery" data-theme="blue" name="{{'clases['.$nombre_clase.'.'.$metodo->nombre_raw.']'}}"
+												 ng-model="permisos_user['{{$nombre_clase}}.{{$metodo->nombre_raw}}']">
 											</td>
 									
 										</tr>

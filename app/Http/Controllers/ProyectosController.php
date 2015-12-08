@@ -166,12 +166,12 @@ class ProyectosController extends Controller {
 		$proyectos = json_encode(\DB::select('CALL p_busquedas(?,?,?)',array('listar_todos_proyectos_finalizados','',Auth::user()->getIdEmpresa())));
 		return view('proyectos.list_proyectos_finalizados', compact('proyectos'));
 	}
-
+/*
 	public function indexProyectosPorIntegrantes(){
 		$proyectos = json_encode(\DB::select('CALL p_busquedas(?,?,?)',array('listar_todos_proyectos_finalizados','',Auth::user()->getIdEmpresa())));
 		return view('proyectos.list_proyectos_finalizados', compact('proyectos'));
 	}
-
+*/
 	/**
 	 * Store a newly created resource in storage.
 	 *

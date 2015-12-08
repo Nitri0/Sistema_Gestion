@@ -84,7 +84,8 @@
 									<td>[[usuario.habilitado_usuario ]]</td>
 						        	<td>
 						        		<a class="btn btn-sm btn-info" ng-href="{{ url( '/admin_usuarios/[[usuario.id_usuario]]/edit' ) }}" data-toggle="tooltip" data-title="Editar"><i class="fa fa-pencil-square-o"></i></a>
-						        		<a class="btn btn-sm btn-danger" ng-href="{{ url( '/admin_usuarios/[[usuario.id_usuario]]/destroy' ) }}" data-toggle="tooltip" data-title="Eliminar"><i class="fa fa-ban"></i></a>
+						        		<a class="btn btn-sm btn-danger" ng-href="{{ url( '/admin_usuarios/[[usuario.id_usuario]]/destroy' ) }}" data-toggle="tooltip" data-title="Deshabilitar"><i class="fa fa-ban"></i></a>
+						        		<a class="btn btn-sm btn-info" ng-href="{{ url( '/admin_usuarios/[[usuario.id_usuario]]/habilitar' ) }}" data-toggle="tooltip" data-title="Habilitar"><i class="fa fa-ban"></i></a>
 						        	</td>
 						        </tr>
 						    </tbody>
