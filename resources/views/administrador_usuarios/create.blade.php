@@ -42,7 +42,7 @@
 	        <div ng-init="usuario={{$usuario}}"></div>
 			<div ng-init="perfil={{$perfil}}"></div>
 			<div ng-init="permisos_user={{$permisos_user}}"></div>
-			[[permiso]]
+			
 			<div ng-init="print(permisos_user)"></div>
 			
 			<form class="form-horizontal" action="{{ url('admin_usuarios/'.$usuario->id_usuario) }}" method="POST" novalidate>
@@ -179,15 +179,15 @@
 								<table class="table table-bordered table-condensed m-b-0">
 									<tbody>
 										@foreach($metodos as $metodo)
-										{{dd($metodo)}}
+										
 										<tr>
 											<td>
-												{{$metodo->nombre_raw}}
+												{{$metodo['metodo_process']}} - {{$metodo['metodo_descripcion']}}
 											</td>
 											<td>
-												[[permisos_user.{{$nombre_clase}}.{{$metodo->nombre_raw}} ]]
-												<input type="checkbox" data-render="switchery" data-theme="blue" name="{{'clases['.$nombre_clase.'.'.$metodo->nombre_raw.']'}}"
-												 ng-model="permisos_user['{{$nombre_clase}}.{{$metodo->nombre_raw}}']">
+												[[permisos_user.{{$nombre_clase}}.{{$metodo['metodo_raw']}} ]]
+												<input type="checkbox" data-render="switchery" data-theme="blue" name="{{'clases['.$nombre_clase.'.'.$metodo['metodo_raw'].']'}}"
+												 ng-model="permisos_user['{{$nombre_clase}}.{{$metodo['metodo_raw']}}']">
 											</td>
 									
 										</tr>

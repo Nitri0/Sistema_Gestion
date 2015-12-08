@@ -154,7 +154,7 @@ class AdministradorUsuariosController extends Controller
                                                         ],
                                               "previewPlantillas" => [
                                                             "Previsualizar plantillas",
-                                                            "",
+                                                            "Permite mostrar la información de plantillas creadas. (Requiere el permiso Listar)",
                                                         ],
                                        ],
                         
@@ -225,20 +225,20 @@ class AdministradorUsuariosController extends Controller
                                                             "",
                                                         ],
                                               "finalizarProyecto" => [
-                                                            "Finalizar proyecto",
-                                                            "",
+                                                            "Finalizar proyectos",
+                                                            "(Requiere el permiso Mostrar)",
                                                         ],
                                               "reiniciarProyecto" => [
-                                                            "Reiniciar proyecto",
-                                                            "",
+                                                            "Re-Abrir proyecto",
+                                                            "(Requiere el permiso Mostrar)",
                                                         ],
                                               "agregarIntegrante" => [
                                                             "Agregar integrantes a proyectos creados",
-                                                            "",
+                                                            "(Requiere el permiso mostrar)",
                                                         ],
                                               "eliminarIntegrante" => [
-                                                            "Eliminar integrantes a proyectos creados",
-                                                            "",
+                                                            "Eliminar integrantes de proyectos creados",
+                                                            "(Requiere el permiso mostrar)",
                                                         ],
                                        ],
 
@@ -361,9 +361,11 @@ class AdministradorUsuariosController extends Controller
             foreach($class->getMethods(\ReflectionMethod::IS_PUBLIC ) as $route){
                 if ($route->class == substr($controlador,1) && !in_array($route->name, $metodos_except) ){
 
-                    array_push($metodos, ['nombre_raw' => $route->name,
-                                            'nombre_procesado' => $nombre_metodos[$nombre][$route->name] ]);
-                    //array_push($metodos_procesados, );
+                    array_push($metodos, ['metodo_raw'=>$route->name,
+                                          'metodo_process'=>$nombre_metodos[$nombre][$route->name][0],
+                                          'metodo_descripcion'=>$nombre_metodos[$nombre][$route->name][1]
+                                          ]);
+                    
                 }
             };
             
