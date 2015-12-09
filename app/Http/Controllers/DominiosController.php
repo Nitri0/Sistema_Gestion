@@ -85,19 +85,10 @@ class DominiosController extends Controller {
 	}
 
 	public function show($id){
-
-		if ($this->dominio){
-			return view('dominios.detalle', ['dominio'=>$this->dominio]);
-		};
-		Session::flash('mensaje-error', 'No tiene permisos para ver ese registro');
-		return redirect('/dominios');
+		return view('dominios.detalle', ['dominio'=>$this->dominio]);
 	}
 
 	public function edit($id){
-		if (!$this->dominio){
-			Session::flash('mensaje-error', 'No tiene permisos para editar ese registro');
-			return redirect('/dominios');
-		};
 		$dominio = $this->dominio;
 
 
@@ -139,7 +130,11 @@ class DominiosController extends Controller {
 	}
 
 	public function destroy($id){
-		Dominios::find($id)->delete();
+		//Dominios::find($id)->delete();
+		$this->dominio->fill(['habilitado_dominio'=>0,]);
+		$this->dominio->save();
+		Proyectos::find($this->dominio->id_proyecto)
+					->update(['usable_proyecto'=>1,]);
 		return redirect("/dominios");
 	}
 

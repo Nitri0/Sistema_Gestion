@@ -37,8 +37,12 @@
 						<p>{{$tipo_proyecto->nombre_tipo_proyecto}}</p>	
 					</div>
 					<div class="stats-link">
-						<a href="javascript:;">Detalle <i class="fa fa-arrow-circle-o-right"></i></a>
+						<a href="{{url('/tipo_proyectos/'.$tipo_proyecto->id_tipo_proyecto.'/edit')}}">Editar <i class="fa fa-arrow-circle-o-right"></i></a>
 					</div>
+
+					<div class="stats-link">
+						<a href="{{url('/tipo_proyectos/'.$tipo_proyecto->id_tipo_proyecto.'/destroy')}}">Eliminar <i class="fa fa-arrow-circle-o-right"></i></a>
+					</div>					
 				</div>
 			</div>
 			@endforeach

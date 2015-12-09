@@ -99,7 +99,7 @@
 				<a href="javascript:;">
 				    <b class="caret pull-right"></b>
 				    <i class="fa fa-coffee"></i>
-				    <span>Empresas Proveedoras</span>
+				    <span>Empresas Proveedoras [FALTA ESTILO en detalle]</span>
 			    </a>
 				<ul class="sub-menu">
 				    <li><a href="{{ url('empresas_proveedoras') }}">Listar Proveedores</a></li>

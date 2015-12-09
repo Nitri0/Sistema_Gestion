@@ -75,6 +75,7 @@
 										<td>{{$etapa->cantidad_etapas}}</td>
 							        	<td>
 							        		<a class="btn btn-sm btn-info" href="{{ url( '/grupo_etapas/'.$etapa->id_grupo_etapas ) }}" data-toggle="tooltip" data-title="Detalle"><i class="fa fa-list"></i></a>
+							        		<a class="btn btn-sm btn-danger" href="{{ url( '/grupo_etapas/'.$etapa->id_grupo_etapas.'/destroy' ) }}" data-toggle="tooltip" data-title="Eliminar"><i class="fa fa-trash"></i></a>
 							        	</td>
 							        </tr>
 								@endforeach

@@ -16,7 +16,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
 	protected $connection = 'permisologia';
 	protected $table = 't_usuario';
 	protected $primaryKey = "id_usuario";
-	protected $fillable = ['correo_usuario', 'password','id_permisologia'];
+	protected $fillable = ['correo_usuario', 'password','id_permisologia','habilitado_usuario'];
 	protected $hidden = ['password', 'remember_token'];
 	public $timestamps = false;
 
@@ -51,6 +51,19 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
 			return $empresa->id_empresa;
 		}
 
+	}
+
+	public function getHabiltiadoEmpresa(){
+
+		$relacion = MMEmpresasUsuarios::where('id_usuario',$this->id_usuario)->first();
+		if (!$relacion){
+			return false;
+		}
+		$empresa = Empresas::find($relacion->id_empresa);
+		if (!$empresa){
+			return false;
+		}
+		return $empresa->habilitado_empresa;
 	}
 
 	public function isAdmin(){

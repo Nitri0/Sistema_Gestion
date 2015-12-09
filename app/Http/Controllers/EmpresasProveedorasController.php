@@ -54,32 +54,24 @@ class EmpresasProveedorasController extends Controller {
 		$request['id_empresa'] = Auth::user()->getIdEmpresa();
 		$empresa_proveedora = EmpresasProveedoras::create($request->all());
 		Session::flash('mensaje', 'Empresa proveedora creada exitosamente');
-		return redirect('/dominios/create');
-	}
-
-	public function show($id){
-		$empresa_proveedora = EmpresasProveedoras::where('id_empresa_proveedora',$id)
-												 ->where('id_empresa',Auth::user()->getIdEmpresa())->first();
-		if($empresas_proveedoras){
-			return view('empresas_proveedoras.detalle', compact('empresa_proveedora'));
-		}
-		Session::flash('mensaje', 'No tiene permisos para ver ese registro');
-		return redirect('/empresas_proveedoras');		
-	}
-
-	public function edit($id){
-		$empresa_proveedora = EmpresasProveedoras::where('id_empresa_proveedora',$id)
-												 ->where('id_empresa',Auth::user()->getIdEmpresa())->first();
-		if($empresas_proveedoras){
-			return view('empresas_proveedoras.create', compact('empresa_proveedora'));
-		}
-		Session::flash('mensaje', 'No tiene permisos para ver ese registro');
 		return redirect('/empresas_proveedoras');
 	}
 
-	// public function update($id){
-	// 	//
-	// }
+	public function show($id){
+		return view('empresas_proveedoras.detalle', ['empresa_proveedora'=>$this->empresa_proveedora]);
+	}
+
+	public function edit($id){
+		return view('empresas_proveedoras.create', ['empresa_proveedora'=>$this->empresa_proveedora]);
+	}
+
+	public function update(Request $request, $id){
+		//dd($request->all());
+		$this->empresa_proveedora->fill($request->except('_method'));
+		$this->empresa_proveedora->save();
+		//dd($this->empresa_proveedora);
+		return redirect('/empresas_proveedoras');
+	}
 
 
 	// public function destroy($id)

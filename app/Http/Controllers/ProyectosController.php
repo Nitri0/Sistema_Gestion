@@ -61,9 +61,14 @@ class ProyectosController extends Controller {
 										->toArray();
 
 		$usuarios = User::whereIn('id_usuario',$idusuarios)->get();
-		$roles = TipoRoles::where('id_empresa',Auth::user()->getIdEmpresa())->get();
-		$grupo_etapas = GrupoEtapas::where('id_empresa', Auth::user()->getIdEmpresa())->get();
-		$tipo_proyectos = TipoProyectos::where('id_empresa', Auth::user()->getIdEmpresa())->get();
+		$roles = TipoRoles::where('id_empresa',Auth::user()->getIdEmpresa())
+							->where('habilitado_tipo', 1)->get();
+		$grupo_etapas = GrupoEtapas::where('id_empresa', Auth::user()->getIdEmpresa())
+									->where('habilitado_grupo_etapas', 1)
+									->get();
+		$tipo_proyectos = TipoProyectos::where('id_empresa', Auth::user()->getIdEmpresa())
+										->where('habilitado_tipo_proyecto', 1)
+										->get();
 		return view('proyectos.create',compact('clientes', 'usuarios', 'roles','grupo_etapas','tipo_proyectos'));
 	}
 
@@ -83,7 +88,9 @@ class ProyectosController extends Controller {
 										->toArray();
 		//dd( $idusuarios );
 		$usuarios = User::whereIn('id_usuario',$idusuarios)->get();
-		$roles = TipoRoles::where('id_empresa',Auth::user()->getIdEmpresa())->get();
+		$roles = TipoRoles::where('id_empresa',Auth::user()->getIdEmpresa())
+							->where('habilitado_tipo', 1)
+							->get();
 
 		return view('proyectos.detalle',compact('proyecto','id_proyecto', 'rol', 'etapas','roles','usuarios' ));
 
@@ -159,12 +166,12 @@ class ProyectosController extends Controller {
 		$proyectos = json_encode(\DB::select('CALL p_busquedas(?,?,?)',array('listar_todos_proyectos_finalizados','',Auth::user()->getIdEmpresa())));
 		return view('proyectos.list_proyectos_finalizados', compact('proyectos'));
 	}
-
+/*
 	public function indexProyectosPorIntegrantes(){
 		$proyectos = json_encode(\DB::select('CALL p_busquedas(?,?,?)',array('listar_todos_proyectos_finalizados','',Auth::user()->getIdEmpresa())));
 		return view('proyectos.list_proyectos_finalizados', compact('proyectos'));
 	}
-
+*/
 	/**
 	 * Store a newly created resource in storage.
 	 *

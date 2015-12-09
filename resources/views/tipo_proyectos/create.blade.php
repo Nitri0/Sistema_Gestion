@@ -30,12 +30,22 @@
 						
 						<br><br>
 
-						<form class="form-horizontal" name="formulario" id="formulario" ng-submit="submit(formulario.$valid)" action="{{ url('tipo_proyectos/') }}" method="POST">		
+                    @if($tipo_proyecto)
+                        <h1 class="page-header"><i class="fa fa-laptop"></i> Editar tipo de proyecto </h1>
+                        
+                        <div ng-init="model={{ $tipo_proyecto }}"></div>
+                        <form class="form-horizontal" action="{{ url('tipo_proyectos/'.$tipo_proyecto->id_tipo_proyecto) }}" method="POST">
+                            <input type="hidden" name="_method" value="PUT">
+                    
+                    @else
+                        <h1 class="page-header"><i class="fa fa-laptop"></i> Crear tipo de proyecto </h1>
+                        <form class="form-horizontal" name="formulario" id="formulario" ng-submit="submit(formulario.$valid)" action="{{ url('tipo_proyectos/') }}" method="POST">      
+                    @endif
 	
 							<div class="form-group">
                                 <label class="col-md-4 control-label">Identificador de proyectos</label>
                                 <div class="col-md-5">
-                                    <input type="text" class="form-control" ng-model="tipo_proyecto.nombre_tipo_proyecto" name="nombre_tipo_proyecto" ng-required="true" oninvalid="setCustomValidity(' ')">
+                                    <input type="text" class="form-control" ng-model="model.nombre_tipo_proyecto" name="nombre_tipo_proyecto" ng-required="true" oninvalid="setCustomValidity(' ')">
                                     <div class="error campo-requerido" ng-show="formulario.nombre_tipo_proyecto.$invalid && (formulario.nombre_tipo_proyecto.$touched || submitted)">
                                         <small class="error" ng-show="formulario.nombre_tipo_proyecto.$error.required">
                                             * Campo requerido.

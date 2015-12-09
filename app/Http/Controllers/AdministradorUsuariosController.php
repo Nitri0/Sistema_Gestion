@@ -24,12 +24,23 @@ class AdministradorUsuariosController extends Controller
         $this->perfil ="";
         $this->permisos ="";
         $this->beforeFilter('@permisos');
-        $this->beforeFilter('@find', ['only' => ['show','update','edit','destroy']]);
+        $this->beforeFilter('@find', ['only' => ['show','update','edit','destroy','habilitar']]);
         $this->beforeFilter('@metodosClases', ['only' => ['create','edit']]);
     }
 
     public function find(Route $route){
-        $this->usuario = User::find($route->getParameter('admin_usuarios'));
+        $this->usuario = User::where('id_usuario',$route->getParameter('admin_usuarios'))
+                                
+                                ->first();
+        $this->relacion = MMEmpresasUsuarios::where('id_usuario',$route->getParameter('admin_usuarios'))
+                                ->where('id_empresa',Auth::user()->getIdEmpresa())
+                                ->first();
+
+        //dd($this->usuario , $this->relacion, Auth::user());
+        if(!$this->usuario || !$this->relacion){
+            Session::flash('mensaje-error', 'No puede acceder ese registro');
+            return redirect('/admin_usuarios');
+        }                                
     }
 
     public function metodosClases(Route $route){
@@ -39,8 +50,295 @@ class AdministradorUsuariosController extends Controller
                           '\App\Http\Controllers\EtapasController'                  =>'grupo_etapas',
                           '\App\Http\Controllers\PlantillasController'              =>'plantillas',
                           '\App\Http\Controllers\ProyectosController'               =>'proyectos',
-                          '\App\Http\Controllers\AdministradorEmpresasController'   =>'admin_empresas',
+                          //'\App\Http\Controllers\AdministradorEmpresasController'   =>'admin_empresas',
                           '\App\Http\Controllers\TipoProyectoController'            =>'tipo_proyectos'];
+
+        $nombre_metodos = [
+
+                        "dominios" =>
+                                       [     "index"   => [
+                                                            "Listar",
+                                                            "Permite acceso a la pantalla donde se listan los registros",
+                                                        ],
+                                              "show"    => [
+                                                            "Mostrar",
+                                                            "Permite acceso a la pantalla donde se muestra el detalle de los registros",
+                                                        ],
+                                              "create"  =>  [
+                                                            "Crear",
+                                                            "Permite acceso a la pantalla donde se rellena el formulario de creacion de un registro",
+                                                        ],
+                                              "store"   =>  [
+                                                            "Guardar",
+                                                            "Permite acceso a crear un registro. (Requiere el permiso Crear)",
+                                                        ],
+                                              "edit"    =>  [
+                                                            "Editar",
+                                                            "Permite acceso a editar un registro.",
+                                                        ],
+                                              "update"  => [
+                                                            "Actualizar",
+                                                            "Permite acceso a actualizar un registro. (Requiere el permiso Editar)",
+                                                        ],
+                                              "destroy" => [
+                                                            "Eliminar",
+                                                            "Permite acceso a crear un registro. (Requiere el permiso Crear)",
+                                                        ],
+                                              "actualizarEspacioUsado" => [
+                                                            "Actualizar espacio usado",
+                                                            "",
+                                                        ],
+                                        ],
+
+                        "clientes" =>
+                                       [
+                                            "index"   => [
+                                                            "Listar",
+                                                            "Permite acceso a la pantalla donde se listan los registros",
+                                                        ],
+                                              "show"    => [
+                                                            "Mostrar",
+                                                            "Permite acceso a la pantalla donde se muestra el detalle de los registros",
+                                                        ],
+                                              "create"  =>  [
+                                                            "Crear",
+                                                            "Permite acceso a la pantalla donde se rellena el formulario de creacion de un registro",
+                                                        ],
+                                              "store"   =>  [
+                                                            "Guardar",
+                                                            "Permite acceso a crear un registro. (Requiere el permiso Crear)",
+                                                        ],
+                                              "edit"    =>  [
+                                                            "Editar",
+                                                            "Permite acceso a editar un registro.",
+                                                        ],
+                                              "update"  => [
+                                                            "Actualizar",
+                                                            "Permite acceso a actualizar un registro. (Requiere el permiso Editar)",
+                                                        ],
+                                              "destroy" => [
+                                                            "Eliminar",
+                                                            "Permite acceso a crear un registro. (Requiere el permiso Crear)",
+                                                        ],
+                                        ],
+                        
+                        "plantillas" =>
+                                       [     
+                                            "index"   => [
+                                                            "Listar",
+                                                            "Permite acceso a la pantalla donde se listan los registros",
+                                                        ],
+                                              "show"    => [
+                                                            "Mostrar",
+                                                            "Permite acceso a la pantalla donde se muestra el detalle de los registros",
+                                                        ],
+                                              "create"  =>  [
+                                                            "Crear",
+                                                            "Permite acceso a la pantalla donde se rellena el formulario de creacion de un registro",
+                                                        ],
+                                              "store"   =>  [
+                                                            "Guardar",
+                                                            "Permite acceso a crear un registro. (Requiere el permiso Crear)",
+                                                        ],
+                                              "edit"    =>  [
+                                                            "Editar",
+                                                            "Permite acceso a editar un registro.",
+                                                        ],
+                                              "update"  => [
+                                                            "Actualizar",
+                                                            "Permite acceso a actualizar un registro. (Requiere el permiso Editar)",
+                                                        ],
+                                              "destroy" => [
+                                                            "Eliminar",
+                                                            "Permite acceso a crear un registro. (Requiere el permiso Crear)",
+                                                        ],
+                                              "previewPlantillas" => [
+                                                            "Previsualizar plantillas",
+                                                            "Permite mostrar la información de plantillas creadas. (Requiere el permiso Listar)",
+                                                        ],
+                                       ],
+                        
+                        "tipo_proyectos" =>
+                                       [     
+                                            "index"   => [
+                                                            "Listar",
+                                                            "Permite acceso a la pantalla donde se listan los registros",
+                                                        ],
+                                              "show"    => [
+                                                            "Mostrar",
+                                                            "Permite acceso a la pantalla donde se muestra el detalle de los registros",
+                                                        ],
+                                              "create"  =>  [
+                                                            "Crear",
+                                                            "Permite acceso a la pantalla donde se rellena el formulario de creacion de un registro",
+                                                        ],
+                                              "store"   =>  [
+                                                            "Guardar",
+                                                            "Permite acceso a crear un registro. (Requiere el permiso Crear)",
+                                                        ],
+                                              "edit"    =>  [
+                                                            "Editar",
+                                                            "Permite acceso a editar un registro.",
+                                                        ],
+                                              "update"  => [
+                                                            "Actualizar",
+                                                            "Permite acceso a actualizar un registro. (Requiere el permiso Editar)",
+                                                        ],
+                                              "destroy" => [
+                                                            "Eliminar",
+                                                            "Permite acceso a crear un registro. (Requiere el permiso Crear)",
+                                                        ],
+                                       ],     
+                                                                 
+                        "proyectos" =>
+                                       [    
+                                            "index"   => [
+                                                            "Listar",
+                                                            "Permite acceso a la pantalla donde se listan los registros",
+                                                        ],
+                                              "show"    => [
+                                                            "Mostrar",
+                                                            "Permite acceso a la pantalla donde se muestra el detalle de los registros",
+                                                        ],
+                                              "create"  =>  [
+                                                            "Crear",
+                                                            "Permite acceso a la pantalla donde se rellena el formulario de creacion de un registro",
+                                                        ],
+                                              "store"   =>  [
+                                                            "Guardar",
+                                                            "Permite acceso a crear un registro. (Requiere el permiso Crear)",
+                                                        ],
+                                              "edit"    =>  [
+                                                            "Editar",
+                                                            "Permite acceso a editar un registro.",
+                                                        ],
+                                              "update"  => [
+                                                            "Actualizar",
+                                                            "Permite acceso a actualizar un registro. (Requiere el permiso Editar)",
+                                                        ],
+                                              "destroy" => [
+                                                            "Eliminar",
+                                                            "Permite acceso a crear un registro. (Requiere el permiso Crear)",
+                                                        ],
+                                              "indexProyectosFinalizados" => [
+                                                            "Listar proyectos finalizados",
+                                                            "",
+                                                        ],
+                                              "finalizarProyecto" => [
+                                                            "Finalizar proyectos",
+                                                            "(Requiere el permiso Mostrar)",
+                                                        ],
+                                              "reiniciarProyecto" => [
+                                                            "Re-Abrir proyecto",
+                                                            "(Requiere el permiso Mostrar)",
+                                                        ],
+                                              "agregarIntegrante" => [
+                                                            "Agregar integrantes a proyectos creados",
+                                                            "(Requiere el permiso mostrar)",
+                                                        ],
+                                              "eliminarIntegrante" => [
+                                                            "Eliminar integrantes de proyectos creados",
+                                                            "(Requiere el permiso mostrar)",
+                                                        ],
+                                       ],
+
+                        "grupo_etapas" =>
+                                       [     
+                                            "index"   => [
+                                                            "Listar",
+                                                            "Permite acceso a la pantalla donde se listan los registros",
+                                                        ],
+                                              "show"    => [
+                                                            "Mostrar",
+                                                            "Permite acceso a la pantalla donde se muestra el detalle de los registros",
+                                                        ],
+                                              "create"  =>  [
+                                                            "Crear",
+                                                            "Permite acceso a la pantalla donde se rellena el formulario de creacion de un registro",
+                                                        ],
+                                              "store"   =>  [
+                                                            "Guardar",
+                                                            "Permite acceso a crear un registro. (Requiere el permiso Crear)",
+                                                        ],
+                                              "edit"    =>  [
+                                                            "Editar",
+                                                            "Permite acceso a editar un registro.",
+                                                        ],
+                                              "update"  => [
+                                                            "Actualizar",
+                                                            "Permite acceso a actualizar un registro. (Requiere el permiso Editar)",
+                                                        ],
+                                              "destroy" => [
+                                                            "Eliminar",
+                                                            "Permite acceso a crear un registro. (Requiere el permiso Crear)",
+                                                        ],
+                                              ],
+                              
+                        "roles" =>
+                                       [     
+                                            "index"   => [
+                                                            "Listar",
+                                                            "Permite acceso a la pantalla donde se listan los registros",
+                                                        ],
+                                              "show"    => [
+                                                            "Mostrar",
+                                                            "Permite acceso a la pantalla donde se muestra el detalle de los registros",
+                                                        ],
+                                              "create"  =>  [
+                                                            "Crear",
+                                                            "Permite acceso a la pantalla donde se rellena el formulario de creacion de un registro",
+                                                        ],
+                                              "store"   =>  [
+                                                            "Guardar",
+                                                            "Permite acceso a crear un registro. (Requiere el permiso Crear)",
+                                                        ],
+                                              "edit"    =>  [
+                                                            "Editar",
+                                                            "Permite acceso a editar un registro.",
+                                                        ],
+                                              "update"  => [
+                                                            "Actualizar",
+                                                            "Permite acceso a actualizar un registro. (Requiere el permiso Editar)",
+                                                        ],
+                                              "destroy" => [
+                                                            "Eliminar",
+                                                            "Permite acceso a crear un registro. (Requiere el permiso Crear)",
+                                                        ],
+                                        ],
+
+                        "empresas_proveedoras" =>
+                                       [     
+                                            "index"   => [
+                                                            "Listar",
+                                                            "Permite acceso a la pantalla donde se listan los registros",
+                                                        ],
+                                              "show"    => [
+                                                            "Mostrar",
+                                                            "Permite acceso a la pantalla donde se muestra el detalle de los registros",
+                                                        ],
+                                              "create"  =>  [
+                                                            "Crear",
+                                                            "Permite acceso a la pantalla donde se rellena el formulario de creacion de un registro",
+                                                        ],
+                                              "store"   =>  [
+                                                            "Guardar",
+                                                            "Permite acceso a crear un registro. (Requiere el permiso Crear)",
+                                                        ],
+                                              "edit"    =>  [
+                                                            "Editar",
+                                                            "Permite acceso a editar un registro.",
+                                                        ],
+                                              "update"  => [
+                                                            "Actualizar",
+                                                            "Permite acceso a actualizar un registro. (Requiere el permiso Editar)",
+                                                        ],
+                                              "destroy" => [
+                                                            "Eliminar",
+                                                            "Permite acceso a crear un registro. (Requiere el permiso Crear)",
+                                                        ],
+                                        ],
+
+                              ];
 
         $this->tipos_usuario = [
                                 'Trabajador'    =>1,
@@ -52,20 +350,27 @@ class AdministradorUsuariosController extends Controller
                             'find',
                             'permisos',
                             'metodosClases'];
+
         $permisos = [];
 
 
         foreach($controladores as $controlador=>$nombre){
             $metodos = [];
+            $metodos_procesados = [];
             $class = new \ReflectionClass($controlador);
             foreach($class->getMethods(\ReflectionMethod::IS_PUBLIC ) as $route){
                 if ($route->class == substr($controlador,1) && !in_array($route->name, $metodos_except) ){
 
-                    array_push($metodos, $route->name);
+                    array_push($metodos, ['metodo_raw'=>$route->name,
+                                          'metodo_process'=>$nombre_metodos[$nombre][$route->name][0],
+                                          'metodo_descripcion'=>$nombre_metodos[$nombre][$route->name][1]
+                                          ]);
+                    
                 }
             };
             
             $permisos[$nombre] = $metodos;
+//            dd($permisos);
         };
         //dd($permisos);
         $this->permisos = $permisos;
@@ -78,8 +383,6 @@ class AdministradorUsuariosController extends Controller
         };
     }
 
-
-
     public function index(){
         //->get()->pluck('modulo_excepcion')->toArray();
         $idusuarios = MMEmpresasUsuarios::where('id_empresa', Auth::user()->getIdEmpresa())
@@ -87,7 +390,9 @@ class AdministradorUsuariosController extends Controller
                                             ->pluck('id_usuario')
                                             ->toArray();
         //dd( $idusuarios );
-        $usuarios = User::whereIn('id_usuario',$idusuarios)->get();
+        $usuarios = User::whereIn('id_usuario',$idusuarios)
+                            
+                            ->get();
         
         return view('administrador_usuarios.list',compact('usuarios'));
     }
@@ -128,10 +433,9 @@ class AdministradorUsuariosController extends Controller
 
         MMEmpresasUsuarios::firstOrCreate([
                                 'id_usuario' => $user->id_usuario,
-                                'id_empresa' => Auth::user()->getIdEmpresa()
+                                'id_empresa' => Auth::user()->getIdEmpresa(),
                                 ]);
 
-        //dd($permisos = Excepciones::where('id_usuario', $user->id_usuario)->get());
         Session::flash("mensaje-success","Usuario creado exitosamente");
         return redirect("/admin_usuarios");
     }
@@ -148,7 +452,7 @@ class AdministradorUsuariosController extends Controller
 
            $permisos[$excepcion]=true;
         }
-        //dd($permisos);
+
         return view('administrador_usuarios.create',['usuario'=>$this->usuario,
                                                      'permisos' =>$this->permisos,
                                                      'permisos_user' =>json_encode($permisos),
@@ -190,6 +494,14 @@ class AdministradorUsuariosController extends Controller
     }
 
     public function destroy($id){
+        $this->usuario->fill(['habilitado_usuario'=>0,]);
+        $this->usuario->save();
         return redirect("/admin_usuarios");
     }
+
+    public function habilitar($id){
+        $this->usuario->fill(['habilitado_usuario'=>1,]);
+        $this->usuario->save();
+        return redirect("/admin_usuarios");
+    }    
 }

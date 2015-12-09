@@ -59,6 +59,9 @@
 						        <th>
 						        	<a href="#" ng-click="changeSort('email_empresa')">Email</a>
 						        </th>
+						   		<th>
+						        	<a href="#" ng-click="changeSort('habilitado_empresa')">Status</a>
+						        </th>
 
 						        <th >Operaciones</th>
 						      </tr>
@@ -71,9 +74,12 @@
 									<td>[[model.nombre_empresa ]]</td>
 									<td>[[model.rif_empresa  ]]</td>
 									<td>[[model.correo_empresa ]]</td>
-						        	<td width="150px">
+									<td>[[model.habilitado_empresa ]]</td>
+						        	<td width="180px">
 										<a class="btn btn-sm btn-info" href="{{ url( '/admin_empresas/[[model.id_empresa]]' ) }}" data-toggle="tooltip" data-title="Detalle"><i class="fa fa-list"></i></a>
 						        		<a class="btn btn-sm btn-success" href="{{ url( '/admin_empresas/[[model.id_empresa]]/edit' ) }}" data-toggle="tooltip" data-title="Editar"><i class="fa fa-pencil-square-o"></i></a>	
+						        		<a class="btn btn-sm btn-info" ng-href="{{ url( '/admin_empresas/[[model.id_empresa]]/habilitar') }}" data-toggle="tooltip" data-title="Habilitar"><i class="fa fa-trash"></i></i></a>
+						        		<a class="btn btn-sm btn-danger" ng-href="{{ url( '/admin_empresas/[[model.id_empresa]]/destroy') }}" data-toggle="tooltip" data-title="Deshabilitar"><i class="fa fa-trash"></i></i></a>
 						        	</td>
 						        </tr>
 						    </tbody>

@@ -83,9 +83,6 @@
 						        </th>
 						        <th>
 						        	<a href="#" ng-click="changeSort('nombre_proyecto')">Proyecto Asociado</a>
-						        </th>
-					        	<th>
-						        	<a href="#" ng-click="changeSort('espacio_usado_dominio')">Operaciones</a>
 						        </th>		        
 						      </tr>
 

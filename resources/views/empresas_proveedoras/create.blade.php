@@ -14,8 +14,8 @@
         
         <h1 class="page-header"><i class="fa fa-laptop"></i> Editar Empresa Proveedora </h1>
         <div ng-init="empresa_proveedora={{ $empresa_proveedora }}"></div>
-        <form class="form-horizontal" action="{{ url('empresas_proveedoras/'.$empresa_proveedora->id_cliente) }}" method="PUT">
-        
+        <form class="form-horizontal" action="{{ url('empresas_proveedoras/'.$empresa_proveedora->id_empresa_proveedora) }}" method="POST">
+        <input type="hidden" name="_method" value="PUT">
         @else
    		
    		<h1 class="page-header"><i class="fa fa-laptop"></i> Crear Empresa Proveedora </h1>
