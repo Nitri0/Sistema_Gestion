@@ -12,6 +12,7 @@ class Proyectos extends Model {
 	protected $primaryKey = "id_proyecto";
 	protected $fillable = array('id_cliente',
 								'id_grupo_etapas',
+								'id_tipo_proyecto',
 								'nombre_proyecto',
 								'estatus_proyecto',
 								'usable_proyecto',
