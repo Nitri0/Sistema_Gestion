@@ -19,11 +19,12 @@ class PlantillasController extends Controller {
 
 	public function __construct(){
 		$this->beforeFilter('@permisos');
-		$this->beforeFilter('@find', ['only' => ['show','update','edit','destroy']]);
+		$this->beforeFilter('@find', ['only' => ['show','update','edit','destroy','previewPlantillas']]);
 	}
 
 	#______________________________ Filtros _________________________________
 	public function find(Route $route){
+		//dd($route->parameters());
 		$this->plantillas = Plantillas::where('id_plantilla',$route->getParameter('plantillas'))
 									->where('id_empresa', Auth::user()->getIdEmpresa())
 									->first();
@@ -44,7 +45,7 @@ class PlantillasController extends Controller {
 	#______________________________ Metodos _________________________________
 
 	public function index(){
-		$plantillas = Plantillas::where('id_empresa',Auth::user()->id_empresa)
+		$plantillas = Plantillas::where('id_empresa',Auth::user()->getIdEmpresa())
 									->where('habilitado_plantilla',1)
 									->paginate(10);
 		return view('plantillas.list',compact('plantillas'));
@@ -56,14 +57,12 @@ class PlantillasController extends Controller {
 	}
 
 	public function edit($id){
-		$plantilla="";
-		if ($id){
-			$plantilla = Plantillas::find($id);
-		}
-		return view('plantillas.create')->with('plantillas',$plantilla);
+		return view('plantillas.create')->with('plantillas',$this->plantillas);
 	}
 
 	public function store(Request $request){
+		$request['id_empresa']=Auth::user()->getIdEmpresa();
+		$request['id_usuario']=Auth::user()->id_usuario;
 		$plantillas = Plantillas::create($request->all());
         //$url = "uploads/temp/";
         $path = SITE_EMAILS."/".$request->nombre_plantilla.".blade.php";
@@ -73,19 +72,18 @@ class PlantillasController extends Controller {
 	}	
 
 	public function update(Request $request, $id){
+		$this->plantillas->fill($request->except('_method','raw_data_plantilla'));
+		$this->plantillas->save();
+		//Plantillas::where('id_plantilla',$id)->update($request->except('_method'));
 
-		Plantillas::where('id_plantilla',$id)->update($request->except('_method'));
 		$path = SITE_EMAILS."/".$request->nombre_plantilla.".blade.php";
 		file_put_contents($path,$request->raw_data_plantilla);
-		if (Session::has('history-back')){
-			return redirect(Session::get('history-back'));
-		}
 		return redirect('/plantillas');
 	}	
 
 	public function previewPlantillas($id_plantilla){
 		//dd($id_plantilla, $id_proyecto);
-		$plantilla = Plantillas::find($id_plantilla);
+		$plantilla = $this->plantillas;
 		$proyecto = new Proyectos();
 		$proyecto->nombre_proyecto = "PROYECTO_DE_PRUEBA";
 

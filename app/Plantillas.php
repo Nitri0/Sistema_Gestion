@@ -9,6 +9,7 @@ class Plantillas extends Model {
 	protected $fillable = array('nombre_plantilla',
 								'raw_data_plantilla',
 								'ur_plantilla',
+								'id_empresa',
 								'descripcion_plantilla');
 	public $timestamps = false;
 

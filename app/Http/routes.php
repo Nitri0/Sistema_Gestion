@@ -19,7 +19,7 @@ $router->group(['middleware' => 'auth'], function() {
 	
 
 #______________________________________ PLANTILLAS _____________________________________________
-	Route::get('/plantillas/preview/{id_plantilla}',['as'  => 'plantillas.previewPlantillas',
+	Route::get('/plantillas/preview/{plantillas}',['as'  => 'plantillas.previewPlantillas',
 						 							 'uses'=>'PlantillasController@previewPlantillas']);
 					#____________________ cruds ____________________________	
 	route::resource('plantillas','PlantillasController');
