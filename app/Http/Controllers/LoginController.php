@@ -36,19 +36,6 @@ class LoginController extends Controller {
 		//return $request->correo_usuario;
 	}
 
-
-	public function registro(){
-		return view('autenticacion.registro');
-	}
-
-
-	public function postRegistro(Request $request){
-		$request['password'] = \Hash::make($request['password']);
-		$user = User::create($request->all());
-		$perfil = Perfil::create(['id_usuario'=>$user->id_usuario]);
-		return Redirect('/login');
-	}
-
 	public function logout(){
 		Auth::logout();
 		return Redirect('/login');

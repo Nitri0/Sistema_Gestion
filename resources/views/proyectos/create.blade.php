@@ -3,25 +3,25 @@
 @section('content')
 	<div class="container" ng-controller="ProyectoController">
 
-		@if(Session::has('mensaje'))
-			<div class="alert alert-success">
-			  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-			  	{{Session::get('mensaje')}}
-			</div>
-		@endif
-		
-		@if(Session::has('mensaje-error'))
-			<div class="alert alert-success">
-			  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-			  	{{Session::get('mensaje-error')}}
-			</div>
-		@endif
-		
+		@include('alerts.mensaje_success')
+		@include('alerts.mensaje_error')
 
-			<h2>Crear proyecto web</h2>
+			<h2>Crear proyecto</h2>
 			<form action="{{ url('proyectos/') }}" method="POST">		
 
 			<br><br>
+			<div class="from-group">
+				<label for="">Tipo de Proyecto</label>
+				<select class="form-control" ng-model="proyecto.id_tipo_proyecto" name="id_tipo_proyecto">
+					<option class="option" value="">Seleccione un tipo de proyecto</option>
+					@foreach($tipo_proyectos as $tipo_proyecto)
+						<option class="option" value="{{$tipo_proyecto->id_tipo_proyecto}}">
+							{{ $tipo_proyecto->nombre_tipo_proyecto }}
+						</option>
+					@endforeach
+				</select>
+			</div>
+			<br>
 			<div class="from-group">
 				<label for="">Cliente</label>
 				<select class="form-control" ng-model="proyecto.id_cliente" name="id_cliente">

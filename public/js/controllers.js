@@ -9,6 +9,26 @@ coreApp.controller('ClienteController', function ($scope, $log) {
 coreApp.controller('DominioController', function ($scope, $log) {
 	console.log("dominio");
 	$scope.dominio={};
+
+	$scope.sort = "name";
+	$scope.reverse = false;
+
+	$scope.compare = function(asignado,usado) {
+		if (usado > asignado){
+			return true;
+		}
+		return false;
+	}
+	$scope.changeSort = function(value){
+	    if ($scope.sort == value){
+	      $scope.reverse = !$scope.reverse;
+	      return;
+	    }
+
+	    $scope.sort = value;
+	    $scope.reverse = false;
+	}
+
 });
 
 coreApp.controller('ProveedorController', function ($scope, $log) {
@@ -28,10 +48,19 @@ coreApp.controller('ProyectoController', function ($scope, $log) {
 	$scope.personas=[];
 	$scope.cantidad=0;
 	$scope.proyecto={};
-	$scope.print = function (argument) {
-		console.log(argument);
-		console.log(new Date());
-	};
+
+	$scope.sort = "name";
+	$scope.reverse = false;
+
+	$scope.changeSort = function(value){
+	    if ($scope.sort == value){
+	      $scope.reverse = !$scope.reverse;
+	      return;
+	    }
+
+	    $scope.sort = value;
+	    $scope.reverse = false;
+	}
 	
 	$scope.agregar_integrantes= function(argument) {
 		$scope.personas.push(1);
@@ -52,6 +81,14 @@ coreApp.controller('PerfilController', function ($scope, $log) {
 coreApp.controller('PlantillasController', function ($scope, $log) {
 	console.log("plantillas");
 	$scope.plantilla={};
+});
+
+
+coreApp.controller('AdminUsuariosController', function ($scope, $log) {
+	console.log("AdminUsuariosController");
+	$scope.print = function(argument) {
+		console.log(argument);
+	}
 });
 
 coreApp.controller('GrupoEtapasController', function ($scope, $log) {

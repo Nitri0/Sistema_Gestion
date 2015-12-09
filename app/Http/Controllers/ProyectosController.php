@@ -8,48 +8,50 @@ use App\Dominios;
 use App\User;
 use App\Tipo;
 use App\Roles;
+use App\TipoProyectos;
 use App\Avances;
 use App\Master;
 use App\GrupoEtapas;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Route;
 use Session;
+use Gate;
 
 class ProyectosController extends Controller {
 
 	public function __construct(){
+		$this->beforeFilter('@permisos');
 		$this->beforeFilter('@find', ['only' => ['show','update','edit','destroy']]);
 	}
 
+
+	#______________________________ Filtros _________________________________
 	public function find(Route $route){
 		$this->proyecto = Proyectos::find($route->getParameter('proyectos'));
 	}
 
+	public function permisos(Route $route){
+		// FORMA DE OBTENER LOS METODOS DE UNA CLASE
+		// $class = new \ReflectionClass($this);
+		// $metodos = [];
+		// foreach ($class->getMethods(\ReflectionMethod::IS_PUBLIC ) as $route){
+		// 	if ($route->class == 'App\Http\Controllers\ProyectosController'){
+		// 		array_push($metodos, $route->name);
+		// 	}
+		// };
+		// dd($metodos);
+		//dd($route->getName());
+		if(Gate::denies('proyectos', $route->getName()) ){
+			Session::flash("mensaje-error","No tiene permisos para acceder al modulo: ".$route->getName());
+			return redirect('/mis-proyectos');
+		};
+	}
+
+
+	#______________________________ Metodos _________________________________
 	public function index(){
 
-
-
-		// $proyectos = \DB::table('t_proyectos')
-		// 					->where('t_proyectos.habilitado_proyecto','=',1)
-		// 					->join('t_avances',function($join){
-		// 						$join->on('t_avances.id_proyecto','=','t_proyectos.id_proyecto')
-		// 							 ->max('a.view');  
-		// 					})
-
-		// 					->join('t_clientes', 't_clientes.id_cliente', '=', 't_proyectos.id_cliente')
-		// 					->join('t_dominios', 't_dominios.id_proyecto', '=', 't_proyectos.id_proyecto')
-		// 					->max('t_avances.id_avance')
-		// 					->orderBy('t_avances.id_avance','desc')
-		// 					->paginate(10)
-		// 					;
-							
-
 		$proyectos = json_encode(\DB::select('CALL p_busquedas(?,?)',array('listar_todos_proyectos','')));
-
-		//dd($proyectos);
-		// $proyectos = json_encode(Proyectos::where('habilitado_proyecto',1)
-		// 						->orderBy('id_avance', 'asc')
-		// 						->get());
 		return view('proyectos.list', compact('proyectos'));
 	}
 
@@ -65,7 +67,8 @@ class ProyectosController extends Controller {
 		$usuarios = User::all();
 		$roles = Tipo::where('id_maestro',$id_maestro)->get();
 		$grupo_etapas = GrupoEtapas::all();
-		return view('proyectos.create',compact('clientes', 'usuarios', 'roles','grupo_etapas'));
+		$tipo_proyectos = TipoProyectos::all();
+		return view('proyectos.create',compact('clientes', 'usuarios', 'roles','grupo_etapas','tipo_proyectos'));
 	}
 
 	public function edit($id){
@@ -108,12 +111,13 @@ class ProyectosController extends Controller {
 						};
 		};
 		
-		Avances::firstOrCreate([
-								'id_proyecto'=>$proyecto->id_proyecto,
-								'asunto_avance'=>'Iniciando Proyecto',
-								'descripcion_avance'=>'Proyecto creado exitosamente',
-								'id_etapa'=>$etapa->id_etapa,
-							]);
+		
+		Avances::Create([
+						'id_proyecto'=>$proyecto->id_proyecto,
+						'asunto_avance'=>'Iniciando Proyecto',
+						'descripcion_avance'=>'Proyecto creado exitosamente',
+						'id_etapa'=>$etapa->id_etapa,
+					]);
 		Session::flash('mensaje', 'Proyecto creado exitosamente');
 		return redirect('/proyectos');
 	}
@@ -132,5 +136,71 @@ class ProyectosController extends Controller {
 		$proyecto->delete();
 
 		return redirect('/proyectos');
+	}	
+
+	public function finalizarProyecto($id){
+		$proyecto = Proyectos::where('id_proyecto',$id)->update(['habilitado_proyecto'=>0,]);
+		Session::flash('mensaje', 'Proyecto finalizado exitosamente');
+		return redirect('/proyectos');
+	}	
+
+
+	public function reiniciarProyecto($id){
+		$proyecto = Proyectos::where('id_proyecto',$id)->update(['habilitado_proyecto'=>1,]);
+		Session::flash('mensaje', 'Proyecto reiniciado exitosamente');
+		return redirect('/proyectos-finalizados');
 	}		
+
+
+	public function indexProyectosFinalizados(){
+		$proyectos = json_encode(\DB::select('CALL p_busquedas(?,?)',array('listar_todos_proyectos_finalizados','')));
+		return view('proyectos.list_proyectos_finalizados', compact('proyectos'));
+	}
+
+	public function indexProyectosPorIntegrantes(){
+		$proyectos = json_encode(\DB::select('CALL p_busquedas(?,?)',array('listar_todos_proyectos_finalizados','')));
+		return view('proyectos.list_proyectos_finalizados', compact('proyectos'));
+	}
+
+	public function roles(){
+		return view('user.rol');
+	}
+
+	public function postRoles(){
+		$master = Master::where('nombre_maestro','Roles')->first();
+		if(!$master){
+			$master = Master::create(['nombre_maestro'=>'Roles']);
+		}
+
+		Tipo::create(['id_maestro'  => $master->id_maestro,
+					  'nombre_tipo' => Input::get('nombre_tipo')]);
+
+		Session::flash('mensaje', 'Rol creado exitosamente');
+		return redirect("proyectos/create");	
+	}	
+
+	/**
+	 * Store a newly created resource in storage.
+	 *
+	 * @return Response
+	 */
+	public function agregarIntegrante(Request $request){
+		Roles::firstOrCreate($request->except('redirect'));
+		return redirect($request['redirect']);
+	}
+
+
+	/**
+	 * Remove the specified resource from storage.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function eliminarIntegrante($id, Request $request)
+	{
+		Roles::find($id)->delete();
+		return redirect($request['redirect']);
+	}	
+
+
 }

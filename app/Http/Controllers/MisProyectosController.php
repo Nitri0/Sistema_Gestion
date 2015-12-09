@@ -17,14 +17,15 @@ use App\Plantillas;
 use Session;
 use URL;
 use Illuminate\Http\Request;
+use Gate;
 
 
-class UserController extends Controller {
+class MisProyectosController extends Controller {
 
 
 	public function perfil(Request $request){
 		$perfil = Perfil::where('id_usuario', $request->user()->id_usuario)->first();
-		return view('user.perfil',['perfil'=>$perfil]);
+		return view('mis_proyectos.perfil',['perfil'=>$perfil]);
 	}
 
 	public function postPerfil(Request $request){
@@ -34,7 +35,7 @@ class UserController extends Controller {
 	}
 
 	public function roles(){
-		return view('user.rol');
+		return view('mis_proyectos.rol');
 	}
 
 	public function postRoles(){
@@ -54,14 +55,14 @@ class UserController extends Controller {
 		$user = Auth::user();
 		//FORMA DE LISTAR LAS COLUMNAS ESPECIFICAS COMO UN ARREGLO UNIDIMENCIONAL (SOLO VALUE)
 
-		// $proyectos = json_encode(\DB::select('CALL p_busquedas(?,?)',array('listar_mis_proyectos',$user->id_usuario)));
-		$proyectos_id = Roles::where('id_usuario',$user->id_usuario)->lists('id_proyecto');
-		$proyectos = Proyectos::where('habilitado_proyecto',1)
-								->whereIn('id_proyecto',$proyectos_id)
-								->orderBy('id_avance', 'asc')
-								->paginate(10);
+		$proyectos = json_encode(\DB::select('CALL p_busquedas(?,?)',array('listar_mis_proyectos',$user->id_usuario)));
+		// $proyectos_id = Roles::where('id_usuario',$user->id_usuario)->lists('id_proyecto');
+		// $proyectos = Proyectos::where('habilitado_proyecto',1)
+		// 						->whereIn('id_proyecto',$proyectos_id)
+		// 						->orderBy('id_avance', 'asc')
+		// 						->paginate(10);
 
-		return view('user.mis_proyectos',compact('proyectos'));
+		return view('mis_proyectos.list',compact('proyectos'));
 	}
 
 
@@ -76,7 +77,7 @@ class UserController extends Controller {
 		*/
 		$proyecto = Proyectos::find($id_proyecto);
 		$etapas = GrupoEtapas::find($proyecto->id_grupo_etapas);
-		return view('user.detalle_proyecto',compact('proyecto','id_proyecto', 'rol', 'etapas' ));
+		return view('mis_proyectos.detalle_proyecto',compact('proyecto','id_proyecto', 'rol', 'etapas' ));
 	}
 
 	//__________________________________ CRUD AVANCES ____________________
@@ -95,6 +96,7 @@ class UserController extends Controller {
 
 		$proyecto = Proyectos::find($id_proyecto);//aqui siempre trae un solo proyecto... arreglar
 		$etapas = GrupoEtapas::find($proyecto->id_grupo_etapas)->getEtapas();
+
 		$dominio = Dominios::find($proyecto->id_dominio);
 		$mis_datos = Auth::user()->getPerfil();
 		$mi_correo = Auth::user()->correo_usuario;
@@ -104,6 +106,7 @@ class UserController extends Controller {
 	public function postCreateAvancesMisProyectos(Request $request,$id_proyecto){
 
 		$proyecto = Proyectos::find($id_proyecto);
+
 
 		$dominio = Dominios::find($proyecto->id_dominio);
 		$mis_datos = Auth::user()->getPerfil();
@@ -144,6 +147,18 @@ class UserController extends Controller {
 		Session::flash('mensaje', 'Avance creado exitosamente');
 		return redirect('/mis-proyectos/'.$id_proyecto);
 	}
+
+	public function previewRealDataPlantillas( $id_proyecto,$id_plantilla){
+		//dd($id_plantilla, $id_proyecto);
+		$plantilla = Plantillas::find($id_plantilla);
+		$proyecto = Proyectos::find($id_proyecto);
+		$cliente = Clientes::find($proyecto->id_cliente);
+		$dominio = Dominios::find($proyecto->id_dominio);
+		$mis_datos = Auth::user()->getPerfil();
+		$mi_correo = Auth::user()->correo_usuario;		
+		$data = "<Strong>Aqui va la descripcion del mensaje</strong>";
+		return view('emails.'.$plantilla->nombre_plantilla,compact('proyecto','cliente','data','dominio','mis_datos','mi_correo'));
+	}		
 	//__________________________________END CRUD AVANCES ____________________
 }
 

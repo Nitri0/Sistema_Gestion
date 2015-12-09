@@ -4,12 +4,14 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Etapas;
 use App\GrupoEtapas;
+use App\TipoProyectos;
+
 use Session;
 use Illuminate\Routing\Route;
 use Illuminate\Http\Request;
 use Gate;
 
-class EtapasController extends Controller {
+class TipoProyectoController extends Controller {
 
 	public function __construct(){
 		$this->beforeFilter('@permisos');
@@ -29,42 +31,31 @@ class EtapasController extends Controller {
 		// 	}
 		// };
 		// dd($metodos);
-		if(Gate::denies('etapas', $route->getName()) ){
+		if(Gate::denies('tipo_proyectos', $route->getName()) ){
 			Session::flash("mensaje-error","No tiene permisos para acceder al modulo: ".$route->getName());
 			return redirect('/mis-proyectos');
 		};
 	}
 
 	public function index(){
-		$grupo_etapas = GrupoEtapas::paginate(10);
-		return view('etapas.list',compact('grupo_etapas'));
+		$tipo_proyectos = TipoProyectos::paginate(10);
+		return view('tipo_proyectos.list',compact('tipo_proyectos'));
 	}
 
 	public function create(){
-		return view('etapas.create');
+		return view('tipo_proyectos.create');
 	}
 
 
 	public function store(Request $request){
-		$grupoEtapas = GrupoEtapas::create($request->all());
+		$grupoEtapas = TipoProyectos::create($request->all());
 
-		if ($request->cantidad_etapas>0){
-			foreach (range(0, $request->cantidad_etapas-1) as $index) {
-				Etapas::create(['nombre_etapa' => $request['nombre_etapa_'.$index],
-							   'numero_orden_etapa' => $index+1,
-							   'id_grupo_etapas' => $grupoEtapas->id_grupo_etapas]);
-
-				};
-		};
-		
-		Session::flash('mensaje', 'Grupo de etapas creado exitosamente');
-		return redirect('/grupo_etapas');
+		Session::flash('mensaje', 'Tipo de Proyecto creado exitosamente');
+		return redirect('/tipo_proyectos');
 	}
 
 
 	public function show($id){
-		$grupo_etapas = GrupoEtapas::find($id);
-		return view('etapas.detalle', compact('grupo_etapas'));
 	}
 
 
@@ -81,10 +72,9 @@ class EtapasController extends Controller {
 
 
 	public function destroy($id){
-		Etapas::where('id_grupo_etapas',$id)->delete();
-		GrupoEtapas::find($id)->delete();
-		return redirect('/grupo_etapas');
-		//Dominios::destroy($proyecto->)
+		Etapas::where('id_tipo_proyecto',$id)->delete();
+		TipoProyectos::find($id)->delete();
+		return redirect('/tipo_proyectos');
 	}
 
 }
