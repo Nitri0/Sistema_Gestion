@@ -50,6 +50,7 @@
 		      </tr>
 		    </thead>
 		    <tbody>
+		    	
 		    	<tr ng-repeat="proyecto in proyectos | filter:opciones.buscador | orderBy:sort:reverse  track by $index">
 					<td>[[$index+1]]</td>
 					<td>[[proyecto.nombre_proyecto]]</td>
