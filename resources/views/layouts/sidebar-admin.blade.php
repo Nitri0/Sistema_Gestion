@@ -99,7 +99,7 @@
 				<a href="javascript:;">
 				    <b class="caret pull-right"></b>
 				    <i class="fa fa-coffee"></i>
-				    <span>Empresas Proveedoras [FALTA ESTILO en detalle]</span>
+				    <span>Empresas Proveedoras</span>
 			    </a>
 				<ul class="sub-menu">
 				    <li><a href="{{ url('empresas_proveedoras') }}">Listar Proveedores</a></li>
@@ -133,11 +133,11 @@
 				<a href="javascript:;">
 				    <b class="caret pull-right"></b>
 				    <i class="fa fa-coffee"></i>
-				    <span>Roles [REVISAR ESTILO]</span>
+				    <span>Roles</span>
 			    </a>
 				<ul class="sub-menu">
-				    <li><a href="{{ url('roles') }}">Listar de roles [REVISAR ESTILO]</a></li>
-				    <li><a href="{{ url('roles/create') }}">Agregar roles [REVISAR ESTILO]</a></li>
+				    <li><a href="{{ url('roles') }}">Listar de roles</a></li>
+				    <li><a href="{{ url('roles/create') }}">Agregar roles</a></li>
 				</ul>
 			</li>			
 	        <!-- begin sidebar minify button -->
