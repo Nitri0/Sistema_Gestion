@@ -87,7 +87,6 @@
 					        	<th>
 						        	<a href="#" ng-click="changeSort('espacio_usado_dominio')">Operaciones</a>
 						        </th>		        
-						        <th >Operaciones</th>
 						      </tr>
 
 						    </thead>
