@@ -1,22 +1,5 @@
 @extends('base-admin')
 
-@section('css')
-	<link href="{{ asset('/thema/admin/html/assets/plugins/DataTables/media/css/dataTables.bootstrap.min.css') }}" rel="stylesheet" />
-	<link href="{{ asset('/thema/admin/html/assets/plugins/DataTables/extensions/Responsive/css/responsive.bootstrap.min.css') }}" rel="stylesheet" />
-@endsection
-
-@section('js')
-	<script src="{{ asset('/thema/admin/html/assets/plugins/DataTables/media/js/jquery.dataTables.js') }}"></script>
-	<script src="{{ asset('/thema/admin/html/assets/plugins/DataTables/media/js/dataTables.bootstrap.min.js') }}"></script>
-	<script src="{{ asset('/thema/admin/html/assets/plugins/DataTables/extensions/Responsive/js/dataTables.responsive.min.js') }}"></script>
-	<script src="{{ asset('/thema/admin/html/assets/js/table-manage-responsive.demo.min.js') }}"></script>
-	<script>
-		$(document).ready(function() {
-			TableManageResponsive.init();
-		});
-	</script>
-@endsection
-
 @section('content')
 
 <div id="page-container" class="fade page-sidebar-fixed page-header-fixed">
@@ -63,7 +46,7 @@
 						<div ng-init="url='{{url()}}'"></div>
 
 
-						<table id="data-table" class="table table-striped table-bordered nowrap" width="100%">
+						<table class="table table-striped table-bordered nowrap" width="100%">
 						    <thead>
 						      <tr>
 						        <th>
@@ -83,7 +66,10 @@
 						        </th>
 						        <th>
 						        	<a href="#" ng-click="changeSort('nombre_proyecto')">Proyecto Asociado</a>
-						        </th>		        
+						        </th>		
+						        <th>
+						        	
+						        </th>        
 						      </tr>
 
 						    </thead>
