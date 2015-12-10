@@ -74,86 +74,9 @@
 	                </div>
 	            </div>
 
-				<br>
-	            <center><h3><i class="fa fa-file-code-o"></i> Etiquetas de plantilla</h3></center>
+	            <center><a href="#modal-etiquetas" class="btn btn-sm btn-success" data-toggle="modal"><i class="fa fa-file-code-o"></i> Etiquetas de plantilla</a></center>
+	            @include('modals/modal-etiquetas')
 	            <br>
-
-	            <div class="col-md-4">
-                    <div class="panel panel-inverse" data-sortable-id="form-wysiwyg-1">
-                        <div class="panel-heading">
-                            <h4 class="panel-title">Etiquetas de data del cliente</h4>
-                        </div>
-                        <div class="panel-body">
-                        	<div class="well">
-	                        	<ul>
-	                        		<li><h5>$cliente->nombre_cliente</h5></li>
-	                        		<li><h5>$cliente->email_cliente</h5></li>
-	                        		<li><h5>$cliente->persona_contacto_cliente</h5></li>
-	                        		<li><h5>$cliente->telefono_cliente</h5></li>
-	                        		<li><h5>$cliente->telefono_2_cliente</h5></li>
-	                        		<li><h5>$cliente->direccion_cliente</h5></li>
-	                        	</ul>
-                        	</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4">
-                    <div class="panel panel-inverse" data-sortable-id="form-wysiwyg-1">
-                        <div class="panel-heading">
-                            <h4 class="panel-title">Etiquetas</h4>
-                        </div>
-                        <div class="panel-body">
-                        	<div class="well">
-	                        	<ul> Etiquetas de data del Proyecto
-	                        		<li><h5>$proyecto->nombre_proyecto</h5></li>
-	                        	</ul>
-	                        	<ul> Etiquetas de datos del Dominio
-	                        		<li><h5>$dominio->nombre_dominio</h5></li>
-	                        	</ul>
-                        	</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4">
-                    <div class="panel panel-inverse" data-sortable-id="form-wysiwyg-1">
-                        <div class="panel-heading">
-                            <h4 class="panel-title">Etiquetas de datos Propios</h4>
-                        </div>
-                        <div class="panel-body">
-                        	<div class="well">
-	                        	<ul> Etiquetas de data del Proyecto
-	                        		<li><h5>$mi_correo</h5></li>
-	                        		Nombre:
-	                        		<li><h5>$mis_datos->fullName()</h5></li>
-	                        		<li><h5>$mis_datos->telefono_perfil</h5></li>
-	                        		<li><h5>$mis_datos->cedula_perfil</h5></li>
-	                        	</ul>
-                        	</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-12">
-                    <div class="panel panel-inverse" data-sortable-id="form-wysiwyg-1">
-                        <div class="panel-heading">
-                            <h4 class="panel-title">Etiquetas</h4>
-                        </div>
-                        <div class="panel-body">
-                        	 <div class="well">
-		                    	<center>
-
-									<br>	<br>
-									<strong>Para colocar la data es necesario usar doble {{}} y dentro colocar la variable que se desea imprimir<br>
-									ejemplo: {{ $cliente->nombre_cliente } } (sin espacios) </strong><br><br>
-
-									<strong>P.D: no olvidar colocar la etiqueta { !! $data !! } (sin espacios) en el lugar donde estará la data que se llenará automaticamente al crear un avance</strong><br><br><br>
-								</center>
-							</div>
-                        </div>
-                    </div>
-                </div>
 
 	            <div class="col-md-12">
                     <div class="panel panel-inverse" data-sortable-id="form-wysiwyg-1">
