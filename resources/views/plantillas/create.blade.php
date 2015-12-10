@@ -59,13 +59,9 @@
 										</textarea>
 		                            </div>
 		                        </div>
-								
-								<div class="form-group">
-		                            <label class="col-md-4 control-label">Data con formato html </label>
-		                        </div>
 
 		                        <!--<div class="form-group">
-		                        	<div class="col-md-2"></div>
+		                        	<div class="col-md-2">Data con formato html</div>
 		                            <div class="col-md-8">
 										<textarea rows="20" class="form-control" ng-model="plantilla.raw_data_plantilla" name="raw_data_plantilla">
 										</textarea>
@@ -73,31 +69,80 @@
 		                        </div>-->
 
 		                    </div>
+								
+						</div><!-- boby -->
+	                </div>
+	            </div>
 
-		                    <div class="well">
+				<br>
+	            <center><h3><i class="fa fa-file-code-o"></i> Etiquetas de plantilla</h3></center>
+	            <br>
+
+	            <div class="col-md-4">
+                    <div class="panel panel-inverse" data-sortable-id="form-wysiwyg-1">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">Etiquetas de data del cliente</h4>
+                        </div>
+                        <div class="panel-body">
+                        	<div class="well">
+	                        	<ul>
+	                        		<li><h5>$cliente->nombre_cliente</h5></li>
+	                        		<li><h5>$cliente->email_cliente</h5></li>
+	                        		<li><h5>$cliente->persona_contacto_cliente</h5></li>
+	                        		<li><h5>$cliente->telefono_cliente</h5></li>
+	                        		<li><h5>$cliente->telefono_2_cliente</h5></li>
+	                        		<li><h5>$cliente->direccion_cliente</h5></li>
+	                        	</ul>
+                        	</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="panel panel-inverse" data-sortable-id="form-wysiwyg-1">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">Etiquetas</h4>
+                        </div>
+                        <div class="panel-body">
+                        	<div class="well">
+	                        	<ul> Etiquetas de data del Proyecto
+	                        		<li><h5>$proyecto->nombre_proyecto</h5></li>
+	                        	</ul>
+	                        	<ul> Etiquetas de datos del Dominio
+	                        		<li><h5>$dominio->nombre_dominio</h5></li>
+	                        	</ul>
+                        	</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="panel panel-inverse" data-sortable-id="form-wysiwyg-1">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">Etiquetas de datos Propios</h4>
+                        </div>
+                        <div class="panel-body">
+                        	<div class="well">
+	                        	<ul> Etiquetas de data del Proyecto
+	                        		<li><h5>$mi_correo</h5></li>
+	                        		Nombre:
+	                        		<li><h5>$mis_datos->fullName()</h5></li>
+	                        		<li><h5>$mis_datos->telefono_perfil</h5></li>
+	                        		<li><h5>$mis_datos->cedula_perfil</h5></li>
+	                        	</ul>
+                        	</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="panel panel-inverse" data-sortable-id="form-wysiwyg-1">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">Etiquetas</h4>
+                        </div>
+                        <div class="panel-body">
+                        	 <div class="well">
 		                    	<center>
-									<br>	
-									Etiquetas de data del cliente: <br><br>
-									$cliente->nombre_cliente <br>
-									$cliente->email_cliente <br>
-									$cliente->persona_contacto_cliente <br>
-									$cliente->telefono_cliente <br>
-									$cliente->telefono_2_cliente <br>
-									$cliente->direccion_cliente <br>	
-									<br>	<br>
-									Etiquetas de data del proyecto: <br><br>
-									$proyecto->nombre_proyecto <br>
-									<br>	<br>
-									Etiquetas de datos propios: <br> <br>
-									$mi_correo  <br>
-									$mis_datos->fullName() = nombre completo <br>
-									$mis_datos->telefono_perfil  <br>
-									$mis_datos->cedula_perfil  <br>
-									<br>	<br>
-									Etiquetas de datos del dominio: <br> <br>
-									$dominio->nombre_dominio <br>
-
-
 
 									<br>	<br>
 									<strong>Para colocar la data es necesario usar doble {{}} y dentro colocar la variable que se desea imprimir<br>
@@ -106,10 +151,9 @@
 									<strong>P.D: no olvidar colocar la etiqueta { !! $data !! } (sin espacios) en el lugar donde estará la data que se llenará automaticamente al crear un avance</strong><br><br><br>
 								</center>
 							</div>
-								
-						</div><!-- boby -->
-	                </div>
-	            </div>
+                        </div>
+                    </div>
+                </div>
 
 	            <div class="col-md-12">
                     <div class="panel panel-inverse" data-sortable-id="form-wysiwyg-1">
@@ -118,12 +162,11 @@
                                 <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
                                 <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-repeat"></i></a>
                                 <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
-                                <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>
                             </div>
                             <h4 class="panel-title">Data del Correo</h4>
                         </div>
                         <div class="panel-body panel-form">
-							<textarea class="ckeditor" id="editor1" rows="20" ng-model="plantilla.raw_data_plantilla" name="raw_data_plantilla">
+							<textarea class="ckeditor" id="editor1" rows="30" ng-model="plantilla.raw_data_plantilla" name="raw_data_plantilla">
 							
 							</textarea>
                         </div>
@@ -131,8 +174,6 @@
                 </div>
 
 	        </div>
-
-	        <p>[[plantilla.raw_data_plantilla]]</p>
 
 	        <center>
 				@if($plantillas)
