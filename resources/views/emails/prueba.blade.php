@@ -1,4 +1,17 @@
-<strong>hola</strong>
-<div>esto es una prueba</div>
+<p>hola hola hola</p>
 
-{!! $data !!}
+<p>asasasas</p>
+
+<p>&nbsp;</p>
+
+<p>asadasasada</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>asasasasas</p>

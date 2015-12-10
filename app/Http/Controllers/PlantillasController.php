@@ -72,7 +72,8 @@ class PlantillasController extends Controller {
 	}	
 
 	public function update(Request $request, $id){
-		$this->plantillas->fill($request->except('_method','raw_data_plantilla'));
+		//dd(request->all());
+		$this->plantillas->fill($request->except('_method'));
 		$this->plantillas->save();
 		//Plantillas::where('id_plantilla',$id)->update($request->except('_method'));
 
