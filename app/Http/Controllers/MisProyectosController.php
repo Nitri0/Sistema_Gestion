@@ -153,10 +153,10 @@ class MisProyectosController extends Controller {
 		$cliente = Clientes::find($proyecto->id_cliente);
 
 		if ($request->check_copia_cliente_avance){
-
 			$plantilla = Plantillas::where('id_plantilla',$request->id_plantilla)
 									->where('id_empresa',Auth::user()->getIdEmpresa())
 									->first();	
+
 			if (!$plantilla ){
 				Session::flash('mensaje-error', 'No es posible utilizar esa plantilla');
 				return redirect('mis-proyectos');
