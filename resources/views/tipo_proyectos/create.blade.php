@@ -34,7 +34,7 @@
                         <h1 class="page-header"><i class="fa fa-laptop"></i> Editar tipo de proyecto </h1>
                         
                         <div ng-init="model={{ $tipo_proyecto }}"></div>
-                        <form class="form-horizontal" action="{{ url('tipo_proyectos/'.$tipo_proyecto->id_tipo_proyecto) }}" method="POST">
+                        <form class="form-horizontal" name="formulario" id="formulario" action="{{ url('tipo_proyectos/'.$tipo_proyecto->id_tipo_proyecto) }}" method="POST" ng-submit="submit(formulario.$valid)">
                             <input type="hidden" name="_method" value="PUT">
                     
                     @else
@@ -57,7 +57,7 @@
                             <br>
 
 							<center>
-								<button class="btn btn-success m-r-5 m-b-5" type="submit">
+								<button class="btn btn-success m-r-5 m-b-5" type="submit" ng-click="submitted='true'">
 									Registrar <i class="fa fa-pencil-square-o"></i>
 								</button>
 							</center>

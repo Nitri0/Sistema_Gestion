@@ -1,7 +1,17 @@
-<html>
-<body>
-<div>prueba {{$cliente->email_cliente}}</div>
-<div>{{$cliente->nombre_cliente}} es un placer dirigirme a usted para .... {{$proyecto->nombre_proyecto}}</div>
-<div>{!! $data !!}.</div>
-</body>
-</html>
+<p>formato html numero 1</p>
+
+<ul>
+	<li>
+	<p>{{$cliente-&gt;nombre_cliente}}</p>
+	</li>
+</ul>
+
+<ol>
+	<li>prueba</li>
+	<li>asas</li>
+	<li>asasa</li>
+</ol>
+
+<p><s><strong>{!! $data !!}</strong></s></p>
+
+<p>&nbsp;</p>

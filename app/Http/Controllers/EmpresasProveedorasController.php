@@ -74,9 +74,9 @@ class EmpresasProveedorasController extends Controller {
 	}
 
 
-	// public function destroy($id)
-	// {
-	// 	//
-	// }
+	public function destroy($id){
+		$this->empresa_proveedora->fill(['habilitado_empresa_proveedora'=>0,]);
+		$this->empresa_proveedora->save();
+	}
 
 }

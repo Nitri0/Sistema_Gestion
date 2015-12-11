@@ -37,14 +37,14 @@
                             Works with any server-side platform (PHP, Python, Ruby on Rails, Java, Node.js, Go etc.) that supports standard HTML form file uploads.</p>
                         </blockquote>
 
-                        <form class="form-horizontal" action="{{ url('proyectos/') }}" method="POST">	
+                        <form class="form-horizontal" name="formulario" id="formulario" action="{{ url('proyectos/') }}" method="POST">	
 
-	                        <div class="well">	
+	                        <div class="well" >	
 								
 								<div class="form-group">
 	                                <label class="col-md-4 control-label">Tipo de Proyecto</label>
 	                                <div class="col-md-5">
-	                                    <select class="form-control js-example-data-array" ng-model="proyecto.id_tipo_proyecto" name="id_tipo_proyecto">
+	                                    <select class="form-control js-example-data-array" ng-model="proyecto.id_tipo_proyecto" name="id_tipo_proyecto" ng-required="false" oninvalid="setCustomValidity(' ')">
 	                                        <option value="">Seleccione un tipo de proyecto</option>
 	                                        @foreach($tipo_proyectos as $tipo_proyecto)
 												<option class="option" value="{{$tipo_proyecto->id_tipo_proyecto}}">
@@ -52,13 +52,18 @@
 												</option>
 											@endforeach
 	                                    </select>
+										<div class="error campo-requerido" ng-show="formulario.id_tipo_proyecto.$invalid && (formulario.id_tipo_proyecto.$touched || submitted)">
+	                                        <small class="error" ng-show="formulario.id_tipo_proyecto.$error.required">
+	                                            * Campo requerido.
+	                                        </small>
+                                    	</div>	                                    
 	                                </div>
 	                            </div>
 
 								<div class="form-group">
 	                                <label class="col-md-4 control-label">Cliente</label>
 	                                <div class="col-md-5">
-	                                    <select class="form-control js-example-data-array" ng-model="proyecto.id_cliente" name="id_cliente">
+	                                    <select class="form-control js-example-data-array" ng-model="proyecto.id_cliente" name="id_cliente"  oninvalid="setCustomValidity(' ')">
 	                                        <option value="">Seleccione un cliente</option>
 	                                        @foreach($clientes as $cliente)
 												<option value="{{$cliente->id_cliente}}">
@@ -66,13 +71,18 @@
 												</option>
 											@endforeach
 	                                    </select>
+										<div class="error campo-requerido" ng-show="formulario.id_cliente.$invalid && (formulario.id_cliente.$touched || submitted)">
+	                                        <small class="error" ng-show="formulario.id_cliente.$error.required">
+	                                            * Campo requerido.
+	                                        </small>
+                                    	</div>
 	                                </div>
 	                            </div>
 
 	                            <div class="form-group">
 	                                <label class="col-md-4 control-label">Grupo de etapas (sprints/pasos/etapas)</label>
 	                                <div class="col-md-5">
-	                                    <select class="form-control js-example-data-array" ng-model="proyecto.id_grupo_etapas" name="id_grupo_etapas" required>
+	                                    <select class="form-control js-example-data-array" ng-model="proyecto.id_grupo_etapas" name="id_grupo_etapas" ng-required="false" oninvalid="setCustomValidity(' ')">
 	                                        <option value="">Seleccione un grupo</option>
 	                                        @foreach($grupo_etapas as $key)
 												<option value="{{$key->id_grupo_etapas}}">
@@ -80,22 +90,31 @@
 												</option>
 											@endforeach
 	                                    </select>
+										<div class="error campo-requerido" ng-show="formulario.id_grupo_etapas.$invalid && (formulario.id_grupo_etapas.$touched || submitted)">
+	                                        <small class="error" ng-show="formulario.id_grupo_etapas.$error.required">
+	                                            * Campo requerido.
+	                                        </small>
+                                    	</div>	                                    
 	                                </div>
 	                            </div>
 
 	                            <div class="form-group">
 	                                <label class="col-md-4 control-label">Nombre del proyecto</label>
 	                                <div class="col-md-5">
-	                                   <input type="text" class="form-control" name="nombre_proyecto">
+	                                   <input type="text" class="form-control" name="nombre_proyecto" ng-model="proyecto.nombre_proyecto" ng-required="true" oninvalid="setCustomValidity(' ')">
+										<div class="error campo-requerido" ng-show="formulario.nombre_proyecto.$invalid && (formulario.nombre_proyecto.$touched || submitted)">
+	                                        <small class="error" ng-show="formulario.nombre_proyecto.$error.required">
+	                                            * Campo requerido.
+	                                        </small>
+                                    	</div>
 	                                </div>
 	                            </div>
 
 	                        </div>
 							
 							<div class="well">
-								
 								<center><h5 class="m-t-0">Grupo de trabajo</h5></center>
-								
+
 								<center>
 									<button type="button" class="btn btn-success m-r-5 m-b-5" ng-click="agregar_integrantes()"> 
 										Agregar integrante <i class="fa fa-plus"></i>
@@ -104,8 +123,12 @@
 										Eliminar integrante <i class="fa fa-trash-o"></i>
 									</button>
 								</center>
-
-								<input type="hidden" class="form-control" name="cantidad" ng-value="cantidad">
+								<div class="error campo-requerido" ng-show="cantidad==0 && submitted">
+                                    <small class="error" ng-show="cantidad==0" >
+	                                        * Debe agregar por lo menos un integrante
+                                    </small>
+                            	</div>
+								<input type="hidden" class="form-control"  name="cantidad" ng-model="cantidad" ng-value="cantidad" ng-hidden="true" ng-required="cantidad==0">
 								
 								<br>
 								<div class="row">
@@ -114,7 +137,7 @@
 											<div class="form-group">
 				                                <label class="col-md-4 control-label">Integrante [[$index+1]]</label>
 				                                <div class="col-md-8">
-				                                    <select class="form-control js-example-data-array" name="id_usuario[[$index]]">
+				                                    <select class="form-control js-example-data-array" name="id_usuario[[$index]]" ng-model="persona.usuario" ng-required="true" oninvalid="setCustomValidity(' ')">
 				                                        <option value="">Seleccione un Usuario</option>
 				                                        @foreach($usuarios as $usuario)
 															<option value="{{$usuario->id_usuario}}">
@@ -122,12 +145,17 @@
 															</option>
 														@endforeach
 				                                    </select>
+													<div class="error campo-requerido" ng-show="formulario.id_usuario[[$index]].$invalid && (formulario.id_usuario[[$index]].$touched || submitted)">
+				                                        <small class="error" ng-show="formulario.id_usuario[[$index]].$error.required">
+				                                            * Campo requerido.
+				                                        </small>
+			                                    	</div>				                                    
 				                                </div>
 				                            </div>
 				                            <div class="form-group">
 				                                <label class="col-md-4 control-label">Rol que cumplirá</label>
 				                                <div class="col-md-8">
-				                                    <select class="form-control js-example-data-array" name="id_rol[[$index]]">
+				                                    <select class="form-control js-example-data-array" name="id_rol[[$index]]" ng-model="persona.rol" ng-required="true" oninvalid="setCustomValidity(' ')">
 				                                        <option value="">Seleccione un Rol</option>
 				                                        @foreach($roles as $rol)
 															<option value="{{$rol->id_tipo_rol}}">
@@ -135,12 +163,14 @@
 															</option>
 														@endforeach
 				                                    </select>
+													<div class="error campo-requerido" ng-show="formulario.id_rol[[$index]].$invalid && (formulario.id_rol[[$index]].$touched || submitted)">
+				                                        <small class="error" ng-show="formulario.id_rol[[$index]].$error.required">
+				                                            * Campo requerido.
+				                                        </small>
+			                                    	</div>						                                    
 				                                </div>
 				                            </div>
-											
-											<center>
-												<a class="btn btn-primary m-r-5 m-b-5" href="{{ url('/roles') }}">Agregar un rol <i class="fa fa-plus"></i></a>
-											</center>				
+														
 										
 										</div>
 									</div>
@@ -149,7 +179,7 @@
 							</div>
 
 							<center>
-								<button class="btn btn-success m-r-5 m-b-5" type="submit">
+								<button class="btn btn-success m-r-5 m-b-5" type="button" ng-click="submit(formulario.$valid)">
 									Registrar <i class="fa fa-pencil-square-o"></i>
 								</button>
 							</center>
