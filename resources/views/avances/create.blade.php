@@ -152,13 +152,13 @@
                 </div>
 
             </div>
-        </form>
-        
         <center>
             <button class="btn btn-success m-r-5 m-b-5" type="submit">
                     Registrar <i class="fa fa-pencil-square-o"></i>
             </button>
         </center>
+        </form>
+        
 
     </div><!-- content -->
 	

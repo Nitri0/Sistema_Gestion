@@ -129,7 +129,11 @@ class ProyectosController extends Controller {
 
 					]);
 		Session::flash('mensaje', 'Proyecto creado exitosamente');
-		return redirect('/proyectos');
+		$json = [
+				'success'=>true,
+		];
+		return json_encode($json);
+		//return redirect('/proyectos');
 	}
 
 	public function update($id, Request $request){

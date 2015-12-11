@@ -45,7 +45,7 @@ coreApp.controller('AvanceController', function ($scope, $log) {
 	$scope.check=0;
 });
 
-coreApp.controller('ProyectoController', function ($scope, $log) {
+coreApp.controller('ProyectoController',function($scope, $log, $http, $window) {
 	console.log("Proyecto");
 	$scope.submitted = false;
 	$scope.personas=[];
@@ -88,34 +88,22 @@ coreApp.controller('ProyectoController', function ($scope, $log) {
 		if (formValid==true){
 			if ($scope.cantidad >0){
 		        var json = {};
-		        var element = angular.element('#formulario').context
         		angular.element('#formulario').serializeArray().map(function(x){json[x.name] = x.value;});
-        		console.log(element);
-        		return	
-		        ajax.Post($scope.posturl , datos ).$promise.then(
-		            function(data) {
-		                if (data.success){
-		                    $window.location.href = data.redirecto; 
-		                }else{
-		                    $scope.titulo        = data.titulo;
-		                    $scope.mensaje      = data.mensaje;
-		                    $scope.redirecto    = function() {
-		                        $window.location.href = data.redirecto; 
-		                    };
-		                    angular.element("#validacion_modal").modal("show");
-		                }
-		            },
-		            //error (400,500)
-		            function(data) {
-		                $scope.titulo = "Error (7776)";
-		                $scope.mensaje = "Disculpe, Intentelo nuevamente. Si el error continua contacte a soporte técnico.";
-		                $scope.redirecto = function() {
-		                    $window.location.reload();
-		                } 
-		                angular.element("#validacion_modal").modal("show");
-		            });        		
+
+				$http({
+				    method: 'POST',
+				    url: $scope.urlAction,
+				    data: json,
+				    headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+				}).then(function successCallback(response) {
+				    $window.location.href = "/proyectos";
+				  }, function errorCallback(response) {
+				  	$window.location.href = "/proyectos";
+				    // called asynchronously if an error occurs
+				    // or server returns response with an error status.
+				  });    		
 			}
-		}
+		};
 		return false;
 	}
 /*

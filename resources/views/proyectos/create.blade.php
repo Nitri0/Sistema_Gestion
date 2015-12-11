@@ -36,15 +36,15 @@
                             Supports cross-domain, chunked and resumable file uploads and client-side image resizing.<br>
                             Works with any server-side platform (PHP, Python, Ruby on Rails, Java, Node.js, Go etc.) that supports standard HTML form file uploads.</p>
                         </blockquote>
-
-                        <form class="form-horizontal" name="formulario" id="formulario" action="{{ url('proyectos/') }}" method="POST">	
+						<div ng-init=" urlAction='{{ url('proyectos/') }}'"></div>
+                        <form class="form-horizontal" name="formulario" id="formulario" action="[[urlAction]]" method="POST">	
 
 	                        <div class="well" >	
 								
 								<div class="form-group">
 	                                <label class="col-md-4 control-label">Tipo de Proyecto</label>
 	                                <div class="col-md-5">
-	                                    <select class="form-control js-example-data-array" ng-model="proyecto.id_tipo_proyecto" name="id_tipo_proyecto" ng-required="false" oninvalid="setCustomValidity(' ')">
+	                                    <select class="form-control js-example-data-array" ng-model="proyecto.id_tipo_proyecto" name="id_tipo_proyecto" ng-required="true" oninvalid="setCustomValidity(' ')">
 	                                        <option value="">Seleccione un tipo de proyecto</option>
 	                                        @foreach($tipo_proyectos as $tipo_proyecto)
 												<option class="option" value="{{$tipo_proyecto->id_tipo_proyecto}}">
@@ -63,7 +63,7 @@
 								<div class="form-group">
 	                                <label class="col-md-4 control-label">Cliente</label>
 	                                <div class="col-md-5">
-	                                    <select class="form-control js-example-data-array" ng-model="proyecto.id_cliente" name="id_cliente"  oninvalid="setCustomValidity(' ')">
+	                                    <select class="form-control js-example-data-array" ng-model="proyecto.id_cliente" name="id_cliente" ng-required="true" oninvalid="setCustomValidity(' ')">
 	                                        <option value="">Seleccione un cliente</option>
 	                                        @foreach($clientes as $cliente)
 												<option value="{{$cliente->id_cliente}}">
@@ -82,7 +82,7 @@
 	                            <div class="form-group">
 	                                <label class="col-md-4 control-label">Grupo de etapas (sprints/pasos/etapas)</label>
 	                                <div class="col-md-5">
-	                                    <select class="form-control js-example-data-array" ng-model="proyecto.id_grupo_etapas" name="id_grupo_etapas" ng-required="false" oninvalid="setCustomValidity(' ')">
+	                                    <select class="form-control js-example-data-array" ng-model="proyecto.id_grupo_etapas" name="id_grupo_etapas" ng-required="true" oninvalid="setCustomValidity(' ')">
 	                                        <option value="">Seleccione un grupo</option>
 	                                        @foreach($grupo_etapas as $key)
 												<option value="{{$key->id_grupo_etapas}}">

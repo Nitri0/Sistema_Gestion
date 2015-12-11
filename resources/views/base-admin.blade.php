@@ -89,11 +89,13 @@
 
     <!-- your app's js -->
     <script src="{{ asset('/js/app.js') }}"></script>
-    <script src="{{ asset('/js/controllers.js') }}"></script>
-    <script src="{{ asset('/js/service.js') }}"></script>
     <script src="{{ asset('/js/directives.js') }}"></script>
     <script src="{{ asset('/js/filters.js') }}"></script>
+    <script src="{{ asset('/js/service.js') }}"></script>
     <script src="{{ asset('/js/script.js') }}"></script>
+    <script src="{{ asset('/js/controllers.js') }}"></script>
+
+
 
     <!-- angular modules -->
     <script src="{{ asset('/bower_components/ngImgCrop/compile/minified/ng-img-crop.js') }}"></script>
