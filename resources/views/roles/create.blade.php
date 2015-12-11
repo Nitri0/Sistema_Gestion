@@ -1,15 +1,19 @@
 @extends('base-admin')
 
+@section('js')
+	<script src="{{ asset('/js/controllers/helper.js') }}"></script>
+@endsection
+
 @section('content')
 
 
-<div id="page-container" class="fade page-sidebar-fixed page-header-fixed"  ng-controller="ClienteController">
+<div id="page-container" class="fade page-sidebar-fixed page-header-fixed"  >
 	
 	@include('layouts/navbar-admin')
 
     @include('layouts/sidebar-admin')
 	
-	<div id="content" class="content ng-scope">
+	<div id="content" class="content ng-scope" ng-controller="SubmitController">
         
         <ol class="breadcrumb pull-right">
             <div class="btn-toolbar">
@@ -20,16 +24,19 @@
                 </div>
             </div>
         </ol>
+		<div ng-init="urlRedirect='{{ url('roles/') }}'"></div>
 		@if($rol)
 	        <h1 class="page-header"><i class="fa fa-laptop"></i> Editar Rol </h1>
 	        
 	        <div ng-init="model={{ $rol }}"></div>
+	        <div ng-init="urlAction='{{ url('roles/'.$rol->id_tipo_rol) }}'"></div>
 			<form class="form-horizontal" action="{{ url('roles/'.$rol->id_tipo_rol) }}" method="POST" name="formulario" id="formulario" ng-submit="submit(formulario.$valid)" >
 			<input type="hidden" name="_method" value="PUT">
 		
 		@else
+			<div ng-init="urlAction='{{ url('roles/') }}'"></div>
 			<h1 class="page-header"><i class="fa fa-laptop"></i> Crear Rol </h1>
-			<form class="form-horizontal" action="{{ url('roles/') }}" method="POST" name="formulario" id="formulario" ng-submit="submit(formulario.$valid)">
+			<form class="form-horizontal" action="{{ url('roles/') }}" method="POST" name="formulario" id="formulario" >
 		@endif
 
 	        <div class="row">
@@ -84,14 +91,13 @@
 
 							<center>
                             @if($rol)
-								<button type="submit" class="btn btn-danger m-r-5 m-b-5" ng-click="submitted='true'">
+								<button class="btn btn-info m-r-5 m-b-5" type="button" ng-click="submit(formulario.$valid)">
 									Actualizar <i class="fa fa-undo"></i>
-								</button>
 							@else
-								<button type="submit" class="btn btn-info m-r-5 m-b-5" ng-click="submitted='true'">
+								<button class="btn btn-danger m-r-5 m-b-5" type="button" ng-click="submit(formulario.$valid)">
 									Registrar <i class="fa fa-pencil-square-o"></i>
-								</button>
 							@endif
+								</button>
 							</center>
 			
 						</div><!-- boby -->

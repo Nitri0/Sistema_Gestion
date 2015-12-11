@@ -55,7 +55,8 @@ class RolesController extends Controller {
 		$request['id_empresa'] = Auth::user()->getIdEmpresa();
 		TipoRoles::create($request->all());
 		Session::flash('mensaje', 'Rol creado exitosamente');
-		return redirect('/roles');
+		return json_encode(['success'=>true,]);
+//		return redirect('/roles');
 	}
 
 	public function show($id){
