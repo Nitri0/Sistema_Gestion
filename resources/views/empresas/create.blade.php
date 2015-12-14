@@ -1,5 +1,9 @@
 @extends('base-admin')
 
+@section('js')
+	<script src="{{ asset('/js/controllers/helper.js') }}"></script>
+@endsection
+
 @section('content')
 
 <div id="page-container" class="fade page-sidebar-fixed page-header-fixed" ng-controller="EmpresaController">
@@ -8,20 +12,21 @@
 
     @include('layouts/sidebar-admin')
 	
-	<div id="content" class="content ng-scope">
-        
+	<div id="content" class="content ng-scope" ng-controller="SubmitController">
+        <div ng-init="urlRedirect='{{ url('admin_empresas/') }}'"></div>
         @if($empresa)
         <h1 class="page-header"><i class="fa fa-laptop"></i> Editar Empresa </h1>
         
         <div ng-init="model={{$empresa}}"></div>
 		<div ng-init="usuario={{$usuario}}"></div>
-			
-		<form class="form-horizontal" action="{{ url('admin_empresas/'.$empresa->id_empresa) }}" method="POST">
+		<div ng-init="urlAction='{{ url('admin_empresas/'.$empresa->id_empresa) }}'"></div>|
+		<form class="form-horizontal" action="{{ url('admin_empresas/'.$empresa->id_empresa) }}" method="POST" name="formulario" id="formulario" >
 		<input type="hidden" name="_method" value="PUT">
         
         @else
+		<div ng-init="urlAction='{{ url('admin_empresas/') }}'"></div>|
         <h1 class="page-header"><i class="fa fa-laptop"></i>Crear Empresa </h1>
-		<form class="form-horizontal" action="{{ url('admin_empresas/') }}" method="POST">	
+		<form class="form-horizontal" action="{{ url('admin_empresas/') }}" method="POST" name="formulario" id="formulario">	
 
 		@endif
         
@@ -46,35 +51,61 @@
 	                    	<div class="form-group">
 	                            <label class="col-md-4 control-label">Nombre de empresa</label>
 	                            <div class="col-md-5">
-	                            	<input type="text" class="form-control" ng-model="model.nombre_empresa" name="nombre_empresa">
-	                            </div>
+	                            	<input type="text" class="form-control" ng-model="model.nombre_empresa" name="nombre_empresa" ng-required="true" oninvalid="setCustomValidity(' ')">
+									<div class="error campo-requerido" ng-show="formulario.nombre_empresa.$invalid && (formulario.nombre_empresa.$touched || submitted)">
+	                                    <small class="error" ng-show="formulario.nombre_empresa.$error.required">
+	                                        * Campo requerido.
+	                                    </small>
+	                            	</div>		                            	
+	                            </div>                            
 	                        </div>
 
 	                        <div class="form-group">
 	                            <label class="col-md-4 control-label">Rif de empresa</label>
 	                            <div class="col-md-5">
-	                            	<input type="text" class="form-control" ng-model="model.rif_empresa" name="rif_empresa">
+	                            	<input type="text" class="form-control" ng-model="model.rif_empresa" name="rif_empresa" ng-required="true" oninvalid="setCustomValidity(' ')">
+									<div class="error campo-requerido" ng-show="formulario.rif_empresa.$invalid && (formulario.rif_empresa.$touched || submitted)">
+	                                    <small class="error" ng-show="formulario.rif_empresa.$error.required">
+	                                        * Campo requerido.
+	                                    </small>
+	                            	</div>		                            	
+	                            </div>  	                            	
 	                            </div>
 	                        </div>
 
 	                        <div class="form-group">
 	                            <label class="col-md-4 control-label">Correo de administrador</label>
 	                            <div class="col-md-5">
-	                            	<input type="text" class="form-control" ng-model="model.correo_empresa" name="correo_empresa">
+	                            	<input type="text" class="form-control" ng-model="model.correo_empresa" name="correo_empresa" ng-required="true" oninvalid="setCustomValidity(' ')">
+									<div class="error campo-requerido" ng-show="formulario.correo_empresa.$invalid && (formulario.correo_empresa.$touched || submitted)">
+	                                    <small class="error" ng-show="formulario.correo_empresa.$error.required">
+	                                        * Campo requerido.
+	                                    </small>
+	                            	</div>			                            	
 	                            </div>
 	                        </div>
 
 	                        <div class="form-group">
 	                            <label class="col-md-4 control-label">Telefono de administrador</label>
 	                            <div class="col-md-5">
-	                            	<input type="text" class="form-control" ng-model="model.telefono_empresa" name="telefono_empresa">
+	                            	<input type="text" class="form-control" ng-model="model.telefono_empresa" name="telefono_empresa" ng-required="true" oninvalid="setCustomValidity(' ')">
+ 									<div class="error campo-requerido" ng-show="formulario.telefono_empresa.$invalid && (formulario.telefono_empresa.$touched || submitted)">
+	                                    <small class="error" ng-show="formulario.telefono_empresa.$error.required">
+	                                        * Campo requerido.
+	                                    </small>
+	                            	</div>			                            	
 	                            </div>
 	                        </div>
 
 	                        <div class="form-group">
 	                            <label class="col-md-4 control-label">Dirección</label>
 	                            <div class="col-md-5">
-	                            	<input type="textarea" class="form-control" ng-model="model.direccion_empresa" name="direccion_empresa">
+	                            	<input type="textarea" class="form-control" ng-model="model.direccion_empresa" name="direccion_empresa" ng-required="true" oninvalid="setCustomValidity(' ')">
+									<div class="error campo-requerido" ng-show="formulario.direccion_empresa.$invalid && (formulario.direccion_empresa.$touched || submitted)">
+	                                    <small class="error" ng-show="formulario.direccion_empresa.$error.required">
+	                                        * Campo requerido.
+	                                    </small>
+	                            	</div>			                            	
 	                            </div>
 	                        </div>
 
@@ -86,23 +117,33 @@
 							<div class="form-group">
 	                            <label class="col-md-4 control-label">Correo de usuario</label>
 	                            <div class="col-md-5">
-	                            	<input type="textarea" class="form-control" ng-model="usuario.correo_usuario" name="correo_usuario">
+	                            	<input type="textarea" class="form-control" ng-model="usuario.correo_usuario" name="correo_usuario" ng-required="true" oninvalid="setCustomValidity(' ')">
+									<div class="error campo-requerido" ng-show="formulario.correo_usuario.$invalid && (formulario.correo_usuario.$touched || submitted)">
+	                                    <small class="error" ng-show="formulario.correo_usuario.$error.required">
+	                                        * Campo requerido.
+	                                    </small>
+	                            	</div>			                            	
 	                            </div>
 	                        </div>
 
 	                        <div class="form-group">
 	                            <label class="col-md-4 control-label">Contraseña</label>
 	                            <div class="col-md-5">
-	                            	<input type="textarea" class="form-control" ng-model="usuario.password" name="password">
+	                            	<input type="textarea" class="form-control" ng-model="usuario.password" name="password" ng-required="true" oninvalid="setCustomValidity(' ')">
+									<div class="error campo-requerido" ng-show="formulario.password.$invalid && (formulario.password.$touched || submitted)">
+	                                    <small class="error" ng-show="formulario.password.$error.required">
+	                                        * Campo requerido.
+	                                    </small>
+	                            	</div>			                            	
 	                            </div>
 	                        </div>
 
 							<br>
 							<center>
 								@if($empresa)
-								<button type="submit" class="btn btn-danger m-r-5 m-b-5">Actualizar <i class="fa fa-refresh"></i></button>
+								<button class="btn btn-danger m-r-5 m-b-5" type="button" ng-click="submit(formulario.$valid)">Actualizar <i class="fa fa-refresh"></i></button>
 								@else
-								<button type="submit" class="btn btn-success m-r-5 m-b-5">Registrar <i class="fa fa-pencil-square-o"></i></button>
+								<button class="btn btn-success m-r-5 m-b-5" type="button" ng-click="submit(formulario.$valid)">Registrar <i class="fa fa-pencil-square-o"></i></button>
 								@endif
 							</center>
 							

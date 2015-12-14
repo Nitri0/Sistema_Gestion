@@ -1,5 +1,10 @@
 @extends('base-admin')
 
+
+@section('js')
+	<script src="{{ asset('/js/controllers/helper.js') }}"></script>
+@endsection
+
 @section('content')
 
 
@@ -9,7 +14,7 @@
 
     @include('layouts/sidebar-admin')
 	
-	<div id="content" class="content ng-scope">
+	<div id="content" class="content ng-scope" ng-controller="SubmitController">
         
         <ol class="breadcrumb pull-right">
             <div class="btn-toolbar">
@@ -20,16 +25,18 @@
                 </div>
             </div>
         </ol>
+        <div ng-init="urlRedirect='{{ url('clientes/') }}'"></div>
 		@if($cliente)
         <h1 class="page-header"><i class="fa fa-laptop"></i> Editar Cliente </h1>
-        
         <div ng-init="cliente={{ $cliente }}"></div>
-		<form class="form-horizontal" action="{{ url('clientes/'.$cliente->id_cliente) }}" method="POST">
+        <div ng-init="urlAction='{{ url('clientes/'.$cliente->id_cliente) }}'"></div>|
+		<form class="form-horizontal" action="{{ url('clientes/'.$cliente->id_cliente) }}" method="POST" name='formulario' id='formulario'>
 		<input type="hidden" name="_method" value="PUT">
 		
 		@else
+		<div ng-init="urlAction='{{ url('clientes/') }}'"></div>|
 		<h1 class="page-header"><i class="fa fa-laptop"></i> Crear Cliente </h1>
-		<form class="form-horizontal" action="{{ url('clientes/') }}" method="POST">
+		<form class="form-horizontal" action="{{ url('clientes/') }}" method="POST" name='formulario' id='formulario'>
 		@endif
 
 	        <div class="row">
@@ -59,35 +66,60 @@
 		                    	<div class="form-group">
 	                                <label class="col-md-4 control-label">Nombre de cliente</label>
 	                                <div class="col-md-5">
-	                                   <input type="text" class="form-control" ng-model="cliente.nombre_cliente" name="nombre_cliente">
+	                                   <input type="text" class="form-control" ng-model="cliente.nombre_cliente" name="nombre_cliente" ng-required="true" oninvalid="setCustomValidity(' ')">
+										<div class="error campo-requerido" ng-show="formulario.nombre_cliente.$invalid && (formulario.nombre_cliente.$touched || submitted)">
+		                                    <small class="error" ng-show="formulario.nombre_cliente.$error.required">
+		                                        * Campo requerido.
+		                                    </small>
+		                            	</div>	                                   
 	                                </div>
 	                            </div>
 
 	                            <div class="form-group">
 	                                <label class="col-md-4 control-label">Persona de contacto</label>
 	                                <div class="col-md-5">
-	                                   <input type="text" class="form-control" ng-model="cliente.persona_contacto_cliente" name="persona_contacto_cliente">
+	                                   <input type="text" class="form-control" ng-model="cliente.persona_contacto_cliente" name="persona_contacto_cliente" ng-required="true" oninvalid="setCustomValidity(' ')">
+										<div class="error campo-requerido" ng-show="formulario.persona_contacto_cliente.$invalid && (formulario.persona_contacto_cliente.$touched || submitted)">
+		                                    <small class="error" ng-show="formulario.persona_contacto_cliente.$error.required">
+		                                        * Campo requerido.
+		                                    </small>
+		                            	</div>	                                   
 	                                </div>
 	                            </div>
 
 	                            <div class="form-group">
 	                                <label class="col-md-4 control-label">Rif</label>
 	                                <div class="col-md-5">
-	                                   <input type="text" class="form-control" ng-model="cliente.ci_rif_cliente" name="ci_rif_cliente">
+	                                   <input type="text" class="form-control" ng-model="cliente.ci_rif_cliente" name="ci_rif_cliente" ng-required="true" oninvalid="setCustomValidity(' ')">
+										<div class="error campo-requerido" ng-show="formulario.ci_rif_cliente.$invalid && (formulario.ci_rif_cliente.$touched || submitted)">
+		                                    <small class="error" ng-show="formulario.ci_rif_cliente.$error.required">
+		                                        * Campo requerido.
+		                                    </small>
+		                            	</div>	                                   
 	                                </div>
 	                            </div>
 
 	                            <div class="form-group">
 	                                <label class="col-md-4 control-label">Correo</label>
 	                                <div class="col-md-5">
-	                                   <input type="text" class="form-control" ng-model="cliente.email_cliente" name="email_cliente">
+	                                   <input type="text" class="form-control" ng-model="cliente.email_cliente" name="email_cliente" ng-required="true" oninvalid="setCustomValidity(' ')">
+										<div class="error campo-requerido" ng-show="formulario.email_cliente.$invalid && (formulario.email_cliente.$touched || submitted)">
+		                                    <small class="error" ng-show="formulario.email_cliente.$error.required">
+		                                        * Campo requerido.
+		                                    </small>
+		                            	</div>	                                   
 	                                </div>
 	                            </div>
 
 	                            <div class="form-group">
 	                                <label class="col-md-4 control-label">Telefono 1</label>
 	                                <div class="col-md-5">
-	                                   <input type="text" class="form-control" ng-model="cliente.telefono_cliente" name="telefono_cliente">
+	                                   <input type="text" class="form-control" ng-model="cliente.telefono_cliente" name="telefono_cliente" ng-required="true" oninvalid="setCustomValidity(' ')">
+										<div class="error campo-requerido" ng-show="formulario.telefono_cliente.$invalid && (formulario.telefono_cliente.$touched || submitted)">
+		                                    <small class="error" ng-show="formulario.telefono_cliente.$error.required">
+		                                        * Campo requerido.
+		                                    </small>
+		                            	</div>	                                   
 	                                </div>
 	                            </div>
 
@@ -95,13 +127,19 @@
 	                                <label class="col-md-4 control-label">Telefono 2</label>
 	                                <div class="col-md-5">
 	                                   <input type="text" class="form-control" ng-model="cliente.telefono_2_cliente" name="telefono_2_cliente">
+
 	                                </div>
 	                            </div>
 
 	                            <div class="form-group">
 	                                <label class="col-md-4 control-label">Dirección</label>
 	                                <div class="col-md-5">
-	                                   <input type="textarea" class="form-control" ng-model="cliente.direccion_cliente" name="direccion_cliente">
+	                                   <input type="textarea" class="form-control" ng-model="cliente.direccion_cliente" name="direccion_cliente" ng-required="true" oninvalid="setCustomValidity(' ')">
+										<div class="error campo-requerido" ng-show="formulario.direccion_cliente.$invalid && (formulario.direccion_cliente.$touched || submitted)">
+		                                    <small class="error" ng-show="formulario.direccion_cliente.$error.required">
+		                                        * Campo requerido.
+		                                    </small>
+		                            	</div>	                                   
 	                                </div>
 	                            </div>
 
@@ -109,11 +147,11 @@
 
 							<center>
                             @if($cliente)
-								<button type="submit" class="btn btn-danger m-r-5 m-b-5">
+								<button class="btn btn-danger m-r-5 m-b-5" type="button" ng-click="submit(formulario.$valid)">
 									Actualizar <i class="fa fa-undo"></i>
 								</button>
 							@else
-								<button type="submit" class="btn btn-info m-r-5 m-b-5">
+								<button class="btn btn-info m-r-5 m-b-5" type="button" ng-click="submit(formulario.$valid)">
 									Registrar <i class="fa fa-pencil-square-o"></i>
 								</button>
 							@endif
