@@ -170,7 +170,7 @@
 	                                        <a href="javascript:;" class="image"><img width="50" alt="" src="{{url('img/user.png')}}"></a>
 	                                        <div class="message">
 	                                        	<h5>{{$avance->asunto_avance}}</h5>
-	                                            {{$avance->descripcion_avance}}
+	                                            {!!$avance->descripcion_avance!!}
 	                                        </div>
 	                                    </li>
 	                                    @endforeach
