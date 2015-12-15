@@ -106,15 +106,6 @@ coreApp.controller('ProyectoController',function($scope, $log, $http, $window) {
 		};
 		return false;
 	}
-/*
-	$scope.$watch('cantidad', function(val){
-	    if(val>0){
-	        $scope.formulario.$setValidity('$valid');
-	    }else{
-	    	$scope.formulario.$setValidity('$invalid');
-	    }
-	})*/
-
 });
 
 coreApp.controller('PerfilController', function ($scope, $log) {

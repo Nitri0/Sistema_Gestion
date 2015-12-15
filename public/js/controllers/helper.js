@@ -16,9 +16,11 @@ coreApp.controller('SubmitController', function ($scope, $log, $http, $window) {
 			    data: json,
 			    headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 			}).then(function successCallback(response) {
+				console.log(response);
 			    $window.location.href = $scope.urlRedirect;
 			  }, function errorCallback(response) {
-			  	$window.location.href = $scope.urlRedirect;;
+			  	console.log("error");
+			  	//$window.location.href = $scope.urlRedirect;
 			    // called asynchronously if an error occurs
 			    // or server returns response with an error status.
 			  });    		
