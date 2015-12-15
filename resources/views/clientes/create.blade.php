@@ -34,7 +34,7 @@
 		<input type="hidden" name="_method" value="PUT">
 		
 		@else
-		<div ng-init="urlAction='{{ url('clientes/') }}'"></div>|
+		<div ng-init="urlAction='{{ url('clientes/') }}'"></div>
 		<h1 class="page-header"><i class="fa fa-laptop"></i> Crear Cliente </h1>
 		<form class="form-horizontal" action="{{ url('clientes/') }}" method="POST" name='formulario' id='formulario'>
 		@endif
