@@ -14,7 +14,7 @@
 	
 	<div id="content" class="content ng-scope" ng-controller="SubmitController">
         
-        <div ng-init="urlRedirect='{{ url('empresa_proveedora/') }}'"></div>
+        <div ng-init="urlRedirect='{{ url('empresas_proveedoras/') }}'"></div>
 
         @if($empresa_proveedora)
         

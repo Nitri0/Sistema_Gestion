@@ -30,13 +30,13 @@
         <h1 class="page-header"><i class="fa fa-laptop"></i> Editar Cliente </h1>
         <div ng-init="cliente={{ $cliente }}"></div>
         <div ng-init="urlAction='{{ url('clientes/'.$cliente->id_cliente) }}'"></div>
-		<form class="form-horizontal" action="{{ url('clientes/'.$cliente->id_cliente) }}" method="POST" name='formulario' id='formulario'>
+		<form class="form-horizontal" action="{{ url('clientes/'.$cliente->id_cliente) }}" method="POST" name="formulario" id="formulario">
 		<input type="hidden" name="_method" value="PUT">
 		
 		@else
 		<div ng-init="urlAction='{{ url('clientes/') }}'"></div>
 		<h1 class="page-header"><i class="fa fa-laptop"></i> Crear Cliente </h1>
-		<form class="form-horizontal" action="{{ url('clientes/') }}" method="POST" name='formulario' id='formulario'>
+		<form class="form-horizontal" action="{{ url('clientes/') }}" method="POST" name="formulario" id="formulario">
 		@endif
 
 	        <div class="row">
