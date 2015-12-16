@@ -123,10 +123,13 @@
 										Eliminar integrante <i class="fa fa-trash-o"></i>
 									</button>
 								</center>
-								<div class="error campo-requerido" ng-show="cantidad==0 && submitted">
-                                    <small class="error" ng-show="cantidad==0" >
-	                                        * Debe agregar por lo menos un integrante
-                                    </small>
+								<div class="error" ng-show="cantidad==0 && submitted">
+									<br>
+                                    <center>
+	                                    <small class="error" ng-show="cantidad==0" >
+		                                        * Debe agregar por lo menos un integrante
+	                                    </small>
+                                    </center>
                             	</div>
 								<input type="hidden" class="form-control"  name="cantidad" ng-model="cantidad" ng-value="cantidad" ng-hidden="true" ng-required="cantidad==0">
 								
