@@ -1,6 +1,9 @@
 @extends('base-admin')
 
 @section('js')
+
+	<script src="{{ asset('/js/controllers/helper.js') }}"></script>
+
 	<script src="{{ asset('/thema/admin/html/assets/plugins/switchery/switchery.min.js') }}"></script>
 	<script src="{{ asset('/thema/admin/html/assets/js/form-slider-switcher.demo.min.js') }}"></script>
 
@@ -24,7 +27,7 @@
 
     @include('layouts/sidebar-admin')
 	
-	<div id="content" class="content ng-scope">
+	<div id="content" class="content ng-scope" ng-controller="SubmitController">
         
         <ol class="breadcrumb pull-right">
             <div class="btn-toolbar">
@@ -35,6 +38,8 @@
                 </div>
             </div>
         </ol>
+
+        <div ng-init="urlRedirect='{{ url('admin_usuarios/') }}'"></div>
         
 		@if($usuario)
 	        <h1 class="page-header"><i class="fa fa-users"></i> Editar Credenciales </h1>
@@ -44,13 +49,16 @@
 			<div ng-init="permisos_user={{$permisos_user}}"></div>
 			
 			<div ng-init="print(permisos_user)"></div>
-			
-			<form class="form-horizontal" action="{{ url('admin_usuarios/'.$usuario->id_usuario) }}" method="POST" novalidate>
+			<div ng-init="urlAction='{{ url('admin_usuarios/'.$usuario->id_usuario) }}'"></div>
+
+			<form class="form-horizontal" action="{{ url('admin_usuarios/'.$usuario->id_usuario) }}" method="POST"  name="formulario" id="formulario">
 				<input type="hidden" name="_method" value="PUT">
 		@else
 			<h1 class="page-header"><i class="fa fa-users"></i> Crear Credenciales </h1>
 
-			<form class="form-horizontal" action="{{ url('admin_usuarios/') }}" method="POST" novalidate>
+			<div ng-init="urlAction='{{ url('admin_usuarios/') }}'"></div>
+
+			<form class="form-horizontal" action="{{ url('admin_usuarios/') }}" method="POST" name="formulario" id="formulario">
 
 		@endif
 
@@ -75,19 +83,29 @@
 								<div class="form-group">
 	                                <label class="col-md-4 control-label">Correo Electronico</label>
 	                                <div class="col-md-8">
-										<input type="email" class="form-control" name="correo_usuario" ng-model='usuario.correo_usuario'>
+										<input type="email" class="form-control" name="correo_usuario" ng-model='usuario.correo_usuario' ng-required="true" oninvalid="setCustomValidity(' ')">
+	                                	<div class="error campo-requerido" ng-show="formulario.correo_usuario.$invalid && (formulario.correo_usuario.$touched || submitted)">
+		                                    <small class="error" ng-show="formulario.correo_usuario.$error.required">
+		                                        * Campo requerido.
+		                                    </small>
+		                            	</div>
 	                                </div>
                             	</div>
                             	<div class="form-group">
 	                                <label class="col-md-4 control-label">Contraseña</label>
 	                                <div class="col-md-8">
-										<input type="text" class="form-control" name="password">
+										<input type="text" class="form-control" name="password" ng-model='usuario.password' ng-required="true" oninvalid="setCustomValidity(' ')">
+										<div class="error campo-requerido" ng-show="formulario.password.$invalid && (formulario.password.$touched || submitted)">
+		                                    <small class="error" ng-show="formulario.password.$error.required">
+		                                        * Campo requerido.
+		                                    </small>
+		                            	</div>
 	                                </div>
                             	</div>
                             	<div class="form-group">
 	                                <label class="col-md-4 control-label">Tipo de Usuario</label>
 	                                <div class="col-md-8">
-										<select class="form-control js-example-data-array"  name="id_permisologia">
+										<select class="form-control js-example-data-array" name="id_permisologia" ng-model='usuario.id_permisologia' ng-required="true" oninvalid="setCustomValidity(' ')">
 											@foreach($tipos_usuario as $nombre=>$tipo)
 												<option class="option" value="{{$tipo}}" 
 													@if($usuario && $tipo == $usuario->id_permisologia)
@@ -97,6 +115,11 @@
 												>{{$nombre}}</option>
 											@endforeach
 										</select>
+										<div class="error campo-requerido" ng-show="formulario.id_permisologia.$invalid && (formulario.id_permisologia.$touched || submitted)">
+		                                    <small class="error" ng-show="formulario.id_permisologia.$error.required">
+		                                        * Campo requerido.
+		                                    </small>
+		                            	</div>
 	                                </div>
                             	</div>
 
@@ -114,43 +137,78 @@
 								<div class="form-group">
 	                                <label class="col-md-2 control-label">Nombre</label>
 	                                <div class="col-md-8">
-										<input type="text" class="form-control" ng-model="perfil.nombre_perfil" name="nombre_perfil">
+										<input type="text" class="form-control" ng-model="perfil.nombre_perfil" name="nombre_perfil" ng-required="true" oninvalid="setCustomValidity(' ')">
+	                                	<div class="error campo-requerido" ng-show="formulario.nombre_perfil.$invalid && (formulario.nombre_perfil.$touched || submitted)">
+		                                    <small class="error" ng-show="formulario.nombre_perfil.$error.required">
+		                                        * Campo requerido.
+		                                    </small>
+		                            	</div>
 	                                </div>
                             	</div>
                             	<div class="form-group">
 	                                <label class="col-md-2 control-label">Apellido</label>
 	                                <div class="col-md-8">
-										<input type="text" class="form-control" ng-model="perfil.apellido_perfil" name="apellido_perfil">
+										<input type="text" class="form-control" ng-model="perfil.apellido_perfil" name="apellido_perfil" ng-required="true" oninvalid="setCustomValidity(' ')">
+	                                	<div class="error campo-requerido" ng-show="formulario.apellido_perfil.$invalid && (formulario.apellido_perfil.$touched || submitted)">
+		                                    <small class="error" ng-show="formulario.apellido_perfil.$error.required">
+		                                        * Campo requerido.
+		                                    </small>
+		                            	</div>
 	                                </div>
                             	</div>
                             	<div class="form-group">
 	                                <label class="col-md-2 control-label">Cédula</label>
 	                                <div class="col-md-8">
-										<input type="text" class="form-control" ng-model="perfil.cedula_perfil" name="cedula_perfil">
+										<input type="text" class="form-control" ng-model="perfil.cedula_perfil" name="cedula_perfil" ng-required="true" oninvalid="setCustomValidity(' ')">
+	                                	<div class="error campo-requerido" ng-show="formulario.cedula_perfil.$invalid && (formulario.cedula_perfil.$touched || submitted)">
+		                                    <small class="error" ng-show="formulario.cedula_perfil.$error.required">
+		                                        * Campo requerido.
+		                                    </small>
+		                            	</div>
 	                                </div>
                             	</div>
                             	<div class="form-group">
 	                                <label class="col-md-2 control-label">Sexo</label>
 	                                <div class="col-md-8">
-										<input type="text" class="form-control" ng-model="perfil.sexo_perfil" name="sexo_perfil">
+										<input type="text" class="form-control" ng-model="perfil.sexo_perfil" name="sexo_perfil" ng-required="true" oninvalid="setCustomValidity(' ')">
+	                                	<div class="error campo-requerido" ng-show="formulario.sexo_perfil.$invalid && (formulario.sexo_perfil.$touched || submitted)">
+		                                    <small class="error" ng-show="formulario.sexo_perfil.$error.required">
+		                                        * Campo requerido.
+		                                    </small>
+		                            	</div>
 	                                </div>
                             	</div>
                             	<div class="form-group">
 	                                <label class="col-md-2 control-label">Fecha de nacimiento</label>
 	                                <div class="col-md-8">
-										<input type="date" class="form-control" ng-model="perfil.telefono_perfil" name="telefono_perfil">
+										<input type="date" class="form-control" ng-value="perfil.telefono_perfil" name="telefono_perfil" ng-required="true" oninvalid="setCustomValidity(' ')">
+	                                	<div class="error campo-requerido" ng-show="formulario.telefono_perfil.$invalid && (formulario.telefono_perfil.$touched || submitted)">
+		                                    <small class="error" ng-show="formulario.telefono_perfil.$error.required">
+		                                        * Campo requerido.
+		                                    </small>
+		                            	</div>
 	                                </div>
                             	</div>
                             	<div class="form-group">
 	                                <label class="col-md-2 control-label">Direccion</label>
 	                                <div class="col-md-8">
-										<input type="text" class="form-control" ng-model="perfil.direccion_perfil" name="direccion_perfil">
+										<input type="text" class="form-control" ng-model="perfil.direccion_perfil" name="direccion_perfil" ng-required="true" oninvalid="setCustomValidity(' ')">
+	                                	<div class="error campo-requerido" ng-show="formulario.direccion_perfil.$invalid && (formulario.direccion_perfil.$touched || submitted)">
+		                                    <small class="error" ng-show="formulario.direccion_perfil.$error.required">
+		                                        * Campo requerido.
+		                                    </small>
+		                            	</div>
 	                                </div>
                             	</div>
                             	<div class="form-group">
 	                                <label class="col-md-2 control-label">Portal Web</label>
 	                                <div class="col-md-8">
-										<input type="textarea" class="form-control" ng-model="perfil.portal_web_perfil" name="portal_web_perfil">
+										<input type="textarea" class="form-control" ng-model="perfil.portal_web_perfil" name="portal_web_perfil" ng-required="true" oninvalid="setCustomValidity(' ')">
+	                                	<div class="error campo-requerido" ng-show="formulario.portal_web_perfil.$invalid && (formulario.portal_web_perfil.$touched || submitted)">
+		                                    <small class="error" ng-show="formulario.portal_web_perfil.$error.required">
+		                                        * Campo requerido.
+		                                    </small>
+		                            	</div>
 	                                </div>
                             	</div>
 		                    </div><!-- boby -->
@@ -204,11 +262,11 @@
 				<br>
 				<center>
 				@if($usuario)
-			        <button type="submit" class="btn btn-primary">
+			        <button type="button" ng-click="submit(formulario.$valid)" class="btn btn-primary">
 						Editar <i class="fa fa-pencil-square-o"></i>						
 					</button>
 				@else
-					<button type="submit" class="btn btn-success">
+					<button type="button" ng-click="submit(formulario.$valid)" class="btn btn-success">
 						Registrar <i class="fa fa-pencil-square-o"></i>						
 					</button>
 				@endif	
