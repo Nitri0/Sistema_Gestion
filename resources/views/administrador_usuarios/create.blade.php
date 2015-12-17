@@ -62,12 +62,9 @@
 
 		@endif
 
-				<div class="row">
-					<div class="col-md-4" style="float: right">
-						@include('alerts.mensaje_success')
-						@include('alerts.mensaje_error')	
-					</div>
-				</div>
+
+				@include('alerts.mensaje_success')
+				@include('alerts.mensaje_error')	
 
 				<input type="hidden" name="_token" value="{{ csrf_token() }}">
 
