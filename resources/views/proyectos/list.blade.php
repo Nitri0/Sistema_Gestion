@@ -49,8 +49,16 @@
                             <h3 class="panel-title">
                                 <a class="accordion-toggle accordion-toggle-styled collapsed" data-toggle="collapse" data-parent="#accordion" href="#[[$index+1]]">
                                     <i class="fa fa-plus-circle pull-right"></i> 
-                                    # [[$index+1]] [[proyecto.nombre_proyecto]] [[proyecto.id_proyecto]]
-                                </a>
+                                </a>	
+                            </h3>
+                            <div class="box-button-list">
+		        				<a class="btn btn-sm btn-info" ng-href="{{ url( '/proyectos/[[proyecto.id_proyecto]]' ) }}" data-toggle="tooltip" data-title="Detalle"><i class="fa fa-list"></i></a>
+		        			</div>
+                            <h3 class="panel-title">
+                            	<div class="row">
+                            		<div class="col-md-1"> # [[$index+1]]</div>
+                            		<div class="col-md-3"> [[proyecto.nombre_proyecto]]</div>
+                            	</div>                           	 
                             </h3>
                         </div>
                         <div id="[[$index+1]]" class="panel-collapse collapse">
