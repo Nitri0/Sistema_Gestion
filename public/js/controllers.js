@@ -154,7 +154,7 @@ coreApp.controller('AdminUsuariosController', function ($scope, $log) {
 	}
 });
 
-coreApp.controller('GrupoEtapasController', function ($scope, $log) {
+coreApp.controller('GrupoEtapasController', function ($scope, $log, $http, $window) {
 	console.log("Grupo de etapas");
 	$scope.etapas=[];
 	$scope.cantidad_etapas=0;
@@ -173,7 +173,9 @@ coreApp.controller('GrupoEtapasController', function ($scope, $log) {
 
 	$scope.submit= function(formValid) {
 		console.log(formValid);
+		console.log('PRUEBA');
 		$scope.submitted=true;
+		//return false;
 		if (formValid==true){
 			if ($scope.cantidad_etapas >0){
 		        var json = {};
@@ -185,9 +187,9 @@ coreApp.controller('GrupoEtapasController', function ($scope, $log) {
 				    data: json,
 				    headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 				}).then(function successCallback(response) {
-				    $window.location.href = "/proyectos";
+				    $window.location.href = $scope.urlRedirect;
 				  }, function errorCallback(response) {
-				  	$window.location.href = "/proyectos";
+				  	//$window.location.href = "/proyectos";
 				    // called asynchronously if an error occurs
 				    // or server returns response with an error status.
 				  });    		

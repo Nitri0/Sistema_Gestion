@@ -37,9 +37,10 @@
                     </div>
 
                     <div class="panel-body">
-
-						<form class="form-horizontal" action="{{ url('grupo_etapas/') }}" method="POST">
-	
+						<div ng-init="urlRedirect='{{ url('grupo_etapas/') }}'"></div>
+						<div ng-init="urlAction='{{ url('grupo_etapas/') }}'"></div>
+						<form class="form-horizontal" id="formulario" name="formulario" action="{{ url('grupo_etapas/') }}" method="POST">
+	 
 							<div class="well">	
 								
 								<div class="form-group">
@@ -82,7 +83,7 @@
 								<center>
 									<br>
 									<button class="btn btn-success m-r-5 m-b-5" type="button" ng-click="agregar_etapa()"> Agregar nueva etapa <i class="fa fa-plus"></i></button>
-									<button class="btn btn-danger m-r-5 m-b-5" type="button" ng-show="cantidad>=1" ng-click="eliminar_etapa()"> Eliminar ultima etapa <i class="fa fa-trash"></i></button>
+									<button class="btn btn-danger m-r-5 m-b-5" type="button" ng-show="cantidad_etapas>=1" ng-click="eliminar_etapa()"> Eliminar ultima etapa <i class="fa fa-trash"></i></button>
 									<br>
 								</center>
 								<br>
