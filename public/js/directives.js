@@ -47,3 +47,26 @@ coreApp.config(['$httpProvider', function ($httpProvider) {
 
 }]);
 
+coreApp.directive('ckEditor', function() {
+                return {
+                    require : '?ngModel',
+                    link : function($scope, elm, attr, ngModel) {
+
+                        var ck = CKEDITOR.replace(elm[0]);
+
+                        ck.on('instanceReady', function() {
+                            ck.setData(ngModel.$viewValue);
+                        });
+
+                        ck.on('pasteState', function() {
+                            $scope.$apply(function() {
+                                ngModel.$setViewValue(ck.getData());
+                            });
+                        });
+
+                        ngModel.$render = function(value) {
+                            ck.setData(ngModel.$modelValue);
+                        };
+                    }
+                };
+            })

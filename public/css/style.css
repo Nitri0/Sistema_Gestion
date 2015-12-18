@@ -1,3 +1,10 @@
+body {
+  background: #F3F7F8;
+  font-size: 12px;
+  font-family: 'Open Sans',"Helvetica Neue",Helvetica,Arial,sans-serif;
+  color: #707478;
+}
+
 .nav-cliente-logo{
   width: 40px;
   float: left;
@@ -77,4 +84,59 @@
 .campo-requerido{
   padding: 8px 0px 0px 0px;
   float: left;
+}
+
+/*Listas  de tareas*/
+.box-button-list{
+  float: right;
+  margin-top: 0px;
+  margin-right: 10px;
+}
+.panel-title, .panel-title .pull-right {
+  line-height: 25px;
+}
+.panel-heading {
+  padding: 7px 15px;
+  border-bottom: 1px solid transparent;
+  border-top-right-radius: 3px;
+  border-top-left-radius: 3px;
+}
+.btn-cirule{
+  border-radius: 50%;
+  padding: 2px 5px;
+  font-size: 10px;
+  margin-top: 2px;
+}
+.panel-title .accordion-toggle i{
+  color: #f59c1a;
+  /*font-size: 14px;*/
+}
+.panel-title, .panel-title .pull-right {
+  line-height: 28px;
+}
+#gritter-notice-key {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 301px;
+  height: 10px;
+  z-index: 9999;
+}
+.panel-inverse>.panel-heading {
+  background: #FFF;
+}
+.panel-inverse>.panel-heading:hover {
+  background: #e1f2fe;
+}
+.panel-group .panel {
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  border: 1px solid #D7D7D7;
+}
+.panel-title{
+  color:#262626;
+}
+.text-list{
+  font-size: 18px;
 }

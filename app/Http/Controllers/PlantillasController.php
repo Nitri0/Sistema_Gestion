@@ -47,6 +47,7 @@ class PlantillasController extends Controller {
 	public function index(){
 		$plantillas = Plantillas::where('id_empresa',Auth::user()->getIdEmpresa())
 									->where('habilitado_plantilla',1)
+									->orderBy('id_plantilla', 'des')
 									->paginate(10);
 		return view('plantillas.list',compact('plantillas'));
 	}
@@ -61,6 +62,7 @@ class PlantillasController extends Controller {
 	}
 
 	public function store(Request $request){
+		
 		$request['id_empresa']=Auth::user()->getIdEmpresa();
 		$request['id_usuario']=Auth::user()->id_usuario;
 		$plantillas = Plantillas::create($request->all());
@@ -68,11 +70,12 @@ class PlantillasController extends Controller {
         $path = SITE_EMAILS."/".$request->nombre_plantilla.".blade.php";
 		file_put_contents($path,$request->raw_data_plantilla);
 
+
 		return redirect('/plantillas');
 	}	
 
 	public function update(Request $request, $id){
-		//dd(request->all());
+		
 		$this->plantillas->fill($request->except('_method'));
 		$this->plantillas->save();
 		//Plantillas::where('id_plantilla',$id)->update($request->except('_method'));
