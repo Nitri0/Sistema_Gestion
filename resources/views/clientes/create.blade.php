@@ -90,7 +90,7 @@
 	                            <div class="form-group">
 	                                <label class="col-md-4 control-label">Rif</label>
 	                                <div class="col-md-5">
-	                                   <input type="text" class="form-control" ng-model="cliente.ci_rif_cliente" name="ci_rif_cliente" ng-required="true" oninvalid="setCustomValidity(' ')">
+	                                   <input type="text" placeholder="J-12345678-9" class="form-control" ng-model="cliente.ci_rif_cliente" name="ci_rif_cliente" ng-required="true" oninvalid="setCustomValidity(' ')">
 										<div class="error campo-requerido" ng-show="formulario.ci_rif_cliente.$invalid && (formulario.ci_rif_cliente.$touched || submitted)">
 		                                    <small class="error" ng-show="formulario.ci_rif_cliente.$error.required">
 		                                        * Campo requerido.
@@ -102,10 +102,13 @@
 	                            <div class="form-group">
 	                                <label class="col-md-4 control-label">Correo</label>
 	                                <div class="col-md-5">
-	                                   <input type="text" class="form-control" ng-model="cliente.email_cliente" name="email_cliente" ng-required="true" oninvalid="setCustomValidity(' ')">
+	                                   	<input type="email" class="form-control" ng-model="cliente.email_cliente" name="email_cliente" ng-required="true" oninvalid="setCustomValidity(' ')">
 										<div class="error campo-requerido" ng-show="formulario.email_cliente.$invalid && (formulario.email_cliente.$touched || submitted)">
 		                                    <small class="error" ng-show="formulario.email_cliente.$error.required">
 		                                        * Campo requerido.
+		                                    </small>
+		                                    <small class="error" ng-show="formulario.email_cliente.$error.email">
+		                                    	* Correo inválido correo@ejemplo.com
 		                                    </small>
 		                            	</div>	                                   
 	                                </div>
@@ -114,7 +117,7 @@
 	                            <div class="form-group">
 	                                <label class="col-md-4 control-label">Telefono 1</label>
 	                                <div class="col-md-5">
-	                                   <input type="text" class="form-control" ng-model="cliente.telefono_cliente" name="telefono_cliente" ng-required="true" oninvalid="setCustomValidity(' ')">
+	                                   	<input type="text" data-mask="(9999)-999-99-99" class="form-control" ng-model="cliente.telefono_cliente" name="telefono_cliente" ng-required="true" oninvalid="setCustomValidity(' ')">
 										<div class="error campo-requerido" ng-show="formulario.telefono_cliente.$invalid && (formulario.telefono_cliente.$touched || submitted)">
 		                                    <small class="error" ng-show="formulario.telefono_cliente.$error.required">
 		                                        * Campo requerido.
@@ -126,7 +129,7 @@
 	                            <div class="form-group">
 	                                <label class="col-md-4 control-label">Telefono 2</label>
 	                                <div class="col-md-5">
-	                                   <input type="text" class="form-control" ng-model="cliente.telefono_2_cliente" name="telefono_2_cliente">
+	                                   	<input type="text" data-mask="(9999)-999-99-99" class="form-control" ng-model="cliente.telefono_2_cliente" name="telefono_2_cliente">
 
 	                                </div>
 	                            </div>

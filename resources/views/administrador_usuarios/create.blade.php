@@ -209,7 +209,7 @@
 		                                        * Campo requerido.
 		                                    </small>
 		                                    <small class="error" ng-show="formulario.portal_web_perfil.$error.url">
-		                                    	* Correo inválido http://ejemplo.com
+		                                    	* URL inválido http://ejemplo.com
 		                                    </small>
 		                            	</div>
 	                                </div>
