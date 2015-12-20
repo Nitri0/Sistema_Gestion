@@ -50,7 +50,7 @@
 		                    <div class="form-group">
 	                            <label class="col-md-4 control-label">Nombres de empresa proveedora</label>
 	                            <div class="col-md-5">
-	                                <input type="text" class="form-control" ng-model="empresa_proveedora.nombres_empresa_proveedora" name="nombres_empresa_proveedora" ng-required="true" oninvalid="setCustomValidity(' ')">
+	                                <input type="text" text-only class="form-control" ng-model="empresa_proveedora.nombres_empresa_proveedora" name="nombres_empresa_proveedora" ng-required="true" oninvalid="setCustomValidity(' ')">
 	                            	<div class="error campo-requerido" ng-show="formulario.nombres_empresa_proveedora.$invalid && (formulario.nombres_empresa_proveedora.$touched || submitted)">
 	                                    <small class="error" ng-show="formulario.nombres_empresa_proveedora.$error.required">
 	                                        * Campo requerido.

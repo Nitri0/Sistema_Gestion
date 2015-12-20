@@ -52,7 +52,7 @@
 							<div class="form-group">
                                 <label class="col-md-4 control-label">Identificador de proyectos</label>
                                 <div class="col-md-5">
-                                    <input type="text" class="form-control" ng-model="model.nombre_tipo_proyecto" name="nombre_tipo_proyecto" ng-required="true" oninvalid="setCustomValidity(' ')">
+                                    <input type="text" text-only class="form-control" ng-model="model.nombre_tipo_proyecto" name="nombre_tipo_proyecto" ng-required="true" oninvalid="setCustomValidity(' ')">
                                     <div class="error campo-requerido" ng-show="formulario.nombre_tipo_proyecto.$invalid && (formulario.nombre_tipo_proyecto.$touched || submitted)">
                                         <small class="error" ng-show="formulario.nombre_tipo_proyecto.$error.required">
                                             * Campo requerido.

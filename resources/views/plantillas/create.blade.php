@@ -53,7 +53,7 @@
 			                    <div class="form-group">
 		                            <label class="col-md-4 control-label">Nombre Plantilla </label>
 		                            <div class="col-md-5">
-										<input type="text" class="form-control" ng-model="plantilla.nombre_plantilla" name="nombre_plantilla" ng-required="true" oninvalid="setCustomValidity(' ')">
+										<input type="text" text-only class="form-control" ng-model="plantilla.nombre_plantilla" name="nombre_plantilla" ng-required="true" oninvalid="setCustomValidity(' ')">
 
 										<div class="error campo-requerido" ng-show="formulario.nombre_plantilla.$invalid && (formulario.nombre_plantilla.$touched || submitted)">
 		                                    <small class="error" ng-show="formulario.nombre_plantilla.$error.required">

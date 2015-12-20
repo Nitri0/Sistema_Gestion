@@ -137,7 +137,7 @@
 								<div class="form-group">
 	                                <label class="col-md-2 control-label">Nombre</label>
 	                                <div class="col-md-8">
-										<input type="text" class="form-control" ng-model="perfil.nombre_perfil" name="nombre_perfil" ng-required="true" oninvalid="setCustomValidity(' ')">
+										<input type="text" text-only class="form-control" ng-model="perfil.nombre_perfil" name="nombre_perfil" ng-required="true" oninvalid="setCustomValidity(' ')">
 	                                	<div class="error campo-requerido" ng-show="formulario.nombre_perfil.$invalid && (formulario.nombre_perfil.$touched || submitted)">
 		                                    <small class="error" ng-show="formulario.nombre_perfil.$error.required">
 		                                        * Campo requerido.
@@ -148,7 +148,7 @@
                             	<div class="form-group">
 	                                <label class="col-md-2 control-label">Apellido</label>
 	                                <div class="col-md-8">
-										<input type="text" class="form-control" ng-model="perfil.apellido_perfil" name="apellido_perfil" ng-required="true" oninvalid="setCustomValidity(' ')">
+										<input type="text" text-only class="form-control" ng-model="perfil.apellido_perfil" name="apellido_perfil" ng-required="true" oninvalid="setCustomValidity(' ')">
 	                                	<div class="error campo-requerido" ng-show="formulario.apellido_perfil.$invalid && (formulario.apellido_perfil.$touched || submitted)">
 		                                    <small class="error" ng-show="formulario.apellido_perfil.$error.required">
 		                                        * Campo requerido.
