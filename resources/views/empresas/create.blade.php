@@ -63,7 +63,7 @@
 	                        <div class="form-group">
 	                            <label class="col-md-4 control-label">Rif de empresa</label>
 	                            <div class="col-md-5">
-	                            	<input type="text" class="form-control" ng-model="model.rif_empresa" name="rif_empresa" ng-required="true" oninvalid="setCustomValidity(' ')">
+	                            	<input type="text" data-mask="a-99999999-9" class="form-control" ng-model="model.rif_empresa" name="rif_empresa" ng-required="true" oninvalid="setCustomValidity(' ')">
 									<div class="error campo-requerido" ng-show="formulario.rif_empresa.$invalid && (formulario.rif_empresa.$touched || submitted)">
 	                                    <small class="error" ng-show="formulario.rif_empresa.$error.required">
 	                                        * Campo requerido.

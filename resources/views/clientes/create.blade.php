@@ -90,8 +90,8 @@
 	                            <div class="form-group">
 	                                <label class="col-md-4 control-label">Rif</label>
 	                                <div class="col-md-5">
-	                                   <input type="text" placeholder="J-12345678-9" class="form-control" ng-model="cliente.ci_rif_cliente" name="ci_rif_cliente" ng-required="true" oninvalid="setCustomValidity(' ')">
-										<div class="error campo-requerido" ng-show="formulario.ci_rif_cliente.$invalid && (formulario.ci_rif_cliente.$touched || submitted)">
+	                                   <input type="text" data-mask="a-99999999-9" placeholder="J-12345678-9" class="form-control" ng-model="cliente.ci_rif_cliente" name="ci_rif_cliente" ng-required="true" oninvalid="setCustomValidity(' ')">
+										<div class="error campo-requerido"  ng-show="formulario.ci_rif_cliente.$invalid && (formulario.ci_rif_cliente.$touched || submitted)">
 		                                    <small class="error" ng-show="formulario.ci_rif_cliente.$error.required">
 		                                        * Campo requerido.
 		                                    </small>
