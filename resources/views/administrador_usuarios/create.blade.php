@@ -85,6 +85,9 @@
 		                                    <small class="error" ng-show="formulario.correo_usuario.$error.required">
 		                                        * Campo requerido.
 		                                    </small>
+		                                    <small class="error" ng-show="formulario.correo_usuario.$error.email">
+		                                    	* Correo inválido correo@ejemplo.com
+		                                    </small>
 		                            	</div>
 	                                </div>
                             	</div>
@@ -156,7 +159,7 @@
                             	<div class="form-group">
 	                                <label class="col-md-2 control-label">Cédula</label>
 	                                <div class="col-md-8">
-										<input type="text" class="form-control" ng-model="perfil.cedula_perfil" name="cedula_perfil" ng-required="true" oninvalid="setCustomValidity(' ')">
+										<input type="text" numeric-only class="form-control" ng-model="perfil.cedula_perfil" name="cedula_perfil" ng-required="true" oninvalid="setCustomValidity(' ')">
 	                                	<div class="error campo-requerido" ng-show="formulario.cedula_perfil.$invalid && (formulario.cedula_perfil.$touched || submitted)">
 		                                    <small class="error" ng-show="formulario.cedula_perfil.$error.required">
 		                                        * Campo requerido.
@@ -200,10 +203,13 @@
                             	<div class="form-group">
 	                                <label class="col-md-2 control-label">Portal Web</label>
 	                                <div class="col-md-8">
-										<input type="textarea" class="form-control" ng-model="perfil.portal_web_perfil" name="portal_web_perfil" ng-required="true" oninvalid="setCustomValidity(' ')">
+										<input type="url" class="form-control" ng-model="perfil.portal_web_perfil" name="portal_web_perfil" ng-required="true" oninvalid="setCustomValidity(' ')">
 	                                	<div class="error campo-requerido" ng-show="formulario.portal_web_perfil.$invalid && (formulario.portal_web_perfil.$touched || submitted)">
 		                                    <small class="error" ng-show="formulario.portal_web_perfil.$error.required">
 		                                        * Campo requerido.
+		                                    </small>
+		                                    <small class="error" ng-show="formulario.portal_web_perfil.$error.url">
+		                                    	* Correo inválido http://ejemplo.com
 		                                    </small>
 		                            	</div>
 	                                </div>
