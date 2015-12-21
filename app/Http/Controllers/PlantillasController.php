@@ -107,6 +107,16 @@ class PlantillasController extends Controller {
 		$data = "<Strong>Aqui va la descripcion del mensaje</strong>";
 		return view('emails.'.$plantilla->nombre_plantilla,compact('proyecto','cliente','data','dominio','mis_datos','mi_correo'));
 	}		
+
+	public function destroy($id){
+		$ruta = realpath(dirname("../resources/views/emails/."));
+		if (!file_exists($ruta."/".$this->plantillas->nombre_plantilla.".blade.php")){
+			unlink($ruta."/".$this->plantillas->nombre_plantilla.".blade.php");
+		}
+		$this->plantillas->delete();
+		Session::flash("mensaje","Plantilla eliminada exitosamente");
+		return redirect('/plantillas');
+	}		
 	//__________________________________END CRUD PLANTILLAS ____________________	
 }
 

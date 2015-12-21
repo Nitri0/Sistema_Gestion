@@ -59,6 +59,7 @@
 										<td>{{$key->fecha_creacion_plantilla}}</td>
 							        	<td >
 							        		<a class="btn btn-sm btn-success" href="{{ url( '/plantillas/'.$key->id_plantilla.'/edit' ) }}" data-toggle="tooltip" data-title="Editar"><i class="fa fa-pencil-square-o"></i></a>
+							        		<a class="btn btn-sm btn-danger" href="{{ url( '/plantillas/'.$key->id_plantilla.'/destroy' ) }}" data-toggle="tooltip" data-title="Eliminar"><i class="fa fa-trash"></i></a>
 							        		<a class="btn btn-sm btn-white" target="_blank" href="{{ url( '/plantillas/preview/'.$key->id_plantilla ) }}" data-toggle="tooltip" data-title="Preview"><i class="fa fa-eye"></i></a>
 							        	</td>
 							        </tr>

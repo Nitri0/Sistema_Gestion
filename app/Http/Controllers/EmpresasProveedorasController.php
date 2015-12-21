@@ -38,7 +38,8 @@ class EmpresasProveedorasController extends Controller {
 
 	#______________________________ Metodos _________________________________
 	public function index(){
-		$empresas_proveedoras = EmpresasProveedoras::where('id_empresa',Auth::user()->getIdEmpresa() )
+		$empresas_proveedoras = EmpresasProveedoras::where('id_empresa',Auth::user()->getIdEmpresa())
+													->where('habilitado_empresa_proveedora', 1)
 													->orderBy('id_empresa_proveedora', 'desc')
 													->paginate(10);
 		return view('empresas_proveedoras.list', compact('empresas_proveedoras'));

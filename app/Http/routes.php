@@ -21,8 +21,10 @@ $router->group(['middleware' => 'auth'], function() {
 #______________________________________ PLANTILLAS _____________________________________________
 	Route::get('/plantillas/preview/{plantillas}',['as'  => 'plantillas.previewPlantillas',
 						 							 'uses'=>'PlantillasController@previewPlantillas']);
+	Route::get('plantillas/{plantillas}/destroy', 'PlantillasController@destroy');	
 					#____________________ cruds ____________________________	
 	route::resource('plantillas','PlantillasController');
+
 
 
 #______________________________________ PROYECTOS ______________________________________________
