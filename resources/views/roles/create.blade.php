@@ -66,7 +66,7 @@
 		                    	<div class="form-group">
 	                                <label class="col-md-4 control-label">Nombre</label>
 	                                <div class="col-md-5">
-	                                   <input type="text" class="form-control" ng-model="model.nombre_tipo_rol" name="nombre_tipo_rol" ng-required="true" oninvalid="setCustomValidity(' ')">
+	                                   <input type="text" text-only class="form-control" ng-model="model.nombre_tipo_rol" name="nombre_tipo_rol" ng-required="true" oninvalid="setCustomValidity(' ')">
 	                                    <div class="error campo-requerido" ng-show="formulario.nombre_tipo_rol.$invalid && (formulario.nombre_tipo_rol.$touched || submitted)">
 	                                        <small class="error" ng-show="formulario.nombre_tipo_rol.$error.required">
 	                                            * Campo requerido.

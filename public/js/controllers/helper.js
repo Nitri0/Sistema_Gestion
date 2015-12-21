@@ -3,10 +3,17 @@
 	
 coreApp.controller('SubmitController', function ($scope, $log, $http, $window) {
 	console.log("submit Controller");
+	$scope.tienerif = false;
+
 	$scope.submit= function(formValid) {
 		console.log(formValid);
 		$scope.submitted=true;
 		if (formValid==true){
+			if ($scope.tienerif ){
+				if($scope.invalidrif){
+					return false;
+				}
+			}
 	        var json = {};
     		angular.element('#formulario').serializeArray().map(function(x){json[x.name] = x.value;});
 
@@ -27,4 +34,31 @@ coreApp.controller('SubmitController', function ($scope, $log, $http, $window) {
 		};
 		return false;
 	}
+
+	$scope.ValidateRif =function(rif){
+		$scope.tienerif = true;
+        var validador = /^([JGVEPjgvep][-][0-9]{7,8}[-][0-9]{1})$/;
+        console.log("validacion: ",rif, validador.test(rif));
+        
+        if (!validador.test(rif)){
+            $scope.invalidrif = true;
+            // ajax.Post("/verificacion/rif", {"rif":$scope.rif } ).$promise.then(
+            //     function(data) {
+            //         if (data.success == false){
+
+            //             $scope.invalidrif = true;
+            //             console.log("incorrecto");
+            //             $scope.titulo = "Rif en uso";
+            //             $scope.mensaje = "El rif que coloco actualmente esta siendo usado. contacte a soporte tecnico aqui.";
+            //             angular.element("#validacion_modal").modal("show");
+            //             $scope.rif = "";
+            //         }else{
+            //             $scope.invalidrif = false;
+            //         }
+            //     }
+            // );
+        }else{
+            $scope.invalidrif = false;
+        };
+    };
 });

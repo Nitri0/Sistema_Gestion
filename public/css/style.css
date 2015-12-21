@@ -122,10 +122,10 @@ body {
   height: 10px;
   z-index: 9999;
 }
-.panel-inverse>.panel-heading {
+.custon-list>.panel-heading {
   background: #FFF;
 }
-.panel-inverse>.panel-heading:hover {
+.custon-list>.panel-heading:hover {
   background: #e1f2fe;
 }
 .panel-group .panel {
@@ -134,7 +134,7 @@ body {
   border-radius: 3px;
   border: 1px solid #D7D7D7;
 }
-.panel-title{
+.list-title{
   color:#262626;
 }
 .text-list{

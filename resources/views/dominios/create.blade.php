@@ -65,7 +65,7 @@
 		                            <label class="col-md-4 control-label">Proyecto</label>
 		                            <div class="col-md-5">
 							            <select class="form-control js-example-data-array" ng-model="dominio.id_proyecto" name="id_proyecto" ng-required="true" oninvalid="setCustomValidity(' ')">
-											<option class="option" value="">Seleccione un proyecto</option>
+											<!--<option class="option" value="">Seleccione un proyecto</option>-->
 											@foreach($proyectos as $key)
 												<option class="option" value="{{$key->id_proyecto}}">
 													{{$key->nombre_proyecto}} - {{$key->getCliente()->nombre_cliente}}</option>
@@ -85,7 +85,7 @@
 		                            <label class="col-md-4 control-label">Empresa proveedora</label>
 		                            <div class="col-md-5">
 		                                <select class="form-control js-example-data-array" ng-model="dominio.id_empresa_proveedora" name="id_empresa_proveedora" ng-required="true" oninvalid="setCustomValidity(' ')">
-											<option class="option" value="">Seleccione una empresa proveedora</option>
+											<!--<option class="option" value="">Seleccione una empresa proveedora</option>-->
 											@foreach($empresas_proveedoras as $key)
 												<option class="option" value="{{$key->id_empresa_proveedora}}"
 												@if($dominio && $dominio->id_empresa_proveedora==$key->id_empresa_proveedora) 
@@ -105,10 +105,13 @@
 		                        <div class="form-group">
 		                            <label class="col-md-4 control-label">Nombre dominio</label>
 		                            <div class="col-md-5">
-		                                <input type="text" class="form-control" ng-model="dominio.nombre_dominio" name="nombre_dominio" ng-required="true" oninvalid="setCustomValidity(' ')">
+		                                <input type="url" text-only class="form-control" ng-model="dominio.nombre_dominio" name="nombre_dominio" ng-required="true" oninvalid="setCustomValidity(' ')">
 		                            	<div class="error campo-requerido" ng-show="formulario.nombre_dominio.$invalid && (formulario.nombre_dominio.$touched || submitted)">
 		                                    <small class="error" ng-show="formulario.nombre_dominio.$error.required">
 		                                        * Campo requerido.
+		                                    </small>
+		                                    <small class="error" ng-show="formulario.nombre_dominio.$error.url">
+		                                    	* URL inválido http://ejemplo.com
 		                                    </small>
 		                            	</div>
 		                            </div>
@@ -118,7 +121,7 @@
 		                            <label class="col-md-4 control-label">Espacio de disco asignado</label>
 		                            <div class="col-md-5">
 		                             	<select class="form-control js-example-data-array" name="espacio_asignado_dominio" ng-model="dominio.espacio_asignado_dominio" ng-required="true" oninvalid="setCustomValidity(' ')">
-											<option class="option" value="">Seleccione un tamaño</option>
+											<!--<option class="option" value="">Seleccione un tamaño</option>-->
 											@foreach($tamanos as $key=> $value)
 												<option class="option" value="{{$key}}">{{$value}}</option>
 											@endforeach

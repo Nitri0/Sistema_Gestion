@@ -60,9 +60,9 @@
 
                 	<br>
                     
-                    <div class="panel panel-inverse overflow-hidden" ng-repeat="proyecto in proyectos | filter:opciones.buscador | orderBy:sort:reverse  track by $index">
+                    <div class="panel panel-inverse overflow-hidden custon-list" ng-repeat="proyecto in proyectos | filter:opciones.buscador | orderBy:sort:reverse  track by $index">
                         <div class="panel-heading">
-                            <h3 class="panel-title">
+                            <h3 class="panel-title list-title">
                                 <a class="accordion-toggle accordion-toggle-styled collapsed" data-toggle="collapse" data-parent="#accordion" href="#[[$index+1]]">
                                     <i class="fa fa-plus pull-right"></i> 
                                 </a>	
@@ -70,11 +70,11 @@
                             <div class="box-button-list">
 		        				<a class="btn btn-sm btn-info btn-cirule" ng-href="{{ url( '/proyectos/[[proyecto.id_proyecto]]' ) }}" data-toggle="tooltip" data-title="Detalle"><i class="fa fa-list"></i></a>
 		        			</div>
-                            <h3 class="panel-title">
+                            <h3 class="panel-title list-title">
                             	<div class="row">
                             		<div class="col-sm-3"> 
                             			<div class="row">
-                            				<div class="col-sm-3"># [[$index+1]] </div>
+                            				<div class="col-sm-3"> [[$index+1]] </div>
                             				<div class="col-sm-9">
 	                            				<a href="{{url('/clientes/[[proyecto.id_cliente]]')}}">
 		                            			[[proyecto.nombre_cliente | noAsignado]]

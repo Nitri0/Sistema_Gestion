@@ -48,25 +48,64 @@ coreApp.config(['$httpProvider', function ($httpProvider) {
 }]);
 
 coreApp.directive('ckEditor', function() {
-                return {
-                    require : '?ngModel',
-                    link : function($scope, elm, attr, ngModel) {
+    return {
+        require : '?ngModel',
+        link : function($scope, elm, attr, ngModel) {
 
-                        var ck = CKEDITOR.replace(elm[0]);
+            var ck = CKEDITOR.replace(elm[0]);
 
-                        ck.on('instanceReady', function() {
-                            ck.setData(ngModel.$viewValue);
-                        });
+            ck.on('instanceReady', function() {
+                ck.setData(ngModel.$viewValue);
+            });
 
-                        ck.on('pasteState', function() {
-                            $scope.$apply(function() {
-                                ngModel.$setViewValue(ck.getData());
-                            });
-                        });
+            ck.on('pasteState', function() {
+                $scope.$apply(function() {
+                    ngModel.$setViewValue(ck.getData());
+                });
+            });
 
-                        ngModel.$render = function(value) {
-                            ck.setData(ngModel.$modelValue);
-                        };
-                    }
-                };
-            })
+            ngModel.$render = function(value) {
+                ck.setData(ngModel.$modelValue);
+            };
+        }
+    };
+})
+
+coreApp.directive('numericOnly', function(){
+    return {
+        require: 'ngModel',
+        link: function(scope, element, attrs, modelCtrl) {
+
+            modelCtrl.$parsers.push(function (inputValue) {
+                var transformedInput = inputValue ? inputValue.replace(/[^\d.-]/g,'') : null;
+
+                if (transformedInput!=inputValue) {
+                    modelCtrl.$setViewValue(transformedInput);
+                    modelCtrl.$render();
+                }
+
+                return transformedInput;
+            });
+        }
+    };
+})
+
+coreApp.directive('textOnly', function(){
+    return {
+        require: 'ngModel',
+        link: function(scope, element, attrs, modelCtrl) {
+
+            modelCtrl.$parsers.push(function (inputValue) {
+                var transformedInput = inputValue ? inputValue.replace(/[^a-z ñáéíóú]/,'') : null;
+                // var transformedInput = inputValue ? inputValue.replace(/[^\|^[a-zA-Z]+(\s*[a-zA-Z]*)*[a-zA-Z]+$|.-]/g,'') : null;
+
+                if (transformedInput!=inputValue) {
+                    modelCtrl.$setViewValue(transformedInput);
+                    modelCtrl.$render();
+                }
+
+                return transformedInput;
+            });
+        }
+    };
+})
