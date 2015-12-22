@@ -20,6 +20,29 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
 	protected $hidden = ['password', 'remember_token'];
 	public $timestamps = false;
 
+	protected $appends = ['permisos','nombre_empresa'];
+
+	public function getPermisosAttribute(){
+        Excepciones::where('id_usuario', $this->id_usuario)
+        				->get(['modulo_excepcion']);
+    }
+
+	public function getNombreEmpresaAttribute(){
+        Empresas::where('id_usuario', $this->id_usuario)
+        				->get(['nombre_empresa','rif_empresa']);
+    }
+
+    public function getPermisosMenu(){
+    	if ($this->isSocio()){
+    		$items = Excepciones::where('id_usuario', $this->id_usuario)
+        						->get(['modulo_excepcion'])->toArray();
+        	return $items;
+    	}
+    	elseif($this->isAdmin){
+
+    	}
+    }
+
 
 	public function getPerfil(){
 		$perfil = Perfil::where('id_usuario',$this->id_usuario)->first();

@@ -77,6 +77,7 @@
 		                        <h4 class="panel-title"><i class="fa fa-user"></i> Usuario</h4>
 		                    </div>
 		                    <div class="panel-body">	
+		                    	@if(!$usuario)
 								<div class="form-group">
 	                                <label class="col-md-4 control-label">Correo Electronico</label>
 	                                <div class="col-md-8">
@@ -102,6 +103,7 @@
 		                            	</div>
 	                                </div>
                             	</div>
+								@endif
                             	<div class="form-group">
 	                                <label class="col-md-4 control-label">Tipo de Usuario</label>
 	                                <div class="col-md-8">
