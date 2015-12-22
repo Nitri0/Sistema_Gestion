@@ -26,7 +26,6 @@
     @include('layouts/sidebar-admin')
 	
 	<div id="content" class="content ng-scope">
-        {{Auth::user()->id_usuario}}{{Auth::user()->getIdEmpresa()}}kjhkhgh
         <ol class="breadcrumb pull-right">
             <div class="btn-toolbar">
                 <div class="btn-group">

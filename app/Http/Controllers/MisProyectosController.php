@@ -178,7 +178,7 @@ class MisProyectosController extends Controller {
 					'id_empresa' 					=> Auth::user()->getIdEmpresa(),
 					'id_usuario' 					=> Auth::user()->id_usuario,
 					'id_proyecto' 					=> $request->id_proyecto,
-					'id_etapa'	 					=> $request->id_etapa,
+					'id_etapa'	 					=> $proyecto->getIdEtapa(),
 					'check_copia_cliente_avance' 	=> $request->check_copia_cliente_avance
 				]);
 		}

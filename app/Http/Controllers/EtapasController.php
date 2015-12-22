@@ -38,6 +38,7 @@ class EtapasController extends Controller {
 
 	public function index(){
 		$grupo_etapas = GrupoEtapas::where('id_empresa',Auth::user()->getIdEmpresa())
+										->orderBy('id_grupo_etapas','asc')
 										->where('habilitado_grupo_etapas',1)
 										->paginate(10);
 		return view('etapas.list',compact('grupo_etapas'));
@@ -51,7 +52,9 @@ class EtapasController extends Controller {
 	public function store(Request $request){
 		$request['id_usuario'] = Auth::user()->id_usuario;
 		$request['id_empresa'] = Auth::user()->getIdEmpresa();
+		
 		$grupoEtapas = GrupoEtapas::create($request->all());
+		
 
 		if ($request->cantidad_etapas>0){
 			foreach (range(0, $request->cantidad_etapas-1) as $index) {
@@ -63,7 +66,7 @@ class EtapasController extends Controller {
 		};
 		
 		Session::flash('mensaje', 'Grupo de etapas creado exitosamente');
-		return redirect('/grupo_etapas');
+		return json_encode(['success'=>false,]);
 	}
 
 

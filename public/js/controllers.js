@@ -173,7 +173,6 @@ coreApp.controller('GrupoEtapasController', function ($scope, $log, $http, $wind
 
 	$scope.submit= function(formValid) {
 		console.log(formValid);
-		console.log('PRUEBA');
 		$scope.submitted=true;
 		//return false;
 		if (formValid==true){
