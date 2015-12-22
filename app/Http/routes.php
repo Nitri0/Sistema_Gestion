@@ -81,7 +81,8 @@ $router->group(['middleware' => 'auth'], function() {
 	Route::resource('grupo_etapas', 'EtapasController');
 
 #__________________________________ EMPRESAS PROVEEDORAS _______________________________________	
-					#____________________ cruds ____________________________	
+					#____________________ cruds ____________________________
+	Route::get('empresas_proveedoras/{empresas_proveedoras}/destroy', 'EmpresasProveedorasController@destroy');	
 	Route::resource('empresas_proveedoras', 'EmpresasProveedorasController');
 
 #____________________________________ TIPO PROYECTO _____________________________________	

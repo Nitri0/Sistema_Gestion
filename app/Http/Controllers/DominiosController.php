@@ -55,7 +55,9 @@ class DominiosController extends Controller {
 	public function create(){
 		$dominio = "";
 		$proyecto = "";
-		$empresas_proveedoras = EmpresasProveedoras::where('id_empresa', Auth::user()->getIdEmpresa())->get();
+		$empresas_proveedoras = EmpresasProveedoras::where('id_empresa', Auth::user()->getIdEmpresa())
+													->where('habilitado_empresa_proveedora',1)
+													->get();
 		$proyectos = Proyectos::where('usable_proyecto',1)
 								->where('id_empresa', Auth::user()->getIdEmpresa())
 								->get();

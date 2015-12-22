@@ -56,8 +56,9 @@
 										<td>{{$empresa_proveedora->nombres_empresa_proveedora}}</td>
 										<td>{{$empresa_proveedora->telefono_empresa_proveedora}}</td>
 							        	<td>
-											<a class="btn btn-sm btn-info" href="{{ url( '/empresas_proveedoras/'.$empresa_proveedora->id_empresa_proveedora ) }}" data-toggle="tooltip" data-title="Detalle"><i class="fa fa-bars"></i></a>		        		
+											<a class="btn btn-sm btn-info" href="{{ url( '/empresas_proveedoras/'.$empresa_proveedora->id_empresa_proveedora ) }}" data-toggle="tooltip" data-title="Detalle"><i class="fa fa-bars"></i></a>
 							        		<a class="btn btn-sm btn-success" href="{{ url( '/empresas_proveedoras/'.$empresa_proveedora->id_empresa_proveedora.'/edit' ) }}" data-toggle="tooltip" data-title="Editar"><i class="fa fa-pencil-square-o"></i></a>
+							        		<a class="btn btn-sm btn-danger" href="{{ url( '/empresas_proveedoras/'.$empresa_proveedora->id_empresa_proveedora.'/destroy' ) }}" data-toggle="tooltip" data-title="Eliminar"><i class="fa fa-trash"></i></a>
 							        	</td>
 							        </tr>
 								@endforeach

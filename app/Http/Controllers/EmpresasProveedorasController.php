@@ -71,6 +71,7 @@ class EmpresasProveedorasController extends Controller {
 		$this->empresa_proveedora->fill($request->except('_method'));
 		$this->empresa_proveedora->save();
 		//dd($this->empresa_proveedora);
+		Session::flash('mensaje', 'Empresa proveedora actalizado exitosamente');
 		return redirect('/empresas_proveedoras');
 	}
 
@@ -78,6 +79,8 @@ class EmpresasProveedorasController extends Controller {
 	public function destroy($id){
 		$this->empresa_proveedora->fill(['habilitado_empresa_proveedora'=>0,]);
 		$this->empresa_proveedora->save();
+		Session::flash('mensaje', 'Empresa proveedora eliminada exitosamente');
+		return redirect('/empresas_proveedoras');
 	}
 
 }

@@ -11,6 +11,7 @@ class EmpresasProveedoras extends Model {
 								'telefono_empresa_proveedora',
 								'id_usuario',
 								'id_empresa',
+								'habilitado_empresa_proveedora',
 								);
 
 }
