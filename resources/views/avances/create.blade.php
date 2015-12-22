@@ -2,7 +2,9 @@
 
 @section('js')
     <script src="{{ asset('/bower_components/ckeditor/ckeditor.js') }}"></script>
+    <script src="{{ asset('/js/controllers/helper.js') }}"></script>
 @endsection
+
 
 @section('content')
 
@@ -12,7 +14,7 @@
 
     @include('layouts/sidebar-admin')
 	
-	<div id="content" class="content ng-scope">
+	<div id="content" class="content ng-scope"  ng-controller="SubmitController">
 
 		<!--<ol class="breadcrumb pull-right">
             <div class="btn-toolbar">
@@ -23,10 +25,10 @@
                 </div>
             </div>
         </ol>-->
-
+        <div ng-init="urlRedirect='{{ url('mis-proyectos/') }}'"></div>
         <h1 class="page-header"><i class="fa fa-laptop"></i> Crear avance de mi Proyecto </h1>
-        
-        <form class="form-horizontal" action="{{ url('/mis-proyectos/avances/'.$id_proyecto.'/create') }}" method="POST">       
+        <div ng-init="urlAction='{{ url('/mis-proyectos/avances/'.$id_proyecto.'/create') }}'"></div>
+        <form class="form-horizontal" action="" id="formulario" name="formulario" method="POST">       
 
             <div class="row">
                 <!-- begin col-12 -->
@@ -85,8 +87,13 @@
                                 <div class="form-group">
     								<label class="col-md-4 control-label"> Asunto </label>
     								<div class="col-md-5">
-    									<input type="text" class="form-control" ng-model="avance.notificacion_avance" name="asunto_avance">
-    								</div>
+    									<input type="text" text-num-only class="form-control" ng-model="avance.notificacion_avance" name="asunto_avance" ng-required="true" oninvalid="setCustomValidity(' ')">
+                                        <div class="error campo-requerido" ng-show="formulario.asunto_avance.$invalid && (formulario.asunto_avance.$touched || submitted)">
+                                            <small class="error" ng-show="formulario.asunto_avance.$error.required">
+                                                * Campo requerido.
+                                            </small>
+                                        </div>                                      
+                                    </div>
     							</div>
 
     							<div class="form-group">
@@ -106,7 +113,7 @@
                                 <div class="form-group" ng-if="check==1">
     								<label class="control-label col-md-4">Plantillas</label>
     								<div class="col-md-5">
-    								    <select class="form-control js-example-data-array" ng-model="id_plantilla" name ="id_plantilla">
+    								    <select class="form-control js-example-data-array" ng-model="id_plantilla" name ="id_plantilla" ng-required="true" oninvalid="setCustomValidity(' ')">
                                             <option value="">Seleccione una plantilla</option>
                                             @foreach($plantillas as $plantilla)
     												<option value="{{$plantilla->id_plantilla}}">
@@ -114,6 +121,11 @@
     												</option>							
     										@endforeach	
                                         </select>
+                                        <div class="error campo-requerido" ng-show="formulario.id_plantilla.$invalid && (formulario.id_plantilla.$touched || submitted)">
+                                            <small class="error" ng-show="formulario.id_plantilla.$error.required">
+                                                * Campo requerido.
+                                            </small>
+                                        </div>                                          
                                     </div>
                                     <div class="col-md-2">
     									<a class="btn btn-sm btn-success" ng-if="id_plantilla" target="_blank" href="{{ url( '/plantillas/preview/'.$proyecto->id_proyecto.'/[[id_plantilla]]/' ) }}"> preview <i class="fa fa-eye"></i></a>
@@ -144,16 +156,21 @@
                             <h4 class="panel-title">Descripción</h4>
                         </div>
                         <div class="panel-body panel-form">
-                            <textarea class="ckeditor" id="editor1" rows="30" ng-model="avance.descripcion_avance" name="descripcion_avance">
+                            <textarea class="ckeditor" ck-editor id="editor1" rows="30" ng-model="avance.descripcion_avance" name="descripcion_avance" ng-required="true" oninvalid="setCustomValidity(' ')">
                             
                             </textarea>
+                            <div class="error campo-requerido" ng-show="formulario.descripcion_avance.$invalid && (formulario.descripcion_avance.$touched || submitted)">
+                                <small class="error" ng-show="formulario.descripcion_avance.$error.required">
+                                    * Campo requerido.
+                                </small>
+                            </div>                                 
                         </div>
                     </div>
                 </div>
 
             </div>
         <center>
-            <button class="btn btn-success m-r-5 m-b-5" type="submit">
+            <button class="btn btn-success m-r-5 m-b-5" type="button" ng-click="submit(formulario.$valid)">
                     Registrar <i class="fa fa-pencil-square-o"></i>
             </button>
         </center>

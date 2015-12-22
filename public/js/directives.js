@@ -96,7 +96,28 @@ coreApp.directive('textOnly', function(){
         link: function(scope, element, attrs, modelCtrl) {
 
             modelCtrl.$parsers.push(function (inputValue) {
-                var transformedInput = inputValue ? inputValue.replace(/[^a-z ñáéíóú]/,'') : null;
+                var transformedInput = inputValue ? inputValue.replace(/[^a-zA-Z ñáéíóú]/,'') : null;
+                // var transformedInput = inputValue ? inputValue.replace(/[^\|^[a-zA-Z]+(\s*[a-zA-Z]*)*[a-zA-Z]+$|.-]/g,'') : null;
+
+                if (transformedInput!=inputValue) {
+                    modelCtrl.$setViewValue(transformedInput);
+                    modelCtrl.$render();
+                }
+
+                return transformedInput;
+            });
+        }
+    };
+})
+
+
+coreApp.directive('textNumOnly', function(){
+    return {
+        require: 'ngModel',
+        link: function(scope, element, attrs, modelCtrl) {
+
+            modelCtrl.$parsers.push(function (inputValue) {
+                var transformedInput = inputValue ? inputValue.replace(/[^a-zA-Zñáéíóú 0-9]/,'') : null;
                 // var transformedInput = inputValue ? inputValue.replace(/[^\|^[a-zA-Z]+(\s*[a-zA-Z]*)*[a-zA-Z]+$|.-]/g,'') : null;
 
                 if (transformedInput!=inputValue) {
