@@ -132,11 +132,6 @@ class MisProyectosController extends Controller {
 								->where('id_empresa',Auth::user()->getIdEmpresa())
 								->first();
 
-		if($request->check_copia_cliente_avance){
-
-		}
-							
-		//dd($proyecto,$plantilla );
 		if (!$proyecto ){
 			Session::flash('mensaje-error', 'No es posible registrar avances en ese proyecto');
 			return redirect('mis-proyectos');
@@ -145,11 +140,6 @@ class MisProyectosController extends Controller {
 		$dominio = Dominios::find($proyecto->id_dominio);
 		$mis_datos = Auth::user()->getPerfil();
 		$mi_correo = Auth::user()->correo_usuario;
-
-		if ($request->check_cierre_etapa==1){
-			$proyecto->estatus_proyecto = $proyecto->estatus_proyecto + 1;
-		}
-
 		$cliente = Clientes::find($proyecto->id_cliente);
 
 		if ($request->check_copia_cliente_avance){
@@ -178,9 +168,21 @@ class MisProyectosController extends Controller {
 		};
 		$request['id_usuario'] = Auth::user()->id_usuario;
 		$request['id_empresa'] = Auth::user()->getIdEmpresa();
-		$avances = Avances::firstOrCreate($request->except('check_cierre_etapa'));
+		Avances::firstOrCreate($request->except('check_cierre_etapa'));
 
-		$proyecto->id_avance = $avances->id_avance;
+		if ($request->check_cierre_etapa == 1){
+			$proyecto->estatus_proyecto = $proyecto->estatus_proyecto + 1;
+			Avances::Create([
+					'asunto_avance' 				=> 'Comienzo de nueva etapa.',
+					'descripcion_avance' 			=> 'Comienzo de nueva etapa.',
+					'id_empresa' 					=> Auth::user()->getIdEmpresa(),
+					'id_usuario' 					=> Auth::user()->id_usuario,
+					'id_proyecto' 					=> $request->id_proyecto,
+					'id_etapa'	 					=> $request->id_etapa,
+					'check_copia_cliente_avance' 	=> $request->check_copia_cliente_avance
+				]);
+		}
+
 		$proyecto->save();
 
 		Session::flash('mensaje', 'Avance creado exitosamente');

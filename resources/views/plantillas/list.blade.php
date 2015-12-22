@@ -7,7 +7,7 @@
 	@include('layouts/navbar-admin')
 
     @include('layouts/sidebar-admin')
-	
+	{{Auth::user()->id_usuario}}{{Auth::user()->getIdEmpresa()}}kjhkhgh
 	<div id="content" class="content ng-scope">
         
         <ol class="breadcrumb pull-right">
