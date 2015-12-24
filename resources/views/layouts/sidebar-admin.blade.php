@@ -22,91 +22,8 @@
 		<!-- end sidebar user -->
 		<!-- begin sidebar nav -->
 		<ul class="nav">
-			<li class="nav-header">Proyectos</li>
-			<li class="has-sub">
-				<a href="javascript:;">
-				    <b class="caret pull-right"></b>
-				    <i class="fa fa-sitemap"></i>
-				    <span>Proyectos</span>
-			    </a>
-				<ul class="sub-menu">
-				    <li><a href="{{ url('proyectos') }}">Todos los proyectos</a></li>
-				    <li><a href="{{ url('proyectos-finalizados') }}">Proyectos Finalizados</a></li>
-				</ul>
-			</li>
-			<li>
-				<a href="{{ url('mis-proyectos') }}">
-				    <i class="fa fa-star"></i>
-				    <span>Mis Proyectos</span>
-			    </a>
-			</li>
-			<li class="has-sub">
-				<a href="javascript:;">
-				    <b class="caret pull-right"></b>
-				    <i class="fa fa-wheelchair"></i>
-				    <span>Clientes</span>
-			    </a>
-				<ul class="sub-menu">
-				    <li><a href="{{ url('clientes') }}">Listar clientes</a></li>
-				    <li><a href="{{ url('clientes/create') }}">Agregar Cliente</a></li>
-				</ul>
-			</li>
-			<li class="has-sub">
-				<a href="javascript:;">
-				    <b class="caret pull-right"></b>
-				    <i class="fa fa-line-chart"></i>
-				    <span>Grupos de Etapas</span>
-			    </a>
-				<ul class="sub-menu">
-				    <li><a href="{{ url('grupo_etapas') }}">Listar Etapas</a></li>
-				    <li><a href="{{ url('grupo_etapas/create') }}">Agregar Etapas</a></li>
-				</ul>
-			</li>
-			<li class="has-sub">
-				<a href="javascript:;">
-				    <b class="caret pull-right"></b>
-				    <i class="fa fa-suitcase"></i>
-				    <span>Tipo de Proyectos</span>
-			    </a>
-				<ul class="sub-menu">
-				    <li><a href="{{ url('tipo_proyectos') }}">Listar</a></li>
-				    <li><a href="{{ url('tipo_proyectos/create') }}">Agregar</a></li>
-				</ul>
-			</li>
-			<li class="has-sub">
-				<a href="javascript:;">
-				    <b class="caret pull-right"></b>
-				    <i class="fa fa-link"></i>
-				    <span>Dominios</span>
-			    </a>
-				<ul class="sub-menu">
-				    <li><a href="{{ url('dominios') }}">Listar Dominios</a></li>
-				    <li><a href="{{ url('dominios/create') }}">Agregar Dominios</a></li>
-				</ul>
-			</li>
-			<li class="has-sub">
-				<a href="javascript:;">
-				    <b class="caret pull-right"></b>
-				    <i class="fa fa-paste"></i>
-				    <span>Pantillas</span>
-			    </a>
-				<ul class="sub-menu">
-				    <li><a href="{{ url('plantillas') }}">Listar Pantillas</a></li>
-				    <li><a href="{{ url('plantillas/create') }}">Agregar Pantillas</a></li>
-				</ul>
-			</li>
-			<li class="has-sub">
-				<a href="javascript:;">
-				    <b class="caret pull-right"></b>
-				    <i class="fa fa-coffee"></i>
-				    <span>Empresas Proveedoras</span>
-			    </a>
-				<ul class="sub-menu">
-				    <li><a href="{{ url('empresas_proveedoras') }}">Listar Proveedores</a></li>
-				    <li><a href="{{ url('empresas_proveedoras/create') }}">Agregar Proveedores</a></li>
-				</ul>
-			</li>
 
+			@if(Auth::user()->isSuperAdmin())
 			<li class="has-sub"><!-- ng-click="proyecto_active()" ng-class="{'': !proyecto, 'active': proyecto}"-->
 				<a href="javascript:;" >
 				    <b class="caret pull-right"></b>
@@ -118,7 +35,14 @@
 				    <li><a href="{{ url('admin_empresas/create') }}">Crear Empresas</a></li>
 				</ul>
 			</li>
-			<li class="has-sub"><!-- ng-click="usuario_active()" ng-class="{'': !usuario, 'active': usuario}" -->
+			<li >
+				<a href="{{ url('mis-proyectos') }}">
+				    <i class="fa fa-star"></i>
+				    <span>Mis Proyectos</span>
+			    </a>
+			</li>	
+			@elseif(Auth::user()->isAdmin())
+			<li class="has-sub" ng-init="menu={{Auth::user()->getAllPermisosMenu()}}"><!-- ng-click="usuario_active()" ng-class="{'': !usuario, 'active': usuario}" -->
 				<a href="javascript:;">
 				    <b class="caret pull-right"></b>
 				    <i class="fa fa-users"></i>
@@ -128,18 +52,51 @@
 				    <li><a href="{{ url('admin_usuarios') }}">Lista Usuarios</a></li>
 				    <li><a href="{{ url('admin_usuarios/create') }}">Crear Usuarios</a></li>
 				</ul>
-			</li>
-			<li class="has-sub">
-				<a href="javascript:;">
-				    <b class="caret pull-right"></b>
-				    <i class="fa fa-coffee"></i>
-				    <span>Roles</span>
+			</li>	 
+			<li >
+				<a href="{{ url('mis-proyectos') }}">
+				    <i class="fa fa-star"></i>
+				    <span>Mis Proyectos</span>
 			    </a>
-				<ul class="sub-menu">
-				    <li><a href="{{ url('roles') }}">Listar de roles</a></li>
-				    <li><a href="{{ url('roles/create') }}">Agregar roles</a></li>
-				</ul>
+			</li>	
+
+			<li class="has-sub" ng-repeat="item in menu">
+				<a  href="javascript:;" >
+					<b class="caret pull-right"></b>
+				    <i class="[[item.icon]]"></i>
+				    <span>[[item.nombre_menu]]</span>
+				    
+			    </a>
+			    <ul class="sub-menu" >
+					<li ng-repeat='subitem in item.submenu'>
+						<a href="{{ url('[[item.nombre_modulo]]/[[subitem.raw]]') }}">[[subitem.label]]</a>
+					</li>
+			    </ul>
 			</li>			
+			@else
+			
+			<li ng-init="menu={{Auth::user()->getPermisosMenu()}}">
+				<a href="{{ url('mis-proyectos') }}">
+				    <i class="fa fa-star"></i>
+				    <span>Mis Proyectos</span>
+			    </a>
+			</li>	
+
+			<li class="has-sub" ng-repeat="item in menu">
+				<a  href="javascript:;" >
+					<b class="caret pull-right"></b>
+				    <i class="[[item.icon]]"></i>
+				    <span>[[item.nombre_menu]]</span>
+				    
+			    </a>
+			    <ul class="sub-menu" >
+					<li ng-repeat='subitem in item.submenu'>
+						<a href="{{ url('[[item.nombre_modulo]]/[[subitem.raw]]') }}">[[subitem.label]]</a>
+					</li>
+			    </ul>
+			</li>
+	
+			@endif
 	        <!-- begin sidebar minify button -->
 			<li><a href="javascript:;" class="sidebar-minify-btn" data-click="sidebar-minify"><i class="fa fa-angle-double-left"></i></a></li>
 	        <!-- end sidebar minify button -->

@@ -1,5 +1,6 @@
 <?php namespace App;
 
+use App\Http\Controllers\ConfiguracionController;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Auth\Passwords\CanResetPassword;
@@ -19,6 +20,8 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
 	protected $fillable = ['correo_usuario', 'password','id_permisologia','habilitado_usuario'];
 	protected $hidden = ['password', 'remember_token'];
 	public $timestamps = false;
+	
+
 
 	protected $appends = ['permisos','nombre_empresa'];
 
@@ -33,14 +36,56 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     }
 
     public function getPermisosMenu(){
-    	if ($this->isSocio()){
-    		$items = Excepciones::where('id_usuario', $this->id_usuario)
-        						->get(['modulo_excepcion'])->toArray();
-        	return $items;
-    	}
-    	elseif($this->isAdmin){
+    	$configuracion = new ConfiguracionController();
+    	$dicc = $configuracion->InfoModulos;
+		$items = [];
+		$menu = [];
+		$modulos = Excepciones::where('id_usuario', $this->id_usuario)
+    						->get();
+    	foreach($modulos as $modulos_raw){
+    		$modulo = explode(".", $modulos_raw->modulo_excepcion);
+    		$labels = $dicc[$modulo[0]];
 
+
+    		if (!array_key_exists($modulo[0],$items)){
+	    		$items[$modulo[0]] = [	
+	    						'nombre_modulo' => $modulo[0],
+								'nombre_menu' => $labels['nombre_menu'],
+								'icon'=> $labels['icon'],
+								'submenu' =>[],
+	    							];
+	    	}
+
+    		if (array_key_exists($modulo[1], $labels['items_menu'])){
+	    		$submenu = [
+					'label'=>$labels['items_menu'][$modulo[1]],
+					'raw'=>$modulo[1],
+    			];
+	    		array_push($items[$modulo[0]]['submenu'], $submenu);
+    		}
     	}
+    	return json_encode($items);
+    }
+
+    public function getAllPermisosMenu(){
+    	$configuracion = new ConfiguracionController();
+    	$dicc = $configuracion->InfoModulos;
+		foreach ($dicc as $raw_name => $modulo) {
+			$items[$raw_name] = [
+								'nombre_modulo' => $raw_name,
+								'nombre_menu' => $modulo['nombre_menu'],
+								'icon'=> $modulo['icon'],
+								'submenu' =>[],
+	    							];
+	    	foreach ($modulo['items_menu'] as $key => $submenu) {
+	    		$submenu = [
+					'label'=>$submenu,
+					'raw'=>$key,
+    			];
+	    		array_push($items[$raw_name]['submenu'], $submenu);
+	    	}
+		}
+    	return json_encode($items);
     }
 
 

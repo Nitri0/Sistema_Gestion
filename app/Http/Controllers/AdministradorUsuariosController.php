@@ -45,14 +45,16 @@ class AdministradorUsuariosController extends Controller
     }
 
     public function metodosClases(Route $route){
-        $controladores = ['\App\Http\Controllers\ClientesController'                =>'clientes',
-                          '\App\Http\Controllers\DominiosController'                =>'dominios',
-                          '\App\Http\Controllers\EmpresasProveedorasController'     =>'empresas_proveedoras',
+        $controladores = [
+                          '\App\Http\Controllers\ProyectosController'               =>'proyectos',
+                          '\App\Http\Controllers\TipoProyectoController'            =>'tipo_proyectos',
+                          '\App\Http\Controllers\ClientesController'                =>'clientes',
                           '\App\Http\Controllers\EtapasController'                  =>'grupo_etapas',
                           '\App\Http\Controllers\PlantillasController'              =>'plantillas',
-                          '\App\Http\Controllers\ProyectosController'               =>'proyectos',
-                          //'\App\Http\Controllers\AdministradorEmpresasController'   =>'admin_empresas',
-                          '\App\Http\Controllers\TipoProyectoController'            =>'tipo_proyectos'];
+                          '\App\Http\Controllers\RolesController'                   =>'roles',
+                          '\App\Http\Controllers\DominiosController'                =>'dominios',
+                          '\App\Http\Controllers\EmpresasProveedorasController'     =>'empresas_proveedoras',
+                          ];
 
         $nombre_metodos  = $this->configuracion->InfoModulos;
         //dd($nombre_metodos);
