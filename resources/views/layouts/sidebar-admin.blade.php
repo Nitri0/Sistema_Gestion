@@ -69,7 +69,7 @@
 			    </a>
 			    <ul class="sub-menu" >
 					<li ng-repeat='subitem in item.submenu'>
-						<a href="{{ url('[[item.nombre_modulo]]/[[subitem.raw]]') }}">[[subitem.label]]</a>
+						<a href="{{ url('[[subitem.url]]') }}">[[subitem.label]]</a>
 					</li>
 			    </ul>
 			</li>			
@@ -91,7 +91,7 @@
 			    </a>
 			    <ul class="sub-menu" >
 					<li ng-repeat='subitem in item.submenu'>
-						<a href="{{ url('[[item.nombre_modulo]]/[[subitem.raw]]') }}">[[subitem.label]]</a>
+						<a href="{{ url('[[subitem.url]]') }}">[[subitem.label]]</a>
 					</li>
 			    </ul>
 			</li>

@@ -55,11 +55,11 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
 								'submenu' =>[],
 	    							];
 	    	}
-
+	    	//dd($modulo[1], $labels['items_menu']);
     		if (array_key_exists($modulo[1], $labels['items_menu'])){
 	    		$submenu = [
-					'label'=>$labels['items_menu'][$modulo[1]],
-					'raw'=>$modulo[1],
+					'label'=>$labels['items_menu'][$modulo[1]]['nombre'],
+					'url'=>$labels['items_menu'][$modulo[1]]['url'],
     			];
 	    		array_push($items[$modulo[0]]['submenu'], $submenu);
     		}
@@ -70,7 +70,9 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     public function getAllPermisosMenu(){
     	$configuracion = new ConfiguracionController();
     	$dicc = $configuracion->InfoModulos;
+
 		foreach ($dicc as $raw_name => $modulo) {
+
 			$items[$raw_name] = [
 								'nombre_modulo' => $raw_name,
 								'nombre_menu' => $modulo['nombre_menu'],
@@ -79,15 +81,14 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
 	    							];
 	    	foreach ($modulo['items_menu'] as $key => $submenu) {
 	    		$submenu = [
-					'label'=>$submenu,
-					'raw'=>$key,
+					'label'=>$submenu['nombre'],
+					'url'=>$submenu['url'],
     			];
 	    		array_push($items[$raw_name]['submenu'], $submenu);
 	    	}
 		}
     	return json_encode($items);
     }
-
 
 	public function getPerfil(){
 		$perfil = Perfil::where('id_usuario',$this->id_usuario)->first();
@@ -168,6 +169,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
 	
 
 	public function validacionExcepciones($method){
+		
 		$excepciones = Excepciones::where('id_usuario', $this->id_usuario)
 								->where('id_empresa', $this->getIdEmpresa())
 								->where('modulo_excepcion',$method)

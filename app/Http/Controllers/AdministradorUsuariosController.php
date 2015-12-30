@@ -179,7 +179,6 @@ class AdministradorUsuariosController extends Controller
     }
 
     public function update(Request $request, $id){
-
         $user = User::find($id);
         if ($request->has('password')){
             $request['password'] = \Hash::make($request['password']);
