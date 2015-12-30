@@ -92,7 +92,7 @@
 										</a>
                                     </td>
                                     <td>[[proyecto.fecha_creacion_avance | DateForHumans]]</td>
-                                    <td>[[proyecto.nombre_tipo]]</td>
+                                    <td>[[proyecto.nombre_tipo_rol]]</td>
                                     <td>[[proyecto.nombre_etapa]]</td>
                                     <td>
                                     	<div class="row">
