@@ -19,8 +19,13 @@ class ConfiguracionController extends Controller {
 		"dominios" =>[
 				"nombre_menu" => 'Dominios',
 				"icon" => 'fa fa-link',
-				"items_menu" => ['index'=>'Listar',
-								 'create'=>'Agregar'],
+				"items_menu" => ['index'=>[
+										'nombre'=>'Listar',
+										'url'=>'dominios'],
+								 'create'=>[
+								 		'nombre'=>'Agregar',
+								 		'url'=>'dominios/create'],
+								 ],
 				"administrador_usuarios"=>
 						[     "index"   => [
 						                    "Listar",
@@ -60,8 +65,13 @@ class ConfiguracionController extends Controller {
 		"clientes" =>[
 				"nombre_menu" => 'Clientes',
 				"icon" => 'fa fa-wheelchair',
-				"items_menu" => ['index'=>'Listar',
-								 'create'=>'Agregar'],
+				"items_menu" => ['index'=>[
+										'nombre'=>'Listar',
+										'url'=>'clientes'],
+								 'create'=>[
+								 		'nombre'=>'Agregar',
+								 		'url'=>'clientes/create'],
+								 ],
 				"administrador_usuarios" =>		
 						[
 						    "index"   => [
@@ -98,8 +108,13 @@ class ConfiguracionController extends Controller {
 		"plantillas" =>[
 				"nombre_menu" => 'Plantillas',
 				"icon" => 'fa fa-paste',
-				"items_menu" => ['index'=>'Listar',
-								 'create'=>'Agregar'],
+				"items_menu" => ['index'=>[
+										'nombre'=>'Listar',
+										'url'=>'plantillas/'],
+								 'create'=>[
+								 		'nombre'=>'Agregar',
+								 		'url'=>'plantillas/create'],
+								 ],
 				"administrador_usuarios"=>
 						[     
 						    "index"   => [
@@ -140,8 +155,13 @@ class ConfiguracionController extends Controller {
 		"tipo_proyectos" =>	[
 				"nombre_menu" => 'Tipo de proyectos',
 				"icon" => 'fa fa-suitcase',
-				"items_menu" => ['index'=>'Listar',
-								 'create'=>'Agregar'],
+				"items_menu" => ['index'=>[
+										'nombre'=>'Listar',
+										'url'=>'tipo_proyectos/'],
+								 'create'=>[
+								 		'nombre'=>'Agregar',
+								 		'url'=>'tipo_proyectos/create'],
+								 ],
 				"administrador_usuarios"=>	
 						[     
 						    "index"   => [
@@ -178,8 +198,15 @@ class ConfiguracionController extends Controller {
 		"proyectos" =>[
 				"nombre_menu" => 'Proyectos',
 				"icon" => 'fa fa-sitemap',
-				"items_menu" => ['index'=>'Proyectos activos',
-								 'indexProyectosFinalizados'=>'Proyectos finalizados',],
+				"items_menu" => ['index'=>[
+											'nombre'=>'Proyectos activos',
+											'url'=>'proyectos'
+											],
+								 'indexProyectosFinalizados'=>[
+								 				'nombre'=>'Proyectos finalizados',
+								 				'url'=>'proyectos-finalizados'
+								 			],
+								 ],
 				"administrador_usuarios"=>
 						[    
 						    "index"   => [
@@ -236,8 +263,13 @@ class ConfiguracionController extends Controller {
 		"grupo_etapas" =>[
 				"nombre_menu" => 'Grupo de etapas',
 				"icon" => 'fa fa-line-chart',
-				"items_menu" => ['index'=>'Listar',
-								 'create'=>'Agregar',],
+				"items_menu" => ['index'=>[
+										'nombre'=>'Listar',
+										'url'=>'grupo_etapas'],
+								 'create'=>[
+								 		'nombre'=>'Agregar',
+								 		'url'=>'grupo_etapas/create'],
+								],
 				"administrador_usuarios"=>
 						[     
 						    "index"   => [
@@ -274,8 +306,13 @@ class ConfiguracionController extends Controller {
 		"roles" =>[
 				"nombre_menu" => 'Roles de usuarios',
 				"icon" => 'fa fa-coffee',
-				"items_menu" => ['index'=>'Listar',
-								 'create'=>'Agregar'],
+				"items_menu" => ['index'=>[
+										'nombre'=>'Listar',
+										'url'=>'roles'],
+								 'create'=>[
+								 		'nombre'=>'Agregar',
+								 		'url'=>'roles/create'],
+								 ],
 				"administrador_usuarios"=>
 						[     
 						    "index"   => [
@@ -312,8 +349,13 @@ class ConfiguracionController extends Controller {
 		"empresas_proveedoras" =>[
 				"nombre_menu" => 'Empresas Proveedoras',
 				"icon" => 'fa fa-coffee',
-				"items_menu" => ['index'=>'Listar',
-								 'create'=>'Agregar'],
+				"items_menu" => ['index'=>[
+										'nombre'=>'Listar',
+										'url'=>'empresas_proveedoras/'],
+								 'create'=>[
+								 		'nombre'=>'Agregar',
+								 		'url'=>'empresas_proveedoras/create'],
+								 ],
 				"administrador_usuarios"=>
 						[     
 						    "index"   => [
