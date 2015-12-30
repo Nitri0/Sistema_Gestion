@@ -31,11 +31,6 @@
 						@include('alerts.mensaje_success')
 						@include('alerts.mensaje_error')
 
-						<blockquote class="f-s-14">
-                           <p>File Upload widget with multiple file selection, drag&amp;drop support, progress bars, validation and preview images, audio and video for jQuery.<br>
-                            Supports cross-domain, chunked and resumable file uploads and client-side image resizing.<br>
-                            Works with any server-side platform (PHP, Python, Ruby on Rails, Java, Node.js, Go etc.) that supports standard HTML form file uploads.</p>
-                        </blockquote>
 						<div ng-init=" urlAction='{{ url('proyectos/') }}'"></div>
                         <form class="form-horizontal" name="formulario" id="formulario" action="[[urlAction]]" method="POST">	
 
@@ -58,6 +53,11 @@
 	                                        </small>
                                     	</div>	                                    
 	                                </div>
+	                                <div class="col-md-3">
+	                                	<a href="{{ url('tipo_proyectos/create') }}" class="btn btn-success btn-sm p-l-10 p-r-10" data-toggle="tooltip" data-title="Agregar Tipo de Proyecto">
+					                        <i class="fa fa-plus"></i>
+					                    </a>
+	                                </div>
 	                            </div>
 
 								<div class="form-group">
@@ -76,6 +76,11 @@
 	                                            * Campo requerido.
 	                                        </small>
                                     	</div>
+	                                </div>
+	                                <div class="col-md-3">
+	                                	<a href="{{ url('clientes/create') }}" class="btn btn-success btn-sm p-l-10 p-r-10" data-toggle="tooltip" data-title="Agregar Cliente">
+					                        <i class="fa fa-plus"></i>
+					                    </a>
 	                                </div>
 	                            </div>
 
@@ -96,6 +101,11 @@
 	                                        </small>
                                     	</div>	                                    
 	                                </div>
+	                                <div class="col-md-3">
+	                                	<a href="{{ url('grupo_etapas/create') }}" class="btn btn-success btn-sm p-l-10 p-r-10" data-toggle="tooltip" data-title="Agregar Grupo de Etapas">
+					                        <i class="fa fa-plus"></i>
+					                    </a>
+	                                </div>
 	                            </div>
 
 	                            <div class="form-group">
@@ -109,7 +119,14 @@
                                     	</div>
 	                                </div>
 	                            </div>
-
+								
+								<div class="">
+									<a href="#modal-crear-proyecto" class="btn btn-sm btn-info" data-toggle="modal">
+										<i class="fa fa-life-ring"></i>
+									</a>
+								</div>
+					            @include('modals/modal-help-crear-proyecto')
+					            
 	                        </div>
 							
 							<div class="well">

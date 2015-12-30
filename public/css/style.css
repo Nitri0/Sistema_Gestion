@@ -185,3 +185,14 @@ body {
 .sidebar-minify-btn i {
   color: #696763;
 }
+
+.tooltip-inner {
+  background-color: #e9ecec;
+  color: #696763;
+}
+.tooltip.top .tooltip-arrow {
+  border-top-color: #e9ecec; 
+}
+.button-help{
+  float: left;
+}
