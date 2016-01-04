@@ -1,9 +1,9 @@
-<div class="modal fade bs-example-modal-lg" id="modal-crear-proyecto" labelledby="myLargeModalLabel">
+<div class="modal fade bs-example-modal-lg" id="ayuda" labelledby="myLargeModalLabel">
 	<div class="modal-dialog modal-lg">
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-				<h4 class="modal-title">Crear de Proyecto</h4>
+				<h4 class="modal-title">Ayuda</h4>
 			</div>
 			<div class="modal-body">
 				
