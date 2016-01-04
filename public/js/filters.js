@@ -8,7 +8,7 @@ coreApp.filter("DateForHumans", function(){
     	var fecha = new Date(date);
     	var result = parseInt((now-fecha)/(24*3600*1000));
         if (result<1){
-            return "Menos de un día";
+            return "Hoy";
         }else if(result==1){
             return result+" día";
         }
