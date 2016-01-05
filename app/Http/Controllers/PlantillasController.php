@@ -62,7 +62,7 @@ class PlantillasController extends Controller {
 	}
 
 	public function store(Request $request){
-		
+		//dd($request->all());
 		$request['id_empresa']=Auth::user()->getIdEmpresa();
 		$request['id_usuario']=Auth::user()->id_usuario;
 		$plantillas = Plantillas::create($request->all());

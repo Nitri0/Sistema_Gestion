@@ -2,7 +2,7 @@
 
 @section('js')
 	<script src="{{ asset('/bower_components/ckeditor/ckeditor.js') }}"></script>
-	<script src="{{ asset('/js/controllers/helper.js') }}"></script>
+	
 @endsection
 
 @section('content')
@@ -13,7 +13,7 @@
 
     @include('layouts/sidebar-admin')
 	
-	<div id="content" class="content ng-scope" ng-controller="SubmitController">
+	<div id="content" class="content ng-scope" >
 
 		<div ng-init="urlRedirect='{{ url('plantillas/') }}'"></div>
 		@if($plantillas)

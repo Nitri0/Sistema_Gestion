@@ -139,6 +139,7 @@ class AdministradorUsuariosController extends Controller
         $user = User::create($request->all());
 
         $request['id_usuario'] = $user->id_usuario;
+        $request['id_permisologia'] = 3;
         $perfil = Perfil::create($request->all());
         if ($request['clases']){
             foreach ($request['clases'] as $permiso=>$value ) {

@@ -72,12 +72,13 @@
 
 		            <div class="col-md-4 ui-sortable">
 		                <!-- begin panel -->
+		                @if(!$usuario)
 		                <div class="panel panel-inverse">
 		                    <div class="panel-heading">
 		                        <h4 class="panel-title"><i class="fa fa-user"></i> Usuario</h4>
 		                    </div>
 		                    <div class="panel-body">	
-		                    	@if(!$usuario)
+		                    	
 								<div class="form-group">
 	                                <label class="col-md-4 control-label">Correo Electronico</label>
 	                                <div class="col-md-8">
@@ -103,30 +104,10 @@
 		                            	</div>
 	                                </div>
                             	</div>
-								@endif
-                            	<div class="form-group">
-	                                <label class="col-md-4 control-label">Tipo de Usuario</label>
-	                                <div class="col-md-8">
-										<select class="form-control js-example-data-array" name="id_permisologia" ng-model='usuario.id_permisologia' ng-required="true" oninvalid="setCustomValidity(' ')">
-											@foreach($tipos_usuario as $nombre=>$tipo)
-												<option class="option" value="{{$tipo}}" 
-													@if($usuario && $tipo == $usuario->id_permisologia)
-														Selected
-													@endif
-
-												>{{$nombre}}</option>
-											@endforeach
-										</select>
-										<div class="error campo-requerido" ng-show="formulario.id_permisologia.$invalid && (formulario.id_permisologia.$touched || submitted)">
-		                                    <small class="error" ng-show="formulario.id_permisologia.$error.required">
-		                                        * Campo requerido.
-		                                    </small>
-		                            	</div>
-	                                </div>
-                            	</div>
 
 		                    </div><!-- boby -->
 		                </div>
+						@endif
 		            </div>
 
 		            <div class="col-md-8 ui-sortable">
@@ -236,7 +217,7 @@
 
 		        <div class="row">
 					
-					<h1 class="page-header"><center><i class="fa fa-unlock-alt"></i><small> Permisos (solo aplican para socios)</small></center></h1>
+					<h1 class="page-header"><center><i class="fa fa-unlock-alt"></i><small> Permisos </small></center></h1>
 
 					@foreach($permisos as $nombre_clase=>$metodos)
 
