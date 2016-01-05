@@ -120,13 +120,6 @@
 	                                </div>
 	                            </div>
 								
-								<div class="">
-									<a href="#modal-crear-proyecto" class="btn btn-sm btn-info" data-toggle="modal">
-										<i class="fa fa-life-ring"></i>
-									</a>
-								</div>
-					            @include('modals/modal-help-crear-proyecto')
-					            
 	                        </div>
 							
 							<div class="well">
@@ -197,6 +190,13 @@
 								</div>
 								
 							</div>
+
+							<div class="btn-ayuda">
+								<a href="#ayuda" class="btn btn-sm btn-info" data-toggle="modal">
+									<i class="fa fa-life-ring"></i>
+								</a>
+							</div>
+				            @include('modals/ayuda')
 
 							<center>
 								<button class="btn btn-success m-r-5 m-b-5" type="button" ng-click="submit(formulario.$valid)">

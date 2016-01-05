@@ -105,7 +105,7 @@
 		                        <div class="form-group">
 		                            <label class="col-md-4 control-label">Nombre dominio</label>
 		                            <div class="col-md-5">
-		                                <input type="url" text-only class="form-control" ng-model="dominio.nombre_dominio" name="nombre_dominio" ng-required="true" oninvalid="setCustomValidity(' ')">
+		                                <input type="url" class="form-control" ng-model="dominio.nombre_dominio" name="nombre_dominio" ng-required="true" oninvalid="setCustomValidity(' ')">
 		                            	<div class="error campo-requerido" ng-show="formulario.nombre_dominio.$invalid && (formulario.nombre_dominio.$touched || submitted)">
 		                                    <small class="error" ng-show="formulario.nombre_dominio.$error.required">
 		                                        * Campo requerido.

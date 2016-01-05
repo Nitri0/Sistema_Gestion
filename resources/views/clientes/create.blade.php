@@ -55,102 +55,98 @@
 
 	                    <div class="panel-body">
 
-	                    	<blockquote class="f-s-14">
-	                           <p>File Upload widget with multiple file selection, drag&amp;drop support, progress bars, validation and preview images, audio and video for jQuery.<br>
-	                            Supports cross-domain, chunked and resumable file uploads and client-side image resizing.<br>
-	                            Works with any server-side platform (PHP, Python, Ruby on Rails, Java, Node.js, Go etc.) that supports standard HTML form file uploads.</p>
-	                        </blockquote>
+	                    	<div class="form-group">
+                                <label class="col-md-4 control-label">Nombre de cliente</label>
+                                <div class="col-md-5">
+                                   <input type="text" text-only class="form-control" ng-model="cliente.nombre_cliente" name="nombre_cliente" ng-required="true" oninvalid="setCustomValidity(' ')">
+									<div class="error campo-requerido" ng-show="formulario.nombre_cliente.$invalid && (formulario.nombre_cliente.$touched || submitted)">
+	                                    <small class="error" ng-show="formulario.nombre_cliente.$error.required">
+	                                        * Campo requerido.
+	                                    </small>
+	                            	</div>	                                   
+                                </div>
+                            </div>
 
-							<div class="well">
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Persona de contacto</label>
+                                <div class="col-md-5">
+                                   <input type="text" text-only class="form-control" ng-model="cliente.persona_contacto_cliente" name="persona_contacto_cliente" ng-required="true" oninvalid="setCustomValidity(' ')">
+									<div class="error campo-requerido" ng-show="formulario.persona_contacto_cliente.$invalid && (formulario.persona_contacto_cliente.$touched || submitted)">
+	                                    <small class="error" ng-show="formulario.persona_contacto_cliente.$error.required">
+	                                        * Campo requerido.
+	                                    </small>
+	                            	</div>	                                   
+                                </div>
+                            </div>
 
-		                    	<div class="form-group">
-	                                <label class="col-md-4 control-label">Nombre de cliente</label>
-	                                <div class="col-md-5">
-	                                   <input type="text" text-only class="form-control" ng-model="cliente.nombre_cliente" name="nombre_cliente" ng-required="true" oninvalid="setCustomValidity(' ')">
-										<div class="error campo-requerido" ng-show="formulario.nombre_cliente.$invalid && (formulario.nombre_cliente.$touched || submitted)">
-		                                    <small class="error" ng-show="formulario.nombre_cliente.$error.required">
-		                                        * Campo requerido.
-		                                    </small>
-		                            	</div>	                                   
-	                                </div>
-	                            </div>
-
-	                            <div class="form-group">
-	                                <label class="col-md-4 control-label">Persona de contacto</label>
-	                                <div class="col-md-5">
-	                                   <input type="text" text-only class="form-control" ng-model="cliente.persona_contacto_cliente" name="persona_contacto_cliente" ng-required="true" oninvalid="setCustomValidity(' ')">
-										<div class="error campo-requerido" ng-show="formulario.persona_contacto_cliente.$invalid && (formulario.persona_contacto_cliente.$touched || submitted)">
-		                                    <small class="error" ng-show="formulario.persona_contacto_cliente.$error.required">
-		                                        * Campo requerido.
-		                                    </small>
-		                            	</div>	                                   
-	                                </div>
-	                            </div>
-
-		                        <div class="form-group">
-		                            <label class="col-md-4 control-label">Rif </label>
-		                            <div class="col-md-5">
-		                            	<input type="text" ng-blur="ValidateRif(cliente.ci_rif_cliente)" placeholder="J-12345678-9" class="form-control" ng-model="cliente.ci_rif_cliente" name="ci_rif_cliente" ng-required="true" oninvalid="setCustomValidity(' ')">
-										<div class="error campo-requerido" ng-show="invalidrif || formulario.ci_rif_cliente.$invalid && (formulario.ci_rif_cliente.$touched || submitted)">
-		                                    <small class="error" ng-show="formulario.ci_rif_cliente.$error.required">
-		                                        * Campo requerido.
-		                                    </small>
-		                                    <small class="error" ng-show="invalidrif">
-		                                        * Formato de rif invalido
-		                                    </small>
-		                            	</div>		                            	
-		                            </div>  	                            	
-		                            </div>
-		                        </div>
+	                        <div class="form-group">
+	                            <label class="col-md-4 control-label">Rif </label>
+	                            <div class="col-md-5">
+	                            	<input type="text" ng-blur="ValidateRif(cliente.ci_rif_cliente)" placeholder="J-12345678-9" class="form-control" ng-model="cliente.ci_rif_cliente" name="ci_rif_cliente" ng-required="true" oninvalid="setCustomValidity(' ')">
+									<div class="error campo-requerido" ng-show="invalidrif || formulario.ci_rif_cliente.$invalid && (formulario.ci_rif_cliente.$touched || submitted)">
+	                                    <small class="error" ng-show="formulario.ci_rif_cliente.$error.required">
+	                                        * Campo requerido.
+	                                    </small>
+	                                    <small class="error" ng-show="invalidrif">
+	                                        * Formato de rif invalido
+	                                    </small>
+	                            	</div>		                            	
+	                            </div>  	                            	
+	                        </div>
 		                        
-	                            <div class="form-group">
-	                                <label class="col-md-4 control-label">Correo</label>
-	                                <div class="col-md-5">
-	                                   	<input type="email" class="form-control" ng-model="cliente.email_cliente" name="email_cliente" ng-required="true" oninvalid="setCustomValidity(' ')">
-										<div class="error campo-requerido" ng-show="formulario.email_cliente.$invalid && (formulario.email_cliente.$touched || submitted)">
-		                                    <small class="error" ng-show="formulario.email_cliente.$error.required">
-		                                        * Campo requerido.
-		                                    </small>
-		                                    <small class="error" ng-show="formulario.email_cliente.$error.email">
-		                                    	* Correo inválido correo@ejemplo.com
-		                                    </small>
-		                            	</div>	                                   
-	                                </div>
-	                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Correo</label>
+                                <div class="col-md-5">
+                                   	<input type="email" class="form-control" ng-model="cliente.email_cliente" name="email_cliente" ng-required="true" oninvalid="setCustomValidity(' ')">
+									<div class="error campo-requerido" ng-show="formulario.email_cliente.$invalid && (formulario.email_cliente.$touched || submitted)">
+	                                    <small class="error" ng-show="formulario.email_cliente.$error.required">
+	                                        * Campo requerido.
+	                                    </small>
+	                                    <small class="error" ng-show="formulario.email_cliente.$error.email">
+	                                    	* Correo inválido correo@ejemplo.com
+	                                    </small>
+	                            	</div>	                                   
+                                </div>
+                            </div>
 
-	                            <div class="form-group">
-	                                <label class="col-md-4 control-label">Telefono 1</label>
-	                                <div class="col-md-5">
-	                                   	<input type="text" data-mask="(9999)-999-99-99" class="form-control" ng-model="cliente.telefono_cliente" name="telefono_cliente" ng-required="true" oninvalid="setCustomValidity(' ')">
-										<div class="error campo-requerido" ng-show="formulario.telefono_cliente.$invalid && (formulario.telefono_cliente.$touched || submitted)">
-		                                    <small class="error" ng-show="formulario.telefono_cliente.$error.required">
-		                                        * Campo requerido.
-		                                    </small>
-		                            	</div>	                                   
-	                                </div>
-	                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Telefono 1</label>
+                                <div class="col-md-5">
+                                   	<input type="text" data-mask="(9999)-999-99-99" class="form-control" ng-model="cliente.telefono_cliente" name="telefono_cliente" ng-required="true" oninvalid="setCustomValidity(' ')">
+									<div class="error campo-requerido" ng-show="formulario.telefono_cliente.$invalid && (formulario.telefono_cliente.$touched || submitted)">
+	                                    <small class="error" ng-show="formulario.telefono_cliente.$error.required">
+	                                        * Campo requerido.
+	                                    </small>
+	                            	</div>	                                   
+                                </div>
+                            </div>
 
-	                            <div class="form-group">
-	                                <label class="col-md-4 control-label">Telefono 2</label>
-	                                <div class="col-md-5">
-	                                   	<input type="text" data-mask="(9999)-999-99-99" class="form-control" ng-model="cliente.telefono_2_cliente" name="telefono_2_cliente">
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Telefono 2</label>
+                                <div class="col-md-5">
+                                   	<input type="text" data-mask="(9999)-999-99-99" class="form-control" ng-model="cliente.telefono_2_cliente" name="telefono_2_cliente">
 
-	                                </div>
-	                            </div>
+                                </div>
+                            </div>
 
-	                            <div class="form-group">
-	                                <label class="col-md-4 control-label">Dirección</label>
-	                                <div class="col-md-5">
-	                                   <input type="textarea" class="form-control" ng-model="cliente.direccion_cliente" name="direccion_cliente" ng-required="true" oninvalid="setCustomValidity(' ')">
-										<div class="error campo-requerido" ng-show="formulario.direccion_cliente.$invalid && (formulario.direccion_cliente.$touched || submitted)">
-		                                    <small class="error" ng-show="formulario.direccion_cliente.$error.required">
-		                                        * Campo requerido.
-		                                    </small>
-		                            	</div>	                                   
-	                                </div>
-	                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Dirección</label>
+                                <div class="col-md-5">
+                                   <input type="textarea" class="form-control" ng-model="cliente.direccion_cliente" name="direccion_cliente" ng-required="true" oninvalid="setCustomValidity(' ')">
+									<div class="error campo-requerido" ng-show="formulario.direccion_cliente.$invalid && (formulario.direccion_cliente.$touched || submitted)">
+	                                    <small class="error" ng-show="formulario.direccion_cliente.$error.required">
+	                                        * Campo requerido.
+	                                    </small>
+	                            	</div>	                                   
+                                </div>
+                            </div>
 
+                            <div class="btn-ayuda">
+								<a href="#ayuda" class="btn btn-sm btn-info" data-toggle="modal">
+									<i class="fa fa-life-ring"></i>
+								</a>
 							</div>
+				            @include('modals/ayuda')
 
 							<center>
                             @if($cliente)

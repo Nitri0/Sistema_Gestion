@@ -193,6 +193,6 @@ body {
 .tooltip.top .tooltip-arrow {
   border-top-color: #e9ecec; 
 }
-.button-help{
-  float: left;
+.btn-ayuda{
+  float: right; 
 }
