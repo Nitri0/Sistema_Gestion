@@ -172,16 +172,15 @@
                             	<div class="form-group">
 	                                <label class="col-md-2 control-label">Sexo</label>
 	                                <div class="col-md-8">
-
 										<select class="form-control js-example-data-array" name="sexo_perfil" ng-model='perfil.sexo_perfil' ng-required="true" oninvalid="setCustomValidity(' ')">
 											<option class="option" value="">Seleccione un genero</option>
-											<option class="option" value="Masculino" 
- 													@if($perfil && $perfil->sexo == 'Masculino')
+											<option class="option" value="M" 
+ 													@if($perfil && $perfil->sexo_perfil == 'Masculino')
 														Selected 
 													@endif
 													 >Masculino</option>
-											<option class="option" value="Femenino"
-													@if($perfil && $perfil->sexo == 'Femenino')
+											<option class="option" value="F"
+													@if($perfil && $perfil->sexo_perfil == 'Femenino')
 														Selected
 													@endif >Femenino</option>
 											
