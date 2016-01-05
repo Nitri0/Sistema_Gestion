@@ -172,12 +172,25 @@
                             	<div class="form-group">
 	                                <label class="col-md-2 control-label">Sexo</label>
 	                                <div class="col-md-8">
-										<input type="text" class="form-control" ng-model="perfil.sexo_perfil" name="sexo_perfil" ng-required="true" oninvalid="setCustomValidity(' ')">
-	                                	<div class="error campo-requerido" ng-show="formulario.sexo_perfil.$invalid && (formulario.sexo_perfil.$touched || submitted)">
+
+										<select class="form-control js-example-data-array" name="sexo_perfil" ng-model='perfil.sexo_perfil' ng-required="true" oninvalid="setCustomValidity(' ')">
+											<option class="option" value="">Seleccione un genero</option>
+											<option class="option" value="Masculino" 
+ 													@if($perfil && $perfil->sexo == 'Masculino')
+														Selected 
+													@endif
+													 >Masculino</option>
+											<option class="option" value="Femenino"
+													@if($perfil && $perfil->sexo == 'Femenino')
+														Selected
+													@endif >Femenino</option>
+											
+										</select> 
+										<div class="error campo-requerido" ng-show="formulario.sexo_perfil.$invalid && (formulario.sexo_perfil.$touched || submitted)">
 		                                    <small class="error" ng-show="formulario.sexo_perfil.$error.required">
 		                                        * Campo requerido.
 		                                    </small>
-		                            	</div>
+		                            	</div>		                            	
 	                                </div>
                             	</div>
                             	<div class="form-group">
