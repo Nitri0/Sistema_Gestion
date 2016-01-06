@@ -45,120 +45,122 @@
 
 	                    <div class="panel-body">
 
-	                    	<blockquote class="f-s-14">
-	                           <p>File Upload widget with multiple file selection, drag&amp;drop support, progress bars, validation and preview images, audio and video for jQuery.<br>
-	                            Supports cross-domain, chunked and resumable file uploads and client-side image resizing.<br>
-	                            Works with any server-side platform (PHP, Python, Ruby on Rails, Java, Node.js, Go etc.) that supports standard HTML form file uploads.</p>
-	                        </blockquote>
+	                    	<br>
 
-	                    	<div class="well">
-
-								@if($proyecto)
-									<center>
-										<label>Proyecto: </label>
-										<label>{{$proyecto->nombre_proyecto}} - {{$proyecto->getCliente()->nombre_cliente}}</label>
-									</center>
-									<br>
-								@else
-
-		                    	<div class="form-group">
-		                            <label class="col-md-4 control-label">Proyecto</label>
-		                            <div class="col-md-5">
-							            <select class="form-control js-example-data-array" ng-model="dominio.id_proyecto" name="id_proyecto" ng-required="true" oninvalid="setCustomValidity(' ')">
-											<!--<option class="option" value="">Seleccione un proyecto</option>-->
-											@foreach($proyectos as $key)
-												<option class="option" value="{{$key->id_proyecto}}">
-													{{$key->nombre_proyecto}} - {{$key->getCliente()->nombre_cliente}}</option>
-											@endforeach
-										</select>
-										<div class="error campo-requerido" ng-show="formulario.id_proyecto.$invalid && (formulario.id_proyecto.$touched || submitted)">
-		                                    <small class="error" ng-show="formulario.id_proyecto.$error.required">
-		                                        * Campo requerido.
-		                                    </small>
-		                            	</div>
-		                            </div>
-		                        </div>
-
-		                        @endif
-
-		                        <div class="form-group">
-		                            <label class="col-md-4 control-label">Empresa proveedora</label>
-		                            <div class="col-md-5">
-		                                <select class="form-control js-example-data-array" ng-model="dominio.id_empresa_proveedora" name="id_empresa_proveedora" ng-required="true" oninvalid="setCustomValidity(' ')">
-											<!--<option class="option" value="">Seleccione una empresa proveedora</option>-->
-											@foreach($empresas_proveedoras as $key)
-												<option class="option" value="{{$key->id_empresa_proveedora}}"
-												@if($dominio && $dominio->id_empresa_proveedora==$key->id_empresa_proveedora) 
-													selected 
-												@endif >
-													{{$key->nombres_empresa_proveedora}}</option>
-											@endforeach
-										</select>
-										<div class="error campo-requerido" ng-show="formulario.id_empresa_proveedora.$invalid && (formulario.id_empresa_proveedora.$touched || submitted)">
-		                                    <small class="error" ng-show="formulario.id_empresa_proveedora.$error.required">
-		                                        * Campo requerido.
-		                                    </small>
-		                            	</div>
-		                            </div>
-		                        </div>
-
-		                        <div class="form-group">
-		                            <label class="col-md-4 control-label">Nombre dominio</label>
-		                            <div class="col-md-5">
-		                                <input type="url" class="form-control" ng-model="dominio.nombre_dominio" name="nombre_dominio" ng-required="true" oninvalid="setCustomValidity(' ')">
-		                            	<div class="error campo-requerido" ng-show="formulario.nombre_dominio.$invalid && (formulario.nombre_dominio.$touched || submitted)">
-		                                    <small class="error" ng-show="formulario.nombre_dominio.$error.required">
-		                                        * Campo requerido.
-		                                    </small>
-		                                    <small class="error" ng-show="formulario.nombre_dominio.$error.url">
-		                                    	* URL inválido http://ejemplo.com
-		                                    </small>
-		                            	</div>
-		                            </div>
-		                        </div>
-
-		                        <div class="form-group">
-		                            <label class="col-md-4 control-label">Espacio de disco asignado</label>
-		                            <div class="col-md-5">
-		                             	<select class="form-control js-example-data-array" name="espacio_asignado_dominio" ng-model="dominio.espacio_asignado_dominio" ng-required="true" oninvalid="setCustomValidity(' ')">
-											<!--<option class="option" value="">Seleccione un tamaño</option>-->
-											@foreach($tamanos as $key=> $value)
-												<option class="option" value="{{$key}}">{{$value}}</option>
-											@endforeach
-										</select>
-										<div class="error campo-requerido" ng-show="formulario.espacio_asignado_dominio.$invalid && (formulario.espacio_asignado_dominio.$touched || submitted)">
-		                                    <small class="error" ng-show="formulario.espacio_asignado_dominio.$error.required">
-		                                        * Campo requerido.
-		                                    </small>
-		                            	</div>
-		                            </div>
-		                        </div>
-
-		                        <div class="form-group">
-		                            <label class="col-md-4 control-label">Fecha de creacion de dominio</label>
-		                            <div class="col-md-5">
-		                             	<input type="date" class="form-control" ng-value="dominio.fecha_dominio" name="fecha_dominio" ng-required="true" oninvalid="setCustomValidity(' ')">
-		                            	<div class="error campo-requerido" ng-show="formulario.fecha_dominio.$invalid && (formulario.fecha_dominio.$touched || submitted)">
-		                                    <small class="error" ng-show="formulario.fecha_dominio.$error.required">
-		                                        * Campo requerido.
-		                                    </small>
-		                            	</div>
-		                            </div>
-		                        </div>
-								
+							@if($proyecto)
 								<center>
-									@if($dominio)
-										<button type="button" ng-click="submit(formulario.$valid)" class="btn btn-danger m-r-5 m-b-5">
-											Actualizar <i class="fa fa-undo"></i>
-										</button>
-									@else
-										<button type="button" ng-click="submit(formulario.$valid)" class="btn btn-info m-r-5 m-b-5">
-											Registrar <i class="fa fa-pencil-square-o"></i>
-										</button>
-									@endif
+									<label>Proyecto: </label>
+									<label>{{$proyecto->nombre_proyecto}} - {{$proyecto->getCliente()->nombre_cliente}}</label>
 								</center>
-							
+								<br>
+							@else
+
+	                    	<div class="form-group">
+	                            <label class="col-md-4 control-label">Proyecto</label>
+	                            <div class="col-md-5">
+						            <select class="form-control js-example-data-array" ng-model="dominio.id_proyecto" name="id_proyecto" ng-required="true" oninvalid="setCustomValidity(' ')">
+										<!--<option class="option" value="">Seleccione un proyecto</option>-->
+										@foreach($proyectos as $key)
+											<option class="option" value="{{$key->id_proyecto}}">
+												{{$key->nombre_proyecto}} - {{$key->getCliente()->nombre_cliente}}</option>
+										@endforeach
+									</select>
+									<div class="error campo-requerido" ng-show="formulario.id_proyecto.$invalid && (formulario.id_proyecto.$touched || submitted)">
+	                                    <small class="error" ng-show="formulario.id_proyecto.$error.required">
+	                                        * Campo requerido.
+	                                    </small>
+	                            	</div>
+	                            </div>
+	                        </div>
+
+	                        @endif
+
+	                        <div class="form-group">
+	                            <label class="col-md-4 control-label">Empresa proveedora</label>
+	                            <div class="col-md-5">
+	                                <select class="form-control js-example-data-array" ng-model="dominio.id_empresa_proveedora" name="id_empresa_proveedora" ng-required="true" oninvalid="setCustomValidity(' ')">
+										<!--<option class="option" value="">Seleccione una empresa proveedora</option>-->
+										@foreach($empresas_proveedoras as $key)
+											<option class="option" value="{{$key->id_empresa_proveedora}}"
+											@if($dominio && $dominio->id_empresa_proveedora==$key->id_empresa_proveedora) 
+												selected 
+											@endif >
+												{{$key->nombres_empresa_proveedora}}</option>
+										@endforeach
+									</select>
+									<div class="error campo-requerido" ng-show="formulario.id_empresa_proveedora.$invalid && (formulario.id_empresa_proveedora.$touched || submitted)">
+	                                    <small class="error" ng-show="formulario.id_empresa_proveedora.$error.required">
+	                                        * Campo requerido.
+	                                    </small>
+	                            	</div>
+	                            </div>
+	                        </div>
+
+	                        <div class="form-group">
+	                            <label class="col-md-4 control-label">Nombre dominio</label>
+	                            <div class="col-md-5">
+	                                <input type="url" class="form-control" ng-model="dominio.nombre_dominio" name="nombre_dominio" ng-required="true" oninvalid="setCustomValidity(' ')">
+	                            	<div class="error campo-requerido" ng-show="formulario.nombre_dominio.$invalid && (formulario.nombre_dominio.$touched || submitted)">
+	                                    <small class="error" ng-show="formulario.nombre_dominio.$error.required">
+	                                        * Campo requerido.
+	                                    </small>
+	                                    <small class="error" ng-show="formulario.nombre_dominio.$error.url">
+	                                    	* URL inválido http://ejemplo.com
+	                                    </small>
+	                            	</div>
+	                            </div>
+	                        </div>
+
+	                        <div class="form-group">
+	                            <label class="col-md-4 control-label">Espacio de disco asignado</label>
+	                            <div class="col-md-5">
+	                             	<select class="form-control js-example-data-array" name="espacio_asignado_dominio" ng-model="dominio.espacio_asignado_dominio" ng-required="true" oninvalid="setCustomValidity(' ')">
+										<!--<option class="option" value="">Seleccione un tamaño</option>-->
+										@foreach($tamanos as $key=> $value)
+											<option class="option" value="{{$key}}">{{$value}}</option>
+										@endforeach
+									</select>
+									<div class="error campo-requerido" ng-show="formulario.espacio_asignado_dominio.$invalid && (formulario.espacio_asignado_dominio.$touched || submitted)">
+	                                    <small class="error" ng-show="formulario.espacio_asignado_dominio.$error.required">
+	                                        * Campo requerido.
+	                                    </small>
+	                            	</div>
+	                            </div>
+	                        </div>
+
+	                        <div class="form-group">
+	                            <label class="col-md-4 control-label">Fecha de creacion de dominio</label>
+	                            <div class="col-md-5">
+	                             	<input type="date" class="form-control" ng-value="dominio.fecha_dominio" name="fecha_dominio" ng-required="true" oninvalid="setCustomValidity(' ')">
+	                            	<div class="error campo-requerido" ng-show="formulario.fecha_dominio.$invalid && (formulario.fecha_dominio.$touched || submitted)">
+	                                    <small class="error" ng-show="formulario.fecha_dominio.$error.required">
+	                                        * Campo requerido.
+	                                    </small>
+	                            	</div>
+	                            </div>
+	                        </div>
+
+	                        <br>
+
+	                        <div class="btn-ayuda">
+								<a href="#ayuda" class="btn btn-sm btn-info" data-toggle="modal">
+									<i class="fa fa-life-ring"></i>
+								</a>
 							</div>
+				            @include('modals/ayuda')
+							
+							<center>
+								@if($dominio)
+									<button type="button" ng-click="submit(formulario.$valid)" class="btn btn-danger m-r-5 m-b-5">
+										Actualizar <i class="fa fa-undo"></i>
+									</button>
+								@else
+									<button type="button" ng-click="submit(formulario.$valid)" class="btn btn-info m-r-5 m-b-5">
+										Registrar <i class="fa fa-pencil-square-o"></i>
+									</button>
+								@endif
+							</center>
+							
 						</div><!-- boby -->
 	                </div>
 	            </div>
