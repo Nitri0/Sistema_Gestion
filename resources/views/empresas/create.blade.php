@@ -24,7 +24,7 @@
 		<input type="hidden" name="_method" value="PUT">
         
         @else
-		<div ng-init="urlAction='{{ url('admin_empresas/') }}'"></div>|
+		<div ng-init="urlAction='{{ url('admin_empresas/') }}'"></div>
         <h1 class="page-header"><i class="fa fa-laptop"></i>Crear Empresa </h1>
 		<form class="form-horizontal" action="{{ url('admin_empresas/') }}" method="POST" name="formulario" id="formulario">	
 

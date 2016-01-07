@@ -185,7 +185,7 @@
 	                                </div>
                             	</div>
                             	<div class="form-group">
-	                                <label class="col-md-2 control-label">Direccion</label>
+	                                <label class="col-md-2 control-label">Dirección</label>
 	                                <div class="col-md-8">
 										<input type="text" class="form-control" ng-model="perfil.direccion_perfil" name="direccion_perfil" ng-required="true" oninvalid="setCustomValidity(' ')">
 	                                	<div class="error campo-requerido" ng-show="formulario.direccion_perfil.$invalid && (formulario.direccion_perfil.$touched || submitted)">
@@ -198,7 +198,7 @@
                             	<div class="form-group">
 	                                <label class="col-md-2 control-label">Portal Web</label>
 	                                <div class="col-md-8">
-										<input type="url" class="form-control" ng-model="perfil.portal_web_perfil" name="portal_web_perfil" ng-required="true" oninvalid="setCustomValidity(' ')">
+										<input type="url" class="form-control" ng-model="perfil.portal_web_perfil" name="portal_web_perfil" >
 	                                	<div class="error campo-requerido" ng-show="formulario.portal_web_perfil.$invalid && (formulario.portal_web_perfil.$touched || submitted)">
 		                                    <small class="error" ng-show="formulario.portal_web_perfil.$error.required">
 		                                        * Campo requerido.
