@@ -64,7 +64,7 @@
 
     <!-- Scripts -->
     <script src="{{ asset('/bower_components/angular/angular.js') }}"></script>
-
+	<script src="{{ asset('/bower_components/ng-remote-validate/release/ngRemoteValidate.js') }}"></script>
     <!-- your app's js -->
     <script src="{{ asset('/js/app.js') }}"></script>
     <script src="{{ asset('/js/controllers.js') }}"></script>

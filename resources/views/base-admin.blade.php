@@ -83,9 +83,9 @@
     <script src="{{ asset('/bower_components/jquery-migrate/jquery-migrate.min.js') }}"></script>
     <script src="{{ asset('/thema/admin/html/assets/plugins/jquery-ui/ui/minified/jquery-ui.min.js') }}"></script>
 
-
     <!-- Scripts -->
     <script src="{{ asset('/bower_components/angular/angular.js') }}"></script>
+	<script src="{{ asset('/bower_components/ng-remote-validate/release/ngRemoteValidate.js') }}"></script>
 
     <!-- your app's js -->
     <script src="{{ asset('/js/app.js') }}"></script>

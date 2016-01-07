@@ -3,7 +3,7 @@
 
 // Application -----------------------------------------------------------------
 
-var coreApp = angular.module('GestionInterna', []
+var coreApp = angular.module('GestionInterna', ['remoteValidation']
     , function($interpolateProvider){
 
         $interpolateProvider.startSymbol('[[');

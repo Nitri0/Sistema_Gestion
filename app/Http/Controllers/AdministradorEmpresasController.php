@@ -105,4 +105,19 @@ class AdministradorEmpresasController extends Controller {
 		return redirect("/admin_empresas");
 	}
 
+	
+    public function validRif(Request $request){
+        $json=[];
+        $value = $request->value;
+        $rifs = Empresas::where('rif_empresa', $request->value)->first();
+        if (!$rifs){
+            $json=['isValid'=>true,
+                   'value'=>$request->value];
+        }else{
+            $json=['isValid'=>false,
+                   'value'=>$request->value];
+        }
+        return json_encode($json);
+    }
+
 }
