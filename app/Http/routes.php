@@ -72,6 +72,7 @@ $router->group(['middleware' => 'auth'], function() {
 
 #______________________________________ CLIENTES _______________________________________________	
 					#____________________ cruds ____________________________
+	Route::post('/clientes/valididentificador/', 'ClientesController@validRif');
 	Route::resource('clientes', 'ClientesController');
 
 

@@ -99,7 +99,7 @@
 											<div class="form-group">
 				                                <label class="col-md-4 control-label">Nombre de etapa</label>
 				                                <div class="col-md-8">
-													<input type="text" text-only class="form-control" ng-model="GrpEtapas.nombre_etapa_[[$index]]" name="nombre_etapa_[[$index]]" ng-required="true" oninvalid="setCustomValidity(' ')">
+													<input type="text" text-num-only class="form-control" ng-model="GrpEtapas.nombre_etapa_[[$index]]" name="nombre_etapa_[[$index]]" ng-required="true" oninvalid="setCustomValidity(' ')">
 													<div class="error campo-requerido" ng-show="formulario.nombre_etapa_[[$index]].$invalid && (formulario.nombre_etapa_[[$index]].$touched || submitted)">
 					                                    <small class="error" ng-show="formulario.nombre_etapa_[[$index]].$error.required">
 					                                        * Campo requerido.
