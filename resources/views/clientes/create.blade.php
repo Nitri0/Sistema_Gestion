@@ -112,7 +112,7 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label">Telefono 1</label>
                                 <div class="col-md-5">
-                                   	<input type="text" data-mask="(9999)-999-99-99" class="form-control" ng-model="cliente.telefono_cliente" name="telefono_cliente" ng-required="true" oninvalid="setCustomValidity(' ')">
+                                   	<input type="text" number-only class="form-control" ng-model="cliente.telefono_cliente" name="telefono_cliente" ng-required="true" oninvalid="setCustomValidity(' ')">
 									<div class="error campo-requerido" ng-show="formulario.telefono_cliente.$invalid && (formulario.telefono_cliente.$touched || submitted)">
 	                                    <small class="error" ng-show="formulario.telefono_cliente.$error.required">
 	                                        * Campo requerido.
@@ -124,7 +124,7 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label">Telefono 2</label>
                                 <div class="col-md-5">
-                                   	<input type="text" data-mask="(9999)-999-99-99" class="form-control" ng-model="cliente.telefono_2_cliente" name="telefono_2_cliente">
+                                   	<input type="text" number-only  class="form-control" ng-model="cliente.telefono_2_cliente" name="telefono_2_cliente">
 
                                 </div>
                             </div>

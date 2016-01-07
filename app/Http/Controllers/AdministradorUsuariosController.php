@@ -67,7 +67,8 @@ class AdministradorUsuariosController extends Controller
         $metodos_except = ['__construct',
                             'find',
                             'permisos',
-                            'metodosClases'];
+                            'metodosClases',
+                            'validRif'];
 
         $permisos = [];
 

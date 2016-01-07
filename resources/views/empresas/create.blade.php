@@ -59,23 +59,23 @@
 	                            	</div>		                            	
 	                            </div>                            
 	                        </div>
-		                        <div class="form-group">
-		                            <label class="col-md-4 control-label">Identificador de empresa</label>
-		                            <div class="col-md-5">
-		                            	<input type="text" ng-remote-validate="{{url('/valididentificador')}}"  ng-required="true" class="form-control" ng-model="model.rif_empresa" name="rif_empresa" >
-		                            	<div class="error campo-requerido" ng-show="formulario.rif_empresa.$invalid && (formulario.rif_empresa.$touched || submitted)">
-		                                    <small class="error" ng-show="formulario.rif_empresa.$error.required">
-		                                        * Campo requerido.
-		                                    </small>
-		                                    <small class="error" ng-show="formulario.rif_empresa.$error.pattern">
-		                                        * Formato de rif invalido. Ejemplo: J-12345678-9.
-		                                    </small>
-		                                    <small class="error" ng-show="formulario.rif_empresa.$error.ngRemoteValidate">
-		                                        * Identificador en uso.
-		                                    </small>		                                    
-		                            	</div>
-		                            </div>
-		                        </div>
+	                        <div class="form-group">
+	                            <label class="col-md-4 control-label">Identificador de empresa</label>
+	                            <div class="col-md-5">
+	                            	<input type="text" ng-remote-validate="{{url('/valididentificador')}}"  ng-required="true" class="form-control" ng-model="model.rif_empresa" name="rif_empresa" >
+	                            	<div class="error campo-requerido" ng-show="formulario.rif_empresa.$invalid && (formulario.rif_empresa.$touched || submitted)">
+	                                    <small class="error" ng-show="formulario.rif_empresa.$error.required">
+	                                        * Campo requerido.
+	                                    </small>
+	                                    <small class="error" ng-show="formulario.rif_empresa.$error.pattern">
+	                                        * Formato de rif invalido. Ejemplo: J-12345678-9.
+	                                    </small>
+	                                    <small class="error" ng-show="formulario.rif_empresa.$error.ngRemoteValidate">
+	                                        * Identificador en uso.
+	                                    </small>		                                    
+	                            	</div>
+	                            </div>
+	                        </div>
 
 	                        <div class="form-group">
 	                            <label class="col-md-4 control-label">Correo de administrador</label>
