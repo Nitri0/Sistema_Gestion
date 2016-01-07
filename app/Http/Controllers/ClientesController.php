@@ -84,4 +84,19 @@ class ClientesController extends Controller {
 		Clientes::find($id)->delete();
 		return redirect("/clientes");
 	}
+
+
+    public function validRif(Request $request){
+        $json=[];
+        $value = $request->value;
+        $rifs = Clientes::where('ci_rif_cliente', $request->value)->first();
+        if (!$rifs){
+            $json=['isValid'=>true,
+                   'value'=>$request->value];
+        }else{
+            $json=['isValid'=>false,
+                   'value'=>$request->value];
+        }
+        return json_encode($json);
+    }
 }

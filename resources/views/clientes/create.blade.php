@@ -80,18 +80,18 @@
                             </div>
 
 	                        <div class="form-group">
-	                            <label class="col-md-4 control-label">Rif </label>
+	                            <label class="col-md-4 control-label">Identificador de cliente (rif, cedula, etc)</label>
 	                            <div class="col-md-5">
-	                            	<input type="text" ng-blur="ValidateRif(cliente.ci_rif_cliente)" placeholder="J-12345678-9" class="form-control" ng-model="cliente.ci_rif_cliente" name="ci_rif_cliente" ng-required="true" oninvalid="setCustomValidity(' ')">
-									<div class="error campo-requerido" ng-show="invalidrif || formulario.ci_rif_cliente.$invalid && (formulario.ci_rif_cliente.$touched || submitted)">
+	                            	<input type="text" ng-remote-validate="{{url('/clientes/valididentificador')}}"  ng-required="true" class="form-control" ng-model="cliente.ci_rif_cliente" name="ci_rif_cliente" >
+	                            	<div class="error campo-requerido" ng-show="formulario.ci_rif_cliente.$invalid && (formulario.ci_rif_cliente.$touched || submitted)">
 	                                    <small class="error" ng-show="formulario.ci_rif_cliente.$error.required">
 	                                        * Campo requerido.
 	                                    </small>
-	                                    <small class="error" ng-show="invalidrif">
-	                                        * Formato de rif invalido
-	                                    </small>
-	                            	</div>		                            	
-	                            </div>  	                            	
+	                                    <small class="error" ng-show="formulario.ci_rif_cliente.$error.ngRemoteValidate">
+	                                        * Identificador en uso.
+	                                    </small>		                                    
+	                            	</div>
+	                            </div>
 	                        </div>
 		                        
                             <div class="form-group">
@@ -112,7 +112,7 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label">Telefono 1</label>
                                 <div class="col-md-5">
-                                   	<input type="text" data-mask="(9999)-999-99-99" class="form-control" ng-model="cliente.telefono_cliente" name="telefono_cliente" ng-required="true" oninvalid="setCustomValidity(' ')">
+                                   	<input type="text" number-only class="form-control" ng-model="cliente.telefono_cliente" name="telefono_cliente" ng-required="true" oninvalid="setCustomValidity(' ')">
 									<div class="error campo-requerido" ng-show="formulario.telefono_cliente.$invalid && (formulario.telefono_cliente.$touched || submitted)">
 	                                    <small class="error" ng-show="formulario.telefono_cliente.$error.required">
 	                                        * Campo requerido.
@@ -124,7 +124,7 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label">Telefono 2</label>
                                 <div class="col-md-5">
-                                   	<input type="text" data-mask="(9999)-999-99-99" class="form-control" ng-model="cliente.telefono_2_cliente" name="telefono_2_cliente">
+                                   	<input type="text" number-only  class="form-control" ng-model="cliente.telefono_2_cliente" name="telefono_2_cliente">
 
                                 </div>
                             </div>
