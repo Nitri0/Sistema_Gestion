@@ -142,7 +142,7 @@ body {
 }
 
 .panel-inverse>.panel-heading {
-  background: #e9ecec;
+  background: #FCFCFC;
 }
 
 .panel {
@@ -195,4 +195,57 @@ body {
 }
 .btn-ayuda{
   float: right; 
+}
+.line-bottom{
+  border-bottom: 1px solid #e2e7eb;
+}
+.registered-users-list>li {
+  width: 16%;
+  font-size: 12px;
+  float: left;
+  padding: 10px;
+  color: #333;
+}
+.registered-users-list>li .username {
+  font-size: 12px;
+  color: #333;
+  margin-bottom: 0;
+  width: 88%;
+}
+.btn-eliminar-integrante{
+  position: absolute;
+  float: right;
+  padding: 0px 4px;
+  margin-top: 5px;
+  margin-left: 5px;
+  color: #fff;
+  background: #ff5b57;
+}
+.btn-eliminar-integrante i{
+  font-size: 10px;
+}
+.asunto{
+  background: rgb(252, 252, 252);;
+  margin-left: 75px;
+  padding: 1px 12px;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+  border-bottom: 1px solid #ccd0d4;
+  border-right: 1px solid #ccd0d4;
+  border-left: 1px solid #ccd0d4;
+}
+.chats .message {
+  border-top: 1px solid #ccd0d4;
+  border-bottom: none;
+  border-right: 1px solid #ccd0d4;
+  border-left: 1px solid #ccd0d4;
+  padding: 15px 12px;
+  font-size: 12px;
+  position: relative;
+  background: #fff;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
 }
