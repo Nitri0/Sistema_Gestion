@@ -1,22 +1,5 @@
 @extends('base-admin')
 
-@section('css')
-	<link href="{{ asset('/thema/admin/html/assets/plugins/DataTables/media/css/dataTables.bootstrap.min.css') }}" rel="stylesheet" />
-	<link href="{{ asset('/thema/admin/html/assets/plugins/DataTables/extensions/Responsive/css/responsive.bootstrap.min.css') }}" rel="stylesheet" />
-@endsection
-
-@section('js')
-	<script src="{{ asset('/thema/admin/html/assets/plugins/DataTables/media/js/jquery.dataTables.js') }}"></script>
-	<script src="{{ asset('/thema/admin/html/assets/plugins/DataTables/media/js/dataTables.bootstrap.min.js') }}"></script>
-	<script src="{{ asset('/thema/admin/html/assets/plugins/DataTables/extensions/Responsive/js/dataTables.responsive.min.js') }}"></script>
-	<script src="{{ asset('/thema/admin/html/assets/js/table-manage-responsive.demo.min.js') }}"></script>
-	<script>
-		$(document).ready(function() {
-			TableManageResponsive.init();
-		});
-	</script>
-@endsection
-
 @section('content')
 
 <div id="page-container" class="fade page-sidebar-fixed page-header-fixed" ng-controller="DominioController">
@@ -37,11 +20,11 @@
                         <i class="fa fa-plus"></i>
                     </a>
                 </div>
-                <div class="btn-group">
+                <!--<div class="btn-group">
                     <a href="{{ url( '/dominios/updateData' ) }}" class="btn btn-danger btn-sm p-l-20 p-r-20" data-toggle="tooltip" data-title="Actualizar">
                         <i class="fa fa-repeat"></i>
                     </a>
-                </div>
+                </div>-->
             </div>
         </ol>
 
