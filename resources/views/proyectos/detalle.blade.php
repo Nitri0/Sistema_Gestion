@@ -80,7 +80,7 @@
                                     </tr>
                                     <tr>
                                         <td class="field">Dominio</td>
-                                        <td><a href="http://{{ $proyecto->getNombreDominio() }}" target="_blank" href="#">{{ $proyecto->getNombreDominio() }}</a></td>
+                                        <td><a href="{{ $proyecto->getNombreDominio() }}" target="_blank" href="#">{{ $proyecto->getNombreDominio() }}</a></td>
                                     </tr>
                                 </tbody>
                             </table>
