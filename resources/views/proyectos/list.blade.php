@@ -1,13 +1,5 @@
 @extends('base-admin')
 
-@section('css')
-	
-@endsection
-
-@section('js')
-
-@endsection
-
 @section('content')
 
 <div id="page-container" class="fade page-sidebar-fixed page-header-fixed" ng-controller="ProyectoController">
