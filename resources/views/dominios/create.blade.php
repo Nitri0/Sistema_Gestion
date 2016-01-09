@@ -58,7 +58,7 @@
 	                            <label class="col-md-4 control-label">Proyecto</label>
 	                            <div class="col-md-5">
 						            <select class="form-control js-example-data-array" ng-model="dominio.id_proyecto" name="id_proyecto" ng-required="true" oninvalid="setCustomValidity(' ')">
-										<!--<option class="option" value="">Seleccione un proyecto</option>-->
+										<option class="option" value="">Seleccione un proyecto</option>
 										@foreach($proyectos as $key)
 											<option class="option" value="{{$key->id_proyecto}}">
 												{{$key->nombre_proyecto}} - {{$key->getCliente()->nombre_cliente}}</option>
@@ -78,7 +78,7 @@
 	                            <label class="col-md-4 control-label">Empresa proveedora</label>
 	                            <div class="col-md-5">
 	                                <select class="form-control js-example-data-array" ng-model="dominio.id_empresa_proveedora" name="id_empresa_proveedora" ng-required="true" oninvalid="setCustomValidity(' ')">
-										<!--<option class="option" value="">Seleccione una empresa proveedora</option>-->
+										<option class="option" value="">Seleccione una empresa proveedora</option>
 										@foreach($empresas_proveedoras as $key)
 											<option class="option" value="{{$key->id_empresa_proveedora}}"
 											@if($dominio && $dominio->id_empresa_proveedora==$key->id_empresa_proveedora) 
@@ -114,7 +114,7 @@
 	                            <label class="col-md-4 control-label">Espacio de disco asignado</label>
 	                            <div class="col-md-5">
 	                             	<select class="form-control js-example-data-array" name="espacio_asignado_dominio" ng-model="dominio.espacio_asignado_dominio" ng-required="true" oninvalid="setCustomValidity(' ')">
-										<!--<option class="option" value="">Seleccione un tamaño</option>-->
+										<option class="option" value="">Seleccione un tamaño</option>
 										@foreach($tamanos as $key=> $value)
 											<option class="option" value="{{$key}}">{{$value}}</option>
 										@endforeach
