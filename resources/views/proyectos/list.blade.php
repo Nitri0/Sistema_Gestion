@@ -43,7 +43,7 @@
                 			<div class="row">
                 				<div class="col-sm-3"># </div>
                 				<div class="col-sm-9">
-                        			Cliente
+                        			Nombre
                         		</div>
                 			</div>
                 		</div>
@@ -76,9 +76,7 @@
                             			<div class="row">
                             				<div class="col-sm-3"> [[$index+1]] </div>
                             				<div class="col-sm-9">
-	                            				<a href="{{url('/clientes/[[proyecto.id_cliente]]')}}">
-		                            			[[proyecto.nombre_cliente | noAsignado]]
-		                            			</a>
+		                            			[[proyecto.nombre_proyecto]]
 		                            		</div>
                             			</div>
                             		</div>
@@ -102,9 +100,28 @@
                         </div>
                         <div id="[[$index+1]]" class="panel-collapse collapse">
                             <div class="panel-body">
-                            	<h1>[[proyecto.nombre_proyecto]]</h1>
-                            	<h1>[[proyecto.nombre_tipo_proyecto]]</h1>
-                                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                            	<p>]Nombre del Cliente: [[proyecto.nombre_cliente]]</p>
+                            	<p>Tipo de Proyecto: [[proyecto.nombre_tipo_proyecto]]</p>
+                                <hr>
+                                <p class="center">Ultimo Avance</p>
+                                <div class="row">
+                                    <div class="col-md-8 col-md-offset-2">
+                                        <ul class="chats">
+                                            <li class="left">
+                                                <span class="date-time">2016-01-04 16:43:20</span>
+                                                <a href="javascript:;" class="name">Usuario</a>
+                                                <a href="javascript:;" class="image"><img width="50" alt="" src="http://localhost:8000/img/user.png"></a>
+                                                <div class="message">
+                                                    Proyecto creado exitosamente
+                                                </div>
+                                                <div class="asunto">
+                                                <h6>Asunto: Iniciando Proyecto</h6>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                
                             </div>
                         </div>
                     </div>
