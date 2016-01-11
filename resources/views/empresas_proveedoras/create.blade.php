@@ -62,7 +62,7 @@
 	                        <div class="form-group">
 	                            <label class="col-md-4 control-label">Telefono de empresa proveedora</label>
 	                            <div class="col-md-5">
-	                                <input type="text" data-mask="(9999)-999-99-99" class="form-control" ng-model="empresa_proveedora.telefono_empresa_proveedora" name="telefono_empresa_proveedora" ng-required="true" oninvalid="setCustomValidity(' ')">
+	                                <input type="text" telef placeholder="+58-212-8610000" class="form-control" ng-model="empresa_proveedora.telefono_empresa_proveedora" name="telefono_empresa_proveedora" ng-required="true" oninvalid="setCustomValidity(' ')">
 	                            	<div class="error campo-requerido" ng-show="formulario.telefono_empresa_proveedora.$invalid && (formulario.telefono_empresa_proveedora.$touched || submitted)">
 	                                    <small class="error" ng-show="formulario.telefono_empresa_proveedora.$error.required">
 	                                        * Campo requerido.
