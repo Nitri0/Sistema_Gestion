@@ -51,7 +51,7 @@ coreApp.controller('ProyectoController',function($scope, $log, $http, $window) {
 	$scope.personas=[];
 	$scope.cantidad=0;
 	$scope.proyecto={};
-
+	$scope.enviando = false;
 	$scope.sort = "name";
 	$scope.reverse = false;
 
@@ -85,11 +85,12 @@ coreApp.controller('ProyectoController',function($scope, $log, $http, $window) {
 	$scope.submit= function(formValid) {
 		console.log(formValid);
 		$scope.submitted=true;
-		if (formValid==true){
+		
+		if (formValid==true && $scope.enviando ==false){
 			if ($scope.cantidad >0){
 		        var json = {};
         		angular.element('#formulario').serializeArray().map(function(x){json[x.name] = x.value;});
-
+        		$scope.enviando=true;
 				$http({
 				    method: 'POST',
 				    url: $scope.urlAction,
@@ -118,15 +119,16 @@ coreApp.controller('PlantillasController', function ($scope, $log, $http, $windo
 	console.log("plantillas");
 	$scope.submitted = false;
 	$scope.plantilla={};
-
+	$scope.enviando = false;
 	$scope.submit= function(formValid) {
 		console.log('PRUEBA');
 		$scope.submitted=true;
-		if (formValid==true){
+		if (formValid==true && $scope.enviando==false){
 	        var json = {};
     		angular.element('#formulario').serializeArray().map(function(x){json[x.name] = x.value;});
     		json['raw_data_plantilla'] = $scope.plantilla.raw_data_plantilla.replace('&gt;','>');
     		json['raw_data_plantilla'] = $scope.plantilla.raw_data_plantilla.replace('&gt;','>');
+    		$scope.enviando = true;
 			$http({
 			    method: 'POST',
 			    url: $scope.urlAction,
@@ -158,7 +160,7 @@ coreApp.controller('GrupoEtapasController', function ($scope, $log, $http, $wind
 	$scope.cantidad_etapas=0;
 	$scope.GrpEtapas={};
 	$scope.submitted = false;
-
+	$scope.enviando=false;
 	$scope.agregar_etapa= function(argument) {
 		$scope.etapas.push(1);
 		$scope.cantidad_etapas = $scope.etapas.length;
@@ -172,12 +174,12 @@ coreApp.controller('GrupoEtapasController', function ($scope, $log, $http, $wind
 	$scope.submit= function(formValid) {
 		console.log(formValid);
 		$scope.submitted=true;
-		//return false;
-		if (formValid==true){
+		
+		if (formValid==true &&$scope.enviando == false){
 			if ($scope.cantidad_etapas >0){
 		        var json = {};
         		angular.element('#formulario').serializeArray().map(function(x){json[x.name] = x.value;});
-
+        		$scope.enviando=false;
 				$http({
 				    method: 'POST',
 				    url: $scope.urlAction,

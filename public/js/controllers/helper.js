@@ -4,11 +4,12 @@
 coreApp.controller('SubmitController', function ($scope, $log, $http, $window) {
 	console.log("submit Controller");
 	$scope.tienerif = false;
+	$scope.enviando = false;
 
 	$scope.submit= function(formValid) {
 		console.log(formValid);
 		$scope.submitted=true;
-		if (formValid==true){
+		if (formValid==true && $scope.enviando==false){
 			if ($scope.tienerif ){
 				if($scope.invalidrif){
 					return false;
@@ -16,7 +17,7 @@ coreApp.controller('SubmitController', function ($scope, $log, $http, $window) {
 			}
 	        var json = {};
     		angular.element('#formulario').serializeArray().map(function(x){json[x.name] = x.value;});
-
+    		$scope.enviando = true;
 			$http({
 			    method: 'POST',
 			    url: $scope.urlAction,
