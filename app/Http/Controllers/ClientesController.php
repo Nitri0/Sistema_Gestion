@@ -23,7 +23,6 @@ class ClientesController extends Controller {
 									->where('id_empresa', Auth::user()->getIdEmpresa())
 									->first();
 		if(!$this->cliente){
-			Session::flash('mensaje-error', 'No puede acceder ese registro');
 			return redirect('/clientes');
 		}
 

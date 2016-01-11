@@ -25,7 +25,6 @@ class TipoProyectoController extends Controller {
 									->where('id_empresa', Auth::user()->getIdEmpresa())
 									->first();
 		if(!$this->tipo_proyectos){
-			Session::flash('mensaje-error', 'No puede acceder ese registro');
 			return redirect('/tipo_proyectos');
 		}
 	}

@@ -29,12 +29,13 @@ class ProyectosController extends Controller {
 
 	#______________________________ Filtros _________________________________
 	public function find(Route $route){
-		$this->proyecto = Proyectos::where('id_empresa', Auth::user()->getIdEmpresa())
-									->where('id_proyecto', $route->getParameter('proyectos'))
-									->first();
-		if (!$this->proyecto){
-			Session::flash('mensaje-error', 'No puede acceder ese registro');
-			return redirect('/proyectos');
+		if($route->getParameter('proyectos')){
+			$this->proyecto = Proyectos::where('id_empresa', Auth::user()->getIdEmpresa())
+										->where('id_proyecto', $route->getParameter('proyectos'))
+										->first();
+			if (!$this->proyecto){
+				return redirect('/proyectos');
+			}
 		}
 	}
 

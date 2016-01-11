@@ -39,7 +39,6 @@ class AdministradorUsuariosController extends Controller
 
         //dd($this->usuario , $this->relacion, Auth::user());
         if(!$this->usuario || !$this->relacion){
-            Session::flash('mensaje-error', 'No puede acceder ese registro');
             return redirect('/admin_usuarios');
         }                                
     }

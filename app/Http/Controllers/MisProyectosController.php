@@ -72,8 +72,7 @@ class MisProyectosController extends Controller {
 								->where('id_empresa', Auth::user()->getIdEmpresa())
 								->first();
 
-		if (!$proyecto){
-			Session::flash('mensaje-error', 'No tiene permisos para ver ese registro');
+		if (!$proyecto && $id_proyecto){
 			return redirect('/mis-proyectos');
 		}
 		$rol = Roles::where('id_proyecto',$id_proyecto)
