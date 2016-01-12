@@ -24,7 +24,6 @@ class EmpresasProveedorasController extends Controller {
 									->first();
 
 		if(!$this->empresa_proveedora){
-			Session::flash('mensaje-error', 'No puede acceder ese registro');
 			return redirect('/empresas_proveedoras');
 		}	
 	}

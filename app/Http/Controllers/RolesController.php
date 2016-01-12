@@ -25,7 +25,6 @@ class RolesController extends Controller {
 									->where('habilitado_tipo', 1) 
 									->first();
 		if(!$this->rol){
-			Session::flash('mensaje-error', 'No puede acceder ese registro');
 			return redirect('/roles');
 		}
 	}

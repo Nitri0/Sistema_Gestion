@@ -24,9 +24,8 @@ class EtapasController extends Controller {
 									->first();
 
 		if(!$this->grupo_etapas){
-			Session::flash('mensaje-error', 'No puede acceder ese registro');
 			return redirect('/grupo_etapas');
-		}	
+		};
 	}
 
 	public function permisos(Route $route){

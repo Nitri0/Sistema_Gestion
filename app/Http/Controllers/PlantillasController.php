@@ -30,7 +30,6 @@ class PlantillasController extends Controller {
 									->first();
 
 		if(!$this->plantillas){
-			Session::flash('mensaje-error', 'No puede acceder ese registro');
 			return redirect('/plantillas');
 		}	
 	}
