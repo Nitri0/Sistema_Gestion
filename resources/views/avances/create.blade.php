@@ -2,7 +2,6 @@
 
 @section('js')
     <script src="{{ asset('/bower_components/ckeditor/ckeditor.js') }}"></script>
-    <script src="{{ asset('/js/controllers/helper.js') }}"></script>
 @endsection
 
 
@@ -14,7 +13,7 @@
 
     @include('layouts/sidebar-admin')
 	
-	<div id="content" class="content ng-scope"  ng-controller="SubmitController">
+	<div id="content" class="content ng-scope"  >
 
 		<!--<ol class="breadcrumb pull-right">
             <div class="btn-toolbar">
@@ -133,7 +132,7 @@
                             <div class="panel-heading-btn">
                                 <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
                             </div>
-                            <h4 class="panel-title">Descripción</h4>
+                            <h4 class="panel-title">Descripción [[avance.descripcion_avance]]</h4> 
                         </div>
                         <div class="panel-body panel-form">
                             <textarea class="ckeditor" ck-editor id="editor1" rows="30" ng-model="avance.descripcion_avance" name="descripcion_avance" ng-required="true" oninvalid="setCustomValidity(' ')">

@@ -126,7 +126,7 @@ class MisProyectosController extends Controller {
 	}	
 
 	public function postCreateAvancesMisProyectos(Request $request,$id_proyecto){
-
+		//dd($request->all(), $id_proyecto);
 		$proyecto = Proyectos::where('id_proyecto',$id_proyecto)
 								->where('id_empresa',Auth::user()->getIdEmpresa())
 								->first();
@@ -167,6 +167,7 @@ class MisProyectosController extends Controller {
 		};
 		$request['id_usuario'] = Auth::user()->id_usuario;
 		$request['id_empresa'] = Auth::user()->getIdEmpresa();
+		$request['id_proyecto'] = $id_proyecto;
 		Avances::firstOrCreate($request->except('check_cierre_etapa'));
 
 		if ($request->check_cierre_etapa == 1){
@@ -176,7 +177,7 @@ class MisProyectosController extends Controller {
 					'descripcion_avance' 			=> 'Comienzo de nueva etapa.',
 					'id_empresa' 					=> Auth::user()->getIdEmpresa(),
 					'id_usuario' 					=> Auth::user()->id_usuario,
-					'id_proyecto' 					=> $request->id_proyecto,
+					'id_proyecto' 					=> $id_proyecto,
 					'id_etapa'	 					=> $proyecto->getIdEtapa(),
 					'check_copia_cliente_avance' 	=> $request->check_copia_cliente_avance
 				]);
