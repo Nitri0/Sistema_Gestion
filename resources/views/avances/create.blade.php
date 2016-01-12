@@ -132,7 +132,7 @@
                             <div class="panel-heading-btn">
                                 <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
                             </div>
-                            <h4 class="panel-title">Descripción [[avance.descripcion_avance]]</h4> 
+                            <h4 class="panel-title">Descripción</h4> 
                         </div>
                         <div class="panel-body panel-form">
                             <textarea class="ckeditor" ck-editor id="editor1" rows="30" ng-model="avance.descripcion_avance" name="descripcion_avance" ng-required="true" oninvalid="setCustomValidity(' ')">
