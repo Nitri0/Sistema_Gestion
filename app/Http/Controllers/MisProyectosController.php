@@ -31,7 +31,7 @@ class MisProyectosController extends Controller {
 	public function postPerfil(Request $request){
 		Perfil::where('id_usuario', $request->user()->id_usuario)->update($request->all());
 		Session::flash('mensaje', 'Perfil actualizado exitosamente');
-		return redirect("/gestion");
+		return redirect("/mis-proyectos");
 	}
 
 	public function roles(){
