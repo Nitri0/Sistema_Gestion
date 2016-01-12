@@ -80,7 +80,7 @@
 	                            <div class="form-group">
 	                                <label class="col-md-4 control-label">Fecha de nacimiento</label>
 	                                <div class="col-md-5">
-	                                    <input type="date" class="form-control" ng-model="perfil.telefono_perfil" name="telefono_perfil">
+	                                    <input type="text" id="daterangepicker" class="form-control" ng-model="perfil.telefono_perfil" name="telefono_perfil">
 	                                </div>
 	                            </div>
 
@@ -100,7 +100,7 @@
 			
 								<br>
 								<center>
-									<button type="submit" class="btn btn-danger m-r-5 m-b-5">
+									<button type="submit" class="btn btn-success m-r-5 m-b-5">
 										Actualizar <i class="fa fa-undo"></i>
 									</button>
 								</center>
