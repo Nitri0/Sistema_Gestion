@@ -13,6 +13,16 @@
 
 Route::get('/', 'VistasController@index');
 
+#_____________________ Login __________________________
+Route::get( 'login', 'LoginController@login');
+Route::post('login', 'LoginController@postLogin');
+Route::get('logout', 'LoginController@Logout');
+
+#____________________ Registro ________________________
+Route::get('registrar', 'LoginController@registro');
+Route::post('registrar', 'LoginController@postRegistro');
+
+
 $router->group(['middleware' => 'auth'], function() {
 
 	Route::get('/gestion', 'VistasController@gestion');
@@ -62,6 +72,10 @@ $router->group(['middleware' => 'auth'], function() {
 						 'uses'=>'MisProyectosController@previewRealDataPlantillas']);
 	Route::get( '/perfil', 'MisProyectosController@perfil');
 	Route::post('/perfil', 'MisProyectosController@postPerfil');
+	Route::get( '/perfil-empresa', 'MisProyectosController@perfilEmpresa');
+	Route::post('/perfil-empresa', 'MisProyectosController@postPerfilEmpresa');
+	Route::get('/reset-password', 'LoginController@resetPassword');
+	Route::post('/reset-password', 'LoginController@postResetPassword');
 
 #______________________________________ DOMINIOS _______________________________________________	
 	Route::get('/dominios/updateData', ['as'  => 'dominios.actualizarEspacioUsado',
@@ -116,9 +130,5 @@ $router->group(['middleware' => 'auth'], function() {
 
 });
 
-#_____________________ Login __________________________
-Route::get( 'login', 'LoginController@login');
-Route::post('login', 'LoginController@postLogin');
-Route::get('logout', 'LoginController@Logout');
 
 

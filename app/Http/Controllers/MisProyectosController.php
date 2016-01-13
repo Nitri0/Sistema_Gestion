@@ -6,9 +6,11 @@ use Auth;
 use App\Tipo;
 use App\Master;
 use App\Proyectos;
+use App\Empresas;
 use App\Roles;
 use App\Avances;
 use App\Dominios;
+use App\MMEmpresasUsuarios;
 use Input;
 use App\Perfil;
 use App\Clientes;
@@ -211,5 +213,26 @@ class MisProyectosController extends Controller {
 		return view('emails.'.$plantilla->nombre_plantilla,compact('proyecto','cliente','data','dominio','mis_datos','mi_correo'));
 	}		
 	//__________________________________END CRUD AVANCES ____________________
+
+
+
+	public function perfilEmpresa(Request $request){
+		$relacion = MMEmpresasUsuarios::where('id_usuario',Auth::user()->id_usuario)->first();
+
+		$empresa = Empresas::find( $relacion->id_empresa );
+		//dd($empresa);
+		return view('mis_proyectos.perfil_empresa',['empresa'=>$empresa]);
+	}
+
+	public function postPerfilEmpresa(Request $request){
+
+		$relacion = MMEmpresasUsuarios::where('id_usuario',Auth::user()->id_usuario)->first();
+		Empresas::find( $relacion->id_empresa )->update($request->all());
+		//Perfil::where('id_usuario', $request->user()->id_usuario)->update($request->all());
+		Session::flash('mensaje', 'Perfil actualizado exitosamente');
+		return redirect("/mis-proyectos");
+	}
+
+
 }
 

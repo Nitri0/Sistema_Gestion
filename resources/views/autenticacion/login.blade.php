@@ -55,22 +55,20 @@
 	                    <div class="form-group m-b-15">
 	                        <input type="password" class="form-control input-lg" name="clave_usuario" placeholder="Contraseña">
 	                    </div>
-	                    <div class="form-group">
+<!-- 	                    <div class="form-group">
 							<div class="checkbox">
 								<label>
 									<input type="checkbox" name="remember"> Recordar
 								</label>
 							</div>			
-						</div>
-	                    <div class="form-group">     
-	                        <a class="btn btn-link btn-oldivar" href="{{ url('/password/email') }}">Olvido contraseña?</a>   
-	                    </div>
+						</div> -->
+	                    <a class="btn btn-link btn-oldivar" href="{{ url('/password/email') }}">Olvido contraseña?</a>   
 	                    <div class="login-buttons">
 	                        <!--<button type="submit" class="btn btn-success btn-block btn-lg">Sign me in</button>-->
 	                        <button class="btn btn-danger btn-block btn-lg" type="submit">Iniciar Sesión </button>
 	                    </div>
-	                    <div class="m-t-20 m-b-40 p-b-40">
-	                        ¿No eres miembro todavía? <a href="{{ url('/registro') }}" class="text-success">Haga clic aquí </a> Registrar.
+	                    <div class="m-t-40 m-b-40 p-b-40">
+	                       <h5> ¿No eres miembro todavía? <a href="{{ url('/registrar') }}" class="text-success">Haga clic aquí </a> para registrar.</h5>
 	                    </div>
 	                    <hr>
 	                    <p class="text-center text-inverse">

@@ -82,14 +82,11 @@
 	                        <div class="form-group">
 	                            <label class="col-md-4 control-label">Empresa proveedora</label>
 	                            <div class="col-md-5">
-	                                <select class="form-control js-example-data-array" ng-model="dominio.id_empresa_proveedora" name="id_empresa_proveedora" ng-required="true" oninvalid="setCustomValidity(' ')">
+	                                <select class="form-control js-example-data-array" name="id_empresa_proveedora" ng-required="true" oninvalid="setCustomValidity(' ')">
 										<option class="option" value="">Seleccione una empresa proveedora</option>
 										@foreach($empresas_proveedoras as $key)
-											<option class="option" value="{{$key->id_empresa_proveedora}}"
-											@if($dominio && $dominio->id_empresa_proveedora==$key->id_empresa_proveedora) 
-												selected 
-											@endif >
-												{{$key->nombres_empresa_proveedora}}</option>
+											<option ng-if="dominio.id_empresa_proveedora=={{$key->id_empresa_proveedora}}" class="option" value="{{$key->id_empresa_proveedora}}"selected >{{$key->nombres_empresa_proveedora}}</option>
+											<option ng-if="dominio.id_empresa_proveedora!={{$key->id_empresa_proveedora}}" class="option" value="{{$key->id_empresa_proveedora}}" >{{$key->nombres_empresa_proveedora}}</option>
 										@endforeach
 									</select>
 									<div class="error campo-requerido" ng-show="formulario.id_empresa_proveedora.$invalid && (formulario.id_empresa_proveedora.$touched || submitted)">
@@ -123,10 +120,11 @@
 	                        <div class="form-group">
 	                            <label class="col-md-4 control-label">Espacio de disco asignado</label>
 	                            <div class="col-md-5">
-	                             	<select class="form-control js-example-data-array" name="espacio_asignado_dominio" ng-model="dominio.espacio_asignado_dominio" ng-required="true" oninvalid="setCustomValidity(' ')">
+	                             	<select class="form-control js-example-data-array" name="espacio_asignado_dominio" ng-model="dominio.espacio_asignado_dominio" ng-required="true" oninvalid="setCustomValidity(' ')" required>
 										<option class="option" value="">Seleccione un tamaño</option>
 										@foreach($tamanos as $key=> $value)
-											<option class="option" value="{{$key}}">{{$value}}</option>
+											<option ng-if="dominio.espacio_asignado_dominio=={{$key}}" selected class="option" value="{{$key}}">{{$value}}</option>
+											<option ng-if="dominio.espacio_asignado_dominio!={{$key}}" class="option" value="{{$key}}">{{$value}}</option>
 										@endforeach
 									</select>
 									<div class="error campo-requerido" ng-show="formulario.espacio_asignado_dominio.$invalid && (formulario.espacio_asignado_dominio.$touched || submitted)">

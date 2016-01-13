@@ -93,7 +93,7 @@
 	                        </div>
 
 	                        <div class="form-group">
-	                            <label class="col-md-4 control-label">Telefono de administrador</label>
+	                            <label class="col-md-4 control-label">Teléfono de administrador</label>
 	                            <div class="col-md-5">
 	                            	<input type="text" telef placeholder="+58-212-8610000" class="form-control" ng-model="model.telefono_empresa" name="telefono_empresa" ng-required="true" oninvalid="setCustomValidity(' ')">
  									<div class="error campo-requerido" ng-show="formulario.telefono_empresa.$invalid && (formulario.telefono_empresa.$touched || submitted)">

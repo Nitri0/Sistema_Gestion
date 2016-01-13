@@ -130,13 +130,14 @@ coreApp.directive('textNumOnly', function(){
         }
     };
 })
+
 coreApp.directive('telef', function(){
     return {
         require: 'ngModel',
         link: function(scope, element, attrs, modelCtrl) {
 
             modelCtrl.$parsers.push(function (inputValue) {
-                var transformedInput = inputValue ? inputValue.replace(/[^+{1}\d-]/g,'') : null;
+                var transformedInput = inputValue ? inputValue.replace(/[^+{1}\d]/g,'') : null;
 
                 if (transformedInput!=inputValue) {
                     modelCtrl.$setViewValue(transformedInput);

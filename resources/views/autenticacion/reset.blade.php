@@ -1,59 +1,70 @@
-@extends('app')
+@extends('base-admin')
 
 @section('content')
-<div class="container-fluid">
-	<div class="row">
-		<div class="col-md-8 col-md-offset-2">
-			<div class="panel panel-default">
-				<div class="panel-heading">Reset Password</div>
-				<div class="panel-body">
-					@if (count($errors) > 0)
-						<div class="alert alert-danger">
-							<strong>Whoops!</strong> There were some problems with your input.<br><br>
-							<ul>
-								@foreach ($errors->all() as $error)
-									<li>{{ $error }}</li>
-								@endforeach
-							</ul>
-						</div>
-					@endif
 
-					<form class="form-horizontal" role="form" method="POST" action="{{ url('/password/reset') }}">
-						<input type="hidden" name="_token" value="{{ csrf_token() }}">
-						<input type="hidden" name="token" value="{{ $token }}">
+<div id="page-container" class="fade page-sidebar-fixed page-header-fixed">
+	
+	@include('layouts/navbar-admin')
+	@include('alerts.mensaje_success')
+	@include('alerts.mensaje_error')
+	
+	<div id="content" class="content ng-scope">
 
-						<div class="form-group">
-							<label class="col-md-4 control-label">E-Mail Address</label>
-							<div class="col-md-6">
-								<input type="email" class="form-control" name="email" value="{{ old('email') }}">
+        <h1 class="page-header"><i class="fa fa-key"></i> Cambiar contraseña </h1>
+
+        <div class="row">
+	        <!-- begin col-12 -->
+	        <div class="col-md-10 ui-sortable">
+	            <!-- begin panel -->
+	            <div class="panel panel-inverse">
+	                <div class="panel-heading">
+	                    <div class="panel-heading-btn">
+	                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand" data-original-title="" title=""><i class="fa fa-expand"></i></a>
+	                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse" data-original-title="" title=""><i class="fa fa-minus"></i></a>
+	                    </div>
+	                    <h4 class="panel-title">Contraseña</h4>
+	                </div>
+
+	                <div class="panel-body">
+
+						<form class="form-horizontal" role="form" method="POST" action="{{ url('/reset-password') }}">
+							<input type="hidden" name="_token" value="{{ csrf_token() }}">
+
+							<div class="form-group">
+								<label class="col-md-3 control-label">Contraseña Actual</label>
+								<div class="col-md-6">
+									<input type="password" class="form-control" name="old-password">
+								</div>
 							</div>
-						</div>
 
-						<div class="form-group">
-							<label class="col-md-4 control-label">Password</label>
-							<div class="col-md-6">
-								<input type="password" class="form-control" name="password">
+							<div class="form-group">
+								<label class="col-md-3 control-label">Nueva Contraseña</label>
+								<div class="col-md-6">
+									<input type="password" class="form-control" name="password">
+								</div>
 							</div>
-						</div>
 
-						<div class="form-group">
-							<label class="col-md-4 control-label">Confirm Password</label>
-							<div class="col-md-6">
-								<input type="password" class="form-control" name="password_confirmation">
+							<div class="form-group">
+								<label class="col-md-3 control-label">Confirmar nueva Contraseña</label>
+								<div class="col-md-6">
+									<input type="password" class="form-control" name="password_confirmation">
+								</div>
 							</div>
-						</div>
 
-						<div class="form-group">
-							<div class="col-md-6 col-md-offset-4">
-								<button type="submit" class="btn btn-primary">
-									Reset Password
-								</button>
+							<div class="form-group">
+								<div class="col-md-6 col-md-offset-4">
+									<button type="submit" class="btn btn-success">
+										Resetear Contraseña <i class="fa fa-key"></i>
+									</button>
+								</div>
 							</div>
-						</div>
-					</form>
+						</form>
+
+					</div>
 				</div>
 			</div>
 		</div>
+
 	</div>
 </div>
-@endsection
+				
