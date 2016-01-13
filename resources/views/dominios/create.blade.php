@@ -70,6 +70,11 @@
 	                                    </small>
 	                            	</div>
 	                            </div>
+	                            <div class="col-md-3">
+                                	<a href="{{ url('/proyectos/create') }}" class="btn btn-success btn-sm p-l-10 p-r-10" data-toggle="tooltip" data-title="Agregar Tipo de Proyecto">
+				                        <i class="fa fa-plus"></i>
+				                    </a>
+                                </div>
 	                        </div>
 
 	                        @endif
@@ -93,6 +98,11 @@
 	                                    </small>
 	                            	</div>
 	                            </div>
+	                            <div class="col-md-3">
+                                	<a href="{{ url('/empresas_proveedoras/create') }}" class="btn btn-success btn-sm p-l-10 p-r-10" data-toggle="tooltip" data-title="Agregar Tipo de Proyecto">
+				                        <i class="fa fa-plus"></i>
+				                    </a>
+                                </div>
 	                        </div>
 
 	                        <div class="form-group">
