@@ -128,12 +128,12 @@ class LoginController extends Controller {
 		return redirect()->back();
 	}
 
-	public function forgetPassword(Request $request){
+	public function forgetPassword(){
 
 		return view('autenticacion.password');
 	}
 
-	public function postForgetPassword(){
+	public function postForgetPassword(Request $request){
 		if($request->correo){
 			$user = User::where('correo_usuario', $request->correo)->first();
 			$perfil = Perfil::where('id_usuario', $user->id_usuario)->first();
