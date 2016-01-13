@@ -92,7 +92,7 @@
                         </div>
                         <div id="[[$index+1]]" class="panel-collapse collapse">
                             <div class="panel-body">
-                            	<p>]Nombre del Cliente: [[proyecto.nombre_cliente]]</p>
+                            	<p>Nombre del Cliente: [[proyecto.nombre_cliente]]</p>
                             	<p>Tipo de Proyecto: [[proyecto.nombre_tipo_proyecto]]</p>
                                 <hr>
                                 <p class="center">Ultimo Avance</p>

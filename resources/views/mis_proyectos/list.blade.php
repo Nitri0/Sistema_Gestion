@@ -87,7 +87,7 @@
                         </div>
                         <div id="[[$index+1]]" class="panel-collapse collapse">
                             <div class="panel-body">
-                                <p>Fecha de creación:[[proyecto.fecha_creacion_proyecto]] </p>
+                                <p>Fecha de creación: [[proyecto.fecha_creacion_proyecto]] </p>
                                 <p>Rol: [[proyecto.nombre_tipo_rol]]</p>
                                 <p>Tipo de Proyecto: [[proyecto.nombre_tipo_proyecto]]</p>
                                 <p class="center">Ultimo Avance</p>
