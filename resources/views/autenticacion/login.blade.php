@@ -62,7 +62,7 @@
 								</label>
 							</div>			
 						</div> -->
-	                    <a class="btn btn-link btn-oldivar" href="{{ url('/password/email') }}">Olvido contraseña?</a>   
+	                    <a class="btn btn-link btn-oldivar" href="{{ url('/recuperar-contraseña') }}">Olvido contraseña?</a>   
 	                    <div class="login-buttons">
 	                        <!--<button type="submit" class="btn btn-success btn-block btn-lg">Sign me in</button>-->
 	                        <button class="btn btn-danger btn-block btn-lg" type="submit">Iniciar Sesión </button>

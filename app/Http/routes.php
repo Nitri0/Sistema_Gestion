@@ -22,6 +22,10 @@ Route::get('logout', 'LoginController@Logout');
 Route::get('registrar', 'LoginController@registro');
 Route::post('registrar', 'LoginController@postRegistro');
 
+#____________________ Registro ________________________
+Route::get('recuperar-contraseña', 'LoginController@forgetPassword');
+Route::post('recuperar-contraseña', 'LoginController@postForgetPassword');
+
 
 $router->group(['middleware' => 'auth'], function() {
 
