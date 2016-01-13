@@ -46,8 +46,9 @@
                     </div>
 
                     <div class="panel-body">
-
+                        <div ng-init="urlRedirect='{{ url('mis-proyectos/') }}'"></div>
 						<div ng-init="perfil={{ $perfil }}"></div>
+                        <div ng-init="urlAction='{{ url('perfil') }}'"></div>
 						<form class="form-horizontal" action="{{ url('perfil') }}" name="formulario" id="formulario" method="POST">
 								
 							<div class="form-group">
