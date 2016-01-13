@@ -136,6 +136,10 @@ class LoginController extends Controller {
 	public function postForgetPassword(Request $request){
 		if($request->correo){
 			$user = User::where('correo_usuario', $request->correo)->first();
+			if(!$user){
+				Session::flash('mensaje-error','Correo no existente.');
+				return redirect('/recuperar-contraseña');
+			}
 			$perfil = Perfil::where('id_usuario', $user->id_usuario)->first();
 			$password = substr(str_shuffle('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789') , 0 , 10 );
 			
@@ -151,6 +155,9 @@ class LoginController extends Controller {
 
 			$user->password = \Hash::make($password);
 			$user->save();
+		}else{
+			Session::flash('mensaje-error','Introduzca un correo');
+			return redirect('/recuperar-contraseña');
 		};
 		Session::flash('mensaje','Su nueva contraseña a sido enviada a su correo.');
 		return redirect('/login');
