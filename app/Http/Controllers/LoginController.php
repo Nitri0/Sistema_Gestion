@@ -140,7 +140,7 @@ class LoginController extends Controller {
 			$password = substr(str_shuffle('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789') , 0 , 10 );
 			
 			$asunto = "Reestablecer contraseña";
-			$plantilla = 'emails.private.forgot_password'
+			$plantilla = 'emails.private.forgot_password';
 			$parametros = [
 						'nombre' => $perfil->fullName(),
 						'password' => $password,
@@ -152,7 +152,7 @@ class LoginController extends Controller {
 			$user->password = \Hash::make($password);
 			$user->save();
 		};
-		Session::flash('Su nueva contraseña a sido enviada a su correo');
+		Session::flash('Su nueva contraseña a sido enviada a su correo.');
 		return redirect('/login');
 	}		
 
