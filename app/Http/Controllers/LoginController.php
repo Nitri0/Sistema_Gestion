@@ -152,7 +152,7 @@ class LoginController extends Controller {
 			$user->password = \Hash::make($password);
 			$user->save();
 		};
-		Session::flash('Su nueva contraseña a sido enviada a su correo.');
+		Session::flash('mensaje','Su nueva contraseña a sido enviada a su correo.');
 		return redirect('/login');
 	}		
 
