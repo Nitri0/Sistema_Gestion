@@ -143,7 +143,6 @@
 	<script src="{{ asset('/thema/admin/html/assets/plugins/jquery-tag-it/js/tag-it.min.js') }}"></script>
     <script src="{{ asset('/thema/admin/html/assets/plugins/bootstrap-daterangepicker/moment.js') }}"></script>
     <script src="{{ asset('/thema/admin/html/assets/plugins/bootstrap-daterangepicker/daterangepicker.js') }}"></script>
-	<script src="{{ asset('/thema/admin/html/assets/js/form-plugins.demo.min.js') }}"></script>
 	@yield('js')
 	<script src="{{ asset('/thema/admin/html/assets/js/apps.min.js') }}"></script>
 	
@@ -154,6 +153,16 @@
 		$(document).ready(function() {
 			App.init();
 			/*DashboardV2.init(); quitar cuando no se usan elmentos de esta vista*/
+		})
+
+		$(function() {
+    		$('input[id="daterangepicker"]').daterangepicker({
+        		singleDatePicker: true,
+        		showDropdowns: true,
+    		});
+    		$("#datepicker-default").datepicker({
+    			todayHighlight:!0
+    		});
 		});
 	</script>
 	

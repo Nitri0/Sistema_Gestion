@@ -96,10 +96,10 @@
                             <div class="form-group" ng-if="check==1">
 								<label class="control-label col-md-4">Plantillas</label>
 								<div class="col-md-5">
-								    <select class="form-control js-example-data-array" ng-model="id_plantilla" name ="id_plantilla" ng-required="true" oninvalid="setCustomValidity(' ')">
-                                        <option value="">Seleccione una plantilla</option>
+								    <select class="form-control js-example-data-array" name="id_plantilla" ng-model="id_plantilla" ng-required="true" oninvalid="setCustomValidity(' ')">
+                                        <option class="option" value="">Seleccione una plantilla</option>
                                         @foreach($plantillas as $plantilla)
-												<option value="{{$plantilla->id_plantilla}}">
+												<option class="option" value="{{$plantilla->id_plantilla}}">
 													{{ $plantilla->nombre_plantilla }}
 												</option>							
 										@endforeach	

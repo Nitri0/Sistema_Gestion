@@ -70,6 +70,11 @@
 	                                    </small>
 	                            	</div>
 	                            </div>
+	                            <div class="col-md-3">
+                                	<a href="{{ url('/proyectos/create') }}" class="btn btn-success btn-sm p-l-10 p-r-10" data-toggle="tooltip" data-title="Agregar Tipo de Proyecto">
+				                        <i class="fa fa-plus"></i>
+				                    </a>
+                                </div>
 	                        </div>
 
 	                        @endif
@@ -93,6 +98,11 @@
 	                                    </small>
 	                            	</div>
 	                            </div>
+	                            <div class="col-md-3">
+                                	<a href="{{ url('/empresas_proveedoras/create') }}" class="btn btn-success btn-sm p-l-10 p-r-10" data-toggle="tooltip" data-title="Agregar Tipo de Proyecto">
+				                        <i class="fa fa-plus"></i>
+				                    </a>
+                                </div>
 	                        </div>
 
 	                        <div class="form-group">
@@ -130,7 +140,7 @@
 	                        <div class="form-group">
 	                            <label class="col-md-4 control-label">Fecha de creacion de dominio</label>
 	                            <div class="col-md-5">
-	                             	<input type="date" class="form-control" ng-value="dominio.fecha_dominio" name="fecha_dominio" ng-required="true" oninvalid="setCustomValidity(' ')">
+	                             	<input type="text" id="datepicker-default" class="form-control" ng-value="dominio.fecha_dominio" name="fecha_dominio" ng-required="true" oninvalid="setCustomValidity(' ')">
 	                            	<div class="error campo-requerido" ng-show="formulario.fecha_dominio.$invalid && (formulario.fecha_dominio.$touched || submitted)">
 	                                    <small class="error" ng-show="formulario.fecha_dominio.$error.required">
 	                                        * Campo requerido.
