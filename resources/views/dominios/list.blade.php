@@ -97,7 +97,7 @@
                         <div id="[[$index+1]]" class="panel-collapse collapse">
                             <div class="panel-body">
                             	<p>Fecha de creación: [[dominio.fecha_creacion_dominio]]</p>
-                            	<p>Espacio Usado: [[dominio.espacio_usado_dominio]] GB</p>
+                            	<p>Espacio Usado: [[dominio.espacio_asignado_dominio | formatSize]]</p>
                             	<form action="[[url+'/dominios/'+dominio.id_dominio]]" method="post">
 					        		<input type="hidden" name="_method" value="delete">
 									<button type="submit" class="btn btn-sm btn-danger pull-right" data-toggle="tooltip" data-title="Eliminar"><i class="fa fa-trash"></i></button>
