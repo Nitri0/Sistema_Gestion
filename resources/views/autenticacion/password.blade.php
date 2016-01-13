@@ -45,7 +45,7 @@
 				@include('alerts.mensaje_success-login')
 				@include('alerts.mensaje_error-login')
 
-				<form class="form-horizontal" role="form" method="POST" action="{{ url('/reset-password') }}">
+				<form class="form-horizontal" role="form" method="POST" action="{{ url('/recuperar-contraseña') }}">
 					<input type="hidden" name="_token" value="{{ csrf_token() }}">
 					
 					<br>
