@@ -3,6 +3,7 @@
 use App\Http\Requests;
 use App\Http\Requests\LoginRequest;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Helper;
 use Auth;
 use Session;
 use Redirect;
@@ -122,17 +123,37 @@ class LoginController extends Controller {
 			Session::flash("mensaje","Cambio de contraseña exitoso, favor loguearse nuevamente");
 			return redirect('/login');
 		}
-		Session::flash("mensaje-error","Contraseña incorrecta incorrectas");
+		Session::flash("mensaje-error","Correo o contraseña incorrectos");
 
 		return redirect()->back();
 	}
 
-	public function forgetPassword(){
+	public function forgetPassword(Request $request){
+
 		return view('autenticacion.password');
 	}
 
 	public function postForgetPassword(){
-		return view('autenticacion.reset');
+		if($request->correo){
+			$user = User::where('correo_usuario', $request->correo)->first();
+			$perfil = Perfil::where('id_usuario', $user->id_usuario)->first();
+			$password = substr(str_shuffle('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789') , 0 , 10 );
+			
+			$asunto = "Reestablecer contraseña";
+			$plantilla = 'emails.private.forgot_password'
+			$parametros = [
+						'nombre' => $perfil->fullName(),
+						'password' => $password,
+						'contacto_email' => env('CONTACT_EMAIL'),
+			];
+
+			Helper::SendEmailLogout($request->correo, $perfil->fullName(), $asunto, $plantilla, $parametros);
+
+			$user->password = \Hash::make($password);
+			$user->save();
+		};
+		Session::flash('Su nueva contraseña a sido enviada a su correo');
+		return redirect('/login');
 	}		
 
 }

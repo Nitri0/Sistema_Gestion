@@ -32,6 +32,15 @@ class Helper extends Controller {
 		});		
 	}
 
+	public static function SendEmailLogout($receptor, $nombreReceptor, $asunto, $plantilla, $parametros){
+		
+		Mail::send($plantilla, $parametros , function($mensaje) use ($receptor, $nombreReceptor, $asunto){
+			$mensaje->from(env('FROM_EMAIL'), env('FROM_NAME'));
+			$mensaje->to($receptor, $nombreReceptor);
+			$mensaje->subject($asunto);
+		});		
+	}
+
 	public static function sizeFormat($bytes){ 
 		$kb = 1024;
 		$mb = $kb * 1024;
