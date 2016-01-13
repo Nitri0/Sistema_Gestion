@@ -1,10 +1,10 @@
-Hi [MM_Member_Data name='firstName'],
+Hi {{$nombre}},
 
-Click the link below to reset you account password:
+Su nueva contraseña es:
 	
-<a href="[MM_CorePage_Link type='resetpassword']">[MM_CorePage_Link type='resetpassword']</a>
+	{{$password}}
 	
-If you have any questions, please contact us at [MM_Employee_Data name='email'].
+Para cualquier pregunta o sugerencia, por favor contactenos a {{$contacto_email}}.
 	
 Thanks,
-[MM_Employee_Data name='displayName']
+KeyGestion.

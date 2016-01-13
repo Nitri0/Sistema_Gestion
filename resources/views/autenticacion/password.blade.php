@@ -51,7 +51,7 @@
 					<br>
 
 					<div class="form-group m-b-15">
-						<input type="email" class="form-control" name="email" value="{{ old('email') }}" placeholder="Correo Electronico">
+						<input type="email" class="form-control" name="correo" value="{{ old('email') }}" placeholder="Correo Electronico">
 					</div>
 					
 					<br>
