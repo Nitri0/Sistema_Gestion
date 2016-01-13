@@ -48,6 +48,7 @@
 						<input type="hidden" name="_token" value="{{ csrf_token() }}">
 						
 						@include('alerts.mensaje_error')
+						@include('alerts.mensaje')
 
 	                    <div class="form-group m-b-15">
 	                        <input type="email" class="form-control input-lg" name="correo_usuario" value="{{ old('correo_usuario') }}" placeholder="Correo Electronico" >
