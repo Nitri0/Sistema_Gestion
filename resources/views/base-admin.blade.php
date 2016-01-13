@@ -161,7 +161,8 @@
         		showDropdowns: true,
     		});
     		$("#datepicker-default").datepicker({
-    			todayHighlight:!0
+    			todayHighlight:!0,
+    			dateFormat: 'yy-mm-dd'
     		});
 		});
 	</script>
