@@ -39,7 +39,7 @@ class EtapasController extends Controller {
 		$grupo_etapas = GrupoEtapas::where('id_empresa',Auth::user()->getIdEmpresa())
 										->orderBy('id_grupo_etapas','asc')
 										->where('habilitado_grupo_etapas',1)
-										->paginate(10);
+										->get();
 		return view('etapas.list',compact('grupo_etapas'));
 	}
 
