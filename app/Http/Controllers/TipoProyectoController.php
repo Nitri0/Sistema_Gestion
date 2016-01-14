@@ -10,27 +10,26 @@ use Session;
 use Illuminate\Routing\Route;
 use Illuminate\Http\Request;
 use Gate;
+use Auth;
 
 class TipoProyectoController extends Controller {
 
 	public function __construct(){
 		$this->beforeFilter('@permisos');
+		$this->beforeFilter('@find', ['only' => ['show','update','edit','destroy']]);
 	}
 
 	public function find(Route $route){
-		//$this->cliente = Clientes::find($route->getParameter('clientes'));
+		$this->tipo_proyectos = TipoProyectos::where('id_tipo_proyecto',$route->getParameter('tipo_proyectos'))
+									->where('habilitado_tipo_proyecto', 1)
+									->where('id_empresa', Auth::user()->getIdEmpresa())
+									->first();
+		if(!$this->tipo_proyectos){
+			return redirect('/tipo_proyectos');
+		}
 	}
 
 	public function permisos(Route $route){
-		// FORMA DE OBTENER LOS METODOS DE UNA CLASE
-		// $class = new \ReflectionClass($this);
-		// $metodos = [];
-		// foreach ($class->getMethods(\ReflectionMethod::IS_PUBLIC ) as $route){
-		// 	if ($route->class == 'App\Http\Controllers\ProyectosController'){
-		// 		array_push($metodos, $route->name);
-		// 	}
-		// };
-		// dd($metodos);
 		if(Gate::denies('tipo_proyectos', $route->getName()) ){
 			Session::flash("mensaje-error","No tiene permisos para acceder al modulo: ".$route->getName());
 			return redirect('/mis-proyectos');
@@ -38,16 +37,20 @@ class TipoProyectoController extends Controller {
 	}
 
 	public function index(){
-		$tipo_proyectos = TipoProyectos::paginate(10);
+		$tipo_proyectos = TipoProyectos::where('id_empresa', Auth::user()->getIdEmpresa())
+										->where('habilitado_tipo_proyecto', 1)
+										->paginate(10);
 		return view('tipo_proyectos.list',compact('tipo_proyectos'));
 	}
 
 	public function create(){
-		return view('tipo_proyectos.create');
+		return view('tipo_proyectos.create',['tipo_proyecto'=>'']);
 	}
 
 
 	public function store(Request $request){
+		$request['id_usuario'] = Auth::user()->id_usuario;
+		$request['id_empresa'] = Auth::user()->getIdEmpresa();
 		$grupoEtapas = TipoProyectos::create($request->all());
 
 		Session::flash('mensaje', 'Tipo de Proyecto creado exitosamente');
@@ -59,21 +62,24 @@ class TipoProyectoController extends Controller {
 	}
 
 
-	public function edit($id)
-	{
-		//
+	public function edit($id){
+		return view('tipo_proyectos.create',['tipo_proyecto'=>$this->tipo_proyectos]);
 	}
 
 
-	public function update($id)
-	{
-		//
+	public function update(Request $request, $id){
+		//dd($this->tipo_proyectos);
+		//dd($request->nombre_tipo_proyecto);
+		$this->tipo_proyectos->fill(['nombre_tipo_proyecto'=>$request->nombre_tipo_proyecto]);
+		$this->tipo_proyectos->save();
+		return redirect('/tipo_proyectos');
 	}
 
 
 	public function destroy($id){
-		Etapas::where('id_tipo_proyecto',$id)->delete();
-		TipoProyectos::find($id)->delete();
+		
+		$this->tipo_proyectos->fill(['habilitado_tipo_proyecto'=>0,]);
+		$this->tipo_proyectos->save();
 		return redirect('/tipo_proyectos');
 	}
 

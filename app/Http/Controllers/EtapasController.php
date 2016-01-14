@@ -8,27 +8,27 @@ use Session;
 use Illuminate\Routing\Route;
 use Illuminate\Http\Request;
 use Gate;
+use Auth;
 
 class EtapasController extends Controller {
 
 	public function __construct(){
 		$this->beforeFilter('@permisos');
+		$this->beforeFilter('@find', ['only' => ['show','update','edit','destroy']]);
 	}
 
 	public function find(Route $route){
-		//$this->cliente = Clientes::find($route->getParameter('clientes'));
+		$this->grupo_etapas = GrupoEtapas::where('id_grupo_etapas',$route->getParameter('grupo_etapas'))
+									->where('id_empresa', Auth::user()->getIdEmpresa())
+									->where('habilitado_grupo_etapas',1)
+									->first();
+
+		if(!$this->grupo_etapas){
+			return redirect('/grupo_etapas');
+		};
 	}
 
 	public function permisos(Route $route){
-		// FORMA DE OBTENER LOS METODOS DE UNA CLASE
-		// $class = new \ReflectionClass($this);
-		// $metodos = [];
-		// foreach ($class->getMethods(\ReflectionMethod::IS_PUBLIC ) as $route){
-		// 	if ($route->class == 'App\Http\Controllers\ProyectosController'){
-		// 		array_push($metodos, $route->name);
-		// 	}
-		// };
-		// dd($metodos);
 		if(Gate::denies('etapas', $route->getName()) ){
 			Session::flash("mensaje-error","No tiene permisos para acceder al modulo: ".$route->getName());
 			return redirect('/mis-proyectos');
@@ -36,7 +36,10 @@ class EtapasController extends Controller {
 	}
 
 	public function index(){
-		$grupo_etapas = GrupoEtapas::paginate(10);
+		$grupo_etapas = GrupoEtapas::where('id_empresa',Auth::user()->getIdEmpresa())
+										->orderBy('id_grupo_etapas','asc')
+										->where('habilitado_grupo_etapas',1)
+										->paginate(10);
 		return view('etapas.list',compact('grupo_etapas'));
 	}
 
@@ -46,7 +49,11 @@ class EtapasController extends Controller {
 
 
 	public function store(Request $request){
+		$request['id_usuario'] = Auth::user()->id_usuario;
+		$request['id_empresa'] = Auth::user()->getIdEmpresa();
+		
 		$grupoEtapas = GrupoEtapas::create($request->all());
+		
 
 		if ($request->cantidad_etapas>0){
 			foreach (range(0, $request->cantidad_etapas-1) as $index) {
@@ -58,13 +65,13 @@ class EtapasController extends Controller {
 		};
 		
 		Session::flash('mensaje', 'Grupo de etapas creado exitosamente');
-		return redirect('/grupo_etapas');
+		return json_encode(['success'=>false,]);
 	}
 
 
 	public function show($id){
-		$grupo_etapas = GrupoEtapas::find($id);
-		return view('etapas.detalle', compact('grupo_etapas'));
+
+		return view('etapas.detalle', ['grupo_etapas'=>$this->grupo_etapas,]);
 	}
 
 
@@ -81,10 +88,9 @@ class EtapasController extends Controller {
 
 
 	public function destroy($id){
-		Etapas::where('id_grupo_etapas',$id)->delete();
-		GrupoEtapas::find($id)->delete();
+		$this->grupo_etapas->fill(['habilitado_grupo_etapas'=>0,]);
+		$this->grupo_etapas->save();
 		return redirect('/grupo_etapas');
-		//Dominios::destroy($proyecto->)
 	}
 
 }

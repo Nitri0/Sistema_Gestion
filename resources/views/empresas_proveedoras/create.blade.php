@@ -1,37 +1,93 @@
-@extends('layouts.base')
+@extends('base-admin')
+
+@section('js')
+	<script src="{{ asset('/js/controllers/helper.js') }}"></script>
+@endsection
 
 @section('content')
-	<div class="container" ng-controller="ProveedorController">
 
-		@if($empresa_proveedora)
-			<h2>Editar Empresa Proveedora</h2>
-			<div ng-init="empresa_proveedora={{ $empresa_proveedora }}"></div>
-			<form action="{{ url('empresas_proveedoras/'.$empresa_proveedora->id_cliente) }}" method="PUT">
-		@else
-			<h2>Crear Empresa Proveedora</h2>
-			<form action="{{ url('empresas_proveedoras/') }}" method="POST">		
-		@endif
-
-			<br><br>
-			<div class="from-group">
-				<label for="">Nombres de empresa proveedora</label>
-				<input type="text" class="form-control" ng-model="empresa_proveedora.nombres_empresa_proveedora" name="nombres_empresa_proveedora">
-			</div>
-			<br>
-			<div class="from-group">
-				<label for="">telefono de empresa proveedora</label>
-				<input type="text" class="form-control" ng-model="empresa_proveedora.telefono_empresa_proveedora" name="telefono_empresa_proveedora">
-			</div>	
-
-			<br>
-			<button type="submit">
-				@if($empresa_proveedora)
-					Actualizar
-				@else
-					Registrar
-				@endif
+<div id="page-container" class="fade page-sidebar-fixed page-header-fixed" ng-controller="ProveedorController">
 	
-			</button>
+	@include('layouts/navbar-admin')
+
+    @include('layouts/sidebar-admin')
+	
+	<div id="content" class="content ng-scope" ng-controller="SubmitController">
+        
+        <div ng-init="urlRedirect='{{ url('empresas_proveedoras/') }}'"></div>
+
+        @if($empresa_proveedora)
+        
+        <h1 class="page-header"><i class="fa fa-laptop"></i> Editar Empresa Proveedora </h1>
+        <div ng-init="empresa_proveedora={{ $empresa_proveedora }}"></div>
+        <div ng-init="urlAction='{{ url('empresas_proveedoras/'.$empresa_proveedora->id_empresa_proveedora) }}'"></div>
+        <form class="form-horizontal" action="{{ url('empresas_proveedoras/'.$empresa_proveedora->id_empresa_proveedora) }}" method="POST" name="formulario" id="formulario">
+        <input type="hidden" name="_method" value="PUT">
+        @else
+   		
+   		<div ng-init="urlAction='{{ url('empresas_proveedoras/') }}'"></div>
+   		<h1 class="page-header"><i class="fa fa-laptop"></i> Crear Empresa Proveedora </h1>
+   		<form class="form-horizontal" action="{{ url('empresas_proveedoras/') }}" method="POST" name="formulario" id="formulario">	
+       	
+       	@endif
+
+	        <div class="row">
+	            <!-- begin col-12 -->
+	            <div class="col-12 ui-sortable">
+	                <!-- begin panel -->
+	                <div class="panel panel-inverse">
+	                    <div class="panel-heading">
+	                        <div class="panel-heading-btn">
+	                            <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand" data-original-title="" title=""><i class="fa fa-expand"></i></a>
+	                            <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload" data-original-title="" title=""><i class="fa fa-repeat"></i></a>
+	                            <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse" data-original-title="" title=""><i class="fa fa-minus"></i></a>
+	                        </div>
+	                        <h4 class="panel-title">Empresa Proveedora</h4>
+	                    </div>
+
+	                    <div class="panel-body">
+
+		                    <div class="form-group">
+	                            <label class="col-md-4 control-label">Nombres de empresa proveedora</label>
+	                            <div class="col-md-5">
+	                                <input type="text" text-num-only class="form-control" ng-model="empresa_proveedora.nombres_empresa_proveedora" name="nombres_empresa_proveedora" ng-required="true" oninvalid="setCustomValidity(' ')">
+	                            	<div class="error campo-requerido" ng-show="formulario.nombres_empresa_proveedora.$invalid && (formulario.nombres_empresa_proveedora.$touched || submitted)">
+	                                    <small class="error" ng-show="formulario.nombres_empresa_proveedora.$error.required">
+	                                        * Campo requerido.
+	                                    </small>
+	                            	</div>	
+	                            </div>
+	                        </div>	
+
+	                        <div class="form-group">
+	                            <label class="col-md-4 control-label">Telefono de empresa proveedora</label>
+	                            <div class="col-md-5">
+	                                <input type="text" telef placeholder="+58-212-8610000" class="form-control" ng-model="empresa_proveedora.telefono_empresa_proveedora" name="telefono_empresa_proveedora" ng-required="true" oninvalid="setCustomValidity(' ')">
+	                            	<div class="error campo-requerido" ng-show="formulario.telefono_empresa_proveedora.$invalid && (formulario.telefono_empresa_proveedora.$touched || submitted)">
+	                                    <small class="error" ng-show="formulario.telefono_empresa_proveedora.$error.required">
+	                                        * Campo requerido.
+	                                    </small>
+	                            	</div>	
+	                            </div>
+	                        </div>	
+
+							<br>
+
+							<center>
+							@if($empresa_proveedora)
+								<button ng-click="submit(formulario.$valid)" class="btn btn-danger m-r-5 m-b-5" type="button"> Actualizar <i class="fa fa-refresh"></i></button>
+							@else
+								<button ng-click="submit(formulario.$valid)" class="btn btn-success m-r-5 m-b-5" type="button"> Registrar <i class="fa fa-pencil-square-o"></i></button>
+							@endif
+							</center>
+				
+
+						</div><!-- boby -->
+	                </div>
+	            </div>
+	        </div>
 		</form>
-	</div>
-@stop
+    </div><!-- content -->
+	
+</div>
+@endsection

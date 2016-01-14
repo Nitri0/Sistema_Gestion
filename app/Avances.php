@@ -10,6 +10,7 @@ class Avances extends Model {
 	protected $fillable = array('id_proyecto',
 								'id_etapa',
 								'id_usuario',
+								'id_empresa',
 								'asunto_avance',
 								'descripcion_avance',
 								'check_copia_cliente_avance',

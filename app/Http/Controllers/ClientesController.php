@@ -8,6 +8,7 @@ use App\Clientes;
 use Session;
 use redirect;
 use Gate;
+use Auth;
 
 
 class ClientesController extends Controller {
@@ -18,19 +19,16 @@ class ClientesController extends Controller {
 	}
 
 	public function find(Route $route){
-		$this->cliente = Clientes::find($route->getParameter('clientes'));
+		$this->cliente = Clientes::where('id_cliente',$route->getParameter('clientes'))
+									->where('id_empresa', Auth::user()->getIdEmpresa())
+									->first();
+		if(!$this->cliente){
+			return redirect('/clientes');
+		}
+
 	}
 
 	public function permisos(Route $route){
-		// FORMA DE OBTENER LOS METODOS DE UNA CLASE
-		// $class = new \ReflectionClass($this);
-		// $metodos = [];
-		// foreach ($class->getMethods(\ReflectionMethod::IS_PUBLIC ) as $route){
-		// 	if ($route->class == 'App\Http\Controllers\ProyectosController'){
-		// 		array_push($metodos, $route->name);
-		// 	}
-		// };
-		// dd($metodos);
 		if(Gate::denies('clientes', $route->getName()) ){
 			Session::flash("mensaje-error","No tiene permisos para acceder al modulo: ".$route->getName());
 			return redirect('/mis-proyectos');
@@ -38,7 +36,18 @@ class ClientesController extends Controller {
 	}
 
 	public function index(){
-		$clientes = Clientes::orderBy('id_cliente', 'desc')->paginate(10);
+
+		$clientes = json_encode(\DB::table('t_clientes')
+									->select('t_clientes.*', 't_proyectos.nombre_proyecto')
+				 					->where('t_clientes.habilitado_cliente','=',1)
+				 					->where('t_clientes.id_empresa', Auth::user()->getIdEmpresa())
+				 					->leftjoin('t_proyectos', 't_proyectos.id_cliente', '=', 't_clientes.id_cliente')
+				 					->orderBy('t_clientes.id_cliente','desc')
+				 					->get());
+
+		// $clientes = Clientes::where('id_empresa', Auth::user()->getIdEmpresa())
+		// 						->orderBy('id_cliente', 'desc')
+		// 						->paginate(10);
 		return view('clientes.list', compact('clientes'));
 	}
 
@@ -48,6 +57,8 @@ class ClientesController extends Controller {
 	}
 
 	public function store(Request $request){
+		$request['id_usuario'] = Auth::user()->id_usuario;
+		$request['id_empresa'] = Auth::user()->getIdEmpresa();
 		Clientes::create($request->all());
 		Session::flash('mensaje', 'Cliente creado exitosamente');
 		return redirect('/clientes');
@@ -62,6 +73,7 @@ class ClientesController extends Controller {
 	}
 
 	public function update($id, Request $request){
+		$request['id_usuario'] = Auth::user()->id_usuario;
 		$cliente = Clientes::find($id)->update($request->all());
 		Session::flash('mensaje', 'Cliente editado exitosamente');
 		return redirect("/clientes");
@@ -72,9 +84,18 @@ class ClientesController extends Controller {
 		return redirect("/clientes");
 	}
 
-	public function prueba($id){
-		Clientes::find($id)->delete();
-		return redirect("/clientes");
-	}
 
+    public function validRif(Request $request){
+        $json=[];
+        $value = $request->value;
+        $rifs = Clientes::where('ci_rif_cliente', $request->value)->first();
+        if (!$rifs){
+            $json=['isValid'=>true,
+                   'value'=>$request->value];
+        }else{
+            $json=['isValid'=>false,
+                   'value'=>$request->value];
+        }
+        return json_encode($json);
+    }
 }

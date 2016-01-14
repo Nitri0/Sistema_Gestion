@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Route;
 use Session;
 use Gate;
+use Auth;
 
 class DominiosController extends Controller {
 
@@ -19,19 +20,17 @@ class DominiosController extends Controller {
 	}
 
 	public function find(Route $route){
-		$this->dominio = Dominios::find($route->getParameter('dominios'));
+
+		$this->dominio = Dominios::where('id_dominio',$route->getParameter('dominios'))
+									->where('id_empresa', Auth::user()->getIdEmpresa())
+									->first();
+
+		if(!$this->dominio){
+			return redirect('/dominios');
+		}									
 	}
 
 	public function permisos(Route $route){
-		// FORMA DE OBTENER LOS METODOS DE UNA CLASE
-		// $class = new \ReflectionClass($this);
-		// $metodos = [];
-		// foreach ($class->getMethods(\ReflectionMethod::IS_PUBLIC ) as $route){
-		// 	if ($route->class == 'App\Http\Controllers\ProyectosController'){
-		// 		array_push($metodos, $route->name);
-		// 	}
-		// };
-		// dd($metodos);
 		if(Gate::denies('dominios', $route->getName()) ){
 			Session::flash("mensaje-error","No tiene permisos para acceder al modulo: ".$route->getName());
 			return redirect('/mis-proyectos');
@@ -40,8 +39,10 @@ class DominiosController extends Controller {
 
 	
 	public function index(){
+
 		$dominios = json_encode(\DB::table('t_dominios')
 				 					->where('t_dominios.habilitado_dominio','=',1)
+				 					->where('t_dominios.id_empresa', Auth::user()->getIdEmpresa())
 				 					->leftJoin('t_proyectos', 't_proyectos.id_proyecto', '=', 't_dominios.id_proyecto')
 				 					->leftJoin('t_clientes', 't_clientes.id_cliente', '=', 't_proyectos.id_cliente')
 				 					->join('t_empresa_proveedora', 't_empresa_proveedora.id_empresa_proveedora', '=', 't_dominios.id_empresa_proveedora')
@@ -54,8 +55,12 @@ class DominiosController extends Controller {
 	public function create(){
 		$dominio = "";
 		$proyecto = "";
-		$empresas_proveedoras = EmpresasProveedoras::all();
-		$proyectos = Proyectos::where('usable_proyecto',1)->get();
+		$empresas_proveedoras = EmpresasProveedoras::where('id_empresa', Auth::user()->getIdEmpresa())
+													->where('habilitado_empresa_proveedora',1)
+													->get();
+		$proyectos = Proyectos::where('usable_proyecto',1)
+								->where('id_empresa', Auth::user()->getIdEmpresa())
+								->get();
 		$tamanos = ["4294967296"=>"4 GB",
 					"2147483648"=>"2 GB",
 					"1073741824"=>"1 GB",
@@ -69,23 +74,26 @@ class DominiosController extends Controller {
 
 	public function store(Request $request){
 
-		Session::flash('mensaje', 'Dominio creado exitosamente');
+		$request['id_usuario'] = Auth::user()->id_usuario;
+		$request['id_empresa'] = Auth::user()->getIdEmpresa();
 		if($request->has('id_proyecto')){
 			Proyectos::find($request->id_proyecto)->update(['usable_proyecto'=>0,]);		
 			$dominio = Dominios::create($request->all());
+		}else{
+			$dominio = Dominios::create($request->except('id_proyecto'));
 		}
-		$dominio = Dominios::create($request->except('id_proyecto'));
+		Session::flash('mensaje', 'Dominio creado exitosamente');
 		return redirect('/dominios');
 	}
 
 	public function show($id){
-
-
 		return view('dominios.detalle', ['dominio'=>$this->dominio]);
 	}
 
 	public function edit($id){
-		$dominio = Dominios::find($id);
+		$dominio = $this->dominio;
+
+
 		$proyecto = "";
 		$tamanos = ["4294967296"=>"4 GB",
 					"2147483648"=>"2 GB",
@@ -104,13 +112,15 @@ class DominiosController extends Controller {
 				$tamanos= [$proyecto->espacio_asignado_dominio=>'Select'] + $tamanos;
 			};
 		};
-		$empresas_proveedoras = EmpresasProveedoras::all();
-		$proyectos = Proyectos::where('usable_proyecto',1)->get();
+		$empresas_proveedoras = EmpresasProveedoras::where('id_empresa', Auth::user()->getIdEmpresa())->get();
+		$proyectos = Proyectos::where('usable_proyecto',1)
+								->where('id_empresa', Auth::user()->getIdEmpresa())
+								->get();
 		return view('dominios.create', compact('dominio','empresas_proveedoras','proyectos','proyecto','tamanos'));
 	}
 
 	public function update($id, Request $request){
-		
+		$request['id_usuario'] = Auth::user()->id_usuario;
 		if ($request->has('id_proyecto')){
 			Proyectos::find($request->id_proyecto)->update(['usable_proyecto'=>0,]);
 			Dominios::find($id)->update($request->all());
@@ -122,7 +132,11 @@ class DominiosController extends Controller {
 	}
 
 	public function destroy($id){
-		Dominios::find($id)->delete();
+		//Dominios::find($id)->delete();
+		$this->dominio->fill(['habilitado_dominio'=>0,]);
+		$this->dominio->save();
+		Proyectos::find($this->dominio->id_proyecto)
+					->update(['usable_proyecto'=>1,]);
 		return redirect("/dominios");
 	}
 

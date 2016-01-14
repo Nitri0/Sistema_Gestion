@@ -8,8 +8,10 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\User;
 use App\Perfil;
+use App\MMEmpresasUsuarios;
 use App\Excepciones;
 use Gate;
+use Auth;
 use Session;
 
 
@@ -18,27 +20,43 @@ class AdministradorUsuariosController extends Controller
 {
 
     public function __construct(){
+        $this->configuracion = new ConfiguracionController();
         $this->usuario ="";
         $this->perfil ="";
         $this->permisos ="";
         $this->beforeFilter('@permisos');
-        $this->beforeFilter('@find', ['only' => ['show','update','edit','destroy']]);
+        $this->beforeFilter('@find', ['only' => ['show','update','edit','destroy','habilitar']]);
         $this->beforeFilter('@metodosClases', ['only' => ['create','edit']]);
     }
 
     public function find(Route $route){
-        $this->usuario = User::find($route->getParameter('admin_usuarios'));
+        $this->usuario = User::where('id_usuario',$route->getParameter('admin_usuarios'))
+                                
+                                ->first();
+        $this->relacion = MMEmpresasUsuarios::where('id_usuario',$route->getParameter('admin_usuarios'))
+                                ->where('id_empresa',Auth::user()->getIdEmpresa())
+                                ->first();
+
+        //dd($this->usuario , $this->relacion, Auth::user());
+        if(!$this->usuario || !$this->relacion){
+            return redirect('/admin_usuarios');
+        }                                
     }
 
     public function metodosClases(Route $route){
-        $controladores = ['\App\Http\Controllers\ClientesController'            =>'clientes',
-                          '\App\Http\Controllers\DominiosController'            =>'dominios',
-                          '\App\Http\Controllers\EmpresasProveedorasController' =>'empresas_proveedoras',
-                          '\App\Http\Controllers\EtapasController'              =>'grupo_etapas',
-                          '\App\Http\Controllers\PlantillasController'          =>'plantillas',
-                          '\App\Http\Controllers\ProyectosController'           =>'proyectos',
-                          '\App\Http\Controllers\TipoProyectoController'        =>'tipo-proyectos'];
+        $controladores = [
+                          '\App\Http\Controllers\ProyectosController'               =>'proyectos',
+                          '\App\Http\Controllers\TipoProyectoController'            =>'tipo_proyectos',
+                          '\App\Http\Controllers\ClientesController'                =>'clientes',
+                          '\App\Http\Controllers\EtapasController'                  =>'grupo_etapas',
+                          '\App\Http\Controllers\PlantillasController'              =>'plantillas',
+                          '\App\Http\Controllers\RolesController'                   =>'roles',
+                          '\App\Http\Controllers\DominiosController'                =>'dominios',
+                          '\App\Http\Controllers\EmpresasProveedorasController'     =>'empresas_proveedoras',
+                          ];
 
+        $nombre_metodos  = $this->configuracion->InfoModulos;
+        //dd($nombre_metodos);
         $this->tipos_usuario = [
                                 'Trabajador'    =>1,
                                 'Invitado'      =>4,
@@ -48,21 +66,29 @@ class AdministradorUsuariosController extends Controller
         $metodos_except = ['__construct',
                             'find',
                             'permisos',
-                            'metodosClases'];
+                            'metodosClases',
+                            'validRif'];
+
         $permisos = [];
 
 
         foreach($controladores as $controlador=>$nombre){
             $metodos = [];
+            $metodos_procesados = [];
             $class = new \ReflectionClass($controlador);
             foreach($class->getMethods(\ReflectionMethod::IS_PUBLIC ) as $route){
                 if ($route->class == substr($controlador,1) && !in_array($route->name, $metodos_except) ){
 
-                    array_push($metodos, $route->name);
+                    array_push($metodos, ['metodo_raw'=>$route->name,
+                                          'metodo_process'=>$nombre_metodos[$nombre]['administrador_usuarios'][$route->name][0],
+                                          'metodo_descripcion'=>$nombre_metodos[$nombre]['administrador_usuarios'][$route->name][1]
+                                          ]);
+                    
                 }
             };
             
             $permisos[$nombre] = $metodos;
+//            dd($permisos);
         };
         //dd($permisos);
         $this->permisos = $permisos;
@@ -75,10 +101,17 @@ class AdministradorUsuariosController extends Controller
         };
     }
 
-
-
     public function index(){
-        $usuarios = User::all();
+        //->get()->pluck('modulo_excepcion')->toArray();
+        $idusuarios = MMEmpresasUsuarios::where('id_empresa', Auth::user()->getIdEmpresa())
+                                            ->get()
+                                            ->pluck('id_usuario')
+                                            ->toArray();
+        //dd( $idusuarios );
+        $usuarios = User::whereIn('id_usuario',$idusuarios)
+                            
+                            ->get();
+        
         return view('administrador_usuarios.list',compact('usuarios'));
     }
 
@@ -103,18 +136,25 @@ class AdministradorUsuariosController extends Controller
         };
 
         $request['password'] = \Hash::make($request['password']);
-        $user = User::create($request->all());    
+        $user = User::create($request->all());
 
         $request['id_usuario'] = $user->id_usuario;
+        $request['id_permisologia'] = 3;
         $perfil = Perfil::create($request->all());
         if ($request['clases']){
             foreach ($request['clases'] as $permiso=>$value ) {
                 Excepciones::firstOrCreate([
-                                    'id_usuario'=>$user->id_usuario,
+                                    'id_usuario'=> $user->id_usuario,
+                                    'id_empresa'=> Auth::user()->getIdEmpresa(),
                                     'modulo_excepcion'=>$permiso,]);
             }
         }
-        //dd($permisos = Excepciones::where('id_usuario', $user->id_usuario)->get());
+
+        MMEmpresasUsuarios::firstOrCreate([
+                                'id_usuario' => $user->id_usuario,
+                                'id_empresa' => Auth::user()->getIdEmpresa(),
+                                ]);
+
         Session::flash("mensaje-success","Usuario creado exitosamente");
         return redirect("/admin_usuarios");
     }
@@ -131,7 +171,7 @@ class AdministradorUsuariosController extends Controller
 
            $permisos[$excepcion]=true;
         }
-        //dd($permisos);
+
         return view('administrador_usuarios.create',['usuario'=>$this->usuario,
                                                      'permisos' =>$this->permisos,
                                                      'permisos_user' =>json_encode($permisos),
@@ -140,7 +180,6 @@ class AdministradorUsuariosController extends Controller
     }
 
     public function update(Request $request, $id){
-
         $user = User::find($id);
         if ($request->has('password')){
             $request['password'] = \Hash::make($request['password']);
@@ -148,6 +187,11 @@ class AdministradorUsuariosController extends Controller
         }else{
             $user->fill($request->except('password'));
         };
+
+        MMEmpresasUsuarios::firstOrCreate([
+                                        'id_usuario' => $user->id_usuario,
+                                        'id_empresa' => Auth::user()->getIdEmpresa()
+                                        ]);
         
         $user->save();
         $perfil = Perfil::where('id_usuario',$user->id_usuario)->get()->first();
@@ -159,6 +203,7 @@ class AdministradorUsuariosController extends Controller
             foreach ($request['clases'] as $permiso=>$value ) {
                 Excepciones::firstOrCreate([
                                     'id_usuario'=>$user->id_usuario,
+                                    'id_empresa'=> Auth::user()->getIdEmpresa(),
                                     'modulo_excepcion'=>$permiso,]);
             }
         };
@@ -167,6 +212,14 @@ class AdministradorUsuariosController extends Controller
     }
 
     public function destroy($id){
+        $this->usuario->fill(['habilitado_usuario'=>0,]);
+        $this->usuario->save();
         return redirect("/admin_usuarios");
     }
+
+    public function habilitar($id){
+        $this->usuario->fill(['habilitado_usuario'=>1,]);
+        $this->usuario->save();
+        return redirect("/admin_usuarios");
+    }    
 }

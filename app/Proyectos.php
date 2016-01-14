@@ -16,7 +16,9 @@ class Proyectos extends Model {
 								'nombre_proyecto',
 								'estatus_proyecto',
 								'usable_proyecto',
-								'id_ultimo_avance'
+								'id_ultimo_avance',
+								'id_usuario',
+								'id_empresa'
 								);
 	protected $dates = ['fecha_creacion_proyecto'];
 	public $timestamps = false;

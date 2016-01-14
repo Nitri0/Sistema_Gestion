@@ -13,16 +13,32 @@
 
 Route::get('/', 'VistasController@index');
 
+#_____________________ Login __________________________
+Route::get( 'login', 'LoginController@login');
+Route::post('login', 'LoginController@postLogin');
+Route::get('logout', 'LoginController@Logout');
+
+#____________________ Registro ________________________
+Route::get('registrar', 'LoginController@registro');
+Route::post('registrar', 'LoginController@postRegistro');
+
+#____________________ Registro ________________________
+Route::get('recuperar-contraseña', 'LoginController@forgetPassword');
+Route::post('recuperar-contraseña', 'LoginController@postForgetPassword');
+
+
 $router->group(['middleware' => 'auth'], function() {
 
 	Route::get('/gestion', 'VistasController@gestion');
 	
 
 #______________________________________ PLANTILLAS _____________________________________________
-	Route::get('/plantillas/preview/{id_plantilla}',['as'  => 'plantillas.previewPlantillas',
+	Route::get('/plantillas/preview/{plantillas}',['as'  => 'plantillas.previewPlantillas',
 						 							 'uses'=>'PlantillasController@previewPlantillas']);
+	Route::get('plantillas/{plantillas}/destroy', 'PlantillasController@destroy');	
 					#____________________ cruds ____________________________	
 	route::resource('plantillas','PlantillasController');
+
 
 
 #______________________________________ PROYECTOS ______________________________________________
@@ -42,9 +58,7 @@ $router->group(['middleware' => 'auth'], function() {
 	Route::delete( '/integrantes/{id}',['as'  => 'proyectos.eliminarIntegrante',
 										'uses'=>'ProyectosController@eliminarIntegrante'] );
 
-					#____________ agregar roles a integrantes _________________
-	Route::get( '/roles', 'ProyectosController@roles');
-	Route::post('/roles', 'ProyectosController@postRoles');
+
 
 					#____________________ cruds ____________________________
 	Route::resource('proyectos', 'ProyectosController');
@@ -62,6 +76,10 @@ $router->group(['middleware' => 'auth'], function() {
 						 'uses'=>'MisProyectosController@previewRealDataPlantillas']);
 	Route::get( '/perfil', 'MisProyectosController@perfil');
 	Route::post('/perfil', 'MisProyectosController@postPerfil');
+	Route::get( '/perfil-empresa', 'MisProyectosController@perfilEmpresa');
+	Route::post('/perfil-empresa', 'MisProyectosController@postPerfilEmpresa');
+	Route::get('/reset-password', 'LoginController@resetPassword');
+	Route::post('/reset-password', 'LoginController@postResetPassword');
 
 #______________________________________ DOMINIOS _______________________________________________	
 	Route::get('/dominios/updateData', ['as'  => 'dominios.actualizarEspacioUsado',
@@ -72,32 +90,49 @@ $router->group(['middleware' => 'auth'], function() {
 
 #______________________________________ CLIENTES _______________________________________________	
 					#____________________ cruds ____________________________
+	Route::post('/clientes/valididentificador/', 'ClientesController@validRif');
 	Route::resource('clientes', 'ClientesController');
 
 
 #_______________________________________ ETAPAS ________________________________________________	
 					#____________________ cruds ____________________________
+	Route::get('grupo_etapas/{grupo_etapas}/destroy', 'EtapasController@destroy');
 	Route::resource('grupo_etapas', 'EtapasController');
 
 #__________________________________ EMPRESAS PROVEEDORAS _______________________________________	
-					#____________________ cruds ____________________________	
+					#____________________ cruds ____________________________
+
+	Route::get('empresas_proveedoras/{empresas_proveedoras}/destroy', 'EmpresasProveedorasController@destroy');	
 	Route::resource('empresas_proveedoras', 'EmpresasProveedorasController');
 
 #____________________________________ TIPO PROYECTO _____________________________________	
 					#____________________ cruds ____________________________	
+	Route::get('tipo_proyectos/{tipo_proyectos}/destroy', 'TipoProyectoController@destroy');
 	Route::resource('tipo_proyectos', 'TipoProyectoController');
 
 #________________________________ ADMINISTRADOR DE USUARIOS _____________________________________
 					#____________________ cruds ____________________________	
-	Route::resource('admin_usuarios', 'AdministradorUsuariosController');
+	Route::get('admin_usuarios/{admin_usuarios}/destroy', 'AdministradorUsuariosController@destroy');
+	Route::get('admin_usuarios/{admin_usuarios}/habilitar', 'AdministradorUsuariosController@habilitar');
 	Route::get('admin_usuarios/{id}/permisos',  ['as'  => 'admin_usuario.editPermisos',
-												 'uses'=>'AdministradorUsuariosController@editPermisos']);
+												'uses'=>'AdministradorUsuariosController@editPermisos']);
+	Route::resource('admin_usuarios', 'AdministradorUsuariosController');
+
+#________________________________ ADMINISTRADOR DE EMPRESAS _____________________________________
+					#____________________ cruds ____________________________	
+	Route::post('/valididentificador/', 'AdministradorEmpresasController@validRif');
+	Route::get('admin_empresas/{admin_empresas}/destroy', 'AdministradorEmpresasController@destroy');
+	Route::get('admin_empresas/{admin_empresas}/habilitar', 'AdministradorEmpresasController@habilitar');
+	Route::resource('admin_empresas', 'AdministradorEmpresasController');
+		
+#________________________________ ROLES DE USUARIOS _____________________________________
+					#____________ agregar roles a integrantes _________________
+	Route::get('roles/{roles}/destroy', 'RolesController@destroy');
+	Route::resource('/roles', 'RolesController');
+	//Route::get( '/roles', 'ProyectosController@roles');
+	//Route::post('/roles', 'ProyectosController@postRoles');
 
 });
 
-#_____________________ Login __________________________
-Route::get( 'login', 'LoginController@login');
-Route::post('login', 'LoginController@postLogin');
-Route::get('logout', 'LoginController@Logout');
 
 

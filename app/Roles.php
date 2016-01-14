@@ -10,12 +10,13 @@ class Roles extends Model {
 	protected $primaryKey = "id_rol_usuario";
 	protected $fillable = array('id_usuario',
 								'id_proyecto',
-								'id_tipo_rol');
+								'id_tipo_rol',
+								'id_empresa');
 	public $timestamps = false;
 
 
 	public function getRolName(){
-		return Tipo::find($this->id_tipo_rol)->nombre_tipo;
+		return TipoRoles::find($this->id_tipo_rol)->nombre_tipo_rol;
 	}
 
 	public function getUser(){

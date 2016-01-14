@@ -1,139 +1,279 @@
-@extends('layouts.base')
+@extends('base-admin')
+
+@section('js')
+
+	<script src="{{ asset('/js/controllers/helper.js') }}"></script>
+
+	<script src="{{ asset('/thema/admin/html/assets/plugins/switchery/switchery.min.js') }}"></script>
+	<script src="{{ asset('/thema/admin/html/assets/js/form-slider-switcher.demo.min.js') }}"></script>
+
+	<script>
+		$(document).ready(function() {
+			FormSliderSwitcher.init();
+		});
+	</script>
+
+@endsection
+
+@section('css')
+	<link href="{{ asset('/thema/admin/html/assets/plugins/switchery/switchery.min.css') }}" rel="stylesheet">
+@endsection
 
 @section('content')
-<div class="container-fluid" ng-controller="AdminUsuariosController">
-	<div class="row">
 
-		<div class="col-md-8 col-md-offset-2">
-			@include('alerts.mensaje_success')
-			@include('alerts.mensaje_error')			
-			<div class="panel panel-default">
+<div id="page-container" class="fade page-sidebar-fixed page-header-fixed" ng-controller="AdminUsuariosController">
+	
+	@include('layouts/navbar-admin')
+
+    @include('layouts/sidebar-admin')
+	
+	<div id="content" class="content ng-scope" ng-controller="SubmitController">
+        
+        <ol class="breadcrumb pull-right">
+            <div class="btn-toolbar">
+                <div class="btn-group">
+                    <a href="{{ url( '/admin_usuarios/create' ) }}" class="btn btn-success btn-sm p-l-20 p-r-20" data-toggle="tooltip" data-title="Agregar Usuario">
+                        <i class="fa fa-plus"></i>
+                    </a>
+                </div>
+            </div>
+        </ol>
+
+        <div ng-init="urlRedirect='{{ url('admin_usuarios/') }}'"></div>
+        
+		@if($usuario)
+	        <h1 class="page-header"><i class="fa fa-users"></i> Editar Credenciales </h1>
+
+	        <div ng-init="usuario={{$usuario}}"></div>
+			<div ng-init="perfil={{$perfil}}"></div>
+			<div ng-init="permisos_user={{$permisos_user}}"></div>
+			
+			<div ng-init="print(permisos_user)"></div>
+			<div ng-init="urlAction='{{ url('admin_usuarios/'.$usuario->id_usuario) }}'"></div>
+
+			<form class="form-horizontal" action="{{ url('admin_usuarios/'.$usuario->id_usuario) }}" method="POST"  name="formulario" id="formulario">
+				<input type="hidden" name="_method" value="PUT">
+		@else
+			<h1 class="page-header"><i class="fa fa-users"></i> Crear Credenciales </h1>
+
+			<div ng-init="urlAction='{{ url('admin_usuarios/') }}'"></div>
+
+			<form class="form-horizontal" action="{{ url('admin_usuarios/') }}" method="POST" name="formulario" id="formulario">
+
+		@endif
 
 
-				@if($usuario)
-					<div class="panel-heading">Editar Credenciales</div>
-					<div ng-init="usuario={{$usuario}}"></div>
-					<div ng-init="perfil={{$perfil}}"></div>
-					<div ng-init="permisos_user={{$permisos_user}}"></div>
-					<div ng-init="print(permisos_user)"></div>
+				@include('alerts.mensaje_success')
+				@include('alerts.mensaje_error')	
+
+				<input type="hidden" name="_token" value="{{ csrf_token() }}">
+
+		        <div class="row">
+
+		            <div class="col-md-4 ui-sortable">
+		                <!-- begin panel -->
+		                @if(!$usuario)
+		                <div class="panel panel-inverse">
+		                    <div class="panel-heading">
+		                        <h4 class="panel-title"><i class="fa fa-user"></i> Usuario</h4>
+		                    </div>
+		                    <div class="panel-body">	
+		                    	
+								<div class="form-group">
+	                                <label class="col-md-4 control-label">Correo Electronico</label>
+	                                <div class="col-md-8">
+										<input type="email" class="form-control" name="correo_usuario" ng-model='usuario.correo_usuario' ng-required="true" oninvalid="setCustomValidity(' ')">
+	                                	<div class="error campo-requerido" ng-show="formulario.correo_usuario.$invalid && (formulario.correo_usuario.$touched || submitted)">
+		                                    <small class="error" ng-show="formulario.correo_usuario.$error.required">
+		                                        * Campo requerido.
+		                                    </small>
+		                                    <small class="error" ng-show="formulario.correo_usuario.$error.email">
+		                                    	* Correo inválido correo@ejemplo.com
+		                                    </small>
+		                            	</div>
+	                                </div>
+                            	</div>
+                            	<div class="form-group">
+	                                <label class="col-md-4 control-label">Contraseña</label>
+	                                <div class="col-md-8">
+										<input type="text" class="form-control" name="password" ng-model='usuario.password' ng-required="true" oninvalid="setCustomValidity(' ')">
+										<div class="error campo-requerido" ng-show="formulario.password.$invalid && (formulario.password.$touched || submitted)">
+		                                    <small class="error" ng-show="formulario.password.$error.required">
+		                                        * Campo requerido.
+		                                    </small>
+		                            	</div>
+	                                </div>
+                            	</div>
+
+		                    </div><!-- boby -->
+		                </div>
+						@endif
+		            </div>
+
+		            <div class="col-md-8 ui-sortable">
+		                <!-- begin panel -->
+		                <div class="panel panel-inverse">
+		                    <div class="panel-heading">
+		                        <h4 class="panel-title"><i class="fa fa-user"></i> Perfil de usuario</h4>
+		                    </div>
+		                    <div class="panel-body">	
+								<div class="form-group">
+	                                <label class="col-md-2 control-label">Nombre</label>
+	                                <div class="col-md-8">
+										<input type="text" text-only class="form-control" ng-model="perfil.nombre_perfil" name="nombre_perfil" ng-required="true" oninvalid="setCustomValidity(' ')">
+	                                	<div class="error campo-requerido" ng-show="formulario.nombre_perfil.$invalid && (formulario.nombre_perfil.$touched || submitted)">
+		                                    <small class="error" ng-show="formulario.nombre_perfil.$error.required">
+		                                        * Campo requerido.
+		                                    </small>
+		                            	</div>
+	                                </div>
+                            	</div>
+                            	<div class="form-group">
+	                                <label class="col-md-2 control-label">Apellido</label>
+	                                <div class="col-md-8">
+										<input type="text" text-only class="form-control" ng-model="perfil.apellido_perfil" name="apellido_perfil" ng-required="true" oninvalid="setCustomValidity(' ')">
+	                                	<div class="error campo-requerido" ng-show="formulario.apellido_perfil.$invalid && (formulario.apellido_perfil.$touched || submitted)">
+		                                    <small class="error" ng-show="formulario.apellido_perfil.$error.required">
+		                                        * Campo requerido.
+		                                    </small>
+		                            	</div>
+	                                </div>
+                            	</div>
+                            	<div class="form-group">
+	                                <label class="col-md-2 control-label">Cédula</label>
+	                                <div class="col-md-8">
+										<input type="text" numeric-only class="form-control" ng-model="perfil.cedula_perfil" name="cedula_perfil" ng-required="true" oninvalid="setCustomValidity(' ')">
+	                                	<div class="error campo-requerido" ng-show="formulario.cedula_perfil.$invalid && (formulario.cedula_perfil.$touched || submitted)">
+		                                    <small class="error" ng-show="formulario.cedula_perfil.$error.required">
+		                                        * Campo requerido.
+		                                    </small>
+		                            	</div>
+	                                </div>
+                            	</div>
+                            	<div class="form-group">
+	                                <label class="col-md-2 control-label">Sexo</label>
+	                                <div class="col-md-8">
+										<select class="form-control js-example-data-array" name="sexo_perfil" ng-model='perfil.sexo_perfil' ng-required="true" oninvalid="setCustomValidity(' ')">
+											<option class="option" value="">Seleccione un genero</option>
+											<option class="option" value="M" 
+ 													@if($perfil && $perfil->sexo_perfil == 'Masculino')
+														Selected 
+													@endif
+													 >Masculino</option>
+											<option class="option" value="F"
+													@if($perfil && $perfil->sexo_perfil == 'Femenino')
+														Selected
+													@endif >Femenino</option>
+											
+										</select> 
+										<div class="error campo-requerido" ng-show="formulario.sexo_perfil.$invalid && (formulario.sexo_perfil.$touched || submitted)">
+		                                    <small class="error" ng-show="formulario.sexo_perfil.$error.required">
+		                                        * Campo requerido.
+		                                    </small>
+		                            	</div>		                            	
+	                                </div>
+                            	</div>
+                            	<div class="form-group">
+	                                <label class="col-md-2 control-label">Fecha de nacimiento</label>
+	                                <div class="col-md-8">
+										<input type="date" class="form-control" ng-value="perfil.telefono_perfil" name="telefono_perfil" ng-required="true" oninvalid="setCustomValidity(' ')">
+	                                	<div class="error campo-requerido" ng-show="formulario.telefono_perfil.$invalid && (formulario.telefono_perfil.$touched || submitted)">
+		                                    <small class="error" ng-show="formulario.telefono_perfil.$error.required">
+		                                        * Campo requerido.
+		                                    </small>
+		                            	</div>
+	                                </div>
+                            	</div>
+                            	<div class="form-group">
+	                                <label class="col-md-2 control-label">Dirección</label>
+	                                <div class="col-md-8">
+										<input type="text" class="form-control" ng-model="perfil.direccion_perfil" name="direccion_perfil" ng-required="true" oninvalid="setCustomValidity(' ')">
+	                                	<div class="error campo-requerido" ng-show="formulario.direccion_perfil.$invalid && (formulario.direccion_perfil.$touched || submitted)">
+		                                    <small class="error" ng-show="formulario.direccion_perfil.$error.required">
+		                                        * Campo requerido.
+		                                    </small>
+		                            	</div>
+	                                </div>
+                            	</div>
+                            	<div class="form-group">
+	                                <label class="col-md-2 control-label">Portal Web</label>
+	                                <div class="col-md-8">
+										<input type="url" class="form-control" ng-model="perfil.portal_web_perfil" name="portal_web_perfil" >
+	                                	<div class="error campo-requerido" ng-show="formulario.portal_web_perfil.$invalid && (formulario.portal_web_perfil.$touched || submitted)">
+		                                    <small class="error" ng-show="formulario.portal_web_perfil.$error.required">
+		                                        * Campo requerido.
+		                                    </small>
+		                                    <small class="error" ng-show="formulario.portal_web_perfil.$error.url">
+		                                    	* URL inválido http://ejemplo.com
+		                                    </small>
+		                            	</div>
+	                                </div>
+                            	</div>
+		                    </div><!-- boby -->
+		                </div>
+		            </div>
+		        
+		        </div>
+
+		        <div class="row">
 					
-						<form class="form-horizontal" action="{{ url('admin_usuarios/'.$usuario->id_usuario) }}" method="POST" novalidate>
-							<input type="hidden" name="_method" value="PUT">
+					<h1 class="page-header"><center><i class="fa fa-unlock-alt"></i><small> Permisos </small></center></h1>
+
+					@foreach($permisos as $nombre_clase=>$metodos)
+
+		            <div class="col-md-6 ui-sortable">
+		                <!-- begin panel -->
+		                <div class="panel panel-inverse">
+		                    <div class="panel-heading">
+		                    	<div class="panel-heading-btn">
+	                                <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand" data-original-title="" title=""><i class="fa fa-expand"></i></a>
+	                                <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse" data-original-title="" title=""><i class="fa fa-minus"></i></a>
+	                            </div>
+		                        <h4 class="panel-title" style="text-transform: capitalize;"><i class="fa fa-unlock-alt"></i> {{$nombre_clase}}</h4>
+		                    </div>
+		                    <div class="panel-body">
+								<table class="table table-bordered table-condensed m-b-0">
+									<tbody>
+										@foreach($metodos as $metodo)
+										
+										<tr>
+											<td>
+												{{$metodo['metodo_process']}} - {{$metodo['metodo_descripcion']}}
+											</td>
+											<td>
+												[[permisos_user.{{$nombre_clase}}.{{$metodo['metodo_raw']}} ]]
+												<input type="checkbox" data-render="switchery" data-theme="blue" name="{{'clases['.$nombre_clase.'.'.$metodo['metodo_raw'].']'}}"
+												 ng-model="permisos_user['{{$nombre_clase}}.{{$metodo['metodo_raw']}}']">
+											</td>
+									
+										</tr>
+										@endforeach
+									</tbody>
+                    			</table>
+		                    </div><!-- boby -->
+		                </div>
+		            </div>
+		            @endforeach
+		        
+		        </div>
+				
+				<br>
+				<center>
+				@if($usuario)
+			        <button type="button" ng-click="submit(formulario.$valid)" class="btn btn-primary">
+						Editar <i class="fa fa-pencil-square-o"></i>						
+					</button>
 				@else
-					<div class="panel-heading">Crear Credenciales</div>				
-						<form class="form-horizontal" action="{{ url('admin_usuarios/') }}" method="POST" novalidate>
+					<button type="button" ng-click="submit(formulario.$valid)" class="btn btn-success">
+						Registrar <i class="fa fa-pencil-square-o"></i>						
+					</button>
+				@endif	
+				</center>
+				<br>
 
-				@endif
-					<div class="panel-body">								
-						<input type="hidden" name="_token" value="{{ csrf_token() }}">
+        	</form>
 
-						<div class="form-group">
-							<label class="col-md-4 control-label">E-Mail Address</label>
-							<div class="col-md-6">
-								<input type="email" class="form-control" name="correo_usuario" ng-model='usuario.correo_usuario'>
-							</div>
-						</div>
-
-						<div class="form-group">
-							<label class="col-md-4 control-label">Password</label>
-							<div class="col-md-6">
-								<input type="text" class="form-control" name="password">
-							</div>
-						</div>						
-
-						<div class="form-group">
-							<label class="col-md-4 control-label">Tipo de Usuario</label>
-							<div class="col-md-6">
-								<select class="form-control"  name="id_permisologia">
-									@foreach($tipos_usuario as $nombre=>$tipo)
-										<option class="option" value="{{$tipo}}" 
-											@if($usuario && $tipo == $usuario->id_permisologia)
-												Selected
-											@endif
-
-										>{{$nombre}}</option>
-									@endforeach
-								</select>
-							</div>
-						</div>
-
-
-					</div>
-				</div>
-				<div class="panel panel-default">
-					<div class="panel-heading">Perfil de usuario</div>	
-					<div class="panel-body">
-						<div class="from-group">
-							<label for="">Nombre</label>
-							<input type="text" class="form-control" ng-model="perfil.nombre_perfil" name="nombre_perfil">
-						</div>
-						<br>
-						<div class="from-group">
-							<label for="">Apellido</label>
-							<input type="text" class="form-control" ng-model="perfil.apellido_perfil" name="apellido_perfil">
-						</div>	
-						<br>
-						<div class="from-group">
-							<label for="">Cédula</label>
-							<input type="text" class="form-control" ng-model="perfil.cedula_perfil" name="cedula_perfil">
-						</div>	
-						<br>
-						<div class="from-group">
-							<label for="">Sexo</label>
-							<input type="text" class="form-control" ng-model="perfil.sexo_perfil" name="sexo_perfil">
-						</div>			
-						<br>
-						<div class="from-group">
-							<label for="">Fecha de nacimiento</label>
-							<input type="date" class="form-control" ng-model="perfil.telefono_perfil" name="telefono_perfil">
-						</div>
-						<br>
-						<div class="from-group">
-							<label for="">Direccion</label>
-							<input type="text" class="form-control" ng-model="perfil.direccion_perfil" name="direccion_perfil">
-						</div>	
-						<br>
-						<div class="from-group">
-							<label for="">Portal Web</label>
-							<input type="textarea" class="form-control" ng-model="perfil.portal_web_perfil" name="portal_web_perfil">
-						</div>
-
-					</div>
-				</div>
-				<div class="panel panel-default">
-					<div class="panel-heading">Permisos (solo aplican para socios)</div>	
-					<div class="panel-body">
-						@foreach($permisos as $nombre_clase=>$metodos)
-							<label ><h4> {{$nombre_clase}}</h4></label >
-								
-								@foreach($metodos as $metodo)
-									<div class="form-group content-row">
-										<label class="col-md-4 col-md-offset-1 control-label">{{$metodo}}</label>
-										<div class="col-md-6">
-											[[permisos_user.{{$nombre_clase}}.{{$metodo}} ]]
-											<input type="checkbox" class="form-control" name="{{'clases['.$nombre_clase.'.'.$metodo.']'}}"
-													 ng-model="permisos_user['{{$nombre_clase}}.{{$metodo}}']">
-										</div>
-									</div>
-
-								@endforeach
-							<br><br>
-						@endforeach
-						<div class="form-group">
-							<div class="col-md-6 col-md-offset-4">
-								<button type="submit" class="btn btn-primary">
-									@if($usuario)
-										Editar
-									@else
-										Register
-									@endif									
-								</button>
-							</div>
-						</div>
-					</div>
-				</form>
-			</div>
-		</div>
-	</div>
+    </div><!-- content -->
+	
 </div>
 @endsection

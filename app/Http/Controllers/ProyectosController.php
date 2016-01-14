@@ -6,16 +6,18 @@ use App\Proyectos;
 use App\Clientes;
 use App\Dominios;
 use App\User;
-use App\Tipo;
+use App\TipoRoles;
 use App\Roles;
 use App\TipoProyectos;
 use App\Avances;
 use App\Master;
+use App\MMEmpresasUsuarios;
 use App\GrupoEtapas;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Route;
 use Session;
 use Gate;
+use Auth;
 
 class ProyectosController extends Controller {
 
@@ -27,20 +29,17 @@ class ProyectosController extends Controller {
 
 	#______________________________ Filtros _________________________________
 	public function find(Route $route){
-		$this->proyecto = Proyectos::find($route->getParameter('proyectos'));
+		if($route->getParameter('proyectos')){
+			$this->proyecto = Proyectos::where('id_empresa', Auth::user()->getIdEmpresa())
+										->where('id_proyecto', $route->getParameter('proyectos'))
+										->first();
+			if (!$this->proyecto){
+				return redirect('/proyectos');
+			}
+		}
 	}
 
 	public function permisos(Route $route){
-		// FORMA DE OBTENER LOS METODOS DE UNA CLASE
-		// $class = new \ReflectionClass($this);
-		// $metodos = [];
-		// foreach ($class->getMethods(\ReflectionMethod::IS_PUBLIC ) as $route){
-		// 	if ($route->class == 'App\Http\Controllers\ProyectosController'){
-		// 		array_push($metodos, $route->name);
-		// 	}
-		// };
-		// dd($metodos);
-		//dd($route->getName());
 		if(Gate::denies('proyectos', $route->getName()) ){
 			Session::flash("mensaje-error","No tiene permisos para acceder al modulo: ".$route->getName());
 			return redirect('/mis-proyectos');
@@ -51,23 +50,26 @@ class ProyectosController extends Controller {
 	#______________________________ Metodos _________________________________
 	public function index(){
 
-		$proyectos = json_encode(\DB::select('CALL p_busquedas(?,?)',array('listar_todos_proyectos','')));
+		$proyectos = json_encode(\DB::select('CALL p_busquedas(?,?,?)',array('listar_todos_proyectos','', Auth::user()->getIdEmpresa() ) ));
 		return view('proyectos.list', compact('proyectos'));
 	}
 
 	public function create(){
-		$clientes = Clientes::all();
-		
-		$maestro = Master::where('nombre_maestro','Roles')->first();
-		if (!$maestro){
-			$id_maestro = Master::create(['nombre_maestro','Roles'])->id_maestro;
-		}else{
-			$id_maestro = $maestro->id_maestro;
-		};
-		$usuarios = User::all();
-		$roles = Tipo::where('id_maestro',$id_maestro)->get();
-		$grupo_etapas = GrupoEtapas::all();
-		$tipo_proyectos = TipoProyectos::all();
+		$clientes = Clientes::where('id_empresa', Auth::user()->getIdEmpresa())->get();
+		$idusuarios = MMEmpresasUsuarios::where('id_empresa', Auth::user()->getIdEmpresa())
+										->get()
+										->pluck('id_usuario')
+										->toArray();
+
+		$usuarios = User::whereIn('id_usuario',$idusuarios)->get();
+		$roles = TipoRoles::where('id_empresa',Auth::user()->getIdEmpresa())
+							->where('habilitado_tipo', 1)->get();
+		$grupo_etapas = GrupoEtapas::where('id_empresa', Auth::user()->getIdEmpresa())
+									->where('habilitado_grupo_etapas', 1)
+									->get();
+		$tipo_proyectos = TipoProyectos::where('id_empresa', Auth::user()->getIdEmpresa())
+										->where('habilitado_tipo_proyecto', 1)
+										->get();
 		return view('proyectos.create',compact('clientes', 'usuarios', 'roles','grupo_etapas','tipo_proyectos'));
 	}
 
@@ -77,16 +79,19 @@ class ProyectosController extends Controller {
 
 	public function show($id_proyecto){
 		$rol = Roles::where('id_proyecto',$id_proyecto)->get();
-		/*
-		if (!$rol){
-			return redirect('mis-proyectos/');
-		}
-		*/
-		$maestro = Master::where('nombre_maestro','Roles')->first();
+
 		$proyecto = Proyectos::find($id_proyecto);
 		$etapas = GrupoEtapas::find($proyecto->id_grupo_etapas);
-		$usuarios = User::all();
-		$roles = Tipo::where('id_maestro',$maestro->id_maestro)->get();
+		//->get()->pluck('modulo_excepcion')->toArray();
+		$idusuarios = MMEmpresasUsuarios::where('id_empresa', Auth::user()->getIdEmpresa())
+										->get()
+										->pluck('id_usuario')
+										->toArray();
+		//dd( $idusuarios );
+		$usuarios = User::whereIn('id_usuario',$idusuarios)->get();
+		$roles = TipoRoles::where('id_empresa',Auth::user()->getIdEmpresa())
+							->where('habilitado_tipo', 1)
+							->get();
 
 		return view('proyectos.detalle',compact('proyecto','id_proyecto', 'rol', 'etapas','roles','usuarios' ));
 
@@ -95,6 +100,8 @@ class ProyectosController extends Controller {
 	public function store(Request $request){
 		//$request["fecha_avance"] = Carbon::now();
 		//dd($request->all());
+		$request['id_usuario'] = Auth::user()->id_usuario;
+		$request['id_empresa'] = Auth::user()->getIdEmpresa();
 		$proyecto = Proyectos::create($request->all());
 
 		$etapa = GrupoEtapas::find($proyecto->id_grupo_etapas)->getFirstEtapa();
@@ -107,7 +114,9 @@ class ProyectosController extends Controller {
 			foreach (range(0, $request->cantidad-1) as $index) {
 				Roles::create(['id_usuario' => $request['id_usuario'.$index],
 							'id_tipo_rol' => $request['id_rol'.$index],
-							'id_proyecto'=> $proyecto->id_proyecto]);
+							'id_proyecto'=> $proyecto->id_proyecto,
+							'id_empresa'=> Auth::user()->getIdEmpresa()
+							]);
 						};
 		};
 		
@@ -116,10 +125,16 @@ class ProyectosController extends Controller {
 						'id_proyecto'=>$proyecto->id_proyecto,
 						'asunto_avance'=>'Iniciando Proyecto',
 						'descripcion_avance'=>'Proyecto creado exitosamente',
+						'id_empresa'=> Auth::user()->getIdEmpresa(),
 						'id_etapa'=>$etapa->id_etapa,
+
 					]);
 		Session::flash('mensaje', 'Proyecto creado exitosamente');
-		return redirect('/proyectos');
+		$json = [
+				'success'=>true,
+		];
+		return json_encode($json);
+		//return redirect('/proyectos');
 	}
 
 	public function update($id, Request $request){
@@ -153,32 +168,15 @@ class ProyectosController extends Controller {
 
 
 	public function indexProyectosFinalizados(){
-		$proyectos = json_encode(\DB::select('CALL p_busquedas(?,?)',array('listar_todos_proyectos_finalizados','')));
+		$proyectos = json_encode(\DB::select('CALL p_busquedas(?,?,?)',array('listar_todos_proyectos_finalizados','',Auth::user()->getIdEmpresa())));
 		return view('proyectos.list_proyectos_finalizados', compact('proyectos'));
 	}
-
+/*
 	public function indexProyectosPorIntegrantes(){
-		$proyectos = json_encode(\DB::select('CALL p_busquedas(?,?)',array('listar_todos_proyectos_finalizados','')));
+		$proyectos = json_encode(\DB::select('CALL p_busquedas(?,?,?)',array('listar_todos_proyectos_finalizados','',Auth::user()->getIdEmpresa())));
 		return view('proyectos.list_proyectos_finalizados', compact('proyectos'));
 	}
-
-	public function roles(){
-		return view('user.rol');
-	}
-
-	public function postRoles(){
-		$master = Master::where('nombre_maestro','Roles')->first();
-		if(!$master){
-			$master = Master::create(['nombre_maestro'=>'Roles']);
-		}
-
-		Tipo::create(['id_maestro'  => $master->id_maestro,
-					  'nombre_tipo' => Input::get('nombre_tipo')]);
-
-		Session::flash('mensaje', 'Rol creado exitosamente');
-		return redirect("proyectos/create");	
-	}	
-
+*/
 	/**
 	 * Store a newly created resource in storage.
 	 *

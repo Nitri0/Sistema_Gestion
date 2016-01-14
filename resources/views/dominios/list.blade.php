@@ -1,80 +1,117 @@
-@extends('layouts.base')
+@extends('base-admin')
 
 @section('content')
-	<div class="container" ng-controller="DominioController">				
-		@include('alerts.mensaje_success')
-		@include('alerts.mensaje_error')
-		
-		<div class="row">
-			<div ng-init="dominios={{$dominios}}"></div>
-			<div ng-init="url='{{url()}}'"></div>
 
-			<div class="col-md-8"><h2>Lista de Dominios</h2></div>
-			<div class="col-md-4">
-				<a class="btn btn-sm btn-success" href="{{ url( '/dominios/create' ) }}">Agregar</a>
-				<a class="btn btn-sm btn-success" href="{{ url( '/dominios/updateData' ) }}">Actualizar</a>
-			</div>
-
-		</div>
-		<br>
-		<label for="">Buscador</label>
-		<input type="text" ng-model="opciones.buscador">
-		<br>
-		<table class="table table-hover">
-		    <thead>
-
-
-		      <tr>
-		        <th>
-		        	<a href="#" ng-click="changeSort('index')">#</a>
-		        </th>		      	
-		        <th>
-		        	<a href="#" ng-click="changeSort('nombre_dominio')">Dominio</a>
-		        </th>
-		        <th>
-		        	<a href="#" ng-click="changeSort('nombre_proyecto')">Proyecto</a>
-		        </th>
-		        <th>
-		        	<a href="#" ng-click="changeSort('nombres_empresa_proveedora')">Proveedor</a>
-		        </th>
-		        <th>
-		        	<a href="#" ng-click="changeSort('nombre_cliente')">Cliente</a>
-		        </th>
-		        <th>
-		        	<a href="#" ng-click="changeSort('fecha_dominio')">Fecha creacion</a>
-		        </th>
-	        	<th>
-		        	<a href="#" ng-click="changeSort('espacio_usado_dominio')">Espacio usado</a>
-		        </th>		        
-		        <th >Operaciones</th>
-		      </tr>
-
-		    </thead>
-		    <tbody>
-		    	<tr ng-repeat="dominio in dominios| filter:opciones.buscador | orderBy:sort:reverse  track by $index">
-					<td>[[$index]]</td>
-					<td>[[dominio.nombre_dominio ]]</td>
-					<td>[[dominio.nombre_proyecto | noAsignado ]]</td>
-					<td>[[dominio.nombres_empresa_proveedora | noAsignado ]]</td>
-					<td>[[dominio.nombre_cliente | noAsignado]]</td>
-					<td>[[dominio.fecha_dominio | date:'d MMM yy']]</td>
-					<td>
-						[[dominio.espacio_usado_dominio | formatSize]]
-						<span ng-bind-html="dominio.espacio_usado_dominio | compareSize:dominio.espacio_asignado_dominio" ></span>			
-					</td>
-		        	<td >
-		        		<div class="row">
-		        		<a class="btn btn-sm btn-info" ng-href="{{ url( '/dominios/[[dominio.id_dominio]]/edit' ) }}">Editar</a>
-		        		<a class="btn btn-sm btn-info" ng-href="{{ url( '/dominios/[[dominio.id_dominio]]') }}">Gestionar</a>
-						<form action="[[url+'/dominios/'+dominio.id_dominio]]" method="post">
-							<input type="hidden" name="_method" value="delete">
-							<button type="submit" class="btn btn-sm btn-danger" >Eliminar</a>
-						</form>
-						</div>
-		        	</td>
-		        </tr>
-		    </tbody>
-		</table>
-	</div>
+<div id="page-container" class="fade page-sidebar-fixed page-header-fixed" ng-controller="DominioController">
 	
-@stop
+	@include('layouts/navbar-admin')
+
+    @include('layouts/sidebar-admin')
+
+    @include('alerts.mensaje_success')
+	@include('alerts.mensaje_error')
+	
+	<div id="content" class="content ng-scope">
+        
+        <ol class="breadcrumb pull-right">
+            <div class="btn-toolbar">
+                <div class="btn-group">
+                    <a href="{{ url( '/dominios/create' ) }}" class="btn btn-success btn-sm p-l-20 p-r-20" data-toggle="tooltip" data-title="Agregar Dominio">
+                        <i class="fa fa-plus"></i>
+                    </a>
+                </div>
+                <!--<div class="btn-group">
+                    <a href="{{ url( '/dominios/updateData' ) }}" class="btn btn-danger btn-sm p-l-20 p-r-20" data-toggle="tooltip" data-title="Actualizar">
+                        <i class="fa fa-repeat"></i>
+                    </a>
+                </div>-->
+            </div>
+        </ol>
+
+        <h1 class="page-header"><i class="fa fa-link"></i> Lista de Dominios</h1>
+
+        <div ng-init="dominios={{$dominios}}"></div>
+		<div ng-init="url='{{url()}}'"></div>
+		
+        <div class="row">
+            <div class="col-12">
+                <div class="panel-group" id="accordion">
+                	<div class="row text-list">
+                		<div class="col-sm-3"> 
+                			<div class="row">
+                				<div class="col-sm-3"># </div>
+                				<div class="col-sm-9">
+                        			Dominio
+                        		</div>
+                			</div>
+                		</div>
+                		<div class="col-sm-3">
+							Proyecto
+                		</div>
+                		<div class="col-sm-3">
+							Proveedor
+                		</div>
+                		<div class="col-sm-3">
+							Cliente
+                		</div>
+                	</div>
+
+                	<br>
+                    
+                    <div class="panel panel-inverse overflow-hidden custon-list" ng-repeat="dominio in dominios| filter:opciones.buscador | orderBy:sort:reverse  track by $index">
+                        <div class="panel-heading">
+                            <h3 class="panel-title list-title">
+                                <a class="accordion-toggle accordion-toggle-styled collapsed" data-toggle="collapse" data-parent="#accordion" href="#[[$index+1]]">
+                                    <i class="fa fa-plus pull-right"></i> 
+                                </a>	
+                            </h3>
+                            <div class="box-button-list">
+		        				<a class="btn btn-sm btn-info btn-cirule" ng-href="{{ url( '/dominios/[[dominio.id_dominio]]/edit' ) }}" data-toggle="tooltip" data-title="Editar"><i class="fa fa-pencil-square-o"></i></a>
+		        			</div>
+                            <h3 class="panel-title list-title">
+                            	<div class="row">
+                            		<div class="col-sm-3"> 
+                            			<div class="row">
+                            				<div class="col-sm-3"> [[$index+1]] </div>
+                            				<div class="col-sm-9">
+		                            			<a href="[[dominio.nombre_dominio]]">[[dominio.nombre_dominio]]</a>
+		                            		</div>
+                            			</div>
+                            		</div>
+
+                            		<div class="col-sm-3">
+										[[dominio.nombre_proyecto | noAsignado ]]
+                            		</div>
+
+                            		<div class="col-sm-3">
+										[[dominio.nombres_empresa_proveedora]]
+                            		</div>
+
+                            		<div class="col-sm-2">
+										[[dominio.nombre_cliente]]
+                            		</div>
+
+                            	</div>                           	 
+                            </h3>
+                        </div>
+                        <div id="[[$index+1]]" class="panel-collapse collapse">
+                            <div class="panel-body">
+                            	<p>Fecha de creación: [[dominio.fecha_creacion_dominio]]</p>
+                            	<p>Espacio Usado: [[dominio.espacio_asignado_dominio | formatSize]]</p>
+                            	<form action="[[url+'/dominios/'+dominio.id_dominio]]" method="post">
+					        		<input type="hidden" name="_method" value="delete">
+									<button type="submit" class="btn btn-sm btn-danger pull-right" data-toggle="tooltip" data-title="Eliminar"><i class="fa fa-trash"></i></button>
+								</form>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div><!-- content -->
+	
+</div>
+
+@endsection
