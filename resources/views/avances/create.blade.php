@@ -25,7 +25,7 @@
             </div>
         </ol>-->
         <div ng-init="urlRedirect='{{ url('mis-proyectos/') }}'"></div>
-        <h1 class="page-header"><i class="fa fa-laptop"></i> Crear avance de mi Proyecto </h1>
+        <h1 class="page-header"><i class="fa fa-laptop"></i>Crear avance en el Proyecto.</h1>
         <div ng-init="urlAction='{{ url('/mis-proyectos/avances/'.$id_proyecto.'/create') }}'"></div>
         <form class="form-horizontal" action="" id="formulario" name="formulario" method="POST">       
 
@@ -70,7 +70,7 @@
                             <div class="form-group">
 								<label class="col-md-4 control-label"> Asunto </label>
 								<div class="col-md-5">
-									<input type="text" text-num-only class="form-control" ng-model="avance.notificacion_avance" name="asunto_avance" ng-required="true" oninvalid="setCustomValidity(' ')">
+									<input type="text" class="form-control" ng-model="avance.notificacion_avance" name="asunto_avance" ng-required="true" oninvalid="setCustomValidity(' ')">
                                     <div class="error campo-requerido" ng-show="formulario.asunto_avance.$invalid && (formulario.asunto_avance.$touched || submitted)">
                                         <small class="error" ng-show="formulario.asunto_avance.$error.required">
                                             * Campo requerido.
