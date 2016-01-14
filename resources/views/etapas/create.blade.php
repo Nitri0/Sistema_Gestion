@@ -20,7 +20,7 @@
             </div>
         </ol>
 
-        <h1 class="page-header"><i class="fa fa-database"></i> Crear etapas</h1>
+        <h1 class="page-header"><i class="fa fa-line-chart"></i> Crear etapas</h1>
         
         <div class="row">
             <!-- begin col-12 -->
