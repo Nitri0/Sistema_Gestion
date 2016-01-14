@@ -12,6 +12,8 @@
 	@include('layouts/navbar-admin')
 
     @include('layouts/sidebar-admin')
+
+    @include('modals/ayuda')
 	
 	<div id="content" class="content ng-scope" ng-controller="SubmitController">
         
@@ -55,40 +57,36 @@
 
 	                    <div class="panel-body">
 
-	                    	<blockquote class="f-s-14">
-	                           <p>File Upload widget with multiple file selection, drag&amp;drop support, progress bars, validation and preview images, audio and video for jQuery.<br>
-	                            Supports cross-domain, chunked and resumable file uploads and client-side image resizing.<br>
-	                            Works with any server-side platform (PHP, Python, Ruby on Rails, Java, Node.js, Go etc.) that supports standard HTML form file uploads.</p>
-	                        </blockquote>
+	                    	<div class="form-group">
+                                <label class="col-md-4 control-label">Nombre</label>
+                                <div class="col-md-5">
+                                   <input type="text" text-only class="form-control" ng-model="model.nombre_tipo_rol" name="nombre_tipo_rol" ng-required="true" oninvalid="setCustomValidity(' ')">
+                                    <div class="error campo-requerido" ng-show="formulario.nombre_tipo_rol.$invalid && (formulario.nombre_tipo_rol.$touched || submitted)">
+                                        <small class="error" ng-show="formulario.nombre_tipo_rol.$error.required">
+                                            * Campo requerido.
+                                        </small>
+                                    </div>	                                   
+                                </div>
+                            </div>
 
-							<div class="well">
+	                    	<div class="form-group">
+                                <label class="col-md-4 control-label">Descripcion</label>
+                                <div class="col-md-5">
+                                   <input type="text" class="form-control" ng-model="model.descripcion_tipo_rol" name="descripcion_tipo_rol" ng-required="true" oninvalid="setCustomValidity(' ')">
+									<div class="error campo-requerido" ng-show="formulario.descripcion_tipo_rol.$invalid && (formulario.descripcion_tipo_rol.$touched || submitted)">
+                                        <small class="error" ng-show="formulario.descripcion_tipo_rol.$error.required">
+                                            * Campo requerido.
+                                        </small>
+                                	</div>
+                                </div>
+                            </div>
 
-		                    	<div class="form-group">
-	                                <label class="col-md-4 control-label">Nombre</label>
-	                                <div class="col-md-5">
-	                                   <input type="text" text-only class="form-control" ng-model="model.nombre_tipo_rol" name="nombre_tipo_rol" ng-required="true" oninvalid="setCustomValidity(' ')">
-	                                    <div class="error campo-requerido" ng-show="formulario.nombre_tipo_rol.$invalid && (formulario.nombre_tipo_rol.$touched || submitted)">
-	                                        <small class="error" ng-show="formulario.nombre_tipo_rol.$error.required">
-	                                            * Campo requerido.
-	                                        </small>
-	                                    </div>	                                   
-	                                </div>
-	                            </div>
-
-		                    	<div class="form-group">
-	                                <label class="col-md-4 control-label">Descripcion</label>
-	                                <div class="col-md-5">
-	                                   <input type="text" class="form-control" ng-model="model.descripcion_tipo_rol" name="descripcion_tipo_rol" ng-required="true" oninvalid="setCustomValidity(' ')">
-										<div class="error campo-requerido" ng-show="formulario.descripcion_tipo_rol.$invalid && (formulario.descripcion_tipo_rol.$touched || submitted)">
-	                                        <small class="error" ng-show="formulario.descripcion_tipo_rol.$error.required">
-	                                            * Campo requerido.
-	                                        </small>
-                                    	</div>
-	                                </div>
-	                            </div>
-
-							</div>
-
+                            <div class="btn-ayuda">
+                                <a href="#ayuda" class="btn btn-sm btn-info" data-toggle="modal">
+                                    <i class="fa fa-life-ring"></i>
+                                </a>
+                            </div>
+                            
 							<center>
                             @if($rol)
 								<button class="btn btn-danger m-r-5 m-b-5" type="button" ng-click="submit(formulario.$valid)">
