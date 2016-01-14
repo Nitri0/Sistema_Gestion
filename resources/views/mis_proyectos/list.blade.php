@@ -38,7 +38,7 @@
                             Dominio
                         </div>
                         <div class="col-sm-3">
-                            Estatus
+                            <a href="#" ng-click="changeSort('proyecto.nombre_etapa')">Estatus</a>
                         </div>
                     </div>
 
