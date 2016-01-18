@@ -7,6 +7,12 @@
 	@include('layouts/navbar-admin')
 
     @include('layouts/sidebar-admin')
+
+    @include('alerts.mensaje_error')
+    @include('alerts.mensaje_success')
+
+    <div ng-init="empresaproveedoras={{$empresas_proveedoras}}"></div>
+	<div ng-init="url='{{url()}}'"></div>
 	
 	<div id="content" class="content ng-scope">
         
@@ -19,55 +25,64 @@
                 </div>
             </div>
         </ol>
-        
 
         <h1 class="page-header"><i class="fa fa-laptop"></i> Empresas Proveedoras </h1>
-        
+
         <div class="row">
-            <!-- begin col-12 -->
-            <div class="col-12 ui-sortable">
-                <!-- begin panel -->
-                <div class="panel panel-inverse">
-                    <div class="panel-heading">
-                        <div class="panel-heading-btn">
-                            <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand" data-original-title="" title=""><i class="fa fa-expand"></i></a>
-                            <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload" data-original-title="" title=""><i class="fa fa-repeat"></i></a>
-                            <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse" data-original-title="" title=""><i class="fa fa-minus"></i></a>
+            <div class="col-12">
+                <div class="panel-group" id="accordion">
+                	<div class="row text-list">
+                		<div class="col-sm-5"> 
+                			<div class="row">
+                				<div class="col-sm-3"># </div>
+                				<div class="col-sm-9">
+                        			Nombre Proveedor
+                        		</div>
+                			</div>
+                		</div>
+                		<div class="col-sm-3">
+							Telefono
+                		</div>
+                	</div>
+
+                	<br>
+                    
+                    <div class="panel panel-inverse overflow-hidden custon-list" ng-repeat="proveedora in empresaproveedoras| filter:opciones.buscador | orderBy:sort:reverse  track by $index">
+                        <div class="panel-heading">
+                            <h3 class="panel-title list-title">
+                                <a class="accordion-toggle accordion-toggle-styled collapsed" data-toggle="collapse" data-parent="#accordion" href="#[[$index+1]]">
+                                    <i class="fa fa-plus pull-right"></i> 
+                                </a>	
+                            </h3>
+                            <div class="box-button-list">
+		        				<a class="btn btn-sm btn-info btn-cirule" ng-href="{{ url( '/empresas_proveedoras/[[proveedora.id_empresa_proveedora]]/edit' ) }}" data-toggle="tooltip" data-title="Detalle"><i class="fa fa-pencil-square-o"></i></a>
+		        			</div>
+                            <h3 class="panel-title list-title">
+                            	<div class="row">
+                            		<div class="col-sm-5"> 
+                            			<div class="row">
+                            				<div class="col-sm-3"> [[$index+1]] </div>
+                            				<div class="col-sm-9">
+		                            			[[proveedora.nombres_empresa_proveedora]]
+		                            		</div>
+                            			</div>
+                            		</div>
+
+                            		<div class="col-sm-3">
+										[[proveedora.telefono_empresa_proveedora]]
+                            		</div>
+                            	</div>                           	 
+                            </h3>
                         </div>
-                        <h4 class="panel-title">Proveedores</h4>
+                        <div id="[[$index+1]]" class="panel-collapse collapse">
+                            <div class="panel-body">
+                            	<p>Fecha Creación: [[proveedora.fecha_creacion_empresa_proveedora]]</p>
+                            	
+                            	<a class="btn btn-sm btn-danger pull-right" href="{{ url( '/empresas_proveedoras/[[proveedora.id_empresa_proveedora]]/destroy' ) }}" data-toggle="tooltip" data-title="Eliminar"><i class="fa fa-trash"></i></a>
+                            </div>
+                        </div>
                     </div>
 
-                    <div class="panel-body">
-		
-						@include('alerts.mensaje_success')
-						@include('alerts.mensaje_error')
-
-						<table class="table table-hover">
-						    <thead>
-						      <tr>
-						        <th>Nombre Proveedor</th>
-						        <th>Telefono</th>
-						        <th >Operaciones</th>
-						      </tr>
-						    </thead>
-						    <tbody>
-						    	@foreach($empresas_proveedoras as $empresa_proveedora)
-							    	<tr>
-										<td>{{$empresa_proveedora->nombres_empresa_proveedora}}</td>
-										<td>{{$empresa_proveedora->telefono_empresa_proveedora}}</td>
-							        	<td>
-											<a class="btn btn-sm btn-info" href="{{ url( '/empresas_proveedoras/'.$empresa_proveedora->id_empresa_proveedora ) }}" data-toggle="tooltip" data-title="Detalle"><i class="fa fa-bars"></i></a>
-							        		<a class="btn btn-sm btn-success" href="{{ url( '/empresas_proveedoras/'.$empresa_proveedora->id_empresa_proveedora.'/edit' ) }}" data-toggle="tooltip" data-title="Editar"><i class="fa fa-pencil-square-o"></i></a>
-							        		<a class="btn btn-sm btn-danger" href="{{ url( '/empresas_proveedoras/'.$empresa_proveedora->id_empresa_proveedora.'/destroy' ) }}" data-toggle="tooltip" data-title="Eliminar"><i class="fa fa-trash"></i></a>
-							        	</td>
-							        </tr>
-								@endforeach
-						    </tbody>
-						</table>
-
-						{!! $empresas_proveedoras->render() !!}
-	
-					</div><!-- boby -->
                 </div>
             </div>
         </div>
