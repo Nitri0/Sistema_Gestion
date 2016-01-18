@@ -31,10 +31,8 @@
 				<ul class="dropdown-menu animated fadeInLeft">
 					<li class="arrow"></li>
 					<li><a href="{{ url ('/perfil') }}">Editar perfil Usuario</a></li>
-					<li class="divider"></li>
 					@if(Auth::user()->isAdmin())
 					<li><a href="{{ url ('/perfil-empresa') }}">Editar perfil Empresa</a></li>
-					<li class="divider"></li>
 					@endif
 					<li><a href="{{url('/reset-password')}}"><!-- <i class="fa fa-key"></i> --> Cambiar Contraseña</a></li>
 					<li class="divider"></li>

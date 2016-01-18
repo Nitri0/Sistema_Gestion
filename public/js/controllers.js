@@ -67,6 +67,11 @@ coreApp.controller('AvanceController', function ($scope, $log, $http, $window) {
 		return false;
 	}
 
+	$scope.pantilla = function(check) {
+    	console.log(check);
+    	$(".js-example-data-array").select2();
+	}
+
 });
 
 coreApp.controller('ProyectoController',function($scope, $log, $http, $window) {

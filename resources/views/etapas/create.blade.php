@@ -58,7 +58,7 @@
 	                            <div class="form-group">
 	                                <label class="col-md-4 control-label">Descripcion del grupo de etapas</label>
 	                                <div class="col-md-5">
-	                                    <input type="text" class="form-control" ng-model="GrpEtapas.descripcion_grupo_etapas" name="descripcion_grupo_etapas" ng-required="true" oninvalid="setCustomValidity(' ')">
+	                                    <textarea rows="5" class="form-control" ng-model="GrpEtapas.descripcion_grupo_etapas" name="descripcion_grupo_etapas" ng-required="true" oninvalid="setCustomValidity(' ')"></textarea>
 										<div class="error campo-requerido" ng-show="formulario.descripcion_grupo_etapas.$invalid && (formulario.descripcion_grupo_etapas.$touched || submitted)">
 		                                    <small class="error" ng-show="formulario.descripcion_grupo_etapas.$error.required">
 		                                        * Campo requerido.

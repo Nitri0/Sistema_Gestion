@@ -83,7 +83,7 @@
                                 <label class="col-md-4 control-label">¿Con copia al cliente?</label>
                                 <div class="col-md-5">
                                     <label class="radio-inline">
-                                        <input type="radio" name="check_copia_cliente_avance" ng-model="check" value="1">
+                                        <input type="radio" name="check_copia_cliente_avance" ng-model="check" value="1" ng-click='pantilla(check)'>
                                         si
                                     </label>
                                     <label class="radio-inline">
