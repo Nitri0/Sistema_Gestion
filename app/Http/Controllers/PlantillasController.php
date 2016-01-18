@@ -44,10 +44,12 @@ class PlantillasController extends Controller {
 	#______________________________ Metodos _________________________________
 
 	public function index(){
-		$plantillas = Plantillas::where('id_empresa',Auth::user()->getIdEmpresa())
-									->where('habilitado_plantilla',1)
-									->orderBy('id_plantilla', 'des')
-									->paginate(10);
+		$plantillas = json_encode(
+								Plantillas::where('id_empresa',Auth::user()->getIdEmpresa())
+										->where('habilitado_plantilla',1)
+										->orderBy('id_plantilla', 'des')
+										->get()
+									);
 		return view('plantillas.list',compact('plantillas'));
 	}
 
