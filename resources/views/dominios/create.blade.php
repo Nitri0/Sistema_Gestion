@@ -2,6 +2,7 @@
 
 @section('js')
 	<script src="{{ asset('/js/controllers/helper.js') }}"></script>
+	<script src="{{ asset('/js/controllers/dominio.js') }}"></script>
 @endsection
 
 @section('content')
@@ -158,11 +159,11 @@
 							
 							<center>
 								@if($dominio)
-									<button type="button" ng-click="submit(formulario.$valid)" class="btn btn-danger m-r-5 m-b-5">
+									<button type="button" ng-click="submit(formulario.$valid)" class="btn btn-success m-r-5 m-b-5">
 										Actualizar <i class="fa fa-undo"></i>
 									</button>
 								@else
-									<button type="button" ng-click="submit(formulario.$valid)" class="btn btn-info m-r-5 m-b-5">
+									<button type="button" ng-click="submit(formulario.$valid)" class="btn btn-success m-r-5 m-b-5">
 										Registrar <i class="fa fa-pencil-square-o"></i>
 									</button>
 								@endif

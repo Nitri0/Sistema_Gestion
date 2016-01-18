@@ -89,10 +89,10 @@
                             
 							<center>
                             @if($rol)
-								<button class="btn btn-danger m-r-5 m-b-5" type="button" ng-click="submit(formulario.$valid)">
+								<button class="btn btn-success m-r-5 m-b-5" type="button" ng-click="submit(formulario.$valid)">
 									Actualizar <i class="fa fa-undo"></i>
 							@else
-								<button class="btn btn-info m-r-5 m-b-5" type="button" ng-click="submit(formulario.$valid)">
+								<button class="btn btn-success m-r-5 m-b-5" type="button" ng-click="submit(formulario.$valid)">
 									Registrar <i class="fa fa-pencil-square-o"></i>
 							@endif
 								</button>

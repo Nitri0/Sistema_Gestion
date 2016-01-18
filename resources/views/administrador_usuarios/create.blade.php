@@ -260,8 +260,8 @@
 				<br>
 				<center>
 				@if($usuario)
-			        <button type="button" ng-click="submit(formulario.$valid)" class="btn btn-primary">
-						Editar <i class="fa fa-pencil-square-o"></i>						
+			        <button type="button" ng-click="submit(formulario.$valid)" class="btn btn-success">
+						Actualizar <i class="fa fa-pencil-square-o"></i>						
 					</button>
 				@else
 					<button type="button" ng-click="submit(formulario.$valid)" class="btn btn-success">

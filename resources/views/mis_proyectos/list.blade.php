@@ -1,5 +1,8 @@
 @extends('base-admin')
 
+@section('js')
+    <script src="{{ asset('/js/controllers/proyecto.js') }}"></script>
+@endsection
 
 @section('content')
 

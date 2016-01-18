@@ -1,7 +1,10 @@
-@extends('base-admin')
+@extends('base-cliente')
+
+@section('css')
+	<link href="{{ asset('/css/login/style.css') }}" rel="stylesheet">
+@endsection
 
 @section('content')
-
 <div id="page-container" class="fade">
 
 	<div class="login login-with-news-feed">
@@ -18,11 +21,11 @@
 			    </ul>
                 <!--<img src="{{ asset('/img/bg-7.jpg') }}" data-id="login-cover-image" alt="">-->
             </div>
-            <div class="news-caption">
-                <h4 class="caption-title"> <img class="login-icono" src="{{ asset('/img/icono.png') }}">  Sistema de Gestion </h4>
-<!--                 <p>
-                    Lo que buscas a la mano.
-                </p> -->
+             <div class="news-caption">
+                <h4 class="caption-title"> <img class="login-icono" src="{{ asset('/img/ks-logo.png') }}">  Key Systems </h4>
+                <p>
+                    Refleja tus ideas.
+                </p>
             </div>
         </div>
         <!-- end news-feed -->
@@ -30,10 +33,10 @@
         <div class="right-content">
             <!-- begin login-header -->
             <div class="login-header">
-<!--                 <div class="brand">
-                    <img class="login-icono" src="{{ asset('/img/icono.png') }}"> TuLocalidad
-                    <small> Un directorio pensado para ti...</small>
-                </div> -->
+              	<div class="brand">
+                    <img class="login-icono" src="{{ asset('/img/logo.png') }}"> Sistema de Gestión
+                    <small> Organiza tus ideas...</small>
+                </div>
                 <div class="icon">
                     <i class="fa fa-pencil-square-o"></i>
                 </div>

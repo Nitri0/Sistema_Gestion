@@ -3,14 +3,14 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-				<h4 class="modal-title">Ayuda</h4>
+				<h4 class="modal-title"><i class="fa fa-life-ring"></i> [[titulo_ayuda]]</h4>
 			</div>
 			<div class="modal-body">
 				
+				<h5>[[sub_titulo]]</h5>
+
 				<blockquote class="f-s-14">
-                   <p>File Upload widget with multiple file selection, drag&amp;drop support, progress bars, validation and preview images, audio and video for jQuery.<br>
-                    Supports cross-domain, chunked and resumable file uploads and client-side image resizing.<br>
-                    Works with any server-side platform (PHP, Python, Ruby on Rails, Java, Node.js, Go etc.) that supports standard HTML form file uploads.</p>
+                  <div ng-bind-html="descripcion_ayuda"></div>
                 </blockquote>
 
 			</div>
