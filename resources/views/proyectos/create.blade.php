@@ -151,8 +151,8 @@
 									<div class="col-md-6" ng-repeat="persona in personas track by $index">
 										<div class="well">
 											<div class="form-group">
-				                                <label class="col-md-4 control-label">Integrante [[$index+1]]</label>
-				                                <div class="col-md-8">
+				                                <label class="col-md-3 control-label">Integrante [[$index+1]]</label>
+				                                <div class="col-md-7">
 				                                    <select class="form-control js-example-data-array" name="id_usuario[[$index]]" ng-model="persona.usuario" ng-required="true" oninvalid="setCustomValidity(' ')">
 				                                        <option value="">Seleccione un Usuario</option>
 				                                        @foreach($usuarios as $usuario)
@@ -165,12 +165,17 @@
 				                                        <small class="error" ng-show="formulario.id_usuario[[$index]].$error.required">
 				                                            * Campo requerido.
 				                                        </small>
-			                                    	</div>				                                    
+			                                    	</div>	                                    
+				                                </div>
+				                                <div class="col-md-2">
+				                                	<a href="{{ url('admin_usuarios/create') }}" class="btn btn-success btn-sm p-l-10 p-r-10" data-toggle="tooltip" data-title="Agregar Tipo de Proyecto">
+								                        <i class="fa fa-plus"></i>
+								                    </a>
 				                                </div>
 				                            </div>
 				                            <div class="form-group">
-				                                <label class="col-md-4 control-label">Rol que cumplirá</label>
-				                                <div class="col-md-8">
+				                                <label class="col-md-3 control-label">Rol que cumplirá</label>
+				                                <div class="col-md-7">
 				                                    <select class="form-control js-example-data-array" name="id_rol[[$index]]" ng-model="persona.rol" ng-required="true" oninvalid="setCustomValidity(' ')">
 				                                        <option value="">Seleccione un Rol</option>
 				                                        @foreach($roles as $rol)
@@ -183,8 +188,13 @@
 				                                        <small class="error" ng-show="formulario.id_rol[[$index]].$error.required">
 				                                            * Campo requerido.
 				                                        </small>
-			                                    	</div>						                                    
+			                                    	</div>			                                    
 				                                </div>
+				                                <div class="col-md-2">
+				                                	<a href="{{ url('roles/create') }}" class="btn btn-success btn-sm p-l-10 p-r-10" data-toggle="tooltip" data-title="Agregar Tipo de Proyecto">
+								                        <i class="fa fa-plus"></i>
+								                    </a>
+				                                </div>	
 				                            </div>
 														
 										
