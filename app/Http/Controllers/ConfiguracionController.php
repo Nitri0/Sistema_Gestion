@@ -222,10 +222,10 @@ class ConfiguracionController extends Controller {
 				"icon" => 'fa fa-line-chart',
 				"items_menu" => ['index'=>[
 										'nombre'=>'Listar',
-										'url'=>'grupo_etapas'],
+										'url'=>'tipo_proyectos'],
 								 'create'=>[
 								 		'nombre'=>'Agregar',
-								 		'url'=>'grupo_etapas/create'],
+								 		'url'=>'tipo_proyectos/create'],
 								],
 				"administrador_usuarios"=>
 						[     
