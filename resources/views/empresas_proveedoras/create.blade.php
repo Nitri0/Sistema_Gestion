@@ -2,6 +2,7 @@
 
 @section('js')
 	<script src="{{ asset('/js/controllers/helper.js') }}"></script>
+	<script src="{{ asset('/js/controllers/empresa_proveedora.js') }}"></script>
 @endsection
 
 @section('content')
@@ -11,6 +12,8 @@
 	@include('layouts/navbar-admin')
 
     @include('layouts/sidebar-admin')
+
+    @include('modals/ayuda')
 	
 	<div id="content" class="content ng-scope" ng-controller="SubmitController">
         
@@ -72,6 +75,12 @@
 	                        </div>	
 
 							<br>
+
+							<div class="btn-ayuda">
+								<a href="#ayuda" class="btn btn-sm btn-info" data-toggle="modal">
+									<i class="fa fa-life-ring"></i>
+								</a>
+							</div>
 
 							<center>
 							@if($empresa_proveedora)

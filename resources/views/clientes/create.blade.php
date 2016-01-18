@@ -1,8 +1,8 @@
 @extends('base-admin')
 
-
 @section('js')
 	<script src="{{ asset('/js/controllers/helper.js') }}"></script>
+	<script src="{{ asset('/js/controllers/cliente.js') }}"></script>
 @endsection
 
 @section('content')

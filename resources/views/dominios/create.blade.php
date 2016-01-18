@@ -2,6 +2,7 @@
 
 @section('js')
 	<script src="{{ asset('/js/controllers/helper.js') }}"></script>
+	<script src="{{ asset('/js/controllers/dominio.js') }}"></script>
 @endsection
 
 @section('content')

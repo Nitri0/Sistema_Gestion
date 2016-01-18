@@ -1,5 +1,9 @@
 @extends('base-admin')
 
+@section('js')
+    <script src="{{ asset('/js/controllers/grupoetapas.js') }}"></script>
+@endsection
+
 @section('content')
 
 <div id="page-container" class="fade page-sidebar-fixed page-header-fixed" ng-controller="GrupoEtapasController">
@@ -7,6 +11,8 @@
 	@include('layouts/navbar-admin')
 
     @include('layouts/sidebar-admin')
+
+    @include('modals/ayuda')
 	
 	<div id="content" class="content ng-scope">
         
@@ -125,7 +131,13 @@
 								</div>			
 							
 							</div>
-							
+
+							<div class="btn-ayuda">
+								<a href="#ayuda" class="btn btn-sm btn-info" data-toggle="modal">
+									<i class="fa fa-life-ring"></i>
+								</a>
+							</div>
+
 							<center>
 								<button type="button" class="btn btn-success m-r-5 m-b-5" ng-click="submit(formulario.$valid)">
 									Registrar <i class="fa fa-pencil-square-o"></i>
