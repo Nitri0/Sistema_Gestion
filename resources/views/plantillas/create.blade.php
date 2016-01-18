@@ -2,7 +2,6 @@
 
 @section('js')
 	<script src="{{ asset('/bower_components/ckeditor/ckeditor.js') }}"></script>
-	
 @endsection
 
 @section('content')
