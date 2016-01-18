@@ -37,18 +37,28 @@ class Authenticate {
 
 		}
 		//dd($this->auth->user()->getHabiltiadoEmpresa());
+		// if(!$this->auth->user()->getHabiltiadoEmpresa()){
+		// 	if (!$this->auth->user()->isSuperAdmin()){
+		// 		Session::flash('mensaje-error', 'A vencido su periodo de prueba de 7 dias, 
+		// 			para obtener el servicio completo envie un correo con sus datos de contacto
+		// 			a info@keygestion.com.ve y lo antes posible nos estaremos comunicando con usted.');
+		// 		return redirect()->guest('/login');
+		// 	}
+		// }		
+
+
 		if(!$this->auth->user()->getHabiltiadoEmpresa()){
 			if (!$this->auth->user()->isSuperAdmin()){
-				Session::flash('mensaje-error', 'Empresa desabilitada.');
+				Session::flash('mensaje-error', 'Empresa Baneada.');
 				return redirect()->guest('/login');
 			}
 		}		
-
 
 		if($this->auth->user()->habilitado_usuario==0){
 			Session::flash('mensaje-error', 'Usuario deshabilitado.');
 			return redirect()->guest('/login');
 		}
+
 
 
 

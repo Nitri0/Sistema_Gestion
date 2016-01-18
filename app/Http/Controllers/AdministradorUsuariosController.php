@@ -31,7 +31,6 @@ class AdministradorUsuariosController extends Controller
 
     public function find(Route $route){
         $this->usuario = User::where('id_usuario',$route->getParameter('admin_usuarios'))
-                                
                                 ->first();
         $this->relacion = MMEmpresasUsuarios::where('id_usuario',$route->getParameter('admin_usuarios'))
                                 ->where('id_empresa',Auth::user()->getIdEmpresa())
@@ -46,9 +45,8 @@ class AdministradorUsuariosController extends Controller
     public function metodosClases(Route $route){
         $controladores = [
                           '\App\Http\Controllers\ProyectosController'               =>'proyectos',
-                          '\App\Http\Controllers\TipoProyectoController'            =>'tipo_proyectos',
                           '\App\Http\Controllers\ClientesController'                =>'clientes',
-                          '\App\Http\Controllers\EtapasController'                  =>'grupo_etapas',
+                          '\App\Http\Controllers\EtapasController'                  =>'tipo_proyectos',
                           '\App\Http\Controllers\PlantillasController'              =>'plantillas',
                           '\App\Http\Controllers\RolesController'                   =>'roles',
                           '\App\Http\Controllers\DominiosController'                =>'dominios',
