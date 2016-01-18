@@ -57,7 +57,7 @@
 	                    	<div class="form-group">
 	                            <label class="col-md-4 control-label">Proyecto</label>
 	                            <div class="col-md-5">
-						            <select class="form-control js-example-data-array" ng-model="dominio.id_proyecto" name="id_proyecto" ng-required="true" oninvalid="setCustomValidity(' ')">
+						            <select class="form-control js-example-data-array" ng-model="dominio.id_proyecto" name="id_proyecto" oninvalid="setCustomValidity(' ')">
 										<option class="option" value="">Seleccione un proyecto</option>
 										@foreach($proyectos as $key)
 											<option class="option" value="{{$key->id_proyecto}}">
@@ -120,7 +120,7 @@
 	                        <div class="form-group">
 	                            <label class="col-md-4 control-label">Espacio de disco asignado</label>
 	                            <div class="col-md-5">
-	                             	<select class="form-control js-example-data-array" name="espacio_asignado_dominio" ng-model="dominio.espacio_asignado_dominio" ng-required="true" oninvalid="setCustomValidity(' ')" required>
+	                             	<select class="form-control js-example-data-array" name="espacio_asignado_dominio" ng-required="true" oninvalid="setCustomValidity(' ')" required>
 										<option class="option" value="">Seleccione un tamaño</option>
 										@foreach($tamanos as $key=> $value)
 											<option ng-if="dominio.espacio_asignado_dominio=={{$key}}" selected class="option" value="{{$key}}">{{$value}}</option>
