@@ -167,6 +167,32 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
 		return false;
 	}
 	
+	// public function EmpresaValida(){
+	// 	$id_empresa = MMEmpresasUsuarios::where('id_usuario',$this->id_usuario)->id_empresa;
+	// 	$empresa = Empresas::find($id_empresa);
+	// 	dd(Carbon::parse($empresa->created_at));
+	// 	if ($empresa){
+	// 		return $empresa->suscriptor_empresa == 1 && $empresa->;
+	// 	}
+	// 	return false;
+	// }	
+
+	public function isSuscriptor(){
+		$id_empresa = MMEmpresasUsuarios::where('id_usuario',$this->id_usuario)->first()->id_empresa;
+		$empresa = Empresas::find($id_empresa);
+		//dd($empresa->created_at);
+		//subDays
+		$fecha_creacion = \Carbon\Carbon::parse($empresa->created_at);
+		//dd($fecha_creacion >= \Carbon\Carbon::now()->subDays(7), $fecha_creacion, \Carbon\Carbon::now()->subDays(7));
+
+		if ($empresa){
+			if ($empresa->suscriptor_empresa == 1){
+				return true;
+			}
+			return $empresa->suscriptor_empresa == 0 && $fecha_creacion < \Carbon\Carbon::now()->subDays(7);
+		}
+		return false;
+	}
 
 	public function validacionExcepciones($method){
 		
