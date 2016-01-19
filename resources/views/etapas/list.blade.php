@@ -67,8 +67,8 @@
                             			</div>
                             		</div>
 
-                            		<div class="col-sm-3">
-										[[etapa.cantidad_etapas]]
+                            		<div class="col-sm-2">
+										<center>[[etapa.cantidad_etapas]]</center>
                             		</div>
                             	</div>                           	 
                             </h3>

@@ -35,7 +35,7 @@
                 			</div>
                 		</div>
                 		<div class="col-sm-3">
-							<a href="#" ng-click="changeSort('index')">#</a>
+							<a href="#" ng-click="changeSort('nombre_dominio')">Dominio</a>
                 		</div>
                 		<div class="col-sm-3">
 							<a href="#" ng-click="changeSort('fecha_creacion_avance')">Ultimo avance</a>

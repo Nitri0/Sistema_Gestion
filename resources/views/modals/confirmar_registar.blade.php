@@ -6,8 +6,8 @@
 				<h4 class="modal-title"><i class="fa fa-line-chart"></i> Crear Tipo Proyecto</h4>
 			</div>
 			<div class="modal-body">
-				<p>¿Esta seguro que desea registrar el grupo de etapa?</p>
-				<p>De hacerlo no podra volver a modificar las etapas.</p>
+				<p>¿Esta seguro que quiere registrar la información del formulario?</p>,
+				<p>luego de ser creado no podrá ser modificada</p>
 			</div>
 			<div class="modal-footer">
 				<a href="javascript:;" class="btn btn-danger" data-dismiss="modal">No</a>
