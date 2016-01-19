@@ -261,11 +261,11 @@
 				<center>
 				@if($usuario)
 			        <button type="button" ng-click="submit(formulario.$valid)" class="btn btn-success">
-						Actualizar <i class="fa fa-pencil-square-o"></i>						
+						Actualizar						
 					</button>
 				@else
 					<button type="button" ng-click="submit(formulario.$valid)" class="btn btn-success">
-						Registrar <i class="fa fa-pencil-square-o"></i>						
+						Registrar					
 					</button>
 				@endif	
 				</center>
