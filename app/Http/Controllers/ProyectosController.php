@@ -67,10 +67,7 @@ class ProyectosController extends Controller {
 		$grupo_etapas = GrupoEtapas::where('id_empresa', Auth::user()->getIdEmpresa())
 									->where('habilitado_grupo_etapas', 1)
 									->get();
-		$tipo_proyectos = TipoProyectos::where('id_empresa', Auth::user()->getIdEmpresa())
-										->where('habilitado_tipo_proyecto', 1)
-										->get();
-		return view('proyectos.create',compact('clientes', 'usuarios', 'roles','grupo_etapas','tipo_proyectos'));
+		return view('proyectos.create',compact('clientes', 'usuarios', 'roles','grupo_etapas'));
 	}
 
 	public function edit($id){
@@ -105,11 +102,6 @@ class ProyectosController extends Controller {
 		$proyecto = Proyectos::create($request->all());
 
 		$etapa = GrupoEtapas::find($proyecto->id_grupo_etapas)->getFirstEtapa();
-
-		if ($request['id_dominio']){			
-		 	Dominios::where('id_dominio',$request['id_dominio'])->update(['habilitado_dominio'=>0]);
-		};
-
 		if ($request->cantidad>0){
 			foreach (range(0, $request->cantidad-1) as $index) {
 				Roles::create(['id_usuario' => $request['id_usuario'.$index],
@@ -119,7 +111,7 @@ class ProyectosController extends Controller {
 							]);
 						};
 		};
-		
+		//dd('prueba1 '.json_encode($etapa));
 		
 		Avances::Create([
 						'id_proyecto'=>$proyecto->id_proyecto,

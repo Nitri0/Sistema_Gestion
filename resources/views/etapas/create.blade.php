@@ -19,14 +19,14 @@
         <ol class="breadcrumb pull-right">
             <div class="btn-toolbar">
                 <div class="btn-group">
-                    <a href="{{ url( '/grupo_etapas/create' ) }}" class="btn btn-success btn-sm p-l-20 p-r-20" data-toggle="tooltip" data-title="Agregar">
+                    <a href="{{ url( '/tipo_proyecto/create' ) }}" class="btn btn-success btn-sm p-l-20 p-r-20" data-toggle="tooltip" data-title="Agregar">
                         <i class="fa fa-plus"></i>
                     </a>
                 </div>
             </div>
         </ol>
 
-        <h1 class="page-header"><i class="fa fa-line-chart"></i> Crear etapas</h1>
+        <h1 class="page-header"><i class="fa fa-line-chart"></i> Crear Tipo de proyecto</h1>
         
         <div class="row">
             <!-- begin col-12 -->
@@ -39,18 +39,18 @@
                             <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload" data-original-title="" title=""><i class="fa fa-repeat"></i></a>
                             <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse" data-original-title="" title=""><i class="fa fa-minus"></i></a>
                         </div>
-                        <h4 class="panel-title">Grupos de Etapas</h4>
+                        <h4 class="panel-title">Tipo de proyecto</h4>
                     </div>
 
                     <div class="panel-body">
-						<div ng-init="urlRedirect='{{ url('grupo_etapas/') }}'"></div>
-						<div ng-init="urlAction='{{ url('grupo_etapas/') }}'"></div>
-						<form class="form-horizontal" id="formulario" name="formulario" action="{{ url('grupo_etapas/') }}" method="POST">
+						<div ng-init="urlRedirect='{{ url('tipo_proyecto/') }}'"></div>
+						<div ng-init="urlAction='{{ url('tipo_proyecto/') }}'"></div>
+						<form class="form-horizontal" id="formulario" name="formulario" action="{{ url('tipo_proyecto/') }}" method="POST">
 	 
 							<div class="well">	
 								
 								<div class="form-group">
-	                                <label class="col-md-4 control-label">Identificador de grupo de etapas</label>
+	                                <label class="col-md-4 control-label">Identificador </label>
 	                                <div class="col-md-5">
 	                                    <input type="text" text-only class="form-control" ng-model="GrpEtapas.nombre_grupo_etapas" name="nombre_grupo_etapas" ng-required="true" oninvalid="setCustomValidity(' ')">
 										<div class="error campo-requerido" ng-show="formulario.nombre_grupo_etapas.$invalid && (formulario.nombre_grupo_etapas.$touched || submitted)">
@@ -62,7 +62,7 @@
 	                            </div>
 
 	                            <div class="form-group">
-	                                <label class="col-md-4 control-label">Descripcion del grupo de etapas</label>
+	                                <label class="col-md-4 control-label">Descripción</label>
 	                                <div class="col-md-5">
 	                                    <textarea rows="5" class="form-control" ng-model="GrpEtapas.descripcion_grupo_etapas" name="descripcion_grupo_etapas" ng-required="true" oninvalid="setCustomValidity(' ')"></textarea>
 										<div class="error campo-requerido" ng-show="formulario.descripcion_grupo_etapas.$invalid && (formulario.descripcion_grupo_etapas.$touched || submitted)">

@@ -40,30 +40,6 @@
 	                        <div class="well" >	
 								
 								<div class="form-group">
-	                                <label class="col-md-4 control-label">Tipo de Proyecto</label>
-	                                <div class="col-md-5">
-	                                    <select class="form-control js-example-data-array" ng-model="proyecto.id_tipo_proyecto" name="id_tipo_proyecto" ng-required="true" oninvalid="setCustomValidity(' ')">
-	                                        <option value="">Seleccione un tipo de proyecto</option>
-	                                        @foreach($tipo_proyectos as $tipo_proyecto)
-												<option class="option" value="{{$tipo_proyecto->id_tipo_proyecto}}">
-													{{ $tipo_proyecto->nombre_tipo_proyecto }}
-												</option>
-											@endforeach
-	                                    </select>
-										<div class="error campo-requerido" ng-show="formulario.id_tipo_proyecto.$invalid && (formulario.id_tipo_proyecto.$touched || submitted)">
-	                                        <small class="error" ng-show="formulario.id_tipo_proyecto.$error.required">
-	                                            * Campo requerido.
-	                                        </small>
-                                    	</div>	                                    
-	                                </div>
-	                                <div class="col-md-3">
-	                                	<a href="{{ url('tipo_proyectos/create') }}" class="btn btn-success btn-sm p-l-10 p-r-10" data-toggle="tooltip" data-title="Agregar Tipo de Proyecto">
-					                        <i class="fa fa-plus"></i>
-					                    </a>
-	                                </div>
-	                            </div>
-
-								<div class="form-group">
 	                                <label class="col-md-4 control-label">Cliente</label>
 	                                <div class="col-md-5">
 	                                    <select class="form-control js-example-data-array" ng-model="proyecto.id_cliente" name="id_cliente" ng-required="true" oninvalid="setCustomValidity(' ')">
@@ -88,7 +64,7 @@
 	                            </div>
 
 	                            <div class="form-group">
-	                                <label class="col-md-4 control-label">Grupo de etapas (sprints/pasos/etapas)</label>
+	                                <label class="col-md-4 control-label">Tipo de Proyecto</label>
 	                                <div class="col-md-5">
 	                                    <select class="form-control js-example-data-array" ng-model="proyecto.id_grupo_etapas" name="id_grupo_etapas" ng-required="true" oninvalid="setCustomValidity(' ')">
 	                                        <option value="">Seleccione un grupo</option>
@@ -105,7 +81,7 @@
                                     	</div>	                                    
 	                                </div>
 	                                <div class="col-md-3">
-	                                	<a href="{{ url('grupo_etapas/create') }}" class="btn btn-success btn-sm p-l-10 p-r-10" data-toggle="tooltip" data-title="Agregar Grupo de Etapas">
+	                                	<a href="{{ url('tipo_proyecto/create') }}" class="btn btn-success btn-sm p-l-10 p-r-10" data-toggle="tooltip" data-title="Agregar Grupo de Etapas">
 					                        <i class="fa fa-plus"></i>
 					                    </a>
 	                                </div>

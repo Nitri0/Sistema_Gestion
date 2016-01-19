@@ -15,6 +15,7 @@ class Empresas extends Model {
 								'correo_empresa',
 								'habilitado_empresa',
 								'id_usuario',
+								'suscriptor_empresa'
 								);
 
 

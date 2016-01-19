@@ -96,19 +96,14 @@ $router->group(['middleware' => 'auth'], function() {
 
 #_______________________________________ ETAPAS ________________________________________________	
 					#____________________ cruds ____________________________
-	Route::get('grupo_etapas/{grupo_etapas}/destroy', 'EtapasController@destroy');
-	Route::resource('grupo_etapas', 'EtapasController');
+	Route::get('tipo_proyectos/{tipo_proyectos}/destroy', 'EtapasController@destroy');
+	Route::resource('tipo_proyectos', 'EtapasController');
 
 #__________________________________ EMPRESAS PROVEEDORAS _______________________________________	
 					#____________________ cruds ____________________________
 
 	Route::get('empresas_proveedoras/{empresas_proveedoras}/destroy', 'EmpresasProveedorasController@destroy');	
 	Route::resource('empresas_proveedoras', 'EmpresasProveedorasController');
-
-#____________________________________ TIPO PROYECTO _____________________________________	
-					#____________________ cruds ____________________________	
-	Route::get('tipo_proyectos/{tipo_proyectos}/destroy', 'TipoProyectoController@destroy');
-	Route::resource('tipo_proyectos', 'TipoProyectoController');
 
 #________________________________ ADMINISTRADOR DE USUARIOS _____________________________________
 					#____________________ cruds ____________________________	

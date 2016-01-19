@@ -22,7 +22,7 @@
             </div>
         </ol>
 
-        <h1 class="page-header"><i class="fa fa-line-chart"></i> Lista de grupos de etapas</h1>
+        <h1 class="page-header"><i class="fa fa-line-chart"></i> Lista de tipos de proyectos</h1>
         
 		<div ng-init="grupoetapas={{$grupo_etapas}}"></div>
 		<div ng-init="url='{{url()}}'"></div>
@@ -35,7 +35,7 @@
                 			<div class="row">
                 				<div class="col-sm-3"># </div>
                 				<div class="col-sm-9">
-                        			Nombre de grupo
+                        			Identificador de proyecto
                         		</div>
                 			</div>
                 		</div>

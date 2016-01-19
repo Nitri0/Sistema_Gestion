@@ -152,49 +152,6 @@ class ConfiguracionController extends Controller {
 						],
 				],
 
-		"tipo_proyectos" =>	[
-				"nombre_menu" => 'Tipo de proyectos',
-				"icon" => 'fa fa-suitcase',
-				"items_menu" => ['index'=>[
-										'nombre'=>'Listar',
-										'url'=>'tipo_proyectos/'],
-								 'create'=>[
-								 		'nombre'=>'Agregar',
-								 		'url'=>'tipo_proyectos/create'],
-								 ],
-				"administrador_usuarios"=>	
-						[     
-						    "index"   => [
-						                    "Listar",
-						                    "Permite acceso a la pantalla donde se listan los registros",
-						                ],
-						      "show"    => [
-						                    "Mostrar",
-						                    "Permite acceso a la pantalla donde se muestra el detalle de los registros",
-						                ],
-						      "create"  =>  [
-						                    "Crear",
-						                    "Permite acceso a la pantalla donde se rellena el formulario de creacion de un registro",
-						                ],
-						      "store"   =>  [
-						                    "Guardar",
-						                    "Permite acceso a crear un registro. (Requiere el permiso Crear)",
-						                ],
-						      "edit"    =>  [
-						                    "Editar",
-						                    "Permite acceso a editar un registro.",
-						                ],
-						      "update"  => [
-						                    "Actualizar",
-						                    "Permite acceso a actualizar un registro. (Requiere el permiso Editar)",
-						                ],
-						      "destroy" => [
-						                    "Eliminar",
-						                    "Permite acceso a crear un registro. (Requiere el permiso Crear)",
-						                ],
-						],     
-			],   
-
 		"proyectos" =>[
 				"nombre_menu" => 'Proyectos',
 				"icon" => 'fa fa-sitemap',
@@ -260,15 +217,15 @@ class ConfiguracionController extends Controller {
 						],
 				],
 
-		"grupo_etapas" =>[
-				"nombre_menu" => 'Grupo de etapas',
+		"tipo_proyectos" =>[
+				"nombre_menu" => 'Tipo de proyectos',
 				"icon" => 'fa fa-line-chart',
 				"items_menu" => ['index'=>[
 										'nombre'=>'Listar',
-										'url'=>'grupo_etapas'],
+										'url'=>'tipo_proyectos'],
 								 'create'=>[
 								 		'nombre'=>'Agregar',
-								 		'url'=>'grupo_etapas/create'],
+								 		'url'=>'tipo_proyectos/create'],
 								],
 				"administrador_usuarios"=>
 						[     
