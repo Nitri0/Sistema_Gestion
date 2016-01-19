@@ -36,15 +36,6 @@ class Authenticate {
 			}
 
 		}
-		//dd($this->auth->user()->getHabiltiadoEmpresa());
-		// if(!$this->auth->user()->getHabiltiadoEmpresa()){
-		// 	if (!$this->auth->user()->isSuperAdmin()){
-		// 		Session::flash('mensaje-error', 'A vencido su periodo de prueba de 7 dias, 
-		// 			para obtener el servicio completo envie un correo con sus datos de contacto
-		// 			a info@keygestion.com.ve y lo antes posible nos estaremos comunicando con usted.');
-		// 		return redirect()->guest('/login');
-		// 	}
-		// }		
 
 
 		if(!$this->auth->user()->getHabiltiadoEmpresa()){
@@ -60,6 +51,13 @@ class Authenticate {
 		}
 
 
+		//dd($this->auth->user()->getHabiltiadoEmpresa());
+		if($this->auth->user()->validacionVencimiento() ){
+			Session::flash('mensaje-error', 'A vencido su periodo de prueba de 7 dias, 
+				para obtener el servicio completo envie un correo con sus datos de contacto
+				a info@keygestion.com.ve y lo antes posible nos estaremos comunicando con usted.');
+			return redirect()->guest('/login');
+		}		
 
 
 		return $next($request);

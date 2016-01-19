@@ -8,7 +8,6 @@ use App\Dominios;
 use App\User;
 use App\TipoRoles;
 use App\Roles;
-use App\TipoProyectos;
 use App\Avances;
 use App\Master;
 use App\MMEmpresasUsuarios;
