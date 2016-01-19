@@ -14,4 +14,11 @@ class EmpresasProveedoras extends Model {
 								'habilitado_empresa_proveedora',
 								);
 
+	public function getFechaCreacionEmpresaProveedoraAttribute(){
+		$date = \Carbon\Carbon::parse($this->attributes['fecha_creacion_empresa_proveedora']); 
+	  	return $date->format('d/m/Y');
+
+	//    return $this->attributes['fecha_creacion_plantilla'];
+	}
+
 }

@@ -24,7 +24,7 @@
         </ol>
         
 
-        <h1 class="page-header"><i class="fa fa-file-code-o"></i> Lista de Plantillass </h1>
+        <h1 class="page-header"><i class="fa fa-file-code-o"></i> Lista de Plantillas </h1>
         
         <div ng-init="plantillas={{$plantillas}}"></div>
         <div ng-init="url='{{url()}}'"></div>
@@ -71,7 +71,7 @@
                             		</div>
 
                             		<div class="col-sm-4">
-										[[plantilla.fecha_creacion_plantilla]]
+										[[plantilla.fecha_creacion_plantilla ]]
                             		</div>
 
                             	</div>                           	 

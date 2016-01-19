@@ -11,7 +11,19 @@ class Plantillas extends Model {
 								'ur_plantilla',
 								'id_empresa',
 								'descripcion_plantilla');
+
+	//public $cast = ['fecha_creacion_plantilla' 	=> 'datetime',];
+
+	//protected $dates =['fecha_creacion_plantilla',];
+
 	public $timestamps = false;
+
+
+public function getFechaCreacionPlantillaAttribute(){
+	$date = \Carbon\Carbon::parse($this->attributes['fecha_creacion_plantilla']); 
+  	return $date->format('d/m/Y');
+//    return $this->attributes['fecha_creacion_plantilla'];
+}
 
 
 	public function getRawData($id){

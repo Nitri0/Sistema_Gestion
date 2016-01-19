@@ -40,13 +40,9 @@ class DominiosController extends Controller {
 	
 	public function index(){
 
-		$dominios = json_encode(\DB::table('t_dominios')
-				 					->where('t_dominios.habilitado_dominio','=',1)
-				 					->where('t_dominios.id_empresa', Auth::user()->getIdEmpresa())
-				 					->leftJoin('t_proyectos', 't_proyectos.id_proyecto', '=', 't_dominios.id_proyecto')
-				 					->leftJoin('t_clientes', 't_clientes.id_cliente', '=', 't_proyectos.id_cliente')
-				 					->join('t_empresa_proveedora', 't_empresa_proveedora.id_empresa_proveedora', '=', 't_dominios.id_empresa_proveedora')
-				 					->orderBy('t_dominios.id_dominio','desc')
+		$dominios = json_encode(Dominios::where('habilitado_dominio','=',1)
+				 					->where('id_empresa', Auth::user()->getIdEmpresa())
+				 					->orderBy('id_dominio','desc')
 				 					->get());
 
 		return view('dominios.list', compact('dominios'));

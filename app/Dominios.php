@@ -18,7 +18,45 @@ class Dominios extends Model {
 								'habilitado_dominio',
 								'id_empresa',
 								'id_usuario');
-	protected $dates = ['fecha_creacion_dominio'];
+	//protected $dates = ['fecha_creacion_dominio'];
+
+	protected $appends = ['nombre_cliente','nombre_proyecto','nombres_empresa_proveedora'];
+
+	public function getFechaCreacionDominioAttribute(){
+		$date = \Carbon\Carbon::parse($this->attributes['fecha_creacion_dominio']); 
+	  	return $date->format('d/m/Y');
+
+	//    return $this->attributes['fecha_creacion_plantilla'];
+	}
+
+	public function getNombreClienteAttribute(){
+		$proyecto = Proyectos::where('id_proyecto',$this->attributes['id_proyecto'])->first();
+
+		if ($proyecto){
+			$cliente = Clientes::where('id_cliente',$proyecto->id_cliente)->first();
+			if ($cliente){
+				return $cliente->nombre_cliente;
+			}
+		}
+	  	return "";
+	}
+
+	public function getNombreProyectoAttribute(){
+		$proyecto = Proyectos::where('id_proyecto',$this->id_proyecto)->first();
+		if ($proyecto){
+			return $proyecto->nombre_proyecto;
+		}
+	  	return "";
+	}
+
+	public function getNombresEmpresaProveedoraAttribute(){
+		$empresasP = EmpresasProveedoras::find($this->attributes['id_empresa_proveedora']);
+		if ($empresasP){
+			return $empresasP->nombres_empresa_proveedora;
+		}
+	  	return "";
+	}
+
 
 	public function getNombreProyecto(){
 
