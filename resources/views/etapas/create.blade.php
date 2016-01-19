@@ -140,7 +140,7 @@
 
 							<center>
 								<button type="button" class="btn btn-success m-r-5 m-b-5" ng-click="submit(formulario.$valid)">
-									Registrar <i class="fa fa-pencil-square-o"></i>
+									Registrar
 								</button>
 							</center>
 							@include('modals/confirmar_registar')

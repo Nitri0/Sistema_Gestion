@@ -67,11 +67,11 @@
 							<center>
                                 @if($tipo_proyecto)
                                     <button type="button" ng-click="submit(formulario.$valid)" class="btn btn-success m-r-5 m-b-5">
-                                        Actualizar <i class="fa fa-undo"></i>
+                                        Actualizar
                                     </button>
                                 @else
                                     <button type="button" ng-click="submit(formulario.$valid)" class="btn btn-success m-r-5 m-b-5">
-                                        Registrar <i class="fa fa-pencil-square-o"></i>
+                                        Registrar
                                     </button>
                                 @endif
                             </center>
