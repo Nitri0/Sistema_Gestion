@@ -43,16 +43,16 @@
                     </div>
 
                     <div class="panel-body">
-						<div ng-init="urlRedirect='{{ url('tipo_proyecto/') }}'"></div>
-						<div ng-init="urlAction='{{ url('tipo_proyecto/') }}'"></div>
-						<form class="form-horizontal" id="formulario" name="formulario" action="{{ url('tipo_proyecto/') }}" method="POST">
+						<div ng-init="urlRedirect='{{ url('tipo_proyectos/') }}'"></div>
+						<div ng-init="urlAction='{{ url('tipo_proyectos/') }}'"></div>
+						<form class="form-horizontal" id="formulario" name="formulario" action="{{ url('tipo_proyectos/') }}" method="POST">
 	 
 							<div class="well">	
 								
 								<div class="form-group">
 	                                <label class="col-md-4 control-label">Identificador </label>
 	                                <div class="col-md-5">
-	                                    <input type="text" text-only class="form-control" ng-model="GrpEtapas.nombre_grupo_etapas" name="nombre_grupo_etapas" ng-required="true" oninvalid="setCustomValidity(' ')">
+	                                    <input type="text" text-num-only class="form-control" ng-model="GrpEtapas.nombre_grupo_etapas" name="nombre_grupo_etapas" ng-required="true" oninvalid="setCustomValidity(' ')">
 										<div class="error campo-requerido" ng-show="formulario.nombre_grupo_etapas.$invalid && (formulario.nombre_grupo_etapas.$touched || submitted)">
 		                                    <small class="error" ng-show="formulario.nombre_grupo_etapas.$error.required">
 		                                        * Campo requerido.
@@ -114,18 +114,6 @@
 				                                </div>
 				                            </div>
 
-				                            <div class="form-group">
-				                                <label class="col-md-4 control-label">Tiempo estimado en esta estapa (dias)</label>
-				                                <div class="col-md-8">
-													<input type="text" numeric-only class="form-control" ng-model="GrpEtapas.tiempo_etapa_[[$index]]" name="tiempo_etapa_[[$index]]" ng-required="true" oninvalid="setCustomValidity(' ')">
-													<div class="error campo-requerido" ng-show="formulario.tiempo_etapa_[[$index]].$invalid && (formulario.tiempo_etapa_[[$index]].$touched || submitted)">
-					                                    <small class="error" ng-show="formulario.tiempo_etapa_[[$index]].$error.required">
-					                                        * Campo requerido.
-					                                    </small>
-					                            	</div>														
-				                                </div>
-				                            </div>
-											
 										</div>
 									</div>
 								</div>			

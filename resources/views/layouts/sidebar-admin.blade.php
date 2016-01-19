@@ -46,7 +46,7 @@
 				<a href="javascript:;">
 				    <b class="caret pull-right"></b>
 				    <i class="fa fa-users"></i>
-				    <span>Admistrar Usuarios</span>
+				    <span>Administrar Usuarios</span>
 			    </a>
 				<ul class="sub-menu">
 				    <li><a href="{{ url('admin_usuarios') }}">Lista Usuarios</a></li>

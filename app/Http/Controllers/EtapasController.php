@@ -21,6 +21,7 @@ class EtapasController extends Controller {
 		$this->grupo_etapas = GrupoEtapas::where('id_grupo_etapas',$route->getParameter('tipo_proyectos'))
 									->where('id_empresa', Auth::user()->getIdEmpresa())
 									->where('habilitado_grupo_etapas',1)
+
 									->first();
 
 		if(!$this->grupo_etapas){
@@ -37,7 +38,7 @@ class EtapasController extends Controller {
 
 	public function index(){
 		$grupo_etapas = GrupoEtapas::where('id_empresa',Auth::user()->getIdEmpresa())
-										->orderBy('id_grupo_etapas','asc')
+										->orderBy('id_grupo_etapas','desc')
 										->where('habilitado_grupo_etapas',1)
 										->get();
 		return view('etapas.list',compact('grupo_etapas'));
