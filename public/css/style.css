@@ -248,3 +248,21 @@ body {
   border-bottom-left-radius: 0px;
   border-bottom-right-radius: 0px;
 }
+
+.page-sidebar-minified .sidebar .nav>li.has-sub:focus>a, .page-sidebar-minified .sidebar .nav>li.has-sub:hover>a {
+  background: #8BD2EF;
+}
+
+.page-sidebar-minified .sidebar .nav li.has-sub>.sub-menu {
+  position: absolute;
+  left: 100%;
+  top: 0;
+  width: 220px;
+  display: none;
+  padding: 10px 0 10px 30px;
+  margin: 0;
+  background: #fff;
+  border-bottom: 1px solid #D7D7D7;
+  border-right: 1px solid #D7D7D7;
+  border-top: 1px solid #D7D7D7;
+}

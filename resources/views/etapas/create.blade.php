@@ -1,7 +1,7 @@
 @extends('base-admin')
 
 @section('js')
-    <script src="{{ asset('/js/controllers/grupoetapas.js') }}"></script>
+    <script src="{{ asset('/js/controllers/grupo_etapas.js') }}"></script>
 @endsection
 
 @section('content')
@@ -143,6 +143,7 @@
 									Registrar <i class="fa fa-pencil-square-o"></i>
 								</button>
 							</center>
+							@include('modals/confirmar_registar')
 							
 						</form>
 	
