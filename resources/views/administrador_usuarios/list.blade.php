@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div id="page-container" class="fade page-sidebar-fixed page-header-fixed" ng-controller="DominioController">
+<div id="page-container" class="fade page-sidebar-fixed page-header-fixed">
 	
 	@include('layouts/navbar-admin')
 

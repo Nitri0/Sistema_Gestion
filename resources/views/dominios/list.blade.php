@@ -4,7 +4,6 @@
     <script src="{{ asset('/js/controllers/dominio.js') }}"></script>
 @endsection
 
-
 @section('content')
 
 <div id="page-container" class="fade page-sidebar-fixed page-header-fixed" ng-controller="DominioController">
