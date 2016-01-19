@@ -28,20 +28,20 @@
                     <div class="row text-list">
                         <div class="col-sm-3"> 
                             <div class="row">
-                                <div class="col-sm-3"># </div>
+                                <div class="col-sm-3"><a href="#" ng-click="changeSort('index')">#</a></div>
                                 <div class="col-sm-9">
-                                    Proyecto
+                                    <a href="#" ng-click="changeSort('nombre_proyecto')">Proyecto</a>
                                 </div>
                             </div>
                         </div>
                         <div class="col-sm-3">
-                            Cliente
+                            <a href="#" ng-click="changeSort('nombre_cliente')">Cliente</a>
                         </div>
                         <div class="col-sm-3">
-                            Dominio
+                            <a href="#" ng-click="changeSort('nombre_dominio')">Dominio</a>
                         </div>
-                        <div class="col-sm-3">
-                            <a href="#" ng-click="changeSort('proyecto.nombre_etapa')">Estatus</a>
+                        <div class="col-sm-2">
+                            <a href="#" ng-click="changeSort('fecha_creacion_avance')">Ultimo avance</a>
                         </div>
                     </div>
 
@@ -82,7 +82,7 @@
                                     </div>
 
                                     <div class="col-sm-2">
-                                        [[proyecto.nombre_etapa]]
+                                        <center>[[proyecto.fecha_creacion_avance | DateForHumans]]</center>
                                     </div>
 
                                 </div>                               
@@ -90,6 +90,7 @@
                         </div>
                         <div id="[[$index+1]]" class="panel-collapse collapse">
                             <div class="panel-body">
+                                <p>Estatus:  [[proyecto.nombre_etapa]]</p>
                                 <p>Fecha de creación: [[proyecto.fecha_creacion_proyecto]] </p>
                                 <p>Rol: [[proyecto.nombre_tipo_rol]]</p>
                                 <p>Tipo de Proyecto: [[proyecto.nombre_grupo_etapas]]</p>

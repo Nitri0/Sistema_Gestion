@@ -37,20 +37,20 @@
                 	<div class="row text-list">
                 		<div class="col-sm-3"> 
                 			<div class="row">
-                				<div class="col-sm-3"># </div>
+                				<div class="col-sm-3"><a href="#" ng-click="changeSort('index')">#</a> </div>
                 				<div class="col-sm-9">
-                        			Nombre
+                        			<a href="#" ng-click="changeSort('nombre_proyecto')">Proyecto</a>
                         		</div>
                 			</div>
                 		</div>
                 		<div class="col-sm-3">
-							Dominio
+							<a href="#" ng-click="changeSort('nombre_dominio')">Dominio</a>
                 		</div>
                 		<div class="col-sm-3">
-							Etapas
+							<a href="#" ng-click="changeSort('nombre_etapa')">Estatus</a>
                 		</div>
                 		<div class="col-sm-3">
-							Fecha
+							<a href="#" ng-click="changeSort('fecha_creacion_avance')">Ultimo avance</a>
                 		</div>
                 	</div>
 
