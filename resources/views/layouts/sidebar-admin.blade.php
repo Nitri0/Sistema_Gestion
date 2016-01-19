@@ -22,7 +22,6 @@
 		<!-- end sidebar user -->
 		<!-- begin sidebar nav -->
 		<ul class="nav">
-
 			@if(Auth::user()->isSuperAdmin())
 			<li class="has-sub"><!-- ng-click="proyecto_active()" ng-class="{'': !proyecto, 'active': proyecto}"-->
 				<a href="javascript:;" >
@@ -35,68 +34,124 @@
 				    <li><a href="{{ url('admin_empresas/create') }}">Crear Empresas</a></li>
 				</ul>
 			</li>
-			<li >
-				<a href="{{ url('mis-proyectos') }}">
-				    <i class="fa fa-star"></i>
+			@endif
+			<li class="has-sub"><!-- ng-click="proyecto_active()" ng-class="{'': !proyecto, 'active': proyecto}"-->
+				<a href="javascript:;" >
+				    <i class="fa fa-coffee"></i>
 				    <span>Mis Proyectos</span>
 			    </a>
-			</li>	
-			@elseif(Auth::user()->isAdmin())
-			<li class="has-sub" ng-init="menu={{Auth::user()->getAllPermisosMenu()}}"><!-- ng-click="usuario_active()" ng-class="{'': !usuario, 'active': usuario}" -->
-				<a href="javascript:;">
+			</li>		
+			@if(Auth::user()->tiene_permiso('proyectos'))
+			<li class="has-sub"><!-- ng-click="proyecto_active()" ng-class="{'': !proyecto, 'active': proyecto}"-->
+				<a href="javascript:;" >
 				    <b class="caret pull-right"></b>
-				    <i class="fa fa-users"></i>
-				    <span>Administrar Usuarios</span>
+				    <i class="fa fa-coffee"></i>
+				    <span>Proyectos</span>
 			    </a>
 				<ul class="sub-menu">
-				    <li><a href="{{ url('admin_usuarios') }}">Lista Usuarios</a></li>
-				    <li><a href="{{ url('admin_usuarios/create') }}">Crear Usuarios</a></li>
+				    <li><a href="{{ url('proyectos') }}">Filtrar</a></li>
+				    <li><a href="{{ url('proyectos/create') }}">Crear proyecto</a></li>
+				    <li><a href="{{ url('proyectos-finalizados') }}">Proyectos inactivos</a></li>
 				</ul>
-			</li>	 
-			<li >
-				<a href="{{ url('mis-proyectos') }}">
-				    <i class="fa fa-star"></i>
-				    <span>Mis Proyectos</span>
-			    </a>
-			</li>	
-
-			<li class="has-sub" ng-repeat="item in menu">
-				<a  href="javascript:;" >
-					<b class="caret pull-right"></b>
-				    <i class="[[item.icon]]"></i>
-				    <span>[[item.nombre_menu]]</span>
-				    
-			    </a>
-			    <ul class="sub-menu" >
-					<li ng-repeat='subitem in item.submenu'>
-						<a href="{{ url('[[subitem.url]]') }}">[[subitem.label]]</a>
-					</li>
-			    </ul>
-			</li>			
-			@else
-			
-			<li ng-init="menu={{Auth::user()->getPermisosMenu()}}">
-				<a href="{{ url('mis-proyectos') }}">
-				    <i class="fa fa-star"></i>
-				    <span>Mis Proyectos</span>
-			    </a>
-			</li>	
-
-			<li class="has-sub" ng-repeat="item in menu">
-				<a  href="javascript:;" >
-					<b class="caret pull-right"></b>
-				    <i class="[[item.icon]]"></i>
-				    <span>[[item.nombre_menu]]</span>
-				    
-			    </a>
-			    <ul class="sub-menu" >
-					<li ng-repeat='subitem in item.submenu'>
-						<a href="{{ url('[[subitem.url]]') }}">[[subitem.label]]</a>
-					</li>
-			    </ul>
 			</li>
-	
+			@endif	
+			@if(Auth::user()->tiene_permiso('clientes'))
+			<li class="has-sub"><!-- ng-click="proyecto_active()" ng-class="{'': !proyecto, 'active': proyecto}"-->
+				<a href="javascript:;" >
+				    <b class="caret pull-right"></b>
+				    <i class="fa fa-coffee"></i>
+				    <span>Clientes</span>
+			    </a>
+				<ul class="sub-menu">
+				    <li><a href="{{ url('clientes') }}">Filtrar</a></li>
+				    <li><a href="{{ url('clientes/create') }}">Crear clientes</a></li>
+				</ul>
+			</li>
 			@endif
+
+			@if(Auth::user()->tiene_permiso('grupo_etapas'))
+			<li class="has-sub"><!-- ng-click="proyecto_active()" ng-class="{'': !proyecto, 'active': proyecto}"-->
+				<a href="javascript:;" >
+				    <b class="caret pull-right"></b>
+				    <i class="fa fa-coffee"></i>
+				    <span>Tipos de proyectos</span>
+			    </a>
+				<ul class="sub-menu">
+				    <li><a href="{{ url('clientes') }}">Filtrar</a></li>
+				    <li><a href="{{ url('clientes/create') }}">Crear tipo de proyecto</a></li>
+				</ul>
+			</li>
+			@endif
+
+			@if(Auth::user()->tiene_permiso('plantillas'))
+			<li class="has-sub"><!-- ng-click="proyecto_active()" ng-class="{'': !proyecto, 'active': proyecto}"-->
+				<a href="javascript:;" >
+				    <b class="caret pull-right"></b>
+				    <i class="fa fa-coffee"></i>
+				    <span>Plantillas</span>
+			    </a>
+				<ul class="sub-menu">
+				    <li><a href="{{ url('clientes') }}">Filtrar</a></li>
+				    <li><a href="{{ url('clientes/create') }}">Crear plantilla</a></li>
+				</ul>
+			</li>
+			@endif
+
+			@if(Auth::user()->tiene_permiso('roles'))
+			<li class="has-sub"><!-- ng-click="proyecto_active()" ng-class="{'': !proyecto, 'active': proyecto}"-->
+				<a href="javascript:;" >
+				    <b class="caret pull-right"></b>
+				    <i class="fa fa-coffee"></i>
+				    <span>Roles de usuarios</span>
+			    </a>
+				<ul class="sub-menu">
+				    <li><a href="{{ url('clientes') }}">Filtrar</a></li>
+				    <li><a href="{{ url('clientes/create') }}">Crear rol de usuario</a></li>
+				</ul>
+			</li>
+			@endif
+
+			@if(Auth::user()->tiene_permiso('empresas_proveedoras'))
+			<li class="has-sub"><!-- ng-click="proyecto_active()" ng-class="{'': !proyecto, 'active': proyecto}"-->
+				<a href="javascript:;" >
+				    <b class="caret pull-right"></b>
+				    <i class="fa fa-coffee"></i>
+				    <span>Empresas proveedoras</span>
+			    </a>
+				<ul class="sub-menu">
+				    <li><a href="{{ url('clientes') }}">Filtrar</a></li>
+				    <li><a href="{{ url('clientes/create') }}">Crear empresa proveedora</a></li>
+				</ul>
+			</li>
+			@endif
+			@if(Auth::user()->tiene_permiso('dominios'))
+			<li class="has-sub"><!-- ng-click="proyecto_active()" ng-class="{'': !proyecto, 'active': proyecto}"-->
+				<a href="javascript:;" >
+				    <b class="caret pull-right"></b>
+				    <i class="fa fa-coffee"></i>
+				    <span>Dominios</span>
+			    </a>
+				<ul class="sub-menu">
+				    <li><a href="{{ url('clientes') }}">Filtrar</a></li>
+				    <li><a href="{{ url('clientes/create') }}">Crear dominio</a></li>
+				</ul>
+			</li>
+			@endif
+
+			@if(Auth::user()->isAdmin())
+			<li class="has-sub"><!-- ng-click="proyecto_active()" ng-class="{'': !proyecto, 'active': proyecto}"-->
+				<a href="javascript:;" >
+				    <b class="caret pull-right"></b>
+				    <i class="fa fa-coffee"></i>
+				    <span>Administrar usuarios</span>
+			    </a>
+				<ul class="sub-menu">
+				    <li><a href="{{ url('clientes') }}">Filtrar</a></li>
+				    <li><a href="{{ url('clientes/create') }}">Crear usuario</a></li>
+				</ul>
+			</li>
+			@endif
+
 	        <!-- begin sidebar minify button -->
 			<li><a href="javascript:;" class="sidebar-minify-btn" data-click="sidebar-minify"><i class="fa fa-angle-double-left"></i></a></li>
 	        <!-- end sidebar minify button -->
