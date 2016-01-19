@@ -91,7 +91,12 @@
                             	<p>Contacto: [[model.persona_contacto_cliente]]</p>
                             	<p>Dirección: [[model.direccion_cliente]]</p>
                             	<p>Telefono 2: [[model.telefono_2_cliente]]</p>
-                            	<p>Nombre de Proyecto: [[model.nombre_proyecto]]</p>
+                            	<p>Proyectos:</p>
+                                <ul ng-repeat="proyecto in model.nombre_proyecto">
+                                    <li>
+                                        <a href="[[url + '/proyectos/' + proyecto.id_proyecto]]">[[proyecto.nombre_proyecto]]</a>
+                                    </li>
+                                </ul>
                             	<form action="[[url+'/clientes/'+model.id_cliente]]" method="post">
 					        		<input type="hidden" name="_method" value="delete">
 									<button type="submit" class="btn btn-sm btn-danger pull-right" data-toggle="tooltip" data-title="Eliminar"><i class="fa fa-trash"></i></button>
