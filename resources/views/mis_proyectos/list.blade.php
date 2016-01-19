@@ -92,7 +92,7 @@
                             <div class="panel-body">
                                 <p>Fecha de creación: [[proyecto.fecha_creacion_proyecto]] </p>
                                 <p>Rol: [[proyecto.nombre_tipo_rol]]</p>
-                                <p>Tipo de Proyecto: [[proyecto.nombre_tipo_proyecto]]</p>
+                                <p>Tipo de Proyecto: [[proyecto.nombre_grupo_etapas]]</p>
                                 <p class="center">Ultimo Avance</p>
                                 <div class="row">
                                     <div class="col-md-8 col-md-offset-2">

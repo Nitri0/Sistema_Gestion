@@ -217,7 +217,7 @@ class ConfiguracionController extends Controller {
 						],
 				],
 
-		"grupo_etapas" =>[
+		"tipo_proyectos" =>[
 				"nombre_menu" => 'Tipo de proyectos',
 				"icon" => 'fa fa-line-chart',
 				"items_menu" => ['index'=>[

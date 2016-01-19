@@ -18,18 +18,18 @@ class EtapasController extends Controller {
 	}
 
 	public function find(Route $route){
-		$this->grupo_etapas = GrupoEtapas::where('id_grupo_etapas',$route->getParameter('grupo_etapas'))
+		$this->grupo_etapas = GrupoEtapas::where('id_grupo_etapas',$route->getParameter('tipo_proyectos'))
 									->where('id_empresa', Auth::user()->getIdEmpresa())
 									->where('habilitado_grupo_etapas',1)
 									->first();
 
 		if(!$this->grupo_etapas){
-			return redirect('/grupo_etapas');
+			return redirect('/tipo_proyectos');
 		};
 	}
 
 	public function permisos(Route $route){
-		if(Gate::denies('etapas', $route->getName()) ){
+		if(Gate::denies('tipo_proyectos', $route->getName()) ){
 			Session::flash("mensaje-error","No tiene permisos para acceder al modulo: ".$route->getName());
 			return redirect('/mis-proyectos');
 		};
@@ -90,7 +90,7 @@ class EtapasController extends Controller {
 	public function destroy($id){
 		$this->grupo_etapas->fill(['habilitado_grupo_etapas'=>0,]);
 		$this->grupo_etapas->save();
-		return redirect('/grupo_etapas');
+		return redirect('/tipo_proyectos');
 	}
 
 }
