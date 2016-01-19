@@ -127,7 +127,7 @@
 							</div>
 
 							<center>
-								<button type="button" class="btn btn-success m-r-5 m-b-5" ng-click="submit(formulario.$valid)">
+								<button href="#confirmar_registrar" class="btn btn-success m-r-5 m-b-5" data-toggle="modal">
 									Registrar
 								</button>
 							</center>

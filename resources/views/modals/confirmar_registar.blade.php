@@ -6,12 +6,12 @@
 				<h4 class="modal-title"><i class="fa fa-line-chart"></i> Crear Tipo Proyecto</h4>
 			</div>
 			<div class="modal-body">
-				<p>¿Esta seguro que quiere registrar la información del formulario?</p>,
-				<p>luego de ser creado no podrá ser modificada</p>
+				<p>¿Esta seguro que quiere registrar la información del formulario?</p>
+				<p>Luego de ser creado no podrá ser modificada.</p>
 			</div>
 			<div class="modal-footer">
 				<a href="javascript:;" class="btn btn-danger" data-dismiss="modal">No</a>
-				<button type="button" class="btn btn-success" ng-click="submit(formulario.$valid)">
+				<button type="button" class="btn btn-success" ng-click="submit(formulario.$valid)" data-dismiss="modal">
 					Si
 				</button>
 			</div>
