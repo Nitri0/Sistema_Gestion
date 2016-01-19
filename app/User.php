@@ -177,7 +177,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
 	// 	return false;
 	// }	
 
-	public function isSuscriptor(){
+	public function validacionVencimiento(){
 		$id_empresa = MMEmpresasUsuarios::where('id_usuario',$this->id_usuario)->first()->id_empresa;
 		$empresa = Empresas::find($id_empresa);
 		//dd($empresa->created_at);
