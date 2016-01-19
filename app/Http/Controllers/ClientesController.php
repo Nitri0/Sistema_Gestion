@@ -37,17 +37,18 @@ class ClientesController extends Controller {
 
 	public function index(){
 
-		$clientes = json_encode(\DB::table('t_clientes')
-									->select('t_clientes.*', 't_proyectos.nombre_proyecto')
-				 					->where('t_clientes.habilitado_cliente','=',1)
-				 					->where('t_clientes.id_empresa', Auth::user()->getIdEmpresa())
-				 					->leftjoin('t_proyectos', 't_proyectos.id_cliente', '=', 't_clientes.id_cliente')
-				 					->orderBy('t_clientes.id_cliente','desc')
-				 					->get());
+		// $clientes = json_encode(\DB::table('t_clientes')
+		// 							->select('t_clientes.*', 't_proyectos.nombre_proyecto')
+		// 		 					->where('t_clientes.habilitado_cliente','=',1)
+		// 		 					->where('t_clientes.id_empresa', Auth::user()->getIdEmpresa())
+		// 		 					->leftjoin('t_proyectos', 't_proyectos.id_cliente', '=', 't_clientes.id_cliente')
+		// 		 					->orderBy('t_clientes.id_cliente','desc')
+		// 		 					->get());
 
-		// $clientes = Clientes::where('id_empresa', Auth::user()->getIdEmpresa())
-		// 						->orderBy('id_cliente', 'desc')
-		// 						->paginate(10);
+		$clientes = json_encode(Clientes::where('id_empresa', Auth::user()->getIdEmpresa())
+											->where('habilitado_cliente',1)
+											->orderBy('id_cliente', 'desc')
+											->get());
 		return view('clientes.list', compact('clientes'));
 	}
 

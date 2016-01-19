@@ -17,6 +17,12 @@ class Clientes extends Model {
 								'id_empresa');
 	public $timestamps = false;
 
+	protected $appends = ['nombre_proyecto'];
+
+	public function getNombreProyectoAttribute(){
+        return Proyectos::where('id_cliente', $this->id_cliente)->get(['nombre_proyecto','id_proyecto']);
+    }
+
 	public function getProyecto(){
 		$proyecto = Proyectos::where('id_Cliente',$this->id_cliente)->first();
 		if ($proyecto){
