@@ -187,11 +187,11 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
 
 		if ($empresa){
 			if ($empresa->suscriptor_empresa == 1){
-				return true;
+				return false;
 			}
 			return $empresa->suscriptor_empresa == 0 && $fecha_creacion < \Carbon\Carbon::now()->subDays(7);
 		}
-		return false;
+		return true;
 	}
 
 	public function validacionExcepciones($method){
