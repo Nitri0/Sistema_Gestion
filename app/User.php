@@ -35,60 +35,60 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         				->get(['nombre_empresa','rif_empresa']);
     }
 
-    public function getPermisosMenu(){
-    	$configuracion = new ConfiguracionController();
-    	$dicc = $configuracion->InfoModulos;
-		$items = [];
-		$menu = [];
-		$modulos = Excepciones::where('id_usuario', $this->id_usuario)
-    						->get();
-    	foreach($modulos as $modulos_raw){
-    		$modulo = explode(".", $modulos_raw->modulo_excepcion);
-    		$labels = $dicc[$modulo[0]];
+  //   public function getPermisosMenu(){
+  //   	$configuracion = new ConfiguracionController();
+  //   	$dicc = $configuracion->InfoModulos;
+		// $items = [];
+		// $menu = [];
+		// $modulos = Excepciones::where('id_usuario', $this->id_usuario)
+  //   						->get();
+  //   	foreach($modulos as $modulos_raw){
+  //   		$modulo = explode(".", $modulos_raw->modulo_excepcion);
+  //   		$labels = $dicc[$modulo[0]];
 
 
-    		if (!array_key_exists($modulo[0],$items)){
-	    		$items[$modulo[0]] = [	
-	    						'nombre_modulo' => $modulo[0],
-								'nombre_menu' => $labels['nombre_menu'],
-								'icon'=> $labels['icon'],
-								'submenu' =>[],
-	    							];
-	    	}
-	    	//dd($modulo[1], $labels['items_menu']);
-    		if (array_key_exists($modulo[1], $labels['items_menu'])){
-	    		$submenu = [
-					'label'=>$labels['items_menu'][$modulo[1]]['nombre'],
-					'url'=>$labels['items_menu'][$modulo[1]]['url'],
-    			];
-	    		array_push($items[$modulo[0]]['submenu'], $submenu);
-    		}
-    	}
-    	return json_encode($items);
-    }
+  //   		if (!array_key_exists($modulo[0],$items)){
+	 //    		$items[$modulo[0]] = [	
+	 //    						'nombre_modulo' => $modulo[0],
+		// 						'nombre_menu' => $labels['nombre_menu'],
+		// 						'icon'=> $labels['icon'],
+		// 						'submenu' =>[],
+	 //    							];
+	 //    	}
+	 //    	//dd($modulo[1], $labels['items_menu']);
+  //   		if (array_key_exists($modulo[1], $labels['items_menu'])){
+	 //    		$submenu = [
+		// 			'label'=>$labels['items_menu'][$modulo[1]]['nombre'],
+		// 			'url'=>$labels['items_menu'][$modulo[1]]['url'],
+  //   			];
+	 //    		array_push($items[$modulo[0]]['submenu'], $submenu);
+  //   		}
+  //   	}
+  //   	return json_encode($items);
+  //   }
 
-    public function getAllPermisosMenu(){
-    	$configuracion = new ConfiguracionController();
-    	$dicc = $configuracion->InfoModulos;
+  //   public function getAllPermisosMenu(){
+  //   	$configuracion = new ConfiguracionController();
+  //   	$dicc = $configuracion->InfoModulos;
 
-		foreach ($dicc as $raw_name => $modulo) {
+		// foreach ($dicc as $raw_name => $modulo) {
 
-			$items[$raw_name] = [
-								'nombre_modulo' => $raw_name,
-								'nombre_menu' => $modulo['nombre_menu'],
-								'icon'=> $modulo['icon'],
-								'submenu' =>[],
-	    							];
-	    	foreach ($modulo['items_menu'] as $key => $submenu) {
-	    		$submenu = [
-					'label'=>$submenu['nombre'],
-					'url'=>$submenu['url'],
-    			];
-	    		array_push($items[$raw_name]['submenu'], $submenu);
-	    	}
-		}
-    	return json_encode($items);
-    }
+		// 	$items[$raw_name] = [
+		// 						'nombre_modulo' => $raw_name,
+		// 						'nombre_menu' => $modulo['nombre_menu'],
+		// 						'icon'=> $modulo['icon'],
+		// 						'submenu' =>[],
+	 //    							];
+	 //    	foreach ($modulo['items_menu'] as $key => $submenu) {
+	 //    		$submenu = [
+		// 			'label'=>$submenu['nombre'],
+		// 			'url'=>$submenu['url'],
+  //   			];
+	 //    		array_push($items[$raw_name]['submenu'], $submenu);
+	 //    	}
+		// }
+  //   	return json_encode($items);
+  //   }
 
 	public function getPerfil(){
 		$perfil = Perfil::where('id_usuario',$this->id_usuario)->first();
@@ -166,16 +166,6 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
 		}
 		return false;
 	}
-	
-	// public function EmpresaValida(){
-	// 	$id_empresa = MMEmpresasUsuarios::where('id_usuario',$this->id_usuario)->id_empresa;
-	// 	$empresa = Empresas::find($id_empresa);
-	// 	dd(Carbon::parse($empresa->created_at));
-	// 	if ($empresa){
-	// 		return $empresa->suscriptor_empresa == 1 && $empresa->;
-	// 	}
-	// 	return false;
-	// }	
 
 	public function validacionVencimiento(){
 		$id_empresa = MMEmpresasUsuarios::where('id_usuario',$this->id_usuario)->first()->id_empresa;
@@ -206,13 +196,21 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
 		}
 		return false;
 	 }
-	// public function validacionExcepciones($method){
-	// 	Excepciones::where('id_usuario', $this->id_usuario)
-	// 					->where('id_empresa', $this->getIdEmpresa())
-	// 					->where('modulo_excepcion',$method)
-	// 					->fi
-	// 				->get()->pluck('modulo_excepcion')->toArray();
-	// 	return $user->getIdEmpresa() == 
-	// }
 
+	 public function tiene_permiso($value){
+
+	 	if ($this->isAdmin()){
+	 		return true;
+	 	}else{
+	 		//BUSCAR LA MANERA DE FILTRAR POR TODOS LOS MODULOS
+			$excepciones = Excepciones::where('id_usuario',$this->id_usuario)
+									->where('modulo_excepcion',$value.'.index')
+									->first();
+
+			if($excepciones){
+				return true;
+			}
+			return false;
+	 	}
+	 }
 }
