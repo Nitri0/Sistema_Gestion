@@ -90,13 +90,12 @@
                         </div>
                         <div id="[[$index+1]]" class="panel-collapse collapse">
                             <div class="panel-body">
-                            [[proyecto]]
                                 <p>Dominio:  
                                     <a href="{{url('/dominios/[[proyecto.id_dominio]]')}}">
                                         [[proyecto.nombre_dominio | noAsignado ]]
                                     </a>
                                 </p>
-                                <p>Fecha de creación: [[proyecto.fecha_creacion_proyecto]] </p>
+                                <p>Fecha de creación: [[proyecto.DATE_FORMAT(t_proyectos.fecha_creacion_proyecto,'%d-%m-%Y')]] </p>
                                 <p>Rol: [[proyecto.nombre_tipo_rol]]</p>
                                 <p>Tipo de Proyecto: [[proyecto.nombre_tipo_proyecto]]</p>
                                 <hr>
@@ -105,14 +104,14 @@
                                     <div class="col-md-8 col-md-offset-2">
                                         <ul class="chats">
                                             <li class="left">
-                                                <span class="date-time">2016-01-04 16:43:20</span>
-                                                <a href="javascript:;" class="name">Usuario</a>
+                                                <span class="date-time">[[proyecto.fecha_creacion_avance]]</span>
+                                                <a href="javascript:;" class="name">[[proyecto.nombre_usuario]]</a>
                                                 <a href="javascript:;" class="image"><img width="50" alt="" src="http://localhost:8000/img/user.png"></a>
                                                 <div class="message">
-                                                    Proyecto creado exitosamente
+                                                    [[proyecto.descripcion_avance]]
                                                 </div>
                                                 <div class="asunto">
-                                                <h6>Asunto: Iniciando Proyecto</h6>
+                                                <h6>Asunto: [[proyecto.asunto_avance]]</h6>
                                                 </div>
                                             </li>
                                         </ul>
