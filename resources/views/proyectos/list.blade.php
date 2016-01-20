@@ -96,7 +96,6 @@
                         </div>
                         <div id="[[$index+1]]" class="panel-collapse collapse">
                             <div class="panel-body">
-                            [[proyecto]]
                             	<p>Nombre del Cliente: [[proyecto.nombre_cliente]]</p>
                             	<p>Tipo de Proyecto: [[proyecto.nombre_grupo_etapas]]</p>
                                 <hr>

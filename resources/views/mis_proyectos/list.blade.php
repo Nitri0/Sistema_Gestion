@@ -90,18 +90,17 @@
                         </div>
                         <div id="[[$index+1]]" class="panel-collapse collapse">
                             <div class="panel-body">
-                            [[proyecto]]
                                 <p>Dominio:  
                                     <a href="{{url('/dominios/[[proyecto.id_dominio]]')}}">
                                         [[proyecto.nombre_dominio | noAsignado ]]
                                     </a>
                                 </p>
-                                <p>Fecha de creación: [[proyecto.fecha_creacion_proyecto]] </p>
+                                <p>Fecha de creación: [[proyecto.DATE_FORMAT(t_proyectos.fecha_creacion_proyecto,'%d-%m-%Y')]] </p>
                                 <p>Rol: [[proyecto.nombre_tipo_rol]]</p>
-                                <p>Tipo de Proyecto: [[proyecto.nombre_tipo_proyecto]]</p>
+                                <p>Tipo de Proyecto: [[proyecto.nombre_grupo_etapas]]</p>
                                 <hr>
                                 <p class="center">Ultimo Avance</p>
-                                <div class="row">
+                                <div class="row" ng-if="proyecto.asunto_avance.length != 0">
                                     <div class="col-md-8 col-md-offset-2">
                                         <ul class="chats">
                                             <li class="left">
