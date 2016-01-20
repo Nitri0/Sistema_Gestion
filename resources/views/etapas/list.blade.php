@@ -15,7 +15,7 @@
         <ol class="breadcrumb pull-right">
             <div class="btn-toolbar">
                 <div class="btn-group">
-                    <a href="{{ url( '/tipo_proyecto/create' ) }}" class="btn btn-success btn-sm p-l-20 p-r-20" data-toggle="tooltip" data-title="Agregar">
+                    <a href="{{ url( '/tipo_proyectos/create' ) }}" class="btn btn-success btn-sm p-l-20 p-r-20" data-toggle="tooltip" data-title="Agregar">
                         <i class="fa fa-plus"></i>
                     </a>
                 </div>

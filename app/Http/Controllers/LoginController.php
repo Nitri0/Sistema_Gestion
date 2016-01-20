@@ -161,6 +161,25 @@ class LoginController extends Controller {
 		};
 		Session::flash('mensaje','Su nueva contraseña a sido enviada a su correo.');
 		return redirect('/login');
-	}		
+	}	
+
+	public function HabilitarUsuario($codigo_activacion){
+		// $mensaje = "Usuario Habilitado Satisfactoriamente";
+		// $codigo 	 =  1;
+		$usuarios = Usuario::where( 'codigo_activacion_usuario', $codigo_activacion );
+		if (!$usuarios->count() > 0){
+			Session::flash('mensaje-error','Código de activación incorrecto.');
+			return redirect('/login');
+		}
+		$usuario_habilitados = $usuarios->where('habilitado_usuario', 0);
+		if ( !$usuario_habilitados->first() ){
+			Session::flash('mensaje-error','Código de activación usado.');
+			return redirect('/login');
+		}
+		$usuario_habilitados->update(array('habilitado_usuario' => 1));
+		$usuario_habilitados->save();
+		//User::where('codigo_activacion_usuario','=', $codigo_activacion)->update(array('habilitado_usuario' => 1));
+		return view('auth/habilitado', compact('codigo'));
+	}
 
 }
