@@ -96,6 +96,7 @@
                         </div>
                         <div id="[[$index+1]]" class="panel-collapse collapse">
                             <div class="panel-body">
+                            [[proyecto]]
                             	<p>Nombre del Cliente: [[proyecto.nombre_cliente]]</p>
                             	<p>Tipo de Proyecto: [[proyecto.nombre_grupo_etapas]]</p>
                                 <hr>
@@ -104,14 +105,14 @@
                                     <div class="col-md-8 col-md-offset-2">
                                         <ul class="chats">
                                             <li class="left">
-                                                <span class="date-time">2016-01-04 16:43:20</span>
-                                                <a href="javascript:;" class="name">Usuario</a>
-                                                <a href="javascript:;" class="image"><img width="50" alt="" src="http://localhost:8000/img/user.png"></a>
+                                                <span class="date-time">[[proyecto.fecha_creacion_avance]]</span>
+                                                <a href="javascript:;" class="name">[[proyecto.nombre_usuario]]</a>
+                                                <a href="javascript:;" class="image"><img width="50" alt="" src="{{ url('img/user.png') }}"></a>
                                                 <div class="message">
-                                                    Proyecto creado exitosamente
+                                                    <div ng-bind-html="proyecto.descripcion_avance"></div>
                                                 </div>
                                                 <div class="asunto">
-                                                <h6>Asunto: Iniciando Proyecto</h6>
+                                                <h6>Asunto: [[proyecto.asunto_avance]]</h6>
                                                 </div>
                                             </li>
                                         </ul>

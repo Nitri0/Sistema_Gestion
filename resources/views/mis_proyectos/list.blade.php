@@ -90,7 +90,7 @@
                         </div>
                         <div id="[[$index+1]]" class="panel-collapse collapse">
                             <div class="panel-body">
-                            [[proyeto]]
+                            [[proyecto]]
                                 <p>Dominio:  
                                     <a href="{{url('/dominios/[[proyecto.id_dominio]]')}}">
                                         [[proyecto.nombre_dominio | noAsignado ]]
@@ -107,7 +107,7 @@
                                             <li class="left">
                                                 <span class="date-time">[[proyecto.fecha_creacion_avance]]</span>
                                                 <a href="javascript:;" class="name">[[proyecto.nombre_usuario]]</a>
-                                                <a href="javascript:;" class="image"><img width="50" alt="" src="http://localhost:8000/img/user.png"></a>
+                                                <a href="javascript:;" class="image"><img width="50" alt="" src="{{ url('img/user.png') }}"></a>
                                                 <div class="message">
                                                     <div ng-bind-html="proyecto.descripcion_avance"></div>
                                                 </div>
