@@ -21,7 +21,7 @@
         </ol>
         
 
-        <h1 class="page-header"><i class="fa fa-users"></i> Todos los Usuarios </h1>
+        <h1 class="page-header">Todos los Usuarios </h1>
         
 		@include('alerts.mensaje_success')
 		@include('alerts.mensaje_error')

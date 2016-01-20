@@ -27,7 +27,7 @@
             </div>
         </ol>
         
-        <h1 class="page-header"><i class="fa fa-laptop"></i> Todos los proyectos </h1>
+        <h1 class="page-header">Todos los proyectos </h1>
 
 		<div ng-init="proyectos={{$proyectos}}"></div>
 

@@ -32,7 +32,7 @@
             </div>
         </ol>
 
-        <h1 class="page-header"><i class="fa fa-link"></i> Lista de Dominios</h1>
+        <h1 class="page-header">Lista de Dominios</h1>
 
         <div ng-init="dominios={{$dominios}}"></div>
 		<div ng-init="url='{{url()}}'"></div>

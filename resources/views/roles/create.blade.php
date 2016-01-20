@@ -28,7 +28,7 @@
         </ol>
 		<div ng-init="urlRedirect='{{ url('roles/') }}'"></div>
 		@if($rol)
-	        <h1 class="page-header"><i class="fa fa-laptop"></i> Editar Rol </h1>
+	        <h1 class="page-header">Editar Rol </h1>
 	        
 	        <div ng-init="model={{ $rol }}"></div>
 	        <div ng-init="urlAction='{{ url('roles/'.$rol->id_tipo_rol) }}'"></div>
@@ -37,7 +37,7 @@
 		
 		@else
 			<div ng-init="urlAction='{{ url('roles/') }}'"></div>
-			<h1 class="page-header"><i class="fa fa-laptop"></i> Crear Rol </h1>
+			<h1 class="page-header">Crear Rol </h1>
 			<form class="form-horizontal" action="{{ url('roles/') }}" method="POST" name="formulario" id="formulario" >
 		@endif
 

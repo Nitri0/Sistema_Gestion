@@ -20,7 +20,7 @@
             </div>
         </ol>
 
-        <h1 class="page-header"><i class="fa fa-laptop"></i> Lista de Clientes </h1>
+        <h1 class="page-header">Lista de Clientes </h1>
         
         <div ng-init="models={{$clientes}}"></div>
 		<div ng-init="url='{{url()}}'"></div>

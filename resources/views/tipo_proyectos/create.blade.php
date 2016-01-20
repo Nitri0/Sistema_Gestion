@@ -19,7 +19,7 @@
 
         @if($tipo_proyecto)
         
-        <h1 class="page-header"><i class="fa fa-laptop"></i> Editar tipo de proyecto </h1>
+        <h1 class="page-header">Editar tipo de proyecto </h1>
         <div ng-init="model={{ $tipo_proyecto }}"></div>
         <div ng-init="urlAction='{{ url('tipo_proyectos/'.$tipo_proyecto->id_tipo_proyecto) }}'"></div>
         <form class="form-horizontal" name="formulario" id="formulario" action="{{ url('tipo_proyectos/'.$tipo_proyecto->id_tipo_proyecto) }}" method="POST">
@@ -27,7 +27,7 @@
         
         @else
         <div ng-init="urlAction='{{ url('tipo_proyectos/') }}'"></div>
-        <h1 class="page-header"><i class="fa fa-laptop"></i>  Crear tipo de proyecto </h1>
+        <h1 class="page-header">Crear tipo de proyecto </h1>
         <form class="form-horizontal" name="formulario" id="formulario" action="{{ url('tipo_proyectos/') }}" method="POST">      
         
         @endif

@@ -18,7 +18,7 @@
 		<div ng-init="urlRedirect='{{ url('dominios/') }}'"></div>
 
 		@if($dominio)
-        <h1 class="page-header"><i class="fa fa-link"></i> Editar Dominio </h1>
+        <h1 class="page-header">Editar Dominio </h1>
         
         <div ng-init="dominio={{$dominio}}"></div>
 		<div ng-init="urlAction='{{ url('dominios/'.$dominio->id_dominio) }}'"></div>
@@ -26,7 +26,7 @@
 		<input type="hidden" name="_method" value="PUT">
 		@else
 		<div ng-init="urlAction='{{ url('dominios/') }}'"></div>
-		<h1 class="page-header"><i class="fa fa-link"></i> Crear Dominio </h1>
+		<h1 class="page-header">Crear Dominio </h1>
 		<form class="form-horizontal" action="{{ url('dominios/') }}" method="POST" name="formulario" id="formulario">
 		@endif
 

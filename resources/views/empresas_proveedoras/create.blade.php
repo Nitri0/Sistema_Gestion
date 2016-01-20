@@ -21,7 +21,7 @@
 
         @if($empresa_proveedora)
         
-        <h1 class="page-header"><i class="fa fa-laptop"></i> Editar Empresa Proveedora </h1>
+        <h1 class="page-header">Editar Empresa Proveedora </h1>
         <div ng-init="empresa_proveedora={{ $empresa_proveedora }}"></div>
         <div ng-init="urlAction='{{ url('empresas_proveedoras/'.$empresa_proveedora->id_empresa_proveedora) }}'"></div>
         <form class="form-horizontal" action="{{ url('empresas_proveedoras/'.$empresa_proveedora->id_empresa_proveedora) }}" method="POST" name="formulario" id="formulario">
@@ -29,7 +29,7 @@
         @else
    		
    		<div ng-init="urlAction='{{ url('empresas_proveedoras/') }}'"></div>
-   		<h1 class="page-header"><i class="fa fa-laptop"></i> Crear Empresa Proveedora </h1>
+   		<h1 class="page-header">Crear Empresa Proveedora </h1>
    		<form class="form-horizontal" action="{{ url('empresas_proveedoras/') }}" method="POST" name="formulario" id="formulario">	
        	
        	@endif

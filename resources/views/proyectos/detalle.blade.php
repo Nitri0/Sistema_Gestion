@@ -47,7 +47,7 @@
         </ol>
         
 
-        <h1 class="page-header"><i class="fa fa-laptop"></i> Dellate del Proyecto </h1>
+        <h1 class="page-header">Dellate del Proyecto </h1>
         
 		<div class="row">
             

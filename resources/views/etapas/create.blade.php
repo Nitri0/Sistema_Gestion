@@ -26,7 +26,7 @@
             </div>
         </ol>
 
-        <h1 class="page-header"><i class="fa fa-line-chart"></i> Crear Tipo de proyecto</h1>
+        <h1 class="page-header">Crear Tipo de proyecto</h1>
         
         <div class="row">
             <!-- begin col-12 -->

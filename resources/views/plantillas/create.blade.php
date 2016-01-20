@@ -17,7 +17,7 @@
 		<div ng-init="urlRedirect='{{ url('plantillas/') }}'"></div>
 		@if($plantillas)
         
-        <h1 class="page-header"><i class="fa fa-file-code-o"></i> Editar plantilla</h1>
+        <h1 class="page-header">Editar plantilla</h1>
         <div ng-init="plantilla={{$plantillas}}"></div>
 
         <div ng-init="urlAction='{{ url('plantillas/'.$plantillas->id_plantilla) }}'"></div>
@@ -27,7 +27,7 @@
         
         @else
 		<div ng-init="urlAction='{{ url('plantillas/') }}'"></div>
-		<h1 class="page-header"><i class="fa fa-file-code-o"></i> Crear plantilla</h1>
+		<h1 class="page-header">Crear plantilla</h1>
         <form class="form-horizontal" action="{{ url('/plantillas/') }}" method="POST" name="formulario" id="formulario">
         @endif
         

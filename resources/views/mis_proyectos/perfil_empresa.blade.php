@@ -29,7 +29,7 @@
             </div>
         </ol>-->
 
-        <h1 class="page-header"><i class="fa fa-user"></i> Editar perfil de empresa </h1>
+        <h1 class="page-header">Editar perfil de empresa </h1>
         
         <div class="row">
             <!-- begin col-12 -->

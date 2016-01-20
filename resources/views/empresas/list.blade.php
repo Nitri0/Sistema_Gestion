@@ -21,7 +21,7 @@
         </ol>
         
 
-        <h1 class="page-header"><i class="fa fa-laptop"></i> Lista de Empresas </h1>
+        <h1 class="page-header">Lista de Empresas </h1>
         
         <div class="row">
             <!-- begin col-12 -->

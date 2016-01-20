@@ -30,7 +30,7 @@
             </div>
         </ol>
 
-        <h1 class="page-header"><i class="fa fa-link"></i> Lista de Roles</h1>
+        <h1 class="page-header">Lista de Roles</h1>
         
         <div class="row">
             <div class="col-12">
