@@ -53,8 +53,8 @@
 				    <span>Tipos de proyectos</span>
 			    </a>
 				<ul class="sub-menu">
-				    <li><a href="{{ url('clientes') }}">Filtrar</a></li>
-				    <li><a href="{{ url('clientes/create') }}">Crear tipo de proyecto</a></li>
+				    <li><a href="{{ url('tipo_proyectos') }}">Filtrar</a></li>
+				    <li><a href="{{ url('tipo_proyectos/create') }}">Crear tipo de proyecto</a></li>
 				</ul>
 			</li>
 			@endif
@@ -81,8 +81,8 @@
 				    <span>Roles de usuarios</span>
 			    </a>
 				<ul class="sub-menu">
-				    <li><a href="{{ url('clientes') }}">Filtrar</a></li>
-				    <li><a href="{{ url('clientes/create') }}">Crear rol de usuario</a></li>
+				    <li><a href="{{ url('roles') }}">Filtrar</a></li>
+				    <li><a href="{{ url('roles/create') }}">Crear rol de usuario</a></li>
 				</ul>
 			</li>
 			@endif
@@ -95,8 +95,8 @@
 				    <span>Plantillas</span>
 			    </a>
 				<ul class="sub-menu">
-				    <li><a href="{{ url('clientes') }}">Filtrar</a></li>
-				    <li><a href="{{ url('clientes/create') }}">Crear plantilla</a></li>
+				    <li><a href="{{ url('plantillas') }}">Filtrar</a></li>
+				    <li><a href="{{ url('plantillas/create') }}">Crear plantilla</a></li>
 				</ul>
 			</li>
 			@endif
@@ -109,8 +109,8 @@
 				    <span>Empresas</span>
 			    </a>
 				<ul class="sub-menu">
-				    <li><a href="{{ url('clientes') }}">Filtrar</a></li>
-				    <li><a href="{{ url('clientes/create') }}">Crear empresa</a></li>
+				    <li><a href="{{ url('empresas') }}">Filtrar</a></li>
+				    <li><a href="{{ url('empresas/create') }}">Crear empresa</a></li>
 				</ul>
 			</li>
 			@endif
@@ -148,8 +148,8 @@
 				    <span>Administrar usuarios</span>
 			    </a>
 				<ul class="sub-menu">
-				    <li><a href="{{ url('clientes') }}">Filtrar</a></li>
-				    <li><a href="{{ url('clientes/create') }}">Crear usuario</a></li>
+				    <li><a href="{{ url('admin_usuarios') }}">Filtrar</a></li>
+				    <li><a href="{{ url('admin_usuarios/create') }}">Crear usuario</a></li>
 				</ul>
 			</li>
 			@endif

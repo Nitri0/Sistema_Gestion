@@ -152,7 +152,7 @@
 
 	                        <div class="btn-ayuda">
 								<a href="#ayuda" class="btn btn-sm btn-info" data-toggle="modal">
-									<i class="fa fa-life-ring"></i>
+									<i class="fa fa-question"></i>
 								</a>
 							</div>
 				            @include('modals/ayuda')
