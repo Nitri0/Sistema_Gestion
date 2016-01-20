@@ -90,12 +90,13 @@
                         </div>
                         <div id="[[$index+1]]" class="panel-collapse collapse">
                             <div class="panel-body">
+                            [[proyeto]]
                                 <p>Dominio:  
                                     <a href="{{url('/dominios/[[proyecto.id_dominio]]')}}">
                                         [[proyecto.nombre_dominio | noAsignado ]]
                                     </a>
                                 </p>
-                                <p>Fecha de creación: [[proyecto.DATE_FORMAT(t_proyectos.fecha_creacion_proyecto,'%d-%m-%Y')]] </p>
+                                <p>Fecha de creación: [[proyecto.fecha_creacion_proyecto]] </p>
                                 <p>Rol: [[proyecto.nombre_tipo_rol]]</p>
                                 <p>Tipo de Proyecto: [[proyecto.nombre_tipo_proyecto]]</p>
                                 <hr>
@@ -108,7 +109,7 @@
                                                 <a href="javascript:;" class="name">[[proyecto.nombre_usuario]]</a>
                                                 <a href="javascript:;" class="image"><img width="50" alt="" src="http://localhost:8000/img/user.png"></a>
                                                 <div class="message">
-                                                    [[proyecto.descripcion_avance]]
+                                                    <div ng-bind-html="proyecto.descripcion_avance"></div>
                                                 </div>
                                                 <div class="asunto">
                                                 <h6>Asunto: [[proyecto.asunto_avance]]</h6>
