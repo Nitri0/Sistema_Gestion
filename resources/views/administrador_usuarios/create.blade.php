@@ -42,7 +42,7 @@
         <div ng-init="urlRedirect='{{ url('admin_usuarios/') }}'"></div>
         
 		@if($usuario)
-	        <h1 class="page-header"><i class="fa fa-users"></i> Editar Credenciales </h1>
+	        <h1 class="page-header"> Editar Credenciales </h1>
 
 	        <div ng-init="usuario={{$usuario}}"></div>
 			<div ng-init="perfil={{$perfil}}"></div>

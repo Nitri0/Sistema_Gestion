@@ -25,7 +25,7 @@
             </div>
         </ol>-->
         <div ng-init="urlRedirect='{{ url('mis-proyectos/') }}'"></div>
-        <h1 class="page-header"><i class="fa fa-laptop"></i>Crear avance en el Proyecto.</h1>
+        <h1 class="page-header">Crear avance en el Proyecto.</h1>
         <div ng-init="urlAction='{{ url('/mis-proyectos/avances/'.$id_proyecto.'/create') }}'"></div>
         <form class="form-horizontal" action="" id="formulario" name="formulario" method="POST">       
 

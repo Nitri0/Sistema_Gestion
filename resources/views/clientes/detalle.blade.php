@@ -21,7 +21,7 @@
             </div>
         </ol>
 
-        <h1 class="page-header"><i class="fa fa-laptop"></i> Detalle del Cliente </h1>
+        <h1 class="page-header"> Detalle del Cliente </h1>
         
         <div class="row">
             <!-- begin col-12 -->

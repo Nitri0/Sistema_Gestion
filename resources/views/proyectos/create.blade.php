@@ -14,7 +14,7 @@
 	
 	<div id="content" class="content ng-scope">
         
-        <h1 class="page-header"><i class="fa fa-sitemap"></i> Crear Proyecto </h1>
+        <h1 class="page-header">Crear Proyecto </h1>
         
         <div class="row">
             <!-- begin col-12 -->

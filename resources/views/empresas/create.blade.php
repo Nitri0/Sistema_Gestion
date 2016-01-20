@@ -15,7 +15,7 @@
 	<div id="content" class="content ng-scope" ng-controller="SubmitController">
         <div ng-init="urlRedirect='{{ url('admin_empresas/') }}'"></div>
         @if($empresa)
-        <h1 class="page-header"><i class="fa fa-laptop"></i> Editar Empresa </h1>
+        <h1 class="page-header">Editar Empresa </h1>
         
         <div ng-init="model={{$empresa}}"></div>
 		<div ng-init="usuario={{$usuario}}"></div>
@@ -25,7 +25,7 @@
         
         @else
 		<div ng-init="urlAction='{{ url('admin_empresas/') }}'"></div>
-        <h1 class="page-header"><i class="fa fa-laptop"></i>Crear Empresa </h1>
+        <h1 class="page-header">Crear Empresa </h1>
 		<form class="form-horizontal" action="{{ url('admin_empresas/') }}" method="POST" name="formulario" id="formulario">	
 
 		@endif

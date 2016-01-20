@@ -30,7 +30,7 @@
             </div>
         </ol>
 
-        <h1 class="page-header"><i class="fa fa-laptop"></i> Empresas Proveedoras </h1>
+        <h1 class="page-header">Empresas Proveedoras </h1>
 
         <div class="row">
             <div class="col-12">

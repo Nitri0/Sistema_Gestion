@@ -26,7 +26,7 @@
             </div>
         </ol>
 
-        <h1 class="page-header"><i class="fa fa-line-chart"></i> Crear Tipo de proyecto</h1>
+        <h1 class="page-header">Crear Tipo de proyecto</h1>
         
         <div class="row">
             <!-- begin col-12 -->
@@ -127,7 +127,7 @@
 							</div>
 
 							<center>
-								<button type="button" class="btn btn-success m-r-5 m-b-5" ng-click="submit(formulario.$valid)">
+								<button href="#confirmar_registrar" class="btn btn-success m-r-5 m-b-5" data-toggle="modal">
 									Registrar
 								</button>
 							</center>
