@@ -266,3 +266,7 @@ body ,html{
   border-right: 1px solid #D7D7D7;
   border-top: 1px solid #D7D7D7;
 }
+
+.sidebar .sub-menu>li.active>a, .sidebar .sub-menu>li.active>a:focus, .sidebar .sub-menu>li.active>a:hover, .sidebar .sub-menu>li>a:focus, .sidebar .sub-menu>li>a:hover {
+  color: #49b6d6;
+}
