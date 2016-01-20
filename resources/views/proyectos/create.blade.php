@@ -81,7 +81,7 @@
                                     	</div>	                                    
 	                                </div>
 	                                <div class="col-md-3">
-	                                	<a href="{{ url('tipo_proyecto/create') }}" class="btn btn-success btn-sm p-l-10 p-r-10" data-toggle="tooltip" data-title="Agregar Grupo de Etapas">
+	                                	<a href="{{ url('tipo_proyectos/create') }}" class="btn btn-success btn-sm p-l-10 p-r-10" data-toggle="tooltip" data-title="Agregar Grupo de Etapas">
 					                        <i class="fa fa-plus"></i>
 					                    </a>
 	                                </div>
