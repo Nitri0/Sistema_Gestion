@@ -98,8 +98,8 @@
                                 <p>Fecha de creación: [[proyecto.fecha_creacion_proyecto]] </p>
                                 <p>Rol: [[proyecto.nombre_tipo_rol]]</p>
                                 <p>Tipo de Proyecto: [[proyecto.nombre_grupo_etapas]]</p>
-                                <hr>
                                 <div class="row" ng-if="proyecto.asunto_avance != null">
+                                    <hr>
                                     <p class="center">Ultimo Avance</p>
                                     <div class="col-md-8 col-md-offset-2">
                                         <ul class="chats">

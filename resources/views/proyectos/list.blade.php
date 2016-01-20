@@ -98,9 +98,9 @@
                             <div class="panel-body">
                             	<p>Nombre del Cliente: [[proyecto.nombre_cliente]]</p>
                             	<p>Tipo de Proyecto: [[proyecto.nombre_grupo_etapas]]</p>
-                                <hr>
-                                <p class="center">Ultimo Avance</p>
-                                <div class="row">
+                                <div class="row" ng-if="proyecto.asunto_avance != null">
+                                    <hr>
+                                    <p class="center">Ultimo Avance</p>
                                     <div class="col-md-8 col-md-offset-2">
                                         <ul class="chats">
                                             <li class="left">
