@@ -90,6 +90,7 @@
                         </div>
                         <div id="[[$index+1]]" class="panel-collapse collapse">
                             <div class="panel-body">
+                            [[proyecto]]
                                 <p>Dominio:  
                                     <a href="{{url('/dominios/[[proyecto.id_dominio]]')}}">
                                         [[proyecto.nombre_dominio | noAsignado ]]
