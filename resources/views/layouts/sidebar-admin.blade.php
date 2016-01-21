@@ -100,28 +100,15 @@
 				</ul>
 			</li>
 			@endif
-
-			@if(Auth::user()->tiene_permiso('empresas'))
+			@if(Auth::user()->tiene_permiso('dominios') || Auth::user()->tiene_permiso('empresas_proveedoras') )
 			<li class="has-sub"><!-- ng-click="proyecto_active()" ng-class="{'': !proyecto, 'active': proyecto}"-->
 				<a href="javascript:;" >
 				    <b class="caret pull-right"></b>
-				    <i class="fa fa-building"></i>
-				    <span>Empresas</span>
-			    </a>
-				<ul class="sub-menu">
-				    <li><a href="{{ url('empresas') }}">Filtrar</a></li>
-				    <li><a href="{{ url('empresas/create') }}">Crear empresa</a></li>
-				</ul>
-			</li>
-			@endif
-			@if(Auth::user()->tiene_permiso('dominios'))
-			<li class="has-sub"><!-- ng-click="proyecto_active()" ng-class="{'': !proyecto, 'active': proyecto}"-->
-				<a href="javascript:;" >
-				    <b class="caret pull-right"></b>
-				    <i class="fa fa-link"></i>
+				    <i class="fa fa-globe"></i>
 				    <span>Modulo Web</span>
 			    </a>
 				<ul class="sub-menu">
+					@if(Auth::user()->tiene_permiso('dominios') )
 				    <li class="has-sub">
 					    <a href="javascript:;"><b class="caret pull-right"></b> Dominios</a>
 					    <ul class="sub-menu">
@@ -129,6 +116,8 @@
 					        <li><a href="{{ url('dominios/create') }}">Crear dominio</a></li>
 					    </ul>
 					</li>
+					@endif
+					@if(Auth::user()->tiene_permiso('empresas_proveedoras') )
 					<li class="has-sub">
 					    <a href="javascript:;"><b class="caret pull-right"></b> Proveedores</a>
 					    <ul class="sub-menu">
@@ -136,6 +125,7 @@
 					        <li><a href="{{ url('empresas_proveedoras/create') }}">Crear proveedor</a></li>
 					    </ul>
 					</li>
+					@endif
 				</ul>
 			</li>
 			@endif
@@ -158,7 +148,7 @@
 			<li class="has-sub"><!-- ng-click="proyecto_active()" ng-class="{'': !proyecto, 'active': proyecto}"-->
 				<a href="javascript:;" >
 				    <b class="caret pull-right"></b>
-				    <i class="fa fa-coffee"></i>
+				    <i class="fa fa-building"></i>
 				    <span>Empresas</span>
 			    </a>
 				<ul class="sub-menu">
