@@ -24,7 +24,7 @@ class Dominios extends Model {
 
 	public function getFechaCreacionDominioAttribute(){
 		$date = \Carbon\Carbon::parse($this->attributes['fecha_creacion_dominio']); 
-	  	return $date->format('d/m/Y');
+	  	return $date->format('d-m-Y');
 
 	//    return $this->attributes['fecha_creacion_plantilla'];
 	}

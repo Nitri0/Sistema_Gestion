@@ -104,7 +104,7 @@
                                     <div class="col-md-8 col-md-offset-2">
                                         <ul class="chats">
                                             <li class="left">
-                                                <span class="date-time">[[proyecto.fecha_creacion_avance]]</span>
+                                                <span class="date-time">[[proyecto.fecha_creacion_avance | DateForHumans]]</span>
                                                 <a href="javascript:;" class="name">[[proyecto.nombre_usuario]]</a>
                                                 <a href="javascript:;" class="image"><img width="50" alt="" src="{{ url('img/user.png') }}"></a>
                                                 <div class="message">

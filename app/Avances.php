@@ -28,4 +28,10 @@ class Avances extends Model {
 		return "Usuario no existente";
 	}
 
+	public function getFechaCreacionAvanceAttribute(){
+		$date = \Carbon\Carbon::parse($this->attributes['fecha_creacion_avance']); 
+	  	return $date->format('d-m-Y');
+
+	//    return $this->attributes['fecha_creacion_plantilla'];
+	}
 }
