@@ -36,7 +36,7 @@
 					@endif
 					<li><a href="{{url('/reset-password')}}"><!-- <i class="fa fa-key"></i> --> Cambiar Contraseña</a></li>
 					<li class="divider"></li>
-					<li><a href="{{ url ('/logout') }}">Cerrar sesión</a></li>
+					<li><a href="{{ url ('/logout') }}"><i class="fa fa-sign-in"></i> Cerrar sesión</a></li>
 				</ul>
 			</li>
 		</ul>
