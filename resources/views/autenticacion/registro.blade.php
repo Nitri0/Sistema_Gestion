@@ -82,10 +82,10 @@
                     <p class="text-center text-inverse">
                         © Copyright Key Systems C.A 2015
                     </p>
-<!-- 
+
                     <p class="text-center text-inverse">
-                       Nunca fue tan fácil encontrar lo que buscas...
-                    </p> -->
+                       <a href="{{ url('/login') }}">Iniciar Sesión</a>
+                    </p>
 
 				</form>
 				
