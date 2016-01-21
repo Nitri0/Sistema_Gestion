@@ -21,7 +21,7 @@ class Plantillas extends Model {
 
 public function getFechaCreacionPlantillaAttribute(){
 	$date = \Carbon\Carbon::parse($this->attributes['fecha_creacion_plantilla']); 
-  	return $date->format('d/m/Y');
+  	return $date->format('d-m-Y');
 //    return $this->attributes['fecha_creacion_plantilla'];
 }
 
