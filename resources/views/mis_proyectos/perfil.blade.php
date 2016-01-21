@@ -145,7 +145,7 @@
 							<br>
 							<center>
 								<button type="button" class="btn btn-success m-r-5 m-b-5" ng-click="submit(formulario.$valid)">
-									Actualizar <i class="fa fa-undo"></i>
+									Actualizar
 								</button>
 							</center>
 						

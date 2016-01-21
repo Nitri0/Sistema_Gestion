@@ -50,69 +50,65 @@
                         <div ng-init="urlAction='{{ url('perfil-empresa') }}'"></div>
 						<div ng-init="model={{ $empresa }}"></div>
 						<form class="form-horizontal" action="{{ url('perfil-empresa') }}" name="formulario" id="formulario" method="POST">
-							
-							<div class="well">	
 								
-		                    	<div class="form-group">
-		                            <label class="col-md-4 control-label">Nombre de empresa</label>
-		                            <div class="col-md-5">
-		                            	<input type="text" text-num-only class="form-control" ng-model="model.nombre_empresa" name="nombre_empresa" ng-required="true" oninvalid="setCustomValidity(' ')">
-										<div class="error campo-requerido" ng-show="formulario.nombre_empresa.$invalid && (formulario.nombre_empresa.$touched || submitted)">
-		                                    <small class="error" ng-show="formulario.nombre_empresa.$error.required">
-		                                        * Campo requerido.
-		                                    </small>
-		                            	</div>		                            	
-		                            </div>                            
-		                        </div>
-		                        <div class="form-group">
-		                            <label class="col-md-4 control-label">Identificador de empresa</label>
-		                            <div class="col-md-5">
-		                            	<input type="text" ng-remote-validate="{{url('/valididentificador')}}"  ng-required="true" class="form-control" ng-model="model.rif_empresa" name="rif_empresa" >
-		                            	<div class="error campo-requerido" ng-show="formulario.rif_empresa.$invalid && (formulario.rif_empresa.$touched || submitted)">
-		                                    <small class="error" ng-show="formulario.rif_empresa.$error.required">
-		                                        * Campo requerido.
-		                                    </small>
-		                                    <small class="error" ng-show="formulario.rif_empresa.$error.pattern">
-		                                        * Formato de rif inválido. Ejemplo: J-12345678-9.
-		                                    </small>
-		                                    <small class="error" ng-show="formulario.rif_empresa.$error.ngRemoteValidate">
-		                                        * Identificador en uso.
-		                                    </small>		                                    
-		                            	</div>
-		                            </div>
-		                        </div>
+	                    	<div class="form-group">
+	                            <label class="col-md-4 control-label">Nombre de empresa</label>
+	                            <div class="col-md-5">
+	                            	<input type="text" text-num-only class="form-control" ng-model="model.nombre_empresa" name="nombre_empresa" ng-required="true" oninvalid="setCustomValidity(' ')">
+									<div class="error campo-requerido" ng-show="formulario.nombre_empresa.$invalid && (formulario.nombre_empresa.$touched || submitted)">
+	                                    <small class="error" ng-show="formulario.nombre_empresa.$error.required">
+	                                        * Campo requerido.
+	                                    </small>
+	                            	</div>		                            	
+	                            </div>                            
+	                        </div>
+	                        <div class="form-group">
+	                            <label class="col-md-4 control-label">Identificador de empresa</label>
+	                            <div class="col-md-5">
+	                            	<input type="text" ng-remote-validate="{{url('/valididentificador')}}"  ng-required="true" class="form-control" ng-model="model.rif_empresa" name="rif_empresa" >
+	                            	<div class="error campo-requerido" ng-show="formulario.rif_empresa.$invalid && (formulario.rif_empresa.$touched || submitted)">
+	                                    <small class="error" ng-show="formulario.rif_empresa.$error.required">
+	                                        * Campo requerido.
+	                                    </small>
+	                                    <small class="error" ng-show="formulario.rif_empresa.$error.pattern">
+	                                        * Formato de rif inválido. Ejemplo: J-12345678-9.
+	                                    </small>
+	                                    <small class="error" ng-show="formulario.rif_empresa.$error.ngRemoteValidate">
+	                                        * Identificador en uso.
+	                                    </small>		                                    
+	                            	</div>
+	                            </div>
+	                        </div>
 
-		                        <div class="form-group">
-		                            <label class="col-md-4 control-label">Teléfono</label>
-		                            <div class="col-md-5">
-		                            	<input type="text" telef placeholder="+58-212-8610000" class="form-control" ng-model="model.telefono_empresa" name="telefono_empresa" ng-required="true" oninvalid="setCustomValidity(' ')">
-	 									<div class="error campo-requerido" ng-show="formulario.telefono_empresa.$invalid && (formulario.telefono_empresa.$touched || submitted)">
-		                                    <small class="error" ng-show="formulario.telefono_empresa.$error.required">
-		                                        * Campo requerido.
-		                                    </small>
-		                            	</div>			                            	
-		                            </div>
-		                        </div>
+	                        <div class="form-group">
+	                            <label class="col-md-4 control-label">Teléfono</label>
+	                            <div class="col-md-5">
+	                            	<input type="text" telef placeholder="+582128610000" class="form-control" ng-model="model.telefono_empresa" name="telefono_empresa" ng-required="true" oninvalid="setCustomValidity(' ')">
+ 									<div class="error campo-requerido" ng-show="formulario.telefono_empresa.$invalid && (formulario.telefono_empresa.$touched || submitted)">
+	                                    <small class="error" ng-show="formulario.telefono_empresa.$error.required">
+	                                        * Campo requerido.
+	                                    </small>
+	                            	</div>			                            	
+	                            </div>
+	                        </div>
 
-		                        <div class="form-group">
-		                            <label class="col-md-4 control-label">Dirección</label>
-		                            <div class="col-md-5">
-		                            	<input type="textarea" class="form-control" ng-model="model.direccion_empresa" name="direccion_empresa" ng-required="true" oninvalid="setCustomValidity(' ')">
-										<div class="error campo-requerido" ng-show="formulario.direccion_empresa.$invalid && (formulario.direccion_empresa.$touched || submitted)">
-		                                    <small class="error" ng-show="formulario.direccion_empresa.$error.required">
-		                                        * Campo requerido.
-		                                    </small>
-		                            	</div>			                            	
-		                            </div>
-		                        </div>
-								<br>
-								<center>
-									<button type="button" class="btn btn-danger m-r-5 m-b-5" ng-click="submit(formulario.$valid)">
-										Actualizar <i class="fa fa-undo"></i>
-									</button>
-								</center>
-							
-							</div>
+	                        <div class="form-group">
+	                            <label class="col-md-4 control-label">Dirección</label>
+	                            <div class="col-md-5">
+	                            	<textarea rows="5" class="form-control" ng-model="model.direccion_empresa" name="direccion_empresa" ng-required="true" oninvalid="setCustomValidity(' ')"></textarea>
+									<div class="error campo-requerido" ng-show="formulario.direccion_empresa.$invalid && (formulario.direccion_empresa.$touched || submitted)">
+	                                    <small class="error" ng-show="formulario.direccion_empresa.$error.required">
+	                                        * Campo requerido.
+	                                    </small>
+	                            	</div>			                            	
+	                            </div>
+	                        </div>
+							<br>
+							<center>
+								<button type="button" class="btn btn-success m-r-5 m-b-5" ng-click="submit(formulario.$valid)">
+									Actualizar
+								</button>
+							</center>
 						
 						</form>
 	

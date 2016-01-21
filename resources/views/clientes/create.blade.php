@@ -110,9 +110,9 @@
                             </div>
 
                             <div class="form-group">
-                                <label class="col-md-4 control-label">Telefono 1</label>
+                                <label class="col-md-4 control-label">Teléfono 1</label>
                                 <div class="col-md-5">
-                                   	<input type="text" telef placeholder="+58-212-8610000" class="form-control" ng-model="cliente.telefono_cliente" name="telefono_cliente" ng-required="true" oninvalid="setCustomValidity(' ')">
+                                   	<input type="text" telef placeholder="+582128610000" class="form-control" ng-model="cliente.telefono_cliente" name="telefono_cliente" ng-required="true" oninvalid="setCustomValidity(' ')">
 									<div class="error campo-requerido" ng-show="formulario.telefono_cliente.$invalid && (formulario.telefono_cliente.$touched || submitted)">
 	                                    <small class="error" ng-show="formulario.telefono_cliente.$error.required">
 	                                        * Campo requerido.
@@ -122,9 +122,9 @@
                             </div>
 
                             <div class="form-group">
-                                <label class="col-md-4 control-label">Telefono 2</label>
+                                <label class="col-md-4 control-label">Teléfono 2</label>
                                 <div class="col-md-5">
-                                   	<input type="text" telef placeholder="+58-212-8610000" class="form-control" ng-model="cliente.telefono_2_cliente" name="telefono_2_cliente">
+                                   	<input type="text" telef placeholder="+582128612233" class="form-control" ng-model="cliente.telefono_2_cliente" name="telefono_2_cliente">
 
                                 </div>
                             </div>
