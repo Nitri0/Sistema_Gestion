@@ -159,10 +159,8 @@
     		$('input[id="daterangepicker"]').daterangepicker({
         		singleDatePicker: true,
         		showDropdowns: true,
-    		});
-    		$("#datepicker-default").datepicker({
-    			todayHighlight:!0,
-    			dateFormat: 'yy-mm-dd'
+        		format: 'YYYY-MM-DD'
+
     		});
 		});
 	</script>

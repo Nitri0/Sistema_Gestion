@@ -109,8 +109,11 @@
 		                </div>
 						@endif
 		            </div>
-
+					@if(!$usuario)
 		            <div class="col-md-8 ui-sortable">
+		            @else
+		            <div class="col-md-12 ui-sortable">
+		            @endif
 		                <!-- begin panel -->
 		                <div class="panel panel-inverse">
 		                    <div class="panel-heading">
@@ -176,7 +179,7 @@
                             	<div class="form-group">
 	                                <label class="col-md-2 control-label">Fecha de nacimiento</label>
 	                                <div class="col-md-8">
-										<input type="date" class="form-control" ng-value="perfil.telefono_perfil" name="telefono_perfil" ng-required="true" oninvalid="setCustomValidity(' ')">
+										<input type="text" id="daterangepicker" class="form-control" ng-model="perfil.telefono_perfil" name="telefono_perfil" ng-required="true" oninvalid="setCustomValidity(' ')">
 	                                	<div class="error campo-requerido" ng-show="formulario.telefono_perfil.$invalid && (formulario.telefono_perfil.$touched || submitted)">
 		                                    <small class="error" ng-show="formulario.telefono_perfil.$error.required">
 		                                        * Campo requerido.
