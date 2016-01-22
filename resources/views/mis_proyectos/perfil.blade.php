@@ -78,11 +78,14 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label">Identifición de usuario</label>
                                 <div class="col-md-5">
-                                    <input type="text" class="form-control" ng-model="perfil.cedula_perfil" name="cedula_perfil" ng-required="true" oninvalid="setCustomValidity(' ')">
+                                    <input type="text" class="form-control" ng-model="perfil.cedula_perfil" name="cedula_perfil" ng-pattern="/^[A-Z]*[0-9]*$/" ng-required="true" oninvalid="setCustomValidity(' ')">
                                 	<div class="error campo-requerido" ng-show="formulario.cedula_perfil.$invalid && (formulario.cedula_perfil.$touched || submitted)">
 	                                    <small class="error" ng-show="formulario.cedula_perfil.$error.required">
 	                                        * Campo requerido.
 	                                    </small>
+                                        <small class="error" ng-show="formulario.cedula_perfil.$error.pattern">
+                                            * Formato de identificador inválido. Solo debe introducir mayusculas y números. Ejemplo: J123456789.
+                                        </small>                                        
 	                            	</div>
                                 </div>	                                
                             </div>
