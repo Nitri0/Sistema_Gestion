@@ -83,7 +83,7 @@ class LoginController extends Controller {
         Perfil::create(['id_usuario'=>$user->id_usuario]);
         //AQUI ENVIAR EL CORREO
         $asunto = "Codigo de activación";
-        $plantilla = "email.private.codigo_activacion";
+        $plantilla = "emails.private.codigo_activacion";
         $parametros = [
         			'correo_usuario' => $request->correo_usuario,
         			'codigo_activacion' => $request->codigo_activacion,
@@ -142,7 +142,7 @@ class LoginController extends Controller {
 			if ($habilitado){
 				//AQUI ENVIAR CORREO
 		        $asunto = "Codigo de activación";
-		        $plantilla = "email.private.codigo_activacion";
+		        $plantilla = "emails.private.codigo_activacion";
 		        $parametros = [
 	        			'correo_usuario' => $habilitado->correo_usuario,
 	        			'codigo_activacion' => $habilitado->codigo_activacion,
