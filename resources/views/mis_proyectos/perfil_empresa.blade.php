@@ -65,16 +65,16 @@
 	                        <div class="form-group">
 	                            <label class="col-md-4 control-label">Identificador de empresa</label>
 	                            <div class="col-md-5">
-	                            	<input type="text" ng-remote-validate="{{url('/valididentificador')}}"  ng-required="true" class="form-control" ng-model="model.rif_empresa" name="rif_empresa" >
+	                            	<input type="text" ng-remote-validate="{{url('/valididentificador')}}" ng-pattern="/^[A-Z]*[0-9]*$/"  ng-required="true" class="form-control" ng-model="model.rif_empresa" name="rif_empresa" >
 	                            	<div class="error campo-requerido" ng-show="formulario.rif_empresa.$invalid && (formulario.rif_empresa.$touched || submitted)">
 	                                    <small class="error" ng-show="formulario.rif_empresa.$error.required">
 	                                        * Campo requerido.
 	                                    </small>
 	                                    <small class="error" ng-show="formulario.rif_empresa.$error.pattern">
-	                                        * Formato de rif inválido. Ejemplo: J-12345678-9.
+	                                        * Formato de identificador inválido. Solo debe introducir mayusculas y números. Ejemplo: J123456789.
 	                                    </small>
 	                                    <small class="error" ng-show="formulario.rif_empresa.$error.ngRemoteValidate">
-	                                        * Identificador en uso.
+	                                        * Identificador ya esta siendo usado en el sistema, utilice otro o contacte a soporte técnico (contacto@keygestion.com.ve).
 	                                    </small>		                                    
 	                            	</div>
 	                            </div>

@@ -108,6 +108,7 @@ class AdministradorEmpresasController extends Controller {
 	
     public function validRif(Request $request){
         $json=[];
+        return "prueba";
         $value = $request->value;
         $rifs = Empresas::where('rif_empresa', $request->value)->first();
         if (!$rifs){

@@ -56,7 +56,7 @@
 					</div>
 
 					<div class="form-group m-b-15">
-						<input type="text" class="form-control" name="identificador" value="{{ old('email') }}" placeholder="Identificador de empresa (ejemplo: RIF, ID, ect)">
+						<input type="text" class="form-control" name="identificador" value="{{ old('email') }}" placeholder="ejemplo: RIF, ID, ect.. solo mayusculas y números">
 					</div>
 
 					<div class="form-group m-b-15">
