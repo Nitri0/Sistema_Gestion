@@ -177,7 +177,7 @@ class LoginController extends Controller {
 	public function HabilitarUsuario($codigo_activacion){
 		// $mensaje = "Usuario Habilitado Satisfactoriamente";
 		// $codigo 	 =  1;
-		$usuarios = User::where( 'codigo_activacion_usuario', $codigo_activacion );
+		$usuarios = User::where( 'codigo_activacion', $codigo_activacion );
 		if (!$usuarios->count() > 0){
 			Session::flash('mensaje-error','Código de activación invalido.');
 			return redirect('/login');
