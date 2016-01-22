@@ -17,7 +17,7 @@ use Gate;
 class AdministradorEmpresasController extends Controller {
 
 	public function __construct(){
-		$this->beforeFilter('@permisos');
+		$this->beforeFilter('@permisos',['except'=>['validRif']]);
 		$this->beforeFilter('@find', ['only' => ['show','update','edit','destroy','habilitar']]);
 	}
 
@@ -108,7 +108,6 @@ class AdministradorEmpresasController extends Controller {
 	
     public function validRif(Request $request){
         $json=[];
-        return "prueba";
         $value = $request->value;
         $rifs = Empresas::where('rif_empresa', $request->value)->first();
         if (!$rifs){
