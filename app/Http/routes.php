@@ -25,7 +25,7 @@ Route::post('registrar', 'LoginController@postRegistro');
 #____________________ Registro ________________________
 Route::get('recuperar-contraseña', 'LoginController@forgetPassword');
 Route::post('recuperar-contraseña', 'LoginController@postForgetPassword');
-
+Route::any('activacion/{id_usuario}',  'Auth\AuthController@HabilitarUsuario');
 
 $router->group(['middleware' => 'auth'], function() {
 

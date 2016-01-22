@@ -50,6 +50,11 @@ class Authenticate {
 			return redirect()->guest('/login');
 		}
 
+		if($this->auth->user()->activado_usuario==0){
+			Session::flash('mensaje-error', 'Usuario sin activar, sino recibió el correo de activación use la opción "olvide contraseña" para reenviarlo.');
+			return redirect()->guest('/login');
+		}
+
 
 		//dd($this->auth->user()->getHabiltiadoEmpresa());
 		if($this->auth->user()->validacionVencimiento() ){
