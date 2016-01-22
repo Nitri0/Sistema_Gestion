@@ -114,7 +114,7 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label">Fecha de nacimiento</label>
                                 <div class="col-md-5">
-                                	<input type="date" class="form-control" ng-value="perfil.fecha_nacimiento_perfil" name="fecha_nacimiento_perfil" ng-required="true" oninvalid="setCustomValidity(' ')">
+                                	<input type="text" id="daterangepicker" class="form-control" ng-model="perfil.fecha_nacimiento_perfil" name="fecha_nacimiento_perfil" ng-required="true" oninvalid="setCustomValidity(' ')">
 	                                <div class="error campo-requerido" ng-show="formulario.fecha_nacimiento_perfil.$invalid && (formulario.fecha_nacimiento_perfil.$touched || submitted)">
 	                                    <small class="error" ng-show="formulario.fecha_nacimiento_perfil.$error.required">
 	                                        * Campo requerido.
@@ -145,7 +145,7 @@
 							<br>
 							<center>
 								<button type="button" class="btn btn-success m-r-5 m-b-5" ng-click="submit(formulario.$valid)">
-									Actualizar <i class="fa fa-undo"></i>
+									Actualizar
 								</button>
 							</center>
 						

@@ -20,72 +20,79 @@
             </div>
         </ol>
         
+		@include('alerts.mensaje_success')
+		@include('alerts.mensaje_error')
+		<div ng-init="models={{$empresas}}"></div>
 
         <h1 class="page-header">Lista de Empresas </h1>
-        
+
         <div class="row">
-            <!-- begin col-12 -->
-            <div class="col-12 ui-sortable">
-                <!-- begin panel -->
-                <div class="panel panel-inverse">
-                    <div class="panel-heading">
-                        <div class="panel-heading-btn">
-                            <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand" data-original-title="" title=""><i class="fa fa-expand"></i></a>
-                            <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload" data-original-title="" title=""><i class="fa fa-repeat"></i></a>
-                            <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse" data-original-title="" title=""><i class="fa fa-minus"></i></a>
+            <div class="col-12">
+                <div class="panel-group" id="accordion">
+                	<div class="row text-list">
+                		<div class="col-sm-4"> 
+                			<div class="row">
+                				<div class="col-sm-3"><a href="#" ng-click="changeSort('index')"># </a></div>
+                				<div class="col-sm-9">
+                        			<a href="#" ng-click="changeSort('nombre_empresa')">Nombre Empresa</a>
+                        		</div>
+                			</div>
+                		</div>
+                		<div class="col-sm-3">
+							<a href="#" ng-click="changeSort('rif_empresa')">Rif </a>
+                		</div>
+                		<div class="col-sm-3">
+                			<a href="#" ng-click="changeSort('email_empresa')">Email</a>
+                		</div>
+                	</div>
+
+                	<br>
+                    
+                    <div class="panel panel-inverse overflow-hidden custon-list" ng-repeat="model in models| filter:opciones.buscador | orderBy:sort:reverse  track by $index">
+                        <div class="panel-heading">
+                            <h3 class="panel-title list-title">
+                                <a class="accordion-toggle accordion-toggle-styled collapsed" data-toggle="collapse" data-parent="#accordion" href="#[[$index+1]]">
+                                    <i class="fa fa-plus pull-right"></i> 
+                                </a>	
+                            </h3>
+                            <div class="box-button-list">
+		        				<!--<a class="btn btn-sm btn-info btn-cirule" ng-href="{{ url( '/admin_empresas/[[model.id_empresa]]' ) }}" data-toggle="tooltip" data-title="Detalle"><i class="fa fa-list"></i></a>-->
+		        				<a class="btn btn-sm btn-success btn-cirule" ng-href="{{ url( '/admin_empresas/[[model.id_empresa]]/edit' ) }}" data-toggle="tooltip" data-title="Editar"><i class="fa fa-pencil-square-o"></i></a>
+		        			</div>
+                            <h3 class="panel-title list-title">
+                            	<div class="row">
+                            		<div class="col-sm-5"> 
+                            			<div class="row">
+                            				<div class="col-sm-3"> [[$index+1]] </div>
+                            				<div class="col-sm-9">
+		                            			[[model.nombre_empresa]]
+		                            		</div>
+                            			</div>
+                            		</div>
+
+                            		<div class="col-sm-3">
+										[[model.rif_empresa]]
+                            		</div>
+
+                            		<div class="col-sm-3">
+										[[model.correo_empresa]]
+                            		</div>
+
+                            	</div>                           	 
+                            </h3>
                         </div>
-                        <h4 class="panel-title">Empresas</h4>
+                        <div id="[[$index+1]]" class="panel-collapse collapse">
+                            <div class="panel-body">
+                            	<p>Dirección: [[model.direccion_empresa]]</p>
+                            	<p>Telefono [[model.telefono_empresa]]</p>
+                            	<p>Fecha de Creación: [[model.created_at]]</p>
+                            	
+                            	<a ng-if="model.habilitado_empresa == 0" class="btn btn-sm btn-success pull-right" ng-href="{{ url( '/admin_empresas/[[model.id_empresa]]/habilitar') }}" data-toggle="tooltip" data-title="Habilitar"><i class="fa fa-thumbs-o-up"></i></i></a>
+						        <a ng-if="model.habilitado_empresa == 1" class="btn btn-sm btn-danger pull-right" ng-href="{{ url( '/admin_empresas/[[model.id_empresa]]/destroy') }}" data-toggle="tooltip" data-title="Deshabilitar"><i class="fa fa-thumbs-o-down"></i></i></a>
+                            </div>
+                        </div>
                     </div>
 
-                    <div class="panel-body">
-
-                    	<div ng-init="models={{$empresas}}"></div>
-
-						@include('alerts.mensaje_success')
-						@include('alerts.mensaje_error')
-
-						<table class="table table-hover">
-						    <thead>
-						      <tr>
-						        <th>
-						        	<a href="#" ng-click="changeSort('index')">#</a>
-						        </th>		      	
-						        <th>
-						        	<a href="#" ng-click="changeSort('nombre_empresa')">Nombre Empresa</a>
-						        </th>
-						        <th>
-						        	<a href="#" ng-click="changeSort('rif_empresa')">Rif </a>
-						        </th>
-						        <th>
-						        	<a href="#" ng-click="changeSort('email_empresa')">Email</a>
-						        </th>
-						   		<th>
-						        	<a href="#" ng-click="changeSort('habilitado_empresa')">Status</a>
-						        </th>
-
-						        <th >Operaciones</th>
-						      </tr>
-
-						    </thead>
-						    
-						    <tbody>
-						    	<tr ng-repeat="model in models| filter:opciones.buscador | orderBy:sort:reverse  track by $index">
-									<td>[[$index+1]]</td>
-									<td>[[model.nombre_empresa ]]</td>
-									<td>[[model.rif_empresa  ]]</td>
-									<td>[[model.correo_empresa ]]</td>
-									<td>[[model.habilitado_empresa ]]</td>
-						        	<td width="180px">
-										<a class="btn btn-sm btn-info" href="{{ url( '/admin_empresas/[[model.id_empresa]]' ) }}" data-toggle="tooltip" data-title="Detalle"><i class="fa fa-list"></i></a>
-						        		<a class="btn btn-sm btn-success" href="{{ url( '/admin_empresas/[[model.id_empresa]]/edit' ) }}" data-toggle="tooltip" data-title="Editar"><i class="fa fa-pencil-square-o"></i></a>	
-						        		<a class="btn btn-sm btn-info" ng-href="{{ url( '/admin_empresas/[[model.id_empresa]]/habilitar') }}" data-toggle="tooltip" data-title="Habilitar"><i class="fa fa-trash"></i></i></a>
-						        		<a class="btn btn-sm btn-danger" ng-href="{{ url( '/admin_empresas/[[model.id_empresa]]/destroy') }}" data-toggle="tooltip" data-title="Deshabilitar"><i class="fa fa-trash"></i></i></a>
-						        	</td>
-						        </tr>
-						    </tbody>
-						</table>
-	
-					</div><!-- boby -->
                 </div>
             </div>
         </div>

@@ -1,3 +1,5 @@
+@import url(https://fonts.googleapis.com/css?family=Lato);
+
 body ,html{
   background: #F3F7F8;
   font-size: 12px;
@@ -269,4 +271,13 @@ body ,html{
 
 .sidebar .sub-menu>li.active>a, .sidebar .sub-menu>li.active>a:focus, .sidebar .sub-menu>li.active>a:hover, .sidebar .sub-menu>li>a:focus, .sidebar .sub-menu>li>a:hover {
   color: #49b6d6;
+}
+
+.icon-usuario-habilitado i{
+  color: #00acac;
+  font-size: 15px;
+}
+.icon-usuario-desabilitado i {
+  color: #FF5757;
+  font-size: 15px;
 }

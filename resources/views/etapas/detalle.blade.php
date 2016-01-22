@@ -13,7 +13,7 @@
         <ol class="breadcrumb pull-right">
             <div class="btn-toolbar">
                 <div class="btn-group">
-                    <a href="{{ url( '/grupo_etapas/create' ) }}" class="btn btn-success btn-sm p-l-20 p-r-20" data-toggle="tooltip" data-title="Agregar">
+                    <a href="{{ url( '/tipo_proyectos/create' ) }}" class="btn btn-success btn-sm p-l-20 p-r-20" data-toggle="tooltip" data-title="Agregar">
                         <i class="fa fa-plus"></i>
                     </a>
                 </div>
@@ -105,7 +105,7 @@
                     <!-- end timeline-icon -->
                     <!-- begin timeline-body -->
                     <div class="timeline-body-eliminar">
-                        <form action="/grupo_etapas/{{$grupo_etapas->id_grupo_etapas}}" method="post">
+                        <form action="/tipo_proyectos/{{$grupo_etapas->id_grupo_etapas}}" method="post">
                             <input type="hidden" name="_method" value="delete">
                             <button type="submit" class="btn btn-danger" data-toggle="tooltip" data-title="Grupo de Etapas">Eliminar</button>
                         </form>

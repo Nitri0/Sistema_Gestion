@@ -44,7 +44,8 @@
 	<!-- ================== END BASE JS ================== -->
 	
 	@yield('css')
-
+	
+	<link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
 	<link href="{{ asset('/css/style.css') }}" rel="stylesheet">
 
 </head>

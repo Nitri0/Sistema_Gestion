@@ -54,7 +54,8 @@
     <link href="{{ asset('/thema/admin/html/assets/plugins/bootstrap-daterangepicker/daterangepicker-bs3.css') }}" rel="stylesheet" />
 	
 	@yield('css')
-
+	
+	<link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
 	<link href="{{ asset('/css/style.css') }}" rel="stylesheet">
 
   	<!-- ui-select files -->
@@ -159,10 +160,8 @@
     		$('input[id="daterangepicker"]').daterangepicker({
         		singleDatePicker: true,
         		showDropdowns: true,
-    		});
-    		$("#datepicker-default").datepicker({
-    			todayHighlight:!0,
-    			dateFormat: 'yy-mm-dd'
+        		format: 'YYYY-MM-DD'
+
     		});
 		});
 	</script>
