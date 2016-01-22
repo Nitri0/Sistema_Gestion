@@ -17,7 +17,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
 	protected $connection = 'permisologia';
 	protected $table = 't_usuario';
 	protected $primaryKey = "id_usuario";
-	protected $fillable = ['correo_usuario', 'password','id_permisologia','habilitado_usuario'];
+	protected $fillable = ['correo_usuario', 'password','id_permisologia','habilitado_usuario', 'codigo_activacion', 'activado_usuario'];
 	protected $hidden = ['password', 'remember_token'];
 	public $timestamps = false;
 	
