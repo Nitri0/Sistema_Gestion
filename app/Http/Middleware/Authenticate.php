@@ -37,7 +37,6 @@ class Authenticate {
 
 		}
 
-
 		if(!$this->auth->user()->getHabiltiadoEmpresa()){
 			if (!$this->auth->user()->isSuperAdmin()){
 				Session::flash('mensaje-error', 'Empresa Baneada.');
@@ -50,15 +49,17 @@ class Authenticate {
 			return redirect()->guest('/login');
 		}
 
+		if($this->auth->user()->activado_usuario==0){
+			Session::flash('mensaje-error', 'Usuario sin activar, sino recibió el correo de activación use la opción "Olvido su contraseña?" para reenviarlo.');
+			return redirect()->guest('/login');
+		}
 
-		//dd($this->auth->user()->getHabiltiadoEmpresa());
 		if($this->auth->user()->validacionVencimiento() ){
 			Session::flash('mensaje-error', 'A vencido su periodo de prueba de 7 dias, 
 				para obtener el servicio completo envie un correo con sus datos de contacto
 				a info@keygestion.com.ve y lo antes posible nos estaremos comunicando con usted.');
 			return redirect()->guest('/login');
 		}		
-
 
 		return $next($request);
 	}

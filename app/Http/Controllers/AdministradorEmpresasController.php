@@ -17,7 +17,7 @@ use Gate;
 class AdministradorEmpresasController extends Controller {
 
 	public function __construct(){
-		$this->beforeFilter('@permisos');
+		$this->beforeFilter('@permisos',['except'=>['validRif']]);
 		$this->beforeFilter('@find', ['only' => ['show','update','edit','destroy','habilitar']]);
 	}
 

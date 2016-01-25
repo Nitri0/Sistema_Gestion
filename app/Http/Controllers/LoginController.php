@@ -28,18 +28,8 @@ class LoginController extends Controller {
 	        'password' => \Input::get('clave_usuario')
 	    );
 
-	    $habilitado = User::where('correo_usuario', \Input::get('correo_usuario'))
-				    		->where('habilitado_usuario', 1)
-				    		->first();
 
 		if (Auth::attempt($user)){
-			// $usuario = User::where('correo_usuario', \Input::get('correo_usuario'))->first();
-			// if ($usuario->habilitado_usuario==0){
-			// 	Session::flash('mensaje-error', 'Usuario deshabilitado.');
-			// 	Auth::logout($usuario);
-			// 	return redirect("/login");
-			// }
-				
 			return redirect("/mis-proyectos");
 			//return redirect()->back();
 		}
@@ -73,7 +63,6 @@ class LoginController extends Controller {
             return redirect("/registrar");
         };        
 
-
         $verificacion = User::where('correo_usuario', $request->correo_usuario)->first();
 
         if ($verificacion){
@@ -82,6 +71,7 @@ class LoginController extends Controller {
         };
         $request['id_permisologia'] = 2;
         $request['password'] = \Hash::make($request['password']);
+        $request['codigo_activacion'] = substr(md5(uniqid(rand(), true)), 16, 16);
         $user = User::create($request->all());
 
         $empresa = Empresas::create(['nombre_empresa'=>$request->empresa,
@@ -91,7 +81,15 @@ class LoginController extends Controller {
         							'id_usuario'=>$user->id_usuario,
         						]);
         Perfil::create(['id_usuario'=>$user->id_usuario]);
-        Session::flash("mensaje","Usuario registrado exitosamente");
+        //AQUI ENVIAR EL CORREO
+        $asunto = "Codigo de activación";
+        $plantilla = "emails.private.codigo_activacion";
+        $parametros = [
+        			'correo_usuario' => $request->correo_usuario,
+        			'codigo_activacion' => $request->codigo_activacion,
+        		];
+        Helper::SendEmailLogout($request->correo_usuario, $request->correo_usuario, $asunto, $plantilla, $parametros);
+        Session::flash("mensaje","Usuario registrado exitosamente, en breves se ha enviado a su correo un codigo de activación.");
         return redirect('/login');
 	}
 
@@ -135,10 +133,23 @@ class LoginController extends Controller {
 
 	public function postForgetPassword(Request $request){
 		if($request->correo){
-			$user = User::where('correo_usuario', $request->correo)->first();
-			if(!$user){
+			$user = User::where('correo_usuario', $request->correo);
+			if(!$user->first()){
 				Session::flash('mensaje-error','Correo no existente.');
 				return redirect('/recuperar-contraseña');
+			}
+			$habilitado = $user->where('activado_usuario',0)->first();
+			if ($habilitado){
+				//AQUI ENVIAR CORREO
+		        $asunto = "Codigo de activación";
+		        $plantilla = "emails.private.codigo_activacion";
+		        $parametros = [
+	        			'correo_usuario' => $habilitado->correo_usuario,
+	        			'codigo_activacion' => $habilitado->codigo_activacion,
+	        		];
+        		Helper::SendEmailLogout($habilitado->correo_usuario, $habilitado->correo_usuario, $asunto, $plantilla, $parametros);
+				Session::flash('mensaje','Su usuario está desactivado, hemos enviado un correo con su código de activación');
+				return redirect('/login');				
 			}
 			$perfil = Perfil::where('id_usuario', $user->id_usuario)->first();
 			$password = substr(str_shuffle('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789') , 0 , 10 );
@@ -164,22 +175,19 @@ class LoginController extends Controller {
 	}	
 
 	public function HabilitarUsuario($codigo_activacion){
-		// $mensaje = "Usuario Habilitado Satisfactoriamente";
-		// $codigo 	 =  1;
-		$usuarios = Usuario::where( 'codigo_activacion_usuario', $codigo_activacion );
+		$usuarios = User::where( 'codigo_activacion', $codigo_activacion );
 		if (!$usuarios->count() > 0){
-			Session::flash('mensaje-error','Código de activación incorrecto.');
+			Session::flash('mensaje-error','Código de activación invalido.');
 			return redirect('/login');
 		}
-		$usuario_habilitados = $usuarios->where('habilitado_usuario', 0);
+		$usuario_habilitados = $usuarios->where('activado_usuario', 0);
 		if ( !$usuario_habilitados->first() ){
 			Session::flash('mensaje-error','Código de activación usado.');
 			return redirect('/login');
 		}
-		$usuario_habilitados->update(array('habilitado_usuario' => 1));
-		$usuario_habilitados->save();
-		//User::where('codigo_activacion_usuario','=', $codigo_activacion)->update(array('habilitado_usuario' => 1));
-		return view('auth/habilitado', compact('codigo'));
+		$usuario_habilitados->update(array('activado_usuario' => 1));
+		Session::flash('mensaje','Usuario activado, ya puede iniciar sesión.');
+		return redirect('/login');
 	}
 
 }
