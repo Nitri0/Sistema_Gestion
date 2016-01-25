@@ -41,6 +41,9 @@ coreApp.controller('GrupoEtapasController', function ($scope, $log, $http, $wind
 				    // or server returns response with an error status.
 				  });    		
 			}
+		}
+		else{
+			$scope.snipper  = false;
 		};
 		return false;
 	}

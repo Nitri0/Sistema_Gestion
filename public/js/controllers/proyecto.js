@@ -61,6 +61,9 @@ coreApp.controller('ProyectoController',function($scope, $log, $http, $window) {
 				    // or server returns response with an error status.
 				  });    		
 			}
+		}
+		else{
+			$scope.snipper  = false;
 		};
 		return false;
 	}

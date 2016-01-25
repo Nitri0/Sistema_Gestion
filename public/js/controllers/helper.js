@@ -36,6 +36,9 @@ coreApp.controller('SubmitController', function ($scope, $log, $http, $window) {
 			    // called asynchronously if an error occurs
 			    // or server returns response with an error status.
 			  });    		
+		}
+		else{
+			$scope.snipper  = false;
 		};
 		return false;
 	}

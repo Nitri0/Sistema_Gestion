@@ -30,6 +30,9 @@ coreApp.controller('AvanceController', function ($scope, $log, $http, $window) {
 			  	console.log("error");
 			  	$scope.snipper  = false;
 			  });    		
+		}
+		else{
+			$scope.snipper  = false;
 		};
 		return false;
 	}
@@ -75,6 +78,9 @@ coreApp.controller('PlantillasController', function ($scope, $log, $http, $windo
 			  	console.log("error");
 			  	$scope.snipper  = false;
 			  });    		
+		}
+		else{
+			$scope.snipper  = false;
 		};
 		return false;
 	}
