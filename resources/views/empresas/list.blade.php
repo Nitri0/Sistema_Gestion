@@ -30,7 +30,7 @@
             <div class="col-12">
                 <div class="panel-group" id="accordion">
                 	<div class="row text-list">
-                		<div class="col-sm-4"> 
+                		<div class="col-sm-5"> 
                 			<div class="row">
                 				<div class="col-sm-3"><a href="#" ng-click="changeSort('index')"># </a></div>
                 				<div class="col-sm-9">

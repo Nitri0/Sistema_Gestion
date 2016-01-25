@@ -150,7 +150,7 @@
             </div>
         <center>
             <button class="btn btn-success m-r-5 m-b-5" type="button" ng-click="submit(formulario.$valid)">
-                    Registrar
+                Registrar <span ng-show="snipper===true" class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>
             </button>
         </center>
         </form>

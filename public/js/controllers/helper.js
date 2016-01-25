@@ -5,9 +5,11 @@ coreApp.controller('SubmitController', function ($scope, $log, $http, $window) {
 	console.log("submit Controller");
 	$scope.tienerif = false;
 	$scope.enviando = false;
+	$scope.snipper  = false;
 
 	$scope.submit= function(formValid) {
 		console.log(formValid);
+		$scope.snipper = true;
 		$scope.submitted=true;
 		if (formValid==true && $scope.enviando==false){
 			if ($scope.tienerif ){
@@ -26,9 +28,11 @@ coreApp.controller('SubmitController', function ($scope, $log, $http, $window) {
 			}).then(function successCallback(response) {
 				console.log(response);
 			    $window.location.href = $scope.urlRedirect;
+			    $scope.snipper  = false;
 			  }, function errorCallback(response) {
 			  	console.log("error");
 			  	$window.location.href = $scope.urlRedirect;
+			  	$scope.snipper  = false;
 			    // called asynchronously if an error occurs
 			    // or server returns response with an error status.
 			  });    		

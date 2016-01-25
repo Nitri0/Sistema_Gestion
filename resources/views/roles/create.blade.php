@@ -72,7 +72,7 @@
 	                    	<div class="form-group">
                                 <label class="col-md-4 control-label">Descripcion</label>
                                 <div class="col-md-5">
-                                   <input type="text" class="form-control" ng-model="model.descripcion_tipo_rol" name="descripcion_tipo_rol" ng-required="true" oninvalid="setCustomValidity(' ')">
+                                   <textarea rows="5" class="form-control" ng-model="model.descripcion_tipo_rol" name="descripcion_tipo_rol" ng-required="true" oninvalid="setCustomValidity(' ')"></textarea>
 									<div class="error campo-requerido" ng-show="formulario.descripcion_tipo_rol.$invalid && (formulario.descripcion_tipo_rol.$touched || submitted)">
                                         <small class="error" ng-show="formulario.descripcion_tipo_rol.$error.required">
                                             * Campo requerido.
@@ -90,11 +90,11 @@
 							<center>
                             @if($rol)
 								<button class="btn btn-success m-r-5 m-b-5" type="button" ng-click="submit(formulario.$valid)">
-									Actualizar
+									Actualizar <span ng-show="snipper===true" class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>
 								</button>
 							@else
 								<button class="btn btn-success m-r-5 m-b-5" type="button" ng-click="submit(formulario.$valid)">
-									Registrar
+									Registrar <span ng-show="snipper===true" class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>
 								</button>
 							@endif
 								
