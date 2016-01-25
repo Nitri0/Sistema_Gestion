@@ -107,7 +107,7 @@
 	                        <div class="form-group">
 	                            <label class="col-md-4 control-label">Dirección</label>
 	                            <div class="col-md-5">
-	                            	<input type="textarea" class="form-control" ng-model="model.direccion_empresa" name="direccion_empresa" ng-required="true" oninvalid="setCustomValidity(' ')">
+	                            	<textarea rows="5" class="form-control" ng-model="model.direccion_empresa" name="direccion_empresa" ng-required="true" oninvalid="setCustomValidity(' ')"></textarea>
 									<div class="error campo-requerido" ng-show="formulario.direccion_empresa.$invalid && (formulario.direccion_empresa.$touched || submitted)">
 	                                    <small class="error" ng-show="formulario.direccion_empresa.$error.required">
 	                                        * Campo requerido.

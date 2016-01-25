@@ -30,7 +30,7 @@
             <div class="col-12">
                 <div class="panel-group" id="accordion">
                 	<div class="row text-list">
-                		<div class="col-sm-5"> 
+                		<div class="col-sm-4"> 
                 			<div class="row">
                 				<div class="col-sm-3"><a href="#" ng-click="changeSort('index')"># </a></div>
                 				<div class="col-sm-9">
@@ -44,6 +44,9 @@
                 		<div class="col-sm-3">
                 			<a href="#" ng-click="changeSort('email_empresa')">Email</a>
                 		</div>
+                        <div class="col-sm-2">
+                            <a>Estatus</a>
+                        </div>
                 	</div>
 
                 	<br>
@@ -61,7 +64,7 @@
 		        			</div>
                             <h3 class="panel-title list-title">
                             	<div class="row">
-                            		<div class="col-sm-5"> 
+                            		<div class="col-sm-4"> 
                             			<div class="row">
                             				<div class="col-sm-3"> [[$index+1]] </div>
                             				<div class="col-sm-9">
@@ -77,6 +80,15 @@
                             		<div class="col-sm-3">
 										[[model.correo_empresa]]
                             		</div>
+                                    
+                                    <div class="col-sm-1">
+                                        <div class="icon-usuario-habilitado center" ng-if="model.habilitado_empresa == 1">
+                                            <i class="fa fa-check-circle"></i>
+                                        </div>
+                                        <div class="icon-usuario-desabilitado center" ng-if="model.habilitado_empresa == 0">
+                                            <i class="fa fa-times"></i>
+                                        </div>
+                                    </div>
 
                             	</div>                           	 
                             </h3>

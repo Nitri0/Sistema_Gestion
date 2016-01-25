@@ -190,7 +190,7 @@
                             	<div class="form-group">
 	                                <label class="col-md-2 control-label">Dirección</label>
 	                                <div class="col-md-8">
-										<input type="text" class="form-control" ng-model="perfil.direccion_perfil" name="direccion_perfil" ng-required="true" oninvalid="setCustomValidity(' ')">
+										<textarea rows="5" class="form-control" ng-model="perfil.direccion_perfil" name="direccion_perfil" ng-required="true" oninvalid="setCustomValidity(' ')"></textarea>
 	                                	<div class="error campo-requerido" ng-show="formulario.direccion_perfil.$invalid && (formulario.direccion_perfil.$touched || submitted)">
 		                                    <small class="error" ng-show="formulario.direccion_perfil.$error.required">
 		                                        * Campo requerido.
