@@ -106,7 +106,7 @@
 							<br>
 							<center>
 								<button type="button" class="btn btn-success m-r-5 m-b-5" ng-click="submit(formulario.$valid)">
-									Actualizar
+									Actualizar <span ng-show="snipper===true" class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>
 								</button>
 							</center>
 						

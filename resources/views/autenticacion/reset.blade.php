@@ -54,7 +54,7 @@
 							<div class="form-group">
 								<div class="col-md-6 col-md-offset-4">
 									<button type="submit" class="btn btn-success">
-										Resetear Contraseña <i class="fa fa-key"></i>
+										Resetear Contraseña <span ng-show="snipper===true" class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>
 									</button>
 								</div>
 							</div>
