@@ -84,9 +84,13 @@
 
 							<center>
 							@if($empresa_proveedora)
-								<button ng-click="submit(formulario.$valid)" class="btn btn-success m-r-5 m-b-5" type="button"> Actualizar </button>
+								<button ng-click="submit(formulario.$valid)" class="btn btn-success m-r-5 m-b-5" type="button"> 
+									Actualizar <span ng-show="snipper===true" class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>
+								</button>
 							@else
-								<button ng-click="submit(formulario.$valid)" class="btn btn-success m-r-5 m-b-5" type="button"> Registrar </button>
+								<button ng-click="submit(formulario.$valid)" class="btn btn-success m-r-5 m-b-5" type="button"> 
+									Registrar <span ng-show="snipper===true" class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>
+								</button>
 							@endif
 							</center>
 				

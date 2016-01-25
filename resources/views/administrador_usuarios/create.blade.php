@@ -264,11 +264,11 @@
 				<center>
 				@if($usuario)
 			        <button type="button" ng-click="submit(formulario.$valid)" class="btn btn-success">
-						Actualizar						
+						Actualizar <span ng-show="snipper===true" class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>					
 					</button>
 				@else
 					<button type="button" ng-click="submit(formulario.$valid)" class="btn btn-success">
-						Registrar					
+						Registrar <span ng-show="snipper===true" class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>				
 					</button>
 				@endif	
 				</center>

@@ -123,9 +123,13 @@
 
 	        <center>
 				@if($plantillas)
-				<button type="button" ng-click="submit(formulario.$valid)" class="btn btn-success m-r-5 m-b-5">Actualizar </button>
+				<button type="button" ng-click="submit(formulario.$valid)" class="btn btn-success m-r-5 m-b-5">
+					Actualizar <span ng-show="snipper===true" class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>
+				</button>
 				@else
-				<button type="button" ng-click="submit(formulario.$valid)" class="btn btn-success m-r-5 m-b-5">Registrar </button>
+				<button type="button" ng-click="submit(formulario.$valid)" class="btn btn-success m-r-5 m-b-5">
+					Registrar <span ng-show="snipper===true" class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>
+				</button>
 				@endif
 			</center>
         </form>

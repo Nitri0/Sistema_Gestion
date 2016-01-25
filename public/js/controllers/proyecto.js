@@ -7,6 +7,7 @@ coreApp.controller('ProyectoController',function($scope, $log, $http, $window) {
 	$scope.enviando = false;
 	$scope.sort = "name";
 	$scope.reverse = false;
+	$scope.snipper  = false;
 
 	$scope.changeSort = function(value){
 	    if ($scope.sort == value){
@@ -38,6 +39,7 @@ coreApp.controller('ProyectoController',function($scope, $log, $http, $window) {
 	$scope.submit= function(formValid) {
 		console.log(formValid);
 		$scope.submitted=true;
+		$scope.snipper  = true;
 		
 		if (formValid==true && $scope.enviando ==false){
 			if ($scope.cantidad >0){
@@ -51,8 +53,10 @@ coreApp.controller('ProyectoController',function($scope, $log, $http, $window) {
 				    headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 				}).then(function successCallback(response) {
 				    $window.location.href = "/proyectos";
+				    $scope.snipper  = false;
 				  }, function errorCallback(response) {
 				  	$window.location.href = "/proyectos";
+				  	$scope.snipper  = false;
 				    // called asynchronously if an error occurs
 				    // or server returns response with an error status.
 				  });    		

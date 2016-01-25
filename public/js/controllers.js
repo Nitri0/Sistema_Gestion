@@ -52,9 +52,11 @@ coreApp.controller('PlantillasController', function ($scope, $log, $http, $windo
 	$scope.submitted = false;
 	$scope.plantilla={};
 	$scope.enviando = false;
+	$scope.snipper  = false;
 	$scope.submit= function(formValid) {
 		console.log('PRUEBA');
 		$scope.submitted=true;
+		$scope.snipper = true;
 		if (formValid==true && $scope.enviando==false){
 	        var json = {};
     		angular.element('#formulario').serializeArray().map(function(x){json[x.name] = x.value;});
@@ -68,8 +70,10 @@ coreApp.controller('PlantillasController', function ($scope, $log, $http, $windo
 			}).then(function successCallback(response) {
 				console.log(response);
 			    $window.location.href = $scope.urlRedirect;
+			    $scope.snipper  = false;
 			  }, function errorCallback(response) {
 			  	console.log("error");
+			  	$scope.snipper  = false;
 			  });    		
 		};
 		return false;

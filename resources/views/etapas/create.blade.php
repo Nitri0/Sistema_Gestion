@@ -120,7 +120,7 @@
 							</div>
 							<center>
 								<button href="#confirmar_registrar" class="btn btn-success m-r-5 m-b-5" data-toggle="modal">
-									Registrar
+									Registrar <span ng-show="snipper===true" class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>
 								</button>
 							</center>
 							@include('modals/confirmar_registar')

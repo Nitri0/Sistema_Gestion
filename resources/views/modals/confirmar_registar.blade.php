@@ -12,7 +12,7 @@
 			<div class="modal-footer">
 				<a href="javascript:;" class="btn btn-danger" data-dismiss="modal">No</a>
 				<button type="button" class="btn btn-success" ng-click="submit(formulario.$valid)" data-dismiss="modal">
-					Si
+					Si <span ng-show="snipper===true" class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>
 				</button>
 			</div>
 		</div>

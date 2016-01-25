@@ -151,9 +151,13 @@
 							<br>
 							<center>
 								@if($empresa)
-								<button class="btn btn-success m-r-5 m-b-5" type="button" ng-click="submit(formulario.$valid)">Actualizar</button>
+								<button class="btn btn-success m-r-5 m-b-5" type="button" ng-click="submit(formulario.$valid)">
+									Actualizar <span ng-show="snipper===true" class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>
+								</button>
 								@else
-								<button class="btn btn-success m-r-5 m-b-5" type="button" ng-click="submit(formulario.$valid)">Registrar</button>
+								<button class="btn btn-success m-r-5 m-b-5" type="button" ng-click="submit(formulario.$valid)">
+									Registrar <span ng-show="snipper===true" class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>
+								</button>
 								@endif
 							</center>
 							

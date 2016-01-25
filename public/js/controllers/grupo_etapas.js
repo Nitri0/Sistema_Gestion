@@ -5,6 +5,7 @@ coreApp.controller('GrupoEtapasController', function ($scope, $log, $http, $wind
 	$scope.GrpEtapas={};
 	$scope.submitted = false;
 	$scope.enviando=false;
+	$scope.snipper  = false;
 	$scope.agregar_etapa= function(argument) {
 		$scope.etapas.push(1);
 		$scope.cantidad_etapas = $scope.etapas.length;
@@ -18,6 +19,7 @@ coreApp.controller('GrupoEtapasController', function ($scope, $log, $http, $wind
 	$scope.submit= function(formValid) {
 		console.log(formValid);
 		$scope.submitted=true;
+		$scope.snipper = true;
 		
 		if (formValid==true &&$scope.enviando == false){
 			if ($scope.cantidad_etapas >0){
@@ -31,7 +33,9 @@ coreApp.controller('GrupoEtapasController', function ($scope, $log, $http, $wind
 				    headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 				}).then(function successCallback(response) {
 				    $window.location.href = $scope.urlRedirect;
+				    $scope.snipper  = false;
 				  }, function errorCallback(response) {
+				  	$scope.snipper  = false;
 				  	//$window.location.href = "/proyectos";
 				    // called asynchronously if an error occurs
 				    // or server returns response with an error status.

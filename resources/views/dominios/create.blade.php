@@ -160,11 +160,11 @@
 							<center>
 								@if($dominio)
 									<button type="button" ng-click="submit(formulario.$valid)" class="btn btn-success m-r-5 m-b-5">
-										Actualizar
+										Actualizar <span ng-show="snipper===true" class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>
 									</button>
 								@else
 									<button type="button" ng-click="submit(formulario.$valid)" class="btn btn-success m-r-5 m-b-5">
-										Registrar
+										Registrar <span ng-show="snipper===true" class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>
 									</button>
 								@endif
 							</center>
