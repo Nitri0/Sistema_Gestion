@@ -6,9 +6,20 @@ coreApp.controller('GrupoEtapasController', function ($scope, $log, $http, $wind
 	$scope.submitted = false;
 	$scope.enviando=false;
 	$scope.snipper  = false;
+
+
 	$scope.agregar_etapa= function(argument) {
 		$scope.etapas.push(1);
 		$scope.cantidad_etapas = $scope.etapas.length;
+	};
+
+	$scope.mostrar_modal= function(formValid) {
+		$scope.submitted=true;
+		if (formValid==true){
+			if ($scope.cantidad_etapas >0){
+				angular.element('#confirmar_registrar').modal('show');
+			}
+		}
 	};
 
 	$scope.eliminar_etapa= function(argument) {
@@ -18,14 +29,14 @@ coreApp.controller('GrupoEtapasController', function ($scope, $log, $http, $wind
 
 	$scope.submit= function(formValid) {
 		console.log(formValid);
-		$scope.submitted=true;
 		$scope.snipper = true;
-		
-		if (formValid==true &&$scope.enviando == false){
+		$scope.submitted=true;
+		angular.element('#confirmar_registrar').modal('hide');
+		if (formValid==true && $scope.enviando == false){
 			if ($scope.cantidad_etapas >0){
 		        var json = {};
         		angular.element('#formulario').serializeArray().map(function(x){json[x.name] = x.value;});
-        		$scope.enviando=false;
+        		$scope.enviando=true;
 				$http({
 				    method: 'POST',
 				    url: $scope.urlAction,
