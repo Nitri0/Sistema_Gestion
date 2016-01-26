@@ -48,10 +48,9 @@ class LoginController extends Controller {
 	}
 
 	public function postRegistro(Request $request){
-		//dd($request->has('password'));
-		if (!$request->has('password') || !$request->has('re_password') || !$request->has('empresa') || !$request->has('identificador')  ){
+		if (!$request->has('password') || !$request->has('re_password') || !$request->has('empresa') || !$request->has('apellido') || !$request->has('nombre') ){
             Session::flash("mensaje-error",'Rellene todos los campos');
-            return redirect("/registro");
+            return redirect("/registrar");
         };
 
 		if ($request->password != $request->re_password){
