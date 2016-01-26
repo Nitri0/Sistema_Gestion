@@ -190,7 +190,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
 								->where('id_empresa', $this->getIdEmpresa())
 								->where('modulo_excepcion',$method)
 								->first();
-
+		//dd($method, $excepciones);
 		if ($excepciones){
 			return true;
 		}

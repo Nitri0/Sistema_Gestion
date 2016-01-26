@@ -134,12 +134,13 @@ class LoginController extends Controller {
 
 	public function postForgetPassword(Request $request){
 		if($request->correo){
-			$user = User::where('correo_usuario', $request->correo);
-			if(!$user->first()){
+			$users = User::where('correo_usuario', $request->correo);
+			$user = $users->first();
+			if(!$user){
 				Session::flash('mensaje-error','Correo no existente.');
 				return redirect('/recuperar-contraseña');
 			}
-			$habilitado = $user->where('activado_usuario',0)->first();
+			$habilitado = $users->where('activado_usuario',0)->first();
 			if ($habilitado){
 				//AQUI ENVIAR CORREO
 		        $asunto = "Codigo de activación";

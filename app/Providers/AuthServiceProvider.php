@@ -32,6 +32,7 @@ class AuthServiceProvider extends ServiceProvider
         #_______________________________ Modulo Proyectos ___________________________
         $gate->define('proyectos', function ($user, $method){
             $this->verificacion();
+            //dd($user->validacionExcepciones($method));
             return $user->isSuperAdmin() || $user->isAdmin() || ($user->isSocio() && $user->validacionExcepciones($method));
         });
         #_______________________________ Modulo Roles ___________________________
