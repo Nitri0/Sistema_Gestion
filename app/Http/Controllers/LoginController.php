@@ -75,21 +75,23 @@ class LoginController extends Controller {
         $user = User::create($request->all());
 
         $empresa = Empresas::create(['nombre_empresa'=>$request->empresa,
-        							'rif_empresa'=>$request->indentificador,
         						]);
         MMEmpresasUsuarios::create(['id_empresa'=>$empresa->id_empresa,
         							'id_usuario'=>$user->id_usuario,
         						]);
-        Perfil::create(['id_usuario'=>$user->id_usuario]);
+        Perfil::create(['id_usuario'=>$user->id_usuario,
+        				'nombre_perfil'=>$request->nombre,
+        				'apellido_perfil'=>$request->apellido,
+        				]);
         //AQUI ENVIAR EL CORREO
         $asunto = "Codigo de activación";
         $plantilla = "emails.private.codigo_activacion";
         $parametros = [
-        			'correo_usuario' => $request->correo_usuario,
+        			'correo_usuario' => $request->nombre." ".$request->apellido,
         			'codigo_activacion' => $request->codigo_activacion,
         		];
         Helper::SendEmailLogout($request->correo_usuario, $request->correo_usuario, $asunto, $plantilla, $parametros);
-        Session::flash("mensaje","Usuario registrado exitosamente, en breves se ha enviado a su correo un codigo de activación.");
+        Session::flash("mensaje","Usuario registrado exitosamente, en breves momentos se enviará a su correo un enlace de activación de usuario.");
         return redirect('/login');
 	}
 
