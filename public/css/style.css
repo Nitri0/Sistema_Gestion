@@ -296,3 +296,10 @@ body ,html{
   color: #FF5757;
   font-size: 15px;
 }
+
+@media (max-width: 1200px){
+  .content.has-bg .content-bg img {
+    max-height: none;
+    max-width: none;
+  }
+}
