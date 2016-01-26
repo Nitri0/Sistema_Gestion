@@ -51,16 +51,22 @@
 				<form class="form-horizontal" role="form" method="POST" action="{{ url('/registrar') }}">
 					<input type="hidden" name="_token" value="{{ csrf_token() }}">
 
+
 					<div class="form-group m-b-15">
-						<input type="text" class="form-control" name="empresa" value="{{ old('email') }}" placeholder="Nombre de empresa">
+						<input type="text" class="form-control" name="nombre" placeholder="Nombres">
 					</div>
 
 					<div class="form-group m-b-15">
-						<input type="text" class="form-control" name="identificador" value="{{ old('email') }}" placeholder="ejemplo: RIF, ID, ect.. solo mayusculas y números">
+						<input type="text" class="form-control" name="apellido" placeholder="Apellidos">
+					</div>
+
+
+					<div class="form-group m-b-15">
+						<input type="text" class="form-control" name="empresa" placeholder="Nombre de empresa">
 					</div>
 
 					<div class="form-group m-b-15">
-						<input type="email" class="form-control" name="correo_usuario" value="{{ old('email') }}" placeholder="Correo Electrónico">
+						<input type="email" class="form-control" name="correo_usuario" placeholder="Correo Electrónico">
 					</div>
 
 					<div class="form-group m-b-15">

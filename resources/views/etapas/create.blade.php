@@ -19,7 +19,7 @@
         <ol class="breadcrumb pull-right">
             <div class="btn-toolbar">
                 <div class="btn-group">
-                    <a href="{{ url( '/tipo_proyecto/create' ) }}" class="btn btn-success btn-sm p-l-20 p-r-20" data-toggle="tooltip" data-title="Agregar">
+                    <a href="{{ url( '/tipo_proyectos/create' ) }}" class="btn btn-success btn-sm p-l-20 p-r-20" data-toggle="tooltip" data-title="Agregar">
                         <i class="fa fa-plus"></i>
                     </a>
                 </div>
@@ -39,7 +39,7 @@
                             <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload" data-original-title="" title=""><i class="fa fa-repeat"></i></a>
                             <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse" data-original-title="" title=""><i class="fa fa-minus"></i></a>
                         </div>
-                        <h4 class="panel-title">Tipo de proyecto</h4>
+                        <h4 class="panel-title">Tipo de proyectos</h4>
                     </div>
 
                     <div class="panel-body">
@@ -48,7 +48,7 @@
 						<form class="form-horizontal" id="formulario" name="formulario" action="{{ url('tipo_proyectos/') }}" method="POST">
 								
 							<div class="form-group">
-                                <label class="col-md-4 control-label">Identificador </label>
+                                <label class="col-md-4 control-label">Tipo de Proyecto</label>
                                 <div class="col-md-5">
                                     <input type="text" text-num-only class="form-control" ng-model="GrpEtapas.nombre_grupo_etapas" name="nombre_grupo_etapas" ng-required="true" oninvalid="setCustomValidity(' ')">
 									<div class="error campo-requerido" ng-show="formulario.nombre_grupo_etapas.$invalid && (formulario.nombre_grupo_etapas.$touched || submitted)">
@@ -119,7 +119,7 @@
 								</a>
 							</div>
 							<center>
-								<button href="#confirmar_registrar" class="btn btn-success m-r-5 m-b-5" data-toggle="modal">
+								<button type="button" ng-click="mostrar_modal(formulario.$valid)" class="btn btn-success m-r-5 m-b-5">
 									Registrar <span ng-show="snipper===true" class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>
 								</button>
 							</center>
