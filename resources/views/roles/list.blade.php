@@ -56,7 +56,7 @@
                                 </a>	
                             </h3>
                             <div class="box-button-list">
-		        				<a class="btn btn-sm btn-info btn-cirule" ng-href="{{ url( '/roles/[[model.id_tipo_rol]]/edit' ) }}" data-toggle="tooltip" data-title="Editar"><i class="fa  fa-pencil-square-o"></i></a>
+		        				<a class="btn btn-list" ng-href="{{ url( '/roles/[[model.id_tipo_rol]]/edit' ) }}" data-toggle="tooltip" data-title="Editar"><i class="fa  fa-pencil-square-o"></i></a>
 		        				<!--<a class="btn btn-sm btn-inverse" ng-href="{{ url( '/roles/[[model.id_tipo_rol]]') }}" data-toggle="tooltip" data-title="Gestionar"><i class="fa fa-cogs"></i></a>-->
 		        			</div>
                             <h3 class="panel-title list-title">

@@ -12,20 +12,9 @@
 	@include('layouts/navbar-admin')
 
     @include('layouts/sidebar-admin')
-
-    @include('modals/ayuda')
 	
 	<div id="content" class="content ng-scope" ng-controller="SubmitController">
         
-        <ol class="breadcrumb pull-right">
-            <div class="btn-toolbar">
-                <div class="btn-group">
-                    <a href="{{ url( '/roles/create' ) }}" class="btn btn-success btn-sm p-l-20 p-r-20" >
-                        <i class="fa fa-plus"></i>
-                    </a>
-                </div>
-            </div>
-        </ol>
 		<div ng-init="urlRedirect='{{ url('roles/') }}'"></div>
 		@if($rol)
 	        <h1 class="page-header">Editar Rol </h1>
@@ -46,11 +35,9 @@
 	            <div class="col-12 ui-sortable">
 	                <!-- begin panel -->
 	                <div class="panel panel-inverse">
-	                    <div class="panel-heading">
+	                    <div class="panel-heading-2">
 	                        <div class="panel-heading-btn">
-	                            <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand" data-original-title="" title=""><i class="fa fa-expand"></i></a>
-	                            <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload" data-original-title="" title=""><i class="fa fa-repeat"></i></a>
-	                            <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse" data-original-title="" title=""><i class="fa fa-minus"></i></a>
+	                        	<a href="#ayuda" class="btn btn-ayuda" data-toggle="modal"><i class="fa fa-question"></i></a>
 	                        </div>
 	                        <h4 class="panel-title">Roles</h4>
 	                    </div>
@@ -80,12 +67,6 @@
                                 	</div>
                                 </div>
                             </div>
-
-                            <div class="btn-ayuda">
-                                <a href="#ayuda" class="btn btn-sm btn-info" data-toggle="modal">
-                                    <i class="fa fa-question"></i>
-                                </a>
-                            </div>
                             
 							<center>
                             @if($rol)
@@ -109,6 +90,8 @@
 
     </div><!-- content -->
 	
+    @include('modals/ayuda')
+
 </div>
 
 @endsection
