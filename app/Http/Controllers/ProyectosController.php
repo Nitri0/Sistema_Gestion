@@ -29,11 +29,17 @@ class ProyectosController extends Controller {
 	#______________________________ Filtros _________________________________
 	public function find(Route $route){
 		if($route->getParameter('proyectos')){
-			$this->proyecto = Proyectos::where('id_empresa', Auth::user()->getIdEmpresa())
-										->where('id_proyecto', $route->getParameter('proyectos'))
-										->first();
-			if (!$this->proyecto){
-				return redirect('/proyectos');
+			if(Auth::isSuperAdmin()){
+				$this->proyecto = Proyectos::where('id_proyecto', $route->getParameter('proyectos'))
+											->first();
+			}else{
+
+				$this->proyecto = Proyectos::where('id_empresa', Auth::user()->getIdEmpresa())
+											->where('id_proyecto', $route->getParameter('proyectos'))
+											->first();
+				if (!$this->proyecto){
+					return redirect('/proyectos');
+				}
 			}
 		}
 	}
