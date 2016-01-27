@@ -18,17 +18,16 @@
 	
 	<div id="content" class="content ng-scope" ng-controller="SubmitController">
 
-        <h1 class="page-header"><i class="fa fa-key"></i> Cambiar contraseña </h1>
+        <h1 class="page-header">Cambiar contraseña </h1>
 
         <div class="row">
 	        <!-- begin col-12 -->
 	        <div class="col-md-10 ui-sortable">
 	            <!-- begin panel -->
 	            <div class="panel panel-inverse">
-	                <div class="panel-heading">
+	                <div class="panel-heading-2">
 	                    <div class="panel-heading-btn">
-	                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand" data-original-title="" title=""><i class="fa fa-expand"></i></a>
-	                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse" data-original-title="" title=""><i class="fa fa-minus"></i></a>
+	                    	
 	                    </div>
 	                    <h4 class="panel-title">Contraseña</h4>
 	                </div>
