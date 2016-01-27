@@ -127,6 +127,26 @@ $router->group(['middleware' => 'auth'], function() {
 	//Route::get( '/roles', 'ProyectosController@roles');
 	//Route::post('/roles', 'ProyectosController@postRoles');
 
+
+#__________________________ ASISTENTE DE CREACION DE PROYECTOS ________________________________
+
+	Route::get('asistente/iniciando', 'CreacionGuiada@iniciando');
+
+	Route::get('asistente/paso1/list', 'CreacionGuiada@pasoClientesListar');
+	Route::get('asistente/paso1/create', 'CreacionGuiada@pasoClientesCrear');
+
+
+	Route::get('asistente/paso2/list', 'CreacionGuiada@pasoTipoProyectosListar');
+	Route::get('asistente/paso2/create', 'CreacionGuiada@pasoTipoProyectosCrear');
+
+	Route::get('asistente/paso3/list', 'CreacionGuiada@pasoUsuariosListar');
+	Route::get('asistente/paso3/create', 'CreacionGuiada@pasoUsuariosCrear');
+
+	Route::get('asistente/paso4/list', 'CreacionGuiada@pasoRolesListar');
+	Route::get('asistente/paso4/create', 'CreacionGuiada@pasoRolesCrear');
+
+	Route::get('asistente/finalizando', 'CreacionGuiada@finalizando');
+
 });
 
 
