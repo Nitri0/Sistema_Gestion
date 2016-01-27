@@ -319,13 +319,13 @@ body ,html{
   padding: 3px 5px 3px 8px;
   font-size: 18px;
   font-weight: 400;
-  color: #333;
+  color: rgba(0,0,0,0.6);;
   margin-top: -1px;
   background: transparent;
   border-color: transparent;
 }
 .btn-list:hover{
-  color: #4B4B4B;
+  color: rgba(0,0,0,0.7);;
 }
 
 
