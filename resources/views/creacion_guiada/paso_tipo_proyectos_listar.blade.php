@@ -1,0 +1,1 @@
+{{dd($tipo_proyectos)}}

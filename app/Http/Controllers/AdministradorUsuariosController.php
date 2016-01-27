@@ -155,7 +155,7 @@ class AdministradorUsuariosController extends Controller
                                 ]);
 
         Session::flash("mensaje-success","Usuario creado exitosamente");
-        return redirect("/admin_usuarios");
+        return json_encode(['success'=>true,]);
     }
 
     public function show($id){
