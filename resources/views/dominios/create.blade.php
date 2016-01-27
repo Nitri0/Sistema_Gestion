@@ -35,10 +35,9 @@
 	            <div class="col-12 ui-sortable">
 	                <!-- begin panel -->
 	                <div class="panel panel-inverse">
-	                    <div class="panel-heading">
+	                    <div class="panel-heading-2">
 	                        <div class="panel-heading-btn">
-	                            <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand" data-original-title="" title=""><i class="fa fa-expand"></i></a>
-	                            <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse" data-original-title="" title=""><i class="fa fa-minus"></i></a>
+	                        	<a href="#ayuda" class="btn btn-ayuda" data-toggle="modal"><i class="fa fa-question"></i></a>
 	                        </div>
 	                        <h4 class="panel-title">Dominio</h4>
 	                    </div>
@@ -149,13 +148,6 @@
 	                        </div>
 
 	                        <br>
-
-	                        <div class="btn-ayuda">
-								<a href="#ayuda" class="btn btn-sm btn-info" data-toggle="modal">
-									<i class="fa fa-question"></i>
-								</a>
-							</div>
-				            @include('modals/ayuda')
 							
 							<center>
 								@if($dominio)
@@ -177,6 +169,8 @@
 		</form>
     </div><!-- content -->
 	
+	@include('modals/ayuda')
+
 </div>
 
 @endsection

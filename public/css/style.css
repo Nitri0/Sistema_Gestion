@@ -180,8 +180,8 @@ body ,html{
   background: #FAFAFA;
 }
 .sidebar .nav>li.expand>a, .sidebar .nav>li>a:focus, .sidebar .nav>li>a:hover {
-  background: #8BD2EF;
-  color: #fff;
+  background: #e1f2fe;
+  color: #696763;
 }
 .sidebar .sub-menu>li>a {
   color: #696763;
