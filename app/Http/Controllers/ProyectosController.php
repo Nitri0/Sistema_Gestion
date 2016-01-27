@@ -29,7 +29,7 @@ class ProyectosController extends Controller {
 	#______________________________ Filtros _________________________________
 	public function find(Route $route){
 		if($route->getParameter('proyectos')){
-			if(Auth::isSuperAdmin()){
+			if(Auth::user()->isSuperAdmin()){
 				$this->proyecto = Proyectos::where('id_proyecto', $route->getParameter('proyectos'))
 											->first();
 			}else{
