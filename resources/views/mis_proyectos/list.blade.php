@@ -57,8 +57,8 @@
                                 </a>    
                             </h3>
                             <div class="box-button-list">
-                                <a class="btn btn-sm btn-info btn-cirule" ng-href="{{ url( '/mis-proyectos/[[proyecto.id_proyecto]]' ) }}" data-toggle="tooltip" data-title="Detalle"><i class="fa fa-list"></i></a>
-                                <a class="btn btn-sm btn-success btn-cirule" ng-href="{{ url( '/mis-proyectos/avances/[[proyecto.id_proyecto]]/create' ) }}" data-toggle="tooltip" data-title="Crear Avance"><i class="fa fa-line-chart"></i></a>
+                                <a class="btn btn-list" ng-href="{{ url( '/mis-proyectos/[[proyecto.id_proyecto]]' ) }}" data-toggle="tooltip" data-title="Detalle"><i class="fa fa-list"></i></a>
+                                <a class="btn btn-list" ng-href="{{ url( '/mis-proyectos/avances/[[proyecto.id_proyecto]]/create' ) }}" data-toggle="tooltip" data-title="Crear Avance"><i class="fa fa-line-chart"></i></a>
                             </div>
                             <h3 class="panel-title list-title">
                                 <div class="row">
@@ -81,7 +81,7 @@
                                         [[proyecto.nombre_etapa]]
                                     </div>
 
-                                    <div class="col-sm-1">
+                                    <div class="col-sm-0">
                                         [[proyecto.fecha_creacion_avance | DateForHumans]]
                                     </div>
 

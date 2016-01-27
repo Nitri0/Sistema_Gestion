@@ -34,11 +34,9 @@
                 <div class="col-12 ui-sortable">
                     <!-- begin panel -->
                     <div class="panel panel-inverse">
-                        <div class="panel-heading">
+                        <div class="panel-heading-2">
                             <div class="panel-heading-btn">
-                                <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand" data-original-title="" title=""><i class="fa fa-expand"></i></a>
-                                <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload" data-original-title="" title=""><i class="fa fa-repeat"></i></a>
-                                <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse" data-original-title="" title=""><i class="fa fa-minus"></i></a>
+                                <a href="#ayuda" class="btn btn-ayuda" data-toggle="modal"><i class="fa fa-question"></i></a>
                             </div>
                             <h4 class="panel-title">Crear avance</h4>
                         </div>
@@ -114,13 +112,6 @@
 									<a class="btn btn-sm btn-success" ng-if="id_plantilla" target="_blank" href="{{ url( '/plantillas/preview/'.$proyecto->id_proyecto.'/[[id_plantilla]]/' ) }}"> preview <i class="fa fa-eye"></i></a>
 								</div>
 							</div>
-
-                            <div class="btn-ayuda">
-                                <a href="#ayuda" class="btn btn-sm btn-info" data-toggle="modal">
-                                    <i class="fa fa-question"></i>
-                                </a>
-                            </div>
-                            @include('modals/ayuda')
     							
     					</div><!-- boby -->
                     </div>
@@ -128,9 +119,9 @@
 
                 <div class="col-md-12">
                     <div class="panel panel-inverse" data-sortable-id="form-wysiwyg-1">
-                        <div class="panel-heading">
+                        <div class="panel-heading-2">
                             <div class="panel-heading-btn">
-                                <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
+                                
                             </div>
                             <h4 class="panel-title">Descripción</h4> 
                         </div>
@@ -158,5 +149,7 @@
 
     </div><!-- content -->
 	
+    @include('modals/ayuda')
+
 </div>
 @endsection
