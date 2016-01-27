@@ -54,7 +54,7 @@
                                 </a>	
                             </h3>
                             <div class="box-button-list">
-		        				<a class="btn btn-sm btn-info btn-cirule" ng-href="{{ url( '/tipo_proyectos/[[etapa.id_grupo_etapas]]' ) }}" data-toggle="tooltip" data-title="Detalle"><i class="fa fa-list"></i></a>
+		        				<a class="btn btn-list" ng-href="{{ url( '/tipo_proyectos/[[etapa.id_grupo_etapas]]' ) }}" data-toggle="tooltip" data-title="Detalle"><i class="fa fa-list"></i></a>
 		        			</div>
                             <h3 class="panel-title list-title">
                             	<div class="row">

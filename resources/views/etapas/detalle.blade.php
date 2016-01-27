@@ -27,7 +27,7 @@
             <div class="col-md-12 ui-sortable">
                 <!-- begin panel -->
                 <div class="panel panel-inverse">
-                    <div class="panel-heading">
+                    <div class="panel-heading-2">
                         <h4 class="panel-title">Detalle de Etapas</h4>
                     </div>
 
