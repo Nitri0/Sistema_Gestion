@@ -82,7 +82,7 @@ class ProyectosController extends Controller {
 	public function show($id_proyecto){
 		$rol = Roles::where('id_proyecto',$id_proyecto)->get();
 
-		$proyecto = Proyectos::find($id_proyecto);
+		$proyecto = $this->proyecto;
 		$etapas = GrupoEtapas::find($proyecto->id_grupo_etapas);
 		//->get()->pluck('modulo_excepcion')->toArray();
 		$idusuarios = MMEmpresasUsuarios::where('id_empresa', Auth::user()->getIdEmpresa())
