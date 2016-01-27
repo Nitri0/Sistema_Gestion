@@ -56,8 +56,8 @@
                                 </a>	
                             </h3>
                             <div class="box-button-list">
-		        				<a class="btn btn-sm btn-info btn-cirule" ng-href="{{ url( '/plantillas/[[plantilla.id_plantilla]]/edit' ) }}" data-toggle="tooltip" data-title="Editar"><i class="fa fa-list"></i></a>
-		        				<a class="btn btn-sm btn-white btn-cirule" target="_blank" ng-href="{{ url( '/plantillas/preview/[[plantilla.id_plantilla]]' ) }}" data-toggle="tooltip" data-title="Preview"><i class="fa fa-eye"></i></a>
+		        				<a class="btn btn-list" ng-href="{{ url( '/plantillas/[[plantilla.id_plantilla]]/edit' ) }}" data-toggle="tooltip" data-title="Editar"><i class="fa fa-list"></i></a>
+		        				<a class="btn btn-list" target="_blank" ng-href="{{ url( '/plantillas/preview/[[plantilla.id_plantilla]]' ) }}" data-toggle="tooltip" data-title="Preview"><i class="fa fa-eye"></i></a>
 		        			</div>
                             <h3 class="panel-title list-title">
                             	<div class="row">
