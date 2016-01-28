@@ -144,6 +144,12 @@ class CreacionGuiada extends Controller {
 		return view('creacion_guiada.paso_roles_crear');
 	}
 
+
+	//______________PASO 5
+	public function pasoProyectoCrear(){
+		return view('creacion_guiada.paso_proyecto_crear');
+	}
+
 	//______________FINALIZANDO
 	
 	public function finalizando(){
