@@ -17,6 +17,64 @@ use Auth;
 
 class CreacionGuiada extends Controller {
 
+    public function __construct(){
+        $this->configuracion = new ConfiguracionController();
+        $this->usuario ="";
+        $this->perfil ="";
+        $this->permisos ="";
+        $this->beforeFilter('@metodosClases', ['only' => ['pasoUsuariosCrear']]);
+    }
+
+    public function metodosClases(Route $route){
+        $controladores = [
+                          '\App\Http\Controllers\ProyectosController'               =>'proyectos',
+                          '\App\Http\Controllers\ClientesController'                =>'clientes',
+                          '\App\Http\Controllers\EtapasController'                  =>'tipo_proyectos',
+                          '\App\Http\Controllers\PlantillasController'              =>'plantillas',
+                          '\App\Http\Controllers\RolesController'                   =>'roles',
+                          '\App\Http\Controllers\DominiosController'                =>'dominios',
+                          '\App\Http\Controllers\EmpresasProveedorasController'     =>'empresas_proveedoras',
+                          ];
+
+        $nombre_metodos  = $this->configuracion->InfoModulos;
+        //dd($nombre_metodos);
+        $this->tipos_usuario = [
+                                'Trabajador'    =>1,
+                                'Invitado'      =>4,
+                                'Socio'         =>3,
+                                'Administrador' =>2,
+                            ];
+        $metodos_except = ['__construct',
+                            'find',
+                            'permisos',
+                            'metodosClases',
+                            'validRif'];
+
+        $permisos = [];
+
+
+        foreach($controladores as $controlador=>$nombre){
+            $metodos = [];
+            $metodos_procesados = [];
+            $class = new \ReflectionClass($controlador);
+            foreach($class->getMethods(\ReflectionMethod::IS_PUBLIC ) as $route){
+                if ($route->class == substr($controlador,1) && !in_array($route->name, $metodos_except) ){
+
+                    array_push($metodos, ['metodo_raw'=>$route->name,
+                                          'metodo_process'=>$nombre_metodos[$nombre]['administrador_usuarios'][$route->name][0],
+                                          'metodo_descripcion'=>$nombre_metodos[$nombre]['administrador_usuarios'][$route->name][1]
+                                          ]);
+                    
+                }
+            };
+            
+            $permisos[$nombre] = $metodos;
+//            dd($permisos);
+        };
+        //dd($permisos);
+        $this->permisos = $permisos;
+    }
+
 	//______________INICIANDO
 	
 	public function iniciando(){
@@ -65,10 +123,10 @@ class CreacionGuiada extends Controller {
 	}
 
 	public function pasoUsuariosCrear(){
-		return view('creacion_guiada.paso_usuarios_crear',['usuario'=>"",
-                                                        'permisos' =>"",
-                                                        'tipos_usuario' =>"",
-                                                        'perfil'=>""]);
+		return view('creacion_guiada.paso_usuarios_crear',['usuario'=>$this->usuario,
+                                                        'permisos' =>$this->permisos,
+                                                        'tipos_usuario' =>$this->tipos_usuario,
+                                                        'perfil'=>$this->perfil]);
 	}
 
 
