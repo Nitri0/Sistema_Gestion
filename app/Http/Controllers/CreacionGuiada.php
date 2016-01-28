@@ -146,7 +146,7 @@ class CreacionGuiada extends Controller {
 
 
 	//______________PASO 5
-	public function pasoProyectoCrear(){
+	public function pasoProyectosCrear(){
 		return view('creacion_guiada.paso_proyecto_crear');
 	}
 
