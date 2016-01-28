@@ -65,7 +65,10 @@ class CreacionGuiada extends Controller {
 	}
 
 	public function pasoUsuariosCrear(){
-		return view('creacion_guiada.paso_usuarios_crear');
+		return view('creacion_guiada.paso_usuarios_crear',['usuario'=>"",
+                                                        'permisos' =>"",
+                                                        'tipos_usuario' =>"",
+                                                        'perfil'=>""]);
 	}
 
 
