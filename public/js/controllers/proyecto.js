@@ -52,10 +52,10 @@ coreApp.controller('ProyectoController',function($scope, $log, $http, $window) {
 				    data: json,
 				    headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 				}).then(function successCallback(response) {
-				    $window.location.href = "/proyectos";
+				    $window.location.href = $scope.urlRedirect;
 				    $scope.snipper  = false;
 				  }, function errorCallback(response) {
-				  	$window.location.href = "/proyectos";
+				  	$window.location.href = $scope.urlRedirect;
 				  	$scope.snipper  = false;
 				    // called asynchronously if an error occurs
 				    // or server returns response with an error status.
