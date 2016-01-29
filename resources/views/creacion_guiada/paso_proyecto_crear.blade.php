@@ -77,7 +77,7 @@
 		                    <div class="form-group">
 		                        <label class="col-md-4 control-label">Nombre del proyecto</label>
 		                        <div class="col-md-5">
-		                           <input type="text" text-only class="form-control" name="nombre_proyecto" ng-model="proyecto.nombre_proyecto" ng-required="true" oninvalid="setCustomValidity(' ')">
+		                           <input type="text" text-num-only class="form-control" name="nombre_proyecto" ng-model="proyecto.nombre_proyecto" ng-required="true" oninvalid="setCustomValidity(' ')">
 									<div class="error campo-requerido" ng-show="formulario.nombre_proyecto.$invalid && (formulario.nombre_proyecto.$touched || submitted)">
 		                                <small class="error" ng-show="formulario.nombre_proyecto.$error.required">
 		                                    * Campo requerido.

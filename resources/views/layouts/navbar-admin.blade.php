@@ -15,6 +15,7 @@
 		
 		<!-- begin header navigation right -->
 		<ul class="nav navbar-nav navbar-right">
+
 			<li>
 				<form class="navbar-form full-width">
 					<div class="form-group">
@@ -23,6 +24,8 @@
 					</div>
 				</form>
 			</li>
+
+
 			<li class="dropdown navbar-user">
 				<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
 					<img src="{{ url('/img/user.png') }}" alt="" /> 

@@ -147,12 +147,26 @@ class CreacionGuiada extends Controller {
 
 	//______________PASO 5
 	public function pasoProyectosCrear(){
-		return view('creacion_guiada.paso_proyecto_crear');
+		$clientes = Clientes::where('id_empresa', Auth::user()->getIdEmpresa())->get();
+		$idusuarios = MMEmpresasUsuarios::where('id_empresa', Auth::user()->getIdEmpresa())
+										->get()
+										->pluck('id_usuario')
+										->toArray();
+
+		$usuarios = User::whereIn('id_usuario',$idusuarios)->get();
+		$roles = TipoRoles::where('id_empresa',Auth::user()->getIdEmpresa())
+							->where('habilitado_tipo', 1)->get();
+		$grupo_etapas = GrupoEtapas::where('id_empresa', Auth::user()->getIdEmpresa())
+									->where('habilitado_grupo_etapas', 1)
+									->get();
+				
+		return view('creacion_guiada.paso_proyecto_crear',compact('clientes', 'usuarios', 'roles','grupo_etapas'));
 	}
 
 	//______________FINALIZANDO
 	
 	public function finalizando(){
+
 		return view('creacion_guiada.finalizando');
 	}	
 }

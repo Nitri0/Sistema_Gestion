@@ -136,6 +136,6 @@ $router->group(['middleware' => 'auth'], function() {
 
 	Route::get('asistente/paso5/create', 'CreacionGuiada@pasoProyectosCrear');
 
-	Route::get('asistente/finalizando', 'CreacionGuiada@finalizando');
+	Route::get('asistente/finalizado', 'CreacionGuiada@finalizando');
 
 });
