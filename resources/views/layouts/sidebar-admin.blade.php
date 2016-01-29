@@ -44,6 +44,15 @@
 				</ul>
 			</li>
 			@endif	
+			
+			@if(Auth::user()->tiene_permiso('proyectos'))
+			<li class="has-sub"><!-- ng-click="proyecto_active()" ng-class="{'': !proyecto, 'active': proyecto}"-->
+				<a href="{{ url('asistente/iniciando')}}" >
+				    <i class="fa fa-magic"></i>
+				    <span>Creación Guiada</span>
+			    </a>
+			</li>
+			@endif
 
 			@if(Auth::user()->tiene_permiso('grupo_etapas'))
 			<li class="has-sub"><!-- ng-click="proyecto_active()" ng-class="{'': !proyecto, 'active': proyecto}"-->
