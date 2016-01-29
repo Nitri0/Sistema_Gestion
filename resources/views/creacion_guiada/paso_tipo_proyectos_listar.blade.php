@@ -8,11 +8,17 @@
 
 	@include('alerts.mensaje_success')
 	@include('alerts.mensaje_error')
+    
+    <div ng-init="grupoetapas={{$tipo_proyectos}}"></div>
+    <div ng-init="url='{{url()}}'"></div>
 
 	<div id="content" class="content content-asistente ng-scope">
 		
 		<ol class="breadcrumb pull-right">
             <div class="btn-toolbar">
+                <div class="btn-group list-none-click" ng-show="!grupoetapas">
+                    <h4>Haga click aqui para registrar <i class="fa fa-arrow-right"></i></h4>
+                </div>
                 <div class="btn-group">
                     <a href="{{ url( 'asistente/paso2/create' ) }}" class="btn btn-success" data-toggle="tooltip" data-title="Crear Tipo Proyecto">
                         <i class="fa fa-plus"></i>
@@ -21,12 +27,20 @@
             </div>
         </ol>
 
-		<h1 class="page-header">Lista de Tipo de Proyecto </h1>
-        
-        <div ng-init="grupoetapas={{$tipo_proyectos}}"></div>
-		<div ng-init="url='{{url()}}'"></div>
+        <section id="do_action" ng-show="!grupoetapas">
+            <div class="container center">
+                <div class="row">
+                    <div class="col-md-12 list-none">
+                        <i class="fa fa-ban"></i>
+                        <h1> No tiene Tipo de Proyectos registrados.</h1>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-        <div class="row">
+		<h1 class="page-header" ng-show="grupoetapas">Lista de Tipo de Proyecto </h1>
+
+        <div class="row" ng-show="grupoetapas">
             <div class="col-12">
                 <div class="panel-group" id="accordion">
                 	<div class="row text-list">
@@ -96,7 +110,7 @@
 	    	<div class="navbar-collapse collapse">
 	      		<!-- Right nav -->
 	      		<ul class="nav-siguiente navbar-right">
-	        		<li><a href="{{ url('asistente/paso3/list') }}" class="btn btn-success m-r-5 m-b-5">Siguiente</a></li>
+	        		<li><a href="{{ url('asistente/paso3/list') }}" class="btn btn-success m-r-5 m-b-5" ng-disabled="!grupoetapas">Siguiente</a></li>
 	      		</ul>
                 <ul class="nav-siguiente navbar-right">
                     <li><a href="{{ url('asistente/paso1/list') }}" class="btn btn-success m-r-5 m-b-5">Atras</a></li>
