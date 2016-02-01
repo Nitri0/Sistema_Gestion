@@ -21,11 +21,7 @@
 		</ul>
 		<!-- end sidebar user -->
 		<!-- begin sidebar nav -->
-		<ul class="nav">
-
-			<li class="has-sub">
-				<a href="{{url('/asistente/iniciando')}}" class=" btn btn-success" >Crear Nuevo Proyecto </a>
-			</li>			
+		<ul class="nav">			
 
 			<li class="has-sub"><!-- ng-click="proyecto_active()" ng-class="{'': !proyecto, 'active': proyecto}"-->
 				<a href="{{ url('mis-proyectos')}}" >

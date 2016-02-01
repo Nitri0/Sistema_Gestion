@@ -173,6 +173,9 @@
 							Registrar <span ng-show="snipper===true" class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>
 						</button>
 		            </ul>
+		            <ul class="nav-siguiente navbar-right">
+	                    <li><a href="{{ url('asistente/paso4/list') }}" class="btn btn-success m-r-5 m-b-5">Atras</a></li>
+	                </ul>
 		        </div><!--/.nav-collapse -->
 		    </div><!--/.container -->
 		</div>

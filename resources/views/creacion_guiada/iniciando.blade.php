@@ -24,6 +24,9 @@
 	      		<ul class="nav-siguiente navbar-right">
 	        		<li><a href="{{ url('asistente/paso1/list') }}" class="btn btn-success m-r-5 m-b-5">Iniciar</a></li>
 	      		</ul>
+	      		<ul class="nav-siguiente navbar-right">
+                    <li><a href="{{ url('mis-proyectos') }}" class="btn btn-danger m-r-5 m-b-5">Cerrar</a></li>
+                </ul>
 	    	</div><!--/.nav-collapse -->
 	  	</div><!--/.container -->
 	</div>

@@ -138,6 +138,9 @@
 	      		<ul class="nav-siguiente navbar-right">
 	        		<li><a href="{{ url('asistente/paso2/list') }}" class="btn btn-success m-r-5 m-b-5" ng-disabled="!models">Siguiente</a></li>
 	      		</ul>
+                <ul class="nav-siguiente navbar-right">
+                    <li><a href="{{ url('asistente/iniciando') }}" class="btn btn-success m-r-5 m-b-5">Atras</a></li>
+                </ul>
 	    	</div><!--/.nav-collapse -->
 	  	</div><!--/.container -->
 	</div>

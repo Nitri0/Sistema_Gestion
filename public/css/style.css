@@ -355,7 +355,16 @@ body ,html{
   color: #CFCFCF;
   margin-top: 15px;
 }
-
+.btn-agregar{
+  padding: 10px 12px 9px 12px;
+  margin-top: -6px;
+  margin-right: -14px;
+}
+.btn-eliminar{
+  padding: 10px 12px 9px 12px;
+  margin-top: -6px;
+  margin-right: -1px;
+}
 @media (max-width: 1200px){
   .content.has-bg .content-bg img {
     max-height: none;
