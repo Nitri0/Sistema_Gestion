@@ -13,9 +13,10 @@
         <ol class="breadcrumb pull-right">
             <div class="btn-toolbar">
                 <div class="btn-group">
-                    <a href="{{ url( '/tipo_proyectos/create' ) }}" class="btn btn-success btn-sm p-l-20 p-r-20" data-toggle="tooltip" data-title="Agregar">
-                        <i class="fa fa-plus"></i>
-                    </a>
+                    <form action="/tipo_proyectos/{{$grupo_etapas->id_grupo_etapas}}" method="post">
+                        <input type="hidden" name="_method" value="delete">
+                        <button type="submit" class="btn btn-list" data-toggle="tooltip" data-title="Grupo de Etapas"><i class="fa fa-trash"></i></button>
+                    </form>
                 </div>
             </div>
         </ol>
@@ -73,21 +74,16 @@
                 <li>
                     <!-- begin timeline-time -->
                     <div class="timeline-time">
-                        <span class="date">Orden</span>
-                        <span class="time">{{$etapa->numero_orden_etapa}}</span>
+                        <span class="time"></span>
                     </div>
                     <!-- end timeline-time -->
                     <!-- begin timeline-icon -->
                     <div class="timeline-icon">
-                        <a href="javascript:;"><i class="fa fa-line-chart"></i></a>
+                        <a href="javascript:;">{{$etapa->numero_orden_etapa}}</a>
                     </div>
                     <!-- end timeline-icon -->
                     <!-- begin timeline-body -->
                     <div class="timeline-body">
-                        @if($grupo_etapas->getEtapas()->first())
-                            <h5>Etapas</h5>
-                            <hr>
-                        @endif
                         <div class="timeline-content">
                             <p>
                                 {{$etapa->nombre_etapa}}
@@ -100,17 +96,8 @@
                 <li>
                     <!-- begin timeline-icon -->
                     <div class="timeline-icon">
-                        <a href="javascript:;"><i class="fa fa-trash"></i></a>
+                        <a href="javascript:;"><i class="fa fa-sort-amount-asc"></i></a>
                     </div>
-                    <!-- end timeline-icon -->
-                    <!-- begin timeline-body -->
-                    <div class="timeline-body-eliminar">
-                        <form action="/tipo_proyectos/{{$grupo_etapas->id_grupo_etapas}}" method="post">
-                            <input type="hidden" name="_method" value="delete">
-                            <button type="submit" class="btn btn-danger" data-toggle="tooltip" data-title="Grupo de Etapas">Eliminar</button>
-                        </form>
-                    </div>
-                    <!-- begin timeline-body -->
                 </li>
             </ul>
             

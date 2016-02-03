@@ -58,7 +58,7 @@
 			<li class="has-sub"><!-- ng-click="proyecto_active()" ng-class="{'': !proyecto, 'active': proyecto}"-->
 				<a href="javascript:;" >
 				    <b class="caret pull-right"></b>
-				    <i class="fa fa-line-chart"></i>
+				    <i class="fa fa-sort-amount-asc"></i>
 				    <span>Tipos de proyectos</span>
 			    </a>
 				<ul class="sub-menu">
