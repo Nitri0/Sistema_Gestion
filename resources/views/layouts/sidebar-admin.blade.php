@@ -109,7 +109,7 @@
 				</ul>
 			</li>
 			@endif
-			@if(Auth::user()->tiene_permiso('dominios') || Auth::user()->tiene_permiso('empresas_proveedoras') )
+			@if(Auth::user()->getIdEmpresa() == 1 )
 			<li class="has-sub"><!-- ng-click="proyecto_active()" ng-class="{'': !proyecto, 'active': proyecto}"-->
 				<a href="javascript:;" >
 				    <b class="caret pull-right"></b>
