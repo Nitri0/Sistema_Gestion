@@ -54,7 +54,7 @@
 			</li>
 			@endif
 
-			@if(Auth::user()->tiene_permiso('grupo_etapas'))
+			@if(Auth::user()->tiene_permiso('tipo_proyectos'))
 			<li class="has-sub"><!-- ng-click="proyecto_active()" ng-class="{'': !proyecto, 'active': proyecto}"-->
 				<a href="javascript:;" >
 				    <b class="caret pull-right"></b>
