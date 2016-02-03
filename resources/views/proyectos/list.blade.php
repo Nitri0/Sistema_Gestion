@@ -43,10 +43,10 @@
                         		</div>
                 			</div>
                 		</div>
-                		<div class="col-sm-3">
-							<a href="#" ng-click="changeSort('nombre_dominio')">Dominio</a>
-                		</div>
-                		<div class="col-sm-3">
+                        <div class="col-sm-3">
+                            <a href="#" ng-click="changeSort('nombre_cliente')">Clientes</a>
+                        </div>
+                        <div class="col-sm-3">
 							<a href="#" ng-click="changeSort('nombre_etapa')">Estatus</a>
                 		</div>
                 		<div class="col-sm-3">
@@ -78,14 +78,12 @@
                             		</div>
 
                             		<div class="col-sm-3">
-										<a href="http://[[proyecto.nombre_dominio]]" target="_blank">
-											[[proyecto.nombre_dominio | noAsignado ]]
-										</a>
+										[[proyecto.nombre_cliente]]
                             		</div>
 
-                            		<div class="col-sm-3">
-										[[proyecto.nombre_etapa]]
-                            		</div>
+                                    <div class="col-sm-3">
+                                        [[proyecto.nombre_etapa]]
+                                    </div>
 
                             		<div class="col-sm-1 center">
 										[[proyecto.fecha_creacion_avance | DateForHumans]]
@@ -97,7 +95,8 @@
                         <div id="[[$index+1]]" class="panel-collapse collapse">
                             <div class="panel-body">
                             	<p>Nombre del Cliente: [[proyecto.nombre_cliente]]</p>
-                            	<p>Tipo de Proyecto: [[proyecto.nombre_grupo_etapas]]</p>
+                            	<p ng-show="proyecto.nombre_dominio" >Dominio: <a ng-href="http://[[proyecto.nombre_dominio]]"> [[proyecto.nombre_dominio]] </a> </p>
+                                <p>Tipo de Proyecto: [[proyecto.nombre_grupo_etapas]]</p>
                                 <div ng-if="proyecto.asunto_avance != null">
                                     <hr>
                                     <p class="center">Ultimo Avance</p>

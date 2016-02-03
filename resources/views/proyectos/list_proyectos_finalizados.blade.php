@@ -35,8 +35,11 @@
                 			</div>
                 		</div>
                 		<div class="col-sm-3">
-							<a href="#" ng-click="changeSort('fecha_creacion_avance')">Ultimo avance</a>
+							<a href="#" ng-click="changeSort('nombre_cliente')">Cliente</a>
                 		</div>
+                        <div class="col-sm-3">
+                            <a href="#" ng-click="changeSort('fecha_creacion_avance')">Ultimo avance</a>
+                        </div>
                 		<div class="col-sm-3">
 							<a href="#" ng-click="changeSort('nombre_etapa')">Estatus</a>
                 		</div>
@@ -66,6 +69,11 @@
                             		</div>
 
 
+
+                                    <div class="col-sm-3">
+                                        [[proyecto.nombre_cliente]]
+                                    </div>
+
                             		<div class="col-sm-3">
 										[[proyecto.fecha_creacion_avance | DateForHumans]]
                             		</div>
@@ -82,7 +90,7 @@
                             	<p>Cliente: [[proyecto.nombre_cliente]]</p>
                             	<p>Fecha de creación: [[proyecto.fecha_creacion_proyecto]]</p>
                             	<p>Tipo de Proyecto: [[proyecto.nombre_grupo_etapas]]</p>
-                                <p ng-show="proyecto.nombre_dominio" >Dominio: <a href="proyecto.nombre_dominio"> [[proyecto.nombre_dominio]] </a> </p>
+                                <p ng-show="proyecto.nombre_dominio" >Dominio: <a ng-href="http://[[proyecto.nombre_dominio]]"> [[proyecto.nombre_dominio]] </a> </p>
                             	
                             	<form action="[['/proyectos/reabrir/' + proyecto.id_proyecto]]" method="post">
 					        		<div class="row">
