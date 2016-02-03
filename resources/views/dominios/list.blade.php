@@ -104,7 +104,7 @@
                             	<p>Espacio Usado: [[dominio.espacio_asignado_dominio | formatSize]]</p>
                             	<form action="[[url+'/dominios/'+dominio.id_dominio]]" method="post">
 					        		<input type="hidden" name="_method" value="delete">
-									<button type="submit" class="btn btn-sm btn-danger pull-right" data-toggle="tooltip" data-title="Eliminar"><i class="fa fa-trash"></i></button>
+									<button type="submit" class="btn btn-list pull-right" data-toggle="tooltip" data-title="Eliminar"><i class="fa fa-trash"></i></button>
 								</form>
                             </div>
                         </div>

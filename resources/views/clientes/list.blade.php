@@ -99,7 +99,7 @@
                                 </ul>
                             	<form action="[[url+'/clientes/'+model.id_cliente]]" method="post">
 					        		<input type="hidden" name="_method" value="delete">
-									<button type="submit" class="btn btn-sm btn-danger pull-right" data-toggle="tooltip" data-title="Eliminar"><i class="fa fa-trash"></i></button>
+									<button type="submit" class="btn btn-list pull-right" data-toggle="tooltip" data-title="Eliminar"><i class="fa fa-trash"></i></button>
 								</form>
                             </div>
                         </div>

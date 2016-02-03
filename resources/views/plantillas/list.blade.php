@@ -80,7 +80,7 @@
                         <div id="[[$index+1]]" class="panel-collapse collapse">
                             <div class="panel-body">
                             	[[plantilla.descripcion_plantilla]]
-                            	<a ng-href="{{ url( '/plantillas/[[plantilla.id_plantilla]]/destroy' ) }}" class="btn btn-sm btn-danger pull-right" data-toggle="tooltip" data-title="Eliminar"><i class="fa fa-trash"></i></a>
+                            	<a ng-href="{{ url( '/plantillas/[[plantilla.id_plantilla]]/destroy' ) }}" class="btn btn-list pull-right" data-toggle="tooltip" data-title="Eliminar"><i class="fa fa-trash"></i></a>
                             </div>
                         </div>
                     </div>

@@ -76,7 +76,7 @@
                             <div class="panel-body">
                             	<p>Descripción: [[model.descripcion_tipo_rol]]</p>
                             	
-                            	<a class="btn btn-sm btn-danger pull-right" href="{{ url( '/roles/[[model.id_tipo_rol]]/destroy') }}" data-toggle="tooltip" data-title="Eliminar"><i class="fa fa-trash"></i></a>
+                            	<a class="btn btn-list pull-right" href="{{ url( '/roles/[[model.id_tipo_rol]]/destroy') }}" data-toggle="tooltip" data-title="Eliminar"><i class="fa fa-trash"></i></a>
                             </div>
                         </div>
                     </div>

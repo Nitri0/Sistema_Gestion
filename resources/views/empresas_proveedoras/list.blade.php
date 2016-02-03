@@ -82,7 +82,7 @@
                             <div class="panel-body">
                             	<p>Fecha Creación: [[proveedora.fecha_creacion_empresa_proveedora]]</p>
                             	
-                            	<a class="btn btn-sm btn-danger pull-right" href="{{ url( '/empresas_proveedoras/[[proveedora.id_empresa_proveedora]]/destroy' ) }}" data-toggle="tooltip" data-title="Eliminar"><i class="fa fa-trash"></i></a>
+                            	<a class="btn btn-list pull-right" href="{{ url( '/empresas_proveedoras/[[proveedora.id_empresa_proveedora]]/destroy' ) }}" data-toggle="tooltip" data-title="Eliminar"><i class="fa fa-trash"></i></a>
                             </div>
                         </div>
                     </div>
