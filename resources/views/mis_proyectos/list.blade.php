@@ -90,9 +90,9 @@
                         </div>
                         <div id="[[$index+1]]" class="panel-collapse collapse">
                             <div class="panel-body">
-                                <p>Dominio:  
+                                <p ng-show="proyecto.nombre_dominio">Dominio:  
                                     <a href="{{url('/dominios/[[proyecto.id_dominio]]')}}">
-                                        [[proyecto.nombre_dominio | noAsignado ]]
+                                        [[proyecto.nombre_dominio ]]
                                     </a>
                                 </p>
                                 <p>Fecha de creación: [[proyecto.fecha_creacion_proyecto]] </p>
@@ -113,11 +113,11 @@
                                                     </div>
                                                     <h4 class="panel-title"><img width="40" alt="" src="{{ url('img/user.png') }}"> [[proyecto.nombre_usuario]]</h4>
                                                 </div>
-                                                <div class="panel-body">
-                                                    <div ng-bind-html="proyecto.descripcion_avance"></div> 
-                                                </div>
                                                 <div class="panel-heading-3">
                                                     <h4 class="panel-title">Asunto: [[proyecto.asunto_avance]]</h4>
+                                                </div>
+                                                <div class="panel-body">
+                                                    <div ng-bind-html="proyecto.descripcion_avance"></div> 
                                                 </div>
                                             </div>
                                         </div>
