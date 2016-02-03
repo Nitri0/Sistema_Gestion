@@ -385,9 +385,56 @@ body ,html{
   border-radius: 50%;
   padding-right: 5px;
 }
+
 @media (max-width: 1200px){
   .content.has-bg .content-bg img {
     max-height: none;
     max-width: none;
   }
+}
+
+/*slider*/
+#slider {
+  padding-bottom: 45px;
+  padding-top: 35px;
+}
+.carousel-indicators li {
+  background: #C4C4BE;
+}
+.carousel-indicators li.active {
+    background: #ACACAC;
+}
+.item {
+  padding-left: 100px;
+}
+.pricing {
+  position: absolute;
+  right: 40%;
+  top: 52%;
+}
+.girl {
+  margin-left: 0;
+}
+.item h1 {
+  color: #B4B1AB;
+  font-size: 48px;
+  margin-top: 115px;
+}
+.item h1 span {
+  color:#00acac;
+}
+.item h2 {
+  color: #363432;
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 22px;
+  margin-top: 10px;
+}
+.item  p {
+  color:#363432;
+  font-size:16px;
+  font-weight:300;
+}
+.item button:hover {
+  background: #FE980F;
 }
