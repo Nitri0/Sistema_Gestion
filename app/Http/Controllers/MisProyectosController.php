@@ -10,6 +10,7 @@ use App\Empresas;
 use App\Roles;
 use App\Avances;
 use App\Dominios;
+use App\User;
 use App\MMEmpresasUsuarios;
 use Input;
 use App\Perfil;
