@@ -32,7 +32,7 @@
                 	<div class="row text-list">
                 		<div class="col-sm-5"> 
                 			<div class="row">
-                				<div class="col-sm-1"><a href="#" ng-click="changeSort('index')"># </a></div>
+                				<div class="col-sm-1"><a href="#" ng-click="changeSort('index')">N° </a></div>
                 				<div class="col-sm-11">
                         			<a href="#" ng-click="changeSort('nombre_empresa')">Nombre Empresa</a>
                         		</div>

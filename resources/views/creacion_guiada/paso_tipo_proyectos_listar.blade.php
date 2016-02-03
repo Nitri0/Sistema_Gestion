@@ -46,7 +46,7 @@
                 	<div class="row text-list">
                 		<div class="col-sm-4"> 
                 			<div class="row">
-                				<div class="col-sm-2"># </div>
+                				<div class="col-sm-2">N° </div>
                 				<div class="col-sm-10">
                         			Identificador de proyecto
                         		</div>
