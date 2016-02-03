@@ -118,13 +118,14 @@ class ProyectosController extends Controller {
 						};
 		};
 		//dd('prueba1 '.json_encode($etapa));
-		
+		$bot_user = User::where('correo_usuario',"admin@admin.com")->first();
 		Avances::Create([
 						'id_proyecto'=>$proyecto->id_proyecto,
 						'asunto_avance'=>'Iniciando Proyecto',
 						'descripcion_avance'=>'Proyecto creado exitosamente',
 						'id_empresa'=> Auth::user()->getIdEmpresa(),
 						'id_etapa'=>$etapa->id_etapa,
+						'id_usuario'=>$bot_user->id_usuario,
 
 					]);
 		Session::flash('mensaje', 'Proyecto creado exitosamente');

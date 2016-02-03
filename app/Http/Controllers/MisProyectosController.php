@@ -173,12 +173,18 @@ class MisProyectosController extends Controller {
 		Avances::firstOrCreate($request->except('check_cierre_etapa'));
 
 		if ($request->check_cierre_etapa == 1){
+			$bot_user = User::where('correo_usuario',"admin@admin.com")->first();
+			if (!$bot_user){
+				$id_usuario = Auth::user()->id_usuario;
+			}else{
+				$id_usuario = $bot_user->id_usuario;
+			}
 			$proyecto->estatus_proyecto = $proyecto->estatus_proyecto + 1;
 			Avances::Create([
 					'asunto_avance' 				=> 'Comienzo de nueva etapa.',
 					'descripcion_avance' 			=> 'Comienzo de nueva etapa.',
 					'id_empresa' 					=> Auth::user()->getIdEmpresa(),
-					'id_usuario' 					=> Auth::user()->id_usuario,
+					'id_usuario' 					=> $id_usuario,
 					'id_proyecto' 					=> $id_proyecto,
 					'id_etapa'	 					=> $proyecto->getIdEtapa(),
 					'check_copia_cliente_avance' 	=> $request->check_copia_cliente_avance
