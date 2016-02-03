@@ -35,9 +35,6 @@
                 			</div>
                 		</div>
                 		<div class="col-sm-3">
-							<a href="#" ng-click="changeSort('nombre_dominio')">Dominio</a>
-                		</div>
-                		<div class="col-sm-3">
 							<a href="#" ng-click="changeSort('fecha_creacion_avance')">Ultimo avance</a>
                 		</div>
                 		<div class="col-sm-3">
@@ -68,11 +65,6 @@
                             			</div>
                             		</div>
 
-                            		<div class="col-sm-3">
-										<a href="[[proyecto.nombre_dominio]]">
-											[[proyecto.nombre_dominio | noAsignado ]]
-										</a>
-                            		</div>
 
                             		<div class="col-sm-3">
 										[[proyecto.fecha_creacion_avance | DateForHumans]]
@@ -90,6 +82,7 @@
                             	<p>Cliente: [[proyecto.nombre_cliente]]</p>
                             	<p>Fecha de creación: [[proyecto.fecha_creacion_proyecto]]</p>
                             	<p>Tipo de Proyecto: [[proyecto.nombre_tipo_proyecto]]</p>
+                                <p ng-show="proyecto.nombre_dominio" >Dominio: <a href="proyecto.nombre_dominio"> [[proyecto.nombre_dominio]] </a> </p>
                             	
                             	<form action="[['/proyectos/reabrir/' + proyecto.id_proyecto]]" method="post">
 					        		<div class="row">
