@@ -1,8 +1,12 @@
 @extends('base-admin')
 
+@section('js')
+    <script src="{{ asset('/js/controllers/cliente.js') }}"></script>
+@endsection
+
 @section('content')
 
-<div id="page-container" class="fade page-sidebar-fixed page-header-fixed">
+<div id="page-container" class="fade page-sidebar-fixed page-header-fixed" ng-controller="ClienteController">
 	
 	@include('layouts/navbar-admin')
 
@@ -65,7 +69,7 @@
                             		<div class="col-sm-3"> 
                             			<div class="row">
                             				<div class="col-sm-3"> [[$index+1]] </div>
-                            				<div class="col-sm-9">
+                            				<div class="col-sm-9 text-ellipsis">
 		                            			[[model.nombre_cliente]]
 		                            		</div>
                             			</div>
