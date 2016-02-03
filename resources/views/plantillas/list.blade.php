@@ -35,7 +35,7 @@
                 	<div class="row text-list">
                 		<div class="col-sm-5"> 
                 			<div class="row">
-                				<div class="col-sm-3"># </div>
+                				<div class="col-sm-3">N° </div>
                 				<div class="col-sm-9">
                         			Nombre plantilla
                         		</div>
@@ -80,7 +80,7 @@
                         <div id="[[$index+1]]" class="panel-collapse collapse">
                             <div class="panel-body">
                             	[[plantilla.descripcion_plantilla]]
-                            	<a ng-href="{{ url( '/plantillas/[[plantilla.id_plantilla]]/destroy' ) }}" class="btn btn-sm btn-danger pull-right" data-toggle="tooltip" data-title="Eliminar"><i class="fa fa-trash"></i></a>
+                            	<a ng-href="{{ url( '/plantillas/[[plantilla.id_plantilla]]/destroy' ) }}" class="btn btn-list pull-right" data-toggle="tooltip" data-title="Eliminar"><i class="fa fa-trash"></i></a>
                             </div>
                         </div>
                     </div>

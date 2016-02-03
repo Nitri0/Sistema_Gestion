@@ -46,7 +46,7 @@
                 	<div class="row text-list">
                 		<div class="col-sm-4"> 
                 			<div class="row">
-                				<div class="col-sm-2"># </div>
+                				<div class="col-sm-2">N° </div>
                 				<div class="col-sm-10">
                         			Identificador de proyecto
                         		</div>
@@ -61,11 +61,11 @@
                     
                     <div class="panel panel-inverse overflow-hidden custon-list" ng-repeat="etapa in grupoetapas| filter:opciones.buscador | orderBy:sort:reverse  track by $index">
                         <div class="panel-heading">
-                            <h3 class="panel-title list-title">
+                            <!--<h3 class="panel-title list-title">
                                 <a class="accordion-toggle accordion-toggle-styled collapsed" data-toggle="collapse" data-parent="#accordion" href="#[[$index+1]]">
                                     <i class="fa fa-plus pull-right"></i> 
                                 </a>	
-                            </h3>
+                            </h3>-->
                             <!--<div class="box-button-list">
 		        				<a class="btn btn-list" ng-href="{{ url( '/tipo_proyectos/[[etapa.id_grupo_etapas]]' ) }}" data-toggle="tooltip" data-title="Detalle"><i class="fa fa-list"></i></a>
 		        			</div>-->

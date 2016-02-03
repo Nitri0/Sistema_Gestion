@@ -46,7 +46,7 @@
                 	<div class="row text-list">
                 		<div class="col-sm-3"> 
                 			<div class="row">
-                				<div class="col-sm-3"># </div>
+                				<div class="col-sm-3">N° </div>
                 				<div class="col-sm-9">
                         			Nombre
                         		</div>
@@ -67,11 +67,11 @@
                     
                     <div class="panel panel-inverse overflow-hidden custon-list" ng-repeat="model in models| filter:opciones.buscador | orderBy:sort:reverse  track by $index">
                         <div class="panel-heading">
-                            <h3 class="panel-title list-title">
+                            <!--<h3 class="panel-title list-title">
                                 <a class="accordion-toggle accordion-toggle-styled collapsed" data-toggle="collapse" data-parent="#accordion" href="#[[$index+1]]">
                                     <i class="fa fa-plus pull-right"></i> 
                                 </a>	
-                            </h3>
+                            </h3>-->
                             <!--<div class="box-button-list">
 		        				<a class="btn btn-list" ng-href="{{ url( '/clientes/[[model.id_cliente]]/edit' ) }}" data-toggle="tooltip" data-title="Editar"><i class="fa fa-pencil-square-o"></i></a>
 		        			</div>-->
