@@ -85,73 +85,96 @@
 		                        	</div>
 		                        </div>
 		                    </div>
-							
-							<br><br>
-							<center><h6 class="m-t-0">Grupo de trabajo</h6></center>
-
-							<center>
-								<button type="button" class="btn btn-success m-r-5 m-b-5" ng-click="agregar_integrantes()" data-toggle="tooltip" data-title="Agregar integrante"> 
-									<i class="fa fa-plus"></i>
-								</button>
-								<button type="button" class="btn btn-danger m-r-5 m-b-5" ng-show="cantidad>=1" ng-click="eliminar_integrantes()" data-toggle="tooltip" data-title="Eliminar integrante"> 
-									<i class="fa fa-trash-o"></i>
-								</button>
-							</center>
-							<div class="error" ng-show="cantidad==0 && submitted">
-								<br>
-		                        <center>
-		                            <small class="error" ng-show="cantidad==0" >
-		                                    * Debe agregar por lo menos un integrante
-		                            </small>
-		                        </center>
-		                	</div>
-							<input type="hidden" class="form-control"  name="cantidad" ng-model="cantidad" ng-value="cantidad" ng-hidden="true" ng-required="cantidad==0">
-							
-							<br>
-							<div class="row">
-								<div class="col-md-6" ng-repeat="persona in personas track by $index">
-									<div class="well">
-										<div class="form-group">
-			                                <label class="col-md-3 control-label">Integrante [[$index+1]]</label>
-			                                <div class="col-md-7">
-			                                    <select class="form-control js-example-data-array" name="id_usuario[[$index]]" ng-model="persona.usuario" ng-required="true" oninvalid="setCustomValidity(' ')">
-			                                        <option value="">Seleccione un Usuario</option>
-			                                        @foreach($usuarios as $usuario)
-														<option value="{{$usuario->id_usuario}}">
-															{{ $usuario->fullName()}}
-														</option>
-													@endforeach
-			                                    </select>
-												<div class="error campo-requerido" ng-show="formulario.id_usuario[[$index]].$invalid && (formulario.id_usuario[[$index]].$touched || submitted)">
-			                                        <small class="error" ng-show="formulario.id_usuario[[$index]].$error.required">
-			                                            * Campo requerido.
-			                                        </small>
-		                                    	</div>	                                    
-			                                </div>
-			                            </div>
-			                            <div class="form-group">
-			                                <label class="col-md-3 control-label">Rol que cumplirá</label>
-			                                <div class="col-md-7">
-			                                    <select class="form-control js-example-data-array" name="id_rol[[$index]]" ng-model="persona.rol" ng-required="true" oninvalid="setCustomValidity(' ')">
-			                                        <option value="">Seleccione un Rol</option>
-			                                        @foreach($roles as $rol)
-														<option value="{{$rol->id_tipo_rol}}">
-															{{ $rol->nombre_tipo_rol }}
-														</option>
-													@endforeach
-			                                    </select>
-												<div class="error campo-requerido" ng-show="formulario.id_rol[[$index]].$invalid && (formulario.id_rol[[$index]].$touched || submitted)">
-			                                        <small class="error" ng-show="formulario.id_rol[[$index]].$error.required">
-			                                            * Campo requerido.
-			                                        </small>
-		                                    	</div>			                                    
-			                                </div>	
-			                            </div>
-									</div>
-								</div>
-							</div>
 									
 						</div><!-- boby -->
+		            </div>
+		        </div>
+
+		        <div class="col-12 ui-sortable">
+		            <!-- begin panel -->
+		            <div class="panel panel-inverse">
+		                <div class="panel-heading-2">
+		                    <div class="panel-heading-btn">
+		                    	<button type="button" class="btn btn-danger btn-eliminar btn-list-custon" ng-show="cantidad>=1" ng-click="eliminar_integrantes()" data-toggle="tooltip" data-title="Eliminar integrante"> 
+									<i class="fa fa-trash-o"></i>
+								</button>
+		                    	<button type="button" class="btn btn-success btn-agregar btn-list-custon" ng-click="agregar_integrantes()" data-toggle="tooltip" data-title="Agregar integrante">
+		                    		<i class="fa fa-plus"></i>
+		                    	</button>
+		                    </div>
+		                    <h4 class="panel-title">Agregar grupo de trabajo</h4>
+		                </div>
+		            </div>
+		        </div>
+
+		        <div class="error" ng-show="cantidad==0 && submitted">
+					<br>
+		            <center>
+		                <small class="error" ng-show="cantidad==0" >
+		                        * Debe agregar por lo menos un integrante
+		                </small>
+		            </center>
+		    	</div>
+
+		    	<input type="hidden" class="form-control"  name="cantidad" ng-model="cantidad" ng-value="cantidad" ng-hidden="true" ng-required="cantidad==0">
+
+		        <div class="col-md-6 ui-sortable" ng-repeat="persona in personas track by $index">
+		            <!-- begin panel -->
+		            <div class="panel panel-inverse">
+		                <div class="panel-heading-2">
+		                    <div class="panel-heading-btn">
+
+		                    </div>
+		                    <h4 class="panel-title">Integrante</h4>
+		                </div>
+		                <div class="panel-body">
+							<div class="form-group">
+		                        <label class="col-md-3 control-label">Integrante [[$index+1]]</label>
+		                        <div class="col-md-7">
+		                            <select class="form-control js-example-data-array" name="id_usuario[[$index]]" ng-model="persona.usuario" ng-required="true" oninvalid="setCustomValidity(' ')">
+		                                <option value="">Seleccione un Usuario</option>
+		                                @foreach($usuarios as $usuario)
+											<option value="{{$usuario->id_usuario}}">
+												{{ $usuario->fullName()}}
+											</option>
+										@endforeach
+		                            </select>
+									<div class="error campo-requerido" ng-show="formulario.id_usuario[[$index]].$invalid && (formulario.id_usuario[[$index]].$touched || submitted)">
+		                                <small class="error" ng-show="formulario.id_usuario[[$index]].$error.required">
+		                                    * Campo requerido.
+		                                </small>
+		                        	</div>	                                    
+		                        </div>
+		                        <div class="col-md-2">
+		                        	<a href="{{ url('admin_usuarios/create') }}" class="btn btn-success btn-sm p-l-10 p-r-10" data-toggle="tooltip" data-title="Agregar Tipo de Proyecto">
+				                        <i class="fa fa-plus"></i>
+				                    </a>
+		                        </div>
+		                    </div>
+		                    <div class="form-group">
+		                        <label class="col-md-3 control-label">Rol que cumplirá</label>
+		                        <div class="col-md-7">
+		                            <select class="form-control js-example-data-array" name="id_rol[[$index]]" ng-model="persona.rol" ng-required="true" oninvalid="setCustomValidity(' ')">
+		                                <option value="">Seleccione un Rol</option>
+		                                @foreach($roles as $rol)
+											<option value="{{$rol->id_tipo_rol}}">
+												{{ $rol->nombre_tipo_rol }}
+											</option>
+										@endforeach
+		                            </select>
+									<div class="error campo-requerido" ng-show="formulario.id_rol[[$index]].$invalid && (formulario.id_rol[[$index]].$touched || submitted)">
+		                                <small class="error" ng-show="formulario.id_rol[[$index]].$error.required">
+		                                    * Campo requerido.
+		                                </small>
+		                        	</div>			                                    
+		                        </div>
+		                        <div class="col-md-2">
+		                        	<a href="{{ url('roles/create') }}" class="btn btn-success btn-sm p-l-10 p-r-10" data-toggle="tooltip" data-title="Agregar Tipo de Proyecto">
+				                        <i class="fa fa-plus"></i>
+				                    </a>
+		                        </div>	
+		                    </div>
+		                </div>
 		            </div>
 		        </div>
 		    </div>
@@ -159,6 +182,8 @@
 			@include('modals/ayuda')
 
 		</div>
+
+		<br>
 
 		<!-- Navbar fixed bottom -->
 		<div class="navbar navbar-default navbar-fixed-bottom" role="navigation">

@@ -365,6 +365,9 @@ body ,html{
   margin-top: -6px;
   margin-right: -1px;
 }
+.btn-list-custon{
+  padding: 12px 12px 13px 12px;
+}
 .fecha-ultimo-avance{
   color: #23527c;
   margin-top: 5px;
