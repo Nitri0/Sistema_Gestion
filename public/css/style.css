@@ -365,6 +365,26 @@ body ,html{
   margin-top: -6px;
   margin-right: -1px;
 }
+.fecha-ultimo-avance{
+  color: #23527c;
+  margin-top: 5px;
+}
+.panel-group .panel .panel-ultimo-avance{
+  border: 1px solid rgb(238, 238, 238);
+}
+.panel-inverse>.panel-heading-3 {
+  background: #FCFCFC;
+}
+.panel-heading-3 {
+  padding: 7px 15px;
+  border-bottom: 1px solid transparent;
+  border-top-right-radius: 3px;
+  border-top-left-radius: 3px;
+}
+.panel-title img{
+  border-radius: 50%;
+  padding-right: 5px;
+}
 @media (max-width: 1200px){
   .content.has-bg .content-bg img {
     max-height: none;

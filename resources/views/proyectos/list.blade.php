@@ -98,23 +98,28 @@
                             <div class="panel-body">
                             	<p>Nombre del Cliente: [[proyecto.nombre_cliente]]</p>
                             	<p>Tipo de Proyecto: [[proyecto.nombre_grupo_etapas]]</p>
-                                <div class="row" ng-if="proyecto.asunto_avance != null">
+                                <div ng-if="proyecto.asunto_avance != null">
                                     <hr>
                                     <p class="center">Ultimo Avance</p>
-                                    <div class="col-md-8 col-md-offset-2">
-                                        <ul class="chats">
-                                            <li class="left">
-                                                <span class="date-time">[[proyecto.fecha_creacion_avance | DateForHumans]]</span>
-                                                <a href="javascript:;" class="name">[[proyecto.nombre_usuario]]</a>
-                                                <a href="javascript:;" class="image"><img width="50" alt="" src="{{ url('img/user.png') }}"></a>
-                                                <div class="message">
-                                                    <div ng-bind-html="proyecto.descripcion_avance"></div>
+                                    <div class="row">
+                                        <!-- begin col-12 -->
+                                        <div class="col-12 ui-sortable">
+                                            <!-- begin panel -->
+                                            <div class="panel panel-inverse panel-ultimo-avance">
+                                                <div class="panel-heading-3">
+                                                    <div class="panel-heading-btn">
+                                                        <p class="fecha-ultimo-avance">[[proyecto.fecha_creacion_avance | DateForHumans]]</p>
+                                                    </div>
+                                                    <h4 class="panel-title"><img width="40" alt="" src="{{ url('img/user.png') }}"> [[proyecto.nombre_usuario]]</h4>
                                                 </div>
-                                                <div class="asunto">
-                                                <h6>Asunto: [[proyecto.asunto_avance]]</h6>
+                                                <div class="panel-body">
+                                                    <div ng-bind-html="proyecto.descripcion_avance"></div> 
                                                 </div>
-                                            </li>
-                                        </ul>
+                                                <div class="panel-heading-3">
+                                                    <h4 class="panel-title">Asunto: [[proyecto.asunto_avance]]</h4>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 
