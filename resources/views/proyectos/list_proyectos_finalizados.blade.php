@@ -90,12 +90,12 @@
                             	<p>Cliente: [[proyecto.nombre_cliente]]</p>
                             	<p>Fecha de creación: [[proyecto.fecha_creacion_proyecto]]</p>
                             	<p>Tipo de Proyecto: [[proyecto.nombre_grupo_etapas]]</p>
-                                <p ng-show="proyecto.nombre_dominio" >Dominio: <a ng-href="http://[[proyecto.nombre_dominio]]"> [[proyecto.nombre_dominio]] </a> </p>
+                                <p ng-show="proyecto.nombre_dominio" >Dominio: <a ng-href="[[proyecto.nombre_dominio]]"> [[proyecto.nombre_dominio]] </a> </p>
                             	
                             	<form action="[['/proyectos/reabrir/' + proyecto.id_proyecto]]" method="post">
 					        		<div class="row">
 						        		<div class="box-button">
-											<button type="submit" class="btn btn-sm btn-success btn-custon pull-right" data-toggle="tooltip" data-title="Habilitar Proyecto"><i class="fa fa-unlock"></i></button>
+											<button type="submit" class="btn btn-list pull-right" data-toggle="tooltip" data-title="Habilitar Proyecto"><i class="fa fa-unlock"></i></button>
 										</div>
 									</div>	
 								</form>
