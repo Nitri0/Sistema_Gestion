@@ -15,11 +15,11 @@
         <!-- end content-bg -->
         <!-- begin container -->
         <div class="container home-content">
-            <h1>Sistema de Gestion</h1>
+            <h1>Sistema de Gestión</h1>
             <h3>Organiza tus ideas...</h3>
             <p>
                 Nos ocupamos de como te verán los demás. Creamos para tí un <br />
-                <a href="http://keysystemsca.com.ve/planes-web/">sitio Web</a> acorde a tus necesidades.
+                <a href="http://keysystemsca.com.ve/planes-web/">Sitio Web</a> acorde a tus necesidades.
                 <br><br>
             <a href="{{ url('/proyectos') }}" class="btn btn-outline">Entrar</a><br />
             <br />

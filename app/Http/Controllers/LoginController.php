@@ -48,10 +48,9 @@ class LoginController extends Controller {
 	}
 
 	public function postRegistro(Request $request){
-		//dd($request->has('password'));
-		if (!$request->has('password') || !$request->has('re_password') || !$request->has('empresa') || !$request->has('identificador')  ){
+		if (!$request->has('password') || !$request->has('re_password') || !$request->has('empresa') || !$request->has('apellido') || !$request->has('nombre') ){
             Session::flash("mensaje-error",'Rellene todos los campos');
-            return redirect("/registro");
+            return redirect("/registrar");
         };
 
 		if ($request->password != $request->re_password){
@@ -75,21 +74,23 @@ class LoginController extends Controller {
         $user = User::create($request->all());
 
         $empresa = Empresas::create(['nombre_empresa'=>$request->empresa,
-        							'rif_empresa'=>$request->indentificador,
         						]);
         MMEmpresasUsuarios::create(['id_empresa'=>$empresa->id_empresa,
         							'id_usuario'=>$user->id_usuario,
         						]);
-        Perfil::create(['id_usuario'=>$user->id_usuario]);
+        Perfil::create(['id_usuario'=>$user->id_usuario,
+        				'nombre_perfil'=>$request->nombre,
+        				'apellido_perfil'=>$request->apellido,
+        				]);
         //AQUI ENVIAR EL CORREO
         $asunto = "Codigo de activación";
         $plantilla = "emails.private.codigo_activacion";
         $parametros = [
-        			'correo_usuario' => $request->correo_usuario,
+        			'correo_usuario' => $request->nombre." ".$request->apellido,
         			'codigo_activacion' => $request->codigo_activacion,
         		];
         Helper::SendEmailLogout($request->correo_usuario, $request->correo_usuario, $asunto, $plantilla, $parametros);
-        Session::flash("mensaje","Usuario registrado exitosamente, en breves se ha enviado a su correo un codigo de activación.");
+        Session::flash("mensaje","Usuario registrado exitosamente, en breves momentos se enviará a su correo un enlace de activación de usuario.");
         return redirect('/login');
 	}
 
@@ -133,12 +134,13 @@ class LoginController extends Controller {
 
 	public function postForgetPassword(Request $request){
 		if($request->correo){
-			$user = User::where('correo_usuario', $request->correo);
-			if(!$user->first()){
+			$users = User::where('correo_usuario', $request->correo);
+			$user = $users->first();
+			if(!$user){
 				Session::flash('mensaje-error','Correo no existente.');
 				return redirect('/recuperar-contraseña');
 			}
-			$habilitado = $user->where('activado_usuario',0)->first();
+			$habilitado = $users->where('activado_usuario',0)->first();
 			if ($habilitado){
 				//AQUI ENVIAR CORREO
 		        $asunto = "Codigo de activación";

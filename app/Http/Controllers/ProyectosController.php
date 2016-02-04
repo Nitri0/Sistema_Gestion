@@ -29,11 +29,17 @@ class ProyectosController extends Controller {
 	#______________________________ Filtros _________________________________
 	public function find(Route $route){
 		if($route->getParameter('proyectos')){
-			$this->proyecto = Proyectos::where('id_empresa', Auth::user()->getIdEmpresa())
-										->where('id_proyecto', $route->getParameter('proyectos'))
-										->first();
-			if (!$this->proyecto){
-				return redirect('/proyectos');
+			if(Auth::user()->isSuperAdmin()){
+				$this->proyecto = Proyectos::where('id_proyecto', $route->getParameter('proyectos'))
+											->first();
+			}else{
+
+				$this->proyecto = Proyectos::where('id_empresa', Auth::user()->getIdEmpresa())
+											->where('id_proyecto', $route->getParameter('proyectos'))
+											->first();
+				if (!$this->proyecto){
+					return redirect('/proyectos');
+				}
 			}
 		}
 	}
@@ -76,7 +82,8 @@ class ProyectosController extends Controller {
 	public function show($id_proyecto){
 		$rol = Roles::where('id_proyecto',$id_proyecto)->get();
 
-		$proyecto = Proyectos::find($id_proyecto);
+		$proyecto = $this->proyecto;
+		//dd($proyecto);
 		$etapas = GrupoEtapas::find($proyecto->id_grupo_etapas);
 		//->get()->pluck('modulo_excepcion')->toArray();
 		$idusuarios = MMEmpresasUsuarios::where('id_empresa', Auth::user()->getIdEmpresa())
@@ -111,13 +118,14 @@ class ProyectosController extends Controller {
 						};
 		};
 		//dd('prueba1 '.json_encode($etapa));
-		
+		$bot_user = User::where('correo_usuario',"admin@admin.com")->first();
 		Avances::Create([
 						'id_proyecto'=>$proyecto->id_proyecto,
 						'asunto_avance'=>'Iniciando Proyecto',
 						'descripcion_avance'=>'Proyecto creado exitosamente',
 						'id_empresa'=> Auth::user()->getIdEmpresa(),
 						'id_etapa'=>$etapa->id_etapa,
+						'id_usuario'=>$bot_user->id_usuario,
 
 					]);
 		Session::flash('mensaje', 'Proyecto creado exitosamente');

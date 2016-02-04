@@ -66,7 +66,7 @@ class EtapasController extends Controller {
 		};
 		
 		Session::flash('mensaje', 'Grupo de etapas creado exitosamente');
-		return redirect('/tipo_proyectos');
+		return json_encode(['success'=>true,]);
 	}
 
 

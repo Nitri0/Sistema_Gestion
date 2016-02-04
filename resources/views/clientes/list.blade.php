@@ -1,8 +1,12 @@
 @extends('base-admin')
 
+@section('js')
+    <script src="{{ asset('/js/controllers/cliente.js') }}"></script>
+@endsection
+
 @section('content')
 
-<div id="page-container" class="fade page-sidebar-fixed page-header-fixed">
+<div id="page-container" class="fade page-sidebar-fixed page-header-fixed" ng-controller="ClienteController">
 	
 	@include('layouts/navbar-admin')
 
@@ -13,7 +17,7 @@
         <ol class="breadcrumb pull-right">
             <div class="btn-toolbar">
                 <div class="btn-group">
-                    <a href="{{ url( '/clientes/create' ) }}" class="btn btn-success btn-sm p-l-20 p-r-20">
+                    <a href="{{ url( '/clientes/create' ) }}" class="btn btn-success btn-sm p-l-20 p-r-20" data-toggle="tooltip" data-title="Crear Cliente">
                         <i class="fa fa-plus"></i>
                     </a>
                 </div>
@@ -31,7 +35,7 @@
                 	<div class="row text-list">
                 		<div class="col-sm-3"> 
                 			<div class="row">
-                				<div class="col-sm-3"># </div>
+                				<div class="col-sm-3">N° </div>
                 				<div class="col-sm-9">
                         			Nombre
                         		</div>
@@ -58,14 +62,14 @@
                                 </a>	
                             </h3>
                             <div class="box-button-list">
-		        				<a class="btn btn-sm btn-info btn-cirule" ng-href="{{ url( '/clientes/[[model.id_cliente]]/edit' ) }}" data-toggle="tooltip" data-title="Editar"><i class="fa fa-pencil-square-o"></i></a>
+		        				<a class="btn btn-list" ng-href="{{ url( '/clientes/[[model.id_cliente]]/edit' ) }}" data-toggle="tooltip" data-title="Editar"><i class="fa fa-pencil-square-o"></i></a>
 		        			</div>
                             <h3 class="panel-title list-title">
                             	<div class="row">
                             		<div class="col-sm-3"> 
                             			<div class="row">
                             				<div class="col-sm-3"> [[$index+1]] </div>
-                            				<div class="col-sm-9">
+                            				<div class="col-sm-9 text-ellipsis">
 		                            			[[model.nombre_cliente]]
 		                            		</div>
                             			</div>
@@ -99,7 +103,7 @@
                                 </ul>
                             	<form action="[[url+'/clientes/'+model.id_cliente]]" method="post">
 					        		<input type="hidden" name="_method" value="delete">
-									<button type="submit" class="btn btn-sm btn-danger pull-right" data-toggle="tooltip" data-title="Eliminar"><i class="fa fa-trash"></i></button>
+									<button type="submit" class="btn btn-list pull-right" data-toggle="tooltip" data-title="Eliminar"><i class="fa fa-trash"></i></button>
 								</form>
                             </div>
                         </div>

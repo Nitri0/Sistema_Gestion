@@ -62,7 +62,7 @@ class ClientesController extends Controller {
 		$request['id_empresa'] = Auth::user()->getIdEmpresa();
 		Clientes::create($request->all());
 		Session::flash('mensaje', 'Cliente creado exitosamente');
-		return redirect('/clientes');
+		return json_encode(['success'=>true,]);
 	}
 
 	public function show($id){

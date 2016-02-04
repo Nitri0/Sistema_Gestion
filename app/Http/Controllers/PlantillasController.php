@@ -66,6 +66,7 @@ class PlantillasController extends Controller {
 		//dd($request->all());
 		$request['id_empresa']=Auth::user()->getIdEmpresa();
 		$request['id_usuario']=Auth::user()->id_usuario;
+		$request['nombre_plantilla']= trim($request['nombre_plantilla']);
 		$plantillas = Plantillas::create($request->all());
         //$url = "uploads/temp/";
         $path = SITE_EMAILS."/".$request->nombre_plantilla.".blade.php";

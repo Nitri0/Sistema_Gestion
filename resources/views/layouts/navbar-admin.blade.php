@@ -4,7 +4,7 @@
 	<div class="container-fluid">
 		<!-- begin mobile sidebar expand / collapse button -->
 		<div class="navbar-header">
-			<a href="{{ url('/mis-proyectos') }}" class="navbar-brand"><img class="nav-admin-logo" src="{{ url('img/logo.png') }}"> Key Gestion</a>
+			<a href="{{ url('/mis-proyectos') }}" class="navbar-brand"><img class="nav-admin-logo" src="{{ url('img/logo.png') }}"> Key Gestión</a>
 			<button type="button" class="navbar-toggle" data-click="sidebar-toggled">
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
@@ -15,6 +15,7 @@
 		
 		<!-- begin header navigation right -->
 		<ul class="nav navbar-nav navbar-right">
+
 			<li>
 				<form class="navbar-form full-width">
 					<div class="form-group">
@@ -23,6 +24,8 @@
 					</div>
 				</form>
 			</li>
+
+
 			<li class="dropdown navbar-user">
 				<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
 					<img src="{{ url('/img/user.png') }}" alt="" /> 

@@ -21,7 +21,7 @@
         </ol>
         
 
-        <h1 class="page-header">Todos los Usuarios </h1>
+        <h1 class="page-header">Lista de Usuarios </h1>
         
 		@include('alerts.mensaje_success')
 		@include('alerts.mensaje_error')
@@ -35,7 +35,7 @@
                     <div class="row text-list">
                         <div class="col-sm-3"> 
                             <div class="row">
-                                <div class="col-sm-3"># </div>
+                                <div class="col-sm-3">N° </div>
                                 <div class="col-sm-9">
                                     Correo Usuario
                                 </div>
@@ -56,9 +56,9 @@
                                 </a>    
                             </h3>-->
                             <div class="box-button-list">
-                                <a class="btn btn-sm btn-info btn-cirule" ng-href="{{ url( '/admin_usuarios/[[usuario.id_usuario]]/edit' ) }}" data-toggle="tooltip" data-title="Editar"><i class="fa fa-pencil-square-o"></i></a>
-                            	<a ng-if="usuario.habilitado_usuario == 1" class="btn btn-sm btn-danger btn-cirule" ng-href="{{ url( '/admin_usuarios/[[usuario.id_usuario]]/destroy' ) }}" data-toggle="tooltip" data-title="Deshabilitar"><i class="fa fa-thumbs-o-down"></i></a>
-                            	<a ng-if="usuario.habilitado_usuario == 0" class="btn btn-sm btn-success btn-cirule" ng-href="{{ url( '/admin_usuarios/[[usuario.id_usuario]]/habilitar' ) }}" data-toggle="tooltip" data-title="Habilitar"><i class="fa fa-thumbs-o-up"></i></a>
+                                <a class="btn btn-list" ng-href="{{ url( '/admin_usuarios/[[usuario.id_usuario]]/edit' ) }}" data-toggle="tooltip" data-title="Editar"><i class="fa fa-pencil-square-o"></i></a>
+                            	<a ng-if="usuario.habilitado_usuario == 1" class="btn btn-list" ng-href="{{ url( '/admin_usuarios/[[usuario.id_usuario]]/destroy' ) }}" data-toggle="tooltip" data-title="Deshabilitar"><i class="fa fa-thumbs-o-down"></i></a>
+                            	<a ng-if="usuario.habilitado_usuario == 0" class="btn btn-list" ng-href="{{ url( '/admin_usuarios/[[usuario.id_usuario]]/habilitar' ) }}" data-toggle="tooltip" data-title="Habilitar"><i class="fa fa-thumbs-o-up"></i></a>
                             </div>
                             <h3 class="panel-title list-title">
                                 <div class="row">

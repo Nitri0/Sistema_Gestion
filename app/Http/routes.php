@@ -1,16 +1,5 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Application Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register all of the routes for an application.
-| It's a breeze. Simply tell Laravel the URIs it should respond to
-| and give it the controller to call when that URI is requested.
-|
-*/
-
 Route::get('/', 'VistasController@index');
 
 #_____________________ Login __________________________
@@ -127,7 +116,26 @@ $router->group(['middleware' => 'auth'], function() {
 	//Route::get( '/roles', 'ProyectosController@roles');
 	//Route::post('/roles', 'ProyectosController@postRoles');
 
+
+#__________________________ ASISTENTE DE CREACION DE PROYECTOS ________________________________
+
+	Route::get('asistente/iniciando', 'CreacionGuiada@iniciando');
+
+	Route::get('asistente/paso1/list', 'CreacionGuiada@pasoClientesListar');
+	Route::get('asistente/paso1/create', 'CreacionGuiada@pasoClientesCrear');
+
+
+	Route::get('asistente/paso2/list', 'CreacionGuiada@pasoTipoProyectosListar');
+	Route::get('asistente/paso2/create', 'CreacionGuiada@pasoTipoProyectosCrear');
+
+	Route::get('asistente/paso3/list', 'CreacionGuiada@pasoUsuariosListar');
+	Route::get('asistente/paso3/create', 'CreacionGuiada@pasoUsuariosCrear');
+
+	Route::get('asistente/paso4/list', 'CreacionGuiada@pasoRolesListar');
+	Route::get('asistente/paso4/create', 'CreacionGuiada@pasoRolesCrear');
+
+	Route::get('asistente/paso5/create', 'CreacionGuiada@pasoProyectosCrear');
+
+	Route::get('asistente/finalizado', 'CreacionGuiada@finalizando');
+
 });
-
-
-

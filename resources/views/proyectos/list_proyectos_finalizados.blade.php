@@ -28,18 +28,18 @@
                 	<div class="row text-list">
                 		<div class="col-sm-3"> 
                 			<div class="row">
-                				<div class="col-sm-3"><a href="#" ng-click="changeSort('index')">#</a> </div>
+                				<div class="col-sm-3"><a href="#" ng-click="changeSort('index')">N°</a> </div>
                 				<div class="col-sm-9">
                         			<a href="#" ng-click="changeSort('nombre_proyecto')">Proyecto</a>
                         		</div>
                 			</div>
                 		</div>
                 		<div class="col-sm-3">
-							<a href="#" ng-click="changeSort('nombre_dominio')">Dominio</a>
+							<a href="#" ng-click="changeSort('nombre_cliente')">Cliente</a>
                 		</div>
-                		<div class="col-sm-3">
-							<a href="#" ng-click="changeSort('fecha_creacion_avance')">Ultimo avance</a>
-                		</div>
+                        <div class="col-sm-3">
+                            <a href="#" ng-click="changeSort('fecha_creacion_avance')">Ultimo avance</a>
+                        </div>
                 		<div class="col-sm-3">
 							<a href="#" ng-click="changeSort('nombre_etapa')">Estatus</a>
                 		</div>
@@ -55,7 +55,7 @@
                                 </a>	
                             </h3>
                             <div class="box-button-list">
-		        				<a class="btn btn-sm btn-info btn-cirule" ng-href="{{ url( '/proyectos/[[proyecto.id_proyecto]]' ) }}" data-toggle="tooltip" data-title="Detalle"><i class="fa fa-list"></i></a>
+		        				<a class="btn btn-list" ng-href="{{ url( '/proyectos/[[proyecto.id_proyecto]]' ) }}" data-toggle="tooltip" data-title="Detalle"><i class="fa fa-list"></i></a>
 		        			</div>
                             <h3 class="panel-title list-title">
                             	<div class="row">
@@ -68,11 +68,11 @@
                             			</div>
                             		</div>
 
-                            		<div class="col-sm-3">
-										<a href="[[proyecto.nombre_dominio]]">
-											[[proyecto.nombre_dominio | noAsignado ]]
-										</a>
-                            		</div>
+
+
+                                    <div class="col-sm-3">
+                                        [[proyecto.nombre_cliente]]
+                                    </div>
 
                             		<div class="col-sm-3">
 										[[proyecto.fecha_creacion_avance | DateForHumans]]
@@ -89,12 +89,13 @@
                             <div class="panel-body">
                             	<p>Cliente: [[proyecto.nombre_cliente]]</p>
                             	<p>Fecha de creación: [[proyecto.fecha_creacion_proyecto]]</p>
-                            	<p>Tipo de Proyecto: [[proyecto.nombre_tipo_proyecto]]</p>
+                            	<p>Tipo de Proyecto: [[proyecto.nombre_grupo_etapas]]</p>
+                                <p ng-show="proyecto.nombre_dominio" >Dominio: <a ng-href="[[proyecto.nombre_dominio]]"> [[proyecto.nombre_dominio]] </a> </p>
                             	
                             	<form action="[['/proyectos/reabrir/' + proyecto.id_proyecto]]" method="post">
 					        		<div class="row">
 						        		<div class="box-button">
-											<button type="submit" class="btn btn-sm btn-success btn-custon pull-right" data-toggle="tooltip" data-title="Habilitar Proyecto"><i class="fa fa-unlock"></i></button>
+											<button type="submit" class="btn btn-list pull-right" data-toggle="tooltip" data-title="Habilitar Proyecto"><i class="fa fa-unlock"></i></button>
 										</div>
 									</div>	
 								</form>

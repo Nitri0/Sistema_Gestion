@@ -38,7 +38,7 @@
                 	<div class="row text-list">
                 		<div class="col-sm-5"> 
                 			<div class="row">
-                				<div class="col-sm-3"># </div>
+                				<div class="col-sm-3">N° </div>
                 				<div class="col-sm-9">
                         			<a href="#" ng-click="changeSort('nombre_tipo_rol')">Nombre de rol</a>
                         		</div>
@@ -56,7 +56,7 @@
                                 </a>	
                             </h3>
                             <div class="box-button-list">
-		        				<a class="btn btn-sm btn-info btn-cirule" ng-href="{{ url( '/roles/[[model.id_tipo_rol]]/edit' ) }}" data-toggle="tooltip" data-title="Editar"><i class="fa  fa-pencil-square-o"></i></a>
+		        				<a class="btn btn-list" ng-href="{{ url( '/roles/[[model.id_tipo_rol]]/edit' ) }}" data-toggle="tooltip" data-title="Editar"><i class="fa  fa-pencil-square-o"></i></a>
 		        				<!--<a class="btn btn-sm btn-inverse" ng-href="{{ url( '/roles/[[model.id_tipo_rol]]') }}" data-toggle="tooltip" data-title="Gestionar"><i class="fa fa-cogs"></i></a>-->
 		        			</div>
                             <h3 class="panel-title list-title">
@@ -76,7 +76,7 @@
                             <div class="panel-body">
                             	<p>Descripción: [[model.descripcion_tipo_rol]]</p>
                             	
-                            	<a class="btn btn-sm btn-danger pull-right" href="{{ url( '/roles/[[model.id_tipo_rol]]/destroy') }}" data-toggle="tooltip" data-title="Eliminar"><i class="fa fa-trash"></i></a>
+                            	<a class="btn btn-list pull-right" href="{{ url( '/roles/[[model.id_tipo_rol]]/destroy') }}" data-toggle="tooltip" data-title="Eliminar"><i class="fa fa-trash"></i></a>
                             </div>
                         </div>
                     </div>

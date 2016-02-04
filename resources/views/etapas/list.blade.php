@@ -33,7 +33,7 @@
                 	<div class="row text-list">
                 		<div class="col-sm-4"> 
                 			<div class="row">
-                				<div class="col-sm-2"># </div>
+                				<div class="col-sm-2">N° </div>
                 				<div class="col-sm-10">
                         			Identificador de proyecto
                         		</div>
@@ -54,7 +54,7 @@
                                 </a>	
                             </h3>
                             <div class="box-button-list">
-		        				<a class="btn btn-sm btn-info btn-cirule" ng-href="{{ url( '/tipo_proyectos/[[etapa.id_grupo_etapas]]' ) }}" data-toggle="tooltip" data-title="Detalle"><i class="fa fa-list"></i></a>
+		        				<a class="btn btn-list" ng-href="{{ url( '/tipo_proyectos/[[etapa.id_grupo_etapas]]' ) }}" data-toggle="tooltip" data-title="Detalle"><i class="fa fa-list"></i></a>
 		        			</div>
                             <h3 class="panel-title list-title">
                             	<div class="row">
@@ -77,7 +77,7 @@
                             <div class="panel-body">
                             	<p>Descripción: [[etapa.descripcion_grupo_etapas]]</p>
                             	
-                            	<a class="btn btn-sm btn-danger pull-right" href="{{ url( '/tipo_proyectos/[[etapa.id_grupo_etapas]]/destroy' ) }}" data-toggle="tooltip" data-title="Eliminar"><i class="fa fa-trash"></i></a>
+                            	<a class="btn btn-list pull-right" href="{{ url( '/tipo_proyectos/[[etapa.id_grupo_etapas]]/destroy' ) }}" data-toggle="tooltip" data-title="Eliminar"><i class="fa fa-trash"></i></a>
                             </div>
                         </div>
                     </div>

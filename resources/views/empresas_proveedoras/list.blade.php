@@ -38,7 +38,7 @@
                 	<div class="row text-list">
                 		<div class="col-sm-5"> 
                 			<div class="row">
-                				<div class="col-sm-3"># </div>
+                				<div class="col-sm-3">N° </div>
                 				<div class="col-sm-9">
                         			Nombre Proveedor
                         		</div>
@@ -59,7 +59,7 @@
                                 </a>	
                             </h3>
                             <div class="box-button-list">
-		        				<a class="btn btn-sm btn-info btn-cirule" ng-href="{{ url( '/empresas_proveedoras/[[proveedora.id_empresa_proveedora]]/edit' ) }}" data-toggle="tooltip" data-title="Detalle"><i class="fa fa-pencil-square-o"></i></a>
+		        				<a class="btn btn-list" ng-href="{{ url( '/empresas_proveedoras/[[proveedora.id_empresa_proveedora]]/edit' ) }}" data-toggle="tooltip" data-title="Detalle"><i class="fa fa-pencil-square-o"></i></a>
 		        			</div>
                             <h3 class="panel-title list-title">
                             	<div class="row">
@@ -82,7 +82,7 @@
                             <div class="panel-body">
                             	<p>Fecha Creación: [[proveedora.fecha_creacion_empresa_proveedora]]</p>
                             	
-                            	<a class="btn btn-sm btn-danger pull-right" href="{{ url( '/empresas_proveedoras/[[proveedora.id_empresa_proveedora]]/destroy' ) }}" data-toggle="tooltip" data-title="Eliminar"><i class="fa fa-trash"></i></a>
+                            	<a class="btn btn-list pull-right" href="{{ url( '/empresas_proveedoras/[[proveedora.id_empresa_proveedora]]/destroy' ) }}" data-toggle="tooltip" data-title="Eliminar"><i class="fa fa-trash"></i></a>
                             </div>
                         </div>
                     </div>

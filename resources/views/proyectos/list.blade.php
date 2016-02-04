@@ -37,16 +37,16 @@
                 	<div class="row text-list">
                 		<div class="col-sm-3"> 
                 			<div class="row">
-                				<div class="col-sm-3"><a href="#" ng-click="changeSort('index')">#</a> </div>
+                				<div class="col-sm-3"><a href="#" ng-click="changeSort('index')">N°</a> </div>
                 				<div class="col-sm-9">
                         			<a href="#" ng-click="changeSort('nombre_proyecto')">Proyecto</a>
                         		</div>
                 			</div>
                 		</div>
-                		<div class="col-sm-3">
-							<a href="#" ng-click="changeSort('nombre_dominio')">Dominio</a>
-                		</div>
-                		<div class="col-sm-3">
+                        <div class="col-sm-3">
+                            <a href="#" ng-click="changeSort('nombre_cliente')">Clientes</a>
+                        </div>
+                        <div class="col-sm-3">
 							<a href="#" ng-click="changeSort('nombre_etapa')">Estatus</a>
                 		</div>
                 		<div class="col-sm-3">
@@ -64,7 +64,7 @@
                                 </a>	
                             </h3>
                             <div class="box-button-list">
-		        				<a class="btn btn-sm btn-info btn-cirule" ng-href="{{ url( '/proyectos/[[proyecto.id_proyecto]]' ) }}" data-toggle="tooltip" data-title="Detalle"><i class="fa fa-list"></i></a>
+		        				<a class="btn btn-list" ng-href="{{ url( '/proyectos/[[proyecto.id_proyecto]]' ) }}" data-toggle="tooltip" data-title="Detalle"><i class="fa fa-list"></i></a>
 		        			</div>
                             <h3 class="panel-title list-title">
                             	<div class="row">
@@ -78,14 +78,12 @@
                             		</div>
 
                             		<div class="col-sm-3">
-										<a href="http://[[proyecto.nombre_dominio]]" target="_blank">
-											[[proyecto.nombre_dominio | noAsignado ]]
-										</a>
+										[[proyecto.nombre_cliente]]
                             		</div>
 
-                            		<div class="col-sm-3">
-										[[proyecto.nombre_etapa]]
-                            		</div>
+                                    <div class="col-sm-3">
+                                        [[proyecto.nombre_etapa]]
+                                    </div>
 
                             		<div class="col-sm-1 center">
 										[[proyecto.fecha_creacion_avance | DateForHumans]]
@@ -97,24 +95,30 @@
                         <div id="[[$index+1]]" class="panel-collapse collapse">
                             <div class="panel-body">
                             	<p>Nombre del Cliente: [[proyecto.nombre_cliente]]</p>
-                            	<p>Tipo de Proyecto: [[proyecto.nombre_grupo_etapas]]</p>
-                                <div class="row" ng-if="proyecto.asunto_avance != null">
+                            	<p ng-show="proyecto.nombre_dominio" >Dominio: <a ng-href="[[proyecto.nombre_dominio]]"> [[proyecto.nombre_dominio]] </a> </p>
+                                <p>Tipo de Proyecto: [[proyecto.nombre_grupo_etapas]]</p>
+                                <div ng-if="proyecto.asunto_avance != null">
                                     <hr>
                                     <p class="center">Ultimo Avance</p>
-                                    <div class="col-md-8 col-md-offset-2">
-                                        <ul class="chats">
-                                            <li class="left">
-                                                <span class="date-time">[[proyecto.fecha_creacion_avance | DateForHumans]]</span>
-                                                <a href="javascript:;" class="name">[[proyecto.nombre_usuario]]</a>
-                                                <a href="javascript:;" class="image"><img width="50" alt="" src="{{ url('img/user.png') }}"></a>
-                                                <div class="message">
-                                                    <div ng-bind-html="proyecto.descripcion_avance"></div>
+                                    <div class="row">
+                                        <!-- begin col-12 -->
+                                        <div class="col-12 ui-sortable">
+                                            <!-- begin panel -->
+                                            <div class="panel panel-inverse panel-ultimo-avance">
+                                                <div class="panel-heading-3">
+                                                    <div class="panel-heading-btn">
+                                                        <p class="fecha-ultimo-avance">[[proyecto.fecha_creacion_avance | DateForHumans]]</p>
+                                                    </div>
+                                                    <h4 class="panel-title"><img width="40" alt="" src="{{ url('img/user.png') }}"> [[proyecto.nombre_usuario]]</h4>
                                                 </div>
-                                                <div class="asunto">
-                                                <h6>Asunto: [[proyecto.asunto_avance]]</h6>
+                                                <div class="panel-heading-3">
+                                                    <h4 class="panel-title">Asunto: [[proyecto.asunto_avance]]</h4>
                                                 </div>
-                                            </li>
-                                        </ul>
+                                                <div class="panel-body">
+                                                    <div ng-bind-html="proyecto.descripcion_avance"></div> 
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 

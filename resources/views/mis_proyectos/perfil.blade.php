@@ -36,11 +36,9 @@
             <div class="col-12 ui-sortable">
                 <!-- begin panel -->
                 <div class="panel panel-inverse">
-                    <div class="panel-heading">
+                    <div class="panel-heading-2">
                         <div class="panel-heading-btn">
-                            <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand" data-original-title="" title=""><i class="fa fa-expand"></i></a>
-                            <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload" data-original-title="" title=""><i class="fa fa-repeat"></i></a>
-                            <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse" data-original-title="" title=""><i class="fa fa-minus"></i></a>
+                            
                         </div>
                         <h4 class="panel-title">Editar</h4>
                     </div>
@@ -129,7 +127,7 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label">Dirección</label>
                                 <div class="col-md-5">
-                                    <input type="textarea" class="form-control" ng-model="perfil.direccion_perfil" name="direccion_perfil" ng-required="true" oninvalid="setCustomValidity(' ')">
+                                    <textarea rows="5" class="form-control" ng-model="perfil.direccion_perfil" name="direccion_perfil" ng-required="true" oninvalid="setCustomValidity(' ')"></textarea>
                                 	<div class="error campo-requerido" ng-show="formulario.direccion_perfil.$invalid && (formulario.direccion_perfil.$touched || submitted)">
 	                                    <small class="error" ng-show="formulario.direccion_perfil.$error.required">
 	                                        * Campo requerido.

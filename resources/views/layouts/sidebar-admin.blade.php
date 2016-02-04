@@ -21,8 +21,8 @@
 		</ul>
 		<!-- end sidebar user -->
 		<!-- begin sidebar nav -->
-		<ul class="nav">
-			
+		<ul class="nav">			
+
 			<li class="has-sub"><!-- ng-click="proyecto_active()" ng-class="{'': !proyecto, 'active': proyecto}"-->
 				<a href="{{ url('mis-proyectos')}}" >
 				    <i class="fa fa-star"></i>
@@ -44,12 +44,21 @@
 				</ul>
 			</li>
 			@endif	
+			
+			@if(Auth::user()->tiene_permiso('proyectos'))
+			<li class="has-sub"><!-- ng-click="proyecto_active()" ng-class="{'': !proyecto, 'active': proyecto}"-->
+				<a href="{{ url('asistente/iniciando')}}" >
+				    <i class="fa fa-magic"></i>
+				    <span>Creación Guiada</span>
+			    </a>
+			</li>
+			@endif
 
-			@if(Auth::user()->tiene_permiso('grupo_etapas'))
+			@if(Auth::user()->tiene_permiso('tipo_proyectos'))
 			<li class="has-sub"><!-- ng-click="proyecto_active()" ng-class="{'': !proyecto, 'active': proyecto}"-->
 				<a href="javascript:;" >
 				    <b class="caret pull-right"></b>
-				    <i class="fa fa-line-chart"></i>
+				    <i class="fa fa-sort-amount-asc"></i>
 				    <span>Tipos de proyectos</span>
 			    </a>
 				<ul class="sub-menu">
@@ -100,7 +109,7 @@
 				</ul>
 			</li>
 			@endif
-			@if(Auth::user()->tiene_permiso('dominios') || Auth::user()->tiene_permiso('empresas_proveedoras') )
+			@if(Auth::user()->getIdEmpresa() == 1 && (Auth::user()->tiene_permiso('dominios') || Auth::user()->tiene_permiso('empresas_proveedoras')  ))
 			<li class="has-sub"><!-- ng-click="proyecto_active()" ng-class="{'': !proyecto, 'active': proyecto}"-->
 				<a href="javascript:;" >
 				    <b class="caret pull-right"></b>

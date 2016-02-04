@@ -32,7 +32,7 @@
             <div class="col-md-6 ui-sortable">
                 <!-- begin panel -->
                 <div class="panel panel-inverse">
-                    <div class="panel-heading">
+                    <div class="panel-heading-2">
                         <h4 class="panel-title">Información del Proyecto</h4>
                     </div>
 
@@ -69,7 +69,7 @@
             <div class="col-md-6 ui-sortable">
                 <!-- begin panel -->
                 <div class="panel panel-inverse">
-                    <div class="panel-heading">
+                    <div class="panel-heading-2">
                         <h4 class="panel-title">Información del Cliente</h4>
                     </div>
 
@@ -109,7 +109,7 @@
             <div class="col-md-12 ui-sortable">
                 <!-- begin panel -->
                 <div class="panel panel-inverse">
-                    <div class="panel-heading">
+                    <div class="panel-heading-2">
                         <h4 class="panel-title">Integrantes</h4>
                     </div>
 

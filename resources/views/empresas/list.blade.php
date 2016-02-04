@@ -30,19 +30,16 @@
             <div class="col-12">
                 <div class="panel-group" id="accordion">
                 	<div class="row text-list">
-                		<div class="col-sm-4"> 
+                		<div class="col-sm-5"> 
                 			<div class="row">
-                				<div class="col-sm-3"><a href="#" ng-click="changeSort('index')"># </a></div>
-                				<div class="col-sm-9">
+                				<div class="col-sm-1"><a href="#" ng-click="changeSort('index')">N° </a></div>
+                				<div class="col-sm-11">
                         			<a href="#" ng-click="changeSort('nombre_empresa')">Nombre Empresa</a>
                         		</div>
                 			</div>
                 		</div>
-                		<div class="col-sm-3">
+                		<div class="col-sm-4">
 							<a href="#" ng-click="changeSort('rif_empresa')">Rif </a>
-                		</div>
-                		<div class="col-sm-3">
-                			<a href="#" ng-click="changeSort('email_empresa')">Email</a>
                 		</div>
                         <div class="col-sm-2">
                             <a>Estatus</a>
@@ -60,25 +57,21 @@
                             </h3>
                             <div class="box-button-list">
 		        				<!--<a class="btn btn-sm btn-info btn-cirule" ng-href="{{ url( '/admin_empresas/[[model.id_empresa]]' ) }}" data-toggle="tooltip" data-title="Detalle"><i class="fa fa-list"></i></a>-->
-		        				<a class="btn btn-sm btn-success btn-cirule" ng-href="{{ url( '/admin_empresas/[[model.id_empresa]]/edit' ) }}" data-toggle="tooltip" data-title="Editar"><i class="fa fa-pencil-square-o"></i></a>
+		        				<a class="btn btn-list" ng-href="{{ url( '/admin_empresas/[[model.id_empresa]]/edit' ) }}" data-toggle="tooltip" data-title="Editar"><i class="fa fa-pencil-square-o"></i></a>
 		        			</div>
                             <h3 class="panel-title list-title">
                             	<div class="row">
-                            		<div class="col-sm-4"> 
+                            		<div class="col-sm-5"> 
                             			<div class="row">
-                            				<div class="col-sm-3"> [[$index+1]] </div>
-                            				<div class="col-sm-9">
+                            				<div class="col-sm-1"> [[$index+1]] </div>
+                            				<div class="col-sm-11">
 		                            			[[model.nombre_empresa]]
 		                            		</div>
                             			</div>
                             		</div>
 
-                            		<div class="col-sm-3">
+                            		<div class="col-sm-4">
 										[[model.rif_empresa]]
-                            		</div>
-
-                            		<div class="col-sm-3">
-										[[model.correo_empresa]]
                             		</div>
                                     
                                     <div class="col-sm-1">
@@ -98,6 +91,7 @@
                             	<p>Dirección: [[model.direccion_empresa]]</p>
                             	<p>Telefono [[model.telefono_empresa]]</p>
                             	<p>Fecha de Creación: [[model.created_at]]</p>
+                                <p>Correo: [[model.correo_empresa]] </p>
                             	
                             	<a ng-if="model.habilitado_empresa == 0" class="btn btn-sm btn-success pull-right" ng-href="{{ url( '/admin_empresas/[[model.id_empresa]]/habilitar') }}" data-toggle="tooltip" data-title="Habilitar"><i class="fa fa-thumbs-o-up"></i></i></a>
 						        <a ng-if="model.habilitado_empresa == 1" class="btn btn-sm btn-danger pull-right" ng-href="{{ url( '/admin_empresas/[[model.id_empresa]]/destroy') }}" data-toggle="tooltip" data-title="Deshabilitar"><i class="fa fa-thumbs-o-down"></i></i></a>

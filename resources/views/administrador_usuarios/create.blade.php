@@ -28,16 +28,6 @@
     @include('layouts/sidebar-admin')
 	
 	<div id="content" class="content ng-scope" ng-controller="SubmitController">
-        
-        <ol class="breadcrumb pull-right">
-            <div class="btn-toolbar">
-                <div class="btn-group">
-                    <a href="{{ url( '/admin_usuarios/create' ) }}" class="btn btn-success btn-sm p-l-20 p-r-20" data-toggle="tooltip" data-title="Agregar Usuario">
-                        <i class="fa fa-plus"></i>
-                    </a>
-                </div>
-            </div>
-        </ol>
 
         <div ng-init="urlRedirect='{{ url('admin_usuarios/') }}'"></div>
         
@@ -74,8 +64,8 @@
 		                <!-- begin panel -->
 		                @if(!$usuario)
 		                <div class="panel panel-inverse">
-		                    <div class="panel-heading">
-		                        <h4 class="panel-title"><i class="fa fa-user"></i> Usuario</h4>
+		                    <div class="panel-heading-2">
+		                        <h4 class="panel-title"> Usuario</h4>
 		                    </div>
 		                    <div class="panel-body">	
 		                    	
@@ -116,8 +106,8 @@
 		            @endif
 		                <!-- begin panel -->
 		                <div class="panel panel-inverse">
-		                    <div class="panel-heading">
-		                        <h4 class="panel-title"><i class="fa fa-user"></i> Perfil de usuario</h4>
+		                    <div class="panel-heading-2">
+		                        <h4 class="panel-title"> Perfil de usuario</h4>
 		                    </div>
 		                    <div class="panel-body">	
 								<div class="form-group">
@@ -227,12 +217,10 @@
 		            <div class="col-md-6 ui-sortable">
 		                <!-- begin panel -->
 		                <div class="panel panel-inverse">
-		                    <div class="panel-heading">
-		                    	<div class="panel-heading-btn">
-	                                <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand" data-original-title="" title=""><i class="fa fa-expand"></i></a>
-	                                <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse" data-original-title="" title=""><i class="fa fa-minus"></i></a>
+		                    <div class="panel-heading-2">
+		                    	<div class="panel-heading-btn">                               
 	                            </div>
-		                        <h4 class="panel-title" style="text-transform: capitalize;"><i class="fa fa-unlock-alt"></i> {{$nombre_clase}}</h4>
+		                        <h4 class="panel-title" style="text-transform: capitalize;"> {{$nombre_clase}}</h4>
 		                    </div>
 		                    <div class="panel-body">
 								<table class="table table-bordered table-condensed m-b-0">

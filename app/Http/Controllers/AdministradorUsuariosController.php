@@ -134,10 +134,11 @@ class AdministradorUsuariosController extends Controller
         };
 
         $request['password'] = \Hash::make($request['password']);
+        $request['activado_usuario'] = 1;
+        $request['id_permisologia'] = 3;
         $user = User::create($request->all());
 
         $request['id_usuario'] = $user->id_usuario;
-        $request['id_permisologia'] = 3;
         $perfil = Perfil::create($request->all());
         if ($request['clases']){
             foreach ($request['clases'] as $permiso=>$value ) {
@@ -154,7 +155,7 @@ class AdministradorUsuariosController extends Controller
                                 ]);
 
         Session::flash("mensaje-success","Usuario creado exitosamente");
-        return redirect("/admin_usuarios");
+        return json_encode(['success'=>true,]);
     }
 
     public function show($id){

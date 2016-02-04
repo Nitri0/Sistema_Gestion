@@ -36,56 +36,50 @@
 	            <div class="col-12 ui-sortable">
 	                <!-- begin panel -->
 	                <div class="panel panel-inverse">
-	                    <div class="panel-heading">
+	                    <div class="panel-heading-2">
 	                        <div class="panel-heading-btn">
-	                            <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand" data-original-title="" title=""><i class="fa fa-expand"></i></a>
-	                            <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload" data-original-title="" title=""><i class="fa fa-repeat"></i></a>
-	                            <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse" data-original-title="" title=""><i class="fa fa-minus"></i></a>
+	                        	
 	                        </div>
 	                        <h4 class="panel-title">Plantillas</h4>
 	                    </div>
 
 	                    <div class="panel-body">
 
-	                    	<div class="well">
+		                    <div class="form-group">
+	                            <label class="col-md-4 control-label">Nombre Plantilla </label>
+	                            <div class="col-md-5">
+									<input type="text" text-num-only class="form-control" ng-model="plantilla.nombre_plantilla" name="nombre_plantilla" ng-required="true" oninvalid="setCustomValidity(' ')">
 
-			                    <div class="form-group">
-		                            <label class="col-md-4 control-label">Nombre Plantilla </label>
-		                            <div class="col-md-5">
-										<input type="text" text-num-only class="form-control" ng-model="plantilla.nombre_plantilla" name="nombre_plantilla" ng-required="true" oninvalid="setCustomValidity(' ')">
+									<div class="error campo-requerido" ng-show="formulario.nombre_plantilla.$invalid && (formulario.nombre_plantilla.$touched || submitted)">
+	                                    <small class="error" ng-show="formulario.nombre_plantilla.$error.required">
+	                                        * Campo requerido.
+	                                    </small>
+	                            	</div>	
+	                            </div>
+	                        </div>
 
-										<div class="error campo-requerido" ng-show="formulario.nombre_plantilla.$invalid && (formulario.nombre_plantilla.$touched || submitted)">
-		                                    <small class="error" ng-show="formulario.nombre_plantilla.$error.required">
-		                                        * Campo requerido.
-		                                    </small>
-		                            	</div>	
-		                            </div>
-		                        </div>
+	                        <div class="form-group">
+	                            <label class="col-md-4 control-label">Descripcion </label>
+	                            <div class="col-md-5">
+									<textarea rows="5" class="form-control" ng-model="plantilla.descripcion_plantilla" name="descripcion_plantilla" ng-required="true" oninvalid="setCustomValidity(' ')">
+									</textarea>
 
-		                        <div class="form-group">
-		                            <label class="col-md-4 control-label">Descripcion </label>
-		                            <div class="col-md-5">
-										<textarea rows="5" class="form-control" ng-model="plantilla.descripcion_plantilla" name="descripcion_plantilla" ng-required="true" oninvalid="setCustomValidity(' ')">
-										</textarea>
+									<div class="error campo-requerido" ng-show="formulario.descripcion_plantilla.$invalid && (formulario.descripcion_plantilla.$touched || submitted)">
+	                                    <small class="error" ng-show="formulario.descripcion_plantilla.$error.required">
+	                                        * Campo requerido.
+	                                    </small>
+	                            	</div>		
+	                            </div>
+	                        </div>
 
-										<div class="error campo-requerido" ng-show="formulario.descripcion_plantilla.$invalid && (formulario.descripcion_plantilla.$touched || submitted)">
-		                                    <small class="error" ng-show="formulario.descripcion_plantilla.$error.required">
-		                                        * Campo requerido.
-		                                    </small>
-		                            	</div>		
-		                            </div>
-		                        </div>
+	                        <!--<div class="form-group">
+	                        	<div class="col-md-2">Data con formato html</div>
+	                            <div class="col-md-8">
+									<textarea rows="20" class="form-control" ng-model="plantilla.raw_data_plantilla" name="raw_data_plantilla">
+									</textarea>
+	                            </div>
+	                        </div>-->
 
-		                        <!--<div class="form-group">
-		                        	<div class="col-md-2">Data con formato html</div>
-		                            <div class="col-md-8">
-										<textarea rows="20" class="form-control" ng-model="plantilla.raw_data_plantilla" name="raw_data_plantilla">
-										</textarea>
-		                            </div>
-		                        </div>-->
-
-		                    </div>
-								
 						</div><!-- boby -->
 	                </div>
 	            </div>
@@ -96,11 +90,9 @@
 
 	            <div class="col-md-12">
                     <div class="panel panel-inverse" data-sortable-id="form-wysiwyg-1">
-                        <div class="panel-heading">
+                        <div class="panel-heading-2">
                             <div class="panel-heading-btn">
-                                <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
-                                <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-repeat"></i></a>
-                                <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
+                            	
                             </div>
                             <h4 class="panel-title">Data del Correo</h4>
                         </div>
