@@ -63,10 +63,12 @@
                     	<div class="table-responsive">
                             <table class="table table-profile">
                                 <tbody>
+                                    <tr class="tr-custon"></tr>
                                     <tr class="line-bottom">
                                         <td class="field">Nombre</td>
                                         <td>{{ $proyecto->nombre_proyecto }}</td>
                                     </tr>
+                                    <tr class="tr-custon"></tr>
                                     <tr class="divider">
                                         <td colspan="2"></td>
                                     </tr>
@@ -88,24 +90,23 @@
 
 					</div><!-- boby -->
                 </div>
-            </div>
 
-            <!-- begin col-12 -->
-            <div class="col-md-6 ui-sortable">
-                <!-- begin panel -->
+                 <!-- begin panel -->
                 <div class="panel panel-inverse">
                     <div class="panel-heading-2">
                         <h4 class="panel-title">Información del Cliente</h4>
                     </div>
 
                     <div class="panel-body">
-                    	<div class="table-responsive">
+                        <div class="table-responsive">
                             <table class="table table-profile">
                                 <tbody>
+                                    <tr class="tr-custon"></tr>
                                     <tr class="line-bottom">
                                         <td class="field">Nombre</td>
                                         <td>{{ $proyecto->getCliente()->nombre_cliente }}</td>
                                     </tr>
+                                    <tr class="tr-custon"></tr>
                                     <tr class="divider">
                                         <td colspan="2"></td>
                                     </tr>
@@ -125,99 +126,128 @@
                             </table>
                         </div>
 
-					</div><!-- boby -->
+                    </div><!-- boby -->
+                </div>
+            </div>
+
+            <!-- begin col-12 -->
+            <div class="col-md-6 ui-sortable">
+                <div class="panel panel-inverse">
+                    <div class="panel-heading-2">
+                        <h4 class="panel-title">Integrantes</h4>
+                    </div>
+                    <div class="panel-body">
+                        <div class="height-custon-md" data-scrollbar="true">
+                            <br>
+
+                            <div ng-init="urlRedirect='{{ url('proyectos/'.$proyecto->id_proyecto) }}'"></div>
+                            <div ng-init="urlAction='{{ url('/integrantes') }}'"></div>
+
+                            <form class="form-horizontal" id="formulario" name="formulario" action="/integrantes" method="POST">
+                                    
+                                <input type="hidden" name="id_proyecto" value="{{$proyecto->id_proyecto}}">
+                                <input type="hidden" name="redirect" value="{{url('/proyectos/'.$proyecto->id_proyecto )}}">
+                                
+                                <div class="form-group">
+                                    <label class="col-md-2 control-label ng-binding">Integrante</label>
+                                    <div class="col-md-4">
+                                        <select class="form-control js-example-data-array" name="id_usuario" ng-model="id_usuario" ng-required="true">
+                                            <option value="">Seleccione un Usuario</option>
+                                            @foreach($usuarios as $usuario)
+                                                <option class="option" value="{{$usuario->id_usuario}}">
+                                                    {{ $usuario->getFullName()}}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                        <div class="error campo-requerido" ng-show="formulario.id_usuario.$invalid && (formulario.id_usuario.$touched || submitted)">
+                                            <small class="error" ng-show="formulario.id_usuario.$error.required">
+                                                * Campo requerido.
+                                            </small>
+                                        </div>
+                                    </div>
+                                    <label class="col-md-1 control-label ng-binding">Rol</label>
+                                    <div class="col-md-4">
+                                        <select class="form-control js-example-data-array" name="id_tipo_rol" ng-model="id_tipo_rol" ng-required="true">
+                                            <option value="">Seleccione un rol</option>
+                                            @foreach($roles as $rols)
+                                                <option value="{{$rols->id_tipo_rol }}">
+                                                    {{ $rols->nombre_tipo_rol }} 
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                        <div class="error campo-requerido" ng-show="formulario.id_tipo_rol.$invalid && (formulario.id_tipo_rol.$touched || submitted)">
+                                            <small class="error" ng-show="formulario.id_tipo_rol.$error.required">
+                                                * Campo requerido.
+                                            </small>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <button  type="button" ng-click="submit(formulario.$valid)" class="btn btn-list"><i class="fa fa-plus"></i></button>
+                                    </div>
+                                </div>
+
+                            </form>
+                            
+                            <hr>
+                           
+                            <ul class="registered-users-list clearfix">
+                                @foreach($rol as $integrante)
+                                <li>
+                                    <form class="eliminar-integrante" action="/integrantes/{{$integrante->id_rol_usuario}}" method="POST">
+                                        <input type="hidden" name="_method" value="delete">
+                                        <input type="hidden" name="redirect" value="{{url('/proyectos/'.$proyecto->id_proyecto )}}">
+                                        <button type="submit" class="btn btn-sm btn-danger btn-eliminar-integrante" data-toggle="tooltip" data-title="Eliminar"><i class="fa fa-remove"></i></button >
+                                    </form>  
+                                    <a href="javascript:;"><img src="{{ url('thema/admin/html/assets/img/user-1.jpg') }}" alt=""></a>
+                                    <h4 class="username text-ellipsis">
+                                        {{$integrante->getUser()->getFullName()}}
+                                        <small class="text-ellipsis">{{$integrante->getRolName()}}</small>
+                                    </h4>
+
+                                </li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
         
         </div>
 
         <div class="row">
-            <div class="col-md-12 ui-sortable">
-                <div class="panel panel-inverse">
-                    <div class="panel-heading-2">
-                        <h4 class="panel-title">Integrantes</h4>
-                    </div>
-                    <div class="panel-body">
-                        <br>
 
-                        <div ng-init="urlRedirect='{{ url('proyectos/'.$proyecto->id_proyecto) }}'"></div>
-                        <div ng-init="urlAction='{{ url('/integrantes') }}'"></div>
+            <br>
 
-                        <form class="form-horizontal" id="formulario" name="formulario" action="/integrantes" method="POST">
-                                
-                            <input type="hidden" name="id_proyecto" value="{{$proyecto->id_proyecto}}">
-                            <input type="hidden" name="redirect" value="{{url('/proyectos/'.$proyecto->id_proyecto )}}">
-                            
-                            <div class="form-group">
-                                <label class="col-md-1 control-label ng-binding">Integrante</label>
-                                <div class="col-md-4">
-                                    <select class="form-control js-example-data-array" name="id_usuario" ng-model="id_usuario" ng-required="true">
-                                        <option value="">Seleccione un Usuario</option>
-                                        @foreach($usuarios as $usuario)
-                                            <option class="option" value="{{$usuario->id_usuario}}">
-                                                {{ $usuario->getFullName()}}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                    <div class="error campo-requerido" ng-show="formulario.id_usuario.$invalid && (formulario.id_usuario.$touched || submitted)">
-                                        <small class="error" ng-show="formulario.id_usuario.$error.required">
-                                            * Campo requerido.
-                                        </small>
-                                    </div>
-                                </div>
-                                <label class="col-md-2 control-label ng-binding">Rol que cumplirá</label>
-                                <div class="col-md-4">
-                                    <select class="form-control js-example-data-array" name="id_tipo_rol" ng-model="id_tipo_rol" ng-required="true">
-                                        <option value="">Seleccione un rol</option>
-                                        @foreach($roles as $rols)
-                                            <option value="{{$rols->id_tipo_rol }}">
-                                                {{ $rols->nombre_tipo_rol }} 
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                    <div class="error campo-requerido" ng-show="formulario.id_tipo_rol.$invalid && (formulario.id_tipo_rol.$touched || submitted)">
-                                        <small class="error" ng-show="formulario.id_tipo_rol.$error.required">
-                                            * Campo requerido.
-                                        </small>
-                                    </div>
-                                </div>
-                                <div class="col-md-1">
-                                    <button  type="button" ng-click="submit(formulario.$valid)" class="btn btn-primary m-r-5 m-b-5"><i class="fa fa-plus"></i></button>
-                                </div>
-                            </div>
-
-                        </form>
-                        
-                        <hr>
-                       
-                        <ul class="registered-users-list clearfix">
-                            @foreach($rol as $integrante)
-                            <li>
-                                <form action="/integrantes/{{$integrante->id_rol_usuario}}" method="POST">
-                                    <input type="hidden" name="_method" value="delete">
-                                    <input type="hidden" name="redirect" value="{{url('/proyectos/'.$proyecto->id_proyecto )}}">
-                                    <button type="submit" class="btn btn-sm btn-danger btn-eliminar-integrante" data-toggle="tooltip" data-title="Eliminar"><i class="fa fa-remove"></i></button >
-                                </form>  
-                                <a href="javascript:;"><img src="{{ url('thema/admin/html/assets/img/user-1.jpg') }}" alt=""></a>
-                                <h4 class="username text-ellipsis">
-                                    {{$integrante->getUser()->getFullName()}}
-                                    <small class="text-ellipsis">{{$integrante->getRolName()}}</small>
-                                </h4>
-
-                            </li>
-                            @endforeach
-                        </ul>
+            <div class="row">
+                <div class="col-md-2 col-md-offset-5 ui-sortable">
+                    <div class="panel panel-inverse">
+                        <div class="panel-heading-3">
+                            <h4 class="panel-title center">Etapas</h4>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
+            <br>
 
-        <div class="row">
+            <div class="row">
+                <div class="col-md-5 col-md-offset-1">
+                    <select class="form-control js-example-data-array">
+                        <option value="">Filtrar etapa</option>
+                        @foreach($etapas->getEtapas() as $etapa)
+                            <option class="option" value="{{$etapa->nombre_etapa}}">
+                                {{$etapa->nombre_etapa}}
+                            </option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="col-md-5 col-md-offset-">
+                    <div class="progress progress-striped active">
+                        <div class="progress-bar" style="width: 80%; padding-top: 6px;">80%</div>
+                    </div>
+                </div>
+            </div>
 
-            <center>
-                <h3 class="title">Etapas</h3>
-            </center>
             <br>
             <br>
         	

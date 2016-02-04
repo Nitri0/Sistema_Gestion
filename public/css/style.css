@@ -219,7 +219,7 @@ body ,html{
   border-bottom: 1px solid #e2e7eb;
 }
 .registered-users-list>li {
-  width: 16%;
+  width: 33%;
   font-size: 12px;
   float: left;
   padding: 10px;
@@ -231,12 +231,15 @@ body ,html{
   margin-bottom: 0;
   width: 88%;
 }
+.eliminar-integrante{
+  position: relative;
+}
 .btn-eliminar-integrante{
-  position: absolute;
   float: right;
   padding: 0px 4px;
-  margin-top: 5px;
-  margin-left: 5px;
+  margin-top: 3px;
+  margin-left: -25px;
+  margin-right: 16px;
   color: #fff;
   background: #ff5b57;
 }
@@ -388,6 +391,19 @@ body ,html{
   border-radius: 50%;
   padding-right: 5px;
 }
+.tr-custon {
+  height: 15px;
+}
+.height-custon-md{
+  height:497px!important
+}
+.progress, .progress-bar {
+  -webkit-box-shadow: none;
+  height: 32px;
+}
+
+
+
 
 @media (max-width: 1200px){
   .content.has-bg .content-bg img {
