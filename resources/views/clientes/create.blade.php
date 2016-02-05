@@ -73,11 +73,14 @@
 	                        <div class="form-group">
 	                            <label class="col-md-4 control-label">Identificador de cliente (rif, cedula, etc)</label>
 	                            <div class="col-md-5">
-	                            	<input type="text" ng-remote-validate="{{url('/clientes/valididentificador')}}"  ng-required="true" class="form-control" ng-model="cliente.ci_rif_cliente" name="ci_rif_cliente" >
+	                            	<input type="text" ng-remote-validate="{{url('/clientes/valididentificador')}}" ng-pattern="/^[A-Z]*[0-9]*$/" ng-required="true" class="form-control" ng-model="cliente.ci_rif_cliente" name="ci_rif_cliente" >
 	                            	<div class="error campo-requerido" ng-show="formulario.ci_rif_cliente.$invalid && (formulario.ci_rif_cliente.$touched || submitted)">
 	                                    <small class="error" ng-show="formulario.ci_rif_cliente.$error.required">
 	                                        * Campo requerido.
 	                                    </small>
+	                                    <small class="error" ng-show="formulario.ci_rif_cliente.$error.pattern">
+	                                        * Formato de identificador inválido. Solo debe introducir mayusculas y números. Ejemplo: J123456789.
+	                                    </small>	                                    
 	                                    <small class="error" ng-show="formulario.ci_rif_cliente.$error.ngRemoteValidate">
 	                                        * Identificador en uso.
 	                                    </small>		                                    

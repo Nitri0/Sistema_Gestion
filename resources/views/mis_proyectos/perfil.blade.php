@@ -82,7 +82,7 @@
 	                                        * Campo requerido.
 	                                    </small>
                                         <small class="error" ng-show="formulario.cedula_perfil.$error.pattern">
-                                            * Formato de identificador inválido. Solo debe introducir mayusculas y números. Ejemplo: J123456789.
+                                            * Formato de identificador inválido. Solo debe introducir mayúsculas y números. Ejemplo: J123456789.
                                         </small>                                        
 	                            	</div>
                                 </div>	                                

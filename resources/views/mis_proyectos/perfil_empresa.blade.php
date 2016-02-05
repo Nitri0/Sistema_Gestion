@@ -69,7 +69,7 @@
 	                                        * Campo requerido.
 	                                    </small>
 	                                    <small class="error" ng-show="formulario.rif_empresa.$error.pattern">
-	                                        * Formato de identificador inválido. Solo debe introducir mayusculas y números. Ejemplo: J123456789.
+	                                        * Formato de identificador inválido. Solo debe introducir mayúsculas y números. Ejemplo: J123456789.
 	                                    </small>
 	                                    <small class="error" ng-show="formulario.rif_empresa.$error.ngRemoteValidate">
 	                                        * Identificador ya esta siendo usado en el sistema, utilice otro o contacte a soporte técnico (contacto@keygestion.com.ve).
