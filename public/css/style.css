@@ -402,6 +402,35 @@ body ,html{
   height: 32px;
 }
 
+.timeline-body {
+  margin-left: 2%;
+  margin-right: 2%;
+  background: #fff;
+  position: relative;
+  padding: 20px 30px;
+  border-radius: 4px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+.timeline-body:before {
+  content: '';
+  display: block;
+  position: absolute;
+  border: 10px solid transparent;
+  border-right-color: #fff;
+  left: -20px;
+  top: 20px;
+}
+.timeline-footer {
+  margin: -20px -30px;
+  padding: 10px 30px;
+  background: #e8ecf1;
+  -webkit-border-radius: 0 0 4px 4px;
+  -moz-border-radius: 0 0 4px 4px;
+  border-radius: 0 0 4px 4px;
+}
 
 
 
