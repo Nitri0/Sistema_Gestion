@@ -14,7 +14,7 @@
         	@if($proyecto->getEstatus()!="Finalizado")
             <div class="btn-toolbar">
                 <div class="btn-group">
-                    <a href="/mis-proyectos/avances/{{$proyecto->id_proyecto}}/create" class="btn btn-success btn-sm p-l-20 p-r-20" data-toggle="tooltip" data-title="Crear Avance">
+                    <a href="/mis-proyectos/avances/{{$proyecto->id_proyecto}}/create" class="btn btn-list p-l-20 p-r-20" data-toggle="tooltip" data-title="Crear Avance">
                         <i class="fa fa-line-chart"></i>
                     </a>
                 </div>
@@ -25,10 +25,9 @@
 
         <h1 class="page-header">Dellate del Proyecto </h1>
         
-
-    	<div class="row">
+        <div class="row">
             
-            <!-- begin col-4 -->
+            <!-- begin col-12 -->
             <div class="col-md-6 ui-sortable">
                 <!-- begin panel -->
                 <div class="panel panel-inverse">
@@ -37,13 +36,15 @@
                     </div>
 
                     <div class="panel-body">
-                    	<div class="table-responsive">
+                        <div class="table-responsive">
                             <table class="table table-profile">
                                 <tbody>
+                                    <tr class="tr-custon"></tr>
                                     <tr class="line-bottom">
                                         <td class="field">Nombre</td>
-                                        <td><a>{{ $proyecto->nombre_proyecto }}</a></td>
+                                        <td>{{ $proyecto->nombre_proyecto }}</td>
                                     </tr>
+                                    <tr class="tr-custon"></tr>
                                     <tr class="divider">
                                         <td colspan="2"></td>
                                     </tr>
@@ -53,34 +54,35 @@
                                     </tr>
                                     <tr>
                                         <td class="field">Etapa actual de proyecto</td>
-                                        <td><span>{{ $proyecto->getEstatus()}}</span></td>
+                                        <td>{{ $proyecto->getEstatus()}}</td>
                                     </tr>
                                     <tr>
                                         <td class="field">Dominio</td>
-                                        <td><a href="{{ $proyecto->getNombreDominio() }}" target="_blank">{{ $proyecto->getNombreDominio() }}</a></td>
+                                        <td><a href="{{ $proyecto->getNombreDominio() }}" target="_blank" href="#">{{ $proyecto->getNombreDominio() }}</a></td>
                                     </tr>
                                 </tbody>
                             </table>
-                        </div>		
-					</div><!-- boby -->
+                        </div>
+
+                    </div><!-- boby -->
                 </div>
-            </div>
-        
-            <div class="col-md-6 ui-sortable">
-                <!-- begin panel -->
+
+                 <!-- begin panel -->
                 <div class="panel panel-inverse">
                     <div class="panel-heading-2">
                         <h4 class="panel-title">Información del Cliente</h4>
                     </div>
 
                     <div class="panel-body">
-                    	<div class="table-responsive">
+                        <div class="table-responsive">
                             <table class="table table-profile">
                                 <tbody>
+                                    <tr class="tr-custon"></tr>
                                     <tr class="line-bottom">
                                         <td class="field">Nombre</td>
-                                        <td><a>{{ $proyecto->getCliente()->nombre_cliente }}</a></td>
+                                        <td>{{ $proyecto->getCliente()->nombre_cliente }}</td>
                                     </tr>
+                                    <tr class="tr-custon"></tr>
                                     <tr class="divider">
                                         <td colspan="2"></td>
                                     </tr>
@@ -98,99 +100,103 @@
                                     </tr>
                                 </tbody>
                             </table>
-                        </div>		
-					</div><!-- boby -->
+                        </div>
+
+                    </div><!-- boby -->
                 </div>
             </div>
-		
-		</div><!-- row -->
-        
-        <div class="row">
-            <div class="col-md-12 ui-sortable">
-                <!-- begin panel -->
+
+            <!-- begin col-12 -->
+            <div class="col-md-6 ui-sortable">
                 <div class="panel panel-inverse">
                     <div class="panel-heading-2">
                         <h4 class="panel-title">Integrantes</h4>
                     </div>
-
                     <div class="panel-body">
-                        <ul class="registered-users-list clearfix">
-                            @foreach($rol as $integrante)
-                            <li>
-                                <form action="/integrantes/{{$integrante->id_rol_usuario}}" method="POST">
-                                    <input type="hidden" name="_method" value="delete">
-                                    <input type="hidden" name="redirect" value="{{url('/proyectos/'.$proyecto->id_proyecto )}}">
-                                    <button type="submit" class="btn btn-sm btn-danger btn-eliminar-integrante" data-toggle="tooltip" data-title="Eliminar"><i class="fa fa-remove"></i></button >
-                                </form>  
-                                <a href="javascript:;"><img src="{{ url('thema/admin/html/assets/img/user-1.jpg') }}" alt=""></a>
-                                <h4 class="username text-ellipsis">
-                                    {{$integrante->getUser()->getFullName()}}
-                                    <small class="text-ellipsis">{{$integrante->getRolName()}}</small>
-                                </h4>
+                        <div class="height-custon-md" data-scrollbar="true"> 
+                            <ul class="registered-users-list clearfix">
+                                @foreach($rol as $integrante)
+                                <li>
+                                    <form class="eliminar-integrante" action="/integrantes/{{$integrante->id_rol_usuario}}" method="POST">
+                                        <input type="hidden" name="_method" value="delete">
+                                        <input type="hidden" name="redirect" value="{{url('/proyectos/'.$proyecto->id_proyecto )}}">
+                                        <button type="submit" class="btn btn-sm btn-danger btn-eliminar-integrante" data-toggle="tooltip" data-title="Eliminar"><i class="fa fa-remove"></i></button >
+                                    </form>  
+                                    <a href="javascript:;"><img src="{{ url('thema/admin/html/assets/img/user-1.jpg') }}" alt=""></a>
+                                    <h4 class="username text-ellipsis">
+                                        {{$integrante->getUser()->getFullName()}}
+                                        <small class="text-ellipsis">{{$integrante->getRolName()}}</small>
+                                    </h4>
 
-                            </li>
-                            @endforeach
-                        </ul> 
-                    </div><!-- boby -->
+                                </li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+        </div>
+
+        <center>
+            <h3 class="title">Etapas</h3>
+        </center>
+
+        <br>
+
+        <div class="row">
+            <div class="col-md-5 col-md-offset-1">
+                <select class="form-control js-example-data-array">
+                    <option value="">Filtrar etapa</option>
+                    @foreach($etapas->getEtapas() as $etapa)
+                        <option class="option" value="{{$etapa->nombre_etapa}}">
+                            {{$etapa->nombre_etapa}}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="col-md-5 col-md-offset-">
+                <div class="progress progress-striped active">
+                    <div class="progress-bar" style="width: 80%; padding-top: 6px;">80%</div>
                 </div>
             </div>
         </div>
 
-		<div class="row">
+        <br>
+        
+        <div class="row">
+            @foreach($etapas->getEtapas() as $etapa)
 
-            <center>
-                <h3 class="title">Etapas</h3>
-            </center>
-            <br>
-            <br>
-            
-            <ul class="timeline">
-                @foreach($etapas->getEtapas() as $etapa)
-                <li>
-                    <!-- begin timeline-time -->
-                    <div class="timeline-time">
-                        <span class="date" style="padding-top: 15px; color:#00acac;">{{$etapa->nombre_etapa}}</span>
+                    <div class="col-md-2">
+                        <h3 class="title center">{{$etapa->nombre_etapa}}</h3>
                     </div>
-                    <!-- end timeline-time -->
-                    <!-- begin timeline-icon -->
-                    <div class="timeline-icon">
-                        <a href="javascript:;"><i class="fa fa-star"></i></a>
-                    </div>
-                    <!-- end timeline-icon -->
-                    <!-- begin timeline-body -->
-                    <div class="timeline-body">
-                        @if ($etapa->getAvances($proyecto->id_proyecto)->first())
-                            <center><h5>Avances</h5></center>
-                        @endif
-                        <br>
-                        <ul class="chats">
-                            @foreach($etapa->getAvances($proyecto->id_proyecto) as $avance)
-                            <li class="left">
-                                <span class="date-time">{{$avance->fecha_creacion_avance}}</span>
-                                <a href="javascript:;" class="name">{{$avance->getNombreCreador()}}</a>
-                                <a href="javascript:;" class="image"><img width="50" alt="" src="{{url('img/user.png')}}"></a>
-                                <div class="message">
-                                    
-                                    {!!$avance->descripcion_avance!!}
-                                </div>
-                                <div class="asunto">
-                                <h6>Asunto: {{$avance->asunto_avance}}</h6>
-                                </div>
-                            </li>
-                            @endforeach
-                        </ul>
-                    </div>
-                    <!-- end timeline-body -->
-                </li>
-                @endforeach
+                    <div class="col-md-12"></div>
+               
+                @foreach($etapa->getAvances($proyecto->id_proyecto) as $avance)
                 
-                <li>
-                    <div class="timeline-icon">
-                        <a href="javascript:;"><i class="fa fa-thumbs-up"></i></a>
+                    <div class="col-md-12">
+                        <div class="timeline-body">
+                            <div class="timeline-header">
+                                <span class="userimage"><img width="34" height="34" src="{{url('img/user.png')}}" alt=""></span>
+                                <span class="username"><a href="javascript:;">{{$avance->getNombreCreador()}}</a> <small></small></span>
+                                <span class="pull-right text-muted">{{$avance->fecha_creacion_avance}}</span>
+                            </div>
+                            <div class="timeline-content">
+                                <p>
+                                    {!!$avance->descripcion_avance!!}
+                                </p>
+                            </div>
+                            <div class="timeline-footer">
+                                <p> Asunto: {{$avance->asunto_avance}}</p>
+                            </div>
+                        </div>
                     </div>
-                </li>
-            </ul>
+  
+                @endforeach
+            @endforeach
         </div>
+
+        <br>
 
     </div><!-- content -->
 	
