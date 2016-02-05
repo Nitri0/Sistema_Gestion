@@ -20,7 +20,7 @@
                 @if($proyecto->habilitado_proyecto)
                 <div class="btn-group">
                 	<form action="/proyectos/finalizar/{{$proyecto->id_proyecto}}" method="post">
-	                    <button type="submit" class="btn btn-success btn-sm p-l-20 p-r-20" data-toggle="tooltip" data-title="Finalizar Proyecto">
+	                    <button type="submit" class="btn btn-list p-l-20 p-r-20" data-toggle="tooltip" data-title="Finalizar Proyecto">
 	                        <i class="fa fa-thumbs-up"></i>
 	                    </button>
                     </form>
@@ -28,7 +28,7 @@
                 @else
                 <div class="btn-group">
                 	<form action="/proyectos/reabrir/{{$proyecto->id_proyecto}}" method="post">
-	                    <button  class="btn btn-warning btn-sm p-l-20 p-r-20" data-toggle="tooltip" data-title="Habilitar Proyecto">
+	                    <button  class="btn btn-list p-l-20 p-r-20" data-toggle="tooltip" data-title="Habilitar Proyecto">
 	                        <i class="fa fa-unlock"></i>
 	                    </button>
                     </form>
@@ -37,7 +37,7 @@
                 <div class="btn-group">
                 	<form action="/proyectos/{{$proyecto->id_proyecto}}" method="post">
                 		<input type="hidden" name="_method" value="delete">
-	                    <button type="submit" class="btn btn-danger btn-sm p-l-20 p-r-20" data-toggle="tooltip" data-title="Eliminar Proyecto">
+	                    <button type="submit" class="btn btn-list p-l-20 p-r-20" data-toggle="tooltip" data-title="Eliminar Proyecto">
 	                        <i class="fa fa-trash"></i>
 	                    </button>
                     </form>

@@ -24,7 +24,14 @@
 					</div>
 				</form>
 			</li>
-
+			
+			@if(Auth::user()->tiene_permiso('proyectos'))
+			<li class="dropdown">
+				<a href="{{ url('asistente/iniciando')}}" class="dropdown-toggle f-s-14">
+					<i class="fa fa-magic" data-toggle="tooltip" data-placement="bottom" data-title="Creación Guiada"></i>
+				</a>
+			</li>
+			@endif
 
 			<li class="dropdown navbar-user">
 				<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
