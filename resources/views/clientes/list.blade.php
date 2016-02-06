@@ -12,6 +12,9 @@
 
     @include('layouts/sidebar-admin')
 	
+    @include('alerts.mensaje_success')
+    @include('alerts.mensaje_error')
+    
 	<div id="content" class="content ng-scope">
         
         <ol class="breadcrumb pull-right">

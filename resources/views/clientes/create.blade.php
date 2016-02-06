@@ -13,6 +13,9 @@
 	@include('layouts/navbar-admin')
 
     @include('layouts/sidebar-admin')
+
+    @include('alerts.mensaje_success')
+	@include('alerts.mensaje_error')
 	
 	<div id="content" class="content ng-scope" ng-controller="SubmitController">
         
@@ -79,7 +82,7 @@
 	                                        * Campo requerido.
 	                                    </small>
 	                                    <small class="error" ng-show="formulario.ci_rif_cliente.$error.pattern">
-	                                        * Formato de identificador inválido. Solo debe introducir mayusculas y números. Ejemplo: J123456789.
+	                                        * Formato de identificador inválido. Solo debe introducir mayúsculas y números. Ejemplo: J123456789.
 	                                    </small>	                                    
 	                                    <small class="error" ng-show="formulario.ci_rif_cliente.$error.ngRemoteValidate">
 	                                        * Identificador en uso.
