@@ -10,6 +10,7 @@ class Plantillas extends Model {
 								'raw_data_plantilla',
 								'ur_plantilla',
 								'id_empresa',
+								'nombre_archivo_plantilla',
 								'descripcion_plantilla');
 
 	//public $cast = ['fecha_creacion_plantilla' 	=> 'datetime',];
