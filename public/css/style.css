@@ -494,3 +494,12 @@ p {
   font-size: 14px;
   line-height: 20px;
 }
+.title-epata{
+  background: rgb(240, 240, 240);
+  padding: 10px 0px 10px 0px;
+  border-radius: 3px;
+}
+.progress {
+  box-shadow: none;
+  background: #E4EDF5;
+}

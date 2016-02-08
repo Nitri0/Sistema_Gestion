@@ -157,7 +157,7 @@
             </div>
             <div class="col-md-5 col-md-offset-">
                 <div class="progress progress-striped active">
-                    <div class="progress-bar" style="width: 80%; padding-top: 6px;">80%</div>
+                    <div class="progress-bar" style="width: {{$progress}}%; padding-top: 6px;">{{$progress}}%</div>
                 </div>
             </div>
         </div>
@@ -166,12 +166,12 @@
         
         <div class="row">
             @foreach($etapas->getEtapas() as $etapa)
-
+                @if ($etapa->getAvances($proyecto->id_proyecto)->count()>0)
                     <div class="col-md-2">
-                        <h3 class="title center">{{$etapa->nombre_etapa}}</h3>
+                        <h3 class="title center title-epata">{{$etapa->nombre_etapa}}</h3>
                     </div>
                     <div class="col-md-12"></div>
-               
+                @endif
                 @foreach($etapa->getAvances($proyecto->id_proyecto) as $avance)
                 
                     <div class="col-md-12">

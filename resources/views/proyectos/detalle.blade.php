@@ -252,8 +252,8 @@
             @foreach($etapas->getEtapas() as $etapa)
                     @if ($etapa->getAvances($proyecto->id_proyecto)->count()>0)
 
-                    <div class="col-md-2 col-md-offset-2">
-                        <h4 class="title center">{{$etapa->nombre_etapa}}</h4>
+                    <div class="col-md-2">
+                        <h4 class="title center title-epata">{{$etapa->nombre_etapa}}</h4>
                     </div>
                     <div class="col-md-12"></div>
                
