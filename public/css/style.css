@@ -486,3 +486,11 @@ body ,html{
 .item button:hover {
   background: #FE980F;
 }
+.home-content p {
+  margin-bottom: 60px;
+  font-size: 15px;
+}
+p {
+  font-size: 14px;
+  line-height: 20px;
+}
