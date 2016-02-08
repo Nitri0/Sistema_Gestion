@@ -74,12 +74,10 @@
                                     <tr class="divider">
                                         <td colspan="2"></td>
                                     </tr>
-                                    @if($proyecto->direccion_proyecto)
                                     <tr>
                                         <td class="field">Descripción</td>
-                                        <td>{{ $proyecto->direccion_proyecto}}</td>
+                                        <td>{{ $proyecto->descripcion_proyecto}}</td>
                                     </tr>
-                                    @endif
                                     <tr>
                                         <td class="field">Etapa actual de proyecto</td>
                                         <td>{{ $proyecto->getEstatus()}}</td>
