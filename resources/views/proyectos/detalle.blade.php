@@ -11,6 +11,8 @@
 	@include('layouts/navbar-admin')
 
     @include('layouts/sidebar-admin')
+    @include('alerts.mensaje_success')
+    @include('alerts.mensaje_error')
 	
 	<div id="content" class="content ng-scope">
         
@@ -72,18 +74,22 @@
                                     <tr class="divider">
                                         <td colspan="2"></td>
                                     </tr>
+                                    @if($proyecto->direccion_proyecto)
                                     <tr>
                                         <td class="field">Descripción</td>
                                         <td>{{ $proyecto->direccion_proyecto}}</td>
                                     </tr>
+                                    @endif
                                     <tr>
                                         <td class="field">Etapa actual de proyecto</td>
                                         <td>{{ $proyecto->getEstatus()}}</td>
                                     </tr>
+                                    @if($proyecto->getNombreDominio() != "No asignado")
                                     <tr>
                                         <td class="field">Dominio</td>
                                         <td><a href="{{ $proyecto->getNombreDominio() }}" target="_blank" href="#">{{ $proyecto->getNombreDominio() }}</a></td>
                                     </tr>
+                                    @endif
                                 </tbody>
                             </table>
                         </div>
@@ -114,10 +120,12 @@
                                         <td class="field">Telefono 1</td>
                                         <td><i class="fa fa-mobile fa-lg m-r-5"></i> {{ $proyecto->getCliente()->telefono_cliente}}</td>
                                     </tr>
+                                    @if($proyecto->getCliente()->telefono_2_cliente)
                                     <tr>
                                         <td class="field">Telefono 2</td>
                                         <td><i class="fa fa-mobile fa-lg m-r-5"></i> {{ $proyecto->getCliente()->telefono_2_cliente}}</td>
                                     </tr>
+                                    @endif
                                     <tr>
                                         <td class="field">Correo Electronico</td>
                                         <td><a href="email:{{ $proyecto->getCliente()->email_cliente}}">{{ $proyecto->getCliente()->email_cliente}}</a></td>
@@ -231,9 +239,9 @@
                     @endforeach
                 </select>
             </div>
-            <div class="col-md-5 col-md-offset-">
+            <div class="col-md-5 col-md-offset">
                 <div class="progress progress-striped active">
-                    <div class="progress-bar" style="width: 80%; padding-top: 6px;">80%</div>
+                    <div class="progress-bar" style="width: {{$progress}}%; padding-top: 6px;">{{$progress}}%</div>
                 </div>
             </div>
         </div>
@@ -242,12 +250,14 @@
         
         <div class="row">
             @foreach($etapas->getEtapas() as $etapa)
+                    @if ($etapa->getAvances($proyecto->id_proyecto)->count()>0)
 
-                    <div class="col-md-2">
-                        <h3 class="title center">{{$etapa->nombre_etapa}}</h3>
+                    <div class="col-md-2 col-md-offset-2">
+                        <h4 class="title center">{{$etapa->nombre_etapa}}</h4>
                     </div>
                     <div class="col-md-12"></div>
                
+                    @endif
                 @foreach($etapa->getAvances($proyecto->id_proyecto) as $avance)
                 
                     <div class="col-md-12">
