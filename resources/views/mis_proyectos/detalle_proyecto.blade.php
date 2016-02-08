@@ -149,9 +149,11 @@
                 <select class="form-control js-example-data-array">
                     <option value="">Filtrar etapa</option>
                     @foreach($etapas->getEtapas() as $etapa)
-                        <option class="option" value="{{$etapa->nombre_etapa}}">
-                            {{$etapa->nombre_etapa}}
-                        </option>
+                        @if ($etapa->getAvances($proyecto->id_proyecto)->count()>0
+                            <option class="option" value="{{$etapa->nombre_etapa}}">
+                                {{$etapa->nombre_etapa}}
+                            </option>
+                        @endif
                     @endforeach
                 </select>
             </div>
