@@ -59,10 +59,9 @@
 				<input type="hidden" name="_token" value="{{ csrf_token() }}">
 
 		        <div class="row">
-
-		            <div class="col-md-4 ui-sortable">
+					@if(!$usuario)
+		            <div class="col-md-12 ui-sortable">
 		                <!-- begin panel -->
-		                @if(!$usuario)
 		                <div class="panel panel-inverse">
 		                    <div class="panel-heading-2">
 		                        <h4 class="panel-title"> Usuario</h4>
@@ -71,7 +70,7 @@
 		                    	
 								<div class="form-group">
 	                                <label class="col-md-4 control-label">Correo Electronico</label>
-	                                <div class="col-md-8">
+	                                <div class="col-md-5">
 										<input type="email" class="form-control" name="correo_usuario" ng-model='usuario.correo_usuario' ng-required="true" oninvalid="setCustomValidity(' ')">
 	                                	<div class="error campo-requerido" ng-show="formulario.correo_usuario.$invalid && (formulario.correo_usuario.$touched || submitted)">
 		                                    <small class="error" ng-show="formulario.correo_usuario.$error.required">
@@ -85,7 +84,7 @@
                             	</div>
                             	<div class="form-group">
 	                                <label class="col-md-4 control-label">Contraseña</label>
-	                                <div class="col-md-8">
+	                                <div class="col-md-5">
 										<input type="text" class="form-control" name="password" ng-model='usuario.password' ng-required="true" oninvalid="setCustomValidity(' ')">
 										<div class="error campo-requerido" ng-show="formulario.password.$invalid && (formulario.password.$touched || submitted)">
 		                                    <small class="error" ng-show="formulario.password.$error.required">
@@ -97,14 +96,15 @@
 
 		                    </div><!-- boby -->
 		                </div>
-						@endif
 		            </div>
+		            @endif
+					
+					<!--
 					@if(!$usuario)
 		            <div class="col-md-8 ui-sortable">
 		            @else
 		            <div class="col-md-12 ui-sortable">
 		            @endif
-		                <!-- begin panel -->
 		                <div class="panel panel-inverse">
 		                    <div class="panel-heading-2">
 		                        <h4 class="panel-title"> Perfil de usuario</h4>
@@ -202,51 +202,68 @@
 		                            	</div>
 	                                </div>
                             	</div>
-		                    </div><!-- boby -->
+		                    </div>
 		                </div>
-		            </div>
+		            </div>-->
 		        
 		        </div>
 
-		        <div class="row">
-					
+				<div class="row">
+
 					<h1 class="page-header"><center><i class="fa fa-unlock-alt"></i><small> Permisos </small></center></h1>
 
-					@foreach($permisos as $nombre_clase=>$metodos)
-
-		            <div class="col-md-6 ui-sortable">
-		                <!-- begin panel -->
-		                <div class="panel panel-inverse">
-		                    <div class="panel-heading-2">
-		                    	<div class="panel-heading-btn">                               
-	                            </div>
-		                        <h4 class="panel-title" style="text-transform: capitalize;"> {{$nombre_clase}}</h4>
-		                    </div>
-		                    <div class="panel-body">
-								<table class="table table-bordered table-condensed m-b-0">
-									<tbody>
-										@foreach($metodos as $metodo)
-										
-										<tr>
-											<td>
-												{{$metodo['metodo_process']}} - {{$metodo['metodo_descripcion']}}
-											</td>
-											<td>
-												[[permisos_user.{{$nombre_clase}}.{{$metodo['metodo_raw']}} ]]
-												<input type="checkbox" data-render="switchery" data-theme="blue" name="{{'clases['.$nombre_clase.'.'.$metodo['metodo_raw'].']'}}"
-												 ng-model="permisos_user['{{$nombre_clase}}.{{$metodo['metodo_raw']}}']">
-											</td>
-									
-										</tr>
-										@endforeach
-									</tbody>
-                    			</table>
-		                    </div><!-- boby -->
-		                </div>
-		            </div>
-		            @endforeach
-		        
-		        </div>
+				    <div class="col-md-12">
+				        <div class="panel-group" id="accordion">
+				        @foreach($permisos as $nombre_clase=>$metodos)
+				            <div class="panel panel-inverse overflow-hidden custon-list">
+				                <div class="panel-heading-2">
+				                    <h3 class="panel-title list-title">
+				                        <a class="accordion-toggle accordion-toggle-styled collapsed" data-toggle="collapse" data-parent="#accordion" href="#{{$nombre_clase}}">
+				                            <i class="fa fa-plus pull-right"></i> 
+				                        </a>	
+				                    </h3>
+				                    <div class="box-button-list">
+				        				<input type="checkbox" data-render="switchery" data-theme="default">
+				        			</div>
+				                    <h3 class="panel-title list-title">
+				                    	<div class="row">
+				                    		<div class="col-sm-8"> 
+				                    			<div class="row">
+				                    				<div class="col-sm-9 text-ellipsis">
+				                            			{{$nombre_clase}}
+				                            		</div>
+				                    			</div>
+				                    		</div>
+				                    	</div>                           	 
+				                    </h3>
+				                </div>
+				                <div id="{{$nombre_clase}}" class="panel-collapse collapse">
+				                    <div class="panel-body">
+										<table class="table table-bordered table-condensed m-b-0">
+											<tbody>
+												@foreach($metodos as $metodo)
+												
+												<tr>
+													<td>
+														{{$metodo['metodo_process']}} - {{$metodo['metodo_descripcion']}}
+													</td>
+													<td width="30">
+														[[permisos_user.{{$nombre_clase}}.{{$metodo['metodo_raw']}} ]]
+														<input type="checkbox" data-render="switchery" data-theme="blue" name="{{'clases['.$nombre_clase.'.'.$metodo['metodo_raw'].']'}}"
+														 ng-model="permisos_user['{{$nombre_clase}}.{{$metodo['metodo_raw']}}']">
+													</td>
+											
+												</tr>
+												@endforeach
+											</tbody>
+		                    			</table>
+				                    </div>
+				                </div>
+				            </div>
+				        @endforeach
+				        </div>
+					</div>
+		       	</div>
 				
 				<br>
 				<center>
