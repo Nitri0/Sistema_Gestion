@@ -58,12 +58,13 @@ coreApp.controller('AdminUsuariosController', function ($scope, $log) {
 		// body...
 	};
 	$scope.selectAll = function(value, modulo) {
-		if (value){
-			$scope[modulo+]
-		}else{
+		
+		// if (value){
+		// 	$scope[modulo+]
+		// }else{
 
-		}
-		console.log("probando ", modulo,value);
+		// }
+		// console.log("probando ", modulo,value);
 	}
 });
 
