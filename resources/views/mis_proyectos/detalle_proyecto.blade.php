@@ -120,7 +120,6 @@
                                     <form class="eliminar-integrante" action="/integrantes/{{$integrante->id_rol_usuario}}" method="POST">
                                         <input type="hidden" name="_method" value="delete">
                                         <input type="hidden" name="redirect" value="{{url('/proyectos/'.$proyecto->id_proyecto )}}">
-                                        <button type="submit" class="btn btn-sm btn-danger btn-eliminar-integrante" data-toggle="tooltip" data-title="Eliminar"><i class="fa fa-remove"></i></button >
                                     </form>  
                                     <a href="javascript:;"><img src="{{ url('thema/admin/html/assets/img/user-1.jpg') }}" alt=""></a>
                                     <h4 class="username text-ellipsis">
