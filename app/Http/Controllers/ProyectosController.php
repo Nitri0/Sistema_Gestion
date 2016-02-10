@@ -96,8 +96,11 @@ class ProyectosController extends Controller {
 							->where('habilitado_tipo', 1)
 							->get();
 
+		$progress = number_format( (float)((int) ($proyecto->estatus_proyecto-1) *100 / (int) $etapas->cantidad_etapas), 1,".", "" );
 
-		$progress = number_format( (float)((int) $proyecto->estatus_proyecto *100 / (int) $etapas->cantidad_etapas), 1,".", "" );
+		if ($progress<0){
+			$progress=0.0;
+		}
 		//dd($progress);
 		return view('proyectos.detalle',compact('proyecto','id_proyecto', 'rol', 'etapas','roles','usuarios', 'progress' ));
 

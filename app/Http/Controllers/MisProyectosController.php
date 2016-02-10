@@ -88,7 +88,11 @@ class MisProyectosController extends Controller {
 
 		$user = Auth::user();
 		
-		$progress = number_format( (float)((int) $proyecto->estatus_proyecto *100 / (int) $etapas->cantidad_etapas), 1,".", "" );
+		$progress = number_format( (float)((int) ($proyecto->estatus_proyecto-1) *100 / (int) $etapas->cantidad_etapas), 1,".", "" );
+
+		if ($progress<0){
+			$progress=0.0;
+		}
 		/*
 		if (!$rol){
 			return redirect('mis-proyectos/');

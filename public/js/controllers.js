@@ -54,8 +54,16 @@ coreApp.controller('PerfilController', function ($scope, $log) {
 coreApp.controller('AdminUsuariosController', function ($scope, $log) {
 	console.log("AdminUsuariosController");
 	$scope.submitted = false;
-	$scope.print = function(argument) {
-		console.log(argument);
+	$scope.setSelectAll = function(argument) {
+		// body...
+	};
+	$scope.selectAll = function(value, modulo) {
+		if (value){
+			$scope[modulo+]
+		}else{
+
+		}
+		console.log("probando ", modulo,value);
 	}
 });
 
