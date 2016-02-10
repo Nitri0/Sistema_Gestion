@@ -538,3 +538,6 @@ p {
   padding-left: 0px;
   margin-top: -21px;
 }
+.timeline-content+.timeline-footer, .timeline-header+.timeline-content, .timeline-header+.timeline-footer {
+  margin-top: 2px;
+}

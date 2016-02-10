@@ -267,13 +267,22 @@
                                 <span class="username"><a href="javascript:;">{{$avance->getNombreCreador()}}</a> <small></small></span>
                                 <span class="pull-right text-muted">{{$avance->fecha_creacion_avance}}</span>
                             </div>
-                            <div class="timeline-content">
+                            <div class="timeline-content collapse" id="{{$avance->id_avance}}">
+                                <br>
                                 <p>
                                     {!!$avance->descripcion_avance!!}
                                 </p>
+                                <br>
                             </div>
                             <div class="timeline-footer">
-                                <p> Asunto: {{$avance->asunto_avance}}</p>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <p> Asunto: {{$avance->asunto_avance}} </p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <a class="f-s-20" href="#{{$avance->id_avance}}" data-toggle="collapse"><i class="fa fa-ellipsis-h"></i></a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
