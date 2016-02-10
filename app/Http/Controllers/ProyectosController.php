@@ -216,7 +216,7 @@ class ProyectosController extends Controller {
 
 		if ($usuario && Roles::where('id_proyecto', $usuario->id_proyecto)->count()>1){
 			$usuario->delete();
-			return(json_encode(['success'=>false]));
+			//return(json_encode(['success'=>false]));
 			return redirect($request['redirect']);
 		};
 		Session::flash('mensaje-error', 'Un proyecto debe tener por lo menos un integrante.');		
