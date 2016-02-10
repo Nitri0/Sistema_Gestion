@@ -87,13 +87,15 @@ class MisProyectosController extends Controller {
 								->first();
 
 		$user = Auth::user();
+		
+		$progress = number_format( (float)((int) $proyecto->estatus_proyecto *100 / (int) $etapas->cantidad_etapas), 1,".", "" );
 		/*
 		if (!$rol){
 			return redirect('mis-proyectos/');
 		}
 		*/
 		
-		return view('mis_proyectos.detalle_proyecto',compact('proyecto','id_proyecto', 'rol', 'etapas' ));
+		return view('mis_proyectos.detalle_proyecto',compact('proyecto','id_proyecto', 'rol', 'etapas','progress' ));
 	}
 
 	//__________________________________ CRUD AVANCES ____________________
