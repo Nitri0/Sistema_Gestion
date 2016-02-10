@@ -55,7 +55,7 @@ class Authenticate {
 		}
 
 		if($this->auth->user()->validacionVencimiento() ){
-			Session::flash('mensaje-error', 'A vencido su periodo de prueba de 7 dias, 
+			Session::flash('mensaje-7-dias', 'A vencido su periodo de prueba de 7 dias, 
 				para obtener el servicio completo envie un correo con sus datos de contacto
 				a info@keygestion.com.ve y lo antes posible nos estaremos comunicando con usted.');
 			return redirect()->guest('/login');
