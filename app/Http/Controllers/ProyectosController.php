@@ -192,6 +192,7 @@ class ProyectosController extends Controller {
 						->where('id_usuario', $request->id_usuario)
 						->first();
 		if (!$integrantes){
+			$request['id_empresa'] = Auth::user()->getIdEmpresa();
 			Roles::firstOrCreate($request->except('redirect'));
 			return(json_encode(['success'=>true]));
 			//return redirect($request['redirect']);
