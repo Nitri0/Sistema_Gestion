@@ -36,7 +36,7 @@
 
 	        <div ng-init="usuario={{$usuario}}"></div>
 			<div ng-init="perfil={{$perfil}}"></div>
-			<div ng-init="permisos_user={{$permisos_user}}"></div>
+			<div ng-init="setSelectAll({{$permisos_user}})"></div>
 			<div ng-init="urlAction='{{ url('admin_usuarios/'.$usuario->id_usuario) }}'"></div>
 
 			<form class="form-horizontal" action="{{ url('admin_usuarios/'.$usuario->id_usuario) }}" method="POST"  name="formulario" id="formulario">
@@ -115,7 +115,7 @@
 				                    </h3>
 				                    <div class="box-button-list">
 				        				<input type="checkbox" data-theme="default" name="{{$metodos[0]['nombre_metodo']}}"
-			        							ng-model="{{$metodos[0]['nombre_metodo']}}" ng-click="selectAll({{$metodos[0]['nombre_metodo']}},'{{$metodos[0]['nombre_metodo']}}')">
+			        							ng-model="selects.{{$metodos[0]['nombre_metodo']}}" ng-click="selectAll('{{$metodos[0]['nombre_metodo']}}', selects.{{$metodos[0]['nombre_metodo']}})">
 				        			</div>
 				                    <h3 class="panel-title list-title">
 				                    	<div class="row">
@@ -141,8 +141,8 @@
 													</td>
 													<td width="30">
 														[[permisos_user.{{$metodo['nombre_metodo']}}.{{$metodo['metodo_raw']}} ]]
-														<input type="checkbox" data-render="switchery" data-theme="blue" name="{{'clases['.$metodo['nombre_metodo'].'.'.$metodo['metodo_raw'].']'}}"
-														 ng-model="permisos_user['{{$metodo['nombre_metodo']}}.{{$metodo['metodo_raw']}}']">
+														<input type="checkbox"  data-theme="blue" name="{{'clases['.$metodo['nombre_metodo'].'.'.$metodo['metodo_raw'].']'}}"
+														 ng-checked="permisos_user['{{$metodo['nombre_metodo']}}.{{$metodo['metodo_raw']}}']">
 													</td>
 											
 												</tr>

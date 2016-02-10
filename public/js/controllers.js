@@ -54,17 +54,80 @@ coreApp.controller('PerfilController', function ($scope, $log) {
 coreApp.controller('AdminUsuariosController', function ($scope, $log) {
 	console.log("AdminUsuariosController");
 	$scope.submitted = false;
-	$scope.setSelectAll = function(argument) {
-		// body...
-	};
-	$scope.selectAll = function(value, modulo) {
-		
-		// if (value){
-		// 	$scope[modulo+]
-		// }else{
+	$scope.permisos_user = {};
+	$scope.selects = {};
 
-		// }
-		// console.log("probando ", modulo,value);
+	$scope.metodos = {
+			'proyectos' : 
+					[
+						'index',
+						'create',
+						'show',
+						'store',
+						'edit',
+						'update',
+						'destroy',
+						'indexProyectosFinalizados',
+						'finalizarProyecto',
+						'reiniciarProyecto',
+						'agregarIntegrante',
+						'eliminarIntegrante',
+					],
+			'clientes' :
+					[
+						'index',
+						'create',
+						'show',
+						'store',
+						'edit',
+						'update',
+						'destroy',
+					],
+			'tipo_proyectos' :
+					[
+						'index',
+						'create',
+						'show',
+						'store',
+						'edit',
+						'update',
+						'destroy',
+					],
+			'roles' :
+					[
+						'index',
+						'create',
+						'show',
+						'store',
+						'edit',
+						'update',
+						'destroy',
+					],
+			'plantillas' :
+					[
+						'index',
+						'create',
+						'show',
+						'store',
+						'edit',
+						'update',
+						'destroy',
+						'previewPlantillas',
+					],
+	};
+	var i;
+	$scope.setSelectAll = function(argument) {
+		$scope.permisos_user = argument;
+		for (i in argument){
+			$scope.selects[i.split(".")[0]]=true;
+		}
+	};
+	$scope.selectAll = function(modulo, value) {
+		console.log(value, modulo, $scope.metodos[modulo]);
+		for (i in $scope.metodos[modulo]){
+			console.log($scope.permisos_user);
+			$scope.permisos_user[modulo + "." + $scope.metodos[modulo][i]]=value;
+		};
 	}
 });
 
