@@ -38,7 +38,7 @@
 				    <span>Proyectos</span>
 			    </a>
 				<ul class="sub-menu">
-				    <li><a href="{{ url('proyectos') }}">Filtrar</a></li>
+				    <li><a href="{{ url('proyectos') }}">Lista de proyecto</a></li>
 				    <li><a href="{{ url('proyectos/create') }}">Crear proyecto</a></li>
 				    <li><a href="{{ url('proyectos-finalizados') }}">Proyectos inactivos</a></li>
 				</ul>
@@ -53,7 +53,7 @@
 				    <span>Tipos de proyectos</span>
 			    </a>
 				<ul class="sub-menu">
-				    <li><a href="{{ url('tipo_proyectos') }}">Filtrar</a></li>
+				    <li><a href="{{ url('tipo_proyectos') }}">Mis tipo de proyecto</a></li>
 				    <li><a href="{{ url('tipo_proyectos/create') }}">Crear tipo de proyecto</a></li>
 				</ul>
 			</li>
@@ -63,11 +63,11 @@
 			<li class="has-sub"><!-- ng-click="proyecto_active()" ng-class="{'': !proyecto, 'active': proyecto}"-->
 				<a href="javascript:;" >
 				    <b class="caret pull-right"></b>
-				    <i class="fa fa-wheelchair"></i>
+				    <i class="fa fa-user"></i>
 				    <span>Clientes</span>
 			    </a>
 				<ul class="sub-menu">
-				    <li><a href="{{ url('clientes') }}">Filtrar</a></li>
+				    <li><a href="{{ url('clientes') }}">Mis clientes</a></li>
 				    <li><a href="{{ url('clientes/create') }}">Crear clientes</a></li>
 				</ul>
 			</li>
@@ -78,10 +78,10 @@
 				<a href="javascript:;" >
 				    <b class="caret pull-right"></b>
 				    <i class="fa fa-puzzle-piece"></i>
-				    <span>Roles de usuarios</span>
+				    <span>Roles del Equipo</span>
 			    </a>
 				<ul class="sub-menu">
-				    <li><a href="{{ url('roles') }}">Filtrar</a></li>
+				    <li><a href="{{ url('roles') }}">Mis roles</a></li>
 				    <li><a href="{{ url('roles/create') }}">Crear rol de usuario</a></li>
 				</ul>
 			</li>
@@ -95,7 +95,7 @@
 				    <span>Plantillas</span>
 			    </a>
 				<ul class="sub-menu">
-				    <li><a href="{{ url('plantillas') }}">Filtrar</a></li>
+				    <li><a href="{{ url('plantillas') }}">Mis plantillas</a></li>
 				    <li><a href="{{ url('plantillas/create') }}">Crear plantilla</a></li>
 				</ul>
 			</li>
@@ -112,7 +112,7 @@
 				    <li class="has-sub">
 					    <a href="javascript:;"><b class="caret pull-right"></b> Dominios</a>
 					    <ul class="sub-menu">
-					        <li><a href="{{ url('dominios') }}">Filtar</a></li>
+					        <li><a href="{{ url('dominios') }}">Mis dominios</a></li>
 					        <li><a href="{{ url('dominios/create') }}">Crear dominio</a></li>
 					    </ul>
 					</li>
@@ -121,7 +121,7 @@
 					<li class="has-sub">
 					    <a href="javascript:;"><b class="caret pull-right"></b> Proveedores</a>
 					    <ul class="sub-menu">
-					        <li><a href="{{ url('empresas_proveedoras') }}">Filtar</a></li>
+					        <li><a href="{{ url('empresas_proveedoras') }}">Mis proveedores</a></li>
 					        <li><a href="{{ url('empresas_proveedoras/create') }}">Crear proveedor</a></li>
 					    </ul>
 					</li>
@@ -135,10 +135,10 @@
 				<a href="javascript:;" >
 				    <b class="caret pull-right"></b>
 				    <i class="fa fa-users"></i>
-				    <span>Administrar usuarios</span>
+				    <span>Equipo de Trabajo</span>
 			    </a>
 				<ul class="sub-menu">
-				    <li><a href="{{ url('admin_usuarios') }}">Filtrar</a></li>
+				    <li><a href="{{ url('admin_usuarios') }}">Mi equipo</a></li>
 				    <li><a href="{{ url('admin_usuarios/create') }}">Crear usuario</a></li>
 				</ul>
 			</li>
@@ -152,7 +152,7 @@
 				    <span>Empresas</span>
 			    </a>
 				<ul class="sub-menu">
-				    <li><a href="{{ url('admin_empresas') }}">Listar Empresas</a></li>
+				    <li><a href="{{ url('admin_empresas') }}">Mis empresas</a></li>
 				    <li><a href="{{ url('admin_empresas/create') }}">Crear Empresas</a></li>
 				</ul>
 			</li>
