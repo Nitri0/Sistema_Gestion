@@ -189,7 +189,7 @@
 		<div class="navbar navbar-default navbar-fixed-bottom" role="navigation">
 		    <div class="container">
 		        <div class="navbar-header">
-		            <a class="navbar-brand" href="#">Paso 5 Crear Proyecto</a>
+		            <a class="navbar-brand" href="#">Paso 5/5 Crear Proyecto</a>
 		        </div>
 		        <div class="navbar-collapse">
 		            <!-- Right nav -->

@@ -541,3 +541,6 @@ p {
 .timeline-content+.timeline-footer, .timeline-header+.timeline-content, .timeline-header+.timeline-footer {
   margin-top: 2px;
 }
+.navbar-brand {
+  width: 235px;
+}

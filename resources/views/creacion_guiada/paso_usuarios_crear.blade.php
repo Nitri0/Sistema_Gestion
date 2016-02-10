@@ -232,7 +232,7 @@
 			<div class="navbar navbar-default navbar-fixed-bottom" role="navigation">
 			  	<div class="container">
 			    	<div class="navbar-header">
-			      		<a class="navbar-brand" href="#">Paso 3 Usuarios</a>
+			      		<a class="navbar-brand" href="#">Paso 3/5 Usuarios</a>
 			    	</div>
 			    	<div class="navbar-collapse">
 			      		<!-- Right nav -->
