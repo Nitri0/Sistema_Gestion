@@ -503,3 +503,38 @@ p {
   box-shadow: none;
   background: #E4EDF5;
 }
+.container-ayuda-slider{
+  width: 100%;
+}
+.carousel-indicators-ayuda{
+  bottom: -65px;
+}
+.item-ayuda {
+  padding-left: 0px;
+}
+.slider-ayuda{
+  padding-bottom: 0px;
+  padding-top: 0px;
+}
+.img-ayuda{
+  margin-left: auto;
+  margin-right: auto;
+  padding-right: 18.6%;
+  padding-left: 18.6%;
+}
+.img-ayuda-slider{
+  width: 100%;
+}
+.modal-body-ayuda{
+  padding: 0px;
+  padding-bottom: 15px;
+  padding-top: 15px;
+}
+.col-right{
+  padding-right: 0px;
+  margin-top: -21px;
+}
+.col-left{
+  padding-left: 0px;
+  margin-top: -21px;
+}

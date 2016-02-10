@@ -6,13 +6,7 @@
 				<h4 class="modal-title">[[titulo_ayuda]]</h4>
 			</div>
 			<div class="modal-body">
-				
-				<h5>[[sub_titulo]]</h5>
-
-				<blockquote class="f-s-14">
-                  <div ng-bind-html="descripcion_ayuda"></div>
-                </blockquote>
-
+            	<div ng-bind-html="descripcion_ayuda"></div>
 			</div>
 			<div class="modal-footer">
 				<a href="javascript:;" class="btn btn-sm btn-danger" data-dismiss="modal">Cerrar</a>
