@@ -14,6 +14,7 @@ class SubActividades extends Model {
 		'estatus_sub_actividad',
 		'autor_sub_actividad',
 		'fecha_inicio_sub_actividad',
+		'fecha_aproximada_entrega_sub_actividad',
 		'fecha_entrega_sub_actividad',
 		'id_actividad'
 	);

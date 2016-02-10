@@ -8,6 +8,8 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Proyectos;
 use App\Actividades;
+use App\SubActividades;
+use App\Comentarios;
 use App\Plantillas;
 use Session;
 use Auth;
@@ -22,9 +24,12 @@ class ActividadesController extends Controller
      */
     public function index() {
         //
-        $actividades= json_encode(Actividades::all());
-        //dd($plantillas);
-        return view('actividades.list',compact('actividades'));
+        $actividades= Actividades::all();
+        $actividades->each(function($actividades){
+            $actividades->subActividades;
+            $actividades->comentarios;
+        });
+        return view('actividades.list',array('actividades'=>json_encode($actividades)));
     }
 
     /**
@@ -47,10 +52,18 @@ class ActividadesController extends Controller
      */
     public function store(Request $request) {
         //
-        //dd($request->all());
-        if(Actividades::create($request->all())){
-            return json_encode(true);
+        if($request->typeActivity=="true"){
+            if($actividad=Actividades::create($request->all())){
+                $actividad->subActividades;
+                $actividad->comentarios;
+                return json_encode($actividad);
+            }
+        }else{
+            if($subActividad=SubActividades::create($request->all())){
+                return json_encode($subActividad);
+            }
         }
+        
 
 
     }
@@ -98,5 +111,29 @@ class ActividadesController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function agregarComentario(Request $request){
+        $comentario=new Comentarios($request->all());
+        if($comentario->save()){
+            return json_encode($comentario);
+        }
+        //dd($comentario);
+    }
+    public function agregarAdjunto(request $request){
+        $tempDir = '../public/adjuntos';
+        if (!file_exists($tempDir)) {
+            mkdir($tempDir);
+        }
+        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+            $chunkDir = $tempDir . DIRECTORY_SEPARATOR . $_GET['flowIdentifier'];
+            $chunkFile = $chunkDir.'/chunk.part'.$_GET['flowChunkNumber'];
+            if (file_exists($chunkFile)) {
+                header("HTTP/1.0 200 Ok");
+            } else {
+                header("HTTP/1.1 204 No Content");
+            }
+        }
+        dd($request->all());
+
     }
 }

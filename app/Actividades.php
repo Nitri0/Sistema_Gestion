@@ -11,7 +11,7 @@ class Actividades extends Model {
 	protected $fillable = array(
 		'nombre_actividad',
 		'estatus_actividad',
-		'descripcion_contacto_actividad',
+		'descripcion_actividad',
 		'autor_actividad',
 		'fecha_inicio_actividad',
 		'fecha_aproximada_entrega_actividad',
@@ -20,9 +20,15 @@ class Actividades extends Model {
 		'habilitado'
 	);
 	public function usuarios_actividades(){
-		return $this->belongsToMany('App\Usuario','usuarios_actividades','id_usuario','id_actividad');
+		return $this->belongsToMany('App\Usuarios','usuarios_actividades','id_usuario','id_actividad');
+	}
+	public function subActividades(){
+		return $this->hasMany('App\SubActividades','id_actividad');
+	}
+	public function comentarios(){
+		return $this->hasMany('App\Comentarios','id_actividad');
 	}
 	public function proyecto(){
-		return $this->belongsTo('App\Proyecto','id_proyecto');
+		return $this->belongsTo('App\Proyectos','id_proyecto');
 	}
 }

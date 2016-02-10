@@ -146,7 +146,7 @@
     <script src="{{ asset('/thema/admin/html/assets/plugins/bootstrap-daterangepicker/daterangepicker.js') }}"></script>
 	@yield('js')
 	<script src="{{ asset('/thema/admin/html/assets/js/apps.min.js') }}"></script>
-	
+	<script src="{{ asset('/bower_components/ng-flow/dist/ng-flow-standalone.min.js') }}"></script>
 	<!-- ===================== ANGULAR CONTROLLERS ==============================-->
 	@yield('controller')
 

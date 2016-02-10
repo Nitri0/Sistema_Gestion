@@ -98,6 +98,5 @@ coreApp.controller('AdminUsuariosController', function ($scope, $log) {
 coreApp.controller('EmpresaController', function ($scope, $log) {
 	console.log("EmpresaController");
 
-	
-});
 
+});

@@ -457,3 +457,42 @@ body ,html{
 .item button:hover {
   background: #FE980F;
 }
+
+/*actividades*/
+.comentario{
+  background: rgba(26, 191, 152, 0.42);
+  border-radius: 5px;
+  box-shadow: 1px 1px 2px rgba(0,0,0,.2);
+  float: left;
+  margin-bottom: .3em;
+  padding: 7px 15px;
+  width: 90%;
+}
+.comentario:nth-child(2n+1){
+  float: right;
+}
+.comentario .autor{
+  color: #848484;
+  font-size: 12px;
+  text-decoration: underline;
+}
+.crear-comentario{
+  border-radius: 2px;
+  border-radius: 5px;
+  border: 1px solid #CCD0D4;
+  overflow: hidden;
+  text-align: right;
+  width: 100%;
+}
+
+.crear-comentario textarea{
+  border:none;
+  resize: none;
+}
+.crear-comentario button{
+  background-color: white;  
+  border: none;
+  border-top: 1px solid #CCD0D4;
+  padding: .7em 1em;
+  width: 100%;
+}
