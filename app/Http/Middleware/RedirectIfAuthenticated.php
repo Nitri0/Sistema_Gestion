@@ -33,7 +33,7 @@ class RedirectIfAuthenticated {
 	 */
 	public function handle($request, Closure $next)
 	{
-		if ($this->auth->check())
+		if ($this->auth->user())
 		{
 			return new RedirectResponse(url('/mis-proyectos'));
 		}
