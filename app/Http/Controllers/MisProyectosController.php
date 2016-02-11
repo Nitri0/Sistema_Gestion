@@ -226,12 +226,12 @@ class MisProyectosController extends Controller {
 		$mis_datos = Auth::user()->getPerfil();
 		$mi_correo = Auth::user()->correo_usuario;		
 		$data = "<Strong>Aqui va la descripcion del mensaje</strong>";
-		
+
 		$modelo_plantilla = $plantilla->nombre_archivo_plantilla;
 		if (!$plantilla->nombre_archivo_plantilla){
 			$modelo_plantilla = $plantilla->nombre_plantilla;
 		};		
-		return view('emails.'.$modelo_plantilla,compact('proyecto','cliente','data','dominio','mis_datos','mi_correo'));
+		return make( $plantilla->raw_data_plantilla ,compact('proyecto','cliente','data','dominio','mis_datos','mi_correo'));
 	}		
 	//__________________________________END CRUD AVANCES ____________________
 
