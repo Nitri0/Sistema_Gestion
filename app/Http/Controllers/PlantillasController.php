@@ -63,15 +63,11 @@ class PlantillasController extends Controller {
 	}
 
 	public function store(Request $request){
-		//dd($request->all());
 		$request['id_empresa']=Auth::user()->getIdEmpresa();
 		$request['id_usuario']=Auth::user()->id_usuario;
 		$request['nombre_plantilla']= trim($request['nombre_plantilla']);
-
 		$request['nombre_archivo_plantilla']= Auth::user()->id_usuario.\Carbon\Carbon::now();
-
 		$plantillas = Plantillas::create($request->all());
-        //$url = "uploads/temp/";
         $path = SITE_EMAILS."/".$request->nombre_archivo_plantilla.".blade.php";
 		file_put_contents($path,$request->raw_data_plantilla);
 
