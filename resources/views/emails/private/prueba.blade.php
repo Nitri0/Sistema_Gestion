@@ -1,0 +1,3 @@
+prueba
+
+{!!$full_data!!}

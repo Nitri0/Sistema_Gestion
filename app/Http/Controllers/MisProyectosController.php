@@ -164,6 +164,7 @@ class MisProyectosController extends Controller {
 									 'dominio' =>$dominio,
 									 'mis_datos' =>$mis_datos,
 									 'mi_correo' =>$mi_correo,
+									 'full_data' => $plantilla->raw_data_plantilla,
 									 'data'    =>$request->descripcion_avance];			
 			$modelo_plantilla = $plantilla->nombre_archivo_plantilla;
 			if (!$plantilla->nombre_archivo_plantilla){
@@ -173,9 +174,8 @@ class MisProyectosController extends Controller {
 							$cliente->email_cliente,
 							$cliente->persona_contacto_cliente,
 							$request->asunto_avance,
-							0,
-							$parametros_plantilla,
-							$plantilla->raw_data_plantillas
+							'emails.'.$modelo_plantilla,
+							$parametros_plantilla
 							);
 		};
 		$request['id_usuario'] = Auth::user()->id_usuario;
