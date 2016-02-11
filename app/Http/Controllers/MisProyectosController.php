@@ -138,6 +138,8 @@ class MisProyectosController extends Controller {
 		$proyecto = Proyectos::where('id_proyecto',$id_proyecto)
 								->where('id_empresa',Auth::user()->getIdEmpresa())
 								->first();
+
+		if (!$proyecto ){
 			Session::flash('mensaje-error', 'No es posible registrar avances en ese proyecto');
 			return redirect('mis-proyectos');
 		}
@@ -162,7 +164,7 @@ class MisProyectosController extends Controller {
 									 'dominio' =>$dominio,
 									 'mis_datos' =>$mis_datos,
 									 'mi_correo' =>$mi_correo,
-									 'data'    =>$request->descripcion_avance];	
+									 'data'    =>$request->descripcion_avance];			
 			$modelo_plantilla = $plantilla->nombre_archivo_plantilla
 			if (!$plantilla->nombre_archivo_plantilla){
 				$modelo_plantilla = $plantilla->nombre_plantilla
