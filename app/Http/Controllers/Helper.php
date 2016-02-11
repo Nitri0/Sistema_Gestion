@@ -23,7 +23,7 @@ class Helper extends Controller {
 	}
 
 	public static function SendEmail($receptor, $nombreReceptor, $asunto, $plantilla, $parametros, $texto_plano=0){
-		if($plantilla == Null){
+		if($plantilla == 0){
 			$plantilla = ['text' => $texto_plano];
 		};
 		

@@ -173,9 +173,9 @@ class MisProyectosController extends Controller {
 							$cliente->email_cliente,
 							$cliente->persona_contacto_cliente,
 							$request->asunto_avance,
-							Null,
+							0,
 							$parametros_plantilla,
-							$plantilla->raw_data_plantilla
+							$plantilla->raw_data_plantillas
 							);
 		};
 		$request['id_usuario'] = Auth::user()->id_usuario;
