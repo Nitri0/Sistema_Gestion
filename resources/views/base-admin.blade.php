@@ -8,8 +8,6 @@
 
     <title>.: Sistema de Gestion :.</title>
 
-    <link href="{{ asset('/css/app.css') }}" rel="stylesheet">
-
     <!-- angular modules style -->
     <link href="{{ asset('/bower_components/ngImgCrop/compile/minified/ng-img-crop.css') }}" rel="stylesheet">
 
@@ -26,6 +24,8 @@
 
 	<!-- select2 -->
 	<link href="{{ asset('/bower_components/select2/dist/css/select2.min.css') }}" rel="stylesheet" />
+	<link rel="stylesheet" href="{{ asset('/bower_components/ui-select/dist/select.css') }}">
+	<link rel="stylesheet" href="{{ asset('/bower_components/angular-ui-switch/angular-ui-switch.min.css') }}"/>
 	
 	<!-- Thema CSS -->
 	<link href="{{ asset('/thema/admin/html/assets/plugins/jquery-ui/themes/base/minified/jquery-ui.min.css') }}" rel="stylesheet" />
@@ -57,9 +57,6 @@
 	
 	<link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
 
-	<link rel="stylesheet" href="{{ asset('/bower_components/ui-select/dist/select.css') }}">
-	<link rel="stylesheet" href="{{ asset('/bower_components/angular-ui-switch/angular-ui-switch.min.css') }}"/>
-
 	<link href="{{ asset('/css/style.css') }}" rel="stylesheet">
 
   	<!-- ui-select files -->
@@ -86,29 +83,6 @@
     <script src="{{ asset('/bower_components/jquery/dist/jquery.min.js') }}"></script>
     <script src="{{ asset('/bower_components/jquery-migrate/jquery-migrate.min.js') }}"></script>
     <script src="{{ asset('/thema/admin/html/assets/plugins/jquery-ui/ui/minified/jquery-ui.min.js') }}"></script>
-
-    <!-- Scripts -->
-    <script src="{{ asset('/bower_components/angular/angular.js') }}"></script>
-	<script src="{{ asset('/bower_components/ng-remote-validate/release/ngRemoteValidate.js') }}"></script>
-
-    <!-- your app's js -->
-    <script src="{{ asset('/js/app.js') }}"></script>
-    <script src="{{ asset('/js/directives.js') }}"></script>
-    <script src="{{ asset('/js/filters.js') }}"></script>
-    <script src="{{ asset('/js/service.js') }}"></script>
-    <script src="{{ asset('/js/script.js') }}"></script>
-    <script src="{{ asset('/js/controllers.js') }}"></script>
-
-
-
-    <!-- angular modules -->
-    <script src="{{ asset('/bower_components/ngImgCrop/compile/minified/ng-img-crop.js') }}"></script>
-    <script src="{{ asset('/bower_components/angular-base64/angular-base64.min.js') }}"></script>
-    <script src="{{ asset('/bower_components/angular-resource/angular-resource.min.js') }}"></script>
-    <script src="{{ asset('/bower_components/ui-select/dist/select.js') }}"></script>
-    <script src="{{ asset('/bower_components/angular-sanitize/angular-sanitize.js') }}"></script>
-    <script src="{{ asset('/bower_components/angular-ui-switch/angular-ui-switch.min.js') }}"></script>
-
 
     <!-- bootstrap modules -->
     <script src="{{ asset('/bower_components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
@@ -148,12 +122,33 @@
 	<script src="{{ asset('/thema/admin/html/assets/plugins/jquery-tag-it/js/tag-it.min.js') }}"></script>
     <script src="{{ asset('/thema/admin/html/assets/plugins/bootstrap-daterangepicker/moment.js') }}"></script>
     <script src="{{ asset('/thema/admin/html/assets/plugins/bootstrap-daterangepicker/daterangepicker.js') }}"></script>
-	@yield('js')
+	
+	<!-- Theme color admin 1.9 -->
 	<script src="{{ asset('/thema/admin/html/assets/js/apps.min.js') }}"></script>
 	
-	<!-- ===================== ANGULAR CONTROLLERS ==============================-->
-	@yield('controller')
+	<!-- Scripts -->
+    <script src="{{ asset('/bower_components/angular/angular.js') }}"></script>
+	<script src="{{ asset('/bower_components/ng-remote-validate/release/ngRemoteValidate.js') }}"></script>
 
+    <!-- your app's js -->
+    <script src="{{ asset('/js/app.js') }}"></script>
+    <script src="{{ asset('/js/directives.js') }}"></script>
+    <script src="{{ asset('/js/filters.js') }}"></script>
+    <script src="{{ asset('/js/service.js') }}"></script>
+    <script src="{{ asset('/js/script.js') }}"></script>
+    <script src="{{ asset('/js/controllers.js') }}"></script>
+
+    <!-- angular modules -->
+    <script src="{{ asset('/bower_components/ngImgCrop/compile/minified/ng-img-crop.js') }}"></script>
+    <script src="{{ asset('/bower_components/angular-base64/angular-base64.min.js') }}"></script>
+    <script src="{{ asset('/bower_components/angular-resource/angular-resource.min.js') }}"></script>
+    <script src="{{ asset('/bower_components/ui-select/dist/select.js') }}"></script>
+    <script src="{{ asset('/bower_components/angular-sanitize/angular-sanitize.js') }}"></script>
+    <script src="{{ asset('/bower_components/angular-ui-switch/angular-ui-switch.min.js') }}"></script>
+	<!-- ===================== ANGULAR CONTROLLERS ==============================-->
+    @yield('js')
+	@yield('controller')
+	
 	<script>
 		$(document).ready(function() {
 			App.init();
