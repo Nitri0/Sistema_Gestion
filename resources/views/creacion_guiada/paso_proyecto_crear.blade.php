@@ -6,7 +6,7 @@
 
 @section('content')
 
-<div id="page-container" class="fade page-sidebar-fixed page-header-fixed" ng-controller="ProyectoController">
+<div id="page-container" class="fade page-header-fixed" ng-controller="ProyectoController">
 	
 	@include('layouts/navbar-admin')
 

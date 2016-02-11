@@ -1,22 +1,7 @@
 @extends('base-admin')
 
 @section('js')
-
 	<script src="{{ asset('/js/controllers/helper.js') }}"></script>
-
-	<script src="{{ asset('/thema/admin/html/assets/plugins/switchery/switchery.min.js') }}"></script>
-	<script src="{{ asset('/thema/admin/html/assets/js/form-slider-switcher.demo.min.js') }}"></script>
-
-	<script>
-		$(document).ready(function() {
-			FormSliderSwitcher.init();
-		});
-	</script>
-
-@endsection
-
-@section('css')
-	<link href="{{ asset('/thema/admin/html/assets/plugins/switchery/switchery.min.css') }}" rel="stylesheet">
 @endsection
 
 @section('content')
