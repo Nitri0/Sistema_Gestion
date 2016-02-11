@@ -24,7 +24,7 @@ class Helper extends Controller {
 
 	public static function SendEmail($receptor, $nombreReceptor, $asunto, $plantilla, $parametros, $texto_plano=0){
 		if($plantilla == Null){
-			$plantilla = $texto_plano;
+			$plantilla = ['text' => $texto_plano];
 		};
 		
 		Mail::send($plantilla, $parametros , function($mensaje) use ($receptor, $nombreReceptor, $asunto){
