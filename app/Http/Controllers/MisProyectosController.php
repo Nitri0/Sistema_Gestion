@@ -175,7 +175,7 @@ class MisProyectosController extends Controller {
 							$request->asunto_avance,
 							Null,
 							$parametros_plantilla,
-							$plantilla->raw_data_plantilla,
+							$plantilla->raw_data_plantilla
 							);
 		};
 		$request['id_usuario'] = Auth::user()->id_usuario;
