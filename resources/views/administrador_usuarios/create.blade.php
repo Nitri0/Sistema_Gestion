@@ -114,7 +114,7 @@
 				                        </a>	
 				                    </h3>
 				                    <div class="box-button-list">
-				        				<input type="checkbox" data-theme="default" name="{{$metodos[0]['nombre_metodo']}}"
+				        				<input type="checkbox" name="{{$metodos[0]['nombre_metodo']}}"
 			        							ng-model="selects.{{$metodos[0]['nombre_metodo']}}" ng-click="selectAll('{{$metodos[0]['nombre_metodo']}}', selects.{{$metodos[0]['nombre_metodo']}})">
 				        			</div>
 				                    <h3 class="panel-title list-title">
@@ -141,7 +141,7 @@
 													</td>
 													<td width="30">
 														[[permisos_user.{{$metodo['nombre_metodo']}}.{{$metodo['metodo_raw']}} ]]
-														<input type="checkbox"  data-theme="blue" name="{{'clases['.$metodo['nombre_metodo'].'.'.$metodo['metodo_raw'].']'}}"
+														<input type="checkbox" name="{{'clases['.$metodo['nombre_metodo'].'.'.$metodo['metodo_raw'].']'}}"
 														 ng-checked="permisos_user['{{$metodo['nombre_metodo']}}.{{$metodo['metodo_raw']}}']">
 													</td>
 											
