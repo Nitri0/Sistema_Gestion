@@ -173,8 +173,9 @@ class MisProyectosController extends Controller {
 							$cliente->email_cliente,
 							$cliente->persona_contacto_cliente,
 							$request->asunto_avance,
-							'emails.'.$modelo_plantilla,
-							$parametros_plantilla
+							Null,
+							$parametros_plantilla,
+							$plantilla->raw_data_plantilla,
 							);
 		};
 		$request['id_usuario'] = Auth::user()->id_usuario;
@@ -231,7 +232,7 @@ class MisProyectosController extends Controller {
 		if (!$plantilla->nombre_archivo_plantilla){
 			$modelo_plantilla = $plantilla->nombre_plantilla;
 		};		
-		return make( $plantilla->raw_data_plantilla ,compact('proyecto','cliente','data','dominio','mis_datos','mi_correo'));
+		return view('emails.'.$plantilla->nombre_plantilla,compact('proyecto','cliente','data','dominio','mis_datos','mi_correo'));
 	}		
 	//__________________________________END CRUD AVANCES ____________________
 
