@@ -168,7 +168,7 @@ class MisProyectosController extends Controller {
 			$modelo_plantilla = $plantilla->nombre_archivo_plantilla;
 			if (!$plantilla->nombre_archivo_plantilla){
 				$modelo_plantilla = $plantilla->nombre_plantilla;
-			}
+			};
 			Helper::SendEmail(
 							$cliente->email_cliente,
 							$cliente->persona_contacto_cliente,
@@ -226,7 +226,12 @@ class MisProyectosController extends Controller {
 		$mis_datos = Auth::user()->getPerfil();
 		$mi_correo = Auth::user()->correo_usuario;		
 		$data = "<Strong>Aqui va la descripcion del mensaje</strong>";
-		return view('emails.'.$plantilla->nombre_plantilla,compact('proyecto','cliente','data','dominio','mis_datos','mi_correo'));
+		
+		$modelo_plantilla = $plantilla->nombre_archivo_plantilla;
+		if (!$plantilla->nombre_archivo_plantilla){
+			$modelo_plantilla = $plantilla->nombre_plantilla;
+		};		
+		return view('emails.'.$modelo_plantilla,compact('proyecto','cliente','data','dominio','mis_datos','mi_correo'));
 	}		
 	//__________________________________END CRUD AVANCES ____________________
 
