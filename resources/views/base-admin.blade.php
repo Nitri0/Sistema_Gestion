@@ -60,7 +60,8 @@
 
   	<!-- ui-select files -->
 	
-	<link rel="stylesheet" href="{{ asset('/bower_components/ui-select/dist/select.css') }}">	
+	<link rel="stylesheet" href="{{ asset('/bower_components/ui-select/dist/select.css') }}">
+	<link rel="stylesheet" href="{{ asset('/bower_components/angular-ui-switch/angular-ui-switch.min.css') }}"/>	
 	
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -104,6 +105,7 @@
     <script src="{{ asset('/bower_components/angular-resource/angular-resource.min.js') }}"></script>
     <script src="{{ asset('/bower_components/ui-select/dist/select.js') }}"></script>
     <script src="{{ asset('/bower_components/angular-sanitize/angular-sanitize.js') }}"></script>
+    <script src="{{ asset('/bower_components/angular-ui-switch/angular-ui-switch.min.js') }}"></script>
 
 
     <!-- bootstrap modules -->

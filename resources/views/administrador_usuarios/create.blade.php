@@ -114,8 +114,8 @@
 				                        </a>	
 				                    </h3>
 				                    <div class="box-button-list">
-				        				<input type="checkbox" name="{{$metodos[0]['nombre_metodo']}}"
-			        							ng-model="selects.{{$metodos[0]['nombre_metodo']}}" ng-click="selectAll('{{$metodos[0]['nombre_metodo']}}', selects.{{$metodos[0]['nombre_metodo']}})">
+				        				<switch class="blue" name="{{$metodos[0]['nombre_metodo']}}"
+			        							ng-model="selects.{{$metodos[0]['nombre_metodo']}}" ng-change="selectAll('{{$metodos[0]['nombre_metodo']}}', selects.{{$metodos[0]['nombre_metodo']}})"></switch>
 				        			</div>
 				                    <h3 class="panel-title list-title">
 				                    	<div class="row">
@@ -141,8 +141,8 @@
 													</td>
 													<td width="30">
 														[[permisos_user.{{$metodo['nombre_metodo']}}.{{$metodo['metodo_raw']}} ]]
-														<input type="checkbox" name="{{'clases['.$metodo['nombre_metodo'].'.'.$metodo['metodo_raw'].']'}}"
-														 ng-checked="permisos_user['{{$metodo['nombre_metodo']}}.{{$metodo['metodo_raw']}}']">
+														<switch class="blue" name="{{'clases['.$metodo['nombre_metodo'].'.'.$metodo['metodo_raw'].']'}}"
+														 ng-model="permisos_user['{{$metodo['nombre_metodo']}}.{{$metodo['metodo_raw']}}']"></switch>
 													</td>
 											
 												</tr>
