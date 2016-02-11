@@ -22,7 +22,10 @@ class Helper extends Controller {
 		return $data;
 	}
 
-	public static function SendEmail($receptor, $nombreReceptor, $asunto, $plantilla, $parametros){
+	public static function SendEmail($receptor, $nombreReceptor, $asunto, $plantilla, $parametros, $texto_plano=0){
+		if($plantilla == Null){
+			$plantilla = $texto_plano;
+		};
 		
 		Mail::send($plantilla, $parametros , function($mensaje) use ($receptor, $nombreReceptor, $asunto){
 			$mensaje->from(Auth::user()->correo_usuario, Auth::user()->getFullName());
