@@ -165,9 +165,9 @@ class MisProyectosController extends Controller {
 									 'mis_datos' =>$mis_datos,
 									 'mi_correo' =>$mi_correo,
 									 'data'    =>$request->descripcion_avance];			
-			$modelo_plantilla = $plantilla->nombre_archivo_plantilla
+			$modelo_plantilla = $plantilla->nombre_archivo_plantilla;
 			if (!$plantilla->nombre_archivo_plantilla){
-				$modelo_plantilla = $plantilla->nombre_plantilla
+				$modelo_plantilla = $plantilla->nombre_plantilla;
 			}
 			Helper::SendEmail(
 							$cliente->email_cliente,
