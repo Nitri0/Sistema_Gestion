@@ -544,3 +544,7 @@ p {
 .navbar-brand {
   width: 235px;
 }
+.btn-sm-cerrar-7-dia{
+  padding: 6px 12px;
+  font-size: 14px;
+}

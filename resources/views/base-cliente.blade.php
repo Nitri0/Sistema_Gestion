@@ -102,6 +102,7 @@
 		$(document).ready(function() {
 			App.init();
 			Gallery.init();
+			$('#7-dia').modal('show');
 		});
 	</script>
 	
