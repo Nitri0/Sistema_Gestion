@@ -6,7 +6,7 @@
 
 @section('content')
 
-<div id="page-container" class="fade page-sidebar-fixed page-header-fixed" ng-controller="ProyectoController">
+<div id="page-container" class="fade page-header-fixed" ng-controller="ProyectoController">
 	
 	@include('layouts/navbar-admin')
 
@@ -95,10 +95,10 @@
 		            <div class="panel panel-inverse">
 		                <div class="panel-heading-2">
 		                    <div class="panel-heading-btn">
-		                    	<button type="button" class="btn btn-danger btn-eliminar btn-list-custon" ng-show="cantidad>=1" ng-click="eliminar_integrantes()" data-toggle="tooltip" data-title="Eliminar integrante"> 
+		                    	<button type="button" class="btn btn-danger btn-eliminar" ng-show="cantidad>=1" ng-click="eliminar_integrantes()" data-toggle="tooltip" data-title="Eliminar integrante"> 
 									<i class="fa fa-trash-o"></i>
 								</button>
-		                    	<button type="button" class="btn btn-success btn-agregar btn-list-custon" ng-click="agregar_integrantes()" data-toggle="tooltip" data-title="Agregar integrante">
+		                    	<button type="button" class="btn btn-success btn-agregar" ng-click="agregar_integrantes()" data-toggle="tooltip" data-title="Agregar integrante">
 		                    		<i class="fa fa-plus"></i>
 		                    	</button>
 		                    </div>
@@ -208,3 +208,4 @@
 	</form>
 
 </div>
+@endsection

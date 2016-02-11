@@ -6,7 +6,7 @@
 
 @section('content')
 
-<div id="page-container" class="fade page-sidebar-fixed page-header-fixed" ng-controller="GrupoEtapasController">
+<div id="page-container" class="fade page-header-fixed" ng-controller="GrupoEtapasController">
 	
 	@include('layouts/navbar-admin')
 
@@ -142,3 +142,4 @@
 	</form>
 
 </div>
+@endsection

@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div id="page-container" class="fade page-sidebar-fixed page-header-fixed">
+<div id="page-container" class="fade page-header-fixed">
 	
 	@include('layouts/navbar-admin')
 
@@ -129,3 +129,4 @@
 	</div>
 
 </div>
+@endsection
