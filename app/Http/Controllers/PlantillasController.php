@@ -14,7 +14,7 @@ use Gate;
 
 # ruta de la posicion de las plantillas de email
 define ('SITE_EMAILS', realpath("../resources/views/emails/"));
-define ('FOOTER', "<br><br><p>Éste mensaje fue enviado a través de la plataforma <a href={{url()}}>KeyGestión</a>. Todos los derechos reservados 2016<p>");
+define ('FOOTER', "<br><br><p align='center'>Mensaje enviado a través de la plataforma de gestión de proyectos <a href={{url()}}>KeyGestión</a>. Todos los derechos reservados 2016<p>");
 
 class PlantillasController extends Controller {
 
@@ -85,6 +85,7 @@ class PlantillasController extends Controller {
 		//Plantillas::where('id_plantilla',$id)->update($request->except('_method'));
 
 		$path = SITE_EMAILS."/".$this->plantillas->nombre_archivo_plantilla.".blade.php";
+		dd($this->plantillas->raw_data_plantilla.FOOTER);
 		file_put_contents($path,$this->plantillas->raw_data_plantilla.FOOTER);
 		return redirect('/plantillas');
 	}	
@@ -114,7 +115,7 @@ class PlantillasController extends Controller {
 			$nombre_plantilla = $plantilla->nombre_plantilla;
 		}
 		if (!file_exists(SITE_EMAILS."/".$nombre_plantilla.".blade.php")){
-			$path = SITE_EMAILS."/".$modelo_plantilla.".blade.php";
+			$path = SITE_EMAILS."/".$nombre_plantilla.".blade.php";
 			file_put_contents($path,$this->plantillas->raw_data_plantilla.FOOTER);
 		}
 		return view('emails.'.$nombre_plantilla,compact('proyecto','cliente','data','dominio','mis_datos','mi_correo'));

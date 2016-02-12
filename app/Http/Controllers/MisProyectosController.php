@@ -24,7 +24,7 @@ use Gate;
 
 
 define ('SITE_EMAILS', realpath("../resources/views/emails/"));
-define ('FOOTER', "<br><br><p>Éste mensaje fue enviado a través de la plataforma <a href={{url()}}>KeyGestión</a>. Todos los derechos reservados 2016<p>");
+define ('FOOTER', "<br><br><p align='center'>Mensaje enviado a través de la plataforma de gestión de proyectos <a href={{url()}}>KeyGestión</a>. Todos los derechos reservados 2016<p>");
 
 
 class MisProyectosController extends Controller {
