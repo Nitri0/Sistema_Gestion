@@ -14,7 +14,7 @@ use Gate;
 
 # ruta de la posicion de las plantillas de email
 define ('SITE_EMAILS', realpath("../resources/views/emails/"));
-define ('FOOTER', "<br><br><p>Éste mensaje fue enviado a través de la plataforma <a href={{url()}}>KeyGestión</a>. Todos los derechos reservados{{$año}}<p>");
+define ('FOOTER', "<br><br><p>Éste mensaje fue enviado a través de la plataforma <a href={{url()}}>KeyGestión</a>. Todos los derechos reservados 2016<p>");
 
 class PlantillasController extends Controller {
 
