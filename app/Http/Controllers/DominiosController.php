@@ -129,12 +129,10 @@ class DominiosController extends Controller {
 
 	public function destroy($id){
 		//Dominios::find($id)->delete();
-		$this->dominio->fill(['habilitado_dominio'=>0,]);
-		$this->dominio->save();
 		Proyectos::find($this->dominio->id_proyecto)
 					->update(['usable_proyecto'=>1,]);
 
-		
+		$this->dominio->delete();
 		return redirect("/dominios");
 	}
 
