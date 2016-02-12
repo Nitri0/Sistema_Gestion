@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Route;
 use App\Clientes;
 use App\Avances;
+use App\Proyectos;
 use App\Roles;
 use App\Dominios;
 use Session;
