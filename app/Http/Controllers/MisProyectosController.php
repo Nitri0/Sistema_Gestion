@@ -175,7 +175,7 @@ class MisProyectosController extends Controller {
 			};
 			if (!file_exists(SITE_EMAILS."/".$modelo_plantilla.".blade.php")){
 				$path = SITE_EMAILS."/".$plantilla->nombre_archivo_plantilla.".blade.php";
-				file_put_contents($path,$plantilla->raw_data_plantilla+FOOTER);
+				file_put_contents($path,$plantilla->raw_data_plantilla.FOOTER);
 			};			
 			Helper::SendEmail(
 							$cliente->email_cliente,
@@ -241,7 +241,7 @@ class MisProyectosController extends Controller {
 		};
 		if (!file_exists(SITE_EMAILS."/".$modelo_plantilla.".blade.php")){
 			$path = SITE_EMAILS."/".$modelo_plantilla.".blade.php";
-			file_put_contents($path,$plantilla->raw_data_plantilla+FOOTER);
+			file_put_contents($path,$plantilla->raw_data_plantilla.FOOTER);
 		};		
 		return view('emails.'.$modelo_plantilla,compact('proyecto','cliente','data','dominio','mis_datos','mi_correo'));
 	}		
