@@ -85,13 +85,26 @@ class ClientesController extends Controller {
 	}
 
 	public function destroy($id){
-		$proyectos = Proyectos::where('id_cliente',$this->cliente->id_cliente);
-		$this->cliente->delete();
+		$proyectos = Proyectos::where('id_cliente',$this->cliente->id_cliente)->get();
 		foreach ($proyectos as $proyecto) {
-			Avances::where('id_proyecto', $proyecto->id_proyecto)->delete();
-			Roles::where('id_proyecto',$proyecto->id_proyecto)->delete();
-			Dominios::where('id_proyecto',$proyecto->id_proyecto)->update(['habilitado_dominio'=>1, 'id_proyecto' => NULL]);
+			//dd($proyecto);
+			$dominios = Dominios::where('id_proyecto',$proyecto->id_proyecto);
+			if($dominios){
+				$dominios->update(['habilitado_dominio'=>1, 'id_proyecto' => NULL]);
+			};
+			$roles = Roles::where('id_proyecto',$proyecto->id_proyecto);
+			if ($roles){
+				$roles->delete();
+			};
+			$avances = Avances::where('id_proyecto',$proyecto->id_proyecto);
+			if ($avances){
+				$avances->delete();		
+			};
+			if($proyecto){
+				$proyecto->delete();
+			}
 		}
+		$this->cliente->delete();
 		return redirect("/clientes");
 	}
 

@@ -5,6 +5,8 @@ use App\Http\Controllers\Controller;
 use App\Dominios;
 use App\Clientes;
 use App\Proyectos;
+use App\Roles;
+use App\Avances;
 use App\EmpresasProveedoras;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Route;
@@ -129,10 +131,23 @@ class DominiosController extends Controller {
 
 	public function destroy($id){
 		//Dominios::find($id)->delete();
-		Proyectos::find($this->dominio->id_proyecto)
-					->update(['usable_proyecto'=>1,]);
-
+		$proyecto = Proyectos::find($this->dominio->id_proyecto);
 		$this->dominio->delete();
+		if(!$proyecto){
+			return redirect("/dominios");
+		}
+		$roles = Roles::where('id_proyecto',$proyecto->id_proyecto);
+		if ($roles){
+			$roles->delete();
+		};
+		
+		$avances = Avances::where('id_proyecto',$proyecto->id_proyecto);
+		if ($avances){
+			$avances->delete();		
+		};
+		if ($proyecto){
+			$proyecto->delete();
+		}
 		return redirect("/dominios");
 	}
 
