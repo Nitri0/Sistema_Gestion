@@ -149,11 +149,10 @@ class ProyectosController extends Controller {
 	}	
 
 	public function destroy($id){
-		$proyecto = Proyectos::find($id);
-		Avances::where('id_proyecto',$proyecto->id_proyecto)->delete();
-		Roles::where('id_proyecto',$proyecto->id_proyecto)->delete();
-		Dominios::where('id_proyecto',$proyecto->id_proyecto)->update(['habilitado_dominio'=>1, 'id_proyecto' => NULL]);
-		$proyecto->delete();
+		Avances::where('id_proyecto',$this->proyecto->id_proyecto)->delete();
+		Roles::where('id_proyecto',$this->proyecto->id_proyecto)->delete();
+		Dominios::where('id_proyecto',$this->proyecto->id_proyecto)->update(['habilitado_dominio'=>1, 'id_proyecto' => NULL]);
+		$this->proyecto->delete();
 
 		return redirect('/proyectos');
 	}	

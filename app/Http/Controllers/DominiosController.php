@@ -133,6 +133,8 @@ class DominiosController extends Controller {
 		$this->dominio->save();
 		Proyectos::find($this->dominio->id_proyecto)
 					->update(['usable_proyecto'=>1,]);
+
+		
 		return redirect("/dominios");
 	}
 
