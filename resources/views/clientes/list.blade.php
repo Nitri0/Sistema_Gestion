@@ -14,6 +14,8 @@
 	
     @include('alerts.mensaje_success')
     @include('alerts.mensaje_error')
+
+    @include('modals/eliminar')
     
 	<div id="content" class="content ng-scope">
         
@@ -104,10 +106,8 @@
                                         <a href="[[url + '/proyectos/' + proyecto.id_proyecto]]">[[proyecto.nombre_proyecto]]</a>
                                     </li>
                                 </ul>
-                            	<form action="[[url+'/clientes/'+model.id_cliente]]" method="post">
-					        		<input type="hidden" name="_method" value="delete">
-									<button type="submit" class="btn btn-list pull-right" data-toggle="tooltip" data-title="Eliminar"><i class="fa fa-trash"></i></button>
-								</form>
+				        		<div ng-init="eliminar_url='/clientes/'+model.id_cliente+'/destroy'"></div>
+								<a ng-click="eliminar(eliminar_url)" href="#eliminar"  data-toggle="modal" class="btn btn-list pull-right"><i class="fa fa-trash"></i></a>
                             </div>
                         </div>
                     </div>
