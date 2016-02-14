@@ -3,7 +3,7 @@ coreApp.controller('ClienteController', function ($scope, $log) {
 	$scope.submitted = false;
 	$scope.cliente = {};
 
-	$scope.mensaje_emilinar = "¿Esta seguro que desea eliminar este Tipo de proyecto?, no podrá ser recuperado";
+	$scope.mensaje_emilinar = "¿Esta seguro que desea eliminar este cliente?,  todos los proyectos a los que esté asociado también serán eliminados.";
 
 	$scope.eliminar = function(url_eliminar){
 		console.log(url_eliminar);

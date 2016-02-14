@@ -13,6 +13,8 @@
 	@include('alerts.mensaje_success')
 	@include('alerts.mensaje_error')
 
+    @include('modals/ayudas/roles')
+
     <form class="form-horizontal" action="{{ url('roles/') }}" method="POST" name="formulario" id="formulario" >
 
     	<div id="content" class="content content-asistente ng-scope">
@@ -29,7 +31,7 @@
                     <div class="panel panel-inverse">
                         <div class="panel-heading-2">
                             <div class="panel-heading-btn">
-                                <a href="#ayuda" class="btn btn-ayuda" data-toggle="modal"><i class="fa fa-question"></i></a>
+                                <a href="#roles-ayuda" class="btn btn-ayuda" data-toggle="modal"><i class="fa fa-question"></i></a>
                             </div>
                             <h4 class="panel-title">Roles</h4>
                         </div>
