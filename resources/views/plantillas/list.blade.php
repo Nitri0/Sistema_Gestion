@@ -1,8 +1,12 @@
 @extends('base-admin')
 
+@section('js')
+    <script src="{{ asset('/js/controllers/plantilla.js') }}"></script>
+@endsection
+
 @section('content')
 
-<div id="page-container" class="fade page-sidebar-fixed page-header-fixed">
+<div id="page-container" class="fade page-sidebar-fixed page-header-fixed" ng-controller="PlantillasController">
 	
 	@include('layouts/navbar-admin')
 
@@ -10,6 +14,8 @@
 	
 	@include('alerts.mensaje_error')
 	@include('alerts.mensaje_success')
+
+    @include('modals/eliminar')
 
 	<div id="content" class="content ng-scope">
         
@@ -56,7 +62,7 @@
                                 </a>	
                             </h3>
                             <div class="box-button-list">
-		        				<a class="btn btn-list" ng-href="{{ url( '/plantillas/[[plantilla.id_plantilla]]/edit' ) }}" data-toggle="tooltip" data-title="Editar"><i class="fa fa-list"></i></a>
+		        				<a class="btn btn-list" ng-href="{{ url( '/plantillas/[[plantilla.id_plantilla]]/edit' ) }}" data-toggle="tooltip" data-title="Editar"><i class="fa fa-pencil-square-o"></i></a>
 		        				<a class="btn btn-list" target="_blank" ng-href="{{ url( '/plantillas/preview/[[plantilla.id_plantilla]]' ) }}" data-toggle="tooltip" data-title="Preview"><i class="fa fa-eye"></i></a>
 		        			</div>
                             <h3 class="panel-title list-title">
@@ -80,7 +86,8 @@
                         <div id="[[$index+1]]" class="panel-collapse collapse">
                             <div class="panel-body">
                             	[[plantilla.descripcion_plantilla]]
-                            	<a ng-href="{{ url( '/plantillas/[[plantilla.id_plantilla]]/destroy' ) }}" class="btn btn-list pull-right" data-toggle="tooltip" data-title="Eliminar"><i class="fa fa-trash"></i></a>
+                                <div ng-init="eliminar_url='/plantillas/'+[[plantilla.id_plantilla]]+'/destroy'"></div>
+                            	<a class="btn btn-list pull-right" ng-click="eliminar(eliminar_url)" href="#eliminar"  data-toggle="modal"><i class="fa fa-trash"></i></a>
                             </div>
                         </div>
                     </div>
