@@ -5,6 +5,10 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Route;
 use App\Clientes;
+use App\Avances;
+use App\Proyectos;
+use App\Roles;
+use App\Dominios;
 use Session;
 use redirect;
 use Gate;
@@ -81,7 +85,26 @@ class ClientesController extends Controller {
 	}
 
 	public function destroy($id){
-		Clientes::find($id)->delete();
+		$proyectos = Proyectos::where('id_cliente',$this->cliente->id_cliente)->get();
+		foreach ($proyectos as $proyecto) {
+			//dd($proyecto);
+			$dominios = Dominios::where('id_proyecto',$proyecto->id_proyecto);
+			if($dominios){
+				$dominios->update(['habilitado_dominio'=>1, 'id_proyecto' => NULL]);
+			};
+			$roles = Roles::where('id_proyecto',$proyecto->id_proyecto);
+			if ($roles){
+				$roles->delete();
+			};
+			$avances = Avances::where('id_proyecto',$proyecto->id_proyecto);
+			if ($avances){
+				$avances->delete();		
+			};
+			if($proyecto){
+				$proyecto->delete();
+			}
+		}
+		$this->cliente->delete();
 		return redirect("/clientes");
 	}
 

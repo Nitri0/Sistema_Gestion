@@ -76,6 +76,7 @@ $router->group(['middleware' => 'auth'], function() {
 	Route::get('/dominios/updateData', ['as'  => 'dominios.actualizarEspacioUsado',
 										'uses'=>'DominiosController@actualizarEspacioUsado']);
 					#____________________ cruds ____________________________
+	Route::get('dominios/{dominios}/destroy', 'DominiosController@destroy');
 	Route::resource('dominios', 'DominiosController');
 
 

@@ -30,6 +30,7 @@
             <!-- begin col-12 -->
             <div class="col-md-6 ui-sortable">
                 <!-- begin panel -->
+                <!-- begin panel -->
                 <div class="panel panel-inverse">
                     <div class="panel-heading-2">
                         <h4 class="panel-title">Información del Proyecto</h4>
@@ -50,16 +51,18 @@
                                     </tr>
                                     <tr>
                                         <td class="field">Descripción</td>
-                                        <td>{{ $proyecto->direccion_proyecto}}</td>
+                                        <td>{{ $proyecto->descripcion_proyecto}}</td>
                                     </tr>
                                     <tr>
                                         <td class="field">Etapa actual de proyecto</td>
                                         <td>{{ $proyecto->getEstatus()}}</td>
                                     </tr>
+                                    @if($proyecto->getNombreDominio() != "No asignado")
                                     <tr>
                                         <td class="field">Dominio</td>
                                         <td><a href="{{ $proyecto->getNombreDominio() }}" target="_blank" href="#">{{ $proyecto->getNombreDominio() }}</a></td>
                                     </tr>
+                                    @endif
                                 </tbody>
                             </table>
                         </div>
@@ -90,10 +93,12 @@
                                         <td class="field">Telefono 1</td>
                                         <td><i class="fa fa-mobile fa-lg m-r-5"></i> {{ $proyecto->getCliente()->telefono_cliente}}</td>
                                     </tr>
+                                    @if($proyecto->getCliente()->telefono_2_cliente)
                                     <tr>
                                         <td class="field">Telefono 2</td>
                                         <td><i class="fa fa-mobile fa-lg m-r-5"></i> {{ $proyecto->getCliente()->telefono_2_cliente}}</td>
                                     </tr>
+                                    @endif
                                     <tr>
                                         <td class="field">Correo Electronico</td>
                                         <td><a href="email:{{ $proyecto->getCliente()->email_cliente}}">{{ $proyecto->getCliente()->email_cliente}}</a></td>
