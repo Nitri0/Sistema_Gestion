@@ -67,9 +67,4 @@ coreApp.controller('ProyectoController',function($scope, $log, $http, $window) {
 		};
 		return false;
 	};
-
-	$scope.eliminar = function(url_eliminar){
-		console.log(url_eliminar);
-		console.log("hola");
-	};
 });
