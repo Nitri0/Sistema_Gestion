@@ -66,18 +66,10 @@ coreApp.controller('ProyectoController',function($scope, $log, $http, $window) {
 			$scope.snipper  = false;
 		};
 		return false;
-	}
-	$scope.titulo_ayuda = "Creación Proyecto";
-	$scope.sub_titulo = "Deberá completar los campos para generar un nuevo proyecto en el sistema.";
-	$scope.descripcion_ayuda = 	'<strong>Formulario</strong>'+
-	'<br><br><strong>Tipo de Proyecto</strong>:  Se refiere al tipo de proyecto. Seleccione algun tipo de proyecto registrado en el sistema según sea el caso. '+
-	'Haga <a href="http://keygestion.com.ve/proyectos/create" target="blank">click aquí</a> o presione el ícono a la derecha de campo para generar un nuevo tipo.'+
-	'Cliente: Se refiere a la persona o empresa que adquiere el servicio web. Hacer clic en el botón de la derecha del campo para agregar uno nuevo.'+
-	'<br><br><strong>Grupo de Trabajo</strong>'+
-	'<br><br><strong>Agregar Integrante</strong>: Permite agregar un Integrante al Proyecto. Al hacer clic en el botón se desplegará el siguiente formulario:'+
-	'<br><br><strong>Integrante #</strong>: Lista de integrantes o participantes generados en el sistema. Seleccione el integrante a agregar al proyecto. '+
-	'<br><br><strong>Rol</strong>: Indica el tipo de participación o la función que cumplirá el integrante. Seleccione el tipo de Rol. '+
-	'Haga clic en el siguiente <a href="http://keygestion.com.ve/roles/create" target="blank">enlace</a> para generar uno nuevo.'+
-	'<br><br><strong>Eliminar Integrante</strong>: Permite eliminar o retirar integrantes del proyecto. Hacer clic en el botón para eliminar.'+
-	'<br><br><strong>Registrar</strong>: Al hacer clic se efectuará el registro del proyecto, en caso de que los campos estén correctamente llenados.';
+	};
+
+	$scope.eliminar = function(url_eliminar){
+		console.log(url_eliminar);
+		console.log("hola");
+	};
 });

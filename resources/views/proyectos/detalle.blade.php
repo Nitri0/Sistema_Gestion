@@ -2,6 +2,7 @@
 
 @section('js')
     <script src="{{ asset('/js/controllers/helper.js') }}"></script>
+    <script src="{{ asset('/js/controllers/proyecto_detalle.js') }}"></script>
 @endsection
 
 @section('content')
@@ -12,10 +13,12 @@
 
     @include('layouts/sidebar-admin')
     @include('alerts.mensaje_success')
-    @include('alerts.mensaje_error')
+    @include('alerts.mensaje_error') 
 	
-	<div id="content" class="content ng-scope">
+	<div id="content" class="content ng-scope" ng-controller="ProyectoDetalleController">
         
+        @include('modals/eliminar')
+
         <ol class="breadcrumb pull-right">
         	
             <div class="btn-toolbar">
@@ -37,12 +40,10 @@
                 </div>
           		@endif
                 <div class="btn-group">
-                	<form action="/proyectos/{{$proyecto->id_proyecto}}" method="post">
-                		<input type="hidden" name="_method" value="delete">
-	                    <button type="submit" class="btn btn-list p-l-20 p-r-20" data-toggle="tooltip" data-title="Eliminar Proyecto">
-	                        <i class="fa fa-trash"></i>
-	                    </button>
-                    </form>
+                    <div ng-init="eliminar_url='/proyectos/{{$proyecto->id_proyecto}}/destroy'"></div>
+                    <a ng-click="eliminar(eliminar_url)" href="#eliminar" class="btn btn-list p-l-20 p-r-20" data-toggle="modal" data-title="Eliminar Proyecto">
+                        <i class="fa fa-trash"></i>
+                    </a>
                 </div>
                 
 			</div>
