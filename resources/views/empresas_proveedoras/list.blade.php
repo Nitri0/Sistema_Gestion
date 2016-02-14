@@ -83,7 +83,7 @@
                         <div id="[[$index+1]]" class="panel-collapse collapse">
                             <div class="panel-body">
                             	<p>Fecha Creación: [[proveedora.fecha_creacion_empresa_proveedora]]</p>
-                            	<div ng-init="eliminar_url='/empresas_proveedoras/'+[[proveedora.id_empresa_proveedora]]'+/destroy'"></div>
+                            	<div ng-init="eliminar_url='/empresas_proveedoras/'+[[proveedora.id_empresa_proveedora]]+'/destroy'"></div>
                             	<a class="btn btn-list pull-right" ng-click="eliminar(eliminar_url)" href="#eliminar"  data-toggle="modal"><i class="fa fa-trash"></i></a>
                             </div>
                         </div>
