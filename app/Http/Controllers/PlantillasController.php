@@ -130,7 +130,6 @@ class PlantillasController extends Controller {
 		if (file_exists($ruta."/".$this->plantillas->nombre_archivo_plantilla.".blade.php")){
 			unlink($ruta."/".$this->plantillas->nombre_archivo_plantilla.".blade.php");
 		}
-		}
 		$this->plantillas->delete();
 		Session::flash("mensaje","Plantilla eliminada exitosamente");
 		return redirect('/plantillas');
