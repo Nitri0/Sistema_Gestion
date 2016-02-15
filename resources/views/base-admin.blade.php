@@ -59,6 +59,8 @@
 
 	<link rel="stylesheet" href="{{ asset('/bower_components/ui-select/dist/select.css') }}">
 	<link rel="stylesheet" href="{{ asset('/bower_components/angular-ui-switch/angular-ui-switch.min.css') }}"/>
+	
+	<link href="{{ asset('/bower_components/jquery-hemi-intro/src/jquery.hemiIntro.css') }}" rel="stylesheet" type="text/css"/>
 
 	<link href="{{ asset('/css/style.css') }}" rel="stylesheet">
 
@@ -99,6 +101,8 @@
     <script src="{{ asset('/js/script.js') }}"></script>
     <script src="{{ asset('/js/controllers.js') }}"></script>
 
+    <script src="{{ asset('/js/controllers/tour.js') }}"></script>
+
     <!-- angular modules -->
     <script src="{{ asset('/bower_components/ngImgCrop/compile/minified/ng-img-crop.js') }}"></script>
     <script src="{{ asset('/bower_components/angular-base64/angular-base64.min.js') }}"></script>
@@ -112,6 +116,9 @@
     <script src="{{ asset('/bower_components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
 	<!-- bootstrap jasny-->
     <script src="{{ asset('/bower_components/jasny-bootstrap/dist/js/jasny-bootstrap.min.js') }}"></script>
+
+    <!-- plugin jquery -->
+    <script src="{{ asset('/bower_components/jquery-hemi-intro/src/jquery.hemiIntro.js') }}"></script>
 	
 	<!-- Thema JS -->
 	<script src="{{ asset('/thema/admin/html/assets/plugins/slimscroll/jquery.slimscroll.min.js') }}"></script>
