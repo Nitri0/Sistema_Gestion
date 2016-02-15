@@ -573,3 +573,6 @@ p {
   background: #337ab7;
   border-color: #337ab7;
 }
+.form-horizontal .form-group {
+  font-size: 13px;
+}
