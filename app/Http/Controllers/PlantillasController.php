@@ -124,14 +124,12 @@ class PlantillasController extends Controller {
 
 	public function destroy($id){
 		$ruta = realpath(dirname("../resources/views/emails/."));
-		if (!$this->plantillas->nombre_archivo_plantilla){
-			if (file_exists($ruta."/".$this->plantillas->nombre_plantilla.".blade.php")){
-				unlink($ruta."/".$this->plantillas->nombre_plantilla.".blade.php");
-			}
-		}else{
-			if (file_exists($ruta."/".$this->plantillas->nombre_archivo_plantilla.".blade.php")){
-				unlink($ruta."/".$this->plantillas->nombre_archivo_plantilla.".blade.php");
-			}
+		if (file_exists($ruta."/".$this->plantillas->nombre_plantilla.".blade.php")){
+			unlink($ruta."/".$this->plantillas->nombre_plantilla.".blade.php");
+		}
+		if (file_exists($ruta."/".$this->plantillas->nombre_archivo_plantilla.".blade.php")){
+			unlink($ruta."/".$this->plantillas->nombre_archivo_plantilla.".blade.php");
+		}
 		}
 		$this->plantillas->delete();
 		Session::flash("mensaje","Plantilla eliminada exitosamente");
