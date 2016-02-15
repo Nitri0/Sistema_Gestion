@@ -32,4 +32,11 @@ coreApp.controller('PlantillasController', function ($scope, $log, $http, $windo
 		};
 		return false;
 	}
+
+	$scope.mensaje_emilinar = "¿Esta seguro que desea eliminar esta plantilla?, no podrá ser recuperado";
+
+	$scope.eliminar = function(url_eliminar){
+		console.log(url_eliminar);
+		$scope.eliminar_url = url_eliminar;
+	};	
 });

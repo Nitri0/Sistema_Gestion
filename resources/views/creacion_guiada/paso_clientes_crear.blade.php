@@ -11,6 +11,8 @@
 	
 	@include('layouts/navbar-admin')
 	
+	@include('modals/ayudas/clientes')
+	
 	<form class="form-horizontal" action="{{ url('clientes/') }}" method="POST" name="formulario" id="formulario">
 
 		<div id="content" class="content content-asistente ng-scope" ng-controller="SubmitController">
@@ -26,7 +28,7 @@
 	                <div class="panel panel-inverse">
 	                    <div class="panel-heading-2">
 	                        <div class="panel-heading-btn">
-	                            <a href="#ayuda" class="btn btn-ayuda" data-toggle="modal"><i class="fa fa-question"></i></a>
+	                            <a href="#cliente-ayuda" class="btn btn-ayuda" data-toggle="modal"><i class="fa fa-question"></i></a>
 	                        </div>
 	                        <h4 class="panel-title">Clientes</h4>
 	                    </div>

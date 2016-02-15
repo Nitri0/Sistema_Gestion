@@ -59,15 +59,10 @@ coreApp.controller('GrupoEtapasController', function ($scope, $log, $http, $wind
 		return false;
 	}
 
-	$scope.titulo_ayuda = "Generación de Grupos de Etapas";
-	$scope.sub_titulo = "Mediante el formulario podrá definir los distintos grupos de etapas de un Proyecto, permitiendo así clasificar,dividir o marcar un proyecto según el número de pasos, niveles o etapas.";
-	$scope.descripcion_ayuda = 	'<strong>Datos de formulario</strong>'+
-	'<br><br><strong>Identificador de grupo de etapas</strong>: Nombre del Grupo de Etapa. Deberá introducir el nombre que identificará el grupo.'+
-	'<br><br><strong>Descripción del grupo de etapas</strong>: Permite agregar una descripción breve del grupo de etapa a generar.'+
-	'<br><br><strong>Botón Agregar Nueva Etapa</strong>: Permite generar etapas en el grupo. Puede utilizar el botón tantas veces como etapas requieras añadir.'+
-	'Al hacer clic al botón se desplegará un nuevo formulario con lo siguiente:'+
-	'<br><br><strong>Identificar de Etapa</strong>: Indica el número de la etapa. Ejemplo: Etapa 1'+
-	'<br><br><strong>Nombre de etapa</strong>: Permite identificar la etapa generada.'+
-	'<br><br><strong>Botón Eliminar Última Etapa</strong>: Permite eliminar la última etapa agregada. Puede utilizar el botón tantas veces como etapas requieras eliminar.';
-	
+	$scope.mensaje_emilinar = "¿Esta seguro que desea eliminar este Tipo de proyecto?, no podrá ser recuperado";
+
+	$scope.eliminar = function(url_eliminar){
+		console.log(url_eliminar);
+		$scope.eliminar_url = url_eliminar;
+	};	
 });

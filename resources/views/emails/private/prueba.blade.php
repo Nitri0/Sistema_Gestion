@@ -1,3 +1,3 @@
 prueba
 
-{!!$full_data!!}
+{{$full_data}}

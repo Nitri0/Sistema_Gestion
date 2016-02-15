@@ -23,6 +23,10 @@ use Illuminate\Http\Request;
 use Gate;
 
 
+define ('SITE_EMAILS', realpath("../resources/views/emails/"));
+define ('FOOTER', "<br><br><p align='center'>Mensaje enviado a través de la plataforma de gestión de proyectos <a href={{url()}}>KeyGestión</a>. Todos los derechos reservados 2016<p>");
+
+
 class MisProyectosController extends Controller {
 
 
@@ -164,12 +168,15 @@ class MisProyectosController extends Controller {
 									 'dominio' =>$dominio,
 									 'mis_datos' =>$mis_datos,
 									 'mi_correo' =>$mi_correo,
-									 'full_data' => $plantilla->raw_data_plantilla,
 									 'data'    =>$request->descripcion_avance];			
 			$modelo_plantilla = $plantilla->nombre_archivo_plantilla;
 			if (!$plantilla->nombre_archivo_plantilla){
 				$modelo_plantilla = $plantilla->nombre_plantilla;
 			};
+			if (!file_exists(SITE_EMAILS."/".$modelo_plantilla.".blade.php")){
+				$path = SITE_EMAILS."/".$plantilla->nombre_archivo_plantilla.".blade.php";
+				file_put_contents($path,$plantilla->raw_data_plantilla.FOOTER);
+			};			
 			Helper::SendEmail(
 							$cliente->email_cliente,
 							$cliente->persona_contacto_cliente,
@@ -231,8 +238,12 @@ class MisProyectosController extends Controller {
 		$modelo_plantilla = $plantilla->nombre_archivo_plantilla;
 		if (!$plantilla->nombre_archivo_plantilla){
 			$modelo_plantilla = $plantilla->nombre_plantilla;
+		};
+		if (!file_exists(SITE_EMAILS."/".$modelo_plantilla.".blade.php")){
+			$path = SITE_EMAILS."/".$modelo_plantilla.".blade.php";
+			file_put_contents($path,$plantilla->raw_data_plantilla.FOOTER);
 		};		
-		return view('emails.'.$plantilla->nombre_plantilla,compact('proyecto','cliente','data','dominio','mis_datos','mi_correo'));
+		return view('emails.'.$modelo_plantilla,compact('proyecto','cliente','data','dominio','mis_datos','mi_correo'));
 	}		
 	//__________________________________END CRUD AVANCES ____________________
 

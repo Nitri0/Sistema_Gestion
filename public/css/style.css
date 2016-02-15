@@ -431,8 +431,29 @@ body ,html{
   -moz-border-radius: 0 0 4px 4px;
   border-radius: 0 0 4px 4px;
 }
-
-
+.modal-header-compartir {
+  min-height: 16.43px;
+  padding: 15px;
+  border-bottom: 0px solid #e5e5e5;
+}
+.btn.btn-facebook {
+  border-color: #3B5998;
+  background-color: #3B5998;
+  border: 1px solid #3B5998;
+  color: #fff;
+}
+.btn-facebook:hover {
+  background-color: #4666AA;
+}
+.btn.btn-twitter {
+  border-color: #55acee;
+  background-color: #55acee;
+  border: 1px solid #55acee;
+  color: #fff;
+}
+.btn-twitter:hover {
+  background-color: #64B6F4;
+}
 
 @media (max-width: 1200px){
   .content.has-bg .content-bg img {
@@ -551,4 +572,7 @@ p {
 .switch.checked.blue {
   background: #337ab7;
   border-color: #337ab7;
+}
+.form-horizontal .form-group {
+  font-size: 13px;
 }

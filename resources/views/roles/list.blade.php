@@ -1,12 +1,12 @@
 @extends('base-admin')
 
 @section('js')
-    <script src="{{ asset('/js/controllers/dominio.js') }}"></script>
+    <script src="{{ asset('/js/controllers/roles.js') }}"></script>
 @endsection
 
 @section('content')
 
-<div id="page-container" class="fade page-sidebar-fixed page-header-fixed" ng-controller="DominioController">
+<div id="page-container" class="fade page-sidebar-fixed page-header-fixed" ng-controller="RolesController">
 	
 	@include('layouts/navbar-admin')
 
@@ -14,6 +14,8 @@
 
     @include('alerts.mensaje_success')
 	@include('alerts.mensaje_error')
+
+    @include('modals/eliminar')
 
 	<div ng-init="models={{$roles}}"></div>
 	<div ng-init="url='{{url()}}'"></div>
@@ -75,7 +77,8 @@
                         <div id="[[$index+1]]" class="panel-collapse collapse">
                             <div class="panel-body">
                             	<p>Descripción: [[model.descripcion_tipo_rol]]</p>
-                            	<a class="btn btn-list pull-right" href="{{ url( '/roles/[[model.id_tipo_rol]]/destroy') }}" data-toggle="tooltip" data-title="Eliminar"><i class="fa fa-trash"></i></a>
+                                <div ng-init="eliminar_url='/roles/'+[[model.id_tipo_rol]]+'/destroy'"></div>
+                            	<a class="btn btn-list pull-right" ng-click="eliminar(eliminar_url)" href="#eliminar"  data-toggle="modal"><i class="fa fa-trash"></i></a>
                             </div>
                         </div>
                     </div>
