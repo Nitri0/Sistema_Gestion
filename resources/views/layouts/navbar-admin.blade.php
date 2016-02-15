@@ -44,6 +44,7 @@
 					@if(Auth::user()->isAdmin())
 					<li><a href="{{ url ('/perfil-empresa') }}">Editar perfil Empresa</a></li>
 					@endif
+					<li><a href="#compartir" data-toggle="modal">Díselo a tus amigos...</a></li>
 					<li><a href="{{url('/reset-password')}}"><!-- <i class="fa fa-key"></i> --> Cambiar Contraseña</a></li>
 					<li class="divider"></li>
 					<li><a href="{{ url ('/logout') }}"><i class="fa fa-sign-in"></i> Cerrar sesión</a></li>
@@ -55,3 +56,5 @@
 	<!-- end container-fluid -->
 </div>
 <!-- end #header -->
+
+@include('modals/compartir')
