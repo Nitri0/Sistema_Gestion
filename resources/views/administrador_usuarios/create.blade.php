@@ -54,7 +54,8 @@
 								<div class="form-group">
 	                                <label class="col-md-4 control-label">Correo electrónico</label>
 	                                <div class="col-md-5">
-										<input type="email" class="form-control" name="correo_usuario" ng-model='usuario.correo_usuario' ng-required="true" oninvalid="setCustomValidity(' ')">
+										<input type="email" ng-remote-validate="{{url('/admin_usuarios/validUser/')}}"
+										 class="form-control" name="correo_usuario" ng-model='usuario.correo_usuario' ng-required="true" oninvalid="setCustomValidity(' ')">
 	                                	<div class="error campo-requerido" ng-show="formulario.correo_usuario.$invalid && (formulario.correo_usuario.$touched || submitted)">
 		                                    <small class="error" ng-show="formulario.correo_usuario.$error.required">
 		                                        * Campo requerido.
@@ -62,6 +63,9 @@
 		                                    <small class="error" ng-show="formulario.correo_usuario.$error.email">
 		                                    	* Correo inválido correo@ejemplo.com
 		                                    </small>
+		                                    <small class="error" ng-show="formulario.ci_rif_cliente.$error.ngRemoteValidate">
+		                                        * Correo ya registrado, utilice otro.
+		                                    </small>		                                    
 		                            	</div>
 	                                </div>
                             	</div>

@@ -235,4 +235,18 @@ class AdministradorUsuariosController extends Controller
         $this->usuario->save();
         return redirect("/admin_usuarios");
     }    
+
+    public function validUser(Request $request){
+        $json=[];
+        $value = $request->value;
+        $users = User::where('correo_usuario', $request->value)->first();
+        if (!$users){
+            $json=['isValid'=>true,
+                   'value'=>$request->value];
+        }else{
+            $json=['isValid'=>false,
+                   'value'=>$request->value];
+        }
+        return json_encode($json);
+    }
 }

@@ -103,6 +103,7 @@ $router->group(['middleware' => 'auth'], function() {
 	Route::get('admin_usuarios/{admin_usuarios}/habilitar', 'AdministradorUsuariosController@habilitar');
 	Route::get('admin_usuarios/{id}/permisos',  ['as'  => 'admin_usuario.editPermisos',
 												'uses'=>'AdministradorUsuariosController@editPermisos']);
+	Route::post('/admin_usuarios/validUser/', 'AdministradorUsuariosController@validUser');	
 	Route::resource('admin_usuarios', 'AdministradorUsuariosController');
 
 #________________________________ ADMINISTRADOR DE EMPRESAS _____________________________________
