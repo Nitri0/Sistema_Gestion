@@ -184,14 +184,18 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
 	// 	return true;
 	// }
 
-	public function tieneSuscripcion(){
+	public function puedeAgregarUsuarios(){
 		$id_empresa = MMEmpresasUsuarios::where('id_usuario',$this->id_usuario)->first()->id_empresa;
+		$cantidad = MMEmpresasUsuarios::where('id_empresa',$id_empresa)->count();
 		$empresa = Empresas::find($id_empresa);
 		if ($empresa){
-			return $empresa->suscriptor_empresa;
+			if($empresa->suscriptor_empresa && $cantidad < $empresa->cantidad_usuarios);
+			return true;
 		}
 		return false;
 	}
+
+
 
 	public function validacionExcepciones($method){
 		
