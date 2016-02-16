@@ -12,23 +12,23 @@ coreApp.controller('TourController', function ($scope, $log, $http, $window) {
 					{
 						selector: ".navbar-brand",
 						placement: "bottom",
-						content: "Text text text text text text text text text text",
+						content: "Barra de Actividades.",
 					},
 					{
 						selector: ".navbar-user",
 						placement: "bottom",
-						content: "Text2 text2 text2 text2 text2 text2 text2 text2 text2 text2 text2 text2",
+						content: "Aquí podrás encontrar todas tus configuraciones de usuario.",
 						offsetTop: 100
 					},
 					{
 						selector: ".btn-search",
 						placement: "right",
-						content: "Text3 text3 text3 text3 text3 text3 text3"
+						content: "El buscador te ayudara a filtrar tus listas."
 					},
 					{
 						selector: ".sidebar",
 						placement: "right",
-						content: "Text3 text3 text3 text3 text3 text3 text3"
+						content: "SideBar de Opciones. "
 					},
 				],
 				startFromStep: 0,

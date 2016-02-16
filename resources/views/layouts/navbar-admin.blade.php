@@ -58,5 +58,3 @@
 </div>
 <!-- end #header -->
 
-@include('modals/compartir')
-@include('modals/tour/welcome_tour')

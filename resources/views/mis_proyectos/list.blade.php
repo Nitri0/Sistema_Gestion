@@ -14,7 +14,7 @@
 
     @include('alerts.mensaje_success')
     @include('alerts.mensaje_error')
-	
+
 	<div id="content" class="content ng-scope">
 
         <h1 class="page-header">Mis Proyectos </h1>
