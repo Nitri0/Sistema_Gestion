@@ -63,7 +63,7 @@
 		                                    <small class="error" ng-show="formulario.correo_usuario.$error.email">
 		                                    	* Correo inválido correo@ejemplo.com
 		                                    </small>
-		                                    <small class="error" ng-show="formulario.correo_usuario.$error.ngRemoteValidate">
+		                                    <small class="error" ng-show="formulario.correo_usuario.$error.ngRemoteValidate && usuario.correo_usuario">
 		                                        * Correo ya registrado, utilice otro.
 		                                    </small>		                                    
 		                            	</div>
