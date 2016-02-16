@@ -127,7 +127,7 @@ class AdministradorUsuariosController extends Controller
                         ->get()
                         ->count();
         if (!$user->tieneSuscripcion() || $cantidad_usuarios >= $user->cantidad_usuarios){
-            Session::flash("mensaje-error",'upgrade-cuenta');
+            Session::flash("upgrade-cuenta",'upgrade-cuenta');
             return json_encode(['success'=>false,]);
         }
 
