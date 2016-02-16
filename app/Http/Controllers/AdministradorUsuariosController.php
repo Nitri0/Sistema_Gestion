@@ -128,18 +128,18 @@ class AdministradorUsuariosController extends Controller
                         ->count();
         if (!$user->tieneSuscripcion() || $cantidad_usuarios >= $user->cantidad_usuarios){
             Session::flash("mensaje-error",'upgrade-cuenta');
-            return redirect("/admin_usuarios/");
+            return json_encode(['success'=>false,]);
         }
 
         if (!$request->has('password')){
             Session::flash("mensaje-error",'rellene el password');
-            return redirect("/admin_usuarios/create");
+            return json_encode(['success'=>false,]);
         };
 
         $verificacion = User::where('correo_usuario', $request->correo_usuario)->first();
         if ($verificacion){
             Session::flash("mensaje-error","usuario existente");
-            return redirect("/admin_usuarios/create");
+            return json_encode(['success'=>false,]);
         };
 
         $request['password'] = \Hash::make($request['password']);
