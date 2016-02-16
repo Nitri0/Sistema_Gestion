@@ -120,7 +120,7 @@ class AdministradorUsuariosController extends Controller
                         ->get()
                         ->count();
         if (!$user->tieneSuscripcion() || $cantidad_usuarios >= $user->cantidad_usuarios){
-            Session::flash("upgrade-cuenta",'upgrade-cuenta');
+            Session::flash('upgrade-cuenta','upgrade-cuenta');
             return redirect('/admin_usuarios');
         }
 
