@@ -128,11 +128,11 @@ class AdministradorUsuariosController extends Controller
                             ->get()
                             ->count();
             if ($cantidad_usuarios >= $user->cantidad_usuarios){
-                Session::flash("mensaje-7-dias",' mensaje de planes para ampliar el equipo');
+                Session::flash("upgrade-cuenta",'upgrade-cuenta');
                 return redirect("/admin_usuarios/");
             }
         }else{
-            Session::flash("upgrade-cuenta",' ');
+            Session::flash("upgrade-cuenta",'upgrade-cuenta');
             return redirect("/admin_usuarios/");
         }
 
