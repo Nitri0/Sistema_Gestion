@@ -15,6 +15,9 @@ class Roles extends Model {
 	public $timestamps = false;
 
 
+	public function usuario(){
+		return $this->belongsTo('App\User','id_usuario');
+	}
 	public function getRolName(){
 		return TipoRoles::find($this->id_tipo_rol)->nombre_tipo_rol;
 	}

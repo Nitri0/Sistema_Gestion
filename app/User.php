@@ -25,6 +25,9 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
 
 	protected $appends = ['permisos','nombre_empresa'];
 
+	public function perfil(){
+		return $this->hasOne('App\Perfil','id_usuario');
+	}
 	public function getPermisosAttribute(){
         Excepciones::where('id_usuario', $this->id_usuario)
         				->get(['modulo_excepcion']);

@@ -11,6 +11,7 @@ use App\Actividades;
 use App\SubActividades;
 use App\Comentarios;
 use App\Plantillas;
+use App\Adjuntos;
 use Session;
 use Auth;
 use Gate;
@@ -24,12 +25,25 @@ class ActividadesController extends Controller
      */
     public function index() {
         //
-        $actividades= Actividades::all();
+
+        $proyectos=Proyectos::all()->where('id_usuario',Auth::user()->id_usuario);
+        $proyectos->each(function($proyectos){
+            $proyectos->actividades->each(function($proyectos){
+                $proyectos->subActividades;
+                $proyectos->comentarios;
+                $proyectos->adjuntos;
+            });
+            $proyectos->usuarios->each(function($proyectos){
+                $proyectos->usuario->perfil;
+            });
+        });
+        /*$actividades= Actividades::all();
         $actividades->each(function($actividades){
             $actividades->subActividades;
             $actividades->comentarios;
-        });
-        return view('actividades.list',array('actividades'=>json_encode($actividades)));
+            $actividades->adjuntos;
+        });*/
+        return view('actividades.list',array('proyectos'=>json_encode($proyectos)));
     }
 
     /**
@@ -56,6 +70,7 @@ class ActividadesController extends Controller
             if($actividad=Actividades::create($request->all())){
                 $actividad->subActividades;
                 $actividad->comentarios;
+                $actividad->adjuntos;
                 return json_encode($actividad);
             }
         }else{
@@ -119,21 +134,62 @@ class ActividadesController extends Controller
         }
         //dd($comentario);
     }
-    public function agregarAdjunto(request $request){
-        $tempDir = '../public/adjuntos';
+    public function adjuntar(request $request){
+       
+        //
+        $tempDir = public_path().'/adjuntos';
         if (!file_exists($tempDir)) {
             mkdir($tempDir);
         }
         if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-            $chunkDir = $tempDir . DIRECTORY_SEPARATOR . $_GET['flowIdentifier'];
-            $chunkFile = $chunkDir.'/chunk.part'.$_GET['flowChunkNumber'];
+            $chunkDir = $tempDir . DIRECTORY_SEPARATOR . $request->flowIdentifier;
+            $chunkFile = $chunkDir.'/chunk.part'.$request->flowChunkNumber; 
+            //dd(file_exists($chunkFile));
             if (file_exists($chunkFile)) {
                 header("HTTP/1.0 200 Ok");
             } else {
                 header("HTTP/1.1 204 No Content");
             }
+        }        
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            //dd($request);
+            if(count($request->files)>0):
+                foreach ($request->files as $file) {
+                    $nombreImg=$this->__nombreAleatorio('adjunto_',$file->getClientOriginalExtension());
+                    $adjuntoTag=$this->__crearTag($file->getClientOriginalExtension());
+                    $activity_id=$request->activiti_id;                    
+                    $file->move($tempDir,$nombreImg);
+                    $adjunto=new Adjuntos();
+                    $adjunto->url_adjunto=$nombreImg;
+                    $adjunto->id_actividad=$activity_id;
+                    $adjunto->tipo_adjunto=$file->getClientOriginalExtension();
+                    $adjunto->tag_adjunto=$adjuntoTag;
+                    if($adjunto->save()){
+                        return json_encode($adjunto);
+                    }
+                }
+            endif;
         }
-        dd($request->all());
+        //return true;
+        
 
+    }
+    private function __nombreAleatorio($prefijo='',$extension=null){
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $random='';
+        for ($i = 0; $i < 4; $i++) {
+            $random .= $characters[rand(0, strlen($characters))];
+        }
+        $nombre= $prefijo.$random.time().'.'.$extension;    
+
+        return $nombre;
+    }
+    private function __crearTag($extention){
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $tag = 'adjunto-';
+        for ($i = 0; $i < 3; $i++) {
+            $tag .= $characters[rand(0, strlen($characters))];
+        }
+        return $tag;
     }
 }

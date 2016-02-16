@@ -10,6 +10,7 @@ class Adjuntos extends Model {
 	protected $primaryKey = "id_adjunto";
 	protected $fillable = array(
 		'descripcion_adjunto',
+		'tag_adjunto',
 		'url_adjunto',
 		'tipo_adjunto',
 		'id_actividad',

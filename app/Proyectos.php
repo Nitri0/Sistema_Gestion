@@ -22,7 +22,12 @@ class Proyectos extends Model {
 								);
 	protected $dates = ['fecha_creacion_proyecto'];
 	public $timestamps = false;
-
+	public function usuarios(){
+		return $this->hasMany('App\Roles','id_proyecto');
+	}
+	public function actividades(){
+		return $this->hasMany('App\Actividades','id_proyecto');
+	}
 	public function getEstatus(){
 		$etapa = Etapas::where('id_grupo_etapas',$this->id_grupo_etapas)->
 						where('numero_orden_etapa', $this->estatus_proyecto)->first();

@@ -17,10 +17,16 @@
 
 	<div id="content" class="content ng-scope">
 		<div class="row">
+            <div ng-init="initProyectos({{$proyectos}})"></div><!--actividades={{$proyectos}}-->
+            <div ng-init="url='{{url()}}'"></div>
+            <div class="col-md-12">
+                <div class="panel panel-inverse overflow-hidden custon-list">                    
+                    <div class="proyectos-actividades-list" ng-repeat="(clave, proyecto) in proyectos" ng-click="initActividades(clave)">
+                        <span>[[proyecto.nombre_proyecto]]</span>
+                    </div>
+                </div>
+            </div>
             <div class="col-md-6">
-                        
-                <div ng-init="initActividades({{$actividades}})"></div><!--actividades={{$actividades}}-->
-                <div ng-init="url='{{url()}}'"></div>
                 <div class="panel-group" id="accordion">
                 	<div class="row text-list">
                         <div class="col-sm-9">
@@ -66,7 +72,7 @@
                                     <button class="btn btn-success btn-sm" ng-click="editModal(arrayKeySelected)">
                                         <i class="fa fa-pencil"></i>
                                     </button>
-                                    <button class="btn btn-success btn-sm">
+                                    <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#adjunto">
                                         <i class="fa fa-puzzle-piece"></i>
                                     </button>
                                     <button class="btn btn-success btn-sm"  data-toggle="modal" data-target="#sub_actividad">
@@ -201,11 +207,13 @@
                             </fieldset>
                         </div>
                         <div role="tabpanel" class="tab-pane" id="adjuntos">
-                            <fieldset>
+                            <fieldset class="adjunto-content">
                                 <legend>adjuntos</legend>
-                                <div ng-repeat="(clave, adjunto) in activitySelected.adjuntos">
-                                    adjunto.nombre
-                                </div>
+                                <a href="" ng-repeat="(clave, adjunto) in activitySelected.adjuntos" class="adjunto">
+                                    <div class="referencia_adjunto" ng-if="adjunto.tipo_adjunto == 'jpg' || adjunto.tipo_adjunto == 'png'" style="background-image:url('../public/adjuntos/[[adjunto.url_adjunto]]');"></div>
+                                    <span class="tipo-adjunto">.[[adjunto.tipo_adjunto | uppercase]] </span>
+                                    <span class="tag-adjunto"> #[[adjunto.tag_adjunto]] </span>
+                                </a>
                             </fieldset>
                         </div>
                         <div role="tabpanel" class="tab-pane" id="comentarios">
@@ -253,9 +261,19 @@
               <div class="modal-body">
                 <form id="formulario">
                     <div class="form-group">
+                        <label class="col-md-4 control-label">Usuarios </label>
+                        <div class="col-md-8">
+                            <select name="usuarios_actividad" id="usuarios_actividad" ng-model="usuarios_actividad" class="form-control" multiple="true">
+                                <option value="[[usuario.usuario.id_usuario]]" ng-repeat="(clave, usuario) in usuarios">[[usuario.usuario.perfil.nombre_perfil]] [[usuario.usuario.perfil.apellido_perfil]]</option>
+                            </select>  
+                        </div>
+                        <div style="clear:both;"></div>
+                    </div>
+                    <div class="form-group">
                         <label class="col-md-4 control-label">Nombre actividad </label>
                         <div class="col-md-8">
                             <input type="hidden" ng-model="actividad.id_actividad" name="id_actividad">
+                            <input type="text" ng-hide="true" ng-model="id_proyecto" name="id_proyecto">
                             <input type="text" only-text class="form-control" ng-model="actividad.nombre_actividad" name="nombre_actividad" ng-required="true" oninvalid="setCustomValidity(' ')">
 
                             <div class="error campo-requerido" ng-show="formulario.nombre_actividad.$invalid && (formulario.nombre_actividad.$touched || submitted)">
@@ -391,17 +409,13 @@
                 <h4 class="modal-title" id="myModalLabel">Adjuntar documento</h4>
               </div>
               <div class="modal-body">
-                <div flow-init flow-name="adjuntos.flow">  
+                <div  flow-init="{target: '/KeySysGestion/Sistema_Gestion/public/actividades/adjuntar'}" flow-files-submitted="subirAdjuntos($flow)"><!--flow-name="adjuntos.flow"-->     
                     <div class="alert" flow-drop  flow-drag-enter="style={border:'4px solid green'}" flow-drag-leave="style={}"
      ng-style="style">
-                        Drag And Drop your file here
+                        Arrastra los archivos que desees agregar a la actividad
                     </div>      
-                    <button flow-btn>Add files</button>
-                    <button ng-click="subirAdjunto()">Upload</button>
-                    <div ng-repeat="file in adjuntos.flow.files" >
-                        [[file.name]] <a ng-click="file.cancel()">X</a>
-                    </div>
-                    Total files #[[uploader.flow.files.length]]
+                    
+                    Total files #[[$flow.files.length]]
                 </div>
                 </div>
               <div class="modal-footer">
@@ -411,9 +425,6 @@
           </div>
         </div>    
     </div><!-- content -->
-
-
-	
 </div>
 @endsection
 

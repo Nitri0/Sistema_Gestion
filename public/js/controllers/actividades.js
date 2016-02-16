@@ -1,27 +1,40 @@
 coreApp.controller('ActividadController', function ($scope, $log, $http, $window) {
 	$scope.tituloModal="Agregar actividad";
+	$scope.proyectos={};
+	$scope.usuarios={};
 	$scope.actividades={};
 	$scope.actividad={};
 	$scope.adjuntos={};
 	$scope.formulario={};
+	$scope.usuario_actividad={};
 	$scope.urlAction='actividades';
 	$scope.activitySelected={};
 	$scope.arrayKeySelected=0;
+	$scope.id_proyecto=null;
 	$scope.activityType=true;
-	$scope.initActividades=function(Actividades){
+	$scope.initProyectos=function(Proyectos){
 		/*Carga la lista de actividades apenas inicia el sistema*/
-		$scope.actividades=Actividades;
-		//console.log(Actividades);
+		$scope.proyectos=Proyectos;
+		
+	}
+	$scope.initActividades=function(id_proyecto){
+		/*Carga la lista de actividades apenas inicia el sistema*/
+		$scope.actividades=$scope.proyectos[id_proyecto].actividades;
+		$scope.id_proyecto=$scope.proyectos[id_proyecto].id_proyecto;
+		$scope.usuarios=$scope.proyectos[id_proyecto].usuarios;
+		console.log($scope.usuarios);
+		console.log($scope.id_proyecto);
 	}
 	$scope.agregarTarea=function(){
 		/*registra una actividad y la carga en la vista*/		
 		$scope.enviando = false;
 		$scope.snipper  = false;
+		console.log($scope.actividad);
 		/*if (formValid==true && $scope.enviando==false){*/
 			var json = {};
 	    	angular.element('#formulario').serializeArray().map(function(x){json[x.name] = x.value;});
 	    	json.typeActivity=true;
-	    	//console.log(json);
+	    	console.log(json);
 	    	$http({
 			    method: 'POST',
 			    url: $scope.urlAction,
@@ -44,11 +57,13 @@ coreApp.controller('ActividadController', function ($scope, $log, $http, $window
 			carga los datos de la actividad principal seleccionada en el panel derecho del sistema 
 			el parametro clave indica el valor dentro del array $scope.actividades seleccionado por el usuario 
 		*/
+		console.log($scope.actividades);
 		$scope.arrayKeySelected=clave;
 		$scope.activitySelected.id_actividad=$scope.actividades[clave].id_actividad;
+		$scope.activitySelected.id_proyecto=$scope.actividades[clave].id_proyecto;
 		$scope.activitySelected.nombre=$scope.actividades[clave].nombre_actividad;
 		$scope.activitySelected.descripcion=$scope.actividades[clave].descripcion_actividad;
-		$scope.activitySelected.adjuntos={};
+		$scope.activitySelected.adjuntos=$scope.actividades[clave].adjuntos;
 		$scope.activitySelected.subActividades=$scope.actividades[clave].sub_actividades;
 		$scope.activitySelected.comentarios=$scope.actividades[clave].comentarios;
 		console.log($scope.activitySelected);
@@ -107,6 +122,7 @@ coreApp.controller('ActividadController', function ($scope, $log, $http, $window
 	$scope.editModal=function(clave){
 		$scope.activityType=false;
 		$scope.tituloModal='Editar actividad';
+		$scope.id_proyecto=$scope.actividades[clave].id_proyecto;
 		$scope.actividad.id_actividad=$scope.actividades[clave].id_actividad;
 		$scope.actividad.nombre_actividad=$scope.actividades[clave].nombre_actividad;
 		$scope.actividad.descripcion_actividad=$scope.actividades[clave].descripcion_actividad;
@@ -118,23 +134,34 @@ coreApp.controller('ActividadController', function ($scope, $log, $http, $window
 	$scope.addModal=function(clave){
 		$scope.tituloModal='Agregar actividad';
 		$scope.actividad={};
-		$scope.activityType=true;
+		$scope.activityType=true;		
 		$('#myModal').modal('show');
 	}
-	$scope.subirAdjunto=function(){
-		$scope.adjuntos.id_actividad=$scope.arrayKeySelected;
-		console.log($scope.adjuntos);
-		$http({
-		    method: 'POST',
-		    url: $scope.urlAction+'/adjuntos',
-		    data: $scope.adjuntos.flow,
-		    transformRequest: angular.identity,
-		    headers: {'Content-Type': undefined}
-		}).then(function successCallback(response) {
-			
-		  }, function errorCallback(response) {
-		  	console.log("error");
-		  	$scope.snipper  = false;
-		  }); 
+	$scope.subirAdjuntos=function(flow){
+		flow.id_actividad=$scope.arrayKeySelected;
+		flow.opts.testChunks=false;
+		flow.opts.target="actividades/adjuntar";
+		flow.opts.query.activiti_id=$scope.actividades[$scope.arrayKeySelected].id_actividad;
+		flow.on('fileSuccess', function(file,message,chunk){
+		    console.log( JSON.parse(message));
+		    var data=JSON.parse(message);
+		    if(!$scope.findIndArray($scope.actividades[$scope.arrayKeySelected]['adjuntos'],data['id_adjunto'])){
+				$scope.actividades[$scope.arrayKeySelected]['adjuntos'].push(data);
+		    }
+		    
+		    console.log($scope.actividades[$scope.arrayKeySelected]['adjuntos']);
+		});
+		flow.upload();
+	}
+	$scope.findIndArray=function(adjuntos,id){
+		for(adjunto in adjuntos){
+			if(adjuntos[adjunto]['id_adjunto']==id){
+				return true;
+			}else{
+				continue;
+			}
+		}
+		return false;
+
 	}
 });

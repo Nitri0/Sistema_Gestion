@@ -496,3 +496,69 @@ body ,html{
   padding: .7em 1em;
   width: 100%;
 }
+.adjunto-content{
+  text-align: center;
+}
+.adjunto{
+  display: inline-block;
+  width: 100px;
+  height: 100px;
+  border-radius: 5px;
+  background-color: #E4E4E4;
+  position: relative;
+  box-shadow: 1px 1px 5px 0px rgba(0,0,0,.3);
+  margin: .5em;
+  overflow: hidden;
+  text-decoration: none;
+}
+.adjunto .referencia_adjunto{
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.adjunto .tipo-adjunto {
+    display: block;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    color: #989898;
+    font-weight: bold;
+    font-size: 20px;
+    text-shadow: 1px 1px 0px rgba(256, 256, 256, 0.7);
+}
+.adjunto .tag-adjunto{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(0,0,0,.5);
+    color: white;
+    padding: .3em;
+    text-align: center;
+}
+.proyectos-actividades-list{
+    display: inline-block;
+    min-height: 95px;
+    min-width: 150px;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 16px;
+    padding: .5em;
+    margin: .3em;
+    box-shadow: 0px 1px 3px rgba(0,0,0,.3);
+    cursor: pointer;
+    position: relative;
+}
+.proyectos-actividades-list span{
+    position: absolute;
+    left: 50%;
+    width: 100%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}

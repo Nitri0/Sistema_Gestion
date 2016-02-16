@@ -28,6 +28,9 @@ class Actividades extends Model {
 	public function comentarios(){
 		return $this->hasMany('App\Comentarios','id_actividad');
 	}
+	public function adjuntos(){
+		return $this->hasMany('App\Adjuntos','id_actividad');
+	}
 	public function proyecto(){
 		return $this->belongsTo('App\Proyectos','id_proyecto');
 	}
