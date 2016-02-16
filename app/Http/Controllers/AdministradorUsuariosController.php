@@ -132,7 +132,7 @@ class AdministradorUsuariosController extends Controller
                 return redirect("/admin_usuarios/");
             }
         }else{
-            Session::flash("mensaje-planes",' mensaje de planes ');
+            Session::flash("upgrade-cuenta",' ');
             return redirect("/admin_usuarios/");
         }
 
