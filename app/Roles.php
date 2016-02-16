@@ -14,7 +14,9 @@ class Roles extends Model {
 								'id_empresa');
 	public $timestamps = false;
 
-
+	public function proyectos(){
+		return $this->belongsTo('App\Proyectos','id_proyecto');
+	}
 	public function usuario(){
 		return $this->belongsTo('App\User','id_usuario');
 	}

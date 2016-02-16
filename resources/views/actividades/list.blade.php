@@ -20,7 +20,8 @@
             <div ng-init="initProyectos({{$proyectos}})"></div><!--actividades={{$proyectos}}-->
             <div ng-init="url='{{url()}}'"></div>
             <div class="col-md-12">
-                <div class="panel panel-inverse overflow-hidden custon-list">                    
+                <div class="panel panel-inverse overflow-hidden custon-list" style="white-space: nowrap;
+    overflow-x: scroll !important;">                    
                     <div class="proyectos-actividades-list" ng-repeat="(clave, proyecto) in proyectos" ng-click="initActividades(clave)">
                         <span>[[proyecto.nombre_proyecto]]</span>
                     </div>

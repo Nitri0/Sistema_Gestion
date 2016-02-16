@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Roles;
 use App\Proyectos;
 use App\Actividades;
 use App\SubActividades;
@@ -26,17 +27,35 @@ class ActividadesController extends Controller
     public function index() {
         //
 
-        $proyectos=Proyectos::all()->where('id_usuario',Auth::user()->id_usuario);
-        $proyectos->each(function($proyectos){
-            $proyectos->actividades->each(function($proyectos){
+        $proyectosActivos=Roles::all()->where('id_usuario',Auth::user()->id_usuario);//Auth::user()->id_usuario;
+        
+        $proyectosActivos->each(function($proyectosActivos){
+            $proyectosActivos->proyectos;
+            $proyectosActivos->proyectos->actividades->each(function($proyectosActivos){
+                $proyectosActivos->subActividades;
+                $proyectosActivos->comentarios;
+                $proyectosActivos->adjuntos;
+            });
+            $proyectosActivos->proyectos->usuarios->each(function($proyectosActivos){
+                $proyectosActivos->usuario->perfil;
+            });
+        });
+        $proyectosActivos=$proyectosActivos->groupBy('id_proyecto');
+        //dd($proyectosActivos);
+        $proyectos=array();
+        foreach ($proyectosActivos as $key=>$proyecto) {
+            $proyectos[]=$proyecto[0]['proyectos'];
+        }
+        
+        //dd($proyectos);
+            /*$proyectos->actividades->each(function($proyectos){
                 $proyectos->subActividades;
                 $proyectos->comentarios;
                 $proyectos->adjuntos;
             });
             $proyectos->usuarios->each(function($proyectos){
                 $proyectos->usuario->perfil;
-            });
-        });
+            });*/
         /*$actividades= Actividades::all();
         $actividades->each(function($actividades){
             $actividades->subActividades;
