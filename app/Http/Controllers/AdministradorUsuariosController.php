@@ -115,6 +115,16 @@ class AdministradorUsuariosController extends Controller
     }
 
     public function create(){
+        $user = Auth::user();
+        $cantidad_usuarios = MMEmpresasUsuarios::where('id_empresa', Auth::user()->getIdEmpresa())
+                        ->get()
+                        ->count();
+        if (!$user->tieneSuscripcion() || $cantidad_usuarios >= $user->cantidad_usuarios){
+            Session::flash("upgrade-cuenta",'upgrade-cuenta');
+            return redirect('/admin_usuarios');
+        }
+
+
         return view('administrador_usuarios.create', ['usuario'=>$this->usuario,
                                                         'permisos' =>$this->permisos,
                                                         'tipos_usuario' =>$this->tipos_usuario,
@@ -122,15 +132,14 @@ class AdministradorUsuariosController extends Controller
     }
 
     public function store(Request $request){
-        $user = Auth::user();
-        $cantidad_usuarios = MMEmpresasUsuarios::where('id_empresa', Auth::user()->getIdEmpresa())
-                        ->get()
-                        ->count();
-        dd($user->tieneSuscripcion() , $cantidad_usuarios ,$user->cantidad_usuarios );
-        if (!$user->tieneSuscripcion() || $cantidad_usuarios >= $user->cantidad_usuarios){
-            Session::flash("upgrade-cuenta",'upgrade-cuenta');
-            return json_encode(['success'=>false,]);
-        }
+        // $user = Auth::user();
+        // $cantidad_usuarios = MMEmpresasUsuarios::where('id_empresa', Auth::user()->getIdEmpresa())
+        //                 ->get()
+        //                 ->count();
+        // if (!$user->tieneSuscripcion() || $cantidad_usuarios >= $user->cantidad_usuarios){
+        //     Session::flash("upgrade-cuenta",'upgrade-cuenta');
+        //     return json_encode(['success'=>false,]);
+        // }
 
         if (!$request->has('password')){
             Session::flash("mensaje-error",'rellene el password');
