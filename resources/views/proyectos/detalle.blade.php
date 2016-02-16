@@ -7,7 +7,7 @@
 
 @section('content')
 
-<div id="page-container" class="fade page-sidebar-fixed page-header-fixed" ng-controller="SubmitController">
+<div id="page-container" class="fade page-sidebar-fixed page-header-fixed" ng-controller="ProyectoDetalleController">
 	
 	@include('layouts/navbar-admin')
 
@@ -15,7 +15,7 @@
     @include('alerts.mensaje_success')
     @include('alerts.mensaje_error') 
 	
-	<div id="content" class="content ng-scope" ng-controller="ProyectoDetalleController">
+	<div id="content" class="content ng-scope" ng-controller="SubmitController">
         
         @include('modals/eliminar')
 
