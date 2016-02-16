@@ -1,4 +1,4 @@
-@if(Session::has('upgrade-cuenta'))
+@if(Session::has('upgrade'))
 <div class="modal bs-example-modal-sm fade" id="7-dia" labelledby="myLargeModalLabel">
 	<div class="modal-dialog modal-sm">
 		<div class="modal-content">
