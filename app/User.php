@@ -188,8 +188,8 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
 		$id_empresa = MMEmpresasUsuarios::where('id_usuario',$this->id_usuario)->first()->id_empresa;
 		$cantidad = MMEmpresasUsuarios::where('id_empresa',$id_empresa)->count();
 		$empresa = Empresas::find($id_empresa);
-		if ($empresa){
-			if($empresa->suscriptor_empresa && $cantidad < $empresa->cantidad_usuarios);
+		dd($empresa , $empresa->suscriptor_empresa, $cantidad < $empresa->cantidad_usuarios );
+		if ($empresa && $empresa->suscriptor_empresa && $cantidad < $empresa->cantidad_usuarios ){
 			return true;
 		}
 		return false;
