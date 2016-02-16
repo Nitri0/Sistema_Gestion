@@ -83,7 +83,6 @@
         <!-- end right-container -->
     </div>
     
-    @include('modals/login/mensaje-7-dias')
 
 </div>
 @endsection

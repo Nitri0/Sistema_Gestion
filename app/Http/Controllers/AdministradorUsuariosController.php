@@ -115,7 +115,6 @@ class AdministradorUsuariosController extends Controller
     }
 
     public function create(){
-
         return view('administrador_usuarios.create', ['usuario'=>$this->usuario,
                                                         'permisos' =>$this->permisos,
                                                         'tipos_usuario' =>$this->tipos_usuario,
@@ -123,6 +122,20 @@ class AdministradorUsuariosController extends Controller
     }
 
     public function store(Request $request){
+        $user = Auth::user();
+        if ($user->tieneSuscripcion()){
+            $cantidad_usuarios = MMEmpresasUsuarios::where('id_empresa', Auth::user()->getIdEmpresa())
+                            ->get()
+                            ->count();
+            if ($cantidad_usuarios >= $user->cantidad_usuarios){
+                Session::flash("mensaje-7-dias",' mensaje de planes para ampliar el equipo');
+                return redirect("/admin_usuarios/");
+            }
+        }else{
+            Session::flash("mensaje-planes",' mensaje de planes ');
+            return redirect("/admin_usuarios/");
+        }
+
         if (!$request->has('password')){
             Session::flash("mensaje-error",'rellene el password');
             return redirect("/admin_usuarios/create");
