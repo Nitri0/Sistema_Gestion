@@ -94,8 +94,8 @@
             </div>
         </div>
 
-    @include('modals/login/upgrade-cuenta')
     </div><!-- content -->
+    @include('modals/login/upgrade-cuenta')
 
 	
 </div>
