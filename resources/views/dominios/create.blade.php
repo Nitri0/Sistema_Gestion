@@ -37,7 +37,7 @@
 	                <div class="panel panel-inverse">
 	                    <div class="panel-heading-2">
 	                        <div class="panel-heading-btn">
-	                        	<a href="#ayuda" class="btn btn-ayuda" data-toggle="modal"><i class="fa fa-question"></i></a>
+	                        	<a href="#dominio-ayuda" class="btn btn-ayuda" data-toggle="modal"><i class="fa fa-question"></i></a>
 	                        </div>
 	                        <h4 class="panel-title">Dominio</h4>
 	                    </div>
@@ -169,7 +169,7 @@
 		</form>
     </div><!-- content -->
 	
-	@include('modals/ayuda')
+	@include('modals/ayudas/dominio')
 
 </div>
 

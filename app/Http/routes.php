@@ -3,7 +3,9 @@
 Route::get('/', 'VistasController@index');
 
 #_____________________ Login __________________________
-Route::get( 'login', 'LoginController@login');
+$router->group(['middleware' => 'guest' ], function() {
+	Route::get( 'login', 'LoginController@login');
+});
 Route::post('login', 'LoginController@postLogin');
 Route::get('logout', 'LoginController@Logout');
 
@@ -74,6 +76,7 @@ $router->group(['middleware' => 'auth'], function() {
 	Route::get('/dominios/updateData', ['as'  => 'dominios.actualizarEspacioUsado',
 										'uses'=>'DominiosController@actualizarEspacioUsado']);
 					#____________________ cruds ____________________________
+	Route::get('dominios/{dominios}/destroy', 'DominiosController@destroy');
 	Route::resource('dominios', 'DominiosController');
 
 

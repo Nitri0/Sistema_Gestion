@@ -1,27 +1,31 @@
 @extends('base-admin')
 
+@section('js')
+    <script src="{{ asset('/js/controllers/grupo_etapas.js') }}"></script>
+@endsection
+
 @section('content')
 
-<div id="page-container" class="fade page-sidebar-fixed page-header-fixed">
+<div id="page-container" class="fade page-sidebar-fixed page-header-fixed" ng-controller="GrupoEtapasController">
     
     @include('layouts/navbar-admin')
 
     @include('layouts/sidebar-admin')
     
+    @include('modals/eliminar') 
+
     <div id="content" class="content ng-scope">
         
         <ol class="breadcrumb pull-right">
             <div class="btn-toolbar">
                 <div class="btn-group">
-                    <form action="/tipo_proyectos/{{$grupo_etapas->id_grupo_etapas}}" method="post">
-                        <input type="hidden" name="_method" value="delete">
-                        <button type="submit" class="btn btn-list" data-toggle="tooltip" data-title="Grupo de Etapas"><i class="fa fa-trash"></i></button>
-                    </form>
+                    <div ng-init="eliminar_url='/tipo_proyectos/{{ $grupo_etapas->id_grupo_etapas }}/destroy'"></div>
+                    <a class="btn btn-list" ng-click="eliminar(eliminar_url)" href="#eliminar" data-toggle="modal" data-title="Grupo de Etapas"><i class="fa fa-trash"></i></a>
                 </div>
             </div>
         </ol>
 
-        <h1 class="page-header">Detalle de Grupo de Etapa</h1>
+        <h1 class="page-header">Detalle de Tipo de Proyecto</h1>
         
         <div class="row">
             <!-- begin col-12 -->

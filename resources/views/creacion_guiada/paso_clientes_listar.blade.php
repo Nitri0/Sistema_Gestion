@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div id="page-container" class="fade page-sidebar-fixed page-header-fixed">
+<div id="page-container" class="fade page-header-fixed">
 	
 	@include('layouts/navbar-admin')
 
@@ -134,7 +134,7 @@
 	<div class="navbar navbar-default navbar-fixed-bottom" role="navigation">
 	  	<div class="container">
 	    	<div class="navbar-header">
-	      		<a class="navbar-brand" href="#">Paso 1 Clientes</a>
+	      		<a class="navbar-brand" href="#">Paso 1/5 Clientes</a>
 	    	</div>
 	    	<div class="navbar-collapse">
 	      		<!-- Right nav -->
@@ -149,3 +149,4 @@
 	</div>
 
 </div>
+@endsection

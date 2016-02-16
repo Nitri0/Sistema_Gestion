@@ -49,8 +49,8 @@ class AdministradorUsuariosController extends Controller
                           '\App\Http\Controllers\EtapasController'                  =>'tipo_proyectos',
                           '\App\Http\Controllers\PlantillasController'              =>'plantillas',
                           '\App\Http\Controllers\RolesController'                   =>'roles',
-                          '\App\Http\Controllers\DominiosController'                =>'dominios',
-                          '\App\Http\Controllers\EmpresasProveedorasController'     =>'empresas_proveedoras',
+                        //  '\App\Http\Controllers\DominiosController'                =>'dominios',
+                        //  '\App\Http\Controllers\EmpresasProveedorasController'     =>'empresas_proveedoras',
                           ];
 
         $nombre_metodos  = $this->configuracion->InfoModulos;
@@ -79,13 +79,14 @@ class AdministradorUsuariosController extends Controller
 
                     array_push($metodos, ['metodo_raw'=>$route->name,
                                           'metodo_process'=>$nombre_metodos[$nombre]['administrador_usuarios'][$route->name][0],
-                                          'metodo_descripcion'=>$nombre_metodos[$nombre]['administrador_usuarios'][$route->name][1]
+                                          'metodo_descripcion'=>$nombre_metodos[$nombre]['administrador_usuarios'][$route->name][1],
+                                          'nombre_metodo' => $nombre,
                                           ]);
                     
                 }
             };
             
-            $permisos[$nombre] = $metodos;
+            $permisos[$nombre_metodos[$nombre]['nombre_menu']] = $metodos;
 //            dd($permisos);
         };
         //dd($permisos);

@@ -1,8 +1,12 @@
 @extends('base-admin')
 
+@section('js')
+    <script src="{{ asset('/js/controllers/grupo_etapas.js') }}"></script>
+@endsection
+
 @section('content')
 
-<div id="page-container" class="fade page-sidebar-fixed page-header-fixed">
+<div id="page-container" class="fade page-sidebar-fixed page-header-fixed" ng-controller="GrupoEtapasController">
 	
 	@include('layouts/navbar-admin')
 
@@ -10,6 +14,8 @@
 
     @include('alerts.mensaje_error')
     @include('alerts.mensaje_success')
+
+    @include('modals/eliminar')
 	
 	<div id="content" class="content ng-scope">
         <ol class="breadcrumb pull-right">
@@ -76,8 +82,8 @@
                         <div id="[[$index+1]]" class="panel-collapse collapse">
                             <div class="panel-body">
                             	<p>Descripción: [[etapa.descripcion_grupo_etapas]]</p>
-                            	
-                            	<a class="btn btn-list pull-right" href="{{ url( '/tipo_proyectos/[[etapa.id_grupo_etapas]]/destroy' ) }}" data-toggle="tooltip" data-title="Eliminar"><i class="fa fa-trash"></i></a>
+                            	<div ng-init="eliminar_url='/tipo_proyectos/'+[[etapa.id_grupo_etapas]]+'/destroy'"></div>
+                            	<a class="btn btn-list pull-right" ng-click="eliminar(eliminar_url)" href="#eliminar"  data-toggle="modal"><i class="fa fa-trash"></i></a>
                             </div>
                         </div>
                     </div>

@@ -1,12 +1,12 @@
 @extends('base-admin')
 
 @section('js')
-    <script src="{{ asset('/js/controllers/proyecto.js') }}"></script>
+    <script src="{{ asset('/js/controllers/empresa_proveedora.js') }}"></script>
 @endsection
 
 @section('content')
 
-<div id="page-container" class="fade page-sidebar-fixed page-header-fixed" ng-controller="ProyectoController">
+<div id="page-container" class="fade page-sidebar-fixed page-header-fixed" ng-controller="ProveedorController">
 	
 	@include('layouts/navbar-admin')
 
@@ -14,6 +14,8 @@
 
     @include('alerts.mensaje_error')
     @include('alerts.mensaje_success')
+
+    @include('modals/eliminar')
 
     <div ng-init="empresaproveedoras={{$empresas_proveedoras}}"></div>
 	<div ng-init="url='{{url()}}'"></div>
@@ -81,8 +83,8 @@
                         <div id="[[$index+1]]" class="panel-collapse collapse">
                             <div class="panel-body">
                             	<p>Fecha Creación: [[proveedora.fecha_creacion_empresa_proveedora]]</p>
-                            	
-                            	<a class="btn btn-list pull-right" href="{{ url( '/empresas_proveedoras/[[proveedora.id_empresa_proveedora]]/destroy' ) }}" data-toggle="tooltip" data-title="Eliminar"><i class="fa fa-trash"></i></a>
+                            	<div ng-init="eliminar_url='/empresas_proveedoras/'+[[proveedora.id_empresa_proveedora]]+'/destroy'"></div>
+                            	<a class="btn btn-list pull-right" ng-click="eliminar(eliminar_url)" href="#eliminar"  data-toggle="modal"><i class="fa fa-trash"></i></a>
                             </div>
                         </div>
                     </div>

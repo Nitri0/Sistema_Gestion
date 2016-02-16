@@ -46,6 +46,8 @@
 	@yield('css')
 	
 	<link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="{{ asset('/bower_components/angular-ui-switch/angular-ui-switch.min.css') }}"/>
+
 	<link href="{{ asset('/css/style.css') }}" rel="stylesheet">
 
 </head>
@@ -78,6 +80,7 @@
     <script src="{{ asset('/bower_components/ui-select/dist/select.js') }}"></script>
     <script src="{{ asset('/bower_components/angular-sanitize/angular-sanitize.js') }}"></script>
     <script src="{{ asset('/bower_components/angular-resource/angular-resource.min.js') }}"></script>
+    <script src="{{ asset('/bower_components/angular-ui-switch/angular-ui-switch.min.js') }}"></script>
 
 	<!-- bootstrap jasny-->
     <script src="{{ asset('/bower_components/jasny-bootstrap/dist/js/jasny-bootstrap.min.js') }}"></script>
@@ -102,6 +105,7 @@
 		$(document).ready(function() {
 			App.init();
 			Gallery.init();
+			$('#7-dia').modal('show');
 		});
 	</script>
 	

@@ -2,6 +2,7 @@
 
 @section('js')
 	<script src="{{ asset('/bower_components/ckeditor/ckeditor.js') }}"></script>
+	<script src="{{ asset('/js/controllers/plantilla.js') }}"></script>
 @endsection
 
 @section('content')
@@ -38,7 +39,7 @@
 	                <div class="panel panel-inverse">
 	                    <div class="panel-heading-2">
 	                        <div class="panel-heading-btn">
-	                        	
+	                        	<a href="#plantilla-ayuda" class="btn btn-ayuda" data-toggle="modal"><i class="fa fa-question"></i></a>
 	                        </div>
 	                        <h4 class="panel-title">Plantillas</h4>
 	                    </div>
@@ -127,6 +128,8 @@
         </form>
 
     </div><!-- content -->
+
+    @include('modals/ayudas/plantilla')
 	
 </div>
 @endsection

@@ -95,7 +95,7 @@
                         <div id="[[$index+1]]" class="panel-collapse collapse">
                             <div class="panel-body">
                             	<p>Nombre del Cliente: [[proyecto.nombre_cliente]]</p>
-                            	<p ng-show="proyecto.nombre_dominio" >Dominio: <a ng-href="[[proyecto.nombre_dominio]]"> [[proyecto.nombre_dominio]] </a> </p>
+                            	<p ng-show="proyecto.nombre_dominio" >Dominio: <a ng-href="[[proyecto.nombre_dominio]]" target="_blank"> [[proyecto.nombre_dominio]] </a> </p>
                                 <p>Tipo de Proyecto: [[proyecto.nombre_grupo_etapas]]</p>
                                 <div ng-if="proyecto.asunto_avance != null">
                                     <hr>

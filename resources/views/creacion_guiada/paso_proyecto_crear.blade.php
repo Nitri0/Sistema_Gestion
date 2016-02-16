@@ -6,7 +6,7 @@
 
 @section('content')
 
-<div id="page-container" class="fade page-sidebar-fixed page-header-fixed" ng-controller="ProyectoController">
+<div id="page-container" class="fade page-header-fixed" ng-controller="ProyectoController">
 	
 	@include('layouts/navbar-admin')
 
@@ -29,7 +29,7 @@
 		            <div class="panel panel-inverse">
 		                <div class="panel-heading-2">
 		                    <div class="panel-heading-btn">
-		                    	<a href="#ayuda" class="btn btn-ayuda" data-toggle="modal"><i class="fa fa-question"></i></a>
+		                    	<a href="#proyecto-ayuda" class="btn btn-ayuda" data-toggle="modal"><i class="fa fa-question"></i></a>
 		                    </div>
 		                    <h4 class="panel-title">Proyectos</h4>
 		                </div>
@@ -95,10 +95,10 @@
 		            <div class="panel panel-inverse">
 		                <div class="panel-heading-2">
 		                    <div class="panel-heading-btn">
-		                    	<button type="button" class="btn btn-danger btn-eliminar btn-list-custon" ng-show="cantidad>=1" ng-click="eliminar_integrantes()" data-toggle="tooltip" data-title="Eliminar integrante"> 
+		                    	<button type="button" class="btn btn-danger btn-eliminar" ng-show="cantidad>=1" ng-click="eliminar_integrantes()" data-toggle="tooltip" data-title="Eliminar integrante"> 
 									<i class="fa fa-trash-o"></i>
 								</button>
-		                    	<button type="button" class="btn btn-success btn-agregar btn-list-custon" ng-click="agregar_integrantes()" data-toggle="tooltip" data-title="Agregar integrante">
+		                    	<button type="button" class="btn btn-success btn-agregar" ng-click="agregar_integrantes()" data-toggle="tooltip" data-title="Agregar integrante">
 		                    		<i class="fa fa-plus"></i>
 		                    	</button>
 		                    </div>
@@ -189,7 +189,7 @@
 		<div class="navbar navbar-default navbar-fixed-bottom" role="navigation">
 		    <div class="container">
 		        <div class="navbar-header">
-		            <a class="navbar-brand" href="#">Paso 5 Crear Proyecto</a>
+		            <a class="navbar-brand" href="#">Paso 5/5 Crear Proyecto</a>
 		        </div>
 		        <div class="navbar-collapse">
 		            <!-- Right nav -->
@@ -207,4 +207,7 @@
 
 	</form>
 
+	@include('modals/ayudas/proyecto')
+
 </div>
+@endsection

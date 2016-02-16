@@ -6,12 +6,14 @@
 
 @section('content')
 
-<div id="page-container" class="fade page-sidebar-fixed page-header-fixed" ng-controller="SubmitController">
+<div id="page-container" class="fade page-header-fixed" ng-controller="SubmitController">
 	
 	@include('layouts/navbar-admin')
 
 	@include('alerts.mensaje_success')
 	@include('alerts.mensaje_error')
+
+    @include('modals/ayudas/roles')
 
     <form class="form-horizontal" action="{{ url('roles/') }}" method="POST" name="formulario" id="formulario" >
 
@@ -29,7 +31,7 @@
                     <div class="panel panel-inverse">
                         <div class="panel-heading-2">
                             <div class="panel-heading-btn">
-                                <a href="#ayuda" class="btn btn-ayuda" data-toggle="modal"><i class="fa fa-question"></i></a>
+                                <a href="#roles-ayuda" class="btn btn-ayuda" data-toggle="modal"><i class="fa fa-question"></i></a>
                             </div>
                             <h4 class="panel-title">Roles</h4>
                         </div>
@@ -71,7 +73,7 @@
         <div class="navbar navbar-default navbar-fixed-bottom" role="navigation">
             <div class="container">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="#">Paso 4 Roles</a>
+                    <a class="navbar-brand" href="#">Paso 4/5 Roles</a>
                 </div>
                 <div class="navbar-collapse">
                     <!-- Right nav -->
@@ -87,3 +89,4 @@
     </form>
 
 </div>
+@endsection

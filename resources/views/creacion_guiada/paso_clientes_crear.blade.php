@@ -7,10 +7,11 @@
 
 @section('content')
 
-
-<div id="page-container" class="fade page-sidebar-fixed page-header-fixed"  ng-controller="ClienteController">
+<div id="page-container" class="fade page-header-fixed"  ng-controller="ClienteController">
 	
 	@include('layouts/navbar-admin')
+	
+	@include('modals/ayudas/clientes')
 	
 	<form class="form-horizontal" action="{{ url('clientes/') }}" method="POST" name="formulario" id="formulario">
 
@@ -27,7 +28,7 @@
 	                <div class="panel panel-inverse">
 	                    <div class="panel-heading-2">
 	                        <div class="panel-heading-btn">
-	                            <a href="#ayuda" class="btn btn-ayuda" data-toggle="modal"><i class="fa fa-question"></i></a>
+	                            <a href="#cliente-ayuda" class="btn btn-ayuda" data-toggle="modal"><i class="fa fa-question"></i></a>
 	                        </div>
 	                        <h4 class="panel-title">Clientes</h4>
 	                    </div>
@@ -133,7 +134,7 @@
 			<div class="navbar navbar-default navbar-fixed-bottom" role="navigation">
 			  	<div class="container">
 			    	<div class="navbar-header">
-			      		<a class="navbar-brand" href="#">Paso 1 Crear Clientes</a>
+			      		<a class="navbar-brand" href="#">Paso 1/5 Crear Clientes</a>
 			    	</div>
 			    	<div class="navbar-collapse collapse">
 			      		<!-- Right nav -->

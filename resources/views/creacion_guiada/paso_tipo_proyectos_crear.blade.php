@@ -6,12 +6,14 @@
 
 @section('content')
 
-<div id="page-container" class="fade page-sidebar-fixed page-header-fixed" ng-controller="GrupoEtapasController">
+<div id="page-container" class="fade page-header-fixed" ng-controller="GrupoEtapasController">
 	
 	@include('layouts/navbar-admin')
 
 	@include('alerts.mensaje_success')
 	@include('alerts.mensaje_error')
+
+	@include('modals/ayudas/tipo-proyecto')
 
 	<form class="form-horizontal" id="formulario" name="formulario" action="{{ url('tipo_proyectos/') }}" method="POST">
 
@@ -24,7 +26,7 @@
                 		<div class="panel panel-inverse">
 		                    <div class="panel-heading-2">
 		                        <div class="panel-heading-btn">
-		                        	<a href="#ayuda" class="btn btn-ayuda" data-toggle="modal"><i class="fa fa-question"></i></a>
+		                        	<a href="#tipo-proyecto-ayuda" class="btn btn-ayuda" data-toggle="modal"><i class="fa fa-question"></i></a>
 		                        </div>
 		                        <h4 class="panel-title">Tipo de proyectos</h4>
 		                    </div>
@@ -122,7 +124,7 @@
 			<div class="navbar navbar-default navbar-fixed-bottom" role="navigation">
 			  	<div class="container">
 			    	<div class="navbar-header">
-			      		<a class="navbar-brand" href="#">Paso 2 Tipo Proyecto</a>
+			      		<a class="navbar-brand" href="#">Paso 2/5 Tipo Proyecto</a>
 			    	</div>
 			    	<div class="navbar-collapse collapse">
 			      		<!-- Right nav -->
@@ -142,3 +144,4 @@
 	</form>
 
 </div>
+@endsection

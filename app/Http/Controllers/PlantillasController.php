@@ -14,6 +14,7 @@ use Gate;
 
 # ruta de la posicion de las plantillas de email
 define ('SITE_EMAILS', realpath("../resources/views/emails/"));
+define ('FOOTER', "<br><br><p align='center'>Mensaje enviado a través de la plataforma de gestión de proyectos <a href={{url()}}>KeyGestión</a>. Todos los derechos reservados 2016<p>");
 
 class PlantillasController extends Controller {
 
@@ -63,27 +64,29 @@ class PlantillasController extends Controller {
 	}
 
 	public function store(Request $request){
-		//dd($request->all());
 		$request['id_empresa']=Auth::user()->getIdEmpresa();
 		$request['id_usuario']=Auth::user()->id_usuario;
 		$request['nombre_plantilla']= trim($request['nombre_plantilla']);
+		$request['nombre_archivo_plantilla']= Auth::user()->id_usuario.\Carbon\Carbon::now();
 		$plantillas = Plantillas::create($request->all());
-        //$url = "uploads/temp/";
-        $path = SITE_EMAILS."/".$request->nombre_plantilla.".blade.php";
-		file_put_contents($path,$request->raw_data_plantilla);
+        $path = SITE_EMAILS."/".$request->nombre_archivo_plantilla.".blade.php";
+		file_put_contents($path,$request->raw_data_plantilla.FOOTER);
 
 
 		return redirect('/plantillas');
 	}	
 
 	public function update(Request $request, $id){
-		
+		if (!$this->plantillas->nombre_archivo_plantilla){
+			$request['nombre_archivo_plantilla'] = Auth::user()->id_usuario.\Carbon\Carbon::now();
+		};
 		$this->plantillas->fill($request->except('_method'));
 		$this->plantillas->save();
 		//Plantillas::where('id_plantilla',$id)->update($request->except('_method'));
 
-		$path = SITE_EMAILS."/".$request->nombre_plantilla.".blade.php";
-		file_put_contents($path,$request->raw_data_plantilla);
+		$path = SITE_EMAILS."/".$this->plantillas->nombre_archivo_plantilla.".blade.php";
+		dd($this->plantillas->raw_data_plantilla.FOOTER);
+		file_put_contents($path,$this->plantillas->raw_data_plantilla.FOOTER);
 		return redirect('/plantillas');
 	}	
 
@@ -107,13 +110,25 @@ class PlantillasController extends Controller {
 		$mis_datos = Auth::user()->getPerfil();
 		$mi_correo = Auth::user()->correo_usuario;				
 		$data = "<Strong>Aqui va la descripcion del mensaje</strong>";
-		return view('emails.'.$plantilla->nombre_plantilla,compact('proyecto','cliente','data','dominio','mis_datos','mi_correo'));
+		$nombre_plantilla = $plantilla->nombre_archivo_plantilla;
+		if (!$nombre_plantilla){
+			$nombre_plantilla = $plantilla->nombre_plantilla;
+		}
+		if (!file_exists(SITE_EMAILS."/".$nombre_plantilla.".blade.php")){
+			$path = SITE_EMAILS."/".$nombre_plantilla.".blade.php";
+			file_put_contents($path,$this->plantillas->raw_data_plantilla.FOOTER);
+		}
+		return view('emails.'.$nombre_plantilla,compact('proyecto','cliente','data','dominio','mis_datos','mi_correo'));
+
 	}		
 
 	public function destroy($id){
 		$ruta = realpath(dirname("../resources/views/emails/."));
-		if (!file_exists($ruta."/".$this->plantillas->nombre_plantilla.".blade.php")){
+		if (file_exists($ruta."/".$this->plantillas->nombre_plantilla.".blade.php")){
 			unlink($ruta."/".$this->plantillas->nombre_plantilla.".blade.php");
+		}
+		if (file_exists($ruta."/".$this->plantillas->nombre_archivo_plantilla.".blade.php")){
+			unlink($ruta."/".$this->plantillas->nombre_archivo_plantilla.".blade.php");
 		}
 		$this->plantillas->delete();
 		Session::flash("mensaje","Plantilla eliminada exitosamente");

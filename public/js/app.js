@@ -3,9 +3,8 @@
 
 // Application -----------------------------------------------------------------
 
-var coreApp = angular.module('GestionInterna', ['remoteValidation', 'ngSanitize','flow']
-    , function($interpolateProvider){
-
+var coreApp = angular.module('GestionInterna', ['remoteValidation', 'ngSanitize','flow','uiSwitch'], 
+    function($interpolateProvider){
         $interpolateProvider.startSymbol('[[');
         $interpolateProvider.endSymbol(']]');
     });

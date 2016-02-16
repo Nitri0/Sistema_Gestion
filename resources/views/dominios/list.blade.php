@@ -14,6 +14,8 @@
 
     @include('alerts.mensaje_success')
 	@include('alerts.mensaje_error')
+
+    @include('modals/eliminar')
 	
 	<div id="content" class="content ng-scope">
         
@@ -102,10 +104,8 @@
                             <div class="panel-body">
                             	<p>Fecha de creación: [[dominio.fecha_creacion_dominio]]</p>
                             	<p>Espacio Usado: [[dominio.espacio_asignado_dominio | formatSize]]</p>
-                            	<form action="[[url+'/dominios/'+dominio.id_dominio]]" method="post">
-					        		<input type="hidden" name="_method" value="delete">
-									<button type="submit" class="btn btn-list pull-right" data-toggle="tooltip" data-title="Eliminar"><i class="fa fa-trash"></i></button>
-								</form>
+								<div ng-init="eliminar_url='/dominios/'+[[dominio.id_dominio]]+'/destroy'"></div>
+                                <a class="btn btn-list pull-right" ng-click="eliminar(eliminar_url)" href="#eliminar"  data-toggle="modal"><i class="fa fa-trash"></i></a>
                             </div>
                         </div>
                     </div>

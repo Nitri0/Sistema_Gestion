@@ -96,7 +96,13 @@ class ProyectosController extends Controller {
 							->where('habilitado_tipo', 1)
 							->get();
 
-		return view('proyectos.detalle',compact('proyecto','id_proyecto', 'rol', 'etapas','roles','usuarios' ));
+		$progress = number_format( (float)((int) ($proyecto->estatus_proyecto-1) *100 / (int) $etapas->cantidad_etapas), 1,".", "" );
+
+		if ($progress<0){
+			$progress=0.0;
+		}
+		//dd($progress);
+		return view('proyectos.detalle',compact('proyecto','id_proyecto', 'rol', 'etapas','roles','usuarios', 'progress' ));
 
 	}
 
@@ -143,11 +149,19 @@ class ProyectosController extends Controller {
 	}	
 
 	public function destroy($id){
-		$proyecto = Proyectos::find($id);
-		Avances::where('id_proyecto',$proyecto->id_proyecto)->delete();
-		Roles::where('id_proyecto',$proyecto->id_proyecto)->delete();
-		Dominios::where('id_proyecto',$proyecto->id_proyecto)->update(['habilitado_dominio'=>1, 'id_proyecto' => NULL]);
-		$proyecto->delete();
+		$dominios = Dominios::where('id_proyecto',$this->proyecto->id_proyecto);
+		if ($dominios){
+			$dominios->update(['habilitado_dominio'=>1, 'id_proyecto' => NULL]);
+		};
+		$roles = Roles::where('id_proyecto',$this->proyecto->id_proyecto);
+		if($roles){
+			$roles->delete();
+		}
+		$avances = Avances::where('id_proyecto',$this->proyecto->id_proyecto);
+		if($avances){
+			$avances->delete();
+		}
+		$this->proyecto->delete();
 
 		return redirect('/proyectos');
 	}	
@@ -182,8 +196,18 @@ class ProyectosController extends Controller {
 	 * @return Response
 	 */
 	public function agregarIntegrante(Request $request){
-		Roles::firstOrCreate($request->except('redirect'));
-		return redirect($request['redirect']);
+		$integrantes =Roles::where('id_proyecto', $request->id_proyecto)
+						->where('id_usuario', $request->id_usuario)
+						->first();
+		if (!$integrantes){
+			$request['id_empresa'] = Auth::user()->getIdEmpresa();
+			Roles::firstOrCreate($request->except('redirect'));
+			return(json_encode(['success'=>true]));
+			//return redirect($request['redirect']);
+		};
+		Session::flash('mensaje-error','No es posible agregar a una integrante más de una vez en un mismo proyecto.');
+		return(json_encode(['success'=>false]));
+		//return redirect($request['redirect']);
 	}
 
 
@@ -195,8 +219,16 @@ class ProyectosController extends Controller {
 	 */
 	public function eliminarIntegrante($id, Request $request)
 	{
-		Roles::find($id)->delete();
-		return redirect($request['redirect']);
+		$id_empresa = Auth::user()->getIdEmpresa();
+		$usuario = Roles::find($id);
+
+		if ($usuario && Roles::where('id_proyecto', $usuario->id_proyecto)->count()>1){
+			$usuario->delete();
+			//return(json_encode(['success'=>false]));
+			return redirect($request['redirect']);
+		};
+		Session::flash('mensaje-error', 'Un proyecto debe tener por lo menos un integrante.');		
+		return redirect($request['redirect']);		
 	}	
 
 

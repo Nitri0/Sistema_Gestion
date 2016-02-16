@@ -21,7 +21,7 @@
 
 @section('content')
 
-<div id="page-container" class="fade page-sidebar-fixed page-header-fixed" ng-controller="AdminUsuariosController">
+<div id="page-container" class="fade page-header-fixed" ng-controller="AdminUsuariosController">
 	
 	@include('layouts/navbar-admin')
 
@@ -232,7 +232,7 @@
 			<div class="navbar navbar-default navbar-fixed-bottom" role="navigation">
 			  	<div class="container">
 			    	<div class="navbar-header">
-			      		<a class="navbar-brand" href="#">Paso 3 Usuarios</a>
+			      		<a class="navbar-brand" href="#">Paso 3/5 Usuarios</a>
 			    	</div>
 			    	<div class="navbar-collapse">
 			      		<!-- Right nav -->
@@ -249,3 +249,4 @@
         	
 	</div>
 </div>
+@endsection

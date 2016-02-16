@@ -13,6 +13,9 @@
 	@include('layouts/navbar-admin')
 
     @include('layouts/sidebar-admin')
+
+    @include('alerts.mensaje_success')
+	@include('alerts.mensaje_error')
 	
 	<div id="content" class="content ng-scope" ng-controller="SubmitController">
         
@@ -37,7 +40,7 @@
 	                <div class="panel panel-inverse">
 	                    <div class="panel-heading-2">
 	                        <div class="panel-heading-btn">
-	                            <a href="#ayuda" class="btn btn-ayuda" data-toggle="modal"><i class="fa fa-question"></i></a>
+	                            <a href="#cliente-ayuda" class="btn btn-ayuda" data-toggle="modal"><i class="fa fa-question"></i></a>
 	                        </div>
 	                        <h4 class="panel-title">Clientes</h4>
 	                    </div>
@@ -73,11 +76,14 @@
 	                        <div class="form-group">
 	                            <label class="col-md-4 control-label">Identificador de cliente (rif, cedula, etc)</label>
 	                            <div class="col-md-5">
-	                            	<input type="text" ng-remote-validate="{{url('/clientes/valididentificador')}}"  ng-required="true" class="form-control" ng-model="cliente.ci_rif_cliente" name="ci_rif_cliente" >
+	                            	<input type="text" ng-remote-validate="{{url('/clientes/valididentificador')}}" ng-pattern="/^[A-Z]*[0-9]*$/" ng-required="true" class="form-control" ng-model="cliente.ci_rif_cliente" name="ci_rif_cliente" >
 	                            	<div class="error campo-requerido" ng-show="formulario.ci_rif_cliente.$invalid && (formulario.ci_rif_cliente.$touched || submitted)">
 	                                    <small class="error" ng-show="formulario.ci_rif_cliente.$error.required">
 	                                        * Campo requerido.
 	                                    </small>
+	                                    <small class="error" ng-show="formulario.ci_rif_cliente.$error.pattern">
+	                                        * Formato de identificador inválido. Solo debe introducir mayúsculas y números. Ejemplo: J123456789.
+	                                    </small>	                                    
 	                                    <small class="error" ng-show="formulario.ci_rif_cliente.$error.ngRemoteValidate">
 	                                        * Identificador en uso.
 	                                    </small>		                                    
@@ -153,7 +159,7 @@
 
         </form>
 	
-	@include('modals/ayuda')
+	@include('modals/ayudas/clientes')
 
     </div><!-- content -->
 	

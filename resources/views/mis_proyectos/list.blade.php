@@ -91,7 +91,7 @@
                         <div id="[[$index+1]]" class="panel-collapse collapse">
                             <div class="panel-body">
                                 <p ng-show="proyecto.nombre_dominio">Dominio:  
-                                    <a ng-href="[[proyecto.nombre_dominio]]">
+                                    <a ng-href="[[proyecto.nombre_dominio]]" target="_blank">
                                         [[proyecto.nombre_dominio ]]
                                     </a>
                                 </p>

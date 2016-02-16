@@ -24,7 +24,14 @@
 					</div>
 				</form>
 			</li>
-
+			
+			@if(Auth::user()->tiene_permiso('proyectos'))
+			<li class="dropdown">
+				<a href="{{ url('asistente/iniciando')}}" class="dropdown-toggle f-s-14">
+					<i class="fa fa-magic" data-toggle="tooltip" data-placement="bottom" data-title="Creación Guiada"></i>
+				</a>
+			</li>
+			@endif
 
 			<li class="dropdown navbar-user">
 				<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
@@ -37,6 +44,7 @@
 					@if(Auth::user()->isAdmin())
 					<li><a href="{{ url ('/perfil-empresa') }}">Editar perfil Empresa</a></li>
 					@endif
+					<li><a href="#compartir" data-toggle="modal">Díselo a tus amigos...</a></li>
 					<li><a href="{{url('/reset-password')}}"><!-- <i class="fa fa-key"></i> --> Cambiar Contraseña</a></li>
 					<li class="divider"></li>
 					<li><a href="{{ url ('/logout') }}"><i class="fa fa-sign-in"></i> Cerrar sesión</a></li>
@@ -48,3 +56,5 @@
 	<!-- end container-fluid -->
 </div>
 <!-- end #header -->
+
+@include('modals/compartir')

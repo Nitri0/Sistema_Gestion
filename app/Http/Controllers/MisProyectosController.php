@@ -23,6 +23,10 @@ use Illuminate\Http\Request;
 use Gate;
 
 
+define ('SITE_EMAILS', realpath("../resources/views/emails/"));
+define ('FOOTER', "<br><br><p align='center'>Mensaje enviado a través de la plataforma de gestión de proyectos <a href={{url()}}>KeyGestión</a>. Todos los derechos reservados 2016<p>");
+
+
 class MisProyectosController extends Controller {
 
 
@@ -87,13 +91,19 @@ class MisProyectosController extends Controller {
 								->first();
 
 		$user = Auth::user();
+		
+		$progress = number_format( (float)((int) ($proyecto->estatus_proyecto-1) *100 / (int) $etapas->cantidad_etapas), 1,".", "" );
+
+		if ($progress<0){
+			$progress=0.0;
+		}
 		/*
 		if (!$rol){
 			return redirect('mis-proyectos/');
 		}
 		*/
 		
-		return view('mis_proyectos.detalle_proyecto',compact('proyecto','id_proyecto', 'rol', 'etapas' ));
+		return view('mis_proyectos.detalle_proyecto',compact('proyecto','id_proyecto', 'rol', 'etapas','progress' ));
 	}
 
 	//__________________________________ CRUD AVANCES ____________________
@@ -129,7 +139,6 @@ class MisProyectosController extends Controller {
 	}	
 
 	public function postCreateAvancesMisProyectos(Request $request,$id_proyecto){
-		//dd($request->all(), $id_proyecto);
 		$proyecto = Proyectos::where('id_proyecto',$id_proyecto)
 								->where('id_empresa',Auth::user()->getIdEmpresa())
 								->first();
@@ -160,11 +169,19 @@ class MisProyectosController extends Controller {
 									 'mis_datos' =>$mis_datos,
 									 'mi_correo' =>$mi_correo,
 									 'data'    =>$request->descripcion_avance];			
+			$modelo_plantilla = $plantilla->nombre_archivo_plantilla;
+			if (!$plantilla->nombre_archivo_plantilla){
+				$modelo_plantilla = $plantilla->nombre_plantilla;
+			};
+			if (!file_exists(SITE_EMAILS."/".$modelo_plantilla.".blade.php")){
+				$path = SITE_EMAILS."/".$plantilla->nombre_archivo_plantilla.".blade.php";
+				file_put_contents($path,$plantilla->raw_data_plantilla.FOOTER);
+			};			
 			Helper::SendEmail(
 							$cliente->email_cliente,
 							$cliente->persona_contacto_cliente,
 							$request->asunto_avance,
-							'emails.'.$plantilla->nombre_plantilla,
+							'emails.'.$modelo_plantilla,
 							$parametros_plantilla
 							);
 		};
@@ -217,7 +234,16 @@ class MisProyectosController extends Controller {
 		$mis_datos = Auth::user()->getPerfil();
 		$mi_correo = Auth::user()->correo_usuario;		
 		$data = "<Strong>Aqui va la descripcion del mensaje</strong>";
-		return view('emails.'.$plantilla->nombre_plantilla,compact('proyecto','cliente','data','dominio','mis_datos','mi_correo'));
+
+		$modelo_plantilla = $plantilla->nombre_archivo_plantilla;
+		if (!$plantilla->nombre_archivo_plantilla){
+			$modelo_plantilla = $plantilla->nombre_plantilla;
+		};
+		if (!file_exists(SITE_EMAILS."/".$modelo_plantilla.".blade.php")){
+			$path = SITE_EMAILS."/".$modelo_plantilla.".blade.php";
+			file_put_contents($path,$plantilla->raw_data_plantilla.FOOTER);
+		};		
+		return view('emails.'.$modelo_plantilla,compact('proyecto','cliente','data','dominio','mis_datos','mi_correo'));
 	}		
 	//__________________________________END CRUD AVANCES ____________________
 
