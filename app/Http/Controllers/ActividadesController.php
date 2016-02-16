@@ -28,25 +28,43 @@ class ActividadesController extends Controller
         //
 
         $proyectosActivos=Roles::all()->where('id_usuario',Auth::user()->id_usuario);//Auth::user()->id_usuario;
-        
         $proyectosActivos->each(function($proyectosActivos){
             $proyectosActivos->proyectos;
-            $proyectosActivos->proyectos->actividades->each(function($proyectosActivos){
-                $proyectosActivos->subActividades;
-                $proyectosActivos->comentarios;
-                $proyectosActivos->adjuntos;
-            });
-            $proyectosActivos->proyectos->usuarios->each(function($proyectosActivos){
-                $proyectosActivos->usuario->perfil;
-            });
-        });
-        $proyectosActivos=$proyectosActivos->groupBy('id_proyecto');
-        //dd($proyectosActivos);
+            if($proyectosActivos->proyectos!=null){
+                $proyectosActivos->proyectos->actividades->each(function($proyectosActivos){
+                    $proyectosActivos->subActividades;
+                    $proyectosActivos->comentarios;
+                    $proyectosActivos->adjuntos;
+                });
+                $proyectosActivos->proyectos->usuarios->each(function($proyectos){
+                    $proyectos->usuario->perfil;
+                });
+            }
+             /**/
+        });        
         $proyectos=array();
+        $arrayIds=array();
+
         foreach ($proyectosActivos as $key=>$proyecto) {
-            $proyectos[]=$proyecto[0]['proyectos'];
+            $validation=false;
+            //dd($proyecto);
+            foreach ($arrayIds as $id) {
+                if($id == $proyecto->id_proyecto){
+                    $validation=true;
+                    break;
+                }
+            }
+            if($validation){
+                continue;
+            }
+            if($proyecto->proyectos != null){
+                $arrayIds[]=$proyecto->id_proyecto;
+                $proyectos[]=$proyecto->proyectos;
+            }
+            
+
         }
-        
+        //dd($proyectos);
         //dd($proyectos);
             /*$proyectos->actividades->each(function($proyectos){
                 $proyectos->subActividades;

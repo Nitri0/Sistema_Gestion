@@ -15,7 +15,7 @@ class Roles extends Model {
 	public $timestamps = false;
 
 	public function proyectos(){
-		return $this->belongsTo('App\Proyectos','id_proyecto');
+		return $this->belongsTo('App\Proyectos','id_proyecto')->where('habilitado_proyecto', 1);
 	}
 	public function usuario(){
 		return $this->belongsTo('App\User','id_usuario');
