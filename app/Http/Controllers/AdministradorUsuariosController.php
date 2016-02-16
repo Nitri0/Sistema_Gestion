@@ -123,15 +123,10 @@ class AdministradorUsuariosController extends Controller
 
     public function store(Request $request){
         $user = Auth::user();
-        if ($user->tieneSuscripcion()){
-            $cantidad_usuarios = MMEmpresasUsuarios::where('id_empresa', Auth::user()->getIdEmpresa())
-                            ->get()
-                            ->count();
-            if ($cantidad_usuarios >= $user->cantidad_usuarios){
-                Session::flash("upgrade-cuenta",'upgrade-cuenta');
-                return redirect("/admin_usuarios/");
-            }
-        }else{
+        $cantidad_usuarios = MMEmpresasUsuarios::where('id_empresa', Auth::user()->getIdEmpresa())
+                        ->get()
+                        ->count();
+        if (!$user->tieneSuscripcion() || $cantidad_usuarios >= $user->cantidad_usuarios){
             Session::flash("upgrade-cuenta",'upgrade-cuenta');
             return redirect("/admin_usuarios/");
         }
