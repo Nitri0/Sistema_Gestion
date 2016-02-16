@@ -119,6 +119,7 @@ class AdministradorUsuariosController extends Controller
         $cantidad_usuarios = MMEmpresasUsuarios::where('id_empresa', Auth::user()->getIdEmpresa())
                         ->get()
                         ->count();
+        dd($user->tieneSuscripcion() , $cantidad_usuarios, $user->cantidad_usuarios);
         if (!$user->tieneSuscripcion() || $cantidad_usuarios >= $user->cantidad_usuarios){
             Session::flash('upgrade','prueba');
             return redirect('/admin_usuarios');
