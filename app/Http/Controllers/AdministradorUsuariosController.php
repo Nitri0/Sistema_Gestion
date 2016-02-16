@@ -116,8 +116,7 @@ class AdministradorUsuariosController extends Controller
 
     public function create(){
         $user = Auth::user();
-        dd($user->puedeAgregarUsuarios());
-        if ($user->puedeAgregarUsuarios()){
+        if (!$user->puedeAgregarUsuarios()){
             Session::flash('upgrade','prueba');
             return redirect('/admin_usuarios');
         }
