@@ -19,7 +19,7 @@ class Proyectos extends Model {
 								'id_ultimo_avance',
 								'id_usuario',
 								'id_empresa',
-								'lider_proyecto'
+								'lider_proyecto',
 								'proyecto_interno'
 								);
 	protected $dates = ['fecha_creacion_proyecto'];
