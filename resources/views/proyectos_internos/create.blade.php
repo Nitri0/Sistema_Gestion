@@ -40,7 +40,7 @@
 							<div class="form-group">
 		                        <label class="col-md-4 control-label">Lider de proyecto</label>
 		                        <div class="col-md-5">
-		                            <select class="form-control js-example-data-array" ng-model="proyecto.id_cliente" name="lider_proyecto" ng-required="true" oninvalid="setCustomValidity(' ')">
+		                            <select class="form-control js-example-data-array" ng-model="proyecto.lider_proyecto" name="lider_proyecto" ng-required="true" oninvalid="setCustomValidity(' ')">
 		                                <option value="">Seleccione un usuario</option>
 		                                @foreach($clientes as $cliente)
 											<option value="{{$cliente->id_cliente}}">
@@ -48,8 +48,8 @@
 											</option>
 										@endforeach
 		                            </select>
-									<div class="error campo-requerido" ng-show="formulario.id_cliente.$invalid && (formulario.id_cliente.$touched || submitted)">
-		                                <small class="error" ng-show="formulario.id_cliente.$error.required">
+									<div class="error campo-requerido" ng-show="formulario.lider_proyecto.$invalid && (formulario.lider_proyecto.$touched || submitted)">
+		                                <small class="error" ng-show="formulario.lider_proyecto.$error.required">
 		                                    * Campo requerido.
 		                                </small>
 		                        	</div>
