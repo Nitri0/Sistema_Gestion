@@ -43,7 +43,7 @@
 		                            <select class="form-control js-example-data-array" ng-model="proyecto.lider_proyecto" name="lider_proyecto" ng-required="true" oninvalid="setCustomValidity(' ')">
 		                                <option value="">Seleccione un usuario</option>
 		                                @foreach($clientes as $cliente)
-											<option value="{{$cliente->id_cliente}}">
+											<option value="{{$cliente->id_usuario}}">
 												{{ $cliente->fullName() }}
 											</option>
 										@endforeach
