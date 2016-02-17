@@ -22,19 +22,19 @@ coreApp.controller('ActividadController', function ($scope, $log, $http, $window
 		$scope.actividades=$scope.proyectos[id_proyecto].actividades;
 		$scope.id_proyecto=$scope.proyectos[id_proyecto].id_proyecto;
 		$scope.usuarios=$scope.proyectos[id_proyecto].usuarios;
-		console.log($scope.usuarios);
-		console.log($scope.id_proyecto);
+		//console.log($scope.usuarios);
+		//console.log($scope.id_proyecto);
 	}
 	$scope.agregarTarea=function(){
 		/*registra una actividad y la carga en la vista*/		
 		$scope.enviando = false;
 		$scope.snipper  = false;
-		console.log($scope.actividad);
+		//console.log($scope.actividad);
 		/*if (formValid==true && $scope.enviando==false){*/
 			var json = {};
 	    	angular.element('#formulario').serializeArray().map(function(x){json[x.name] = x.value;});
 	    	json.typeActivity=true;
-	    	console.log(json);
+	    	//console.log(json);
 	    	$http({
 			    method: 'POST',
 			    url: $scope.urlAction,
@@ -44,7 +44,7 @@ coreApp.controller('ActividadController', function ($scope, $log, $http, $window
 				$('#myModal').modal('hide');
 				$scope.actividades.push(response.data);
 			  }, function errorCallback(response) {
-			  	console.log("error");
+			  	//console.log("error");
 			  	$scope.snipper  = false;
 			  }); 
 		/*}else{
@@ -57,7 +57,7 @@ coreApp.controller('ActividadController', function ($scope, $log, $http, $window
 			carga los datos de la actividad principal seleccionada en el panel derecho del sistema 
 			el parametro clave indica el valor dentro del array $scope.actividades seleccionado por el usuario 
 		*/
-		console.log($scope.actividades);
+		////console.log($scope.actividades);
 		$scope.arrayKeySelected=clave;
 		$scope.activitySelected.id_actividad=$scope.actividades[clave].id_actividad;
 		$scope.activitySelected.id_proyecto=$scope.actividades[clave].id_proyecto;
@@ -66,13 +66,49 @@ coreApp.controller('ActividadController', function ($scope, $log, $http, $window
 		$scope.activitySelected.adjuntos=$scope.actividades[clave].adjuntos;
 		$scope.activitySelected.subActividades=$scope.actividades[clave].sub_actividades;
 		$scope.activitySelected.comentarios=$scope.actividades[clave].comentarios;
-		console.log($scope.activitySelected);
+		
+	}
+	$scope.destruir=function(tipo,id,seleccionado){
+		var dataArray={
+			'tipo':tipo,
+			'id_actividad':id,
+		};
+		console.log(JSON.stringify(dataArray));
+		$http({
+			    method: 'POST',
+			    url: $scope.urlAction+'/destruir',
+			    data: dataArray,
+			    headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+			}).then(function successCallback(response) {
+				//$('#myModal').modal('hide');
+				//$scope.actividades.push(response.data);
+				$scope.actividades.splice(seleccionado, 1);
+			  }, function errorCallback(response) {
+			  	//console.log("error");
+			  	$scope.snipper  = false;
+			  }); 
 	}
 	$scope.editarActividad=function(clave){
-		console.log($scope.actividades[clave]);
-	}
-	$scope.guardarActividad=function(clave){
-		console.log($scope.actividades[clave]);
+		var json = {};
+    	angular.element('#formulario').serializeArray().map(function(x){json[x.name] = x.value;});
+    	json.typeActivity=true;
+    	console.log(json);
+    	$http({
+		    method: 'POST',
+		    url: $scope.urlAction+'/update',
+		    data: json,
+		    headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+		}).then(function successCallback(response) {
+			$scope.actividades[clave].nombre_actividad=response.data.nombre_actividad;
+			$scope.actividades[clave].descripcion_actividad=response.data.descripcion_actividad;
+			$scope.actividades[clave].fecha_inicio_actividad=new Date(response.data.fecha_inicio_actividad);
+			$scope.actividades[clave].fecha_aproximada_entrega_actividad=new Date(response.data.fecha_aproximada_entrega_actividad);
+		  	$('#myModal').modal('hide');
+		  	$scope.datosActividad(clave);
+		  }, function errorCallback(response) {
+		  	//console.log("error");
+		  	$scope.snipper  = false;
+		  }); 
 	}
 
 	$scope.agregarSubActividad=function(clave){
@@ -90,15 +126,15 @@ coreApp.controller('ActividadController', function ($scope, $log, $http, $window
 			$('#sub_actividad').modal('hide');
 			$scope.actividades[clave]['sub_actividades'].push(response.data);
 		  }, function errorCallback(response) {
-		  	console.log("error");
+		  	//console.log("error");
 		  	$scope.snipper  = false;
 		  }); 
 	}
 	$scope.ediarSubActividad=function(clave){
-		console.log($scope.actividades[clave]);
+		//console.log($scope.actividades[clave]);
 	}
 	$scope.guardarSubActividad=function(clave){
-		console.log($scope.actividades[clave]);
+		//console.log($scope.actividades[clave]);
 	}
 	$scope.comentarActividad=function(clave){
 		/*crea un comentario en la actividad principal*/
@@ -114,7 +150,7 @@ coreApp.controller('ActividadController', function ($scope, $log, $http, $window
 		}).then(function successCallback(response) {
 			$scope.actividades[clave]['comentarios'].push(response.data);
 		  }, function errorCallback(response) {
-		  	console.log("error");
+		  	//console.log("error");
 		  	$scope.snipper  = false;
 		  });
 		$scope.contenido_comentario='';
@@ -143,13 +179,13 @@ coreApp.controller('ActividadController', function ($scope, $log, $http, $window
 		flow.opts.target="actividades/adjuntar";
 		flow.opts.query.activiti_id=$scope.actividades[$scope.arrayKeySelected].id_actividad;
 		flow.on('fileSuccess', function(file,message,chunk){
-		    console.log( JSON.parse(message));
+		    //console.log( JSON.parse(message));
 		    var data=JSON.parse(message);
 		    if(!$scope.findIndArray($scope.actividades[$scope.arrayKeySelected]['adjuntos'],data['id_adjunto'])){
 				$scope.actividades[$scope.arrayKeySelected]['adjuntos'].push(data);
 		    }
 		    
-		    console.log($scope.actividades[$scope.arrayKeySelected]['adjuntos']);
+		    //console.log($scope.actividades[$scope.arrayKeySelected]['adjuntos']);
 		});
 		flow.upload();
 	}
@@ -165,7 +201,7 @@ coreApp.controller('ActividadController', function ($scope, $log, $http, $window
 
 	}
 	$scope.fullName=function(usuario){
-		if(usuario.perfil.nombre_perfil=="" || usuario.perfil.apellido_perfil==""){
+		if(usuario.perfil.nombre_perfil==undefined || usuario.perfil.apellido_perfil==undefined || usuario.perfil.nombre_perfil=="" || usuario.perfil.apellido_perfil==""||usuario.perfil.nombre_perfil==null || usuario.perfil.apellido_perfil==null){
 			return usuario.correo_usuario;
 		}else{
 			return usuario.perfil.nombre_perfil+" "+usuario.perfil.apellido_perfil;
