@@ -14,7 +14,12 @@ class Roles extends Model {
 								'id_empresa');
 	public $timestamps = false;
 
-
+	public function proyectos(){
+		return $this->belongsTo('App\Proyectos','id_proyecto')->where('habilitado_proyecto', 1);
+	}
+	public function usuario(){
+		return $this->belongsTo('App\User','id_usuario');
+	}
 	public function getRolName(){
 		return TipoRoles::find($this->id_tipo_rol)->nombre_tipo_rol;
 	}

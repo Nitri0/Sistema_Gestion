@@ -141,5 +141,11 @@ $router->group(['middleware' => 'auth'], function() {
 	Route::get('asistente/paso5/create', 'CreacionGuiada@pasoProyectosCrear');
 
 	Route::get('asistente/finalizado', 'CreacionGuiada@finalizando');
+	#________________________________ Actiividades _____________________________________
+				#____________ agregar actividades y subactividades _________________
+	Route::any('actividades/adjuntar', 'ActividadesController@adjuntar');
+	Route::post('actividades/comentario', 'ActividadesController@agregarComentario');
+	Route::resource('actividades', 'ActividadesController');
+	
 
 });

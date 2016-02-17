@@ -97,7 +97,7 @@
 	
 	<!-- Thema Frontend JS -->
 	<script src="{{ asset('/thema/frontend/one-page-parallax/assets/js/apps.min.js') }}"></script>
-	
+	<script src="{{ asset('/bower_components/ng-flow/dist/ng-flow-standalone.min.js') }}"></script>
 	<!-- ===================== ANGULAR CONTROLLERS ==============================-->
 	@yield('controller')
 	

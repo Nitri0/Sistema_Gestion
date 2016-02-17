@@ -7,7 +7,6 @@
 	<title>Laravel</title>
 
 	<link href="{{ asset('/css/app.css') }}" rel="stylesheet">
-
 	<!-- Fonts -->
 	<link href='//fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>
 
@@ -77,5 +76,6 @@
 	<script src="{{ asset('/js/app.js') }}"></script>
 	<script src="{{ asset('/js/controllers.js') }}"></script>
 	<script src="{{ asset('/js/filters.js') }}"></script>
+
 </body>
 </html>

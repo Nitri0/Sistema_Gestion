@@ -507,6 +507,113 @@ body ,html{
 .item button:hover {
   background: #FE980F;
 }
+<<<<<<< HEAD
+
+/*actividades*/
+.comentario{
+  background: rgba(26, 191, 152, 0.42);
+  border-radius: 5px;
+  box-shadow: 1px 1px 2px rgba(0,0,0,.2);
+  float: left;
+  margin-bottom: .3em;
+  padding: 7px 15px;
+  width: 90%;
+}
+.comentario:nth-child(2n+1){
+  float: right;
+}
+.comentario .autor{
+  color: #848484;
+  font-size: 12px;
+  text-decoration: underline;
+}
+.crear-comentario{
+  border-radius: 2px;
+  border-radius: 5px;
+  border: 1px solid #CCD0D4;
+  overflow: hidden;
+  text-align: right;
+  width: 100%;
+}
+
+.crear-comentario textarea{
+  border:none;
+  resize: none;
+}
+.crear-comentario button{
+  background-color: white;  
+  border: none;
+  border-top: 1px solid #CCD0D4;
+  padding: .7em 1em;
+  width: 100%;
+}
+.adjunto-content{
+  text-align: center;
+}
+.adjunto{
+  display: inline-block;
+  width: 100px;
+  height: 100px;
+  border-radius: 5px;
+  background-color: #E4E4E4;
+  position: relative;
+  box-shadow: 1px 1px 5px 0px rgba(0,0,0,.3);
+  margin: .5em;
+  overflow: hidden;
+  text-decoration: none;
+}
+.adjunto .referencia_adjunto{
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.adjunto .tipo-adjunto {
+    display: block;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    color: #989898;
+    font-weight: bold;
+    font-size: 20px;
+    text-shadow: 1px 1px 0px rgba(256, 256, 256, 0.7);
+}
+.adjunto .tag-adjunto{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(0,0,0,.5);
+    color: white;
+    padding: .3em;
+    text-align: center;
+}
+.proyectos-actividades-list{
+    display: inline-block;
+    min-height: 95px;
+    min-width: 150px;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 16px;
+    padding: .5em;
+    margin: .3em;
+    box-shadow: 0px 1px 3px rgba(0,0,0,.3);
+    cursor: pointer;
+    position: relative;
+    white-space: normal;
+}
+.proyectos-actividades-list span{
+    position: absolute;
+    left: 50%;
+    width: 100%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
 .home-content p {
   margin-bottom: 60px;
   font-size: 15px;
