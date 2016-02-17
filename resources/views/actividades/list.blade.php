@@ -200,6 +200,8 @@
                                                 </button>
                                                 <a ng-href="{{ url( '/actividades/[[actividad.id_actividad]]/destroy' ) }}" class="btn btn-sm btn-danger pull-right" data-toggle="tooltip" data-title="Eliminar"><i class="fa fa-trash"></i></a>
                                                 -->
+                                                <a ng-click="destruir(false,sub_actividad.id_sub_actividad,clave+1)" class="btn btn-sm btn-danger pull-right" data-toggle="tooltip" data-title="Eliminar"><i class="fa fa-trash"></i></a>
+
                                             </div>
                                         </div>                               
                                     </div> 
@@ -264,14 +266,10 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label">Usuarios </label>
                         <div class="col-md-8">
-                            <select name="usuarios_actividad" id="usuarios_actividad" ng-model="usuarios_actividad" class="form-control" multiple="true">
-                                <option  value="[[usuario.usuario.id_usuario]]" ng-repeat="(clave, usuario) in usuarios">
-                                    <span >
-                                        [[fullName(usuario.usuario)]]
-                                    </span>
-                                    
-                                </option>
-                            </select>  
+                           <select id="usuarios_actividad" multiple="true" ng-model="usuarios_actividad" class="form-control" ng-options="fullName(usuario.usuario) for usuario in usuarios"></select>
+                        </div>
+                        <div>
+                            Selected Colors: [[usuarios_actividad.id_usuario ]]
                         </div>
                         <div style="clear:both;"></div>
                     </div>

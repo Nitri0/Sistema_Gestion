@@ -12,6 +12,7 @@ use App\Actividades;
 use App\SubActividades;
 use App\Comentarios;
 use App\Plantillas;
+use App\UsuariosActividades;
 use App\Adjuntos;
 use Session;
 use Auth;
@@ -85,8 +86,15 @@ class ActividadesController extends Controller
      */
     public function store(Request $request) {
         //
+        //dd($request->all());
         if($request->typeActivity=="true"){
             if($actividad=Actividades::create($request->all())){
+                foreach ($request->usuarios as $usuario){
+                    $usuarioActividad=new UsuariosActividades();
+                    $usuarioActividad->id_usuario=$usuario;
+                    $usuarioActividad->id_actividad=$actividad->id_actividad;
+                    $usuarioActividad->save();
+                }
                 $actividad->subActividades;
                 $actividad->adjuntos;
                 $actividad->comentarios->each(function($actividad){
@@ -152,13 +160,13 @@ class ActividadesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy(request $request){
-        if($request->tipo){
+        if($request->tipo=='true'){
             Adjuntos::where('id_actividad', $request->id_actividad)->delete();
             SubActividades::where('id_actividad', $request->id_actividad)->delete();
             Comentarios::where('id_actividad', $request->id_actividad)->delete();           
             Actividades::where('id_actividad', $request->id_actividad)->delete();
         }else{
-            dd(SubActividades::where('id_actividad', $request->id_actividad)->delete());
+            dd(SubActividades::where('id_sub_actividad', $request->id_actividad)->delete());
         }
         return json_encode(true);
     }

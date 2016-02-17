@@ -8,6 +8,7 @@ coreApp.controller('ActividadController', function ($scope, $log, $http, $window
 	$scope.formulario={};
 	$scope.usuario_actividad={};
 	$scope.urlAction='actividades';
+	$scope.usuarios_actividad=[];
 	$scope.activitySelected={};
 	$scope.arrayKeySelected=0;
 	$scope.id_proyecto=null;
@@ -31,22 +32,33 @@ coreApp.controller('ActividadController', function ($scope, $log, $http, $window
 		$scope.snipper  = false;
 		//console.log($scope.actividad);
 		/*if (formValid==true && $scope.enviando==false){*/
-			var json = {};
-	    	angular.element('#formulario').serializeArray().map(function(x){json[x.name] = x.value;});
-	    	json.typeActivity=true;
-	    	//console.log(json);
-	    	$http({
-			    method: 'POST',
-			    url: $scope.urlAction,
-			    data: json,
-			    headers: {'Content-Type': 'application/x-www-form-urlencoded'}
-			}).then(function successCallback(response) {
-				$('#myModal').modal('hide');
-				$scope.actividades.push(response.data);
-			  }, function errorCallback(response) {
-			  	//console.log("error");
-			  	$scope.snipper  = false;
-			  }); 
+			if($scope.id_proyecto!=null){
+				var json = {};
+		    	angular.element('#formulario').serializeArray().map(function(x){json[x.name] = x.value;});
+		    	json.typeActivity=true;
+		    	//console.log($scope.usuarios_actividad);
+		    	var usuarios={};
+		    	for(usuario in $scope.usuarios_actividad){
+		    		usuarios[usuario]=$scope.usuarios_actividad[usuario]['usuario']['id_usuario'];
+		    	}
+		    	json.usuarios=usuarios;
+		    	//console.log(json);
+		    	$http({
+				    method: 'POST',
+				    url: $scope.urlAction,
+				    data: json,
+				    headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+				}).then(function successCallback(response) {
+					$('#myModal').modal('hide');
+					$scope.actividades.push(response.data);
+				  }, function errorCallback(response) {
+				  	//console.log("error");
+				  	$scope.snipper  = false;
+				  }); 
+			}else{
+				alert('debe seleccionar un proyecto antes de agregar una actividad');
+			}
+			
 		/*}else{
 			$scope.snipper  = false;
 		}*/
@@ -73,16 +85,21 @@ coreApp.controller('ActividadController', function ($scope, $log, $http, $window
 			'tipo':tipo,
 			'id_actividad':id,
 		};
-		console.log(JSON.stringify(dataArray));
+		
+		//console.log(seleccionado+' '+);
+		//$scope.actividades[].splice(seleccionado, 1);
 		$http({
 			    method: 'POST',
 			    url: $scope.urlAction+'/destruir',
 			    data: dataArray,
 			    headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 			}).then(function successCallback(response) {
-				//$('#myModal').modal('hide');
-				//$scope.actividades.push(response.data);
-				$scope.actividades.splice(seleccionado, 1);
+				$('#myModal').modal('hide');
+				if(tipo){
+					$scope.actividades.splice(seleccionado, 1);
+				}else{
+					$scope.actividades[$scope.arrayKeySelected]['sub_actividades'].splice(seleccionado-1, 1);
+				}
 			  }, function errorCallback(response) {
 			  	//console.log("error");
 			  	$scope.snipper  = false;

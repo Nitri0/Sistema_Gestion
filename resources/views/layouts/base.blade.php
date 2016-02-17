@@ -8,7 +8,7 @@
 
 	<link href="{{ asset('/css/app.css') }}" rel="stylesheet">
 	<!-- Fonts -->
-	<link href='//fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>
+	<link href='href="{{ asset('/css/app.css') }}//fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>
 
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -70,7 +70,6 @@
 	
 	<script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>
 	<script src="{{ asset('/bower_components/angular/angular.js') }}"></script>
-	
 
 	<!-- angular Controllers -->
 	<script src="{{ asset('/js/app.js') }}"></script>
