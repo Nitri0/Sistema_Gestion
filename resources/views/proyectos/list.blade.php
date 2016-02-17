@@ -77,9 +77,15 @@
                             			</div>
                             		</div>
 
-                            		<div class="col-sm-3">
-										[[proyecto.nombre_cliente]]
+                                    <div class="col-sm-3" ng-if="!proyecto.proyecto_interno">
+                                        [[proyecto.nombre_cliente]]
+                                    </div> 
+                                    <div class="col-sm-3" ng-if="proyecto.proyecto_interno && proyecto.nombre_lider_proyecto">
+										[[proyecto.nombre_lider_proyecto]]
                             		</div>
+                                    <div class="col-sm-3" ng-if="proyecto.proyecto_interno && !proyecto.nombre_lider_proyecto">
+                                        [[proyecto.correo_usuario]]
+                                    </div>                                    
 
                                     <div class="col-sm-3">
                                         [[proyecto.nombre_etapa]]
@@ -97,7 +103,7 @@
                                 <p ng-if="!proyecto.proyecto_interno">Nombre del Cliente: [[proyecto.nombre_cliente]]</p>
                                 <p ng-if="proyecto.proyecto_interno && proyecto.nombre_lider_proyecto">Lider de proyecto: [[proyecto.nombre_lider_proyecto]]</p>
                             	<p ng-if="proyecto.proyecto_interno && !proyecto.nombre_lider_proyecto">Lider de proyecto: [[proyecto.correo_usuario]]</p>
-                                <p ng-if="proyecto.proyecto_interno" class="btn-success">Proyecto Interno</p>
+                                <p ng-if="proyecto.proyecto_interno" class="btn-info">Proyecto Interno</p>
                             	<p ng-show="proyecto.nombre_dominio" >Dominio: <a ng-href="[[proyecto.nombre_dominio]]" target="_blank"> [[proyecto.nombre_dominio]] </a> </p>
                                 <p>Tipo de Proyecto: [[proyecto.nombre_grupo_etapas]]</p>
                                 <div ng-if="proyecto.asunto_avance != null">
