@@ -82,7 +82,7 @@
                                     <button class="btn btn-success btn-sm">
                                         <i class="fa fa-check-square-o"></i>
                                     </button>
-                                    <a ng-href="{{ url( '/actividades/[[actividad.id_actividad]]/destroy' ) }}" class="btn btn-sm btn-danger pull-right" data-toggle="tooltip" data-title="Eliminar"><i class="fa fa-trash"></i></a>
+                                    <a ng-click="destruir(true,actividad.id_actividad,arrayKeySelected)" class="btn btn-sm btn-danger pull-right" data-toggle="tooltip" data-title="Eliminar"><i class="fa fa-trash"></i></a>
                                 </div>
                             </div>
                         </div> 
@@ -133,7 +133,7 @@
                                 </legend>
                                 <div class="comentario" ng-repeat="(clave, comentario) in activitySelected.comentarios" >
                                     <label class="autor">
-                                        autor   
+                                        [[fullName(comentario.usuario)]]  
                                     </label>
                                     <h3 class="panel-title list-title">
                                         <div class="row">
@@ -224,7 +224,7 @@
                                 </legend>
                                 <div class="comentario" ng-repeat="(clave, comentario) in activitySelected.comentarios" >
                                     <label class="autor">
-                                        autor   
+                                       [[fullName(comentario.usuario)]]
                                     </label>
                                     <h3 class="panel-title list-title">
                                         <div class="row">
@@ -278,7 +278,7 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label">Nombre actividad </label>
                         <div class="col-md-8">
-                            <input type="hidden" ng-model="actividad.id_actividad" name="id_actividad">
+                            <input type="text" ng-hide="true" ng-model="actividad.id_actividad" name="id_actividad">
                             <input type="text" ng-hide="true" ng-model="id_proyecto" name="id_proyecto">
                             <input type="text" only-text class="form-control" ng-model="actividad.nombre_actividad" name="nombre_actividad" ng-required="true" oninvalid="setCustomValidity(' ')">
 
@@ -293,7 +293,7 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label">Descripcion </label>
                         <div class="col-md-8">
-                            <textarea rows="5" text-num-only class="form-control" ng-model="actividad.descripcion_actividad" name="descripcion_actividad" ng-required="true" oninvalid="setCustomValidity(' ')">
+                            <textarea rows="5" class="form-control" ng-model="actividad.descripcion_actividad" name="descripcion_actividad" ng-required="true" oninvalid="setCustomValidity(' ')">
                             </textarea>
 
                             <div class="error campo-requerido" ng-show="formulario.descripcion_actividad.$invalid && (formulario.descripcion_actividad.$touched || submitted)">
@@ -326,7 +326,7 @@
               <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
                 <button type="button" class="btn btn-primary" ng-show="activityType" ng-click="agregarTarea()">Agregar Actividad</button>
-                <button type="button" class="btn btn-primary" ng-hide="activityType" ng-click="saveTask()">Guardar Cambios</button>
+                <button type="button" class="btn btn-primary" ng-hide="activityType" ng-click="editarActividad(arrayKeySelected)">Guardar Cambios</button>
               </div>
             </div>
           </div>

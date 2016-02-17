@@ -146,6 +146,8 @@ $router->group(['middleware' => 'auth'], function() {
 	#________________________________ Actiividades _____________________________________
 				#____________ agregar actividades y subactividades _________________
 	Route::any('actividades/adjuntar', 'ActividadesController@adjuntar');
+	Route::post('actividades/destruir', 'ActividadesController@destroy');
+	Route::post('actividades/update', 'ActividadesController@update');
 	Route::post('actividades/comentario', 'ActividadesController@agregarComentario');
 	Route::resource('actividades', 'ActividadesController');
 	
