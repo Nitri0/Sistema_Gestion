@@ -108,26 +108,12 @@
                                     <tbody>
                                         <tr class="tr-custon"></tr>
                                         <tr class="line-bottom">
-                                            <td class="field">Nombre</td>
-                                            <td>{{ $proyecto->getCliente()->nombre_cliente }}</td>
+                                            <td class="field">Nombre de lider</td>
+                                            <td>{{ $proyecto->lider_proyecto }}</td>
                                         </tr>
                                         <tr class="tr-custon"></tr>
                                         <tr class="divider">
                                             <td colspan="2"></td>
-                                        </tr>
-                                        <tr>
-                                            <td class="field">Telefono 1</td>
-                                            <td><i class="fa fa-mobile fa-lg m-r-5"></i> {{ $proyecto->getCliente()->telefono_cliente}}</td>
-                                        </tr>
-                                        @if($proyecto->getCliente()->telefono_2_cliente)
-                                        <tr>
-                                            <td class="field">Telefono 2</td>
-                                            <td><i class="fa fa-mobile fa-lg m-r-5"></i> {{ $proyecto->getCliente()->telefono_2_cliente}}</td>
-                                        </tr>
-                                        @endif
-                                        <tr>
-                                            <td class="field">Correo Electronico</td>
-                                            <td><a href="email:{{ $proyecto->getCliente()->email_cliente}}">{{ $proyecto->getCliente()->email_cliente}}</a></td>
                                         </tr>
                                     </tbody>
                                 </table>
