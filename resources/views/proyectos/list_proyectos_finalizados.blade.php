@@ -90,7 +90,7 @@
                             	<p>Cliente: [[proyecto.nombre_cliente]]</p>
                             	<p>Fecha de creación: [[proyecto.fecha_creacion_proyecto]]</p>
                             	<p>Tipo de Proyecto: [[proyecto.nombre_grupo_etapas]]</p>
-                                <p ng-show="proyecto.nombre_dominio" >Dominio: <a ng-href="[[proyecto.nombre_dominio]]"> [[proyecto.nombre_dominio]] </a> </p>
+                                <p ng-show="proyecto.nombre_dominio" >Dominio: <a ng-href="[[proyecto.nombre_dominio]]" target="_blank"> [[proyecto.nombre_dominio]] </a> </p>
                             	
                             	<form action="[['/proyectos/reabrir/' + proyecto.id_proyecto]]" method="post">
 					        		<div class="row">

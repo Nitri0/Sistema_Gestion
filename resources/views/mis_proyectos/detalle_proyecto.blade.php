@@ -60,7 +60,7 @@
                                     @if($proyecto->getNombreDominio() != "No asignado")
                                     <tr>
                                         <td class="field">Dominio</td>
-                                        <td><a href="{{ $proyecto->getNombreDominio() }}" target="_blank" href="#">{{ $proyecto->getNombreDominio() }}</a></td>
+                                        <td><a href="{{ $proyecto->getNombreDominio() }}" target="_blank">{{ $proyecto->getNombreDominio() }}</a></td>
                                     </tr>
                                     @endif
                                 </tbody>
@@ -168,6 +168,17 @@
             </div>
         </div>
 
+        <br>
+        <div class="stepwizard">
+            <div class="stepwizard-row">
+                @foreach($etapas->getEtapas() as $etapa)
+                    <div class="stepwizard-step">
+                        <button type="button" class="btn btn-circle-time" di-timesabled="disabled"  data-toggle="tooltip" data-title="{{$etapa->nombre_etapa}}"></button>
+                        <p>{{$etapa->numero_orden_etapa}}</p>
+                    </div> 
+                @endforeach
+            </div>
+        </div>
         <br>
         
         <div class="row">
