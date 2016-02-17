@@ -40,14 +40,12 @@ class ActividadesController extends Controller
                     $proyectos->usuario->perfil;
                 });
             }
-             /**/
         });        
         $proyectos=array();
         $arrayIds=array();
 
         foreach ($proyectosActivos as $key=>$proyecto) {
             $validation=false;
-            //dd($proyecto);
             foreach ($arrayIds as $id) {
                 if($id == $proyecto->id_proyecto){
                     $validation=true;
@@ -61,25 +59,7 @@ class ActividadesController extends Controller
                 $arrayIds[]=$proyecto->id_proyecto;
                 $proyectos[]=$proyecto->proyectos;
             }
-            
-
         }
-        //dd($proyectos);
-        //dd($proyectos);
-            /*$proyectos->actividades->each(function($proyectos){
-                $proyectos->subActividades;
-                $proyectos->comentarios;
-                $proyectos->adjuntos;
-            });
-            $proyectos->usuarios->each(function($proyectos){
-                $proyectos->usuario->perfil;
-            });*/
-        /*$actividades= Actividades::all();
-        $actividades->each(function($actividades){
-            $actividades->subActividades;
-            $actividades->comentarios;
-            $actividades->adjuntos;
-        });*/
         return view('actividades.list',array('proyectos'=>json_encode($proyectos)));
     }
 

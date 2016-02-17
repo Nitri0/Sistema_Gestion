@@ -164,4 +164,11 @@ coreApp.controller('ActividadController', function ($scope, $log, $http, $window
 		return false;
 
 	}
+	$scope.fullName=function(usuario){
+		if(usuario.perfil.nombre_perfil=="" || usuario.perfil.apellido_perfil==""){
+			return usuario.correo_usuario;
+		}else{
+			return usuario.perfil.nombre_perfil+" "+usuario.perfil.apellido_perfil;
+		}
+	}
 });

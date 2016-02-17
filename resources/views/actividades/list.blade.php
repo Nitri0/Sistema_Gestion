@@ -210,7 +210,7 @@
                         <div role="tabpanel" class="tab-pane" id="adjuntos">
                             <fieldset class="adjunto-content">
                                 <legend>adjuntos</legend>
-                                <a href="" ng-repeat="(clave, adjunto) in activitySelected.adjuntos" class="adjunto">
+                                <a href="../public/adjuntos/[[adjunto.url_adjunto]]" target="_blank" ng-repeat="(clave, adjunto) in activitySelected.adjuntos" class="adjunto">
                                     <div class="referencia_adjunto" ng-if="adjunto.tipo_adjunto == 'jpg' || adjunto.tipo_adjunto == 'png'" style="background-image:url('../public/adjuntos/[[adjunto.url_adjunto]]');"></div>
                                     <span class="tipo-adjunto">.[[adjunto.tipo_adjunto | uppercase]] </span>
                                     <span class="tag-adjunto"> #[[adjunto.tag_adjunto]] </span>
@@ -265,7 +265,12 @@
                         <label class="col-md-4 control-label">Usuarios </label>
                         <div class="col-md-8">
                             <select name="usuarios_actividad" id="usuarios_actividad" ng-model="usuarios_actividad" class="form-control" multiple="true">
-                                <option value="[[usuario.usuario.id_usuario]]" ng-repeat="(clave, usuario) in usuarios">[[usuario.usuario.perfil.nombre_perfil]] [[usuario.usuario.perfil.apellido_perfil]]</option>
+                                <option  value="[[usuario.usuario.id_usuario]]" ng-repeat="(clave, usuario) in usuarios">
+                                    <span >
+                                        [[fullName(usuario.usuario)]]
+                                    </span>
+                                    
+                                </option>
                             </select>  
                         </div>
                         <div style="clear:both;"></div>
