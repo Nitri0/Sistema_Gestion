@@ -75,6 +75,58 @@ class ProyectosController extends Controller {
 		return view('proyectos.create',compact('clientes', 'usuarios', 'roles','grupo_etapas'));
 	}
 
+	public function createProyectoInterno(){
+		$idusuarios = MMEmpresasUsuarios::where('id_empresa', Auth::user()->getIdEmpresa())
+										->get()
+										->pluck('id_usuario')
+										->toArray();
+
+		$usuarios = User::whereIn('id_usuario',$idusuarios)->get();
+		$clientes = $usuarios;
+		$roles = TipoRoles::where('id_empresa',Auth::user()->getIdEmpresa())
+							->where('habilitado_tipo', 1)->get();
+		$grupo_etapas = GrupoEtapas::where('id_empresa', Auth::user()->getIdEmpresa())
+									->where('habilitado_grupo_etapas', 1)
+									->get();
+		return view('proyectos_internos.create',compact('clientes', 'usuarios', 'roles','grupo_etapas'));
+	}
+
+	public function storeProyectoInterno(Request $request){
+		$request['id_usuario'] = Auth::user()->id_usuario;
+		$request['id_empresa'] = Auth::user()->getIdEmpresa();
+		$request['proyecto_interno'] = 1;
+		$proyecto = Proyectos::create($request->all());
+
+		$etapa = GrupoEtapas::find($proyecto->id_grupo_etapas)->getFirstEtapa();
+		if ($request->cantidad>0){
+			foreach (range(0, $request->cantidad-1) as $index) {
+				Roles::create(['id_usuario' => $request['id_usuario'.$index],
+							'id_tipo_rol' => $request['id_rol'.$index],
+							'id_proyecto'=> $proyecto->id_proyecto,
+							'id_empresa'=> Auth::user()->getIdEmpresa()
+							]);
+						};
+		};
+		//dd('prueba1 '.json_encode($etapa));
+		$bot_user = User::where('correo_usuario',"admin@admin.com")->first();
+		Avances::Create([
+						'id_proyecto'=>$proyecto->id_proyecto,
+						'asunto_avance'=>'Iniciando Proyecto',
+						'descripcion_avance'=>'Proyecto creado exitosamente',
+						'id_empresa'=> Auth::user()->getIdEmpresa(),
+						'id_etapa'=>$etapa->id_etapa,
+						'id_usuario'=>$bot_user->id_usuario,
+
+					]);
+		Session::flash('mensaje', 'Proyecto creado exitosamente');
+		$json = [
+				'success'=>true,
+		];
+		return json_encode($json);
+		//return redirect('/proyectos');
+	}
+
+
 	public function edit($id){
 		return view('proyectos.edit', ['proyecto'=>$this->proyecto]);
 	}
@@ -83,9 +135,7 @@ class ProyectosController extends Controller {
 		$rol = Roles::where('id_proyecto',$id_proyecto)->get();
 
 		$proyecto = $this->proyecto;
-		//dd($proyecto);
 		$etapas = GrupoEtapas::find($proyecto->id_grupo_etapas);
-		//->get()->pluck('modulo_excepcion')->toArray();
 		$idusuarios = MMEmpresasUsuarios::where('id_empresa', Auth::user()->getIdEmpresa())
 										->get()
 										->pluck('id_usuario')

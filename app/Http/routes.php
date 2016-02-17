@@ -50,6 +50,8 @@ $router->group(['middleware' => 'auth'], function() {
 										'uses'=>'ProyectosController@eliminarIntegrante'] );
 
 
+	Route::get('proyectos-internos/create', 'ProyectosController@createProyectoInterno');
+	Route::post('proyectos-internos/create', 'ProyectosController@storeProyectoInterno');
 
 					#____________________ cruds ____________________________
 	Route::resource('proyectos', 'ProyectosController');

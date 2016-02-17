@@ -46,6 +46,7 @@
 				<ul class="sub-menu">
 				    <li><a href="{{ url('proyectos') }}">Lista de proyecto</a></li>
 				    <li><a href="{{ url('proyectos/create') }}">Crear proyecto</a></li>
+				    <li><a href="{{ url('proyectos-internos/create') }}">Crear proyecto interno</a></li>
 				    <li><a href="{{ url('proyectos-finalizados') }}">Proyectos inactivos</a></li>
 				</ul>
 			</li>
