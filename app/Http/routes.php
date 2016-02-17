@@ -51,7 +51,7 @@ $router->group(['middleware' => 'auth'], function() {
 
 
 	Route::get('proyectos-internos/create', 'ProyectosController@createProyectoInterno');
-	Route::post('proyectos-internos/create', 'ProyectosController@storeProyectoInterno');
+	Route::post('proyectos-internos', 'ProyectosController@storeProyectoInterno');
 
 					#____________________ cruds ____________________________
 	Route::resource('proyectos', 'ProyectosController');

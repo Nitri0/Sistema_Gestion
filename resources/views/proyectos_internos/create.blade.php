@@ -12,7 +12,7 @@
 
     @include('layouts/sidebar-admin')
 
-    <div ng-init=" urlAction='{{ url('proyectos/') }}'"></div>
+    <div ng-init=" urlAction='{{ url('proyectos-internos/') }}'"></div>
 	<div ng-init="urlRedirect='{{ url('proyectos') }}'"></div>
     <form class="form-horizontal" name="formulario" id="formulario" action="[[urlAction]]" method="POST">	
 	
