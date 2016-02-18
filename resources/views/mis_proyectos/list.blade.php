@@ -19,7 +19,7 @@
 
         <h1 class="page-header">Mis Proyectos </h1>
 
-        <div ng-init="proyectos={{$proyectos}}"></div>
+        <div ng-init='proyectos={{$proyectos}}'></div>
         <div ng-init="url='{{url()}}'"></div>
         
         <div class="row">
