@@ -12,6 +12,7 @@ coreApp.controller('PlantillasController', function ($scope, $log, $http, $windo
 	        var json = {};
     		angular.element('#formulario').serializeArray().map(function(x){json[x.name] = x.value;});
     		json['raw_data_plantilla'] = $scope.plantilla.raw_data_plantilla.replace('&gt;','>');
+    		json['raw_data_plantilla'] = $scope.plantilla.raw_data_plantilla.replace('"',"'");
     		$scope.enviando = true;
 			$http({
 			    method: 'POST',

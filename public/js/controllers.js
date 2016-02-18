@@ -15,7 +15,8 @@ coreApp.controller('AvanceController', function ($scope, $log, $http, $window) {
 		if (formValid==true && $scope.enviando==false){
 	        var json = {};
     		angular.element('#formulario').serializeArray().map(function(x){json[x.name] = x.value;});
-    		json['descripcion_avance'] = $scope.avance.descripcion_avance.replace('&gt;','>');
+    		json['raw_data_plantilla'] = $scope.plantilla.raw_data_plantilla.replace('&gt;','>');
+    		json['raw_data_plantilla'] = $scope.plantilla.raw_data_plantilla.replace('"',"'");
     		$scope.enviando = true;
 			$http({
 			    method: 'POST',
