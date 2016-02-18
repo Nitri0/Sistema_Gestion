@@ -29,7 +29,7 @@
         
         <h1 class="page-header">Todos los proyectos </h1>
 
-		<div ng-init='proyectos={{$proyectos}}'></div>
+		<div ng-init="proyectos={{$proyectos}}"></div>
 
         <div class="row">
             <div class="col-12">
