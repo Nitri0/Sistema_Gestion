@@ -10,9 +10,10 @@ coreApp.controller('PlantillasController', function ($scope, $log, $http, $windo
 		$scope.snipper = true;
 		if (formValid==true && $scope.enviando==false){
 	        var json = {};
+    		$scope.plantilla.raw_data_plantilla = $scope.plantilla.raw_data_plantilla.replace('&gt;','>');
+    		$scope.plantilla.raw_data_plantilla = $scope.plantilla.raw_data_plantilla.replace('&quot;','&#39;');
     		angular.element('#formulario').serializeArray().map(function(x){json[x.name] = x.value;});
-    		json['raw_data_plantilla'] = $scope.plantilla.raw_data_plantilla.replace('&gt;','>');
-    		json['raw_data_plantilla'] = $scope.plantilla.raw_data_plantilla.replace('"',"'");
+    		json['raw_data_plantilla'] = $scope.plantilla.raw_data_plantilla;
     		$scope.enviando = true;
 			$http({
 			    method: 'POST',
