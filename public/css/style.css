@@ -455,6 +455,17 @@ body ,html{
   background-color: #64B6F4;
 }
 
+.item h3 {
+  color: #B4B1AB;
+  font-size: 28px;
+  margin-top: 115px;
+}
+
+.title-modal{
+  color: #B4B1AB;
+  font-size: 28px;
+}
+
 @media (max-width: 1200px){
   .content.has-bg .content-bg img {
     max-height: none;
@@ -645,6 +656,19 @@ p {
   bottom: -10px;
   left: 2px;
   content: " ";
-  border-right-color: #f7f7f7;
+  border-right-color: #fff;
   border-left-width: 0;
+}
+.popover-title {
+  padding: 8px 14px;
+  margin: 0;
+  font-size: 14px;
+  background-color: #FCFCFC;
+  border-bottom: 1px solid #EDEDE4;
+  border-radius: 5px 5px 0 0;
+}
+.btn-cerrar-paseo{
+  position: absolute;
+  right: 0;
+  top: -1px;
 }
