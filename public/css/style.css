@@ -631,3 +631,20 @@ p {
   left: 0;
   margin: auto;
 }
+/**/
+
+.popover.right>.arrow {
+  top: 50%;
+  left: -11px;
+  margin-top: -11px;
+  border-right-color: #999;
+  border-right-color: rgba(0,0,0,.18);
+  border-left-width: 0;
+}
+.popover.right>.arrow:after {
+  bottom: -10px;
+  left: 2px;
+  content: " ";
+  border-right-color: #f7f7f7;
+  border-left-width: 0;
+}
