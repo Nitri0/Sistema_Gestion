@@ -182,7 +182,6 @@ class ConfiguracionController extends Controller {
 						                    "Guardar",
 						                    "Permite acceso a crear un registro. (Requiere el permiso Crear)",
 						                ],
-,
 						      "createProyectoInterno"  =>  [
 						                    "Crear Proyecto Interno",
 						                    "Permite acceso a la pantalla donde se rellena el formulario de creacion de un registro de proyecto interno",
