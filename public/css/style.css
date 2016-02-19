@@ -642,6 +642,29 @@ p {
   left: 0;
   margin: auto;
 }
+.btn-circle-time-x {
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  padding: 6px 0;
+  font-size: 12px;
+  line-height: 1.428571429;
+  border-radius: 15px;
+  background: #2DD6D6;
+}
+.btn-circle-time-x:after {
+  content: ' ';
+  width: 14px;
+  height: 14px;
+  background: #00acac;
+  border-radius: 50px;
+  position: absolute;
+  top: -41px;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+}
 /**/
 
 .popover.right>.arrow {
