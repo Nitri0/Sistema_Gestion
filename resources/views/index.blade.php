@@ -15,7 +15,7 @@
         <!-- end content-bg -->
         <!-- begin container -->
         <div class="container home-content">
-            <h1>Sistema de Gestión</h1>
+            <h1>Gestiónlist</h1>
             <h3>Organiza tus ideas...</h3>
             <p>
                 Nos ocupamos de como te verán los demás. Creamos para tí un <br />

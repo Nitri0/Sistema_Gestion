@@ -35,7 +35,7 @@
             <!-- begin login-header -->
             <div class="login-header">
                 <div class="brand">
-                    <img class="login-icono" src="{{ asset('/img/logo.png') }}"> Sistema de Gestión
+                    <img class="login-icono" src="{{ asset('/img/logo.png') }}"> Gestiónlist
                     <small> Organiza tus ideas...</small>
                 </div>
                 <div class="icon">
