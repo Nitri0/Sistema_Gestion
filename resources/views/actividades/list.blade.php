@@ -17,7 +17,7 @@
 
 	<div id="content" class="content ng-scope">
 		<div class="row">
-            <div ng-init="initProyectos({{$proyectos}})"></div><!--actividades={{$proyectos}}-->
+            <div ng-init="initProyectos({{$proyectos}},{{Auth::user()->id_usuario}})"></div><!--actividades={{$proyectos}}-->
             <div ng-init="url='{{url()}}'"></div>
             <div class="col-md-12">
                 <div class="panel panel-inverse overflow-hidden custon-list" style="white-space: nowrap;
@@ -48,10 +48,10 @@
 
                 	<br>
                     <div>
-                       <div class="panel panel-inverse overflow-hidden custon-list" ng-repeat="(clave, actividad) in actividades" ng-click="datosActividad(clave)">
+                       <div class="panel panel-inverse overflow-hidden custon-list" ng-repeat="(clave, actividad) in actividades | filter:filterTask" ng-click="datosActividad(actividad.id_actividad)">
                             <div class="panel-heading">
                                 <h3 class="panel-title list-title">
-                                    <a class="accordion-toggle accordion-toggle-styled collapsed" data-toggle="collapse" data-parent="#accordion" href="#[[clave+1]]">
+                                    <a class="accordion-toggle accordion-toggle-styled collapsed" data-toggle="collapse" data-parent="#accordion" href="#[[clave]]">
                                         <i class="fa fa-plus pull-right"></i> 
                                     </a>    
                                 </h3>
@@ -68,9 +68,9 @@
                                     </div>                               
                                 </h3>
                             </div>
-                            <div id="[[clave+1]]" class="panel-collapse collapse">
+                            <div id="[[clave]]" class="panel-collapse collapse">
                                 <div class="panel-body">
-                                    <button class="btn btn-success btn-sm" ng-click="editModal(arrayKeySelected)">
+                                    <button class="btn btn-success btn-sm" ng-click="editModal(actividad.id_actividad)">
                                         <i class="fa fa-pencil"></i>
                                     </button>
                                     <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#adjunto">
@@ -82,7 +82,7 @@
                                     <button class="btn btn-success btn-sm">
                                         <i class="fa fa-check-square-o"></i>
                                     </button>
-                                    <a ng-click="destruir(true,actividad.id_actividad,arrayKeySelected)" class="btn btn-sm btn-danger pull-right" data-toggle="tooltip" data-title="Eliminar"><i class="fa fa-trash"></i></a>
+                                    <a ng-click="destruir(true,actividad.id_actividad)" class="btn btn-sm btn-danger pull-right" data-toggle="tooltip" data-title="Eliminar"><i class="fa fa-trash"></i></a>
                                 </div>
                             </div>
                         </div> 
@@ -113,7 +113,7 @@
                                     </p> 
                                 </div>
                                  <div>
-                                    <button class="btn btn-success btn-sm" ng-click="editModal(arrayKeySelected)">
+                                    <button class="btn btn-success btn-sm" ng-click="editModal(activitySelected.id_actividad)">
                                         <i class="fa fa-pencil"></i>
                                     </button>
                                     <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#adjunto">
@@ -125,6 +125,7 @@
                                     <button class="btn btn-success btn-sm">
                                         <i class="fa fa-check-square-o"></i>
                                     </button>
+
                                 </div>
                             </fieldset>
                             <fieldset>
@@ -162,10 +163,10 @@
                             <fieldset>
                                 <legend>Sub-actividades</legend>
                                 <div class="panel-group">
-                                    <div class="panel panel-inverse overflow-hidden custon-list" ng-repeat="(clave, sub_actividad) in activitySelected.subActividades" >
+                                    <div class="panel panel-inverse overflow-hidden custon-list" ng-repeat="(clave, sub_actividad) in activitySelected.subActividades | filter:filterSubTask" >
                                         <div class="panel-heading">
                                             <h3 class="panel-title list-title">
-                                                <a class="accordion-toggle accordion-toggle-styled collapsed" data-toggle="collapse" data-parent="#accordion" href="#sub_[[clave+1]]">
+                                                <a class="accordion-toggle accordion-toggle-styled collapsed" data-toggle="collapse" data-parent="#accordion" href="#sub_[[clave]]">
                                                     <i class="fa fa-plus pull-right"></i> 
                                                 </a>    
                                             </h3>
@@ -183,24 +184,12 @@
                                                 </div>                               
                                             </h3>
                                         </div>     
-                                        <div id="sub_[[clave+1]]" class="panel-collapse collapse">
+                                        <div id="sub_[[clave]]" class="panel-collapse collapse">
                                             <div class="panel-body">
-                                                <!--
-                                                <button class="btn btn-success btn-sm" ng-click="editModal(arrayKeySelected)">
-                                                    <i class="fa fa-pencil"></i>
-                                                </button>
-                                                <button class="btn btn-success btn-sm">
-                                                    <i class="fa fa-puzzle-piece"></i>
-                                                </button>
-                                                <button class="btn btn-success btn-sm"  data-toggle="modal" data-target="#sub_actividad">
-                                                    <i class="fa fa-thumb-tack"></i>
-                                                </button>
-                                                <button class="btn btn-success btn-sm">
+                                                <button class="btn btn-success btn-sm" ng-click="finishTask(false,sub_actividad.id_sub_actividad)">
                                                     <i class="fa fa-check-square-o"></i>
                                                 </button>
-                                                <a ng-href="{{ url( '/actividades/[[actividad.id_actividad]]/destroy' ) }}" class="btn btn-sm btn-danger pull-right" data-toggle="tooltip" data-title="Eliminar"><i class="fa fa-trash"></i></a>
-                                                -->
-                                                <a ng-click="destruir(false,sub_actividad.id_sub_actividad,clave+1)" class="btn btn-sm btn-danger pull-right" data-toggle="tooltip" data-title="Eliminar"><i class="fa fa-trash"></i></a>
+                                                <a ng-click="destruir(false,sub_actividad.id_sub_actividad)" class="btn btn-sm btn-danger pull-right" data-toggle="tooltip" data-title="Eliminar"><i class="fa fa-trash"></i></a>
 
                                             </div>
                                         </div>                               
@@ -267,9 +256,6 @@
                         <label class="col-md-4 control-label">Usuarios </label>
                         <div class="col-md-8">
                            <select id="usuarios_actividad" multiple="true" ng-model="usuarios_actividad" class="form-control" ng-options="fullName(usuario.usuario) for usuario in usuarios"></select>
-                        </div>
-                        <div>
-                            Selected Colors: [[usuarios_actividad.id_usuario ]]
                         </div>
                         <div style="clear:both;"></div>
                     </div>
@@ -340,6 +326,15 @@
               <div class="modal-body">
                 <form id="formularioNuevo">
                     <div class="form-group">
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">Usuarios </label>
+                            <div class="col-md-8">
+                               <select id="usuarios_actividad" ng-model="sub_actividad.id_usuario" class="form-control" name="id_usuario">
+                                   <option value="[[usuario.id_usuario]]" ng-repeat="usuario in activitySelected.usuarios">[[usuario.correo_usuario]]</option>
+                               </select>
+                            </div>
+                            <div style="clear:both;"></div>
+                        </div>
                         <label class="col-md-4 control-label">Nombre sub-actividad </label>
                         <div class="col-md-8">
                             <input type="hidden" class="form-control" ng-model="sub_actividad.id_actividad" value="[[activitySelected.id_actividad]]" name="id_actividad" ng-model="activitySelected.id" >

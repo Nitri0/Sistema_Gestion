@@ -20,7 +20,7 @@ class Actividades extends Model {
 		'habilitado'
 	);
 	public function usuarios(){
-		return $this->belongsToMany('App\Usuarios','usuarios_actividades','id_actividad');
+		return $this->belongsToMany('App\User','t_usuarios_actividades','id_actividad','id_usuario');
 	}
 	public function subActividades(){
 		return $this->hasMany('App\SubActividades','id_actividad');

@@ -10,13 +10,15 @@ coreApp.controller('ActividadController', function ($scope, $log, $http, $window
 	$scope.urlAction='actividades';
 	$scope.usuarios_actividad=[];
 	$scope.activitySelected={};
+	$scope.sub_actividad={};
 	$scope.arrayKeySelected=0;
+	$scope.usuario=0;
 	$scope.id_proyecto=null;
 	$scope.activityType=true;
-	$scope.initProyectos=function(Proyectos){
+	$scope.initProyectos=function(Proyectos,usuario){
 		/*Carga la lista de actividades apenas inicia el sistema*/
+		$scope.usuario=usuario;
 		$scope.proyectos=Proyectos;
-		
 	}
 	$scope.initActividades=function(id_proyecto){
 		/*Carga la lista de actividades apenas inicia el sistema*/
@@ -64,23 +66,25 @@ coreApp.controller('ActividadController', function ($scope, $log, $http, $window
 		}*/
 		return false;
 	}
-	$scope.datosActividad=function(clave){
+	$scope.datosActividad=function(idActividad){
 		/*
 			carga los datos de la actividad principal seleccionada en el panel derecho del sistema 
 			el parametro clave indica el valor dentro del array $scope.actividades seleccionado por el usuario 
 		*/
 		////console.log($scope.actividades);
+		var clave=$scope.getActivityKey(idActividad);
 		$scope.arrayKeySelected=clave;
 		$scope.activitySelected.id_actividad=$scope.actividades[clave].id_actividad;
 		$scope.activitySelected.id_proyecto=$scope.actividades[clave].id_proyecto;
 		$scope.activitySelected.nombre=$scope.actividades[clave].nombre_actividad;
 		$scope.activitySelected.descripcion=$scope.actividades[clave].descripcion_actividad;
 		$scope.activitySelected.adjuntos=$scope.actividades[clave].adjuntos;
+		$scope.activitySelected.usuarios=$scope.actividades[clave].usuarios;
 		$scope.activitySelected.subActividades=$scope.actividades[clave].sub_actividades;
 		$scope.activitySelected.comentarios=$scope.actividades[clave].comentarios;
 		
 	}
-	$scope.destruir=function(tipo,id,seleccionado){
+	$scope.destruir=function(tipo,id){
 		var dataArray={
 			'tipo':tipo,
 			'id_actividad':id,
@@ -96,9 +100,11 @@ coreApp.controller('ActividadController', function ($scope, $log, $http, $window
 			}).then(function successCallback(response) {
 				$('#myModal').modal('hide');
 				if(tipo){
-					$scope.actividades.splice(seleccionado, 1);
+					var keySubActividad=$scope.getActivityKey(id);
+					$scope.actividades.splice(keySubActividad, 1);
 				}else{
-					$scope.actividades[$scope.arrayKeySelected]['sub_actividades'].splice(seleccionado-1, 1);
+					var keySubActividad=$scope.getSubActivityKey(id);
+					$scope.actividades[$scope.arrayKeySelected]['sub_actividades'].splice(keySubActividad, 1);
 				}
 			  }, function errorCallback(response) {
 			  	//console.log("error");
@@ -106,6 +112,7 @@ coreApp.controller('ActividadController', function ($scope, $log, $http, $window
 			  }); 
 	}
 	$scope.editarActividad=function(clave){
+
 		var json = {};
     	angular.element('#formulario').serializeArray().map(function(x){json[x.name] = x.value;});
     	json.typeActivity=true;
@@ -142,6 +149,7 @@ coreApp.controller('ActividadController', function ($scope, $log, $http, $window
 		}).then(function successCallback(response) {
 			$('#sub_actividad').modal('hide');
 			$scope.actividades[clave]['sub_actividades'].push(response.data);
+			$scope.sub_actividad={};
 		  }, function errorCallback(response) {
 		  	//console.log("error");
 		  	$scope.snipper  = false;
@@ -172,7 +180,8 @@ coreApp.controller('ActividadController', function ($scope, $log, $http, $window
 		  });
 		$scope.contenido_comentario='';
 	}
-	$scope.editModal=function(clave){
+	$scope.editModal=function(idActividad){
+		var clave=$scope.getActivityKey(idActividad);
 		$scope.activityType=false;
 		$scope.tituloModal='Editar actividad';
 		$scope.id_proyecto=$scope.actividades[clave].id_proyecto;
@@ -187,8 +196,41 @@ coreApp.controller('ActividadController', function ($scope, $log, $http, $window
 	$scope.addModal=function(clave){
 		$scope.tituloModal='Agregar actividad';
 		$scope.actividad={};
+		$scope.usuarios_actividad=[];
 		$scope.activityType=true;		
 		$('#myModal').modal('show');
+	}
+	$scope.finishTask=function(tipo, clave){
+		var tarea=[];
+		if(tipo){
+			tarea['tipo_tarea']=tipo;
+			tarea['keyA']=clave;
+			tarea['id_tarea']= $scope.getActivityKey(clave);;
+
+		}else{	
+			var keySubActividad=$scope.getSubActivityKey(clave);
+			tarea['tipo_tarea']=tipo;
+			tarea['keyA']=$scope.arrayKeySelected;
+			tarea['keyB']=keySubActividad;
+			tarea['id_tarea']= $scope.actividades[$scope.arrayKeySelected].sub_actividades[keySubActividad]['id_sub_actividad'];
+		}
+		$http({
+		    method: 'POST',
+		    url: $scope.urlAction+'/finalizartarea',
+		    data: tarea,
+		    headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+		}).then(function successCallback(response) {
+			if(response.data['tipo_tarea']=='true'){
+				$scope.actividades[response.data['keyA']]['estatus_actividad']=1;
+			}else{
+				console.log($scope.actividades);
+				$scope.actividades[response.data['keyA']].sub_actividades[response.data['keyB']]['estatus_sub_actividad']=1;
+			}
+
+		  }, function errorCallback(response) {
+		  	//console.log("error");
+		  	$scope.snipper  = false;
+		  });
 	}
 	$scope.subirAdjuntos=function(flow){
 		flow.id_actividad=$scope.arrayKeySelected;
@@ -222,6 +264,36 @@ coreApp.controller('ActividadController', function ($scope, $log, $http, $window
 			return usuario.correo_usuario;
 		}else{
 			return usuario.perfil.nombre_perfil+" "+usuario.perfil.apellido_perfil;
+		}
+	}
+	$scope.filterSubTask = function(subTarea) {
+	  return (subTarea['estatus_sub_actividad'] != 1 && subTarea['id_usuario']==$scope.usuario);
+	}
+	$scope.filterTask=function(tarea){
+		//console.log(tarea.usuarios);
+		for (keytarea in tarea.usuarios) {
+			if(tarea.usuarios[keytarea]['id_usuario']==$scope.usuario){
+				return true;
+			}
+		};
+		//return (tarea['estatus_actividad'] != 1 && tarea['id_usuario']==$scope.usuario);
+	}
+	$scope.getActivityKey = function(idActividad) {
+		//var clave=0;		
+		for(keyActividad in $scope.actividades){
+			if($scope.actividades[keyActividad]['id_actividad']==idActividad){
+				return keyActividad;
+				break;
+			}
+		}
+	}
+	$scope.getSubActivityKey = function(idSubActividad) {
+		for(keyActividad in $scope.actividades[$scope.arrayKeySelected].sub_actividades){
+			console.log($scope.actividades[$scope.arrayKeySelected].sub_actividades[keyActividad]);
+			if($scope.actividades[$scope.arrayKeySelected].sub_actividades[keyActividad]['id_sub_actividad']==idSubActividad){
+				return keyActividad;
+				break;
+			}
 		}
 	}
 });

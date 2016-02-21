@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class SubActividades extends Model {
 
     protected $table = "t_sub_actividades";
-	protected $primaryKey = "id_sub_actividades";
+	protected $primaryKey = "id_sub_actividad";
 	protected $fillable = array(
 		'nombre_sub_actividad',
 		'descripcion_sub_actividad',
@@ -16,6 +16,7 @@ class SubActividades extends Model {
 		'fecha_inicio_sub_actividad',
 		'fecha_aproximada_entrega_sub_actividad',
 		'fecha_entrega_sub_actividad',
+		'id_usuario',
 		'id_actividad'
 	);
 }

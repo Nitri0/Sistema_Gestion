@@ -146,6 +146,7 @@ $router->group(['middleware' => 'auth'], function() {
 	Route::post('actividades/destruir', 'ActividadesController@destroy');
 	Route::post('actividades/update', 'ActividadesController@update');
 	Route::post('actividades/comentario', 'ActividadesController@agregarComentario');
+	Route::post('actividades/finalizartarea', 'ActividadesController@finalizarTarea');
 	Route::resource('actividades', 'ActividadesController');
 	
 

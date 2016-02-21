@@ -33,6 +33,7 @@ class ActividadesController extends Controller
             $proyectosActivos->proyectos;
             if($proyectosActivos->proyectos!=null){
                 $proyectosActivos->proyectos->actividades->each(function($proyectosActivos){
+                    $proyectosActivos->usuarios;
                     $proyectosActivos->subActividades;                    
                     $proyectosActivos->adjuntos;
                     $proyectosActivos->comentarios->each(function($proyectosActivos){
@@ -89,12 +90,10 @@ class ActividadesController extends Controller
         //dd($request->all());
         if($request->typeActivity=="true"){
             if($actividad=Actividades::create($request->all())){
-                foreach ($request->usuarios as $usuario){
-                    $usuarioActividad=new UsuariosActividades();
-                    $usuarioActividad->id_usuario=$usuario;
-                    $usuarioActividad->id_actividad=$actividad->id_actividad;
-                    $usuarioActividad->save();
+                if(count($request->usuarios)>0){
+                    $actividad->usuarios()->sync($request->usuarios);
                 }
+                $actividad->usuarios;
                 $actividad->subActividades;
                 $actividad->adjuntos;
                 $actividad->comentarios->each(function($actividad){
@@ -103,6 +102,7 @@ class ActividadesController extends Controller
                 return json_encode($actividad);
             }
         }else{
+            //dd($request->all());
             if($subActividad=SubActividades::create($request->all())){
                 return json_encode($subActividad);
             }
@@ -178,6 +178,19 @@ class ActividadesController extends Controller
             return json_encode($comentario);
         }
         //dd($comentario);
+    }
+    public function finalizarTarea(Request $request){
+        //dd($request->all());
+        if($request->tipo_tarea=='true'){
+            $actividad=Actividades::find($request->id_tarea);
+            $actividad->estatus_actividad=1;
+        }else{
+            $actividad=SubActividades::find($request->id_tarea);
+            $actividad->estatus_sub_actividad=1;
+        }
+        if($actividad->save()){
+            return json_encode($request->all());
+        }
     }
     public function adjuntar(request $request){
        
