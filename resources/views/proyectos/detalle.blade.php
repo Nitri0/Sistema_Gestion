@@ -86,7 +86,7 @@
                                     @if($proyecto->getNombreDominio() != "No asignado")
                                     <tr>
                                         <td class="field">Dominio</td>
-                                        <td><a href="{{ $proyecto->getNombreDominio() }}" target="_blank" href="#">{{ $proyecto->getNombreDominio() }}</a></td>
+                                        <td><a href="{{ $proyecto->getNombreDominio() }}" target="_blank">{{ $proyecto->getNombreDominio() }}</a></td>
                                     </tr>
                                     @endif
                                 </tbody>
@@ -256,7 +256,7 @@
         <br>
 
         <div class="row">
-            <div class="col-md-5 col-md-offset-1">
+            <!--<div class="col-md-5 col-md-offset-1">
                 <select class="form-control js-example-data-array">
                     <option value="">Filtrar etapa</option>
                     @foreach($etapas->getEtapas() as $etapa)
@@ -267,14 +267,30 @@
                         @endif
                     @endforeach
                 </select>
-            </div>
-            <div class="col-md-5 col-md-offset">
+            </div>-->
+            <div class="col-md-5 col-md-offset-3">
                 <div class="progress progress-striped active">
                     <div class="progress-bar" style="width: {{$progress}}%; padding-top: 6px;">{{$progress}}%</div>
                 </div>
             </div>
         </div>
-
+        <br>
+        <div class="stepwizard">
+            <div class="stepwizard-row">
+                @foreach($etapas->getEtapas() as $etapa)
+                    <div class="stepwizard-step">
+                        <button type="button" 
+                        @if($etapa->numero_orden_etapa > $proyecto->estatus_proyecto)
+                            class="btn btn-circle-time"
+                        @else
+                            class="btn btn-circle-time-x"
+                        @endif
+                        di-timesabled="disabled"  data-toggle="tooltip" data-title="{{$etapa->nombre_etapa}}"></button>
+                        <p>{{$etapa->numero_orden_etapa}}</p>
+                    </div>
+                @endforeach
+            </div>
+        </div>
         <br>
         
         <div class="row">

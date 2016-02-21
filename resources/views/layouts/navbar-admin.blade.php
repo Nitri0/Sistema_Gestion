@@ -16,7 +16,7 @@
 		<!-- begin header navigation right -->
 		<ul class="nav navbar-nav navbar-right">
 
-			<li>
+			<li id="buscar">
 				<form class="navbar-form full-width">
 					<div class="form-group">
 						<input type="text" class="form-control" placeholder="Buscar" ng-model="opciones.buscador"/>
@@ -45,6 +45,7 @@
 					<li><a href="{{ url ('/perfil-empresa') }}">Editar perfil Empresa</a></li>
 					@endif
 					<li><a href="#compartir" data-toggle="modal">Díselo a tus amigos...</a></li>
+					<li ng-controller="TourController"><a ng-click="tour()">Paseo por Gestión</a></li>
 					<li><a href="{{url('/reset-password')}}"><!-- <i class="fa fa-key"></i> --> Cambiar Contraseña</a></li>
 					<li class="divider"></li>
 					<li><a href="{{ url ('/logout') }}"><i class="fa fa-sign-in"></i> Cerrar sesión</a></li>
@@ -57,4 +58,3 @@
 </div>
 <!-- end #header -->
 
-@include('modals/compartir')

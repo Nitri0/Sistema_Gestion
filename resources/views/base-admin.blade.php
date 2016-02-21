@@ -17,6 +17,8 @@
     <link href="{{ asset('/bower_components/bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet">
 	<!-- bootstrap jasny-->
 	<link href="{{ asset('/bower_components/jasny-bootstrap/dist/css/jasny-bootstrap.min.css') }}" rel="stylesheet" type="text/css">
+	<!-- bootstrap tour -->
+	<link href="{{ asset('/bower_components/bootstrap-tour/build/css/bootstrap-tour.min.css') }}" rel="stylesheet">
 
 	<!-- Fonts -->
 	<!-- DESCOMENTAR PARA PRODUCCION -->
@@ -59,6 +61,8 @@
 
 	<link rel="stylesheet" href="{{ asset('/bower_components/ui-select/dist/select.css') }}">
 	<link rel="stylesheet" href="{{ asset('/bower_components/angular-ui-switch/angular-ui-switch.min.css') }}"/>
+	
+
 
 	<link href="{{ asset('/css/style.css') }}" rel="stylesheet">
 
@@ -78,6 +82,9 @@
 	<div id="page-loader" class="fade in"><span class="spinner"></span></div>
 	
 	@yield('content')
+	
+    @include('modals/compartir')
+    @include('modals/tour/welcome_tour')
 
 	<a href="javascript:;" class="btn btn-icon btn-circle btn-success btn-scroll-to-top fade" data-click="scroll-top"><i class="fa fa-angle-up"></i></a>
 	<!-- end scroll to top btn -->
@@ -99,6 +106,8 @@
     <script src="{{ asset('/js/script.js') }}"></script>
     <script src="{{ asset('/js/controllers.js') }}"></script>
 
+    <script src="{{ asset('/js/controllers/tour.js') }}"></script>
+
     <!-- angular modules -->
     <script src="{{ asset('/bower_components/ngImgCrop/compile/minified/ng-img-crop.js') }}"></script>
     <script src="{{ asset('/bower_components/angular-base64/angular-base64.min.js') }}"></script>
@@ -107,11 +116,12 @@
     <script src="{{ asset('/bower_components/angular-sanitize/angular-sanitize.js') }}"></script>
     <script src="{{ asset('/bower_components/angular-ui-switch/angular-ui-switch.min.js') }}"></script>
 
-
     <!-- bootstrap modules -->
     <script src="{{ asset('/bower_components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
 	<!-- bootstrap jasny-->
     <script src="{{ asset('/bower_components/jasny-bootstrap/dist/js/jasny-bootstrap.min.js') }}"></script>
+	<!-- bootstrap tour -->
+	<script src="{{ asset('/bower_components/bootstrap-tour/build/js/bootstrap-tour.min.js') }}"></script>
 	
 	<!-- Thema JS -->
 	<script src="{{ asset('/thema/admin/html/assets/plugins/slimscroll/jquery.slimscroll.min.js') }}"></script>
@@ -168,6 +178,7 @@
 
     		});
 		});
+		
 	</script>
 	
 </body>
