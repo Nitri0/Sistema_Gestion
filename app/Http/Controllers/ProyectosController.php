@@ -285,6 +285,7 @@ class ProyectosController extends Controller {
 		$user = Auth::user();
 		if ($user){
 			$user->tutorial = false;
+			$user->save();
 			return json_encode(['success'=>true]);
 		};
 		return json_encode(['success'=>false]);
