@@ -61,7 +61,8 @@ class MisProyectosController extends Controller {
 	public function misProyectos(){
 		$user = Auth::user();
 		//FORMA DE LISTAR LAS COLUMNAS ESPECIFICAS COMO UN ARREGLO UNIDIMENCIONAL (SOLO VALUE)
-
+		$tutorial = $user->tutorial;
+		$isadmin = $user->isAdmin();
 		$proyectos = json_encode(\DB::select('CALL p_busquedas(?,?,?)',array('listar_mis_proyectos',$user->id_usuario, $user->getIdEmpresa())));
 		// $proyectos_id = Roles::where('id_usuario',$user->id_usuario)->lists('id_proyecto');
 		// $proyectos = Proyectos::where('habilitado_proyecto',1)
@@ -69,7 +70,7 @@ class MisProyectosController extends Controller {
 		// 						->orderBy('id_avance', 'asc')
 		// 						->paginate(10);
 
-		return view('mis_proyectos.list',compact('proyectos'));
+		return view('mis_proyectos.list',compact('proyectos','tutorial', 'isadmin'));
 	}
 
 
@@ -177,6 +178,8 @@ class MisProyectosController extends Controller {
 				$path = SITE_EMAILS."/".$plantilla->nombre_archivo_plantilla.".blade.php";
 				file_put_contents($path,$plantilla->raw_data_plantilla.FOOTER);
 			};			
+
+			
 			Helper::SendEmail(
 							$cliente->email_cliente,
 							$cliente->persona_contacto_cliente,
