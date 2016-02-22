@@ -12,11 +12,11 @@
 		<ul class="nav">
 			<li class="nav-profile">
 				<div class="image">
-					<a href="keysystemsca.com.ve"><img src="{{ url('/img/ks-logo.png')}}" alt="" /></a>
+					<a href="#"><img src="{{ url('/img/empresa.png')}}" alt="" /></a>
 				</div>
 				<div class="info">
-					Key Systems
-					<small>©Copyright 2015</small>
+					{{auth::user()->empresa}}
+					<small class="text-ellipsis">{{Auth::user()->correo_usuario}}</small>
 				</div>
 			</li>
 		</ul>
