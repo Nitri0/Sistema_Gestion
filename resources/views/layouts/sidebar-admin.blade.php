@@ -15,7 +15,7 @@
 					<a href="#"><img src="{{ url('/img/empresa.png')}}" alt="" /></a>
 				</div>
 				<div class="info">
-					{{auth::user()->empresa}}
+					{{Auth::user()->empresa->nombre_empresa}}
 					<small class="text-ellipsis">{{Auth::user()->correo_usuario}}</small>
 				</div>
 			</li>
