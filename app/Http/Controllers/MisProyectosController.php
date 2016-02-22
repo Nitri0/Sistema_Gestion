@@ -280,7 +280,7 @@ class MisProyectosController extends Controller {
 		if ($user){
 			$user->tutorial = false;
 			$user->save();
-			return json_encode(['success'=>true,);
+			return json_encode(['success'=>true,]);
 		};
 		return json_encode(['success'=>false]);
 	}
