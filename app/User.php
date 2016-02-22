@@ -23,7 +23,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
 	
 
 
-	protected $appends = ['permisos','nombre_empresa'];
+	protected $appends = ['permisos','empresa'];
 
 	public function perfil(){
 		return $this->hasOne('App\Perfil','id_usuario');
@@ -34,8 +34,19 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     }
 
 	public function getNombreEmpresaAttribute(){
+
+		$relacion = MMEmpresasUsuarios::where('id_usuario',$this->id_usuario)->first();
+		if ($relacion){
+			$empresa = Empresas::find($relacion->id_empresa)->first();
+			if($empresa){
+				return $empresa;
+			}
+		};
+		return false;
+
         Empresas::where('id_usuario', $this->id_usuario)
         				->get(['nombre_empresa','rif_empresa']);
+
     }
 
   //   public function getPermisosMenu(){
@@ -125,18 +136,6 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
 
 	}
 
-	public function getEmpresa(){
-		//busqueda si es un usuario Registrado por un administrador (no el usuario principal de la empresa)
-		$relacion = MMEmpresasUsuarios::where('id_usuario',$this->id_usuario)->first();
-		if ($relacion){
-			$empresa = Empresas::find($relacion->id_empresa)->first();
-			if($empresa){
-				return $empresa;
-			}
-		};
-		return false;
-
-	}
 
 	public function getHabiltiadoEmpresa(){
 
