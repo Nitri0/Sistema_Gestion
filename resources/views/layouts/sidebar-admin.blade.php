@@ -15,7 +15,7 @@
 					<a href="keysystemsca.com.ve"><img src="{{ url('/img/ks-logo.png')}}" alt="" /></a>
 				</div>
 				<div class="info">
-					Key Systems
+					{{Auth::user()->empresa->nombre_empresa}}
 					<small>©Copyright 2015</small>
 				</div>
 			</li>
