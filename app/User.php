@@ -39,7 +39,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
 		if ($relacion){
 			$empresa = Empresas::find($relacion->id_empresa)->first();
 			if($empresa){
-				return $empresa;
+				return (string) $empresa;
 			}
 		};
 		return false;
