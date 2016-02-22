@@ -278,7 +278,7 @@ class MisProyectosController extends Controller {
 	public function desactivar_tutorial(Request $request){
 		$user = Auth::user();
 		if ($user){
-			$user->tutorial = false;
+			$user->tutorial = 0;
 			$user->save();
 			return json_encode(['success'=>true,]);
 		};

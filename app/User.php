@@ -125,6 +125,19 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
 
 	}
 
+	public function getEmpresa(){
+		//busqueda si es un usuario Registrado por un administrador (no el usuario principal de la empresa)
+		$relacion = MMEmpresasUsuarios::where('id_usuario',$this->id_usuario)->first();
+		if ($relacion){
+			$empresa = Empresas::find($relacion->id_empresa)->first();
+			if($empresa){
+				return $empresa;
+			}
+		};
+		return false;
+
+	}
+
 	public function getHabiltiadoEmpresa(){
 
 		$relacion = MMEmpresasUsuarios::where('id_usuario',$this->id_usuario)->first();
