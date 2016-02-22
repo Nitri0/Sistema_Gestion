@@ -281,13 +281,4 @@ class ProyectosController extends Controller {
 		return redirect($request['redirect']);		
 	}	
 
-	public function desactivar_tutorial(Request $request){
-		$user = Auth::user();
-		if ($user){
-			$user->tutorial = false;
-			$user->save();
-			return json_encode(['success'=>true]);
-		};
-		return json_encode(['success'=>false]);
-	}
 }

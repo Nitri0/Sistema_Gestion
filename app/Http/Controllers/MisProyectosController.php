@@ -61,8 +61,6 @@ class MisProyectosController extends Controller {
 	public function misProyectos(){
 		$user = Auth::user();
 		//FORMA DE LISTAR LAS COLUMNAS ESPECIFICAS COMO UN ARREGLO UNIDIMENCIONAL (SOLO VALUE)
-		$tutorial = $user->tutorial;
-		$isadmin = $user->isAdmin();
 		$proyectos = json_encode(\DB::select('CALL p_busquedas(?,?,?)',array('listar_mis_proyectos',$user->id_usuario, $user->getIdEmpresa())));
 		// $proyectos_id = Roles::where('id_usuario',$user->id_usuario)->lists('id_proyecto');
 		// $proyectos = Proyectos::where('habilitado_proyecto',1)
@@ -70,7 +68,7 @@ class MisProyectosController extends Controller {
 		// 						->orderBy('id_avance', 'asc')
 		// 						->paginate(10);
 
-		return view('mis_proyectos.list',compact('proyectos','tutorial', 'isadmin'));
+		return view('mis_proyectos.list',compact('proyectos'));
 	}
 
 
@@ -269,6 +267,23 @@ class MisProyectosController extends Controller {
 		return redirect("/mis-proyectos");
 	}
 
+	public function mostrar_tutorial(Request $request){
+		$user = Auth::user();
+		if ($user){
+			return json_encode(['success'=>true, 'tutorial'=>$user->tutorial]);
+		};
+		return json_encode(['success'=>false]);
+	}
+
+	public function desactivar_tutorial(Request $request){
+		$user = Auth::user();
+		if ($user){
+			$user->tutorial = false;
+			$user->save();
+			return json_encode(['success'=>true,);
+		};
+		return json_encode(['success'=>false]);
+	}
 
 }
 
