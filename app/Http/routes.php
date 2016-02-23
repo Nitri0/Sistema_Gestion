@@ -51,6 +51,7 @@ $router->group(['middleware' => 'auth'], function() {
 
 
 
+	Route::get('proyectos/{proyectos}/destroy', 'ProyectosController@destroy');
 					#____________________ cruds ____________________________
 	Route::resource('proyectos', 'ProyectosController');
 
@@ -83,6 +84,7 @@ $router->group(['middleware' => 'auth'], function() {
 #______________________________________ CLIENTES _______________________________________________	
 					#____________________ cruds ____________________________
 	Route::post('/clientes/valididentificador/', 'ClientesController@validRif');
+	Route::get('clientes/{clientes}/destroy', 'ClientesController@destroy');
 	Route::resource('clientes', 'ClientesController');
 
 
@@ -103,6 +105,7 @@ $router->group(['middleware' => 'auth'], function() {
 	Route::get('admin_usuarios/{admin_usuarios}/habilitar', 'AdministradorUsuariosController@habilitar');
 	Route::get('admin_usuarios/{id}/permisos',  ['as'  => 'admin_usuario.editPermisos',
 												'uses'=>'AdministradorUsuariosController@editPermisos']);
+	Route::post('/admin_usuarios/validUser/', 'AdministradorUsuariosController@validUser');	
 	Route::resource('admin_usuarios', 'AdministradorUsuariosController');
 
 #________________________________ ADMINISTRADOR DE EMPRESAS _____________________________________

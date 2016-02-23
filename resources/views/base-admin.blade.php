@@ -156,6 +156,7 @@
 	<script>
 		$(document).ready(function() {
 			App.init();
+			$('#7-dia').modal('show');
 			/*DashboardV2.init(); quitar cuando no se usan elmentos de esta vista*/
 		})
 

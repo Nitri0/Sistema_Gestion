@@ -58,15 +58,15 @@ class Authenticate {
 			return redirect()->guest('/login');
 		}
 
-		if($this->auth->user()->validacionVencimiento() ){
-			//dd('prueba');
+		// if($this->auth->user()->validacionVencimiento() ){
+		// 	//dd('prueba');
 
-			Session::flash('mensaje-7-dias', 'A vencido su periodo de prueba de 7 dias, 
-				para obtener el servicio completo envie un correo con sus datos de contacto
-				a info@keygestion.com.ve y lo antes posible nos estaremos comunicando con usted.');
-			$this->auth->logout();
-			return redirect()->guest('/login');
-		}		
+		// 	Session::flash('mensaje-7-dias', 'A vencido su periodo de prueba de 7 dias, 
+		// 		para obtener el servicio completo envie un correo con sus datos de contacto
+		// 		a info@keygestion.com.ve y lo antes posible nos estaremos comunicando con usted.');
+		// 	$this->auth->logout();
+		// 	return redirect()->guest('/login');
+		// }		
 
 		return $next($request);
 	}
