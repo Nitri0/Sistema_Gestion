@@ -14,8 +14,12 @@ coreApp.controller('AvanceController', function ($scope, $log, $http, $window) {
 		$scope.snipper = true;
 		if (formValid==true && $scope.enviando==false){
 	        var json = {};
+			var re1 = new RegExp('&gt;', 'g');	        
+			var re2 = new RegExp('&quot;', 'g');	        
+    		$scope.avance.descripcion_avance = $scope.avance.descripcion_avance.replace(re1,'>');
+    		$scope.avance.descripcion_avance = $scope.avance.descripcion_avance.replace(re2,'&#39;');
     		angular.element('#formulario').serializeArray().map(function(x){json[x.name] = x.value;});
-    		json['descripcion_avance'] = $scope.avance.descripcion_avance.replace('&gt;','>');
+    		json['descripcion_avance'] = $scope.avance.descripcion_avance;
     		$scope.enviando = true;
 			$http({
 			    method: 'POST',

@@ -53,6 +53,7 @@ $router->group(['middleware' => 'auth'], function() {
 	Route::get('proyectos-internos/create', 'ProyectosController@createProyectoInterno');
 	Route::post('proyectos-internos', 'ProyectosController@storeProyectoInterno');
 
+	Route::get('proyectos/{proyectos}/destroy', 'ProyectosController@destroy');
 					#____________________ cruds ____________________________
 	Route::resource('proyectos', 'ProyectosController');
 
@@ -85,6 +86,7 @@ $router->group(['middleware' => 'auth'], function() {
 #______________________________________ CLIENTES _______________________________________________	
 					#____________________ cruds ____________________________
 	Route::post('/clientes/valididentificador/', 'ClientesController@validRif');
+	Route::get('clientes/{clientes}/destroy', 'ClientesController@destroy');
 	Route::resource('clientes', 'ClientesController');
 
 
