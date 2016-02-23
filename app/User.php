@@ -38,7 +38,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
 		$relacion = MMEmpresasUsuarios::where('id_usuario',$this->id_usuario)->first();
 
 		if ($relacion){
-			$empresa = Empresas::find($relacion->id_empresa)->first();
+			$empresa = Empresas::find($relacion->id_empresa);
 			if($empresa){
 				return $empresa;
 			}

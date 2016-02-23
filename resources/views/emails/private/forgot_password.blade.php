@@ -4,4 +4,4 @@
 <p>Para cualquier pregunta o sugerencia, por favor contactenos a {{$contacto_email}}.</p>
 <br>
 <p>Gracias,</p>
-<p>KeyGestion.</p>
+<p>GestiónList.</p>
