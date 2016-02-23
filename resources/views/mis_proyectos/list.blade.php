@@ -71,11 +71,16 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-sm-3">
-                                        <a href="{{url('/clientes/[[proyecto.id_cliente]]')}}">
-                                            [[proyecto.nombre_cliente | noAsignado]]
-                                        </a>
+
+                                    <div class="col-sm-3" ng-if="!proyecto.proyecto_interno">
+                                        [[proyecto.nombre_cliente]]
+                                    </div> 
+                                    <div class="col-sm-3" ng-if="proyecto.proyecto_interno && proyecto.nombre_lider_proyecto">
+                                        [[proyecto.nombre_lider_proyecto]]
                                     </div>
+                                    <div class="col-sm-3" ng-if="proyecto.proyecto_interno && !proyecto.nombre_lider_proyecto">
+                                        [[proyecto.correo_usuario]]
+                                    </div>                                          
 
                                     <div class="col-sm-4">
                                         [[proyecto.nombre_etapa]]
