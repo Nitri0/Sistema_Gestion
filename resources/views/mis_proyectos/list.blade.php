@@ -132,6 +132,17 @@
             </div>
         </div>
 
+        <section id="do_action" ng-show="!proyectos">
+            <div class="center">
+                <div class="row">
+                    <div class="col-md-12 list-none">
+                        <i class="fa fa-ban"></i>
+                        <h1> No tiene Proyectos Asignados.</h1>
+                    </div>
+                </div>
+            </div>
+        </section>
+
     </div><!-- content -->
 	
 </div>

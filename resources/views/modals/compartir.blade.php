@@ -6,7 +6,7 @@
 			</div>
 			<div class="modal-body">
 				<center>
-					<h3 style="color: #00acac;">¿Te gusta Key Gestión?</h3>
+					<h3 style="color: #00acac;">¿Te gusta Gestiónlist?</h3>
 					<p>Díselo a tus amigos en tu red social favorita.</p>
 				</center>
 			</div>
