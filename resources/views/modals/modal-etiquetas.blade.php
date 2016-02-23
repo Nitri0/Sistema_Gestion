@@ -7,46 +7,59 @@
 			</div>
 			<div class="modal-body">
 				<div class="row">
+				
 					<div class="col-md-4">
-						Etiquetas de data del cliente
-                    	<div class="well">
-                        	<ul>
-                        		<li><h5>$cliente->nombre_cliente</h5></li>
-                        		<li><h5>$cliente->email_cliente</h5></li>
-                        		<li><h5>$cliente->persona_contacto_cliente</h5></li>
-                        		<li><h5>$cliente->telefono_cliente</h5></li>
-                        		<li><h5>$cliente->telefono_2_cliente</h5></li>
-                        		<li><h5>$cliente->direccion_cliente</h5></li>
-                        	</ul>
-                    	</div>
+						<div class="col-md-12">	
+							<h5>Etiquetas de data del cliente</h5>
+							<br>
+						</div>
+						<div class="col-md-12">
+	                    	<div class="list-group">
+						         <a href="javascript:;"
+						            class="list-group-item"
+						            ng-repeat="cliente in clientes"
+						            context-menu="menuCliente">
+						             [[cliente.name]]
+						        </a>
+						    </div>
+		                </div>
+					</div>
+	                
+	                <div class="col-md-4">
+	                	<div class="col-md-12">	
+							<h5>Etiquetas</h5>
+							<br>
+						</div>
+						<div class="col-md-12">
+	                    	<div class="list-group">
+						         <a href="javascript:;"
+						            class="list-group-item"
+						            ng-repeat="etiqueta in etiquetas"
+						            context-menu="menuEtiqueta">
+						             [[etiqueta.name]]
+						        </a>
+						    </div>
+		                </div>
 	                </div>
 
 	                <div class="col-md-4">
-	                	Etiquetas
-                    	<div class="well">
-                        	<ul> Etiquetas de data del Proyecto
-                        		<li><h5>$proyecto->nombre_proyecto</h5></li>
-                        	</ul>
-                        	<ul> Etiquetas de datos del Dominio
-                        		<li><h5>$dominio->nombre_dominio</h5></li>
-                        	</ul>
-                    	</div>
+	                	<div class="col-md-12">	
+							<h5>Etiquetas de Usuario</h5>
+							<br>
+						</div>
+						<div class="col-md-12">
+	                    	<div class="list-group">
+						         <a href="javascript:;"
+						            class="list-group-item"
+						            ng-repeat="usuario in usuarios"
+						            context-menu="menuUsuario">
+						             [[usuario.name]]
+						        </a>
+						    </div>
+		                </div>                       
 	                </div>
 
-	                <div class="col-md-4">
-	                	Etiquetas de datos Propios
-                    	<div class="well">
-                        	<ul> Etiquetas de data del Proyecto
-                        		<li><h5>$mi_correo</h5></li>
-                        		Nombre:
-                        		<li><h5>$mis_datos->fullName()</h5></li>
-                        		<li><h5>$mis_datos->telefono_perfil</h5></li>
-                        		<li><h5>$mis_datos->cedula_perfil</h5></li>
-                        	</ul>
-                    	</div>                        
-	                </div>
-
-	                <div class="col-md-12">
+	                <!--<div class="col-md-12">
                     	<div class="well">
 	                    	<center>
 
@@ -57,7 +70,7 @@
 								<strong>P.D: no olvidar colocar la etiqueta { !! $data !! } (sin espacios) en el lugar donde estará la data que se llenará automaticamente al crear un avance</strong><br><br><br>
 							</center>
 						</div>
-	                </div>
+	                </div>-->
 				
 				</div>
 			</div>

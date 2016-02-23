@@ -114,6 +114,8 @@
     <script src="{{ asset('/bower_components/ui-select/dist/select.js') }}"></script>
     <script src="{{ asset('/bower_components/angular-sanitize/angular-sanitize.js') }}"></script>
     <script src="{{ asset('/bower_components/angular-ui-switch/angular-ui-switch.min.js') }}"></script>
+   	<script src="{{ asset('/bower_components/angular-bootstrap-contextmenu/contextMenu.js') }}"></script>
+   	<script src="{{ asset('/bower_components/angular-clipboard/angular-clipboard.js') }}"></script>
 
     <!-- bootstrap modules -->
     <script src="{{ asset('/bower_components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
