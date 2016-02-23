@@ -50,7 +50,7 @@
 				    <li><a href="{{ url('proyectos') }}">Todos los Proyectos</a></li>
 				    <li><a href="{{ url('proyectos/create') }}">Crear Proyecto</a></li>
 				    <li><a href="{{ url('proyectos-internos/create') }}">Crear Proyecto Interno</a></li>
-				    <li><a href="{{ url('proyectos-finalizados') }}">Proyectos Inactivos</a></li>
+				    <li><a href="{{ url('proyectos-finalizados') }}">Proyectos Finalizados</a></li>
 				</ul>
 			</li>
 			@endif	
@@ -105,8 +105,8 @@
 				    <span>Plantillas</span>
 			    </a>
 				<ul class="sub-menu">
-				    <li><a href="{{ url('plantillas') }}">Mis plantillas</a></li>
-				    <li><a href="{{ url('plantillas/create') }}">Crear plantilla</a></li>
+				    <li><a href="{{ url('plantillas') }}">Mis Plantillas</a></li>
+				    <li><a href="{{ url('plantillas/create') }}">Crear Plantilla</a></li>
 				</ul>
 			</li>
 			@endif

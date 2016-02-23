@@ -28,20 +28,20 @@
                 	<div class="row text-list">
                 		<div class="col-sm-3"> 
                 			<div class="row">
-                				<div class="col-sm-3"><a href="#" ng-click="changeSort('index')">N°</a> </div>
+                				<div class="col-sm-3" align="center">N°</div>
                 				<div class="col-sm-9">
-                        			<a href="#" ng-click="changeSort('nombre_proyecto')">Proyecto</a>
+                        			<a href="#" ng-click="changeSort('nombre_proyecto')"><i class="fa fa-sort"></i> Proyecto</a>
                         		</div>
                 			</div>
                 		</div>
                 		<div class="col-sm-3">
-							<a href="#" ng-click="changeSort('nombre_cliente')">Cliente</a>
+							<a href="#" ng-click="changeSort('nombre_cliente')"><i class="fa fa-sort"></i> Cliente</a>
                 		</div>
                         <div class="col-sm-3">
-                            <a href="#" ng-click="changeSort('fecha_creacion_avance')">Ultimo avance</a>
+                            <a href="#" ng-click="changeSort('fecha_creacion_avance')"><i class="fa fa-sort"></i> Ultimo avance</a>
                         </div>
                 		<div class="col-sm-3">
-							<a href="#" ng-click="changeSort('nombre_etapa')">Estatus</a>
+							<a href="#" ng-click="changeSort('nombre_etapa')"><i class="fa fa-sort"></i> Estatus</a>
                 		</div>
                 	</div>
 

@@ -42,7 +42,7 @@
                 			<div class="row">
                 				<div class="col-sm-2" align="center">N° </div>
                 				<div class="col-sm-10">
-                        			<a href="#" ng-click="changeSort('nombre_tipo_rol')">Nombre de rol</a>
+                        			Nombre
                         		</div>
                 			</div>
                 		</div>
