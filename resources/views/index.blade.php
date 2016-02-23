@@ -19,11 +19,11 @@
             <h3>Organiza tus ideas...</h3>
             <p>
                 Nos ocupamos de como te verán los demás. Creamos para tí un <br />
-                <a href="http://keysystemsca.com.ve/planes-web/">Sitio Web</a> acorde a tus necesidades.
+                <a href="http://keysystemsca.com/planes-web/">Sitio Web</a> acorde a tus necesidades.
                 <br><br>
             <a href="{{ url('/proyectos') }}" class="btn btn-outline">Entrar</a><br />
             <br />
-            <a href="http://keysystemsca.com.ve/">Key Systems</a>
+            Desarrollado por <a href="http://keysystemsca.com/">Key Systems C.A</a>
         </div>
         <!-- end container -->
     </div>

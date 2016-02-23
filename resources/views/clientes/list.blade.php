@@ -40,7 +40,7 @@
                 	<div class="row text-list">
                 		<div class="col-sm-3"> 
                 			<div class="row">
-                				<div class="col-sm-3">N° </div>
+                				<div class="col-sm-3" align="center">N° </div>
                 				<div class="col-sm-9">
                         			Nombre
                         		</div>
@@ -99,7 +99,7 @@
                             <div class="panel-body">
                             	<p>Contacto: [[model.persona_contacto_cliente]]</p>
                             	<p>Dirección: [[model.direccion_cliente]]</p>
-                            	<p>Telefono 2: [[model.telefono_2_cliente]]</p>
+                            	<p ng-show="model.telefono_2_cliente">Telefono 2: [[model.telefono_2_cliente]]</p>
                             	<p>Proyectos:</p>
                                 <ul ng-repeat="proyecto in model.nombre_proyecto">
                                     <li>

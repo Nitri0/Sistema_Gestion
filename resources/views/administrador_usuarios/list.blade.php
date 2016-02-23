@@ -32,18 +32,18 @@
         <div class="row">
             <div class="col-12">
                 <div class="panel-group" id="accordion">
-                    <div class="row text-list">
-                        <div class="col-sm-3"> 
-                            <div class="row">
-                                <div class="col-sm-3">N° </div>
+                    <div class="row text-list">                        
+                        <div class="col-sm-8"> 
+                            <div class="row">                                
+                                <div class="col-sm-1" align="center">N° </div>
+                                <div class="col-sm-2">
+                                    Estatus
+                                </div>                            
                                 <div class="col-sm-9">
                                     Correo Usuario
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-sm-3 center">
-                            Estatus
-                        </div>
+                        </div>                        
                     </div>
 
                     <br>
@@ -61,25 +61,23 @@
                             	<a ng-if="usuario.habilitado_usuario == 0" class="btn btn-list" ng-href="{{ url( '/admin_usuarios/[[usuario.id_usuario]]/habilitar' ) }}" data-toggle="tooltip" data-title="Habilitar"><i class="fa fa-thumbs-o-up"></i></a>
                             </div>
                             <h3 class="panel-title list-title">
-                                <div class="row">
-                                    <div class="col-sm-3"> 
+                                <div class="row">                                    
+                                    <div class="col-sm-8"> 
                                         <div class="row">
-                                            <div class="col-sm-3"> [[$index+1]] </div>
+                                            <div class="col-sm-1"> [[$index+1]] </div>
+                                            <div class="col-sm-2">
+                                                <div class="icon-usuario-habilitado" ng-if="usuario.habilitado_usuario == 1">
+                                                    <i class="fa fa-check-circle"></i>
+                                                </div>
+                                                <div class="icon-usuario-desabilitado" ng-if="usuario.habilitado_usuario == 0">
+                                                    <i class="fa fa-times"></i>
+                                                </div>
+                                            </div>                                            
                                             <div class="col-sm-9">
                                                 [[usuario.correo_usuario]]
                                             </div>
                                         </div>
-                                    </div>
-
-                                    <div class="col-sm-3">
-                                        <div class="icon-usuario-habilitado center" ng-if="usuario.habilitado_usuario == 1">
-                                            <i class="fa fa-check-circle"></i>
-                                        </div>
-                                        <div class="icon-usuario-desabilitado center" ng-if="usuario.habilitado_usuario == 0">
-                                            <i class="fa fa-times"></i>
-                                        </div>
-                                    </div>
-
+                                    </div>                               
                                 </div>                               
                             </h3>
                         </div>

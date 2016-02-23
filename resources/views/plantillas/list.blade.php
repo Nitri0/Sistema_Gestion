@@ -41,8 +41,8 @@
                 	<div class="row text-list">
                 		<div class="col-sm-6"> 
                 			<div class="row">
-                				<div class="col-sm-1">N° </div>
-                				<div class="col-sm-11">
+                				<div class="col-sm-2" align="center">N° </div>
+                				<div class="col-sm-10">
                         			Nombre plantilla
                         		</div>
                 			</div>
@@ -69,8 +69,8 @@
                             	<div class="row">
                             		<div class="col-sm-6"> 
                             			<div class="row">
-                            				<div class="col-sm-1"> [[$index+1]] </div>
-                            				<div class="col-sm-11 text-ellipsis">
+                            				<div class="col-sm-2"> [[$index+1]] </div>
+                            				<div class="col-sm-10 text-ellipsis">
 		                            			[[plantilla.nombre_plantilla]]
 		                            		</div>
                             			</div>

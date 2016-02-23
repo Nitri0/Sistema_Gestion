@@ -28,21 +28,21 @@
                     <div class="row text-list">
                         <div class="col-sm-3"> 
                             <div class="row">
-                                <div class="col-sm-3"><a href="#" ng-click="changeSort('index')">N°</a></div>
+                                <div class="col-sm-3" align="center">N°</div>
                                 <div class="col-sm-9">
-                                    <a href="#" ng-click="changeSort('nombre_proyecto')">Proyecto</a>
+                                    <a href="#" ng-click="changeSort('nombre_proyecto')"><i class="fa fa-sort"></i> Proyecto</a>
                                 </div>
                             </div>
                         </div>
                         <div class="col-sm-3">
-                            <a href="#" ng-click="changeSort('nombre_cliente')">Cliente</a>
+                            <a href="#" ng-click="changeSort('nombre_cliente')"><i class="fa fa-sort"></i>  Cliente</a>
                         </div>
                         <div class="col-sm-3">
-                            <a href="#" ng-click="changeSort('nombre_etapa')">Estatus</a>
+                            <a href="#" ng-click="changeSort('nombre_etapa')"><i class="fa fa-sort"></i>  Estatus</a>
                         </div>
                         <div class="col-sm-2">
                             <center>
-                                <a href="#" ng-click="changeSort('fecha_creacion_avance')">Ultimo avance</a>
+                                <a href="#" ng-click="changeSort('fecha_creacion_avance')"><i class="fa fa-sort"></i> Ultimo avance</a>
                             </center>
                         </div>
                     </div>
@@ -90,18 +90,19 @@
                         </div>
                         <div id="[[$index+1]]" class="panel-collapse collapse">
                             <div class="panel-body">
-                                <p ng-show="proyecto.nombre_dominio">Dominio:  
-                                    <a ng-href="[[proyecto.nombre_dominio]]" target="_blank">
-                                        [[proyecto.nombre_dominio ]]
-                                    </a>
-                                </p>
+                                
+                                <!--
+                                
                                 <p>Fecha de creación: [[proyecto.fecha_creacion_proyecto]] </p>
                                 <p>Rol: [[proyecto.nombre_tipo_rol]]</p>
                                 <p>Tipo de Proyecto: [[proyecto.nombre_grupo_etapas]]</p>
+                                <hr>
+
+                                -->
                                 
                                 <div ng-if="proyecto.asunto_avance != null">
-                                    <hr>
-                                    <p class="center">Ultimo Avance</p>
+                                    
+                                    <p class="center"></p>
                                     <div class="row">
                                         <!-- begin col-12 -->
                                         <div class="col-12 ui-sortable">
@@ -109,7 +110,14 @@
                                             <div class="panel panel-inverse panel-ultimo-avance">
                                                 <div class="panel-heading-3">
                                                     <div class="panel-heading-btn">
-                                                        <p class="fecha-ultimo-avance">[[proyecto.fecha_creacion_avance | DateForHumans]]</p>
+                                                        <p class="fecha-ultimo-avance">
+                                                            <!--[[proyecto.fecha_creacion_avance | DateForHumans]]-->
+                                                            <p ng-show="proyecto.nombre_dominio"><i class="fa fa-globe"></i> Sitio web: 
+                                                                <a ng-href="[[proyecto.nombre_dominio]]" target="_blank">
+                                                                    [[proyecto.nombre_dominio ]]
+                                                                </a>
+                                                            </p>            
+                                                        </p>
                                                     </div>
                                                     <h4 class="panel-title"><img width="40" alt="" src="{{ url('img/user.png') }}"> [[proyecto.nombre_usuario]]</h4>
                                                 </div>
@@ -117,7 +125,7 @@
                                                     <div ng-bind-html="proyecto.descripcion_avance"></div> 
                                                 </div>
                                                 <div class="panel-heading-3">
-                                                    <h4 class="panel-title">Asunto: [[proyecto.asunto_avance]]</h4>
+                                                    <h4 class="panel-title text-ellipsis"><b>Asunto:</b> [[proyecto.asunto_avance]] </h4>
                                                 </div>
                                             </div>
                                         </div>

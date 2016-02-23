@@ -47,10 +47,10 @@
 				    <span>Proyectos</span>
 			    </a>
 				<ul class="sub-menu">
-				    <li><a href="{{ url('proyectos') }}">Lista de proyecto</a></li>
-				    <li><a href="{{ url('proyectos/create') }}">Crear proyecto</a></li>
-				    <li><a href="{{ url('proyectos-internos/create') }}">Crear proyecto interno</a></li>
-				    <li><a href="{{ url('proyectos-finalizados') }}">Proyectos inactivos</a></li>
+				    <li><a href="{{ url('proyectos') }}">Todos los Proyectos</a></li>
+				    <li><a href="{{ url('proyectos/create') }}">Crear Proyecto</a></li>
+				    <li><a href="{{ url('proyectos-internos/create') }}">Crear Proyecto Interno</a></li>
+				    <li><a href="{{ url('proyectos-finalizados') }}">Proyectos Inactivos</a></li>
 				</ul>
 			</li>
 			@endif	
@@ -60,11 +60,11 @@
 				<a href="javascript:;" >
 				    <b class="caret pull-right"></b>
 				    <i class="fa fa-sort-amount-asc"></i>
-				    <span>Tipos de proyectos</span>
+				    <span>Tipos de Proyectos</span>
 			    </a>
 				<ul class="sub-menu">
-				    <li><a href="{{ url('tipo_proyectos') }}">Mis tipo de proyecto</a></li>
-				    <li><a href="{{ url('tipo_proyectos/create') }}">Crear tipo de proyecto</a></li>
+				    <li><a href="{{ url('tipo_proyectos') }}">Mis Tipos de Proyectos</a></li>
+				    <li><a href="{{ url('tipo_proyectos/create') }}">Crear Tipo de Proyectos</a></li>
 				</ul>
 			</li>
 			@endif
@@ -77,8 +77,8 @@
 				    <span>Clientes</span>
 			    </a>
 				<ul class="sub-menu">
-				    <li><a href="{{ url('clientes') }}">Mis clientes</a></li>
-				    <li><a href="{{ url('clientes/create') }}">Crear clientes</a></li>
+				    <li><a href="{{ url('clientes') }}">Mis Clientes</a></li>
+				    <li><a href="{{ url('clientes/create') }}">Crear Clientes</a></li>
 				</ul>
 			</li>
 			@endif
@@ -91,8 +91,8 @@
 				    <span>Roles del Equipo</span>
 			    </a>
 				<ul class="sub-menu">
-				    <li><a href="{{ url('roles') }}">Mis roles</a></li>
-				    <li><a href="{{ url('roles/create') }}">Crear rol de usuario</a></li>
+				    <li><a href="{{ url('roles') }}">Mis Roles</a></li>
+				    <li><a href="{{ url('roles/create') }}">Crear Rol de Usuario</a></li>
 				</ul>
 			</li>
 			@endif
@@ -122,8 +122,8 @@
 				    <li class="has-sub">
 					    <a href="javascript:;"><b class="caret pull-right"></b> Dominios</a>
 					    <ul class="sub-menu">
-					        <li><a href="{{ url('dominios') }}">Mis dominios</a></li>
-					        <li><a href="{{ url('dominios/create') }}">Crear dominio</a></li>
+					        <li><a href="{{ url('dominios') }}">Mis Dominios</a></li>
+					        <li><a href="{{ url('dominios/create') }}">Crear Dominio</a></li>
 					    </ul>
 					</li>
 					@endif
@@ -131,8 +131,8 @@
 					<li class="has-sub">
 					    <a href="javascript:;"><b class="caret pull-right"></b> Proveedores</a>
 					    <ul class="sub-menu">
-					        <li><a href="{{ url('empresas_proveedoras') }}">Mis proveedores</a></li>
-					        <li><a href="{{ url('empresas_proveedoras/create') }}">Crear proveedor</a></li>
+					        <li><a href="{{ url('empresas_proveedoras') }}">Mis Proveedores</a></li>
+					        <li><a href="{{ url('empresas_proveedoras/create') }}">Crear Proveedor</a></li>
 					    </ul>
 					</li>
 					@endif
@@ -148,8 +148,8 @@
 				    <span>Equipo de Trabajo</span>
 			    </a>
 				<ul class="sub-menu">
-				    <li><a href="{{ url('admin_usuarios') }}">Mi equipo</a></li>
-				    <li><a href="{{ url('admin_usuarios/create') }}">Crear usuario</a></li>
+				    <li><a href="{{ url('admin_usuarios') }}">Mi Equipo</a></li>
+				    <li><a href="{{ url('admin_usuarios/create') }}">Crear Usuario</a></li>
 				</ul>
 			</li>
 			@endif
@@ -162,7 +162,7 @@
 				    <span>Empresas</span>
 			    </a>
 				<ul class="sub-menu">
-				    <li><a href="{{ url('admin_empresas') }}">Mis empresas</a></li>
+				    <li><a href="{{ url('admin_empresas') }}">Mis Empresas</a></li>
 				    <li><a href="{{ url('admin_empresas/create') }}">Crear Empresas</a></li>
 				</ul>
 			</li>

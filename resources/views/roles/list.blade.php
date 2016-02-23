@@ -40,8 +40,8 @@
                 	<div class="row text-list">
                 		<div class="col-sm-5"> 
                 			<div class="row">
-                				<div class="col-sm-3">N° </div>
-                				<div class="col-sm-9">
+                				<div class="col-sm-2" align="center">N° </div>
+                				<div class="col-sm-10">
                         			<a href="#" ng-click="changeSort('nombre_tipo_rol')">Nombre de rol</a>
                         		</div>
                 			</div>
@@ -65,8 +65,8 @@
                             	<div class="row">
                             		<div class="col-sm-5"> 
                             			<div class="row">
-                            				<div class="col-sm-3"> [[$index+1]] </div>
-                            				<div class="col-sm-9">
+                            				<div class="col-sm-2"> [[$index+1]] </div>
+                            				<div class="col-sm-10">
 		                            			[[model.nombre_tipo_rol]]
 		                            		</div>
                             			</div>
