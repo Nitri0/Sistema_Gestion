@@ -1,7 +1,8 @@
 // Declare use of strict javascript
 'use strict';
 
-coreApp.controller('TourController', function ($scope, $log, $http, $window) {
+coreApp.controller('TourController', function ($scope, $log, $http, $window, $rootScope) {
+	console.log("TourController");
 	$scope.tour = function(){
 		console.log("init TourController");
 		var tour = new Tour({
@@ -64,4 +65,23 @@ coreApp.controller('TourController', function ($scope, $log, $http, $window) {
 		// Start the tour
 		tour.start(true);
 	};
+
+	$http({
+	  	method: 'POST',
+	  	url: '/mostrar-tutorial'
+	}).then(function successCallback(response) {
+	    if(response.data.tutorial == 1){
+	    	$scope.tour();
+	    	$http({
+			  	method: 'POST',
+			  	url: '/desactivar-tutorial'
+			}).then(function successCallback(response) {
+
+			  	}, function errorCallback(response) {
+
+			 });
+	    }
+	  }, function errorCallback(response) {
+
+	  });
 });

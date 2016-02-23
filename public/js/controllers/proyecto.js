@@ -67,4 +67,5 @@ coreApp.controller('ProyectoController',function($scope, $log, $http, $window) {
 		};
 		return false;
 	};
+
 });

@@ -120,11 +120,11 @@
                                                     </div>
                                                     <h4 class="panel-title"><img width="40" alt="" src="{{ url('img/user.png') }}"> [[proyecto.nombre_usuario]]</h4>
                                                 </div>
-                                                <div class="panel-heading-3">
-                                                    <h4 class="panel-title">Asunto: [[proyecto.asunto_avance]]</h4>
-                                                </div>
                                                 <div class="panel-body">
                                                     <div ng-bind-html="proyecto.descripcion_avance"></div> 
+                                                </div>
+                                                <div class="panel-heading-3">
+                                                    <h4 class="panel-title">Asunto: [[proyecto.asunto_avance]]</h4>
                                                 </div>
                                             </div>
                                         </div>

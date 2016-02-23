@@ -4,7 +4,7 @@
 	<div class="container-fluid">
 		<!-- begin mobile sidebar expand / collapse button -->
 		<div class="navbar-header">
-			<a href="{{ url('/mis-proyectos') }}" class="navbar-brand"><img class="nav-admin-logo" src="{{ url('img/logo.png') }}"> Key Gestión</a>
+			<a href="{{ url('/mis-proyectos') }}" class="navbar-brand"><img class="nav-admin-logo" src="{{ url('img/logo.png') }}"> Gestiónlist</a>
 			<button type="button" class="navbar-toggle" data-click="sidebar-toggled">
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
@@ -25,7 +25,7 @@
 				</form>
 			</li>
 			
-			@if(Auth::user()->tiene_permiso('proyectos'))
+			@if(Auth::user()->isAdmin())
 			<li class="dropdown">
 				<a href="{{ url('asistente/iniciando')}}" class="dropdown-toggle f-s-14">
 					<i class="fa fa-magic" data-toggle="tooltip" data-placement="bottom" data-title="Creación Guiada"></i>
