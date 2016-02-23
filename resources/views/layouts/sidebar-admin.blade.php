@@ -24,13 +24,13 @@
 		<!-- begin sidebar nav -->
 		<ul class="nav">			
 
-<!-- 			<li class="has-sub">
+			<li class="has-sub">
 				<a href="{{ url('actividades')}}" >
 				    <i class="fa fa-check"></i>
 				    <span>Actividades</span>
 			    </a>
 			</li>	
- -->
+
 
 			<li class="has-sub" id="mis_proyectos"><!-- ng-click="proyecto_active()" ng-class="{'': !proyecto, 'active': proyecto}"-->
 				<a href="{{ url('mis-proyectos')}}" >
