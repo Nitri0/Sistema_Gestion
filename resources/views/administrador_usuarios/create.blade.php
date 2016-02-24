@@ -17,7 +17,7 @@
         <div ng-init="urlRedirect='{{ url('admin_usuarios/') }}'"></div>
         
 		@if($usuario)
-	        <h1 class="page-header"> Editar Usuario </h1>
+	        <h1 class="page-header"> Editar Permisos del Usuario </h1>
 
 	        <div ng-init="usuario={{$usuario}}"></div>
 			<div ng-init="perfil={{$perfil}}"></div>
@@ -90,7 +90,7 @@
 
 				<div class="row">
 
-					<h1 class="page-header"><center><i class="fa fa-unlock-alt"></i><small> Permisos </small></center></h1>
+					<p class="col-md-push-1"><i class="fa fa-wrench"></i> Configure los permisos del usuario a sus necesidades.</p>
 
 				    <div class="col-md-12">
 				        <div class="panel-group" id="accordion">

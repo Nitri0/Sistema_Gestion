@@ -37,20 +37,20 @@
                 	<div class="row text-list">
                 		<div class="col-sm-3"> 
                 			<div class="row">
-                				<div class="col-sm-3"><a href="#" ng-click="changeSort('index')">N°</a> </div>
+                				<div class="col-sm-3" align="center">N°</div>
                 				<div class="col-sm-9">
-                        			<a href="#" ng-click="changeSort('nombre_proyecto')">Proyecto</a>
+                        			<a href="#" ng-click="changeSort('nombre_proyecto')"><i class="fa fa-sort"></i> Proyecto</a>
                         		</div>
                 			</div>
                 		</div>
                         <div class="col-sm-3">
-                            <a href="#" ng-click="changeSort('nombre_cliente')">Clientes</a>
+                            <a href="#" ng-click="changeSort('nombre_cliente')"><i class="fa fa-sort"></i> Clientes</a>
                         </div>
                         <div class="col-sm-3">
-							<a href="#" ng-click="changeSort('nombre_etapa')">Estatus</a>
+							<a href="#" ng-click="changeSort('nombre_etapa')"><i class="fa fa-sort"></i> Estatus</a>
                 		</div>
                 		<div class="col-sm-3">
-							<a href="#" ng-click="changeSort('fecha_creacion_avance')">Ultimo avance</a>
+							<a href="#" ng-click="changeSort('fecha_creacion_avance')"><i class="fa fa-sort"></i> Ultimo avance</a>
                 		</div>
                 	</div>
 
@@ -80,18 +80,12 @@
                                     <div class="col-sm-3" ng-if="!proyecto.proyecto_interno">
                                         [[proyecto.nombre_cliente]]
                                     </div> 
-                                    <div class="col-sm-3" ng-if="proyecto.proyecto_interno && proyecto.nombre_lider_proyecto">
-										[[proyecto.nombre_lider_proyecto]]
-                            		</div>
-                                    <div class="col-sm-3" ng-if="proyecto.proyecto_interno && !proyecto.nombre_lider_proyecto">
-                                        [[proyecto.correo_usuario]]
-                                    </div>                                    
-
+                                    
                                     <div class="col-sm-3">
                                         [[proyecto.nombre_etapa]]
                                     </div>
 
-                            		<div class="col-sm-1 center">
+                            		<div class="col-sm-2 center">
 										[[proyecto.fecha_creacion_avance | DateForHumans]]
                             		</div>
 
@@ -99,16 +93,18 @@
                             </h3>
                         </div>
                         <div id="[[$index+1]]" class="panel-collapse collapse">
-                            <div class="panel-body">
+                            <div class="panel-body">                                
+                                <!--                                
                                 <p ng-if="!proyecto.proyecto_interno">Nombre del Cliente: [[proyecto.nombre_cliente]]</p>
                                 <p ng-if="proyecto.proyecto_interno && proyecto.nombre_lider_proyecto">Lider de proyecto: [[proyecto.nombre_lider_proyecto]]</p>
                             	<p ng-if="proyecto.proyecto_interno && !proyecto.nombre_lider_proyecto">Lider de proyecto: [[proyecto.correo_usuario]]</p>
                                 <p ng-if="proyecto.proyecto_interno" class="btn-info">Proyecto Interno</p>
                             	<p ng-show="proyecto.nombre_dominio" >Dominio: <a ng-href="[[proyecto.nombre_dominio]]" target="_blank"> [[proyecto.nombre_dominio]] </a> </p>
                                 <p>Tipo de Proyecto: [[proyecto.nombre_grupo_etapas]]</p>
-                                <div ng-if="proyecto.asunto_avance != null">
-                                    <hr>
-                                    <p class="center">Ultimo Avance</p>
+                                <hr>
+                                -->
+                                <div ng-if="proyecto.asunto_avance != null">                                    
+                                    <!--<p class="center">Ultimo Avance</p>-->
                                     <div class="row">
                                         <!-- begin col-12 -->
                                         <div class="col-12 ui-sortable">
@@ -116,7 +112,14 @@
                                             <div class="panel panel-inverse panel-ultimo-avance">
                                                 <div class="panel-heading-3">
                                                     <div class="panel-heading-btn">
-                                                        <p class="fecha-ultimo-avance">[[proyecto.fecha_creacion_avance | DateForHumans]]</p>
+                                                        <p class="fecha-ultimo-avance">
+                                                            <!--[[proyecto.fecha_creacion_avance | DateForHumans]]-->
+                                                            <p ng-show="proyecto.nombre_dominio"><i class="fa fa-globe"></i> Sitio web: 
+                                                                <a ng-href="[[proyecto.nombre_dominio]]" target="_blank">
+                                                                    [[proyecto.nombre_dominio ]]
+                                                                </a>
+                                                            </p>            
+                                                        </p>
                                                     </div>
                                                     <h4 class="panel-title"><img width="40" alt="" src="{{ url('img/user.png') }}"> [[proyecto.nombre_usuario]]</h4>
                                                 </div>
@@ -124,7 +127,7 @@
                                                     <div ng-bind-html="proyecto.descripcion_avance"></div> 
                                                 </div>
                                                 <div class="panel-heading-3">
-                                                    <h4 class="panel-title">Asunto: [[proyecto.asunto_avance]]</h4>
+                                                    <h4 class="panel-title"><b>Asunto:</b> [[proyecto.asunto_avance]]</h4>
                                                 </div>
                                             </div>
                                         </div>

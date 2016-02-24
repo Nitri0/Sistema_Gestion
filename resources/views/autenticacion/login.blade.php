@@ -22,12 +22,12 @@
 			    </ul>
                 <!--<img src="{{ asset('/img/bg-7.jpg') }}" data-id="login-cover-image" alt="">-->
             </div>
-            <div class="news-caption">
+            <!--<div class="news-caption">
                 <h4 class="caption-title"> <img class="login-icono" src="{{ asset('/img/ks-logo.png') }}">  Key Systems </h4>
                 <p>
                     Refleja tus ideas.
                 </p>
-            </div>
+            </div>-->
         </div>
         <!-- end news-feed -->
         <!-- begin right-content -->
@@ -64,7 +64,7 @@
 							</label>
 						</div>			
 					</div> -->
-                    <a class="btn btn-link btn-oldivar" href="{{ url('/recuperar-contraseña') }}">Olvidó su Contraseña?</a>   
+                    <a class="btn btn-link btn-oldivar" href="{{ url('/recuperar-contraseña') }}">¿Olvidó su Contraseña?</a>   
                     <div class="login-buttons">
                         <!--<button type="submit" class="btn btn-success btn-block btn-lg">Sign me in</button>-->
                         <button class="btn btn-danger btn-block btn-lg" type="submit">Iniciar Sesión </button>
