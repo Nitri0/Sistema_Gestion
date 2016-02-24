@@ -3,7 +3,7 @@
 
 // Application -----------------------------------------------------------------
 
-var coreApp = angular.module('GestionInterna', ['remoteValidation', 'ngSanitize','flow','uiSwitch'], 
+var coreApp = angular.module('GestionInterna', ['remoteValidation', 'ngSanitize','flow','uiSwitch','ui.bootstrap.contextMenu','angular-clipboard'], 
     function($interpolateProvider){
         $interpolateProvider.startSymbol('[[');
         $interpolateProvider.endSymbol(']]');
