@@ -190,62 +190,60 @@
                     </div>
                     
                 @endif
-                <div class="email-content">
-                    <table class="table table-email table-hover">
-                        <tbody>
-                            @foreach($etapa->getAvances($proyecto->id_proyecto) as $avance)                                                        
-                            
-                                <tr href="#{{$avance->id_avance}}" data-toggle="collapse">
-                                    <td class="email-select col-md-1"><span class="userimage"><img width="20" height="20" src="{{url('img/user.jpg')}}" alt=""></span></td>
-                                    <td class="email-sender col-md-3">
-                                        {{$avance->getNombreCreador()}} 
-                                    </td>
-                                    <td>
-                                        <i class="fa fa-file-text-o"></i>
-                                    </td>
-                                    <td class="email-subject col-md-7">
-                                        {{$avance->asunto_avance}}
-                                    </td>
-                                    <td class="email-date col-md-1">11/4/2014</td>
-                                </tr>
-                                <tr class="collapse" id="{{$avance->id_avance}}">                                    
-                                    <td colspan="5">
-                                        {!!$avance->descripcion_avance!!}
-                                    </td>
-                                </tr>
-                            
-                                <!--<div class="col-md-12">
-                                    <div class="timeline-body">
-                                        <div class="timeline-header">
-                                            <span class="userimage"><img width="34" height="34" src="{{url('img/user.png')}}" alt=""></span>
-                                            <a class="name"><big>{{$avance->getNombreCreador()}}</a></big> ha colocado como asunto del mensaje: 
-                                            <big> {{$avance->asunto_avance}}</big> el día <big>{{$avance->fecha_creacion_avance}}</big>  
-                                        </div>
-                                        <a class="f-s-20 col-md-2 col-md-push-5" href="#{{$avance->id_avance}}" data-toggle="collapse"><i class="fa fa-ellipsis-h"></i></a>
-                                        <div class="timeline-content collapse" id="{{$avance->id_avance}}">
-                                            <br>
-                                            <p>
-                                                {!!$avance->descripcion_avance!!}
-                                            </p>
-                                            <br>
-                                        </div>
-                                        <div class="timeline-footer">
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <p> Asunto: {{$avance->asunto_avance}} </p>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    
-                                                </div>
+                <table class="table table-email table-hover">
+                    <tbody class="email-content">
+                        @foreach($etapa->getAvances($proyecto->id_proyecto) as $avance)                                                        
+                        
+                            <tr href="#{{$avance->id_avance}}" data-toggle="collapse">
+                                <td class="email-select col-md-1"><span class="userimage"><img width="20" height="20" src="{{url('img/user.jpg')}}" alt=""></span></td>
+                                <td class="email-sender col-md-3">
+                                    {{$avance->getNombreCreador()}} 
+                                </td>
+                                <td>
+                                    <i class="fa fa-file-text-o"></i>
+                                </td>
+                                <td class="email-subject col-md-7">
+                                    {{$avance->asunto_avance}}
+                                </td>
+                                <td class="email-date col-md-1">11/4/2014</td>
+                            </tr>
+                            <tr class="collapse" id="{{$avance->id_avance}}">                                    
+                                <td colspan="5">
+                                    {!!$avance->descripcion_avance!!}
+                                </td>
+                            </tr>
+                        
+                            <!--<div class="col-md-12">
+                                <div class="timeline-body">
+                                    <div class="timeline-header">
+                                        <span class="userimage"><img width="34" height="34" src="{{url('img/user.png')}}" alt=""></span>
+                                        <a class="name"><big>{{$avance->getNombreCreador()}}</a></big> ha colocado como asunto del mensaje: 
+                                        <big> {{$avance->asunto_avance}}</big> el día <big>{{$avance->fecha_creacion_avance}}</big>  
+                                    </div>
+                                    <a class="f-s-20 col-md-2 col-md-push-5" href="#{{$avance->id_avance}}" data-toggle="collapse"><i class="fa fa-ellipsis-h"></i></a>
+                                    <div class="timeline-content collapse" id="{{$avance->id_avance}}">
+                                        <br>
+                                        <p>
+                                            {!!$avance->descripcion_avance!!}
+                                        </p>
+                                        <br>
+                                    </div>
+                                    <div class="timeline-footer">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <p> Asunto: {{$avance->asunto_avance}} </p>
+                                            </div>
+                                            <div class="col-md-6">
+                                                
                                             </div>
                                         </div>
                                     </div>
-                                </div>-->
+                                </div>
+                            </div>-->
 
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
+                        @endforeach
+                    </tbody>
+                </table>
             @endforeach
         </div>
 
