@@ -187,44 +187,73 @@
         </div>
         <br>
         
-        <div class="row">
+                <div class="row">
             @foreach($etapas->getEtapas() as $etapa)
                 @if ($etapa->getAvances($proyecto->id_proyecto)->count()>0)
-                    <div class="col-md-5">
-                        <h3 class="title center title-epata">{{$etapa->nombre_etapa}}</h3>
+
+                    <div class="col-md-6 col-md-push-3">
+                        <ul class="pager">
+                            <li><a href="#">{{$etapa->nombre_etapa}}</a></li>
+                        </ul>
                     </div>
-                    <div class="col-md-12"></div>
+                    
                 @endif
-                @foreach($etapa->getAvances($proyecto->id_proyecto) as $avance)
-                
-                    <div class="col-md-12">
-                        <div class="timeline-body">
-                            <div class="timeline-header">
-                                <span class="userimage"><img width="34" height="34" src="{{url('img/user.png')}}" alt=""></span>
-                                <span class="username"><a href="javascript:;">{{$avance->getNombreCreador()}}</a> <small></small></span>
-                                <span class="pull-right text-muted">{{$avance->fecha_creacion_avance}}</span>
-                            </div>
-                            <div class="timeline-content collapse" id="{{$avance->id_avance}}">
-                                <br>
-                                <p>
-                                    {!!$avance->descripcion_avance!!}
-                                </p>
-                                <br>
-                            </div>
-                            <div class="timeline-footer">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <p> Asunto: {{$avance->asunto_avance}} </p>
+                <div class="email-content">
+                    <table class="table table-email table-hover">
+                        <tbody>
+                            @foreach($etapa->getAvances($proyecto->id_proyecto) as $avance)                                                        
+                            
+                                <tr href="#{{$avance->id_avance}}" data-toggle="collapse">
+                                    <td class="email-select col-md-1"><span class="userimage"><img width="20" height="20" src="{{url('img/user.png')}}" alt=""></span></td>
+                                    <td class="email-sender col-md-3">
+                                        {{$avance->getNombreCreador()}} 
+                                    </td>
+                                    <td>
+                                        <i class="fa fa-folder-o"></i>
+                                    </td>
+                                    <td class="email-subject col-md-7">
+                                        {{$avance->asunto_avance}}
+                                    </td>
+                                    <td class="email-date col-md-1">11/4/2014</td>
+                                </tr>
+                                <tr class="collapse" id="{{$avance->id_avance}}">                                    
+                                    <td colspan="5">
+                                        {!!$avance->descripcion_avance!!}
+                                    </td>
+                                </tr>
+                            
+                                <!--<div class="col-md-12">
+                                    <div class="timeline-body">
+                                        <div class="timeline-header">
+                                            <span class="userimage"><img width="34" height="34" src="{{url('img/user.png')}}" alt=""></span>
+                                            <a class="name"><big>{{$avance->getNombreCreador()}}</a></big> ha colocado como asunto del mensaje: 
+                                            <big> {{$avance->asunto_avance}}</big> el día <big>{{$avance->fecha_creacion_avance}}</big>  
+                                        </div>
+                                        <a class="f-s-20 col-md-2 col-md-push-5" href="#{{$avance->id_avance}}" data-toggle="collapse"><i class="fa fa-ellipsis-h"></i></a>
+                                        <div class="timeline-content collapse" id="{{$avance->id_avance}}">
+                                            <br>
+                                            <p>
+                                                {!!$avance->descripcion_avance!!}
+                                            </p>
+                                            <br>
+                                        </div>
+                                        <div class="timeline-footer">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <p> Asunto: {{$avance->asunto_avance}} </p>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="col-md-6">
-                                        <a class="f-s-20" href="#{{$avance->id_avance}}" data-toggle="collapse"><i class="fa fa-ellipsis-h"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-  
-                @endforeach
+                                </div>-->
+
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
             @endforeach
         </div>
 
