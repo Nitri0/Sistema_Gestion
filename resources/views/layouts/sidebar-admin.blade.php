@@ -12,7 +12,7 @@
 		<ul class="nav">
 			<li class="nav-profile">
 				<div class="image">
-					<a href="#"><img src="{{ url('/img/empresa.png')}}" alt="" /></a>
+					<a href="#"><img src="{{ url('/img/user.jpg')}}" alt="" /></a>
 				</div>
 				<div class="info">
 					{{Auth::user()->empresa->nombre_empresa}}

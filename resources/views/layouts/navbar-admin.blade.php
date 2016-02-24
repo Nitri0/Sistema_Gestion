@@ -35,7 +35,7 @@
 
 			<li class="dropdown navbar-user">
 				<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
-					<img src="{{ url('/img/user.png') }}" alt="" /> 
+					<img src="{{ url('/img/user.jpg') }}" alt="" /> 
 					<span class="hidden-xs">{{ Auth::user()->fullName()}}</span> <b class="caret"></b>
 				</a>
 				<ul class="dropdown-menu animated fadeInLeft">
