@@ -46,10 +46,10 @@
                         <div class="col-sm-3">
                             <a href="#" ng-click="changeSort('nombre_cliente')"><i class="fa fa-sort"></i> Clientes</a>
                         </div>
-                        <div class="col-sm-3">
+                        <div class="col-sm-2">
 							<a href="#" ng-click="changeSort('nombre_etapa')"><i class="fa fa-sort"></i> Estatus</a>
                 		</div>
-                		<div class="col-sm-3">
+                		<div class="col-sm-2">
 							<a href="#" ng-click="changeSort('fecha_creacion_avance')"><i class="fa fa-sort"></i> Ultimo avance</a>
                 		</div>
                 	</div>
@@ -64,28 +64,33 @@
                                 </a>	
                             </h3>
                             <div class="box-button-list">
-		        				<a class="btn btn-list" ng-href="{{ url( '/proyectos/[[proyecto.id_proyecto]]' ) }}" data-toggle="tooltip" data-title="Detalle"><i class="fa fa-list"></i></a>
+		        				<a class="btn btn-list" ng-if="proyecto.proyecto_interno == 1" data-toggle="tooltip" data-title="Proyecto Interno"><i class="fa fa-sitemap"></i></a>
+                                <a class="btn btn-list" ng-href="{{ url( '/proyectos/[[proyecto.id_proyecto]]' ) }}" data-toggle="tooltip" data-title="Detalle"><i class="fa fa-list"></i></a>
 		        			</div>
                             <h3 class="panel-title list-title">
                             	<div class="row">
                             		<div class="col-sm-3"> 
                             			<div class="row">
                             				<div class="col-sm-3"> [[$index+1]] </div>
-                            				<div class="col-sm-9">
-		                            			[[proyecto.nombre_proyecto]]
+                            				<div class="col-sm-9 text-ellipsis">
+                                                [[proyecto.nombre_proyecto]]
 		                            		</div>
                             			</div>
                             		</div>
 
-                                    <div class="col-sm-3" ng-if="!proyecto.proyecto_interno">
+                                    <div class="col-sm-3 text-ellipsis" ng-if="!proyecto.proyecto_interno" >
                                         [[proyecto.nombre_cliente]]
                                     </div> 
+
+                                    <div class="col-sm-3 text-ellipsis" ng-if="proyecto.proyecto_interno" >
+                                        [[proyecto.nombre_lider_proyecto]]
+                                    </div> 
                                     
-                                    <div class="col-sm-3">
+                                    <div class="col-sm-2 text-ellipsis">
                                         [[proyecto.nombre_etapa]]
                                     </div>
 
-                            		<div class="col-sm-2 center">
+                            		<div class="col-sm-2   text-ellipsis center">
 										[[proyecto.fecha_creacion_avance | DateForHumans]]
                             		</div>
 
