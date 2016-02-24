@@ -313,7 +313,7 @@
                                     <td class="email-date col-md-1">11/4/2014</td>
                                 </tr>
                                 <tr class="collapse" id="{{$avance->id_avance}}">                                    
-                                    <td colspan="4">
+                                    <td colspan="5">
                                         {!!$avance->descripcion_avance!!}
                                     </td>
                                 </tr>
