@@ -81,6 +81,8 @@
     <script src="{{ asset('/bower_components/angular-sanitize/angular-sanitize.js') }}"></script>
     <script src="{{ asset('/bower_components/angular-resource/angular-resource.min.js') }}"></script>
     <script src="{{ asset('/bower_components/angular-ui-switch/angular-ui-switch.min.js') }}"></script>
+    <script src="{{ asset('/bower_components/angular-bootstrap-contextmenu/contextMenu.js') }}"></script>
+   	<script src="{{ asset('/bower_components/angular-clipboard/angular-clipboard.js') }}"></script>
 
 	<!-- bootstrap jasny-->
     <script src="{{ asset('/bower_components/jasny-bootstrap/dist/js/jasny-bootstrap.min.js') }}"></script>
