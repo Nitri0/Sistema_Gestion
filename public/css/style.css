@@ -341,9 +341,10 @@ body ,html{
   margin-top: 10px;
   height: 25px;
 }
-.sidebar .nav>li>a {
+.sidebar .nav>li>a ,
+.dropdown-menu>li>a{
   color: #696763;
-  font-size: 14px;
+  font-size: 14px !important;
 }
 
 .list-none i{
@@ -700,6 +701,9 @@ p {
 }
 .form-horizontal .form-group {
   font-size: 13px;
+}
+.form-contol{
+  border: 1px !important;
 }
 
 /*nodes time line etapas*/

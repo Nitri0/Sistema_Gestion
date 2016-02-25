@@ -12,7 +12,7 @@
                 <a href="{{ url ('/') }}" class="navbar-brand">
                     <img class="nav-cliente-logo" src="{{ url('/img/logo.png') }}">
                     <span class="brand-text">
-                        <span class="text-theme">Gestiónlist</span>
+                        <span class="text-theme">Gestionlist</span>
                     </span>
                 </a>
             </div>
