@@ -25,6 +25,7 @@ coreApp.controller('ProyectoController',function($scope, $log, $http, $window) {
 	}
 	
 	$scope.agregar_integrantes= function(argument) {
+		$(".js-example-data-array").select2();
 		var persona = {
 			usuario : "",
 			rol : "",
@@ -117,6 +118,34 @@ coreApp.controller('ProyectoController',function($scope, $log, $http, $window) {
 				    title: "Menu de Opciones",
 				    content: "Aquí dispondrás de todas las opciones disponibles que tienes en el sistema.",
 				    placement: "left",
+				    backdrop: true,
+				  },
+				  {
+				    element: "#integrante",
+				    title: "Menu de Opciones",
+				    content: "Aquí dispondrás de todas las opciones disponibles que tienes en el sistema.",
+				    placement: "left",
+				    backdrop: true,
+				  },
+				  {
+				    element: "#agregar_integrante",
+				    title: "Menu de Opciones",
+				    content: "Aquí dispondrás de todas las opciones disponibles que tienes en el sistema.",
+				    placement: "right",
+				    backdrop: true,
+				  },
+				  {
+				    element: "#rol",
+				    title: "Menu de Opciones",
+				    content: "Aquí dispondrás de todas las opciones disponibles que tienes en el sistema.",
+				    placement: "left",
+				    backdrop: true,
+				  },
+				  {
+				    element: "#agregar_rol",
+				    title: "Menu de Opciones",
+				    content: "Aquí dispondrás de todas las opciones disponibles que tienes en el sistema.",
+				    placement: "right",
 				    backdrop: true,
 				  }
 				],

@@ -142,7 +142,7 @@
 		                <div class="panel-body">
 							<div class="form-group">
 		                        <label class="col-md-3 control-label">Integrante [[$index+1]]</label>
-		                        <div class="col-md-7">
+		                        <div class="col-md-7" id="integrante">
 		                            <select class="form-control js-example-data-array" name="id_usuario[[$index]]" ng-model="persona.usuario" ng-required="true" oninvalid="setCustomValidity(' ')">
 		                                <option value="">Seleccione un Usuario</option>
 		                                @foreach($usuarios as $usuario)
@@ -158,14 +158,14 @@
 		                        	</div>	                                    
 		                        </div>
 		                        <div class="col-md-2">
-		                        	<a href="{{ url('admin_usuarios/create') }}" class="btn btn-success btn-sm p-l-10 p-r-10" data-toggle="tooltip" data-title="Agregar Tipo de Proyecto">
+		                        	<a id="agregar_integrante" href="{{ url('admin_usuarios/create') }}" class="btn btn-success btn-sm p-l-10 p-r-10" data-toggle="tooltip" data-title="Agregar Tipo de Proyecto">
 				                        <i class="fa fa-plus"></i>
 				                    </a>
 		                        </div>
 		                    </div>
 		                    <div class="form-group">
 		                        <label class="col-md-3 control-label">Rol que cumplirá</label>
-		                        <div class="col-md-7">
+		                        <div class="col-md-7" id="rol">
 		                            <select class="form-control js-example-data-array" name="id_rol[[$index]]" ng-model="persona.rol" ng-required="true" oninvalid="setCustomValidity(' ')">
 		                                <option value="">Seleccione un Rol</option>
 		                                @foreach($roles as $rol)
@@ -181,7 +181,7 @@
 		                        	</div>			                                    
 		                        </div>
 		                        <div class="col-md-2">
-		                        	<a href="{{ url('roles/create') }}" class="btn btn-success btn-sm p-l-10 p-r-10" data-toggle="tooltip" data-title="Agregar Tipo de Proyecto">
+		                        	<a id="agregar_rol" href="{{ url('roles/create') }}" class="btn btn-success btn-sm p-l-10 p-r-10" data-toggle="tooltip" data-title="Agregar Tipo de Proyecto">
 				                        <i class="fa fa-plus"></i>
 				                    </a>
 		                        </div>	
