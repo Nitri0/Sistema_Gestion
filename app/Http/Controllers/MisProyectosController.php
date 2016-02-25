@@ -141,7 +141,9 @@ class MisProyectosController extends Controller {
 		$proyecto = Proyectos::where('id_proyecto',$id_proyecto)
 								->where('id_empresa',Auth::user()->getIdEmpresa())
 								->first();
-
+		$tokenRespuesta=null;
+		$statusToken=0;
+		
 		if (!$proyecto ){
 			Session::flash('mensaje-error', 'No es posible registrar avances en ese proyecto');
 			return redirect('mis-proyectos');
@@ -156,7 +158,8 @@ class MisProyectosController extends Controller {
 			$plantilla = Plantillas::where('id_plantilla',$request->id_plantilla)
 									->where('id_empresa',Auth::user()->getIdEmpresa())
 									->first();	
-
+			$tokenRespuesta=substr(md5(uniqid(rand(), true)), 20, 20);
+			$statusToken=1;
 			if (!$plantilla ){
 				Session::flash('mensaje-error', 'No es posible utilizar esa plantilla');
 				return redirect('mis-proyectos');
@@ -167,6 +170,7 @@ class MisProyectosController extends Controller {
 									 'dominio' =>$dominio,
 									 'mis_datos' =>$mis_datos,
 									 'mi_correo' =>$mi_correo,
+									 'token'=>$tokenRespuesta,
 									 'data'    =>$request->descripcion_avance];			
 			$modelo_plantilla = $plantilla->nombre_archivo_plantilla;
 			if (!$plantilla->nombre_archivo_plantilla){
@@ -189,6 +193,8 @@ class MisProyectosController extends Controller {
 		$request['id_usuario'] = Auth::user()->id_usuario;
 		$request['id_empresa'] = Auth::user()->getIdEmpresa();
 		$request['id_proyecto'] = $id_proyecto;
+		$request['token_avance'] = $tokenRespuesta;
+		$request['status_token'] = $statusToken;
 		Avances::firstOrCreate($request->except('check_cierre_etapa'));
 
 		if ($request->check_cierre_etapa == 1){
@@ -206,7 +212,9 @@ class MisProyectosController extends Controller {
 					'id_usuario' 					=> $id_usuario,
 					'id_proyecto' 					=> $id_proyecto,
 					'id_etapa'	 					=> $proyecto->getIdEtapa(),
-					'check_copia_cliente_avance' 	=> $request->check_copia_cliente_avance
+					'check_copia_cliente_avance' 	=> $request->check_copia_cliente_avance,
+					'token_avance'					=> $tokenRespuesta,
+					'status_token'					=> $statusToken,
 				]);
 		}
 
@@ -246,6 +254,21 @@ class MisProyectosController extends Controller {
 		};		
 		return view('emails.'.$modelo_plantilla,compact('proyecto','cliente','data','dominio','mis_datos','mi_correo'));
 	}		
+	public function crearRespuestaAvance($token=null){
+		if($token){
+
+		}else{
+
+		}
+
+	}
+	public function guardarRespuestaAvance(request $request){
+		if($request){
+
+		}else{
+
+		}
+	}
 	//__________________________________END CRUD AVANCES ____________________
 
 

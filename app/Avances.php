@@ -13,6 +13,8 @@ class Avances extends Model {
 								'id_empresa',
 								'asunto_avance',
 								'descripcion_avance',
+								'token_avance',
+								'status_token',
 								'check_copia_cliente_avance',
 								);
 
@@ -33,5 +35,8 @@ class Avances extends Model {
 	  	return $date->format('d-m-Y');
 
 	//    return $this->attributes['fecha_creacion_plantilla'];
+	}
+	public function Comentario(){
+		return $this->hasOne('App\AvanceComentarios','id_avance');
 	}
 }
