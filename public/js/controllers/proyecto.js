@@ -68,4 +68,73 @@ coreApp.controller('ProyectoController',function($scope, $log, $http, $window) {
 		return false;
 	};
 
+	$scope.tour_ayuda = function(){
+		console.log("init TourController");
+		var tour = new Tour({
+		  	steps: [
+				  {
+				    element: "#cliente_select",
+				    title: "Cliente",
+				    content: "Aquí podrá encontrar las opciones relacionadas a notificaciones, opciones de usuarios, búsqueda y mucho más...",
+				    placement: "bottom",
+				    backdrop: true,
+				  },
+				  {
+				    element: "#crear_cliente",
+				    title: "Configuración",
+				    content: "Aquí podrás realizar configuraciones de tu cuenta y compartir con tus amigos.",
+				    placement: "left",
+				    backdrop: true,
+				  },
+				  {
+				    element: "#tipo_proyecto_select",
+				    title: "Configuración",
+				    content: "Aquí podrás realizar configuraciones de tu cuenta y compartir con tus amigos.",
+				    placement: "bottom",
+				    backdrop: true,
+				  },
+				  {
+				    element: "#crear_tipo_proyecto",
+				    title: "Buscador",
+				    content: "Aquí podrás realzar la búsqueda relacionada a la pantalla donde estes ubicado.",
+				    placement: "left",
+				    backdrop: true,
+				  },
+				  {
+				    element: "#nombre_proyecto",
+				    title: "Buscador",
+				    content: "Aquí podrás realzar la búsqueda relacionada a la pantalla donde estes ubicado.",
+				    placement: "bottom",
+				    backdrop: true,
+				  },
+				  {
+				    element: "#agrgar_equipo",
+				    title: "Menu de Opciones",
+				    content: "Aquí dispondrás de todas las opciones disponibles que tienes en el sistema.",
+				    placement: "left",
+				    backdrop: true,
+				  }
+				],
+			storage: false,
+			template: "<div class='popover tour'>"+
+					    "<div class='arrow'></div>"+
+					    "<h3 class='popover-title'></h3><button class='btn btn-link btn-cerrar-paseo' data-role='end'><i class='fa fa-times'></i></button>"+
+					    "<div class='popover-content'></div>"+
+					    "<div class='popover-navigation'>"+
+					        "<button class='btn btn-link' data-role='prev'>« Atras</button>"+
+					        "<span data-role='separator'>|</span>"+
+					        "<button class='btn btn-link' data-role='next'>Siguiente »</button>"+
+					    "</div>"+
+					    
+					    "</nav>"+
+					  "</div>"
+
+		});
+
+		// Initialize the tour
+		tour.init(true);
+
+		// Start the tour
+		tour.start(true);
+	};
 });

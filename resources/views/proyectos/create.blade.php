@@ -27,7 +27,8 @@
 		            <div class="panel panel-inverse">
 		                <div class="panel-heading-2">
 		                    <div class="panel-heading-btn">
-		                    	<a href="#proyecto-ayuda" class="btn btn-ayuda" data-toggle="modal"><i class="fa fa-question"></i></a>
+		                    	<!--<a href="#proyecto-ayuda" class="btn btn-ayuda" data-toggle="modal"><i class="fa fa-question"></i></a>-->
+		                    	<a ng-click="tour_ayuda()" class="btn btn-ayuda"><i class="fa fa-question"></i></a>
 		                    </div>
 		                    <h4 class="panel-title">Proyectos</h4>
 		                </div>
@@ -39,7 +40,7 @@
 
 							<div class="form-group">
 		                        <label class="col-md-4 control-label">Cliente</label>
-		                        <div class="col-md-5">
+		                        <div class="col-md-5" id="cliente_select">
 		                            <select class="form-control js-example-data-array" ng-model="proyecto.id_cliente" name="id_cliente" ng-required="true" oninvalid="setCustomValidity(' ')">
 		                                <option value="">Seleccione un cliente</option>
 		                                @foreach($clientes as $cliente)
@@ -55,7 +56,7 @@
 		                        	</div>
 		                        </div>
 		                        <div class="col-md-3">
-		                        	<a href="{{ url('clientes/create') }}" class="btn btn-success btn-sm p-l-10 p-r-10" data-toggle="tooltip" data-title="Agregar Cliente">
+		                        	<a id="crear_cliente" href="{{ url('clientes/create') }}" class="btn btn-success btn-sm p-l-10 p-r-10" data-toggle="tooltip" data-title="Agregar Cliente">
 				                        <i class="fa fa-plus"></i>
 				                    </a>
 		                        </div>
@@ -63,7 +64,7 @@
 
 		                    <div class="form-group">
 		                        <label class="col-md-4 control-label">Tipo de Proyecto</label>
-		                        <div class="col-md-5">
+		                        <div class="col-md-5" id="tipo_proyecto_select">
 		                            <select class="form-control js-example-data-array" ng-model="proyecto.id_grupo_etapas" name="id_grupo_etapas" ng-required="true" oninvalid="setCustomValidity(' ')">
 		                                <option value="">Seleccione un grupo</option>
 		                                @foreach($grupo_etapas as $key)
@@ -79,7 +80,7 @@
 		                        	</div>	                                    
 		                        </div>
 		                        <div class="col-md-3">
-		                        	<a href="{{ url('tipo_proyectos/create') }}" class="btn btn-success btn-sm p-l-10 p-r-10" data-toggle="tooltip" data-title="Agregar Grupo de Etapas">
+		                        	<a id="crear_tipo_proyecto" href="{{ url('tipo_proyectos/create') }}" class="btn btn-success btn-sm p-l-10 p-r-10" data-toggle="tooltip" data-title="Agregar Grupo de Etapas">
 				                        <i class="fa fa-plus"></i>
 				                    </a>
 		                        </div>
@@ -87,7 +88,7 @@
 
 		                    <div class="form-group">
 		                        <label class="col-md-4 control-label">Nombre del proyecto</label>
-		                        <div class="col-md-5">
+		                        <div class="col-md-5" id="nombre_proyecto">
 		                           <input type="text" text-num-only class="form-control" name="nombre_proyecto" ng-model="proyecto.nombre_proyecto" ng-required="true" oninvalid="setCustomValidity(' ')">
 									<div class="error campo-requerido" ng-show="formulario.nombre_proyecto.$invalid && (formulario.nombre_proyecto.$touched || submitted)">
 		                                <small class="error" ng-show="formulario.nombre_proyecto.$error.required">
@@ -109,7 +110,7 @@
 		                    	<button type="button" class="btn btn-danger btn-eliminar" ng-show="cantidad>=1" ng-click="eliminar_integrantes()" data-toggle="tooltip" data-title="Eliminar integrante"> 
 									<i class="fa fa-trash-o"></i>
 								</button>
-		                    	<button type="button" class="btn btn-success btn-agregar" ng-click="agregar_integrantes()" data-toggle="tooltip" data-title="Agregar integrante">
+		                    	<button id="agrgar_equipo" type="button" class="btn btn-success btn-agregar" ng-click="agregar_integrantes()" data-toggle="tooltip" data-title="Agregar integrante">
 		                    		<i class="fa fa-plus"></i>
 		                    	</button>
 		                    </div>
