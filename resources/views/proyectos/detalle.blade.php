@@ -99,7 +99,7 @@
                                     <tbody>
                                         <tr>
                                             <td class="field">Nombre de lider</td>
-                                            <td>{{ $proyecto->lider_proyecto }}</td>
+                                            <td>{{ $proyecto->nombre_lider_proyecto }}</td>
                                         </tr>
                                         <tr class="tr-custon"></tr>
                                         <tr class="divider">

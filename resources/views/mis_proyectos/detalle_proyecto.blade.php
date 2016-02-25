@@ -60,7 +60,8 @@
 
                     </div><!-- boby -->
                 </div>
-
+            
+                @if( !$proyecto->proyecto_interno )
                  <!-- begin panel -->
                 <div class="panel panel-inverse">
                     <div class="panel-heading-2">
@@ -101,6 +102,30 @@
 
                     </div><!-- boby -->
                 </div>
+                @else
+                <div class="panel panel-inverse">
+                    <div class="panel-heading-2">
+                        <h4 class="panel-title">Información de Lider de proyecto</h4>
+                    </div>
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table table-profile">
+                                <tbody>
+                                    <tr>
+                                        <td class="field">Nombre de lider</td>
+                                        <td>{{ $proyecto->nombre_lider_proyecto }}</td>
+                                    </tr>
+                                    <tr class="tr-custon"></tr>
+                                    <tr class="divider">
+                                        <td colspan="2"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div><!-- boby -->
+                </div>
+                @endif
             </div>
 
             <!-- begin col-12 -->

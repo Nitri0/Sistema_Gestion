@@ -30,7 +30,6 @@
         <h1 class="page-header">Todos los proyectos </h1>
 
 		<div ng-init="proyectos={{$proyectos}}"></div>
-
         <div class="row">
             <div class="col-12">
                 <div class="panel-group" id="accordion">
@@ -78,13 +77,18 @@
                             			</div>
                             		</div>
 
-                                    <div class="col-sm-3 text-ellipsis" ng-if="!proyecto.proyecto_interno" >
-                                        [[proyecto.nombre_cliente]]
+                                    <div class="col-sm-3 text-ellipsis" ng-if="proyecto.proyecto_interno==0" >
+                                        [[proyecto.persona_contacto_cliente]]
                                     </div> 
 
-                                    <div class="col-sm-3 text-ellipsis" ng-if="proyecto.proyecto_interno" >
+                                    <div class="col-sm-3 text-ellipsis" ng-if="proyecto.proyecto_interno==1 && !proyecto.nombre_lider_proyecto" >
+                                        [[proyecto.correo_usuario]]
+                                    </div> 
+
+                                    <div class="col-sm-3 text-ellipsis" ng-if="proyecto.proyecto_interno==1 && proyecto.nombre_lider_proyecto" >
                                         [[proyecto.nombre_lider_proyecto]]
                                     </div> 
+
                                     
                                     <div class="col-sm-2 text-ellipsis">
                                         [[proyecto.nombre_etapa]]
