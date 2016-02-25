@@ -1,7 +1,12 @@
 coreApp.controller('ProyectoController',function($scope, $log, $http, $window) {
 	console.log("Proyecto");
 	$scope.submitted = false;
-	$scope.personas=[];
+	$scope.personas=[
+		{
+			usuario : "",
+			rol : "",
+		},
+		];
 	$scope.cantidad=0;
 	$scope.proyecto={};
 	$scope.enviando = false;

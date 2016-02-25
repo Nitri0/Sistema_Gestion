@@ -1,6 +1,6 @@
 coreApp.controller('GrupoEtapasController', function ($scope, $log, $http, $window) {
 	console.log("Grupo de etapas");
-	$scope.etapas=[];
+	$scope.etapas=[0,];
 	$scope.cantidad_etapas=0;
 	$scope.GrpEtapas={};
 	$scope.submitted = false;
