@@ -395,10 +395,16 @@ body ,html{
   height: 15px;
 }
 .height-custon-proyectos{
-  height:370px!important
+  height:372px!important
+}
+.height-custon-proyectos-lider{
+  height:237px!important
 }
 .height-custon-mis-proyectos{
   height:340px!important
+}
+.height-custon-mis-proyectos-lider{
+  height:238px!important
 }
 .progress, .progress-bar {
   -webkit-box-shadow: none;

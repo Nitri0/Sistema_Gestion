@@ -112,12 +112,8 @@
                             <table class="table table-profile">
                                 <tbody>
                                     <tr>
-                                        <td class="field">Nombre de lider</td>
+                                        <td class="field">Lider</td>
                                         <td>{{ $proyecto->nombre_lider_proyecto }}</td>
-                                    </tr>
-                                    <tr class="tr-custon"></tr>
-                                    <tr class="divider">
-                                        <td colspan="2"></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -135,7 +131,11 @@
                         <h4 class="panel-title">Integrantes</h4>
                     </div>
                     <div class="panel-body">
-                        <div class="height-custon-mis-proyectos" data-scrollbar="true"> 
+                        @if( $proyecto->proyecto_interno )
+                            <div class="height-custon-mis-proyectos-lider" data-scrollbar="true">
+                        @else
+                            <div class="height-custon-mis-proyectos" data-scrollbar="true">
+                        @endif
                             <ul class="registered-users-list clearfix">
                                 @foreach($rol as $integrante)
                                 <li>

@@ -98,13 +98,9 @@
                                 <table class="table table-profile">
                                     <tbody>
                                         <tr>
-                                            <td class="field">Nombre de lider</td>
+                                            <td class="field">Lider</td>
                                             <td>{{ $proyecto->nombre_lider_proyecto }}</td>
-                                        </tr>
-                                        <tr class="tr-custon"></tr>
-                                        <tr class="divider">
-                                            <td colspan="2"></td>
-                                        </tr>
+                                        </tr>                                        
                                     </tbody>
                                 </table>
                             </div>
@@ -162,9 +158,12 @@
                         <h4 class="panel-title">Integrantes</h4>
                     </div>
                     <div class="panel-body">
+                    @if( $proyecto->proyecto_interno )
+                        <div class="height-custon-proyectos-lider" data-scrollbar="true">
+                    @else
                         <div class="height-custon-proyectos" data-scrollbar="true">
+                    @endif
                             <br>
-
                             <div ng-init="urlRedirect='{{ url('proyectos/'.$proyecto->id_proyecto) }}'"></div>
                             <div ng-init="urlAction='{{ url('/integrantes') }}'"></div>
 
