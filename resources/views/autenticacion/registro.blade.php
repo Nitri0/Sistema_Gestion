@@ -74,8 +74,8 @@
                     </div>
 					<hr>
 					<div class="m-t-20 m-b-40 p-b-40">
-                           	¿Ya eres miembro? Click <a href="{{ url('/login') }}">Aquí</a> para Ingresar..
-                        </div>
+                       	¿Ya eres miembro? Click <a href="{{ url('/login') }}">Aquí</a> para Ingresar..
+                    </div>
                     <!--<p class="text-center text-inverse">
                         © Copyright Key Systems C.A 2015
                     </p>-->

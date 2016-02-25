@@ -63,13 +63,9 @@
 						</button>
 					</div>
 					<hr>
-                    <p class="text-center text-inverse">
-                        © Copyright Key Systems C.A 2015
-                    </p>
-
-                    <p class="text-center text-inverse">
-                       Nunca fue tan fácil organizar tus ideas...
-                    </p>
+                    <div class="m-t-20 m-b-40 p-b-40">
+                        ¿La Recordaste? Click <a href="{{ url('/login') }}">Aquí</a> para Ingresar..
+                    </div>
 
 				</form>
 				
