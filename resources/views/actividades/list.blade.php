@@ -291,16 +291,26 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label">fecha de inicio </label>
                         <div class="col-md-8">
-                            <input type="date" text-num-only class="form-control" ng-model="actividad.fecha_inicio_actividad" name="fecha_inicio_actividad">
-     
+                            <div class="input-group date" data-provide="datepicker">
+                                <input type="text" id="activityInitDate" readonly="readonly" ng-model="actividad.fecha_inicio_actividad" name="fecha_inicio_actividad" class="form-control"> 
+                                <div class="input-group-addon">
+                                    <span class="glyphicon glyphicon-th"></span>
+                                </div>
+                                <div id="picker-container"></div>
+                            </div>
                         </div>
                         <div style="clear:both;"></div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-4 control-label">fecha estamada de fin</label>
                         <div class="col-md-8">
-                            <input type="date" text-num-only class="form-control" ng-model="actividad.fecha_aproximada_entrega_actividad" name="fecha_aproximada_entrega_actividad">
-    
+                            <div class="input-group date" data-provide="datepicker">
+                                <input type="text" id="activityEndDate" readonly="readonly" ng-model="actividad.fecha_aproximada_entrega_actividad" name="fecha_aproximada_entrega_actividad" class="form-control"> 
+                                <div class="input-group-addon">
+                                    <span class="glyphicon glyphicon-th"></span>
+                                </div>
+                                <div id="picker-container"></div>
+                            </div>
                         </div>
                         <div style="clear:both;"></div>
                     </div>
@@ -365,12 +375,12 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label">fecha de inicio </label>
                         <div class="col-md-8">
-                            <input type="date" text-num-only class="form-control" ng-model="sub_actividad.fecha_inicio_sub_actividad" name="fecha_inicio_sub_actividad">
-
-                            <div class="error campo-requerido" ng-show="formularioNuevo.fecha_inicio_sub_actividad.$invalid && (formularioNuevo.fecha_inicio_sub_actividad.$touched || submitted)">
-                                <small class="error" ng-show="formularioNuevo.fecha_inicio_sub_actividad.$error.required">
-                                    * Campo requerido.
-                                </small>
+                            <div class="input-group date" data-provide="datepicker">
+                                <input type="text" id="subActivityInitDate" readonly="readonly" ng-model="sub_actividad.fecha_inicio_sub_actividad" name="fecha_inicio_sub_actividad" class="form-control"> 
+                                <div class="input-group-addon">
+                                    <span class="glyphicon glyphicon-th"></span>
+                                </div>
+                                <div id="picker-container"></div>
                             </div>      
                         </div>
                         <div style="clear:both;"></div>
@@ -378,12 +388,12 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label">fecha estamada de fin</label>
                         <div class="col-md-8">
-                            <input type="date" text-num-only class="form-control" ng-model="sub_actividad.fecha_aproximada_entrega_sub_actividad" name="fecha_aproximada_entrega_sub_actividad">
-
-                            <div class="error campo-requerido" ng-show="formularioNuevo.fecha_aproximada_entrega_sub_actividad.$invalid && (formularioNuevo.fecha_aproximada_entrega_sub_actividad.$touched || submitted)">
-                                <small class="error" ng-show="formularioNuevo.fecha_aproximada_entrega_sub_actividad.$error.required">
-                                    * Campo requerido.
-                                </small>
+                            <div class="input-group date" data-provide="datepicker">
+                                <input type="text" id="subActivityEndDate" readonly="readonly" ng-model="sub_actividad.fecha_aproximada_entrega_sub_actividad" name="fecha_aproximada_entrega_sub_actividad" class="form-control"> 
+                                <div class="input-group-addon">
+                                    <span class="glyphicon glyphicon-th"></span>
+                                </div>
+                                <div id="picker-container"></div>
                             </div>      
                         </div>
                         <div style="clear:both;"></div>

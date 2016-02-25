@@ -681,3 +681,6 @@ p {
 .form-horizontal .form-group {
   font-size: 13px;
 }
+.datepicker.dropdown-menu {
+    z-index: 10000 !important;
+}

@@ -2,7 +2,7 @@ coreApp.controller('ActividadController', function ($scope, $log, $http, $window
 	$scope.tituloModal="Agregar actividad";
 	$scope.proyectos={};
 	$scope.usuarios={};
-	$scope.actividades={};
+	$scope.actividades=[];
 	$scope.actividad={};
 	$scope.adjuntos={};
 	$scope.formulario={};
@@ -38,7 +38,7 @@ coreApp.controller('ActividadController', function ($scope, $log, $http, $window
 				var json = {};
 		    	angular.element('#formulario').serializeArray().map(function(x){json[x.name] = x.value;});
 		    	json.typeActivity=true;
-		    	//console.log($scope.usuarios_actividad);
+		    	console.log(json);
 		    	var usuarios={};
 		    	for(usuario in $scope.usuarios_actividad){
 		    		usuarios[usuario]=$scope.usuarios_actividad[usuario]['usuario']['id_usuario'];
@@ -188,8 +188,10 @@ coreApp.controller('ActividadController', function ($scope, $log, $http, $window
 		$scope.actividad.id_actividad=$scope.actividades[clave].id_actividad;
 		$scope.actividad.nombre_actividad=$scope.actividades[clave].nombre_actividad;
 		$scope.actividad.descripcion_actividad=$scope.actividades[clave].descripcion_actividad;
-		$scope.actividad.fecha_inicio_actividad=new Date($scope.actividades[clave].fecha_inicio_actividad);
-		$scope.actividad.fecha_aproximada_entrega_actividad=new Date($scope.actividades[clave].fecha_aproximada_entrega_actividad);
+		var inicio=new Date($scope.actividades[clave].fecha_inicio_actividad);
+		$scope.actividad.fecha_inicio_actividad=inicio.getDate()+'/'+(inicio.getMonth()+1)+'/'+inicio.getFullYear();
+		var fin=new Date($scope.actividades[clave].fecha_aproximada_entrega_actividad);
+		$scope.actividad.fecha_aproximada_entrega_actividad=fin.getDate()+'/'+(fin.getMonth()+1)+'/'+fin.getFullYear();
 
 		$('#myModal').modal('show');
 	}
@@ -296,4 +298,14 @@ coreApp.controller('ActividadController', function ($scope, $log, $http, $window
 			}
 		}
 	}
+});
+$(document).ready(function(){
+        $('#activityInitDate').datepicker({
+        	format: "dd-mm-yyyy",
+        });
+        $('#activityEndDate .input-group .date').datepicker({
+        	format: "dd-mm-yyyy",
+        });
+        $('#subActivityInitDate').datepicker();
+        $('#subActivityEndDate').datepicker();
 });
