@@ -72,29 +72,29 @@ coreApp.controller('GrupoEtapasController', function ($scope, $log, $http, $wind
 		  	steps: [
 				  {
 				    element: "#tipo_proyecto",
-				    title: "Cliente",
-				    content: "Aquí podrá encontrar las opciones relacionadas a notificaciones, opciones de usuarios, búsqueda y mucho más...",
+				    title: "Nombre",
+				    content: "Ingrese el nombre con que identifique el proceso que agregara en este momento.",
 				    placement: "bottom",
 				    backdrop: true,
 				  },
 				  {
 				    element: "#descripcion_tipo_proyecto",
-				    title: "Configuración",
-				    content: "Aquí podrás realizar configuraciones de tu cuenta y compartir con tus amigos.",
+				    title: "Descripción",
+				    content: "Ingrese una descripción clara que lo ayude a reconocer mas adelante la finalidad del tipo de proyecto.",
 				    placement: "left",
 				    backdrop: true,
 				  },
 				  {
 				    element: "#agregar_etapas",
-				    title: "Configuración",
-				    content: "Aquí podrás realizar configuraciones de tu cuenta y compartir con tus amigos.",
+				    title: "Agregar Etapas",
+				    content: "Agregue las etapas, pasos ó procesos que deben cumplirse en el proyecto.",
 				    placement: "left",
 				    backdrop: true,
 				  },
 				  {
 				    element: "#agregar_etapa",
-				    title: "Buscador",
-				    content: "Aquí podrás realzar la búsqueda relacionada a la pantalla donde estes ubicado.",
+				    title: "Agregar Etapa",
+				    content: "Ingrese el nombre de la etapa ó proceso que corresponda en el orden adecuado.",
 				    placement: "right",
 				    backdrop: true,
 				  }

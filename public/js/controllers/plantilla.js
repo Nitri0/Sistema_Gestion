@@ -85,6 +85,59 @@ coreApp.controller('PlantillasController', function ($scope, $log, $http, $windo
               	$('#modal-etiquetas').modal('hide');
           }]
       ]
+	$scope.tour_ayuda = function(){
+		console.log("init TourController");
+		var tour = new Tour({
+		  	steps: [{
+					    element: "#nombre_plantilla",
+					    title: "Nombre",
+					    content: "Ingrese el nombre de la plantilla que desee crear.",
+					    placement: "bottom",
+					    backdrop: true,
+				  	},
+				  	{
+					    element: "#descripcion_plantilla",
+					    title: "Descripción",
+					    content: "Ingrese un recordatorio del uso de dicha plantilla.",
+					    placement: "bottom",
+					    backdrop: true,
+				  	},
+				  	{
+					    element: "#etiqueta_plantilla",
+					    title: "Etiquetas",
+					    content: "Presione aquí para utilizar las etiquetas del sistema donde podrá agregar los datos del cliente",
+					    placement: "bottom",
+					    backdrop: true,
+				  	},
+				  	{
+					    element: "#texto_enriquecido",
+					    title: "Cuerpo del Mensaje",
+					    content: "Ingrese el cuerpo del mensaje que desea dejar preestablecido en su plantilla",
+					    placement: "top",
+					    backdrop: true,
+				  	}
+				],
+			storage: false,
+			template: "<div class='popover tour'>"+
+					    "<div class='arrow'></div>"+
+					    "<h3 class='popover-title'></h3><button class='btn btn-link btn-cerrar-paseo' data-role='end'><i class='fa fa-times'></i></button>"+
+					    "<div class='popover-content'></div>"+
+					    "<div class='popover-navigation'>"+
+					        "<button class='btn btn-link' data-role='prev'>« Atras</button>"+
+					        "<span data-role='separator'>|</span>"+
+					        "<button class='btn btn-link' data-role='next'>Siguiente »</button>"+
+					    "</div>"+
+					    
+					    "</nav>"+
+					  "</div>"
 
+		});
+
+		// Initialize the tour
+		tour.init(true);
+
+		// Start the tour
+		tour.start(true);
+	};
 
 });

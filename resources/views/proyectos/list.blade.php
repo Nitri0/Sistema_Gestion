@@ -49,7 +49,7 @@
 							<a href="#" ng-click="changeSort('nombre_etapa')"><i class="fa fa-sort"></i> Estatus</a>
                 		</div>
                 		<div class="col-sm-2">
-							<a href="#" ng-click="changeSort('fecha_creacion_avance')"><i class="fa fa-sort"></i> Ultimo avance</a>
+							<a href="#" ng-click="changeSort('fecha_creacion_avance')"><i class="fa fa-sort"></i>Último Avance</a>
                 		</div>
                 	</div>
 
