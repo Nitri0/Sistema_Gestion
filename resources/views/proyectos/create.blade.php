@@ -42,7 +42,7 @@
 		                        <label class="col-md-4 control-label">Cliente</label>
 		                        <div class="col-md-5" id="cliente_select">
 		                            <select class="form-control js-example-data-array" ng-model="proyecto.id_cliente" name="id_cliente" ng-required="true" oninvalid="setCustomValidity(' ')">
-		                                <option value="">Seleccione un cliente</option>
+		                                <option value="">Seleccionar</option>
 		                                @foreach($clientes as $cliente)
 											<option value="{{$cliente->id_cliente}}">
 												{{ $cliente->nombre_cliente }}
@@ -66,7 +66,7 @@
 		                        <label class="col-md-4 control-label">Tipo de Proyecto</label>
 		                        <div class="col-md-5" id="tipo_proyecto_select">
 		                            <select class="form-control js-example-data-array" ng-model="proyecto.id_grupo_etapas" name="id_grupo_etapas" ng-required="true" oninvalid="setCustomValidity(' ')">
-		                                <option value="">Seleccione un grupo</option>
+		                                <option value="">Seleccionar</option>
 		                                @foreach($grupo_etapas as $key)
 											<option value="{{$key->id_grupo_etapas}}">
 												{{ $key->nombre_grupo_etapas }}
@@ -144,7 +144,7 @@
 		                        <label class="col-md-3 control-label">Integrante [[$index+1]]</label>
 		                        <div class="col-md-7" id="integrante">
 		                            <select class="form-control js-example-data-array" name="id_usuario[[$index]]" ng-model="persona.usuario" ng-required="true" oninvalid="setCustomValidity(' ')">
-		                                <option value="">Seleccione un Usuario</option>
+		                                <option value="">Seleccionar</option>
 		                                @foreach($usuarios as $usuario)
 											<option value="{{$usuario->id_usuario}}">
 												{{ $usuario->fullName()}}
@@ -167,7 +167,7 @@
 		                        <label class="col-md-3 control-label">Rol que cumplirá</label>
 		                        <div class="col-md-7" id="rol">
 		                            <select class="form-control js-example-data-array" name="id_rol[[$index]]" ng-model="persona.rol" ng-required="true" oninvalid="setCustomValidity(' ')">
-		                                <option value="">Seleccione un Rol</option>
+		                                <option value="">Seleccionar</option>
 		                                @foreach($roles as $rol)
 											<option value="{{$rol->id_tipo_rol}}">
 												{{ $rol->nombre_tipo_rol }}

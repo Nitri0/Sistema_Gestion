@@ -801,12 +801,17 @@ p {
   border-left-width: 0;
 }
 .popover-title {
-  padding: 8px 14px;
+  padding: 11px 14px;
   margin: 0;
   font-size: 14px;
   background-color: #FCFCFC;
+  font-weight: bold;
+  text-align: center;
   border-bottom: 1px solid #EDEDE4;
   border-radius: 5px 5px 0 0;
+}
+.popover-content{
+  color: #000;
 }
 .btn-cerrar-paseo{
   position: absolute;
