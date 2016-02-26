@@ -39,7 +39,7 @@
 	                <div class="panel panel-inverse">
 	                    <div class="panel-heading-2">
 	                        <div class="panel-heading-btn">
-	                        	<!--<a href="#plantilla-ayuda" class="btn btn-ayuda" data-toggle="modal"><i class="fa fa-question"></i></a>-->
+	                        	<a ng-click="tour_ayuda()" class="btn btn-ayuda"><i class="fa fa-question"></i></a>
 	                        </div>
 	                        <h4 class="panel-title">Plantillas</h4>
 	                    </div>
@@ -47,8 +47,8 @@
 	                    <div class="panel-body">
 
 		                    <div class="form-group">
-	                            <label class="col-md-4 control-label">Nombre Plantilla </label>
-	                            <div class="col-md-5">
+	                            <label class="col-md-4 control-label">Nombre</label>
+	                            <div class="col-md-5" id="nombre_plantilla">
 									<input type="text" text-num-only class="form-control" ng-model="plantilla.nombre_plantilla" name="nombre_plantilla" ng-required="true" oninvalid="setCustomValidity(' ')">
 
 									<div class="error campo-requerido" ng-show="formulario.nombre_plantilla.$invalid && (formulario.nombre_plantilla.$touched || submitted)">
@@ -60,8 +60,8 @@
 	                        </div>
 
 	                        <div class="form-group">
-	                            <label class="col-md-4 control-label">Descripcion </label>
-	                            <div class="col-md-5">
+	                            <label class="col-md-4 control-label">Descripción </label>
+	                            <div class="col-md-5" id="descripcion_plantilla">
 									<textarea rows="5" class="form-control" ng-model="plantilla.descripcion_plantilla" name="descripcion_plantilla" ng-required="true" oninvalid="setCustomValidity(' ')">
 									</textarea>
 
@@ -85,17 +85,17 @@
 	                </div>
 	            </div>
 
-	            <center><a href="#modal-etiquetas" class="btn btn-sm btn-success" data-toggle="modal"><i class="fa fa-file-code-o"></i> Etiquetas de plantilla</a></center>
+	            <center><a href="#modal-etiquetas" class="btn btn-sm btn-success" data-toggle="modal" id="etiqueta_plantilla"><i class="fa fa-file-code-o"></i> Etiquetas de plantilla</a></center>
 	            @include('modals/modal-etiquetas')
 	            <br>
 
 	            <div class="col-md-12">
-                    <div class="panel panel-inverse" data-sortable-id="form-wysiwyg-1">
+                    <div class="panel panel-inverse" data-sortable-id="form-wysiwyg-1"  id="texto_enriquecido">
                         <div class="panel-heading-2">
                             <div class="panel-heading-btn">
                             	
                             </div>
-                            <h4 class="panel-title">Data del Correo</h4>
+                            <h4 class="panel-title">Cuerpo del Mensaje</h4>
                         </div>
                         
                         <div class="panel-body panel-form">

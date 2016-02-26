@@ -57,7 +57,7 @@
                             </div>
 
 	                    	<div class="form-group">
-                                <label class="col-md-4 control-label">Descripcion</label>
+                                <label class="col-md-4 control-label">Descripción</label>
                                 <div class="col-md-5">
                                    <textarea rows="5" class="form-control" ng-model="model.descripcion_tipo_rol" name="descripcion_tipo_rol" ng-required="true" oninvalid="setCustomValidity(' ')"></textarea>
 									<div class="error campo-requerido" ng-show="formulario.descripcion_tipo_rol.$invalid && (formulario.descripcion_tipo_rol.$touched || submitted)">
