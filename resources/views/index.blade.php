@@ -15,7 +15,7 @@
         <!-- end content-bg -->
         <!-- begin container -->
         <div class="container home-content">
-            <h1>Gesti <img src="{{ url('img/logo.png') }}"> list</h1>
+            <h1>Gesti <img src="{{ url('img/logo.png') }}"> nlist</h1>
             <h3>Organiza tus Ideas...</h3>
             <a href="{{ url('/proyectos') }}" class="btn btn-outline">Entrar</a><br />
             <br />
