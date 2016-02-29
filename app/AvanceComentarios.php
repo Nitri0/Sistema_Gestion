@@ -9,6 +9,7 @@ class AvanceComentarios extends Model
     //
     protected $table = "t_avance_comentarios";
 	protected $primaryKey = "id_avance_comentario";
+	public $timestamps = false;
 	protected $fillable = array(
 		'contenido_avance_comentario',
 		'id_avance'

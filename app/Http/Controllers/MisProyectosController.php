@@ -9,6 +9,8 @@ use App\Proyectos;
 use App\Empresas;
 use App\Roles;
 use App\Avances;
+use App\AvanceComentarios;
+use App\AdjuntoAvanceComentarios;
 use App\Dominios;
 use App\User;
 use App\MMEmpresasUsuarios;
@@ -23,8 +25,8 @@ use Illuminate\Http\Request;
 use Gate;
 
 
-define ('SITE_EMAILS', realpath("../resources/views/emails/"));
-define ('FOOTER', "<br><br><p align='center'>Mensaje enviado a través de la plataforma de gestión de proyectos <a href={{url()}}>GestiónList</a>. Todos los derechos reservados 2016<p>");
+//define ('SITE_EMAILS', realpath("../resources/views/emails/"));
+//define ('FOOTER', "<br><br><p align='center'>Mensaje enviado a través de la plataforma de gestión de proyectos <a href={{url()}}>GestiónList</a>. Todos los derechos reservados 2016<p>");
 
 
 class MisProyectosController extends Controller {
@@ -88,7 +90,6 @@ class MisProyectosController extends Controller {
 		$etapas = GrupoEtapas::where('id_grupo_etapas',$proyecto->id_grupo_etapas)
 								->where('id_empresa', Auth::user()->getIdEmpresa())
 								->first();
-
 		$user = Auth::user();
 		
 		$progress = number_format( (float)((int) ($proyecto->estatus_proyecto-1) *100 / (int) $etapas->cantidad_etapas), 1,".", "" );
@@ -159,7 +160,7 @@ class MisProyectosController extends Controller {
 									->where('id_empresa',Auth::user()->getIdEmpresa())
 									->first();	
 			$tokenRespuesta=substr(md5(uniqid(rand(), true)), 20, 20);
-			$statusToken=1;
+			$statusToken=0;
 			if (!$plantilla ){
 				Session::flash('mensaje-error', 'No es posible utilizar esa plantilla');
 				return redirect('mis-proyectos');
@@ -254,21 +255,83 @@ class MisProyectosController extends Controller {
 		};		
 		return view('emails.'.$modelo_plantilla,compact('proyecto','cliente','data','dominio','mis_datos','mi_correo'));
 	}		
-	public function crearRespuestaAvance($token=null){
+	public function crearRespuestaAvance($token=null){	
+
 		if($token){
 
-		}else{
+			$avance=Avances::where('token_avance',$token)->first();
+			//dd($avance->status_token);
+			if($avance->status_token==0){
+				//dd($avance);
+				return view('avances.comentario')->with('avance',$avance->id_avance);
 
+			}
 		}
+		return view('avances.comentario')->with('avance',false);
 
 	}
 	public function guardarRespuestaAvance(request $request){
 		if($request){
-
-		}else{
-
+			$AvanceComentario=new AvanceComentarios($request->all());
+			if($AvanceComentario->save()){
+				$avance=Avances::find($request->id_avance);
+				$avance->status_token=1;
+				if($avance->save()){
+					return json_encode($AvanceComentario->id_avance_comentario);
+				}
+			}
+			
 		}
+		return json_encode(false);
 	}
+	public function adjuntar(request $request){
+       
+        //
+        $tempDir = public_path().'/adjuntos';
+        if (!file_exists($tempDir)) {
+            mkdir($tempDir);
+        }
+        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+            $chunkDir = $tempDir . DIRECTORY_SEPARATOR . $request->flowIdentifier;
+            $chunkFile = $chunkDir.'/chunk.part'.$request->flowChunkNumber; 
+            //dd(file_exists($chunkFile));
+            if (file_exists($chunkFile)) {
+                header("HTTP/1.0 200 Ok");
+            } else {
+                header("HTTP/1.1 204 No Content");
+            }
+        }        
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            //dd($request);
+            if(count($request->files)>0):
+                foreach ($request->files as $file) {
+                    $nombreImg=$this->__nombreAleatorio('comment_',$file->getClientOriginalExtension());
+                    //$adjuntoTag=$this->__crearTag($file->getClientOriginalExtension());
+                    $id_avance_comentario=$request->id_avance_comentario;                    
+                    $file->move($tempDir,$nombreImg);
+                    $adjunto=new AdjuntoAvanceComentarios();
+                    $adjunto->ruta_adjunto_avance_comentario=$nombreImg;
+                    $adjunto->id_avance_comentario=$id_avance_comentario;
+                    if($adjunto->save()){
+                        return json_encode($adjunto);
+                    }
+                }
+            endif;
+        }
+        //return true;
+        
+
+    }
+    private function __nombreAleatorio($prefijo='',$extension=null){
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $random='';
+        for ($i = 0; $i < 4; $i++) {
+            $random .= $characters[rand(0, strlen($characters)-1)];
+        }
+        $nombre= $prefijo.$random.time().'.'.$extension;    
+
+        return $nombre;
+    }
 	//__________________________________END CRUD AVANCES ____________________
 
 

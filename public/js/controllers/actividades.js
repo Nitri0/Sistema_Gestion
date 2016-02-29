@@ -176,7 +176,7 @@ coreApp.controller('ActividadController', function ($scope, $log, $http, $window
 	$scope.subirAdjuntos=function(flow){
 		flow.id_actividad=$scope.arrayKeySelected;
 		flow.opts.testChunks=false;
-		flow.opts.target="actividades/adjuntar";
+		flow.opts.target="avances/adjuntar";
 		flow.opts.query.activiti_id=$scope.actividades[$scope.arrayKeySelected].id_actividad;
 		flow.on('fileSuccess', function(file,message,chunk){
 		    //console.log( JSON.parse(message));

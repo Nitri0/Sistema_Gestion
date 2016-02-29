@@ -67,8 +67,15 @@ $router->group(['middleware' => 'auth'], function() {
 	Route::Post('/mis-proyectos/avances/{id_proyecto}/create', 'MisProyectosController@postCreateAvancesMisProyectos');
 	Route::get( '/mis-proyectos/avances/{id_proyecto}/{id_avance}', 'MisProyectosController@detalleAvancesMisProyectos');
 #___________________________________ AVANCES _____________________________________________
-	Route::get( '/avances/{token_avance}', 'MisProyectosController@crearRespuestaAvance');
-	Route::post('/avances/', 'MisProyectosController@guardarRespuestaAvance');
+	Route::get( '/avances/{token_avance}', [
+			'as'=>'avances.avance.comentario',
+			'uses'=>'MisProyectosController@crearRespuestaAvance'
+		]);
+	Route::post( '/avances/adjuntar', [
+			'as'=>'avances.avance.adjuntar',
+			'uses'=>'MisProyectosController@adjuntar'
+		]);
+	Route::post('/avances', 'MisProyectosController@guardarRespuestaAvance');
 
 
 	Route::get('/plantillas/preview/{id_proyecto}/{id_plantilla}',

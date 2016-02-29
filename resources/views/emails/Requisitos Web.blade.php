@@ -11,7 +11,7 @@ Ahora necesitamos que rellene el siguiente <a href="http://keysystemsca.com.ve/r
 {!! $data !!}.
 </p>
 <?php if(isset($token)):?>
-	<p>para responder este mensaje por favor haga click <a href="">aqui</a></p>
+	<p>para responder este mensaje por favor haga click <a href="{{ route('avances.avance.comentario',$token) }}">aqui</a></p>
 <?php endif; ?>
 <br>
 Recuerde que nos estaremos comunicando con usted en los próximos 4 días hábiles, de no ser así, favor comunicarse al siguiente número de soporte: <b>+58 (412)-205-6913</b> ó bien enviándonos un correo electrónico a la siguiente dirección: <b>reclamos@keysystems.com.ve</b>.<br><br>
