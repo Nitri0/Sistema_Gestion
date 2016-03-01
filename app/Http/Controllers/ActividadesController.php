@@ -44,7 +44,9 @@ class ActividadesController extends Controller
                     $proyectos->usuario->perfil;
                 });
             }
-        });        
+        });  
+        $actividadesPersonales=Actividades::all()->where('autor_actividad',Auth::user()->id_usuario);
+        dd($actividadesPersonales);     
         $proyectos=array();
         $arrayIds=array();
 

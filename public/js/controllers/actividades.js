@@ -1,6 +1,9 @@
 coreApp.controller('ActividadController', function ($scope, $log, $http, $window) {
 	$scope.tituloModal="Agregar actividad";
+	$scope.personalP=true;
 	$scope.proyectos={};
+	$scope.personalActivity=[];
+	$scope.personalActivity.actividades=[];
 	$scope.usuarios={};
 	$scope.actividades=[];
 	$scope.actividad={};
@@ -22,9 +25,20 @@ coreApp.controller('ActividadController', function ($scope, $log, $http, $window
 	}
 	$scope.initActividades=function(id_proyecto){
 		/*Carga la lista de actividades apenas inicia el sistema*/
-		$scope.actividades=$scope.proyectos[id_proyecto].actividades;
-		$scope.id_proyecto=$scope.proyectos[id_proyecto].id_proyecto;
-		$scope.usuarios=$scope.proyectos[id_proyecto].usuarios;
+		console.log(id_proyecto);
+		if(id_proyecto!=null){
+			$scope.actividades=$scope.proyectos[id_proyecto].actividades;
+			$scope.id_proyecto=$scope.proyectos[id_proyecto].id_proyecto;
+			$scope.usuarios=$scope.proyectos[id_proyecto].usuarios;
+			$scope.personalP=false;
+		}else{
+			console.log('proyectos personales');
+			$scope.personalP=true;
+			$scope.actividades=$scope.personalActivity.actividades;
+			$scope.id_proyecto=null;
+			$scope.usuarios=[];
+		}
+		
 		//console.log($scope.usuarios);
 		//console.log($scope.id_proyecto);
 	}
@@ -38,6 +52,7 @@ coreApp.controller('ActividadController', function ($scope, $log, $http, $window
 				var json = {};
 		    	angular.element('#formulario').serializeArray().map(function(x){json[x.name] = x.value;});
 		    	json.typeActivity=true;
+		    	json.autor_actividad=$scope.usuario;
 		    	console.log(json);
 		    	var usuarios={};
 		    	for(usuario in $scope.usuarios_actividad){
@@ -58,8 +73,27 @@ coreApp.controller('ActividadController', function ($scope, $log, $http, $window
 				  	$scope.snipper  = false;
 				  }); 
 			}else{
-				alert('debe seleccionar un proyecto antes de agregar una actividad');
-			}
+				var json = {};
+		    	angular.element('#formulario').serializeArray().map(function(x){json[x.name] = x.value;});
+		    	json.typeActivity=true;
+		    	json.autor_actividad=$scope.usuario;
+		    	console.log(json);
+		    	var usuarios={};
+		    	usuarios[0]=$scope.usuario;
+		    	json.usuarios=usuarios;
+		    	//console.log(json);
+		    	$http({
+				    method: 'POST',
+				    url: $scope.urlAction,
+				    data: json,
+				    headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+				}).then(function successCallback(response) {
+					$('#myModal').modal('hide');
+					$scope.actividades.push(response.data);
+				  }, function errorCallback(response) {
+				  	//console.log("error");
+				  	$scope.snipper  = false;
+				  });			}
 			
 		/*}else{
 			$scope.snipper  = false;
