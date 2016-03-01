@@ -9,6 +9,8 @@ use App\Proyectos;
 use App\Empresas;
 use App\Roles;
 use App\Avances;
+use App\AvanceComentarios;
+use App\AdjuntoAvanceComentarios;
 use App\Dominios;
 use App\User;
 use App\MMEmpresasUsuarios;
@@ -88,7 +90,6 @@ class MisProyectosController extends Controller {
 		$etapas = GrupoEtapas::where('id_grupo_etapas',$proyecto->id_grupo_etapas)
 								->where('id_empresa', Auth::user()->getIdEmpresa())
 								->first();
-
 		$user = Auth::user();
 		
 		$progress = number_format( (float)((int) ($proyecto->estatus_proyecto-1) *100 / (int) $etapas->cantidad_etapas), 1,".", "" );
@@ -141,7 +142,9 @@ class MisProyectosController extends Controller {
 		$proyecto = Proyectos::where('id_proyecto',$id_proyecto)
 								->where('id_empresa',Auth::user()->getIdEmpresa())
 								->first();
-
+		$tokenRespuesta=null;
+		$statusToken=0;
+		
 		if (!$proyecto ){
 			Session::flash('mensaje-error', 'No es posible registrar avances en ese proyecto');
 			return redirect('mis-proyectos');
@@ -156,17 +159,24 @@ class MisProyectosController extends Controller {
 			$plantilla = Plantillas::where('id_plantilla',$request->id_plantilla)
 									->where('id_empresa',Auth::user()->getIdEmpresa())
 									->first();	
-
+			$tokenRespuesta=substr(md5(uniqid(rand(), true)), 20, 20);
+			$statusToken=0;
 			if (!$plantilla ){
 				Session::flash('mensaje-error', 'No es posible utilizar esa plantilla');
 				return redirect('mis-proyectos');
 			}
+			//echo $plantilla->raw_data_plantilla;
+			$footerPos=strpos($plantilla->raw_data_plantilla,'<footer');
+			$mensaje='<p>para responder este mensaje por favor haga click <a href="'.route("avances.avance.comentario",$tokenRespuesta).'">aqui</a></p><br><br> ';
+			$plantilla->raw_data_plantilla=substr_replace ( $plantilla->raw_data_plantilla ,$mensaje , $footerPos,0 );
+			dd($plantilla->raw_data_plantilla);
 
 			$parametros_plantilla = ['proyecto'=>$proyecto,
 									 'cliente' =>$cliente,
 									 'dominio' =>$dominio,
 									 'mis_datos' =>$mis_datos,
 									 'mi_correo' =>$mi_correo,
+									 'token'=>$tokenRespuesta,
 									 'data'    =>$request->descripcion_avance];			
 			$modelo_plantilla = $plantilla->nombre_archivo_plantilla;
 			if (!$plantilla->nombre_archivo_plantilla){
@@ -189,6 +199,8 @@ class MisProyectosController extends Controller {
 		$request['id_usuario'] = Auth::user()->id_usuario;
 		$request['id_empresa'] = Auth::user()->getIdEmpresa();
 		$request['id_proyecto'] = $id_proyecto;
+		$request['token_avance'] = $tokenRespuesta;
+		$request['status_token'] = $statusToken;
 		Avances::firstOrCreate($request->except('check_cierre_etapa'));
 
 		if ($request->check_cierre_etapa == 1){
@@ -206,7 +218,9 @@ class MisProyectosController extends Controller {
 					'id_usuario' 					=> $id_usuario,
 					'id_proyecto' 					=> $id_proyecto,
 					'id_etapa'	 					=> $proyecto->getIdEtapa(),
-					'check_copia_cliente_avance' 	=> $request->check_copia_cliente_avance
+					'check_copia_cliente_avance' 	=> $request->check_copia_cliente_avance,
+					'token_avance'					=> $tokenRespuesta,
+					'status_token'					=> $statusToken,
 				]);
 		}
 
@@ -246,6 +260,83 @@ class MisProyectosController extends Controller {
 		};		
 		return view('emails.'.$modelo_plantilla,compact('proyecto','cliente','data','dominio','mis_datos','mi_correo'));
 	}		
+	public function crearRespuestaAvance($token=null){	
+
+		if($token){
+
+			$avance=Avances::where('token_avance',$token)->first();
+			//dd($avance->status_token);
+			if($avance->status_token==0){
+				//dd($avance);
+				return view('avances.comentario')->with('avance',$avance->id_avance);
+
+			}
+		}
+		return view('avances.comentario')->with('avance',false);
+
+	}
+	public function guardarRespuestaAvance(request $request){
+		if($request){
+			$AvanceComentario=new AvanceComentarios($request->all());
+			if($AvanceComentario->save()){
+				$avance=Avances::find($request->id_avance);
+				$avance->status_token=1;
+				if($avance->save()){
+					return json_encode($AvanceComentario->id_avance_comentario);
+				}
+			}
+			
+		}
+		return json_encode(false);
+	}
+	public function adjuntar(request $request){
+       
+        //
+        $tempDir = public_path().'/adjuntos';
+        if (!file_exists($tempDir)) {
+            mkdir($tempDir);
+        }
+        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+            $chunkDir = $tempDir . DIRECTORY_SEPARATOR . $request->flowIdentifier;
+            $chunkFile = $chunkDir.'/chunk.part'.$request->flowChunkNumber; 
+            //dd(file_exists($chunkFile));
+            if (file_exists($chunkFile)) {
+                header("HTTP/1.0 200 Ok");
+            } else {
+                header("HTTP/1.1 204 No Content");
+            }
+        }        
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            //dd($request);
+            if(count($request->files)>0):
+                foreach ($request->files as $file) {
+                    $nombreImg=$this->__nombreAleatorio('comment_',$file->getClientOriginalExtension());
+                    //$adjuntoTag=$this->__crearTag($file->getClientOriginalExtension());
+                    $id_avance_comentario=$request->id_avance_comentario;                    
+                    $file->move($tempDir,$nombreImg);
+                    $adjunto=new AdjuntoAvanceComentarios();
+                    $adjunto->ruta_adjunto_avance_comentario=$nombreImg;
+                    $adjunto->id_avance_comentario=$id_avance_comentario;
+                    if($adjunto->save()){
+                        return json_encode($adjunto);
+                    }
+                }
+            endif;
+        }
+        //return true;
+        
+
+    }
+    private function __nombreAleatorio($prefijo='',$extension=null){
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $random='';
+        for ($i = 0; $i < 4; $i++) {
+            $random .= $characters[rand(0, strlen($characters)-1)];
+        }
+        $nombre= $prefijo.$random.time().'.'.$extension;    
+
+        return $nombre;
+    }
 	//__________________________________END CRUD AVANCES ____________________
 
 

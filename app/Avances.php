@@ -34,4 +34,7 @@ class Avances extends Model {
 
 	//    return $this->attributes['fecha_creacion_plantilla'];
 	}
+	public function Comentario(){
+		return $this->hasOne('App\AvanceComentarios','id_avance');
+	}
 }
