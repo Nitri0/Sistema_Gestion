@@ -163,7 +163,7 @@
                             <fieldset>
                                 <legend>Sub-actividades</legend>
                                 <div class="panel-group">
-                                    <div class="panel panel-inverse overflow-hidden custon-list" ng-repeat="(clave, sub_actividad) in activitySelected.subActividades | filter:filterSubTask" >
+                                    <div class="panel panel-inverse overflow-hidden custon-list" ng-repeat="(clave, sub_actividad) in activitySelected.subActividades" >
                                         <div class="panel-heading">
                                             <h3 class="panel-title list-title">
                                                 <a class="accordion-toggle accordion-toggle-styled collapsed" data-toggle="collapse" data-parent="#accordion" href="#sub_[[clave]]">
