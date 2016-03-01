@@ -169,7 +169,7 @@ class MisProyectosController extends Controller {
 			$footerPos=strpos($plantilla->raw_data_plantilla,'<footer');
 			$mensaje='<p>para responder este mensaje por favor haga click <a href="'.route("avances.avance.comentario",$tokenRespuesta).'">aqui</a></p><br><br> ';
 			$plantilla->raw_data_plantilla=substr_replace ( $plantilla->raw_data_plantilla ,$mensaje , $footerPos,0 );
-			dd($plantilla->raw_data_plantilla);
+			//dd($plantilla->raw_data_plantilla);
 
 			$parametros_plantilla = ['proyecto'=>$proyecto,
 									 'cliente' =>$cliente,
