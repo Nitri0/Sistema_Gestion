@@ -17,7 +17,17 @@ Route::post('registrar', 'LoginController@postRegistro');
 Route::get('recuperar-contraseña', 'LoginController@forgetPassword');
 Route::post('recuperar-contraseña', 'LoginController@postForgetPassword');
 Route::any('activacion/{id_usuario}',  'LoginController@HabilitarUsuario');
-
+#___________________________________ Avances _____________________________________________
+	Route::get( '/avances/{token_avance}', [
+			'as'=>'avances.avance.comentario',
+			'uses'=>'MisProyectosController@crearRespuestaAvance'
+		]);
+	Route::post( '/avances/adjuntar', [
+			'as'=>'avances.avance.adjuntar',
+			'uses'=>'MisProyectosController@adjuntar'
+		]);
+	Route::post('/avances', 'MisProyectosController@guardarRespuestaAvance');
+	
 $router->group(['middleware' => 'auth'], function() {
 
 	Route::get('/gestion', 'VistasController@gestion');
@@ -66,16 +76,7 @@ $router->group(['middleware' => 'auth'], function() {
 	Route::get( '/mis-proyectos/avances/{id_proyecto}/create', 'MisProyectosController@createAvancesMisProyectos');
 	Route::Post('/mis-proyectos/avances/{id_proyecto}/create', 'MisProyectosController@postCreateAvancesMisProyectos');
 	Route::get( '/mis-proyectos/avances/{id_proyecto}/{id_avance}', 'MisProyectosController@detalleAvancesMisProyectos');
-#___________________________________ Avances _____________________________________________
-	Route::get( '/avances/{token_avance}', [
-			'as'=>'avances.avance.comentario',
-			'uses'=>'MisProyectosController@crearRespuestaAvance'
-		]);
-	Route::post( '/avances/adjuntar', [
-			'as'=>'avances.avance.adjuntar',
-			'uses'=>'MisProyectosController@adjuntar'
-		]);
-	Route::post('/avances', 'MisProyectosController@guardarRespuestaAvance');
+
 	Route::get('/plantillas/preview/{id_proyecto}/{id_plantilla}',
 						['as'  => 'mis-proyectos.previewRealDataPlantillas',
 						 'uses'=>'MisProyectosController@previewRealDataPlantillas']);
