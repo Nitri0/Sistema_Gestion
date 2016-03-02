@@ -19,8 +19,8 @@ class Actividades extends Model {
 		'id_proyecto',
 		'habilitado'
 	);
-	public function usuarios_actividades(){
-		return $this->belongsToMany('App\Usuarios','usuarios_actividades','id_usuario','id_actividad');
+	public function usuarios(){
+		return $this->belongsToMany('App\User','t_usuarios_actividades','id_actividad','id_usuario');
 	}
 	public function subActividades(){
 		return $this->hasMany('App\SubActividades','id_actividad');

@@ -2,6 +2,7 @@
 @section('controller')
 	<script src="{{ asset('/js/controllers/sidebarcontroller.js') }}"></script>
 	<script src="{{ asset('/bower_components/ng-flow/dist/ng-flow-standalone.min.js') }}"></script>
+
 @endsection
 
 <!-- begin #sidebar -->

@@ -702,6 +702,7 @@ p {
 .form-horizontal .form-group {
   font-size: 13px;
 }
+<<<<<<< HEAD
 .form-contol{
   border: 1px !important;
 }
@@ -817,4 +818,6 @@ p {
   position: absolute;
   right: 0;
   top: -1px;
+.datepicker.dropdown-menu {
+    z-index: 10000 !important;
 }

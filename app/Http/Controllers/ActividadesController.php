@@ -12,6 +12,7 @@ use App\Actividades;
 use App\SubActividades;
 use App\Comentarios;
 use App\Plantillas;
+use App\UsuariosActividades;
 use App\Adjuntos;
 use Session;
 use Auth;
@@ -32,6 +33,7 @@ class ActividadesController extends Controller
             $proyectosActivos->proyectos;
             if($proyectosActivos->proyectos!=null){
                 $proyectosActivos->proyectos->actividades->each(function($proyectosActivos){
+                    $proyectosActivos->usuarios;
                     $proyectosActivos->subActividades;                    
                     $proyectosActivos->adjuntos;
                     $proyectosActivos->comentarios->each(function($proyectosActivos){
@@ -85,8 +87,13 @@ class ActividadesController extends Controller
      */
     public function store(Request $request) {
         //
+        //dd($request->all());
         if($request->typeActivity=="true"){
             if($actividad=Actividades::create($request->all())){
+                if(count($request->usuarios)>0){
+                    $actividad->usuarios()->sync($request->usuarios);
+                }
+                $actividad->usuarios;
                 $actividad->subActividades;
                 $actividad->adjuntos;
                 $actividad->comentarios->each(function($actividad){
@@ -95,6 +102,7 @@ class ActividadesController extends Controller
                 return json_encode($actividad);
             }
         }else{
+            //dd($request->all());
             if($subActividad=SubActividades::create($request->all())){
                 return json_encode($subActividad);
             }
@@ -152,13 +160,13 @@ class ActividadesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy(request $request){
-        if($request->tipo){
+        if($request->tipo=='true'){
             Adjuntos::where('id_actividad', $request->id_actividad)->delete();
             SubActividades::where('id_actividad', $request->id_actividad)->delete();
             Comentarios::where('id_actividad', $request->id_actividad)->delete();           
             Actividades::where('id_actividad', $request->id_actividad)->delete();
         }else{
-            dd(SubActividades::where('id_actividad', $request->id_actividad)->delete());
+            dd(SubActividades::where('id_sub_actividad', $request->id_actividad)->delete());
         }
         return json_encode(true);
     }
@@ -170,6 +178,19 @@ class ActividadesController extends Controller
             return json_encode($comentario);
         }
         //dd($comentario);
+    }
+    public function finalizarTarea(Request $request){
+        //dd($request->all());
+        if($request->tipo_tarea=='true'){
+            $actividad=Actividades::find($request->id_tarea);
+            $actividad->estatus_actividad=1;
+        }else{
+            $actividad=SubActividades::find($request->id_tarea);
+            $actividad->estatus_sub_actividad=1;
+        }
+        if($actividad->save()){
+            return json_encode($request->all());
+        }
     }
     public function adjuntar(request $request){
        
