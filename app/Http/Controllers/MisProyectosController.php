@@ -174,9 +174,6 @@ class MisProyectosController extends Controller {
 			}else{
 				$plantilla->raw_data_plantilla=substr_replace ( $plantilla->raw_data_plantilla ,$mensaje , $footerPos,0 );
 			}
-			$mensaje='<p>para responder este mensaje por favor haga click <a href="'.route("avances.avance.comentario",$tokenRespuesta).'">aqui</a></p><br><br> ';
-			$plantilla->raw_data_plantilla=substr_replace ( $plantilla->raw_data_plantilla ,$mensaje , $footerPos,0 );
-			//dd($plantilla->raw_data_plantilla);
 
 			$parametros_plantilla = ['proyecto'=>$proyecto,
 									 'cliente' =>$cliente,
@@ -189,10 +186,11 @@ class MisProyectosController extends Controller {
 			if (!$plantilla->nombre_archivo_plantilla){
 				$modelo_plantilla = $plantilla->nombre_plantilla;
 			};
-			if (!file_exists(SITE_EMAILS."/".$modelo_plantilla.".blade.php")){
-				$path = SITE_EMAILS."/".$plantilla->nombre_archivo_plantilla.".blade.php";
-				file_put_contents($path,$plantilla->raw_data_plantilla.FOOTER);
-			};			
+			//if (!file_exists(SITE_EMAILS."/".$modelo_plantilla.".blade.php")){
+			$modelo_plantilla = 'plantilla_'.time().'-'.$plantilla->id_plantilla;
+			$path = SITE_EMAILS."/".$modelo_plantilla.".blade.php";
+			file_put_contents($path,$plantilla->raw_data_plantilla.FOOTER);
+			//};			
 
 			
 			Helper::SendEmail(
@@ -272,7 +270,7 @@ class MisProyectosController extends Controller {
 		if($token){
 
 			$avance=Avances::where('token_avance',$token)->first();
-			//dd($avance->status_token);
+			//dd($avance);
 			if($avance->status_token==0){
 				//dd($avance);
 				return view('avances.comentario')->with('avance',$avance->id_avance);

@@ -87,19 +87,25 @@ coreApp.controller('AvanceController', function ($scope, $log, $http, $window) {
 	}
 	$scope.subirAdjuntosComentario=function(id){
 		var flow = $scope.Comentarioflow;
-		flow.id_actividad=$scope.arrayKeySelected;
-		flow.opts.testChunks=false;
-		flow.opts.target="adjuntar";
-		flow.opts.query.id_avance_comentario=id;
-		flow.on('fileSuccess', function(file,message,chunk){
-		    //console.log( JSON.parse(message));
-		    //var data=JSON.parse(message);
-		    //console.log(guardado);
-		    $scope.viewBolean=false;
+		//console.log(Object.keys(flow).length);
+		if(Object.keys(flow).length>0){
+			//console.log('aqui');
+			flow.id_actividad=$scope.arrayKeySelected;
+			flow.opts.testChunks=false;
+			flow.opts.target="adjuntar";
+			flow.opts.query.id_avance_comentario=id;
+			flow.on('fileSuccess', function(file,message,chunk){
+				    //console.log( JSON.parse(message));
+			    //var data=JSON.parse(message);
+			    //console.log(guardado);
+			    $scope.viewBolean=false;
 
-		    //console.log($scope.actividades[$scope.arrayKeySelected]['adjuntos']);
-		});
-		flow.upload();
+			    //console.log($scope.actividades[$scope.arrayKeySelected]['adjuntos']);
+			});
+			flow.upload();
+		}else{
+			$scope.viewBolean=false;
+		}		
 	}
 
 });

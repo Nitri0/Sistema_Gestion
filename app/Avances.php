@@ -14,6 +14,8 @@ class Avances extends Model {
 								'asunto_avance',
 								'descripcion_avance',
 								'check_copia_cliente_avance',
+								'token_avance',
+								'status_token'
 								);
 
 
