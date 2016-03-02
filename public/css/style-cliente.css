@@ -1,0 +1,48 @@
+a {
+  color: #00acac;
+  text-decoration: none;
+}
+header {
+  background: url(http://gestionlist.com/thema/admin/html/assets/img/login-bg/bg-6.jpg) no-repeat center top fixed;
+  -webkit-background-size: cover;
+  background-size: cover;
+}
+header .intro-section {
+  margin: auto;
+  padding-top: 0%;
+}
+.standard-button {
+  background: #00acac;
+}
+.title-gestion{
+  color: #fff;
+  font-size: 80px;
+  font-weight: 600;
+  margin-top: 30px;
+  width: 100%;
+}
+.img-gestion{
+	width: 45px;
+}
+.nav-admin-logo {
+  width: 40px;
+  float: left;
+  margin-right: 10px;
+  margin-top: -5px;
+}
+.sticky-navigation .navbar-header img {
+  max-height: 40px;
+  -webkit-backface-visibility: inherit;
+}
+.navbar-brand {
+  float: left;
+  height: 50px;
+  padding: 15px 15px;
+  font-size: 18px;
+  line-height: 31px;
+  font-weight: 500;
+}
+.navbar-inverse .navbar-brand:focus, .navbar-inverse .navbar-brand:hover {
+  color: #00acac;
+  background-color: transparent;
+}
