@@ -65,8 +65,8 @@ coreApp.controller('AvanceController', function ($scope, $log, $http, $window) {
 			    headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 			}).then(function successCallback(response) {
 				//console.log(response);
-			    //$window.location.href = $scope.urlRedirect;
-			    //$scope.snipper  = false;
+			    $window.location.href = $scope.urlRedirect;
+			    $scope.snipper  = false;
 			  }, function errorCallback(response) {
 			  	console.log("error");
 			  	$scope.snipper  = false;
