@@ -32,22 +32,22 @@ class ActividadesController extends Controller
             $proyectosActivos->proyectos;
             if($proyectosActivos->proyectos!=null){
                 $proyectosActivos->proyectos->actividades->each(function($proyectosActivos){
-                    $proyectosActivos->subActividades;
-                    $proyectosActivos->comentarios;
+                    $proyectosActivos->subActividades;                    
                     $proyectosActivos->adjuntos;
+                    $proyectosActivos->comentarios->each(function($proyectosActivos){
+                        $proyectosActivos->usuario->perfil;
+                    });
                 });
                 $proyectosActivos->proyectos->usuarios->each(function($proyectos){
                     $proyectos->usuario->perfil;
                 });
             }
-             /**/
         });        
         $proyectos=array();
         $arrayIds=array();
 
         foreach ($proyectosActivos as $key=>$proyecto) {
             $validation=false;
-            //dd($proyecto);
             foreach ($arrayIds as $id) {
                 if($id == $proyecto->id_proyecto){
                     $validation=true;
@@ -61,25 +61,7 @@ class ActividadesController extends Controller
                 $arrayIds[]=$proyecto->id_proyecto;
                 $proyectos[]=$proyecto->proyectos;
             }
-            
-
         }
-        //dd($proyectos);
-        //dd($proyectos);
-            /*$proyectos->actividades->each(function($proyectos){
-                $proyectos->subActividades;
-                $proyectos->comentarios;
-                $proyectos->adjuntos;
-            });
-            $proyectos->usuarios->each(function($proyectos){
-                $proyectos->usuario->perfil;
-            });*/
-        /*$actividades= Actividades::all();
-        $actividades->each(function($actividades){
-            $actividades->subActividades;
-            $actividades->comentarios;
-            $actividades->adjuntos;
-        });*/
         return view('actividades.list',array('proyectos'=>json_encode($proyectos)));
     }
 
@@ -106,8 +88,10 @@ class ActividadesController extends Controller
         if($request->typeActivity=="true"){
             if($actividad=Actividades::create($request->all())){
                 $actividad->subActividades;
-                $actividad->comentarios;
                 $actividad->adjuntos;
+                $actividad->comentarios->each(function($actividad){
+                    $actividad->usuario->perfil;
+                });
                 return json_encode($actividad);
             }
         }else{
@@ -149,9 +133,16 @@ class ActividadesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        //dd($request->id_actividad);
+        $actividad=Actividades::find($request->id_actividad);
+        $actividad->fill($request->all());
+        if($actividad->save()){
+            return json_encode($actividad);
+        }
+        return json_encode(false);
+
     }
 
     /**
@@ -160,13 +151,22 @@ class ActividadesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        //
+    public function destroy(request $request){
+        if($request->tipo){
+            Adjuntos::where('id_actividad', $request->id_actividad)->delete();
+            SubActividades::where('id_actividad', $request->id_actividad)->delete();
+            Comentarios::where('id_actividad', $request->id_actividad)->delete();           
+            Actividades::where('id_actividad', $request->id_actividad)->delete();
+        }else{
+            dd(SubActividades::where('id_actividad', $request->id_actividad)->delete());
+        }
+        return json_encode(true);
     }
     public function agregarComentario(Request $request){
         $comentario=new Comentarios($request->all());
+        $comentario->id_usuario=Auth::user()->id_usuario;
         if($comentario->save()){
+            $comentario->usuario->perfil;
             return json_encode($comentario);
         }
         //dd($comentario);

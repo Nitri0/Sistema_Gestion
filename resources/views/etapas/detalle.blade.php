@@ -40,19 +40,19 @@
                         <br>
                         <div class="row">
                             <div class="col-md-1">
-                                Nombre
+                                Nombre:
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-2">
                                 {{ $grupo_etapas->nombre_grupo_etapas }}
                             </div>
                             <div class="col-md-1">
-                                Descripción
+                                Descripción:
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-5">
                                 {{ $grupo_etapas->descripcion_grupo_etapas}}
                             </div>
                             <div class="col-md-2">
-                                Cantidad de Etapas
+                                Cantidad de Etapas:
                             </div>
                             <div class="col-md-1">
                                 {{ $grupo_etapas->cantidad_etapas}}

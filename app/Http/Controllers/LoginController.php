@@ -90,7 +90,7 @@ class LoginController extends Controller {
         			'codigo_activacion' => $request->codigo_activacion,
         		];
         Helper::SendEmailLogout($request->correo_usuario, $request->correo_usuario, $asunto, $plantilla, $parametros);
-        Session::flash("mensaje","Usuario registrado exitosamente, en breves momentos se enviará a su correo un enlace de activación de usuario.");
+        Session::flash("mensaje","Usuario registrado exitosamente, revise en su correo electrónico el enlace de activación que hemos enviado.");
         return redirect('/login');
 	}
 

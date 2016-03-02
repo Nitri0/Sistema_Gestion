@@ -17,13 +17,13 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
 	protected $connection = 'permisologia';
 	protected $table = 't_usuario';
 	protected $primaryKey = "id_usuario";
-	protected $fillable = ['correo_usuario', 'password','id_permisologia','habilitado_usuario', 'codigo_activacion', 'activado_usuario'];
+	protected $fillable = ['correo_usuario', 'password','id_permisologia','habilitado_usuario', 'codigo_activacion', 'activado_usuario', 'tutorial'];
 	protected $hidden = ['password', 'remember_token'];
 	public $timestamps = false;
 	
 
 
-	protected $appends = ['permisos','nombre_empresa'];
+	protected $appends = ['permisos','empresa'];
 
 	public function perfil(){
 		return $this->hasOne('App\Perfil','id_usuario');
@@ -33,9 +33,21 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         				->get(['modulo_excepcion']);
     }
 
-	public function getNombreEmpresaAttribute(){
+	public function getEmpresaAttribute(){
+
+		$relacion = MMEmpresasUsuarios::where('id_usuario',$this->id_usuario)->first();
+
+		if ($relacion){
+			$empresa = Empresas::find($relacion->id_empresa);
+			if($empresa){
+				return $empresa;
+			}
+		};
+		return false;
+
         Empresas::where('id_usuario', $this->id_usuario)
         				->get(['nombre_empresa','rif_empresa']);
+
     }
 
   //   public function getPermisosMenu(){
@@ -124,6 +136,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
 		}
 
 	}
+
 
 	public function getHabiltiadoEmpresa(){
 

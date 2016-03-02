@@ -82,7 +82,7 @@
                                     <button class="btn btn-success btn-sm">
                                         <i class="fa fa-check-square-o"></i>
                                     </button>
-                                    <a ng-href="{{ url( '/actividades/[[actividad.id_actividad]]/destroy' ) }}" class="btn btn-sm btn-danger pull-right" data-toggle="tooltip" data-title="Eliminar"><i class="fa fa-trash"></i></a>
+                                    <a ng-click="destruir(true,actividad.id_actividad,arrayKeySelected)" class="btn btn-sm btn-danger pull-right" data-toggle="tooltip" data-title="Eliminar"><i class="fa fa-trash"></i></a>
                                 </div>
                             </div>
                         </div> 
@@ -133,7 +133,7 @@
                                 </legend>
                                 <div class="comentario" ng-repeat="(clave, comentario) in activitySelected.comentarios" >
                                     <label class="autor">
-                                        autor   
+                                        [[fullName(comentario.usuario)]]  
                                     </label>
                                     <h3 class="panel-title list-title">
                                         <div class="row">
@@ -210,7 +210,7 @@
                         <div role="tabpanel" class="tab-pane" id="adjuntos">
                             <fieldset class="adjunto-content">
                                 <legend>adjuntos</legend>
-                                <a href="" ng-repeat="(clave, adjunto) in activitySelected.adjuntos" class="adjunto">
+                                <a href="../public/adjuntos/[[adjunto.url_adjunto]]" target="_blank" ng-repeat="(clave, adjunto) in activitySelected.adjuntos" class="adjunto">
                                     <div class="referencia_adjunto" ng-if="adjunto.tipo_adjunto == 'jpg' || adjunto.tipo_adjunto == 'png'" style="background-image:url('../public/adjuntos/[[adjunto.url_adjunto]]');"></div>
                                     <span class="tipo-adjunto">.[[adjunto.tipo_adjunto | uppercase]] </span>
                                     <span class="tag-adjunto"> #[[adjunto.tag_adjunto]] </span>
@@ -224,7 +224,7 @@
                                 </legend>
                                 <div class="comentario" ng-repeat="(clave, comentario) in activitySelected.comentarios" >
                                     <label class="autor">
-                                        autor   
+                                       [[fullName(comentario.usuario)]]
                                     </label>
                                     <h3 class="panel-title list-title">
                                         <div class="row">
@@ -265,7 +265,12 @@
                         <label class="col-md-4 control-label">Usuarios </label>
                         <div class="col-md-8">
                             <select name="usuarios_actividad" id="usuarios_actividad" ng-model="usuarios_actividad" class="form-control" multiple="true">
-                                <option value="[[usuario.usuario.id_usuario]]" ng-repeat="(clave, usuario) in usuarios">[[usuario.usuario.perfil.nombre_perfil]] [[usuario.usuario.perfil.apellido_perfil]]</option>
+                                <option  value="[[usuario.usuario.id_usuario]]" ng-repeat="(clave, usuario) in usuarios">
+                                    <span >
+                                        [[fullName(usuario.usuario)]]
+                                    </span>
+                                    
+                                </option>
                             </select>  
                         </div>
                         <div style="clear:both;"></div>
@@ -273,7 +278,7 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label">Nombre actividad </label>
                         <div class="col-md-8">
-                            <input type="hidden" ng-model="actividad.id_actividad" name="id_actividad">
+                            <input type="text" ng-hide="true" ng-model="actividad.id_actividad" name="id_actividad">
                             <input type="text" ng-hide="true" ng-model="id_proyecto" name="id_proyecto">
                             <input type="text" only-text class="form-control" ng-model="actividad.nombre_actividad" name="nombre_actividad" ng-required="true" oninvalid="setCustomValidity(' ')">
 
@@ -288,7 +293,7 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label">Descripcion </label>
                         <div class="col-md-8">
-                            <textarea rows="5" text-num-only class="form-control" ng-model="actividad.descripcion_actividad" name="descripcion_actividad" ng-required="true" oninvalid="setCustomValidity(' ')">
+                            <textarea rows="5" class="form-control" ng-model="actividad.descripcion_actividad" name="descripcion_actividad" ng-required="true" oninvalid="setCustomValidity(' ')">
                             </textarea>
 
                             <div class="error campo-requerido" ng-show="formulario.descripcion_actividad.$invalid && (formulario.descripcion_actividad.$touched || submitted)">
@@ -321,7 +326,7 @@
               <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
                 <button type="button" class="btn btn-primary" ng-show="activityType" ng-click="agregarTarea()">Agregar Actividad</button>
-                <button type="button" class="btn btn-primary" ng-hide="activityType" ng-click="saveTask()">Guardar Cambios</button>
+                <button type="button" class="btn btn-primary" ng-hide="activityType" ng-click="editarActividad(arrayKeySelected)">Guardar Cambios</button>
               </div>
             </div>
           </div>

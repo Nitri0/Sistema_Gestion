@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content='{{ csrf_token() }}'>
 
-    <title>.: Sistema de Gestion :.</title>
+    <title>.: Gestionlist :.</title>
 	
 	<link href="{{ asset('/css/app.css') }}" rel="stylesheet">
     
@@ -81,6 +81,8 @@
     <script src="{{ asset('/bower_components/angular-sanitize/angular-sanitize.js') }}"></script>
     <script src="{{ asset('/bower_components/angular-resource/angular-resource.min.js') }}"></script>
     <script src="{{ asset('/bower_components/angular-ui-switch/angular-ui-switch.min.js') }}"></script>
+    <script src="{{ asset('/bower_components/angular-bootstrap-contextmenu/contextMenu.js') }}"></script>
+   	<script src="{{ asset('/bower_components/angular-clipboard/angular-clipboard.js') }}"></script>
 
 	<!-- bootstrap jasny-->
     <script src="{{ asset('/bower_components/jasny-bootstrap/dist/js/jasny-bootstrap.min.js') }}"></script>

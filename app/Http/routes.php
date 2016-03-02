@@ -21,7 +21,8 @@ Route::any('activacion/{id_usuario}',  'LoginController@HabilitarUsuario');
 $router->group(['middleware' => 'auth'], function() {
 
 	Route::get('/gestion', 'VistasController@gestion');
-	
+	Route::post('/mostrar-tutorial', 'MisProyectosController@mostrar_tutorial');
+	Route::post('/desactivar-tutorial', 'MisProyectosController@desactivar_tutorial');
 
 #______________________________________ PLANTILLAS _____________________________________________
 	Route::get('/plantillas/preview/{plantillas}',['as'  => 'plantillas.previewPlantillas',
@@ -50,6 +51,8 @@ $router->group(['middleware' => 'auth'], function() {
 										'uses'=>'ProyectosController@eliminarIntegrante'] );
 
 
+	Route::get('proyectos-internos/create', 'ProyectosController@createProyectoInterno');
+	Route::post('proyectos-internos', 'ProyectosController@storeProyectoInterno');
 
 	Route::get('proyectos/{proyectos}/destroy', 'ProyectosController@destroy');
 					#____________________ cruds ____________________________
@@ -146,6 +149,8 @@ $router->group(['middleware' => 'auth'], function() {
 	#________________________________ Actiividades _____________________________________
 				#____________ agregar actividades y subactividades _________________
 	Route::any('actividades/adjuntar', 'ActividadesController@adjuntar');
+	Route::post('actividades/destruir', 'ActividadesController@destroy');
+	Route::post('actividades/update', 'ActividadesController@update');
 	Route::post('actividades/comentario', 'ActividadesController@agregarComentario');
 	Route::resource('actividades', 'ActividadesController');
 	

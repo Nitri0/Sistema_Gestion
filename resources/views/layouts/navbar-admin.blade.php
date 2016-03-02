@@ -4,7 +4,7 @@
 	<div class="container-fluid">
 		<!-- begin mobile sidebar expand / collapse button -->
 		<div class="navbar-header">
-			<a href="{{ url('/mis-proyectos') }}" class="navbar-brand"><img class="nav-admin-logo" src="{{ url('img/logo.png') }}"> Key Gestión</a>
+			<a href="{{ url('/mis-proyectos') }}" class="navbar-brand"><img class="nav-admin-logo" src="{{ url('img/logo.png') }}"> Gestionlist</a>
 			<button type="button" class="navbar-toggle" data-click="sidebar-toggled">
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
@@ -16,7 +16,7 @@
 		<!-- begin header navigation right -->
 		<ul class="nav navbar-nav navbar-right">
 
-			<li>
+			<li id="buscar">
 				<form class="navbar-form full-width">
 					<div class="form-group">
 						<input type="text" class="form-control" placeholder="Buscar" ng-model="opciones.buscador"/>
@@ -25,7 +25,7 @@
 				</form>
 			</li>
 			
-			@if(Auth::user()->tiene_permiso('proyectos'))
+			@if(Auth::user()->isAdmin())
 			<li class="dropdown">
 				<a href="{{ url('asistente/iniciando')}}" class="dropdown-toggle f-s-14">
 					<i class="fa fa-magic" data-toggle="tooltip" data-placement="bottom" data-title="Creación Guiada"></i>
@@ -35,19 +35,20 @@
 
 			<li class="dropdown navbar-user">
 				<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
-					<img src="{{ url('/img/user.png') }}" alt="" /> 
+					<img src="{{ url('/img/user.jpg') }}" alt="" /> 
 					<span class="hidden-xs">{{ Auth::user()->fullName()}}</span> <b class="caret"></b>
 				</a>
 				<ul class="dropdown-menu animated fadeInLeft">
 					<li class="arrow"></li>
-					<li><a href="{{ url ('/perfil') }}">Editar perfil Usuario</a></li>
+					<li><a href="{{ url ('/perfil') }}">Editar Tu Perfil</a></li>
 					@if(Auth::user()->isAdmin())
-					<li><a href="{{ url ('/perfil-empresa') }}">Editar perfil Empresa</a></li>
+					<li><a href="{{ url ('/perfil-empresa') }}">Editar Perfil de la Empresa</a></li>
 					@endif
-					<li><a href="#compartir" data-toggle="modal">Díselo a tus amigos...</a></li>
-					<li><a href="{{url('/reset-password')}}"><!-- <i class="fa fa-key"></i> --> Cambiar Contraseña</a></li>
+					<li><a href="#compartir" data-toggle="modal">Díselo a Tus Amigos...</a></li>
+					<li ng-controller="TourController"><a ng-click="tour()">Paseo por Gestionlist</a></li>
+					<li><a href="{{url('/reset-password')}}">Cambiar Contraseña</a></li>
 					<li class="divider"></li>
-					<li><a href="{{ url ('/logout') }}"><i class="fa fa-sign-in"></i> Cerrar sesión</a></li>
+					<li><a href="{{ url ('/logout') }}">Cerrar Sesión</a></li>
 				</ul>
 			</li>
 		</ul>
@@ -57,4 +58,3 @@
 </div>
 <!-- end #header -->
 
-@include('modals/compartir')
