@@ -217,8 +217,9 @@
                 @endif
                 <table class="table table-email table-hover">
                     <tbody class="email-content">
-                        @foreach($etapa->getAvances($proyecto->id_proyecto) as $avance)                                                        
-                        
+
+                        @foreach($etapa->getAvances($proyecto->id_proyecto) as $avance) 
+
                             <tr href="#{{$avance->id_avance}}" data-toggle="collapse">
                                 <td class="email-select col-md-1"><span class="userimage"><img width="20" height="20" src="{{url('img/user.jpg')}}" alt=""></span></td>
                                 <td class="email-sender col-md-3">
@@ -234,7 +235,15 @@
                             </tr>
                             <tr class="collapse" id="{{$avance->id_avance}}">                                    
                                 <td colspan="5">
-                                    {!!$avance->descripcion_avance!!}
+                                    <div>
+                                        {!!$avance->descripcion_avance!!}
+                                    </div>
+                                    <div>
+                                        @if($avance->getComentario($avance->id_avance))
+                                            <label for="">Comentario del cliente:</label><br>
+                                            {!!$avance->getComentario($avance->id_avance) !!}
+                                        @endif
+                                    </div>
                                 </td>
                             </tr>
                         

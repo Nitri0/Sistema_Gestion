@@ -20,7 +20,7 @@ class Avances extends Model {
 
 
 	protected $dates = ['fecha_creacion_avance'];
-
+	//protected $appends = ['comentario'];
 
 	public function getNombreCreador(){
 		$usuario = User::find($this->id_usuario);
@@ -28,7 +28,16 @@ class Avances extends Model {
 			return $usuario->getFullName();	
 		};
 		return "Usuario no existente";
+	}	
+	public function getComentario($id_avance){
+		$comentario = AvanceComentarios::where('id_avance',$id_avance)->first();
+		if ($comentario){
+			//dd($comentario)
+			return $comentario->contenido_avance_comentario;	
+		}
+		return "";
 	}
+
 
 	public function getFechaCreacionAvanceAttribute(){
 		$date = \Carbon\Carbon::parse($this->attributes['fecha_creacion_avance']); 
@@ -36,7 +45,7 @@ class Avances extends Model {
 
 	//    return $this->attributes['fecha_creacion_plantilla'];
 	}
-	public function Comentario(){
+	/*public function Comentario(){
 		return $this->hasOne('App\AvanceComentarios','id_avance');
-	}
+	}*/
 }
