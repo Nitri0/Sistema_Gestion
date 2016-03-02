@@ -27,6 +27,13 @@
 
 
 			<li class="has-sub" id="mis_proyectos"><!-- ng-click="proyecto_active()" ng-class="{'': !proyecto, 'active': proyecto}"-->
+				<a href="{{ url('mis-Actividades')}}" >
+				    <i class="fa fa-star"></i>
+				    <span>Mis Actividades</span>
+			    </a>
+			</li>	
+
+			<li class="has-sub" id="mis_proyectos"><!-- ng-click="proyecto_active()" ng-class="{'': !proyecto, 'active': proyecto}"-->
 				<a href="{{ url('mis-proyectos')}}" >
 				    <i class="fa fa-star"></i>
 				    <span>Mis Proyectos</span>
