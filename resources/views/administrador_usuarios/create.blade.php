@@ -17,7 +17,7 @@
         <div ng-init="urlRedirect='{{ url('admin_usuarios/') }}'"></div>
         
 		@if($usuario)
-	        <h1 class="page-header"> Editar Usuario </h1>
+	        <h1 class="page-header"> Editar Permisos del Usuario </h1>
 
 	        <div ng-init="usuario={{$usuario}}"></div>
 			<div ng-init="perfil={{$perfil}}"></div>
@@ -54,7 +54,8 @@
 								<div class="form-group">
 	                                <label class="col-md-4 control-label">Correo electrónico</label>
 	                                <div class="col-md-5">
-										<input type="email" class="form-control" name="correo_usuario" ng-model='usuario.correo_usuario' ng-required="true" oninvalid="setCustomValidity(' ')">
+										<input type="email" ng-remote-validate="{{url('/admin_usuarios/validUser/')}}"
+										 class="form-control" name="correo_usuario" ng-model='usuario.correo_usuario' ng-required="true" oninvalid="setCustomValidity(' ')">
 	                                	<div class="error campo-requerido" ng-show="formulario.correo_usuario.$invalid && (formulario.correo_usuario.$touched || submitted)">
 		                                    <small class="error" ng-show="formulario.correo_usuario.$error.required">
 		                                        * Campo requerido.
@@ -62,6 +63,9 @@
 		                                    <small class="error" ng-show="formulario.correo_usuario.$error.email">
 		                                    	* Correo inválido correo@ejemplo.com
 		                                    </small>
+		                                    <small class="error" ng-show="formulario.correo_usuario.$error.ngRemoteValidate && usuario.correo_usuario">
+		                                        * Correo ya registrado, utilice otro.
+		                                    </small>		                                    
 		                            	</div>
 	                                </div>
                             	</div>
@@ -86,7 +90,7 @@
 
 				<div class="row">
 
-					<h1 class="page-header"><center><i class="fa fa-unlock-alt"></i><small> Permisos </small></center></h1>
+					<p class="col-md-push-1"><i class="fa fa-wrench"></i> Configure los permisos del usuario a sus necesidades.</p>
 
 				    <div class="col-md-12">
 				        <div class="panel-group" id="accordion">

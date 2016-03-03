@@ -22,11 +22,8 @@
 			    </ul>
                 <!--<img src="{{ asset('/img/bg-7.jpg') }}" data-id="login-cover-image" alt="">-->
             </div>
-            <div class="news-caption">
-                <h4 class="caption-title"> <img class="login-icono" src="{{ asset('/img/ks-logo.png') }}">  Key Systems </h4>
-                <p>
-                    Refleja tus ideas.
-                </p>
+            <div class="news-caption" align="center">
+                <h4 class="caption-title"> Gesti <img class="login-icono" src="{{ asset('/img/logo.png') }}"> nlist</h4>
             </div>
         </div>
         <!-- end news-feed -->
@@ -34,13 +31,14 @@
         <div class="right-content">
             <!-- begin login-header -->
             <div class="login-header">
-                <div class="brand">
-                    <img class="login-icono" src="{{ asset('/img/logo.png') }}"> Sistema de Gestión
-                    <small> Organiza tus ideas...</small>
+                <div class="brand" align="center">
+                    <img class="login-icono" src="{{ asset('/img/logo.png') }}">
+                    <br><big>Gestionlist</big>
+                    <small align="center"> Organiza tus ideas...</small>
                 </div>
-                <div class="icon">
-                    <i class="fa fa-sign-in"></i>
-                </div>
+                <!--<div class="icon">
+                    <i class="fa fa-key"></i>
+                </div>-->
             </div>
             <!-- end login-header -->
             <!-- begin login-content -->
@@ -64,12 +62,13 @@
 							</label>
 						</div>			
 					</div> -->
-                    <a class="btn btn-link btn-oldivar" href="{{ url('/recuperar-contraseña') }}">Olvidó su Contraseña?</a>   
-                    <div class="login-buttons">
+                    
+                    <div class="login-buttons" align="center">
+                        <a class="btn btn-link btn-oldivar" href="{{ url('/recuperar-contraseña') }}">¿Olvidó su Contraseña?</a>   
                         <!--<button type="submit" class="btn btn-success btn-block btn-lg">Sign me in</button>-->
-                        <button class="btn btn-danger btn-block btn-lg" type="submit">Iniciar Sesión </button>
+                        <button class="btn btn-primary btn-block btn-lg" type="submit">Iniciar Sesión </button>
                     </div>
-                    <div class="m-t-40 m-b-40 p-b-40">
+                    <div class="m-t-40 m-b-40 p-b-40" align="center">
                        <h5> ¿No eres miembro todavía? <a href="{{ url('/registrar') }}" class="text-success">Haga clic aquí </a> para registrarse.</h5>
                     </div>
                     <hr>
@@ -84,7 +83,6 @@
         <!-- end right-container -->
     </div>
     
-    @include('modals/login/mensaje-7-dias')
 
 </div>
 @endsection

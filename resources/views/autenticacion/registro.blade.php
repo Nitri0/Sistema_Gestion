@@ -21,26 +21,21 @@
 			    </ul>
                 <!--<img src="{{ asset('/img/bg-7.jpg') }}" data-id="login-cover-image" alt="">-->
             </div>
-             <div class="news-caption">
-                <h4 class="caption-title"> <img class="login-icono" src="{{ asset('/img/ks-logo.png') }}">  Key Systems </h4>
-                <p>
-                    Refleja tus ideas.
-                </p>
+            <div class="news-caption" align="center">
+                <h4 class="caption-title"> Gesti <img class="login-icono" src="{{ asset('/img/logo.png') }}"> nlist</h4>
             </div>
         </div>
         <!-- end news-feed -->
         <!-- begin right-content -->
         <div class="right-content">
+        	<br>
             <!-- begin login-header -->
-            <div class="login-header">
-              	<div class="brand">
-                    <img class="login-icono" src="{{ asset('/img/logo.png') }}"> Sistema de Gestión
-                    <small> Organiza tus ideas...</small>
+            
+                <div class="brand" align="center">
+                    
+                    <big>Gesti <img src="{{ asset('/img/logo.png') }}" width="30"> nlist</big>	
                 </div>
-                <div class="icon">
-                    <i class="fa fa-pencil-square-o"></i>
-                </div>
-            </div>
+            
             <!-- end login-header -->
             <!-- begin login-content -->
             <div class="login-content">
@@ -51,48 +46,39 @@
 				<form class="form-horizontal" role="form" method="POST" action="{{ url('/registrar') }}">
 					<input type="hidden" name="_token" value="{{ csrf_token() }}">
 
-
 					<div class="form-group m-b-15">
-						<input type="text" class="form-control" name="nombre" placeholder="Nombres">
+						<input type="text" class="form-control input-lg" name="nombre" placeholder="Nombres">
 					</div>
 
 					<div class="form-group m-b-15">
-						<input type="text" class="form-control" name="apellido" placeholder="Apellidos">
-					</div>
-
-
-					<div class="form-group m-b-15">
-						<input type="text" class="form-control" name="empresa" placeholder="Nombre de empresa">
+						<input type="text" class="form-control input-lg" name="apellido" placeholder="Apellidos">
 					</div>
 
 					<div class="form-group m-b-15">
-						<input type="email" class="form-control" name="correo_usuario" placeholder="Correo Electrónico">
+						<input type="text" class="form-control input-lg" name="empresa" placeholder="Nombre de empresa">
 					</div>
 
 					<div class="form-group m-b-15">
-						<input type="password" class="form-control" name="password" placeholder="Contraseña">
+						<input type="email" class="form-control input-lg" name="correo_usuario" placeholder="Correo Electrónico">
+					</div>
+
+					<div class="form-group m-b-15">
+						<input type="password" class="form-control input-lg" name="password" placeholder="Contraseña">
 					</div>
 					<div class="form-group m-b-15">
-						<input type="password" class="form-control" name="re_password" placeholder="Repetir Contraseña">
+						<input type="password" class="form-control input-lg" name="re_password" placeholder="Repetir Contraseña">
 					</div>						
 			
-					<br>
-
-					<div class="login-buttons">
-						<button type="submit" class="btn btn-danger btn-block btn-lg">
-							Registrar
-						</button>
-					</div>
-
+			 		<div class="register-buttons">
+                        <button type="submit" class="btn btn-primary btn-block btn-lg">Registrar</button>
+                    </div>
 					<hr>
-                    <p class="text-center text-inverse">
+					<div class="m-t-20 m-b-40 p-b-40">
+                       	¿Ya eres miembro? Click <a href="{{ url('/login') }}">Aquí</a> para Ingresar..
+                    </div>
+                    <!--<p class="text-center text-inverse">
                         © Copyright Key Systems C.A 2015
-                    </p>
-
-                    <p class="text-center text-inverse">
-                       <a href="{{ url('/login') }}">Iniciar Sesión</a>
-                    </p>
-
+                    </p>-->
 				</form>
 				
 			</div>

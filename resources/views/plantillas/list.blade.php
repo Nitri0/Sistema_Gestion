@@ -39,10 +39,10 @@
             <div class="col-12">
                 <div class="panel-group" id="accordion">
                 	<div class="row text-list">
-                		<div class="col-sm-5"> 
+                		<div class="col-sm-6"> 
                 			<div class="row">
-                				<div class="col-sm-3">N° </div>
-                				<div class="col-sm-9">
+                				<div class="col-sm-2" align="center">N° </div>
+                				<div class="col-sm-10">
                         			Nombre plantilla
                         		</div>
                 			</div>
@@ -67,10 +67,10 @@
 		        			</div>
                             <h3 class="panel-title list-title">
                             	<div class="row">
-                            		<div class="col-sm-5"> 
+                            		<div class="col-sm-6"> 
                             			<div class="row">
-                            				<div class="col-sm-3"> [[$index+1]] </div>
-                            				<div class="col-sm-9">
+                            				<div class="col-sm-2"> [[$index+1]] </div>
+                            				<div class="col-sm-10 text-ellipsis">
 		                            			[[plantilla.nombre_plantilla]]
 		                            		</div>
                             			</div>

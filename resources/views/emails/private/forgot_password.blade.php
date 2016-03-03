@@ -1,7 +1,7 @@
-<p>Hola {{$nombre}},</p>
+<p>Buen día Sr(a) {{$nombre}}</p>
 
 <p>Su nueva contraseña es: {{$password}}</p>
-<p>Para cualquier pregunta o sugerencia, por favor contactenos a {{$contacto_email}}.</p>
+<p>Puede ingresar al sistema y modificarla nuevamente.</p>
 <br>
 <p>Gracias,</p>
-<p>KeyGestion.</p>
+<p>Atte: <a href="http://gestionlist.com/">GestiónList</a></p>

@@ -115,6 +115,12 @@ class AdministradorUsuariosController extends Controller
     }
 
     public function create(){
+        $user = Auth::user();
+        if (!$user->puedeAgregarUsuarios()){
+            Session::flash('upgrade','prueba');
+            return redirect('/admin_usuarios');
+        }
+
 
         return view('administrador_usuarios.create', ['usuario'=>$this->usuario,
                                                         'permisos' =>$this->permisos,
@@ -123,15 +129,24 @@ class AdministradorUsuariosController extends Controller
     }
 
     public function store(Request $request){
+        // $user = Auth::user();
+        // $cantidad_usuarios = MMEmpresasUsuarios::where('id_empresa', Auth::user()->getIdEmpresa())
+        //                 ->get()
+        //                 ->count();
+        // if (!$user->tieneSuscripcion() || $cantidad_usuarios >= $user->cantidad_usuarios){
+        //     Session::flash("upgrade-cuenta",'upgrade-cuenta');
+        //     return json_encode(['success'=>false,]);
+        // }
+
         if (!$request->has('password')){
             Session::flash("mensaje-error",'rellene el password');
-            return redirect("/admin_usuarios/create");
+            return json_encode(['success'=>false,]);
         };
 
         $verificacion = User::where('correo_usuario', $request->correo_usuario)->first();
         if ($verificacion){
             Session::flash("mensaje-error","usuario existente");
-            return redirect("/admin_usuarios/create");
+            return json_encode(['success'=>false,]);
         };
 
         $request['password'] = \Hash::make($request['password']);
@@ -222,4 +237,18 @@ class AdministradorUsuariosController extends Controller
         $this->usuario->save();
         return redirect("/admin_usuarios");
     }    
+
+    public function validUser(Request $request){
+        $json=[];
+        $value = $request->value;
+        $users = User::where('correo_usuario', $request->value)->first();
+        if (!$users){
+            $json=['isValid'=>true,
+                   'value'=>$request->value];
+        }else{
+            $json=['isValid'=>false,
+                   'value'=>$request->value];
+        }
+        return json_encode($json);
+    }
 }

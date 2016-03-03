@@ -18,10 +18,21 @@ class Proyectos extends Model {
 								'usable_proyecto',
 								'id_ultimo_avance',
 								'id_usuario',
-								'id_empresa'
+								'id_empresa',
+								'lider_proyecto',
+								'proyecto_interno'
 								);
 	protected $dates = ['fecha_creacion_proyecto'];
+	protected $appends = ['nombre_lider_proyecto'];
 	public $timestamps = false;
+
+	public function  getNombreLiderProyectoAttribute (){
+		if ($this->lider_proyecto){
+			return User::find($this->lider_proyecto)->fullName();
+		}
+		return "";
+	}
+
 	public function usuarios(){
 		return $this->hasMany('App\Roles','id_proyecto');
 	}

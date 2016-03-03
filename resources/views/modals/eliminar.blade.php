@@ -1,5 +1,5 @@
 <div class="modal fade bs-example-modal-sm" id="eliminar" labelledby="myLargeModalLabel">
-	<div class="modal-dialog modal-sm">
+	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>

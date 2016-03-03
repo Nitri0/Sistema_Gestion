@@ -37,16 +37,16 @@
             <div class="col-12">
                 <div class="panel-group" id="accordion">
                 	<div class="row text-list">
-                		<div class="col-sm-4"> 
+                		<div class="col-sm-9"> 
                 			<div class="row">
-                				<div class="col-sm-2">N° </div>
-                				<div class="col-sm-10">
-                        			Identificador de proyecto
+                				<div class="col-sm-1" align="center">N° </div>
+                				<div class="col-sm-11">
+                        			Tipo de Proyecto
                         		</div>
                 			</div>
                 		</div>
-                		<div class="col-sm-3">
-							Cantidad de etapas
+                		<div class="col-sm-2">
+							Nº de Etapas
                 		</div>
                 	</div>
 
@@ -64,16 +64,16 @@
 		        			</div>
                             <h3 class="panel-title list-title">
                             	<div class="row">
-                            		<div class="col-sm-4"> 
+                            		<div class="col-sm-9"> 
                             			<div class="row">
-                            				<div class="col-sm-2"> [[$index+1]] </div>
-                            				<div class="col-sm-10">
+                            				<div class="col-sm-1"> [[$index+1]] </div>
+                            				<div class="col-sm-11">
 		                            			[[etapa.nombre_grupo_etapas]]
 		                            		</div>
                             			</div>
                             		</div>
 
-                            		<div class="col-sm-2">
+                            		<div class="col-sm-1">
 										<center>[[etapa.cantidad_etapas]]</center>
                             		</div>
                             	</div>                           	 

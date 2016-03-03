@@ -10,9 +10,9 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a href="{{ url ('/') }}" class="navbar-brand">
-                    <img class="nav-cliente-logo" src="{{ url('img/logo.png') }}">
+                    <img class="nav-cliente-logo" src="{{ url('/img/logo.png') }}">
                     <span class="brand-text">
-                        <span class="text-theme">Key</span> Systems
+                        <span class="text-theme">Gestionlist</span>
                     </span>
                 </a>
             </div>

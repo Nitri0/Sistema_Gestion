@@ -21,7 +21,8 @@ Route::any('activacion/{id_usuario}',  'LoginController@HabilitarUsuario');
 $router->group(['middleware' => 'auth'], function() {
 
 	Route::get('/gestion', 'VistasController@gestion');
-	
+	Route::post('/mostrar-tutorial', 'MisProyectosController@mostrar_tutorial');
+	Route::post('/desactivar-tutorial', 'MisProyectosController@desactivar_tutorial');
 
 #______________________________________ PLANTILLAS _____________________________________________
 	Route::get('/plantillas/preview/{plantillas}',['as'  => 'plantillas.previewPlantillas',
@@ -50,7 +51,10 @@ $router->group(['middleware' => 'auth'], function() {
 										'uses'=>'ProyectosController@eliminarIntegrante'] );
 
 
+	Route::get('proyectos-internos/create', 'ProyectosController@createProyectoInterno');
+	Route::post('proyectos-internos', 'ProyectosController@storeProyectoInterno');
 
+	Route::get('proyectos/{proyectos}/destroy', 'ProyectosController@destroy');
 					#____________________ cruds ____________________________
 	Route::resource('proyectos', 'ProyectosController');
 
@@ -83,6 +87,7 @@ $router->group(['middleware' => 'auth'], function() {
 #______________________________________ CLIENTES _______________________________________________	
 					#____________________ cruds ____________________________
 	Route::post('/clientes/valididentificador/', 'ClientesController@validRif');
+	Route::get('clientes/{clientes}/destroy', 'ClientesController@destroy');
 	Route::resource('clientes', 'ClientesController');
 
 
@@ -103,6 +108,7 @@ $router->group(['middleware' => 'auth'], function() {
 	Route::get('admin_usuarios/{admin_usuarios}/habilitar', 'AdministradorUsuariosController@habilitar');
 	Route::get('admin_usuarios/{id}/permisos',  ['as'  => 'admin_usuario.editPermisos',
 												'uses'=>'AdministradorUsuariosController@editPermisos']);
+	Route::post('/admin_usuarios/validUser/', 'AdministradorUsuariosController@validUser');	
 	Route::resource('admin_usuarios', 'AdministradorUsuariosController');
 
 #________________________________ ADMINISTRADOR DE EMPRESAS _____________________________________

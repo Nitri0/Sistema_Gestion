@@ -24,7 +24,7 @@ use Gate;
 
 
 define ('SITE_EMAILS', realpath("../resources/views/emails/"));
-define ('FOOTER', "<br><br><p align='center'>Mensaje enviado a través de la plataforma de gestión de proyectos <a href={{url()}}>KeyGestión</a>. Todos los derechos reservados 2016<p>");
+define ('FOOTER', "<br><br><p align='center'>Mensaje enviado a través de la plataforma de gestión de proyectos <a href={{url()}}>GestiónList</a>. Todos los derechos reservados 2016<p>");
 
 
 class MisProyectosController extends Controller {
@@ -61,7 +61,6 @@ class MisProyectosController extends Controller {
 	public function misProyectos(){
 		$user = Auth::user();
 		//FORMA DE LISTAR LAS COLUMNAS ESPECIFICAS COMO UN ARREGLO UNIDIMENCIONAL (SOLO VALUE)
-
 		$proyectos = json_encode(\DB::select('CALL p_busquedas(?,?,?)',array('listar_mis_proyectos',$user->id_usuario, $user->getIdEmpresa())));
 		// $proyectos_id = Roles::where('id_usuario',$user->id_usuario)->lists('id_proyecto');
 		// $proyectos = Proyectos::where('habilitado_proyecto',1)
@@ -177,6 +176,8 @@ class MisProyectosController extends Controller {
 				$path = SITE_EMAILS."/".$plantilla->nombre_archivo_plantilla.".blade.php";
 				file_put_contents($path,$plantilla->raw_data_plantilla.FOOTER);
 			};			
+
+			
 			Helper::SendEmail(
 							$cliente->email_cliente,
 							$cliente->persona_contacto_cliente,
@@ -266,6 +267,23 @@ class MisProyectosController extends Controller {
 		return redirect("/mis-proyectos");
 	}
 
+	public function mostrar_tutorial(Request $request){
+		$user = Auth::user();
+		if ($user){
+			return json_encode(['success'=>true, 'tutorial'=>$user->tutorial]);
+		};
+		return json_encode(['success'=>false]);
+	}
+
+	public function desactivar_tutorial(Request $request){
+		$user = Auth::user();
+		if ($user){
+			$user->tutorial = 0;
+			$user->save();
+			return json_encode(['success'=>true,]);
+		};
+		return json_encode(['success'=>false]);
+	}
 
 }
 

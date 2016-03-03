@@ -44,7 +44,7 @@
                         <div class="panel-body">
     							
 							<div class="from-group">
-								<label class="col-md-4 control-label">Etapa/Sprint/Paso: </label>
+								<label class="col-md-4 control-label">Etapa: </label>
 								<div class="col-md-5"> 
 									<h6 class="text-success">{{$proyecto->getEstatus()}}</h6>
 								</div>
@@ -76,43 +76,43 @@
                                     </div>                                      
                                 </div>
 							</div>
-
-							<div class="form-group">
-                                <label class="col-md-4 control-label">¿Con copia al cliente?</label>
-                                <div class="col-md-5">
-                                    <label class="radio-inline">
-                                        <input type="radio" name="check_copia_cliente_avance" ng-model="check" value="1" ng-click='pantilla(check)'>
-                                        si
-                                    </label>
-                                    <label class="radio-inline">
-                                        <input type="radio" name="check_copia_cliente_avance" ng-model="check" value="0" checked="checked">
-                                        no
-                                    </label>
+                            @if(!$proyecto->proyecto_interno)
+    							<div class="form-group">
+                                    <label class="col-md-4 control-label">¿Con copia al cliente?</label>
+                                    <div class="col-md-5">
+                                        <label class="radio-inline">
+                                            <input type="radio" name="check_copia_cliente_avance" ng-model="check" value="1" ng-click='pantilla(check)'>
+                                            si
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input type="radio" name="check_copia_cliente_avance" ng-model="check" value="0" checked="checked">
+                                            no
+                                        </label>
+                                    </div>
                                 </div>
-                            </div>
-
-                            <div class="form-group" ng-if="check==1">
-								<label class="control-label col-md-4">Plantillas</label>
-								<div class="col-md-5">
-								    <select class="form-control js-example-data-array" name="id_plantilla" ng-model="id_plantilla" ng-required="true" oninvalid="setCustomValidity(' ')">
-                                        <option class="option" value="">Seleccione una plantilla</option>
-                                        @foreach($plantillas as $plantilla)
-												<option class="option" value="{{$plantilla->id_plantilla}}">
-													{{ $plantilla->nombre_plantilla }}
-												</option>							
-										@endforeach	
-                                    </select>
-                                    <div class="error campo-requerido" ng-show="formulario.id_plantilla.$invalid && (formulario.id_plantilla.$touched || submitted)">
-                                        <small class="error" ng-show="formulario.id_plantilla.$error.required">
-                                            * Campo requerido.
-                                        </small>
-                                    </div>                                          
-                                </div>
-                                <div class="col-md-2">
-									<a class="btn btn-sm btn-success" ng-if="id_plantilla" target="_blank" href="{{ url( '/plantillas/preview/'.$proyecto->id_proyecto.'/[[id_plantilla]]/' ) }}"> preview <i class="fa fa-eye"></i></a>
-								</div>
-							</div>
-    							
+                                
+                                <div class="form-group" ng-if="check==1">
+    								<label class="control-label col-md-4">Plantillas</label>
+    								<div class="col-md-5">
+    								    <select class="form-control js-example-data-array" name="id_plantilla" ng-model="id_plantilla" ng-required="true" oninvalid="setCustomValidity(' ')">
+                                            <option class="option" value="">Seleccione una plantilla</option>
+                                            @foreach($plantillas as $plantilla)
+    												<option class="option" value="{{$plantilla->id_plantilla}}">
+    													{{ $plantilla->nombre_plantilla }}
+    												</option>							
+    										@endforeach	
+                                        </select>
+                                        <div class="error campo-requerido" ng-show="formulario.id_plantilla.$invalid && (formulario.id_plantilla.$touched || submitted)">
+                                            <small class="error" ng-show="formulario.id_plantilla.$error.required">
+                                                * Campo requerido.
+                                            </small>
+                                        </div>                                          
+                                    </div>
+                                    <div class="col-md-2">
+    									<a class="btn btn-sm btn-success" ng-if="id_plantilla" target="_blank" href="{{ url( '/plantillas/preview/'.$proyecto->id_proyecto.'/[[id_plantilla]]/' ) }}"> preview <i class="fa fa-eye"></i></a>
+    								</div>
+    							</div>
+    						@endif
     					</div><!-- boby -->
                     </div>
                 </div>
