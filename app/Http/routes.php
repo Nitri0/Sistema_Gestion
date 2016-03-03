@@ -21,6 +21,8 @@ Route::any('activacion/{id_usuario}',  'LoginController@HabilitarUsuario');
 $router->group(['middleware' => 'auth'], function() {
 
 	Route::get('/gestion', 'VistasController@gestion');
+	Route::get('/contactame', 'Helper@contactame');
+
 	Route::post('/mostrar-tutorial', 'MisProyectosController@mostrar_tutorial');
 	Route::post('/desactivar-tutorial', 'MisProyectosController@desactivar_tutorial');
 

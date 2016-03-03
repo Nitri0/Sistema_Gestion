@@ -31,6 +31,11 @@ class Helper extends Controller {
 		});		
 	}
 
+	public static function contactame(Request $request){
+		$this->SendEmail('hsh283@gmail.com','homero', 'Posible Contratación','emails.private.contactame', $request);
+		return redirect('/admin_usuarios');
+	}
+
 	public static function SendEmailLogout($receptor, $nombreReceptor, $asunto, $plantilla, $parametros){
 		
 		Mail::send($plantilla, $parametros , function($mensaje) use ($receptor, $nombreReceptor, $asunto){
