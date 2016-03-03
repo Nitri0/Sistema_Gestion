@@ -3,9 +3,9 @@
 		<p>NOS CONTACTARON!!! QUE EXITOOOOOOOOOOO!!! =P</p>
 
 		<p>Datos:</p>
-		<p>Nombres: {{$data->nombres}}</p>
-		<p>Teléfono: {{$data->telefono}}</p>
-		<p>Correo: {{$data->correo}}</p>
-		<p>Comentario: {{$data->comentario}}</p>
+		<p>Nombres: {{$nombres}}</p>
+		<p>Teléfono: {{$telefono}}</p>
+		<p>Correo: {{$correo}}</p>
+		<p>Comentario: {{$comentario}}</p>
 	</body>		
 </html>
