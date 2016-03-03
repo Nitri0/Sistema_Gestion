@@ -55,7 +55,7 @@
                                     <i class="fa fa-plus pull-right"></i> 
                                 </a>    
                             </h3>-->
-                            <div class="box-button-list">
+                            <div class="box-button-list" ng-if="usuario.id_usuario != {{Auth::user()->id_usuario}}">
                                 <a class="btn btn-list" ng-href="{{ url( '/admin_usuarios/[[usuario.id_usuario]]/edit' ) }}" data-toggle="tooltip" data-title="Editar"><i class="fa fa-pencil-square-o"></i></a>
                             	<a ng-if="usuario.habilitado_usuario == 1" class="btn btn-list" ng-href="{{ url( '/admin_usuarios/[[usuario.id_usuario]]/destroy' ) }}" data-toggle="tooltip" data-title="Deshabilitar"><i class="fa fa-thumbs-o-down"></i></a>
                             	<a ng-if="usuario.habilitado_usuario == 0" class="btn btn-list" ng-href="{{ url( '/admin_usuarios/[[usuario.id_usuario]]/habilitar' ) }}" data-toggle="tooltip" data-title="Habilitar"><i class="fa fa-thumbs-o-up"></i></a>
@@ -65,7 +65,7 @@
                                     <div class="col-sm-8"> 
                                         <div class="row">
                                             <div class="col-sm-1"> [[$index+1]] </div>
-                                            <div class="col-sm-2">
+                                            <div class="col-sm-2" >
                                                 <div class="icon-usuario-habilitado" ng-if="usuario.habilitado_usuario == 1">
                                                     <i class="fa fa-check-circle"></i>
                                                 </div>
