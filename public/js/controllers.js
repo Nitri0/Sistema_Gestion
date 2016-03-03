@@ -141,7 +141,7 @@ coreApp.controller('AdminUsuariosController', function ($scope, $log) {
 		$scope.submitted=true;
 		$scope.snipper = true;
 		if (formValid==true && $scope.enviando==false){
-
+			var json = {};
     		angular.element('#formulario').serializeArray().map(function(x){json[x.name] = x.value;});
     		$scope.enviando = true;
 			$http({

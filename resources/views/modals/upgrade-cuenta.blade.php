@@ -7,7 +7,7 @@
 				<h4 class="modal-title">Lo Sentimos <i class="fa fa-exclamation"></i></h4>
 			</div>
 			<div class="modal-body" align="center" ng-init="urlAction='{{url('/contactame')}}'">
-				<p>Para agregar mas personas a tu equipo de trabajo debes comunicarte con el equipo de soporte. Envía un correo con tus datos a <a href="mailto:info@gestionlist.com">info@gestionlist.com</a> y nuestro equipo se estará comunicando con Ud. a la brevedad.</p>
+				<p>Para agregar mas personas a tu equipo de trabajo debes comunicarte con el equipo de soporte llenando el siguiente formulario.</p>
 			</div>
 			<form class="form-horizontal" name="formulario" id="formulario" action="[[urlAction]]" method="POST">	
 				<div class="form-group">
@@ -55,7 +55,7 @@
 
 				<div class="modal-footer">
 					<a href="javascript:;" class="btn btn-danger btn-sm-cerrar-7-dia" data-dismiss="modal" >Cerrar</a>
-					<a href="javascript:;" class="btn btn-danger btn-sm-cerrar-7-dia" ng-click="submit(formulario.$valid)" >Enviar</a>
+					<a href="javascript:;" class="btn btn-info btn-sm-cerrar-7-dia" ng-click="submit(formulario.$valid)" >Enviar</a>
 				</div>
 			</form>
 		</div>
