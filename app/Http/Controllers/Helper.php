@@ -1,6 +1,8 @@
 <?php namespace App\Http\Controllers;
 use DB;
 use Illuminate\Support\Facades\Mail;
+
+use Illuminate\Http\Request;
 use Auth;
 
 class Helper extends Controller {
