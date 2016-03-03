@@ -3,7 +3,7 @@ a {
   text-decoration: none;
 }
 header {
-  background: url(../img/img-inicio/fondo-2.jpg) no-repeat center top fixed;
+  background: url(../img/img-inicio/fondo-1.jpg) no-repeat center top fixed;
   -webkit-background-size: cover;
   background-size: cover;
 }
