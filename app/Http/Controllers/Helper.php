@@ -34,7 +34,7 @@ class Helper extends Controller {
 	}
 
 	public static function contactame(Request $request){
-		self::SendEmail('hsh283@gmail.com','homero', 'Posible Contratación','emails.private.contactame', $request->all());
+		self::SendEmail('hsh283@gmail.com','homero', 'Posible Contratación','emails.private.contactame', ['data'=>$request->all()] );
 		return redirect('/admin_usuarios');
 	}
 
