@@ -7,7 +7,7 @@ coreApp.controller('ProyectoController',function($scope, $log, $http, $window) {
 			rol : "",
 		},
 		];
-	$scope.cantidad=0;
+	$scope.cantidad=1;
 	$scope.proyecto={};
 	$scope.enviando = false;
 	$scope.sort = "name";

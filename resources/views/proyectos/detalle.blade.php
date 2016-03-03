@@ -305,10 +305,10 @@
                                 <td>
                                     <i class="fa fa-file-text-o"></i>
                                 </td>
-                                <td class="email-subject col-md-7">
+                                <td class="email-subject col-md-6">
                                     {{$avance->asunto_avance}}
                                 </td>
-                                <td class="email-date col-md-1">11/4/2014</td>
+                                <td class="email-date col-md-2">{{$avance->fecha_creacion_avance}} </td>
                             </tr>
                             <tr class="collapse" id="{{$avance->id_avance}}">                                    
                                 <td colspan="5">
