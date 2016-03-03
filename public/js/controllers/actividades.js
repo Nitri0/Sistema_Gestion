@@ -18,21 +18,22 @@ coreApp.controller('ActividadController', function ($scope, $log, $http, $window
 	$scope.usuario=0;
 	$scope.id_proyecto=null;
 	$scope.activityType=true;
-	$scope.initProyectos=function(Proyectos,usuario){
+	$scope.initProyectos=function(Proyectos,actividadesPersonales,usuario){
 		/*Carga la lista de actividades apenas inicia el sistema*/
 		$scope.usuario=usuario;
 		$scope.proyectos=Proyectos;
+		$scope.personalActivity.actividades=actividadesPersonales;
 	}
 	$scope.initActividades=function(id_proyecto){
 		/*Carga la lista de actividades apenas inicia el sistema*/
-		console.log(id_proyecto);
+		//console.log($scope.proyectos[id_proyecto].actividades);
 		if(id_proyecto!=null){
 			$scope.actividades=$scope.proyectos[id_proyecto].actividades;
 			$scope.id_proyecto=$scope.proyectos[id_proyecto].id_proyecto;
 			$scope.usuarios=$scope.proyectos[id_proyecto].usuarios;
 			$scope.personalP=false;
 		}else{
-			console.log('proyectos personales');
+			console.log($scope.personalActivity);
 			$scope.personalP=true;
 			$scope.actividades=$scope.personalActivity.actividades;
 			$scope.id_proyecto=null;
@@ -93,7 +94,8 @@ coreApp.controller('ActividadController', function ($scope, $log, $http, $window
 				  }, function errorCallback(response) {
 				  	//console.log("error");
 				  	$scope.snipper  = false;
-				  });			}
+				  });			
+			}
 			
 		/*}else{
 			$scope.snipper  = false;
@@ -174,6 +176,9 @@ coreApp.controller('ActividadController', function ($scope, $log, $http, $window
 		var json = {};
 		var ClaveActual=clave;
     	angular.element('#formularioNuevo').serializeArray().map(function(x){json[x.name] = x.value;});
+    	if($scope.id_proyecto==null){
+    		json.id_usuario=$scope.usuario;
+    	}
     	json.typeActivity=false;
     	$http({
 		    method: 'POST',

@@ -17,7 +17,7 @@
 
 	<div id="content" class="content ng-scope">
 		<div class="row">
-            <div ng-init="initProyectos({{$proyectos}},{{Auth::user()->id_usuario}})"></div><!--actividades={{$proyectos}}-->
+            <div ng-init="initProyectos({{$proyectos}},{{$actividadesPersonales}},{{Auth::user()->id_usuario}})"></div><!--actividades={{$proyectos}}-->
             <div ng-init="url='{{url()}}'"></div>
             <div class="col-md-12">
                 <div class="panel panel-inverse overflow-hidden custon-list" style="white-space: nowrap;
@@ -339,7 +339,7 @@
               <div class="modal-body">
                 <form id="formularioNuevo">
                     <div class="form-group">
-                        <div class="form-group">
+                        <div class="form-group" ng-hide="personalP">
                             <label class="col-md-4 control-label">Usuarios </label>
                             <div class="col-md-8">
                                <select id="usuarios_actividad" ng-model="sub_actividad.id_usuario" class="form-control" name="id_usuario">

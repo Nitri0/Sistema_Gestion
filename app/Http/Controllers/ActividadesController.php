@@ -45,11 +45,20 @@ class ActividadesController extends Controller
                 });
             }
         });  
-        $actividadesPersonales=Actividades::all()->where('autor_actividad',Auth::user()->id_usuario);
-        dd($actividadesPersonales);     
+        $actividadesP=Actividades::all()->where('autor_actividad',Auth::user()->id_usuario)->where('id_proyecto',0);
+        if($actividadesP){
+            $actividadesP->each(function($actividadesP){
+                    $actividadesP->usuarios;
+                    $actividadesP->subActividades;                    
+                    $actividadesP->adjuntos;
+                    $actividadesP->comentarios->each(function($actividadesP){
+                        $actividadesP->usuario->perfil;
+                    });
+                });
+        }
         $proyectos=array();
         $arrayIds=array();
-
+        $actividadesPersonales=array();
         foreach ($proyectosActivos as $key=>$proyecto) {
             $validation=false;
             foreach ($arrayIds as $id) {
@@ -66,7 +75,11 @@ class ActividadesController extends Controller
                 $proyectos[]=$proyecto->proyectos;
             }
         }
-        return view('actividades.list',array('proyectos'=>json_encode($proyectos)));
+        foreach ($actividadesP as $actividades) {
+            $actividadesPersonales[]=$actividades;
+        }
+        //($actividadesPersonales);
+        return view('actividades.list',array('proyectos'=>json_encode($proyectos),'actividadesPersonales'=>json_encode($actividadesPersonales)));
     }
 
     /**
