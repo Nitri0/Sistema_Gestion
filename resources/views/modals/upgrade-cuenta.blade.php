@@ -6,6 +6,7 @@
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 				<h4 class="modal-title">Lo Sentimos <i class="fa fa-exclamation"></i></h4>
 			</div>
+			<div ng-init="urlRedirect='{{url('/admin_usuarios')}}'"></div>
 			<div class="modal-body" align="center" ng-init="urlAction='{{url('/contactame')}}'">
 				<p>Para agregar mas personas a tu equipo de trabajo debes comunicarte con el equipo de soporte llenando el siguiente formulario.</p>
 			</div>

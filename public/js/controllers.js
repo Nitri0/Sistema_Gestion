@@ -55,7 +55,7 @@ coreApp.controller('PerfilController', function ($scope, $log) {
 });
 
 
-coreApp.controller('AdminUsuariosController', function ($scope, $log) {
+coreApp.controller('AdminUsuariosController', function ($scope, $log, $http, $window) {
 	console.log("AdminUsuariosController");
 	$scope.submitted = false;
 	$scope.permisos_user = {};
