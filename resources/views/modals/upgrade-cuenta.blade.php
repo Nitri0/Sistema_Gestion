@@ -51,7 +51,12 @@
                     <label class="col-md-4 control-label">Comentario</label>
                     <div class="col-md-5" >
                        <input type="text" text-num-only class="form-control" name="comentario" ng-model="comentario" ng-required="true" oninvalid="setCustomValidity(' ')">
-                    </div>
+						<div class="error campo-requerido" ng-show="formulario.correo.$invalid && (formulario.correo.$touched || submitted)">
+                            <small class="error" ng-show="formulario.correo.$error.required">
+                                * Campo requerido.
+                            </small>
+                    	</div>                       
+                    </div>                    
                 </div>
 
 				<div class="modal-footer">
