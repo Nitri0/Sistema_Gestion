@@ -30,19 +30,19 @@
                 </button>
                 
                 <div class="navbar-header">
-                    <a href="#" class="navbar-brand"><img class="nav-admin-logo" src="http://localhost:8000/img/logo.png"> Gestionlist</a>
+                    <a href="#" class="navbar-brand"><img class="nav-admin-logo" src="{{ url('/img/logo.png') }}"> Gestionlist</a>
                 </div>
             </div>
             
             <!-- NAVIGATION LINKS -->
             <div class="navbar-collapse collapse" id="kane-navigation">
                 <ul class="nav navbar-nav navbar-right main-navigation">
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#features">Features</a></li>
+                    <li><a href="#home">Inicio</a></li>
+                    <li><a href="#features">Why Us?</a></li>
                     <li><a href="#brief1">Why Us?</a></li>
                     <li><a href="#brief2">Desicribe</a></li>
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="#screenshot-section">Screenshots</a></li>
+                    <li><a href="#brief3">Desicribe</a></li>
+                    <li><a href="#packages">Screenshots</a></li>
                     <li><a href="#download">Download</a></li>
                 </ul>
             </div>
@@ -96,13 +96,14 @@
 </header>
 <!-- /END HEADER -->
 
+
 <!-- =========================
      FEATURES 
 ============================== -->
 <section class="features" id="features">
 
-<div class="container">
-    
+<div class="container-2">
+
     <!-- SECTION HEADER -->
     <div class="section-header wow fadeIn animated" data-wow-offset="120" data-wow-duration="1.5s">
         
@@ -117,12 +118,11 @@
         </div>
     </div>
     <!-- /END SECTION HEADER -->
-    
-    
+     
     <div class="row">
         
         <!-- FEATURES LEFT -->
-        <div class="col-md-4 col-sm-4 features-left wow fadeInLeft animated" data-wow-offset="10" data-wow-duration="1.5s">
+        <div class="col-md-3 col-sm-3 features-left wow fadeInLeft animated" data-wow-offset="10" data-wow-duration="1.5s">
             
             <!-- FEATURE -->
             <div class="feature">
@@ -191,14 +191,14 @@
         <!-- /END FEATURES LEFT -->
         
         <!-- PHONE IMAGE -->
-        <div class="col-md-4 col-sm-4">
-            <div class="phone-image wow bounceIn animated" data-wow-offset="120" data-wow-duration="1.5s">
-                <img src="http://templateocean.com/premium/template/kane/files/images/single-iphone.png" alt="">
+        <div class="col-md-6 col-sm-6">
+            <div class="phone-laptop-0 wow bounceIn animated" data-wow-offset="120" data-wow-duration="1.5s">
+                <img src="{{ url('img/img-inicio/0.png') }}" alt="">
             </div>
         </div>
         
         <!-- FEATURES RIGHT -->
-        <div class="col-md-4 col-sm-4 features-right wow fadeInRight animated" data-wow-offset="10" data-wow-duration="1.5s">
+        <div class="col-md-3 col-sm-3 features-right wow fadeInRight animated" data-wow-offset="10" data-wow-duration="1.5s">
             
             <!-- FEATURE -->
             <div class="feature">
@@ -269,7 +269,6 @@
         
     </div>
     <!-- /END ROW -->
-    
 </div>
 <!-- /END CONTAINER -->
 
@@ -285,14 +284,7 @@
 <div class="container">
     
     <div class="row">
-        
-        <!-- PHONES IMAGE -->
-        <div class="col-md-6 wow fadeInRight animated" data-wow-offset="10" data-wow-duration="1.5s">
-            <div class="phone-image">
-                <img src="http://templateocean.com/premium/template/kane/files/images/2-iphone-left.png" alt="">
-            </div>
-        </div>
-        
+
         <!-- RIGHT SIDE WITH BRIEF -->
         <div class="col-md-6 left-align wow fadeInLeft animated" data-wow-offset="10" data-wow-duration="1.5s">
             
@@ -317,6 +309,13 @@
         </div>
         <!-- /END RIGHT BRIEF -->
         
+        <!-- PHONES IMAGE -->
+        <div class="col-md-6 wow fadeInRight animated" data-wow-offset="10" data-wow-duration="1.5s">
+            <div class="laptop-image-1">
+                <img src="{{ url('/img/img-inicio/1.png') }}" alt="">
+            </div>
+        </div>
+
     </div>
     <!-- /END ROW -->
     
@@ -335,6 +334,14 @@
 <div class="container">
     
     <div class="row">
+
+        <!-- PHONES IMAGE -->
+        <div class="col-md-6 wow fadeInRight animated" data-wow-offset="10" data-wow-duration="1.5s">
+            <div class="laptop-image-2">
+                <img src="{{ url('/img/img-inicio/2.png') }}" alt="">
+            </div>
+        </div>
+        <!-- /END PHONES IMAGE -->
         
         <!-- BRIEF -->
         <div class="col-md-6 left-align wow fadeInLeft animated" data-wow-offset="10" data-wow-duration="1.5s">
@@ -352,15 +359,57 @@
             
         </div>
         <!-- /ENDBRIEF -->
+
+    </div>
+    <!-- /END ROW -->
+    
+</div>
+<!-- /END CONTAINER -->
+
+</section>
+<!-- /END SECTION -->
+
+
+<!-- =========================
+     BRIEF LEFT SECTION 
+============================== -->
+<section class="app-brief grey-bg" id="brief3">
+
+<div class="container">
+    
+    <div class="row">
+
+        <!-- RIGHT SIDE WITH BRIEF -->
+        <div class="col-md-6 left-align wow fadeInLeft animated" data-wow-offset="10" data-wow-duration="1.5s">
+            
+            <!-- SECTION TITLE -->
+            <h2 class="dark-text">Explain why it's best</h2>
+            
+            <div class="colored-line-left">
+            </div>
+            
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+            </p>
+            
+            <!-- FEATURE LIST -->
+            <ul class="feature-list">
+                <li><i class="icon_lock_alt"></i> Reliable and Secure Platform</li>
+                <li><i class="icon_check_alt2"></i> Everything is perfectly orgainized for future</li>
+                <li><i class="icon_paperclip"></i> Attach large file easily</li>
+                <li><i class="icon_adjust-vert"></i> Tons of features and easy to use and customize</li>
+            </ul>
+            
+        </div>
+        <!-- /END RIGHT BRIEF -->
         
         <!-- PHONES IMAGE -->
         <div class="col-md-6 wow fadeInRight animated" data-wow-offset="10" data-wow-duration="1.5s">
-            <div class="phone-image">
-                <img src="http://templateocean.com/premium/template/kane/files/images/2-iphone-right.png" alt="">
+            <div class="laptop-image-3">
+                <img src="{{ url('/img/img-inicio/3.png') }}" alt="">
             </div>
         </div>
-        <!-- /END PHONES IMAGE -->
-        
+
     </div>
     <!-- /END ROW -->
     
@@ -374,7 +423,7 @@
 <!-- =========================
      BRIEF LEFT SECTION WITH VIDEO 
 ============================== -->
-<section class="app-brief grey-bg" id="brief1">
+<section class="app-brief" id="brief1">
 
 <div class="container">
     
@@ -536,172 +585,6 @@
 
 
 <!-- =========================
-     SERVICES
-============================== -->
-<section class="services" id="services">
-
-<div class="container">
-    
-    <!-- SECTION HEADER -->
-    <div class="section-header wow fadeIn animated" data-wow-offset="10" data-wow-duration="1.5s">
-        
-        <!-- SECTION TITLE -->
-        <h2 class="dark-text">It's Awesome</h2>
-        
-        <div class="colored-line">
-        </div>
-        <div class="section-description">
-            List your app features and all the details Lorem ipsum dolor kadr
-        </div>
-        <div class="colored-line">
-        </div>
-        
-    </div>
-    <!-- /END SECTION HEADER -->
-    
-    <div class="row">
-        
-        <!-- SINGLE SERVICE -->
-        <div class="col-md-4 single-service wow fadeIn animated" data-wow-offset="10" data-wow-duration="1.5s">
-            
-            <!-- SERVICE ICON -->
-            <div class="service-icon">
-                <i class="icon_cloud-upload_alt"></i>
-            </div>
-            
-            <!-- SERVICE HEADING -->
-            <h3>Your Data in Cloud</h3>
-            
-            <!-- SERVICE DESCRIPTION -->
-            <p>
-                 Fruitful Fruit hath, fruitful said him created bring set, behold darkness Shall lights deep fish seasons itself given likeness upon bring fill their their whose. Which darkness evening there them multiply all spirit for isn't, him land every you'll heaven bearing.
-            </p>
-            
-        </div>
-        <!-- /END SINGLE SERVICE -->
-        
-        <!-- SINGLE SERVICE -->
-        <div class="col-md-4 single-service wow fadeIn animated" data-wow-offset="10" data-wow-duration="1.5s">
-            
-            <!-- SERVICE ICON -->
-            <div class="service-icon">
-                <i class="icon_gift_alt"></i>
-            </div>
-            
-            <!-- SERVICE HEADING -->
-            <h3>Monthly Rewards</h3>
-            
-            <!-- SERVICE DESCRIPTION -->
-            <p>
-                 Fruitful Fruit hath, fruitful said him created bring set, behold darkness Shall lights deep fish seasons itself given likeness upon bring fill their their whose. Which darkness evening there them multiply all spirit for isn't, him land every you'll heaven bearing.
-            </p>
-            
-        </div>
-        <!-- /END SINGLE SERVICE -->
-        
-        <!-- SINGLE SERVICE -->
-        <div class="col-md-4 single-service wow fadeIn animated" data-wow-offset="10" data-wow-duration="1.5s">
-            
-            <!-- SERVICE ICON -->
-            <div class="service-icon">
-                <i class="icon_chat_alt"></i>
-            </div>
-            
-            <!-- SERVICE HEADING -->
-            <h3>24/7 Support</h3>
-            
-            <!-- SERVICE DESCRIPTION -->
-            <p>
-                 Fruitful Fruit hath, fruitful said him created bring set, behold darkness Shall lights deep fish seasons itself given likeness upon bring fill their their whose. Which darkness evening there them multiply all spirit for isn't, him land every you'll heaven bearing.
-            </p>
-            
-        </div>
-        <!-- /END SINGLE SERVICE -->
-        
-    </div>
-    <!-- /END ROW -->
-    
-</div>
-<!-- /END CONTAINER -->
-
-</section>
-<!-- /END FEATURES SECTION -->
-
-
-<!-- =========================
-     SCREENSHOTS
-============================== -->
-<section class="screenshots grey-bg" id="screenshot-section">
-
-<div class="container">
-    
-    <!-- SECTION HEADER -->
-    <div class="section-header wow fadeIn animated" data-wow-offset="10" data-wow-duration="1.5s">
-        
-        <!-- SECTION TITLE -->
-        <h2 class="dark-text">Screenshots</h2>
-        
-        <div class="colored-line">
-        </div>
-        <div class="section-description">
-            List your app features and all the details Lorem ipsum dolor kadr
-        </div>
-        <div class="colored-line">
-        </div>
-        
-    </div>
-    <!-- /END SECTION HEADER -->
-    
-    <div class="row wow bounceIn animated" data-wow-offset="10" data-wow-duration="1.5s">
-        
-        <div id="screenshots" class="owl-carousel owl-theme">
-            
-            <div class="shot">
-                <a href="http://templateocean.com/premium/template/kane/files/images/screenshots/1.jpg" data-lightbox-gallery="screenshots-gallery"><img src="http://templateocean.com/premium/template/kane/files/images/screenshots/1.jpg" alt="Screenshot"></a>
-            </div>
-            
-            <div class="shot">
-                <a href="http://templateocean.com/premium/template/kane/files/images/screenshots/3.jpg" data-lightbox-gallery="screenshots-gallery"><img src="http://templateocean.com/premium/template/kane/files/images/screenshots/3.jpg" alt="Screenshot"></a>
-            </div>
-            
-            <div class="shot">
-                <a href="http://templateocean.com/premium/template/kane/files/images/screenshots/2.jpg" data-lightbox-gallery="screenshots-gallery"><img src="http://templateocean.com/premium/template/kane/files/images/screenshots/2.jpg" alt="Screenshot"></a>
-            </div>
-            
-            <div class="shot">
-                <a href="http://templateocean.com/premium/template/kane/files/images/screenshots/4.jpg" data-lightbox-gallery="screenshots-gallery"><img src="http://templateocean.com/premium/template/kane/files/images/screenshots/4.jpg" alt="Screenshot"></a>
-            </div>
-            
-            <div class="shot">
-                <a href="http://templateocean.com/premium/template/kane/files/images/screenshots/1.jpg" data-lightbox-gallery="screenshots-gallery"><img src="http://templateocean.com/premium/template/kane/files/images/screenshots/1.jpg" alt="Screenshot"></a>
-            </div>
-            
-            <div class="shot">
-                <a href="http://templateocean.com/premium/template/kane/files/images/screenshots/3.jpg" data-lightbox-gallery="screenshots-gallery"><img src="http://templateocean.com/premium/template/kane/files/images/screenshots/3.jpg" alt="Screenshot"></a>
-            </div>
-            
-            <div class="shot">
-                <a href="http://templateocean.com/premium/template/kane/files/images/screenshots/2.jpg" data-lightbox-gallery="screenshots-gallery"><img src="http://templateocean.com/premium/template/kane/files/images/screenshots/2.jpg" alt="Screenshot"></a>
-            </div>
-            
-            <div class="shot">
-                <a href="http://templateocean.com/premium/template/kane/files/images/screenshots/4.jpg" data-lightbox-gallery="screenshots-gallery"><img src="http://templateocean.com/premium/template/kane/files/images/screenshots/4.jpg" alt="Screenshot"></a>
-            </div>
-            
-        </div>
-        <!-- /END SCREENSHOTS -->
-        
-    </div>
-    <!-- /END ROW -->
-    
-</div>
-<!-- /END CONTAINER -->
-
-</section>
-<!-- /END SCREENSHOTS SECTION -->
-
-
-<!-- =========================
      PRICING TABLE | Added on version 1.7   
 ============================== -->
 <section class="packages" id="packages">
@@ -829,7 +712,7 @@
                     <!-- BUTTONS -->
                     <div class="buttons wow fadeInRight animated" data-wow-offset="10" data-wow-duration="1.5s">
                         
-                        <a href="" class="btn btn-default btn-lg standard-button"><i class="icon-app-store"></i>App Store</a>
+                        <!--<a href="" class="btn btn-default btn-lg standard-button"><i class="icon-app-store"></i>App Store</a>-->
                         <a href="" class="btn btn-default btn-lg standard-button"><i class="icon-google-play"></i>Play Store</a>
                         
                     </div>
@@ -946,7 +829,7 @@
                         <textarea class="form-control textarea-box" id="message" rows="8" placeholder="Message"></textarea>
                     </div>
                     
-                    <button class="btn btn-primary standard-button2 ladda-button" type="submit" id="submit" name="submit" data-style="expand-left">Send Message</button>
+                    <button class="btn btn-primary standard-button2 ladda-button" type="submit" id="submit" name="submit" data-style="expand-left">Enviar</button>
                     
                 </form>
                 <!-- /END FORM -->
@@ -960,22 +843,22 @@
     <!-- /END CONTACT BOX -->
     
     <!-- LOGO -->
-    <img src="http://templateocean.com/premium/template/kane/files/images/logo-black.png" alt="LOGO" class="responsive-img">
+    <img src="{{ url('/img/logo.png') }}" alt="LOGO" class="responsive-img img-folder">
     
     <!-- SOCIAL ICONS -->
     <ul class="social-icons">
         <li><a href=""><i class="social_facebook_square"></i></a></li>
         <li><a href=""><i class="social_twitter_square"></i></a></li>
-        <li><a href=""><i class="social_pinterest_square"></i></a></li>
-        <li><a href=""><i class="social_googleplus_square"></i></a></li>
+        <!--<li><a href=""><i class="social_pinterest_square"></i></a></li>
+        <li><a href=""><i class="social_googleplus_square"></i></a></li>-->
         <li><a href=""><i class="social_instagram_square"></i></a></li>
-        <li><a href=""><i class="social_dribbble_square"></i></a></li>
-        <li><a href=""><i class="social_flickr_square"></i></a></li>
+        <!--<li><a href=""><i class="social_dribbble_square"></i></a></li>
+        <li><a href=""><i class="social_flickr_square"></i></a></li>-->
     </ul>
     
     <!-- COPYRIGHT TEXT -->
     <p class="copyright">
-        ©2014 Kane, All Rights Reserved
+        ©2016 <a href="http://keysystemsca.com/" target="_blank">Key Systems C.A</a>
     </p>
 
 </div>
