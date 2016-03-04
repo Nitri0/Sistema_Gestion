@@ -38,11 +38,11 @@
             <div class="navbar-collapse collapse" id="kane-navigation">
                 <ul class="nav navbar-nav navbar-right main-navigation">
                     <li><a href="#home">Inicio</a></li>
-                    <li><a href="#features">Why Us?</a></li>
-                    <li><a href="#brief1">Why Us?</a></li>
-                    <li><a href="#brief2">Desicribe</a></li>
-                    <li><a href="#brief3">Desicribe</a></li>
-                    <li><a href="#packages">Screenshots</a></li>
+                    <li><a href="#features">Características</a></li>
+                    <li><a href="#brief1">¿Por qué?</a></li>
+                    <li><a href="#brief2">Póximamente</a></li>
+                    <!--<li><a href="#testimonials">Testimonios</a></li>-->
+                    <li><a href="#packages">Planes</a></li>
                     <li><a href="#download">Download</a></li>
                 </ul>
             </div>
@@ -108,11 +108,11 @@
     <div class="section-header wow fadeIn animated" data-wow-offset="120" data-wow-duration="1.5s">
         
         <!-- SECTION TITLE -->
-        <h2 class="dark-text">Amazing Features</h2>
+        <h2 class="dark-text">Increíbles Características</h2>
         <div class="colored-line">
         </div>
         <div class="section-description">
-            List your app features and all the details Lorem ipsum dolor kadr
+            Una manera de organizar tus ideas con solo listados.
         </div>
         <div class="colored-line">
         </div>
@@ -136,9 +136,9 @@
                 
                 <!-- FEATURE HEADING AND DESCRIPTION -->
                 <div class="fetaure-details">
-                    <h4 class="main-color">Responsive Design</h4>
+                    <h4 class="main-color">Diseño Responsive</h4>
                     <p>
-                         Lorem ipsum dolor sit amet, ed do eiusmod tempor incididunt ut labore et dolore magna.
+                        Adaptado a todas las resoluciones para mayor comodidad.
                     </p>
                 </div>
                 
@@ -157,9 +157,9 @@
                 
                 <!-- FEATURE HEADING AND DESCRIPTION -->
                 <div class="fetaure-details">
-                    <h4 class="main-color">Bootstrap 3.1</h4>
+                    <h4 class="main-color">Sorpresas</h4>
                     <p>
-                         Lorem ipsum dolor sit amet, ed do eiusmod tempor incididunt ut labore et dolore magna.
+                        Actualizaciones gratuitas con mayores opciones cada día.
                     </p>
                 </div>
                 
@@ -178,9 +178,9 @@
                 
                 <!-- FEATURE HEADING AND DESCRIPTION -->
                 <div class="fetaure-details">
-                    <h4 class="main-color">Cross-Browser Support</h4>
+                    <h4 class="main-color">Navegadores</h4>
                     <p>
-                         Lorem ipsum dolor sit amet, ed do eiusmod tempor incididunt ut labore et dolore magn.
+                        Compatible con el navegador de tu preferencia.
                     </p>
                 </div>
                 
@@ -212,9 +212,9 @@
                 
                 <!-- FEATURE HEADING AND DESCRIPTION -->
                 <div class="fetaure-details">
-                    <h4 class="main-color">360+ Icon Fonts</h4>
+                    <h4 class="main-color">Integración</h4>
                     <p>
-                         Lorem ipsum dolor sit amet, ed do eiusmod tempor incididunt ut labore et dolore magna.
+                        Manten la comunicación con tu equipo y el cliente al mismo tiempo
                     </p>
                 </div>
                 
@@ -233,9 +233,9 @@
                 
                 <!-- FEATURE HEADING AND DESCRIPTION -->
                 <div class="fetaure-details">
-                    <h4 class="main-color">Creative Design</h4>
+                    <h4 class="main-color">Diseño Amigable</h4>
                     <p>
-                         Lorem ipsum dolor sit amet, ed do eiusmod tempor incididunt ut labore et dolore magna.
+                         Podrás trabajar en el largas horas sin agotarte.
                     </p>
                 </div>
                 
@@ -255,9 +255,9 @@
                 
                 <!-- FEATURE HEADING AND DESCRIPTION -->
                 <div class="fetaure-details">
-                    <h4 class="main-color">More Features</h4>
+                    <h4 class="main-color">Hecho para Tí</h4>
                     <p>
-                         Lorem ipsum dolor sit amet, ed do eiusmod tempor incididunt ut labore et dolore magna.
+                        Para un Emprendedor, Gerente o Independiente.
                     </p>
                 </div>
                 
@@ -289,21 +289,21 @@
         <div class="col-md-6 left-align wow fadeInLeft animated" data-wow-offset="10" data-wow-duration="1.5s">
             
             <!-- SECTION TITLE -->
-            <h2 class="dark-text">Explain why it's best</h2>
+            <h2 class="dark-text">¿Por qué elegir Gestionlist?</h2>
             
             <div class="colored-line-left">
             </div>
             
             <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                Estamos en la misma posición que tú y por eso entendemos tus necesidades y lo que necesitas para mejorar los tiempos y la efectividad de tu equipo.
             </p>
             
             <!-- FEATURE LIST -->
             <ul class="feature-list">
-                <li><i class="icon_lock_alt"></i> Reliable and Secure Platform</li>
-                <li><i class="icon_check_alt2"></i> Everything is perfectly orgainized for future</li>
-                <li><i class="icon_paperclip"></i> Attach large file easily</li>
-                <li><i class="icon_adjust-vert"></i> Tons of features and easy to use and customize</li>
+                <li><i class="icon_lock_alt"></i> Seguridad de la información entre los participantes y el cliente</li>
+                <li><i class="icon_check_alt2"></i> Gestiona las prioridades del equipo</li>
+                <li><i class="icon_paperclip"></i> Posibilidad de adjuntar archivos</li>
+                <li><i class="icon_adjust-vert"></i> Maneja la configuración de tu equipo de trabajo</li>
             </ul>
             
         </div>
@@ -347,15 +347,20 @@
         <div class="col-md-6 left-align wow fadeInLeft animated" data-wow-offset="10" data-wow-duration="1.5s">
             
             <!-- SECTION TITLE -->
-            <h2 class="dark-text">Great way to describe your app</h2>
+            <h2 class="dark-text">Próximamente</h2>
             
             <div class="colored-line-left">
             </div>
             
             <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.<br/><br/>
-                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                Pronto podrás mantenerte sincronizado con tu equipo de trabajo tanto web como en tu dispositivo móvil.<br/><br/>
+                Te brinidaremos herramientas enfocada a cada uno de los entornos para facilitarte su uso y el proceso de gestión que manejes con todos tus clientes.
             </p>
+            <ul class="feature-list">
+                <li><i class="icon_check_alt2"></i> Velocidad para visualizar muchos proyectos.</li>
+                <li><i class="icon_check_alt2"></i> Definición de procesos para el personal.</li>
+                <li><i class="icon_check_alt2"></i> Funciones que acortan los tiempos de respuesta.</li>
+            </ul>
             
         </div>
         <!-- /ENDBRIEF -->
@@ -373,16 +378,16 @@
 <!-- =========================
      BRIEF LEFT SECTION 
 ============================== -->
-<section class="app-brief grey-bg" id="brief3">
+<!--<section class="app-brief grey-bg" id="brief3">
 
 <div class="container">
     
     <div class="row">
 
-        <!-- RIGHT SIDE WITH BRIEF -->
+        <!-- RIGHT SIDE WITH BRIEF --
         <div class="col-md-6 left-align wow fadeInLeft animated" data-wow-offset="10" data-wow-duration="1.5s">
             
-            <!-- SECTION TITLE -->
+            <!-- SECTION TITLE --
             <h2 class="dark-text">Explain why it's best</h2>
             
             <div class="colored-line-left">
@@ -392,7 +397,7 @@
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
             </p>
             
-            <!-- FEATURE LIST -->
+            <!-- FEATURE LIST --
             <ul class="feature-list">
                 <li><i class="icon_lock_alt"></i> Reliable and Secure Platform</li>
                 <li><i class="icon_check_alt2"></i> Everything is perfectly orgainized for future</li>
@@ -403,7 +408,7 @@
         </div>
         <!-- /END RIGHT BRIEF -->
         
-        <!-- PHONES IMAGE -->
+        <!-- PHONES IMAGE --
         <div class="col-md-6 wow fadeInRight animated" data-wow-offset="10" data-wow-duration="1.5s">
             <div class="laptop-image-3">
                 <img src="{{ url('/img/img-inicio/3.png') }}" alt="">
@@ -411,10 +416,10 @@
         </div>
 
     </div>
-    <!-- /END ROW -->
+    <!-- /END ROW --
     
 </div>
-<!-- /END CONTAINER -->
+<!-- /END CONTAINER --
 
 </section>
 <!-- /END SECTION -->
@@ -422,14 +427,14 @@
 
 <!-- =========================
      BRIEF LEFT SECTION WITH VIDEO 
-============================== -->
+============================== --
 <section class="app-brief" id="brief1">
 
 <div class="container">
     
     <div class="row">
         
-        <!-- PHONES IMAGE -->
+        <!-- PHONES IMAGE --
         <div class="col-md-6 wow fadeInRight animated" data-wow-offset="10" data-wow-duration="1.5s">
             <div class="video-container">
                 
@@ -439,7 +444,7 @@
                     <iframe src="//player.vimeo.com/video/88902745?byline=0&amp;portrait=0&amp;color=ffffff" width="600" height="338" frameborder="0" allowfullscreen>
                     </iframe> 
                 </div>
-                -->
+                --
                 
                 <div class="video">
                     
@@ -450,10 +455,10 @@
 
         </div>
         
-        <!-- RIGHT SIDE WITH BRIEF -->
+        <!-- RIGHT SIDE WITH BRIEF --
         <div class="col-md-6 left-align wow fadeInLeft animated" data-wow-offset="10" data-wow-duration="1.5s">
             
-            <!-- SECTION TITLE -->
+            <!-- SECTION TITLE --
             <h2 class="dark-text">Description with video</h2>
             
             <div class="colored-line-left">
@@ -466,13 +471,13 @@
             
             
         </div>
-        <!-- /END RIGHT BRIEF -->
+        <!-- /END RIGHT BRIEF --
         
     </div>
-    <!-- /END ROW -->
+    <!-- /END ROW --
     
 </div>
-<!-- /END CONTAINER -->
+<!-- /END CONTAINER --
 
 </section>
 <!-- /END SECTION -->
@@ -480,22 +485,22 @@
 
 <!-- =========================
      TESTIMONIALS 
-============================== -->
-<section class="testimonials">
+============================== --
+<section class="testimonials" id="testimonials">
 
 <div class="color-overlay">
     
     <div class="container wow fadeIn animated" data-wow-offset="10" data-wow-duration="1.5s">
         
-        <!-- FEEDBACKS -->
+        <!-- FEEDBACKS --
         <div id="feedbacks" class="owl-carousel owl-theme">
             
-            <!-- SINGLE FEEDBACK -->
+            <!-- SINGLE FEEDBACK --
             <div class="feedback">
                 
-                <!-- IMAGE -->
+                <!-- IMAGE --
                 <div class="image">
-                    <!-- i class=" icon_quotations"></i -->
+                    <!-- i class=" icon_quotations"></i --
                     <img src="http://templateocean.com/premium/template/kane/files/images/clients-pic/3.jpg" alt="">
                 </div>
                 
@@ -506,7 +511,7 @@
                 <div class="white-line">
                 </div>
                 
-                <!-- INFORMATION -->
+                <!-- INFORMATION --
                 <div class="name">
                     John Doe
                 </div>
@@ -517,12 +522,12 @@
             </div>
             <!-- /END SINGLE FEEDBACK -->
             
-            <!-- SINGLE FEEDBACK -->
+            <!-- SINGLE FEEDBACK --
             <div class="feedback">
                 
-                <!-- IMAGE -->
+                <!-- IMAGE --
                 <div class="image">
-                    <!-- i class=" icon_quotations"></i -->
+                    <!-- i class=" icon_quotations"></i --
                     <img src="http://templateocean.com/premium/template/kane/files/images/clients-pic/1.jpg" alt="">
                 </div>
                 
@@ -533,7 +538,7 @@
                 <div class="white-line">
                 </div>
                 
-                <!-- INFORMATION -->
+                <!-- INFORMATION --
                 <div class="name">
                     John Doe
                 </div>
@@ -544,12 +549,12 @@
             </div>
             <!-- /END SINGLE FEEDBACK -->
             
-            <!-- SINGLE FEEDBACK -->
+            <!-- SINGLE FEEDBACK --
             <div class="feedback">
                 
-                <!-- IMAGE -->
+                <!-- IMAGE --
                 <div class="image">
-                    <!-- i class=" icon_quotations"></i -->
+                    <!-- i class=" icon_quotations"></i --
                     <img src="http://templateocean.com/premium/template/kane/files/images/clients-pic/2.jpg" alt="">
                 </div>
                 
@@ -560,7 +565,7 @@
                 <div class="white-line">
                 </div>
                 
-                <!-- INFORMATION -->
+                <!-- INFORMATION --
                 <div class="name">
                     John Doe
                 </div>
@@ -569,16 +574,16 @@
                 </div>
                 
             </div>
-            <!-- /END SINGLE FEEDBACK -->
+            <!-- /END SINGLE FEEDBACK --
             
         </div>
-        <!-- /END FEEDBACKS -->
+        <!-- /END FEEDBACKS --
         
     </div>
-    <!-- /END CONTAINER -->
+    <!-- /END CONTAINER --
     
 </div>
-<!-- /END COLOR OVERLAY -->
+<!-- /END COLOR OVERLAY --
 
 </section>
 <!-- /END TESTIMONIALS SECTION -->
@@ -595,12 +600,12 @@
     <div class="section-header wow fadeIn animated" data-wow-offset="10" data-wow-duration="1.5s">
         
         <!-- SECTION TITLE -->
-        <h2 class="dark-text">Affordable Packages</h2>
+        <h2 class="dark-text">Planes Mensuales</h2>
         <div class="colored-line">
         </div>
         
         <div class="section-description">
-             List your app features and all the details Lorem ipsum dolor kadr
+             Nuestro servicios incluyen soporte y actualizaciones gratuitas.
         </div>
         
         <div class="colored-line">
@@ -616,19 +621,15 @@
             <div class="single-package">
                 
                 <h3 class="package-heading main-color">
-                Personal </h3>
+                    Bronce
+                </h3>
                 
                 <div class="price">
-                    <h2><span class="sign">$</span>50 <span class="month">/month</span></h2>
+                    <h2><span class="sign">$</span>1 <span class="month">/ usuario</span></h2>
                 </div>
                 
                 <ul class="package-feature">
-                    <li><span class="main-color icon_check_alt2"></span>Unlimited Photos</li>
-                    <li><span class="main-color icon_check_alt2"></span>Secure Online Transfer</li>
-                    <li><span class="main-color icon_check_alt2"></span>Unlimited Styles</li>
-                    <li><span class="main-color icon_check_alt2"></span>Cloud Storage</li>
-                    <li><span class="main-color icon_close_alt2"></span>24/7 Customer Service</li>
-                    <li><span class="main-color icon_close_alt2"></span>Automatic Backup</li>
+                    <li><span class="main-color icon_check_alt2"></span>De 2 a 5 usuarios</li>
                 </ul>
                 
             </div>
@@ -639,23 +640,17 @@
         <div class="col-md-4 col-sm-4 single-service wow fadeIn animated" data-wow-offset="10" data-wow-duration="1.5s">
             
             <div class="single-package">
-                
+
                 <h3 class="package-heading main-color">
-                Business </h3>
+                    Plata
+                </h3>
                 
                 <div class="price">
-                    <div class="color-bg">
-                        <h2><span class="sign">$</span>75 <span class="month">/month</span></h2>
-                    </div>
+                    <h2><span class="sign">$</span>0,75 <span class="month">/ usuario</span></h2>
                 </div>
                 
                 <ul class="package-feature">
-                    <li><span class="main-color icon_check_alt2"></span>Unlimited Photos</li>
-                    <li><span class="main-color icon_check_alt2"></span>Secure Online Transfer</li>
-                    <li><span class="main-color icon_check_alt2"></span>Unlimited Styles</li>
-                    <li><span class="main-color icon_check_alt2"></span>Cloud Storage</li>
-                    <li><span class="main-color icon_check_alt2"></span>24/7 Customer Service</li>
-                    <li><span class="main-color icon_close_alt2"></span>Automatic Backup</li>
+                    <li><span class="main-color icon_check_alt2"></span>De 6 a 15 usuarios</li>
                 </ul>
             </div>
         </div>
@@ -667,19 +662,15 @@
             <div class="single-package">
                 
                 <h3 class="package-heading main-color">
-                Ultimate </h3>
+                    Oro
+                </h3>
                 
                 <div class="price">
-                    <h2><span class="sign">$</span>99 <span class="month">/month</span></h2>
+                    <h2><span class="sign">$</span>0,50 <span class="month">/ usuario</span></h2>
                 </div>
                 
                 <ul class="package-feature">
-                    <li><span class="main-color icon_check_alt2"></span>Unlimited Photos</li>
-                    <li><span class="main-color icon_check_alt2"></span>Secure Online Transfer</li>
-                    <li><span class="main-color icon_check_alt2"></span>Unlimited Styles</li>
-                    <li><span class="main-color icon_check_alt2"></span>Cloud Storage</li>
-                    <li><span class="main-color icon_check_alt2"></span>24/7 Customer Service</li>
-                    <li><span class="main-color icon_check_alt2"></span>Automatic Backup</li>
+                    <li><span class="main-color icon_check_alt2"></span>De 16 a 50 usuarios</li>
                 </ul>
             </div>
         </div>
@@ -707,13 +698,14 @@
                 
                 <!-- DOWNLOAD BUTTONS AREA -->
                 <div class="download-container">
-                    <h2 class=" wow fadeInLeft animated" data-wow-offset="10" data-wow-duration="1.5s">Download the app on</h2>
+                    <h2 class=" wow fadeInLeft animated" data-wow-offset="10" data-wow-duration="1.5s">Muy Pronto</h2>
                     
                     <!-- BUTTONS -->
                     <div class="buttons wow fadeInRight animated" data-wow-offset="10" data-wow-duration="1.5s">
                         
                         <!--<a href="" class="btn btn-default btn-lg standard-button"><i class="icon-app-store"></i>App Store</a>-->
-                        <a href="" class="btn btn-default btn-lg standard-button"><i class="icon-google-play"></i>Play Store</a>
+                        <span class="btn-default btn-lg standard-button"><i class="fa fa-android"></i>Play Store</span>
+                        <span class="btn-default btn-lg standard-button"><i class="fa fa-apple"></i>Apple Store</span>
                         
                     </div>
                     <!-- /END BUTTONS -->
@@ -725,25 +717,12 @@
                 <!-- SUBSCRIPTION FORM WITH TITLE -->
                 <div class="subscription-form-container">
                     
-                    <h2 class="wow fadeInLeft animated" data-wow-offset="10" data-wow-duration="1.5s">Subscribe Now!</h2>
+                    <h2 class="wow fadeInLeft animated" data-wow-offset="10" data-wow-duration="1.5s">Registrate y recibe la noticia!</h2>
                     
                     <!-- =====================
                          MAILCHIMP FORM STARTS 
                          ===================== -->
-                    
-                    <form class="subscription-form mailchimp form-inline wow fadeInRight animated" data-wow-offset="10" data-wow-duration="1.5s" role="form">
-                        
-                        <!-- SUBSCRIPTION SUCCESSFUL OR ERROR MESSAGES -->
-                        <h4 class="subscription-success"></h4>
-                        <h4 class="subscription-error"></h4>
-                        
-                        <!-- EMAIL INPUT BOX -->
-                        <input type="email" name="email" id="subscriber-email" placeholder="Your Email" class="form-control input-box">
-                        
-                        <!-- SUBSCRIBE BUTTON -->
-                        <button type="submit" id="subscribe-button" class="btn btn-default standard-button">Subscribe</button>
-                        
-                    </form>
+                                    
                     <!-- /END MAILCHIMP FORM STARTS -->
                     
                     <!-- =====================
@@ -792,73 +771,76 @@
 
 <div class="container">
     
-    <div class="contact-box wow rotateIn animated" data-wow-offset="10" data-wow-duration="1.5s">
+    <!--<div class="contact-box wow rotateIn animated" data-wow-offset="10" data-wow-duration="1.5s">
         
-        <!-- CONTACT BUTTON TO EXPAND OR COLLAPSE FORM -->
+        <!-- CONTACT BUTTON TO EXPAND OR COLLAPSE FORM --
         
         <a class="btn contact-button expand-form expanded"><i class="icon_mail_alt"></i></a>
         
-        <!-- EXPANDED CONTACT FORM -->
+        <!-- EXPANDED CONTACT FORM --
         <div class="row expanded-contact-form">
             
             <div class="col-md-8 col-md-offset-2">
                 
-                <!-- FORM -->
+                <!-- FORM --
                 <form class="contact-form" id="contact" role="form">
                     
-                    <!-- IF MAIL SENT SUCCESSFULLY -->
+                    <!-- IF MAIL SENT SUCCESSFULLY --
                     <h4 class="success">
-                        <i class="icon_check"></i> Your message has been sent successfully.
+                        <i class="icon_check"></i> Su mensaje ha sido enviado satisfactoriamente
                     </h4>
                     
-                    <!-- IF MAIL SENDING UNSUCCESSFULL -->
+                    <!-- IF MAIL SENDING UNSUCCESSFULL --
                     <h4 class="error">
-                        <i class="icon_error-circle_alt"></i> E-mail must be valid and message must be longer than 1 character.
+                        <i class="icon_error-circle_alt"></i> Su mensaje no ha sido enviado, por favor vuelva a intentarlo.
                     </h4>
                     
                     <div class="col-md-6">
-                        <input class="form-control input-box" id="name" type="text" name="name" placeholder="Your Name">
+                        <input class="form-control input-box" id="name" type="text" name="name" placeholder="Su Nombre">
                     </div>
                     
                     <div class="col-md-6">
-                        <input class="form-control input-box" id="email" type="email" name="email" placeholder="Your Email">
+                        <input class="form-control input-box" id="email" type="email" name="email" placeholder="Su Correo Electrónico">
                     </div>
                     
                     <div class="col-md-12">
-                        <input class="form-control input-box" id="subject" type="text" name="subject" placeholder="Subject">
-                        <textarea class="form-control textarea-box" id="message" rows="8" placeholder="Message"></textarea>
+                        <input class="form-control input-box" id="subject" type="text" name="subject" placeholder="Asunto">
+                        <textarea class="form-control textarea-box" id="message" rows="8" placeholder="Mensaje"></textarea>
                     </div>
                     
                     <button class="btn btn-primary standard-button2 ladda-button" type="submit" id="submit" name="submit" data-style="expand-left">Enviar</button>
                     
                 </form>
-                <!-- /END FORM -->
+                <!-- /END FORM --
                 
             </div>
             
         </div>
-        <!-- /END EXPANDED CONTACT FORM -->
+        <!-- /END EXPANDED CONTACT FORM --
         
     </div>
     <!-- /END CONTACT BOX -->
     
     <!-- LOGO -->
-    <img src="{{ url('/img/logo.png') }}" alt="LOGO" class="responsive-img img-folder">
+    <br><br>
+    <div class="row">
+        <img src="{{ url('/img/logo.png') }}" alt="LOGO" class="responsive-img img-folder">
+    </div>
     
     <!-- SOCIAL ICONS -->
     <ul class="social-icons">
-        <li><a href=""><i class="social_facebook_square"></i></a></li>
-        <li><a href=""><i class="social_twitter_square"></i></a></li>
+        <li><a href="https://www.facebook.com/KeySystems.ca/" target="_blank"><i class="social_facebook_square"></i></a></li>
+        <li><a href="https://twitter.com/keysystemsca" target="_blank"><i class="social_twitter_square"></i></a></li>
         <!--<li><a href=""><i class="social_pinterest_square"></i></a></li>
         <li><a href=""><i class="social_googleplus_square"></i></a></li>-->
-        <li><a href=""><i class="social_instagram_square"></i></a></li>
+        <li><a href="https://www.instagram.com/keysystemsca/" target="_blank"><i class="social_instagram_square"></i></a></li>
         <!--<li><a href=""><i class="social_dribbble_square"></i></a></li>
         <li><a href=""><i class="social_flickr_square"></i></a></li>-->
     </ul>
     
     <!-- COPYRIGHT TEXT -->
     <p class="copyright">
-        ©2016 <a href="http://keysystemsca.com/" target="_blank">Key Systems C.A</a>
+        Desarrollado por <a href="http://keysystemsca.com/" target="_blank">Key Systems C.A</a> © {{date('Y')}} 
     </p>
 
 </div>
