@@ -1,7 +1,7 @@
 coreApp.controller('GrupoEtapasController', function ($scope, $log, $http, $window) {
 	console.log("Grupo de etapas");
-	$scope.etapas=[];
-	$scope.cantidad_etapas=0;
+	$scope.etapas=[0,];
+	$scope.cantidad_etapas=1;
 	$scope.GrpEtapas={};
 	$scope.submitted = false;
 	$scope.enviando=false;
@@ -65,4 +65,60 @@ coreApp.controller('GrupoEtapasController', function ($scope, $log, $http, $wind
 		console.log(url_eliminar);
 		$scope.eliminar_url = url_eliminar;
 	};	
+
+	$scope.tour_ayuda = function(){
+		console.log("init TourController");
+		var tour = new Tour({
+		  	steps: [
+				  {
+				    element: "#tipo_proyecto",
+				    title: "Nombre",
+				    content: "Ingrese el nombre con que identifique el proceso que agregara en este momento.",
+				    placement: "bottom",
+				    backdrop: true,
+				  },
+				  {
+				    element: "#descripcion_tipo_proyecto",
+				    title: "Descripción",
+				    content: "Ingrese una descripción clara que lo ayude a reconocer mas adelante la finalidad del tipo de proyecto.",
+				    placement: "left",
+				    backdrop: true,
+				  },
+				  {
+				    element: "#agregar_etapas",
+				    title: "Agregar Etapas",
+				    content: "Agregue las etapas, pasos ó procesos que deben cumplirse en el proyecto.",
+				    placement: "left",
+				    backdrop: true,
+				  },
+				  {
+				    element: "#agregar_etapa",
+				    title: "Agregar Etapa",
+				    content: "Ingrese el nombre de la etapa ó proceso que corresponda en el orden adecuado.",
+				    placement: "right",
+				    backdrop: true,
+				  }
+				],
+			storage: false,
+			template: "<div class='popover tour'>"+
+					    "<div class='arrow'></div>"+
+					    "<h3 class='popover-title'></h3><button class='btn btn-link btn-cerrar-paseo' data-role='end'><i class='fa fa-times'></i></button>"+
+					    "<div class='popover-content'></div>"+
+					    "<div class='popover-navigation'>"+
+					        "<button class='btn btn-link' data-role='prev'>« Atras</button>"+
+					        "<span data-role='separator'>|</span>"+
+					        "<button class='btn btn-link' data-role='next'>Siguiente »</button>"+
+					    "</div>"+
+					    
+					    "</nav>"+
+					  "</div>"
+
+		});
+
+		// Initialize the tour
+		tour.init(true);
+
+		// Start the tour
+		tour.start(true);
+	};
 });

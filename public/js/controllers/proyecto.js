@@ -1,8 +1,13 @@
 coreApp.controller('ProyectoController',function($scope, $log, $http, $window) {
 	console.log("Proyecto");
 	$scope.submitted = false;
-	$scope.personas=[];
-	$scope.cantidad=0;
+	$scope.personas=[
+		{
+			usuario : "",
+			rol : "",
+		},
+		];
+	$scope.cantidad=1;
 	$scope.proyecto={};
 	$scope.enviando = false;
 	$scope.sort = "name";
@@ -20,6 +25,7 @@ coreApp.controller('ProyectoController',function($scope, $log, $http, $window) {
 	}
 	
 	$scope.agregar_integrantes= function(argument) {
+		$(".js-example-data-array").select2();
 		var persona = {
 			usuario : "",
 			rol : "",
@@ -68,4 +74,101 @@ coreApp.controller('ProyectoController',function($scope, $log, $http, $window) {
 		return false;
 	};
 
+	$scope.tour_ayuda = function(){
+		console.log("init TourController");
+		var tour = new Tour({
+		  	steps: [
+				  {
+				    element: "#cliente_select",
+				    title: "Seleccionar Cliente",
+				    content: "Seleccione algún cliente que haya registrado",
+				    placement: "bottom",
+				    backdrop: true,
+				  },
+				  {
+				    element: "#crear_cliente",
+				    title: "Crear Cliente",
+				    content: "Presione aquí si desea agregar un nuevo cliente",
+				    placement: "left",
+				    backdrop: true,
+				  },
+				  {
+				    element: "#tipo_proyecto_select",
+				    title: "Seleccionar Tipo de Proyecto",
+				    content: "Seleccione el tipo de proyecto ó proceso de desea utilizar en el proyecto.",
+				    placement: "bottom",
+				    backdrop: true,
+				  },
+				  {
+				    element: "#crear_tipo_proyecto",
+				    title: "Crear Tipo Proyecto",
+				    content: "Presione aquí si desea agregar un nuevo tipo de proyecto.",
+				    placement: "left",
+				    backdrop: true,	 
+				  },
+				  {
+				    element: "#nombre_proyecto",
+				    title: "Nombre del Proyecto",
+				    content: "Ingrese el nombre con el que desee identificar el proyecto.",
+				    placement: "bottom",
+				    backdrop: true,
+				  },
+				  {
+				    element: "#agrgar_equipo",
+				    title: "Agregar Equipo de Trabajo",
+				    content: "Presione aquí para agregar integrantes según su necesidad.",
+				    placement: "left",
+				    backdrop: true,
+				  },
+				  {
+				    element: "#integrante",
+				    title: "Seleccionar Integrante",
+				    content: "Seleccione algún integrante ya registrado.",
+				    placement: "left",
+				    backdrop: true,
+				  },
+				  {
+				    element: "#agregar_integrante",
+				    title: "Agregar Integrante",
+				    content: "Presione aquí para agregar nuevos integrantes al sistema.",
+				    placement: "right",
+				    backdrop: true,
+				  },
+				  {
+				    element: "#rol",
+				    title: "Seleccionar Rol",
+				    content: "Seleccione el rol que el usuario representará en este proyecto",
+				    placement: "left",
+				    backdrop: true,
+				  },
+				  {
+				    element: "#agregar_rol",
+				    title: "Agregar Roles",
+				    content: "Presione aquí para agregar nuevos roles al sistema.",
+				    placement: "right",
+				    backdrop: true,
+				  }
+				],
+			storage: false,
+			template: "<div class='popover tour'>"+
+					    "<div class='arrow'></div>"+
+					    "<h3 class='popover-title'></h3><button class='btn btn-link btn-cerrar-paseo' data-role='end'><i class='fa fa-times'></i></button>"+
+					    "<div class='popover-content'></div>"+
+					    "<div class='popover-navigation'>"+
+					        "<button class='btn btn-link' data-role='prev'>« Atras</button>"+
+					        "<span data-role='separator'>|</span>"+
+					        "<button class='btn btn-link' data-role='next'>Siguiente »</button>"+
+					    "</div>"+
+					    
+					    "</nav>"+
+					  "</div>"
+
+		});
+
+		// Initialize the tour
+		tour.init(true);
+
+		// Start the tour
+		tour.start(true);
+	};
 });

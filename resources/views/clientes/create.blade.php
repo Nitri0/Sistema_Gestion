@@ -40,7 +40,7 @@
 	                <div class="panel panel-inverse">
 	                    <div class="panel-heading-2">
 	                        <div class="panel-heading-btn">
-	                            <a href="#cliente-ayuda" class="btn btn-ayuda" data-toggle="modal"><i class="fa fa-question"></i></a>
+	                            <!--<a ng-click="tour_ayuda()" class="btn btn-ayuda"><i class="fa fa-question"></i></a>-->
 	                        </div>
 	                        <h4 class="panel-title">Clientes</h4>
 	                    </div>

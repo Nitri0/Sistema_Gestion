@@ -58,7 +58,9 @@
 						    </div>
 		                </div>                       
 	                </div>
-
+	                <div class="col-md-12" align="center">
+	                	Nota: Presione el click derecho del mouse para copiar la etiqueta que desee colocar en su plantilla de correo.
+	                </div>
 	                <!--<div class="col-md-12">
                     	<div class="well">
 	                    	<center>

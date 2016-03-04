@@ -1,6 +1,8 @@
 <?php namespace App\Http\Controllers;
 use DB;
 use Illuminate\Support\Facades\Mail;
+
+use Illuminate\Http\Request;
 use Auth;
 
 class Helper extends Controller {
@@ -29,6 +31,11 @@ class Helper extends Controller {
 			$mensaje->bcc(Auth::user()->correo_usuario);
 			$mensaje->subject($asunto);
 		});		
+	}
+
+	public static function contactame(Request $request){
+		self::SendEmail(env('CONTACT_EMAIL'), env('FROM_NAME'), 'Posible Contratación','emails.private.contactame', $request->all() );
+		return json_encode(['success'=>true,]);
 	}
 
 	public static function SendEmailLogout($receptor, $nombreReceptor, $asunto, $plantilla, $parametros){

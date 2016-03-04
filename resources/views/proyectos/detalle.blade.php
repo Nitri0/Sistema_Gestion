@@ -66,21 +66,12 @@
                     	<div class="table-responsive">
                             <table class="table table-profile">
                                 <tbody>
-                                    <tr class="tr-custon"></tr>
-                                    <tr class="line-bottom">
+                                    <tr>
                                         <td class="field">Nombre</td>
                                         <td>{{ $proyecto->nombre_proyecto }}</td>
                                     </tr>
-                                    <tr class="tr-custon"></tr>
-                                    <tr class="divider">
-                                        <td colspan="2"></td>
-                                    </tr>
                                     <tr>
-                                        <td class="field">Descripción</td>
-                                        <td>{{ $proyecto->descripcion_proyecto}}</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="field">Etapa actual de proyecto</td>
+                                        <td class="field">Etapa Actual</td>
                                         <td>{{ $proyecto->getEstatus()}}</td>
                                     </tr>
                                     @if($proyecto->getNombreDominio() != "No asignado")
@@ -106,15 +97,10 @@
                             <div class="table-responsive">
                                 <table class="table table-profile">
                                     <tbody>
-                                        <tr class="tr-custon"></tr>
-                                        <tr class="line-bottom">
-                                            <td class="field">Nombre de lider</td>
-                                            <td>{{ $proyecto->lider_proyecto }}</td>
-                                        </tr>
-                                        <tr class="tr-custon"></tr>
-                                        <tr class="divider">
-                                            <td colspan="2"></td>
-                                        </tr>
+                                        <tr>
+                                            <td class="field">Lider</td>
+                                            <td>{{ $proyecto->nombre_lider_proyecto }}</td>
+                                        </tr>                                        
                                     </tbody>
                                 </table>
                             </div>
@@ -130,27 +116,27 @@
                             <div class="table-responsive">
                                 <table class="table table-profile">
                                     <tbody>
-                                        <tr class="tr-custon"></tr>
-                                        <tr class="line-bottom">
+                                        <tr>
                                             <td class="field">Nombre</td>
                                             <td>{{ $proyecto->getCliente()->nombre_cliente }}</td>
-                                        </tr>
-                                        <tr class="tr-custon"></tr>
-                                        <tr class="divider">
-                                            <td colspan="2"></td>
                                         </tr>
                                         <tr>
                                             <td class="field">Telefono 1</td>
                                             <td><i class="fa fa-mobile fa-lg m-r-5"></i> {{ $proyecto->getCliente()->telefono_cliente}}</td>
                                         </tr>
-                                        @if($proyecto->getCliente()->telefono_2_cliente)
                                         <tr>
                                             <td class="field">Telefono 2</td>
-                                            <td><i class="fa fa-mobile fa-lg m-r-5"></i> {{ $proyecto->getCliente()->telefono_2_cliente}}</td>
+                                            <td>
+                                                <i class="fa fa-mobile fa-lg m-r-5"></i> 
+                                                @if($proyecto->getCliente()->telefono_2_cliente)
+                                                    {{ $proyecto->getCliente()->telefono_2_cliente}}
+                                                @else
+                                                    No tiene
+                                                @endif
+                                            </td>
                                         </tr>
-                                        @endif
                                         <tr>
-                                            <td class="field">Correo Electronico</td>
+                                            <td class="field">Correo</td>
                                             <td><a href="email:{{ $proyecto->getCliente()->email_cliente}}">{{ $proyecto->getCliente()->email_cliente}}</a></td>
                                         </tr>
                                     </tbody>
@@ -172,9 +158,12 @@
                         <h4 class="panel-title">Integrantes</h4>
                     </div>
                     <div class="panel-body">
-                        <div class="height-custon-md" data-scrollbar="true">
+                    @if( $proyecto->proyecto_interno )
+                        <div class="height-custon-proyectos-lider" data-scrollbar="true">
+                    @else
+                        <div class="height-custon-proyectos" data-scrollbar="true">
+                    @endif
                             <br>
-
                             <div ng-init="urlRedirect='{{ url('proyectos/'.$proyecto->id_proyecto) }}'"></div>
                             <div ng-init="urlAction='{{ url('/integrantes') }}'"></div>
 
@@ -233,7 +222,7 @@
                                         <input type="hidden" name="redirect" value="{{url('/proyectos/'.$proyecto->id_proyecto )}}">
                                         <button type="submit" class="btn btn-sm btn-danger btn-eliminar-integrante" data-toggle="tooltip" data-title="Eliminar"><i class="fa fa-remove"></i></button >
                                     </form>  
-                                    <a href="javascript:;"><img src="{{ url('thema/admin/html/assets/img/user-1.jpg') }}" alt=""></a>
+                                    <a href="javascript:;"><img src="{{ url('/img/user.jpg') }}" alt=""></a>
                                     <h4 class="username text-ellipsis">
                                         {{$integrante->getUser()->getFullName()}}
                                         <small class="text-ellipsis">{{$integrante->getRolName()}}</small>
@@ -295,44 +284,69 @@
         
         <div class="row">
             @foreach($etapas->getEtapas() as $etapa)
-                    @if ($etapa->getAvances($proyecto->id_proyecto)->count()>0)
+                @if ($etapa->getAvances($proyecto->id_proyecto)->count()>0)
 
-                    <div class="col-md-5">
-                        <h4 class="title center title-epata">{{$etapa->nombre_etapa}}</h4>
+                    <div class="col-md-6 col-md-push-3">
+                        <ul class="pager">
+                            <li><a href="#">{{$etapa->nombre_etapa}}</a></li>
+                        </ul>
                     </div>
-                    <div class="col-md-12"></div>
-               
-                    @endif
-                @foreach($etapa->getAvances($proyecto->id_proyecto) as $avance)
-                
-                    <div class="col-md-12">
-                        <div class="timeline-body">
-                            <div class="timeline-header">
-                                <span class="userimage"><img width="34" height="34" src="{{url('img/user.png')}}" alt=""></span>
-                                <span class="username"><a href="javascript:;">{{$avance->getNombreCreador()}}</a> <small></small></span>
-                                <span class="pull-right text-muted">{{$avance->fecha_creacion_avance}}</span>
-                            </div>
-                            <div class="timeline-content collapse" id="{{$avance->id_avance}}">
-                                <br>
-                                <p>
+                    
+                @endif
+                <table class="table table-email table-hover">
+                    <tbody class="email-content">
+                        @foreach($etapa->getAvances($proyecto->id_proyecto) as $avance)                                                        
+                        
+                            <tr href="#{{$avance->id_avance}}" data-toggle="collapse">
+                                <td class="email-select col-md-1"><span class="userimage"><img width="20" height="20" src="{{url('img/user.jpg')}}" alt=""></span></td>
+                                <td class="email-sender col-md-3">
+                                    {{$avance->getNombreCreador()}} 
+                                </td>
+                                <td>
+                                    <i class="fa fa-file-text-o"></i>
+                                </td>
+                                <td class="email-subject col-md-6">
+                                    {{$avance->asunto_avance}}
+                                </td>
+                                <td class="email-date col-md-2">{{$avance->fecha_creacion_avance}} </td>
+                            </tr>
+                            <tr class="collapse" id="{{$avance->id_avance}}">                                    
+                                <td colspan="5">
                                     {!!$avance->descripcion_avance!!}
-                                </p>
-                                <br>
-                            </div>
-                            <div class="timeline-footer">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <p> Asunto: {{$avance->asunto_avance}} </p>
+                                </td>
+                            </tr>
+                        
+                            <!--<div class="col-md-12">
+                                <div class="timeline-body">
+                                    <div class="timeline-header">
+                                        <span class="userimage"><img width="34" height="34" src="{{url('img/user.png')}}" alt=""></span>
+                                        <a class="name"><big>{{$avance->getNombreCreador()}}</a></big> ha colocado como asunto del mensaje: 
+                                        <big> {{$avance->asunto_avance}}</big> el día <big>{{$avance->fecha_creacion_avance}}</big>  
                                     </div>
-                                    <div class="col-md-6">
-                                        <a class="f-s-20" href="#{{$avance->id_avance}}" data-toggle="collapse"><i class="fa fa-ellipsis-h"></i></a>
+                                    <a class="f-s-20 col-md-2 col-md-push-5" href="#{{$avance->id_avance}}" data-toggle="collapse"><i class="fa fa-ellipsis-h"></i></a>
+                                    <div class="timeline-content collapse" id="{{$avance->id_avance}}">
+                                        <br>
+                                        <p>
+                                            {!!$avance->descripcion_avance!!}
+                                        </p>
+                                        <br>
+                                    </div>
+                                    <div class="timeline-footer">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <p> Asunto: {{$avance->asunto_avance}} </p>
+                                            </div>
+                                            <div class="col-md-6">
+                                                
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-  
-                @endforeach
+                            </div>-->
+
+                        @endforeach
+                    </tbody>
+                </table>
             @endforeach
         </div>
 

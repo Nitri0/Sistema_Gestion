@@ -2,7 +2,7 @@
 
 body ,html{
   background: #F8F8F8;
-  font-size: 12px;
+  font-size: 14px;
   color: #707478;
   font-family: 'Lato', sans-serif;
 }
@@ -341,9 +341,10 @@ body ,html{
   margin-top: 10px;
   height: 25px;
 }
-.sidebar .nav>li>a {
+.sidebar .nav>li>a ,
+.dropdown-menu>li>a{
   color: #696763;
-  font-size: 14px;
+  font-size: 14px !important;
 }
 
 .list-none i{
@@ -394,8 +395,17 @@ body ,html{
 .tr-custon {
   height: 15px;
 }
-.height-custon-md{
-  height:497px!important
+.height-custon-proyectos{
+  height:372px!important
+}
+.height-custon-proyectos-lider{
+  height:237px!important
+}
+.height-custon-mis-proyectos{
+  height:340px!important
+}
+.height-custon-mis-proyectos-lider{
+  height:238px!important
 }
 .progress, .progress-bar {
   -webkit-box-shadow: none;
@@ -692,6 +702,9 @@ p {
 .form-horizontal .form-group {
   font-size: 13px;
 }
+.form-contol{
+  border: 1px !important;
+}
 
 /*nodes time line etapas*/
 .stepwizard-step p {
@@ -788,12 +801,17 @@ p {
   border-left-width: 0;
 }
 .popover-title {
-  padding: 8px 14px;
+  padding: 11px 14px;
   margin: 0;
   font-size: 14px;
   background-color: #FCFCFC;
+  font-weight: bold;
+  text-align: center;
   border-bottom: 1px solid #EDEDE4;
   border-radius: 5px 5px 0 0;
+}
+.popover-content{
+  color: #000;
 }
 .btn-cerrar-paseo{
   position: absolute;

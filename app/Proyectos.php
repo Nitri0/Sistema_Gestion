@@ -23,7 +23,16 @@ class Proyectos extends Model {
 								'proyecto_interno'
 								);
 	protected $dates = ['fecha_creacion_proyecto'];
+	protected $appends = ['nombre_lider_proyecto'];
 	public $timestamps = false;
+
+	public function  getNombreLiderProyectoAttribute (){
+		if ($this->lider_proyecto){
+			return User::find($this->lider_proyecto)->fullName();
+		}
+		return "";
+	}
+
 	public function usuarios(){
 		return $this->hasMany('App\Roles','id_proyecto');
 	}

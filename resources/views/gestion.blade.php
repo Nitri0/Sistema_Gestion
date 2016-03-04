@@ -5,7 +5,7 @@
 		<div class="container">
 			<div class="content">
 				<div class="title">
-						<h1>Gestión</h1>
+						<h1>Gestion</h1>
 				</div>	
 
 				<div class="title">

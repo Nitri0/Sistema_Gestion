@@ -29,7 +29,8 @@
 	                <div class="panel panel-inverse">
 	                    <div class="panel-heading-2">
 	                        <div class="panel-heading-btn">
-	                        	<a href="#tipo-proyecto-ayuda" class="btn btn-ayuda" data-toggle="modal"><i class="fa fa-question"></i></a>
+	                        	<!--<a href="#tipo-proyecto-ayuda" class="btn btn-ayuda" data-toggle="modal"><i class="fa fa-question"></i></a>-->
+	                        	<a ng-click="tour_ayuda()" class="btn btn-ayuda"><i class="fa fa-question"></i></a>
 	                        </div>
 	                        <h4 class="panel-title">Tipo de proyectos</h4>
 	                    </div>
@@ -38,7 +39,7 @@
 
 							<div class="form-group">
 	                            <label class="col-md-4 control-label">Tipo de Proyecto</label>
-	                            <div class="col-md-5">
+	                            <div class="col-md-5" id="tipo_proyecto">
 	                                <input type="text" text-num-only class="form-control" ng-model="GrpEtapas.nombre_grupo_etapas" name="nombre_grupo_etapas" ng-required="true" oninvalid="setCustomValidity(' ')">
 									<div class="error campo-requerido" ng-show="formulario.nombre_grupo_etapas.$invalid && (formulario.nombre_grupo_etapas.$touched || submitted)">
 	                                    <small class="error" ng-show="formulario.nombre_grupo_etapas.$error.required">
@@ -50,7 +51,7 @@
 
 	                        <div class="form-group">
 	                            <label class="col-md-4 control-label">Descripción</label>
-	                            <div class="col-md-5">
+	                            <div class="col-md-5" id="descripcion_tipo_proyecto">
 	                                <textarea rows="5" class="form-control" ng-model="GrpEtapas.descripcion_grupo_etapas" name="descripcion_grupo_etapas" ng-required="true" oninvalid="setCustomValidity(' ')"></textarea>
 									<div class="error campo-requerido" ng-show="formulario.descripcion_grupo_etapas.$invalid && (formulario.descripcion_grupo_etapas.$touched || submitted)">
 	                                    <small class="error" ng-show="formulario.descripcion_grupo_etapas.$error.required">
@@ -72,7 +73,7 @@
 		                    	<button type="button" class="btn btn-danger btn-eliminar" ng-show="cantidad_etapas>=1" ng-click="eliminar_etapa()"  data-toggle="tooltip" data-title="Eliminar ultima etapa"> 
 									<i class="fa fa-trash-o"></i>
 								</button>
-		                    	<button type="button" class="btn btn-success btn-agregar" ng-click="agregar_etapa()"  data-toggle="tooltip" data-title="Agregar nueva etapa">
+		                    	<button id="agregar_etapas" type="button" class="btn btn-success btn-agregar" ng-click="agregar_etapa()"  data-toggle="tooltip" data-title="Agregar nueva etapa">
 		                    		<i class="fa fa-plus"></i>
 		                    	</button>
 		                    </div>
@@ -104,7 +105,7 @@
 		                <div class="panel-body">
 							<div class="form-group">
                                 <label class="col-md-4 control-label">Nombre de etapa</label>
-                                <div class="col-md-8">
+                                <div class="col-md-8" id="agregar_etapa">
 									<input type="text" text-num-only class="form-control" ng-model="GrpEtapas.nombre_etapa_[[$index]]" name="nombre_etapa_[[$index]]" ng-required="true" oninvalid="setCustomValidity(' ')">
 									<div class="error campo-requerido" ng-show="formulario.nombre_etapa_[[$index]].$invalid && (formulario.nombre_etapa_[[$index]].$touched || submitted)">
 	                                    <small class="error" ng-show="formulario.nombre_etapa_[[$index]].$error.required">
