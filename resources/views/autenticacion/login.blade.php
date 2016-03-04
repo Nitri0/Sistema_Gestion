@@ -33,7 +33,7 @@
             <div class="login-header">
                 <div class="brand" align="center">
                     <img class="login-icono" src="{{ asset('/img/logo.png') }}">
-                    <br><big>Gestionlist</big>
+                    <big>Gestionlist</big>
                     <small align="center"> Organiza tus ideas...</small>
                 </div>
                 <!--<div class="icon">

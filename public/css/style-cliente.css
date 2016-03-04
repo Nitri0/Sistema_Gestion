@@ -1,0 +1,84 @@
+a {
+  color: #00acac;
+  text-decoration: none;
+}
+header {
+  background: url(../img/img-inicio/fondo-1.jpg) no-repeat center top fixed;
+  -webkit-background-size: cover;
+  background-size: cover;
+}
+header .intro-section {
+  margin: auto;
+  padding-top: 0%;
+}
+.standard-button {
+  background: #00acac;
+}
+.title-gestion{
+  color: #fff;
+  font-size: 80px;
+  font-weight: 600;
+  margin-top: 30px;
+  width: 100%;
+}
+.img-gestion{
+	width: 50px;
+}
+.nav-admin-logo {
+  width: 40px;
+  float: left;
+  margin-right: 10px;
+  margin-top: -5px;
+}
+.sticky-navigation .navbar-header img {
+  max-height: 40px;
+  -webkit-backface-visibility: inherit;
+}
+.navbar-brand {
+  float: left;
+  height: 50px;
+  padding: 15px 15px;
+  font-size: 18px;
+  line-height: 31px;
+  font-weight: 500;
+}
+.navbar-inverse .navbar-brand:focus, .navbar-inverse .navbar-brand:hover {
+  color: #00acac;
+  background-color: transparent;
+}
+.app-brief .laptop-image-1 img {
+  width: 119%;
+}
+.app-brief .laptop-image-2 img {
+  width: 100%;
+}
+.app-brief .laptop-image-3 img {
+  width: 100%;
+}
+.features .phone-laptop-0 img{
+  margin: auto;
+  margin-top: -10%;
+  width: 100%
+}
+.container-2{
+	margin-right: 15px;
+	margin-left: 15px;
+}
+.testimonials {
+  background: url(../img/img-inicio/fondo-2.jpg) no-repeat center fixed;
+  -webkit-background-size: cover;
+  background-size: cover;
+  color: #ffffff;
+}
+.download {
+  background: url(../img/img-inicio/fondo-3.jpg) no-repeat center fixed;
+  -webkit-background-size: cover;
+  background-size: cover;
+  color: #ffffff;
+}
+.color-overlay {
+  background: rgba(0, 0, 0, 0.1);
+}
+.img-folder{
+	width: 80px;
+}
