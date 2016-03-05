@@ -51,11 +51,11 @@ $(document).ready(function() {
 /* NAVIGATION VISIBLE ON SCROLL */
 
 $(document).ready(function () {
-    mainNav();
+    //mainNav();
 });
 
 $(window).scroll(function () {
-    mainNav();
+    //mainNav();
 });
 
 if (matchMedia('(min-width: 992px), (max-width: 767px)').matches) {
