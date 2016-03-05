@@ -605,7 +605,7 @@
         </div>
         
         <div class="section-description">
-             Nuestro servicios incluyen soporte y actualizaciones gratuitas.
+             Nuestro planes pueden ser cancelados en <b>Bolívares</b> a la siguiente tasa de cambio: 1.000 Bs por $USD.
         </div>
         
         <div class="colored-line">
