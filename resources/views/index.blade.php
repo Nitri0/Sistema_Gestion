@@ -625,11 +625,11 @@
                 </h3>
                 
                 <div class="price">
-                    <h2><span class="sign">$</span>1 <span class="month">/ usuario</span></h2>
+                    <h2><span class="sign">$</span>1 <span class="month">/ persona</span></h2>
                 </div>
                 
                 <ul class="package-feature">
-                    <li><span class="main-color icon_check_alt2"></span>De 2 a 5 usuarios</li>
+                    <li><span class="main-color icon_check_alt2"></span>De 2 a 5 personas</li>
                 </ul>
                 
             </div>
@@ -646,11 +646,11 @@
                 </h3>
                 
                 <div class="price">
-                    <h2><span class="sign">$</span>0,75 <span class="month">/ usuario</span></h2>
+                    <h2><span class="sign">$</span>0,75 <span class="month">/ persona</span></h2>
                 </div>
                 
                 <ul class="package-feature">
-                    <li><span class="main-color icon_check_alt2"></span>De 6 a 15 usuarios</li>
+                    <li><span class="main-color icon_check_alt2"></span>De 6 a 15 personas</li>
                 </ul>
             </div>
         </div>
@@ -666,11 +666,11 @@
                 </h3>
                 
                 <div class="price">
-                    <h2><span class="sign">$</span>0,50 <span class="month">/ usuario</span></h2>
+                    <h2><span class="sign">$</span>0,50 <span class="month">/ persona</span></h2>
                 </div>
                 
                 <ul class="package-feature">
-                    <li><span class="main-color icon_check_alt2"></span>De 16 a 50 usuarios</li>
+                    <li><span class="main-color icon_check_alt2"></span>De 16 a 50 personas</li>
                 </ul>
             </div>
         </div>
