@@ -56,7 +56,7 @@
 
                 	<br>
                     
-                    <div class="panel panel-inverse overflow-hidden custon-list" ng-repeat="model in models| filter:opciones.buscador | orderBy:sort:reverse  track by $index">
+                    <div class="panel panel-inverse overflow-hidden" ng-repeat="model in models| filter:opciones.buscador | orderBy:sort:reverse  track by $index">
                         <div class="panel-heading">
                             <!--<h3 class="panel-title list-title">
                                 <a class="accordion-toggle accordion-toggle-styled collapsed" data-toggle="collapse" data-parent="#accordion" href="#[[$index+1]]">

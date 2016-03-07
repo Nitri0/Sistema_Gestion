@@ -44,22 +44,22 @@
             <div class="col-12">
                 <div class="panel-group" id="accordion">
                 	<div class="row text-list">
-                		<div class="col-sm-4"> 
+                		<div class="col-sm-10"> 
                 			<div class="row">
-                				<div class="col-sm-2">N° </div>
-                				<div class="col-sm-10">
-                        			Identificador de proyecto
+                				<div class="col-sm-1">N° </div>
+                				<div class="col-sm-11">
+                        			Nombre del proyecto
                         		</div>
                 			</div>
                 		</div>
-                		<div class="col-sm-3">
-							Cantidad de etapas
+                		<div class="col-sm-2" align="center">
+							Nº de Etapas
                 		</div>
                 	</div>
 
                 	<br>
                     
-                    <div class="panel panel-inverse overflow-hidden custon-list" ng-repeat="etapa in grupoetapas| filter:opciones.buscador | orderBy:sort:reverse  track by $index">
+                    <div class="panel panel-inverse overflow-hidden" ng-repeat="etapa in grupoetapas| filter:opciones.buscador | orderBy:sort:reverse  track by $index">
                         <div class="panel-heading">
                             <!--<h3 class="panel-title list-title">
                                 <a class="accordion-toggle accordion-toggle-styled collapsed" data-toggle="collapse" data-parent="#accordion" href="#[[$index+1]]">
@@ -71,16 +71,16 @@
 		        			</div>-->
                             <h3 class="panel-title list-title">
                             	<div class="row">
-                            		<div class="col-sm-4"> 
+                            		<div class="col-sm-10"> 
                             			<div class="row">
-                            				<div class="col-sm-2"> [[$index+1]] </div>
-                            				<div class="col-sm-10">
+                            				<div class="col-sm-1"> [[$index+1]] </div>
+                            				<div class="col-sm-11">
 		                            			[[etapa.nombre_grupo_etapas]]
 		                            		</div>
                             			</div>
                             		</div>
 
-                            		<div class="col-sm-2">
+                            		<div class="col-sm-2" align="center">
 										<center>[[etapa.cantidad_etapas]]</center>
                             		</div>
                             	</div>                           	 
