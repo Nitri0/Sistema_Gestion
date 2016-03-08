@@ -22,6 +22,7 @@ $router->group(['middleware' => 'auth'], function() {
 
 	Route::get('/gestion', 'VistasController@gestion');
 	Route::post('/contactame', 'Helper@contactame');
+	Route::post('/inscribir-empresa', 'AdministradorEmpresasController@inscribirEmpresa');
 
 	Route::post('/mostrar-tutorial', 'MisProyectosController@mostrar_tutorial');
 	Route::post('/desactivar-tutorial', 'MisProyectosController@desactivar_tutorial');
