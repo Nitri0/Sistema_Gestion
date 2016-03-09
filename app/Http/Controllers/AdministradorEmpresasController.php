@@ -120,4 +120,26 @@ class AdministradorEmpresasController extends Controller {
         return json_encode($json);
     }
 
+    public function inscribirEmpresa(Request $request){
+        $json=[];
+        $empresa = Empresas::find($request->id_empresa);
+
+        if (!$empresa){
+            $json=['success'=>false,];
+        }
+
+        if ($request->cantidad && $request->cantidad > 1){
+        	$empresa->suscriptor_empresa = 1;
+        	$empresa->cantidad_usuarios = $request->cantidad;
+        }else{
+            $empresa->suscriptor_empresa = 0;
+        	$empresa->cantidad_usuarios = 1;
+        }
+        $empresa->save();    	
+
+        $json=['success'=>true];
+        
+        return json_encode($json);
+    }
+
 }
