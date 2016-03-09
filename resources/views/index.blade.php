@@ -41,7 +41,7 @@
                     <li><a href="#features">Características</a></li>
                     <li><a href="#brief1">¿Por qué?</a></li>
                     <li><a href="#brief2">Póximamente</a></li>
-                    <li><a href="#brief3">FaltaXX</a></li>
+                    <li><a href="#brief3">Actualizaciones</a></li>
                     <!--<li><a href="#testimonials">Testimonios</a></li>-->
                     <li><a href="#packages">Planes</a></li>
                     <li><a href="#download">Móvil</a></li>
@@ -390,21 +390,21 @@
         <div class="col-md-6 left-align wow fadeInLeft animated" data-wow-offset="10" data-wow-duration="1.5s">
             
             <!-- SECTION TITLE -->
-            <h2 class="dark-text">Explain why it's best</h2>
+            <h2 class="dark-text">Actualizaciones</h2>
             
             <div class="colored-line-left">
             </div>
             
             <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                Estaremos trabajando constantemente para mejorar tu experiencia en la aplicación.
             </p>
             
             <!-- FEATURE LIST -->
             <ul class="feature-list">
-                <li><i class="icon_lock_alt"></i> Reliable and Secure Platform</li>
-                <li><i class="icon_check_alt2"></i> Everything is perfectly orgainized for future</li>
-                <li><i class="icon_paperclip"></i> Attach large file easily</li>
-                <li><i class="icon_adjust-vert"></i> Tons of features and easy to use and customize</li>
+                <li><i class="icon_check_alt2"></i> Creación de plantillas de correo.</li>
+                <li><i class="icon_check_alt2"></i> Definición de procesos internos para tu equipo de trabajo.</li>
+                <li><i class="icon_check_alt2"></i> Envíos de correos al cliente desde la propia aplicación.</li>
+                <li><i class="icon_check_alt2"></i> Organización de prioridades de los proyectos.</li>
             </ul>
             
         </div>
@@ -617,8 +617,26 @@
     
     <div class="row">
         
+        <div class="col-md-3 col-sm-3 single-service wow fadeIn animated" data-wow-offset="10" data-wow-duration="1.5s">
+            
+            <div class="single-package">
+                
+                <h3 class="package-heading main-color">
+                    Gratis
+                </h3>
+                
+                <div class="price">
+                    <h2><span class="sign">$</span>0 <span class="month">/ persona</span></h2>
+                </div>
+                
+                <ul class="package-feature">
+                    <li><span class="main-color icon_check_alt2"></span>1 persona</li>
+                </ul>
+                
+            </div>
+        </div>
         <!-- SINGLE PACKACGE -->
-        <div class="col-md-4 col-sm-4 single-service wow fadeIn animated" data-wow-offset="10" data-wow-duration="1.5s">
+        <div class="col-md-3 col-sm-3 single-service wow fadeIn animated" data-wow-offset="10" data-wow-duration="1.5s">
             
             <div class="single-package">
                 
@@ -639,7 +657,7 @@
         <!-- /END SINGLE PACKACGE -->
         
         <!-- SINGLE PACKACGE -->
-        <div class="col-md-4 col-sm-4 single-service wow fadeIn animated" data-wow-offset="10" data-wow-duration="1.5s">
+        <div class="col-md-3 col-sm-3 single-service wow fadeIn animated" data-wow-offset="10" data-wow-duration="1.5s">
             
             <div class="single-package">
 
@@ -659,7 +677,7 @@
         <!-- /END SINGLE PACKACGE -->
         
         <!-- SINGLE PACKACGE -->
-        <div class="col-md-4 col-sm-4 single-service wow fadeIn animated" data-wow-offset="10" data-wow-duration="1.5s">
+        <div class="col-md-3 col-sm-3 single-service wow fadeIn animated" data-wow-offset="10" data-wow-duration="1.5s">
             
             <div class="single-package">
                 
