@@ -41,9 +41,10 @@
                     <li><a href="#features">Características</a></li>
                     <li><a href="#brief1">¿Por qué?</a></li>
                     <li><a href="#brief2">Póximamente</a></li>
+                    <li><a href="#brief3">FaltaXX</a></li>
                     <!--<li><a href="#testimonials">Testimonios</a></li>-->
                     <li><a href="#packages">Planes</a></li>
-                    <li><a href="#download">Download</a></li>
+                    <li><a href="#download">Móvil</a></li>
                 </ul>
             </div>
         </div> <!-- /END CONTAINER -->
@@ -379,16 +380,16 @@
 <!-- =========================
      BRIEF LEFT SECTION 
 ============================== -->
-<!--<section class="app-brief grey-bg" id="brief3">
+<section class="app-brief grey-bg" id="brief3">
 
 <div class="container">
     
     <div class="row">
 
-        <!-- RIGHT SIDE WITH BRIEF --
+        <!-- RIGHT SIDE WITH BRIEF -->
         <div class="col-md-6 left-align wow fadeInLeft animated" data-wow-offset="10" data-wow-duration="1.5s">
             
-            <!-- SECTION TITLE --
+            <!-- SECTION TITLE -->
             <h2 class="dark-text">Explain why it's best</h2>
             
             <div class="colored-line-left">
@@ -398,7 +399,7 @@
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
             </p>
             
-            <!-- FEATURE LIST --
+            <!-- FEATURE LIST -->
             <ul class="feature-list">
                 <li><i class="icon_lock_alt"></i> Reliable and Secure Platform</li>
                 <li><i class="icon_check_alt2"></i> Everything is perfectly orgainized for future</li>
@@ -409,7 +410,7 @@
         </div>
         <!-- /END RIGHT BRIEF -->
         
-        <!-- PHONES IMAGE --
+        <!-- PHONES IMAGE -->
         <div class="col-md-6 wow fadeInRight animated" data-wow-offset="10" data-wow-duration="1.5s">
             <div class="laptop-image-3">
                 <img src="{{ url('/img/img-inicio/3.png') }}" alt="">
@@ -417,10 +418,10 @@
         </div>
 
     </div>
-    <!-- /END ROW --
+    <!-- /END ROW -->
     
 </div>
-<!-- /END CONTAINER --
+<!-- /END CONTAINER -->
 
 </section>
 <!-- /END SECTION -->
