@@ -1,8 +1,5 @@
 <html>
 	<body style="font-family: calibri; font-size: 14px;">
-		<p>NOS CONTACTARON!!! QUE EXITOOOOOOOOOOO!!! =P</p>
-<br>
-<br>
 		<p>Datos:</p>
 		<p>Nombres: {{$nombres}}</p>
 		<p>Teléfono: {{$telefono}}</p>

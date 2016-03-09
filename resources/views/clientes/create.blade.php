@@ -76,7 +76,7 @@
 	                        <div class="form-group">
 	                            <label class="col-md-4 control-label">Identificador de cliente (rif, cedula, etc)</label>
 	                            <div class="col-md-5">
-	                            	<input type="text" ng-remote-validate="{{url('/clientes/valididentificador')}}" ng-pattern="/^[A-Z]*[0-9]*$/" ng-required="true" class="form-control" ng-model="cliente.ci_rif_cliente" name="ci_rif_cliente" >
+	                            	<input type="text" ng-remote-validate="{{url('/clientes/valididentificador')}}" ng-pattern="/^[A-Z]*[0-9]*$/" class="form-control" ng-model="cliente.ci_rif_cliente" name="ci_rif_cliente" >
 	                            	<div class="error campo-requerido" ng-show="formulario.ci_rif_cliente.$invalid && (formulario.ci_rif_cliente.$touched || submitted)">
 	                                    <small class="error" ng-show="formulario.ci_rif_cliente.$error.required">
 	                                        * Campo requerido.
@@ -129,7 +129,7 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label">Dirección</label>
                                 <div class="col-md-5">
-                                   <textarea rows="5" class="form-control" ng-model="cliente.direccion_cliente" name="direccion_cliente" ng-required="true" oninvalid="setCustomValidity(' ')"></textarea>
+                                   <textarea rows="5" class="form-control" ng-model="cliente.direccion_cliente" name="direccion_cliente" oninvalid="setCustomValidity(' ')"></textarea>
 									<div class="error campo-requerido" ng-show="formulario.direccion_cliente.$invalid && (formulario.direccion_cliente.$touched || submitted)">
 	                                    <small class="error" ng-show="formulario.direccion_cliente.$error.required">
 	                                        * Campo requerido.
