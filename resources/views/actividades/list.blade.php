@@ -29,37 +29,47 @@
             </div>
             <div class="col-md-6">
                 <div class="panel-group" id="accordion">
-                	<div class="row text-list">
-                        <div class="col-sm-9">
-                           <h1 class="page-header">Lista de Actividades </h1> 
-                        </div>
-                        <div class="col-sm-3">
-
-                            <div class="btn-toolbar" style="text-align:right;">
-                                <!--<a href="{{ url( '/actividades/create' ) }}" class="btn btn-success btn-sm p-l-20 p-r-20" data-toggle="tooltip" data-title="Crear actividad">
-                                    <i class="fa fa-plus"></i>
-                                </a>-->
-                                <button class="btn btn-success btn-sm p-l-20 p-r-20" data-title="Crear actividad" ng-click="addModal()">
-                                    <i class="fa fa-plus"></i>
-                                </button>
+                    <div class="col-12 ui-sortable">
+                        <div class="panel panel-inverse">
+                            <div class="panel-heading-2">
+                                <div class="panel-heading-btn">
+                                    <button class="btn btn-success btn-agregar" data-title="Crear actividad" ng-click="addModal()">
+                                        <i class="fa fa-plus"></i>
+                                    </button>
+                                </div>
+                                <h4 class="panel-title">Lista de Actividades</h4>
                             </div>
                         </div>
-                	</div>
+                    </div>
 
                 	<br>
                     <div>
                        <div class="panel panel-inverse overflow-hidden custon-list" ng-repeat="(clave, actividad) in actividades" ng-click="datosActividad(clave)">
                             <div class="panel-heading">
-                                <h3 class="panel-title list-title">
+                                <!--<h3 class="panel-title list-title">
                                     <a class="accordion-toggle accordion-toggle-styled collapsed" data-toggle="collapse" data-parent="#accordion" href="#[[clave+1]]">
                                         <i class="fa fa-plus pull-right"></i> 
                                     </a>    
-                                </h3>
+                                </h3>-->
+                                <div class="box-button-list" style="  margin-right: -5px;">
+                                    <button class="btn btn-list" ng-click="editModal(arrayKeySelected)">
+                                        <i class="fa fa-pencil"></i>
+                                    </button>
+                                    <button class="btn btn-list" data-toggle="modal" data-target="#adjunto">
+                                        <i class="fa fa-puzzle-piece"></i>
+                                    </button>
+                                    <button class="btn btn-list"  data-toggle="modal" data-target="#sub_actividad">
+                                        <i class="fa fa-thumb-tack"></i>
+                                    </button>
+                                    <button class="btn btn-list">
+                                        <i class="fa fa-check-square-o"></i>
+                                    </button>
+                                </div>
                                 <h3 class="panel-title list-title">
                                     <div class="row">
-                                        <div class="col-sm-10"> 
+                                        <div class="col-sm-8"> 
                                             <div class="row">
-                                                <div class="col-sm-3"> [[clave+1]] </div>
+                                                <div class="col-sm-1"> [[clave+1]] </div>
                                                 <div class="col-sm-9">
                                                     [[actividad.nombre_actividad]]
                                                 </div>
@@ -68,7 +78,7 @@
                                     </div>                               
                                 </h3>
                             </div>
-                            <div id="[[clave+1]]" class="panel-collapse collapse">
+                            <!--<div id="[[clave+1]]" class="panel-collapse collapse">
                                 <div class="panel-body">
                                     <button class="btn btn-success btn-sm" ng-click="editModal(arrayKeySelected)">
                                         <i class="fa fa-pencil"></i>
@@ -84,7 +94,7 @@
                                     </button>
                                     <a ng-click="destruir(true,actividad.id_actividad,arrayKeySelected)" class="btn btn-sm btn-danger pull-right" data-toggle="tooltip" data-title="Eliminar"><i class="fa fa-trash"></i></a>
                                 </div>
-                            </div>
+                            </div>-->
                         </div> 
                     </div>
                     
@@ -106,6 +116,7 @@
                             <fieldset>
                                 <legend>
                                     [[activitySelected.nombre]]
+                                    <a ng-click="destruir(true,actividad.id_actividad,arrayKeySelected)" class="btn btn-list pull-right" data-toggle="tooltip" data-title="Eliminar"><i class="fa fa-trash"></i></a>
                                 </legend>
                                 <div>
                                    <p>
@@ -113,7 +124,7 @@
                                     </p> 
                                 </div>
                                  <div>
-                                    <button class="btn btn-success btn-sm" ng-click="editModal(arrayKeySelected)">
+                                    <!--<button class="btn btn-success btn-sm" ng-click="editModal(arrayKeySelected)">
                                         <i class="fa fa-pencil"></i>
                                     </button>
                                     <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#adjunto">
@@ -124,7 +135,7 @@
                                     </button>
                                     <button class="btn btn-success btn-sm">
                                         <i class="fa fa-check-square-o"></i>
-                                    </button>
+                                    </button>-->
                                 </div>
                             </fieldset>
                             <fieldset>
