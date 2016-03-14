@@ -142,7 +142,17 @@
                                 <legend>
                                     Comentarios
                                 </legend>
-                                <div class="comentario" ng-repeat="(clave, comentario) in activitySelected.comentarios" >
+                                <ul class="chats">
+                                    <li class="left" ng-repeat="(clave, comentario) in activitySelected.comentarios"><!-- right -->
+                                        <span class="date-time">11:23pm</span>
+                                        <a href="javascript:;" class="name">[[fullName(comentario.usuario)]]</a>
+                                        <a href="javascript:;" class="image"><img alt="" src="{{ url('/img/user.jpg') }}"></a>
+                                        <div class="message">
+                                            [[comentario.contenido_comentario]]
+                                        </div>
+                                    </li>
+                                </ul>
+                                <!--<div class="comentario" ng-repeat="(clave, comentario) in activitySelected.comentarios" >
                                     <label class="autor">
                                         [[fullName(comentario.usuario)]]  
                                     </label>
@@ -158,14 +168,16 @@
 
                                         </div>                               
                                     </h3>                               
-                                </div> 
+                                </div>--> 
                             </fieldset>
+                            <br>
                             <div class="crear-comentario">
                                 <form>
-                                    <textarea rows="4" name="contenido_comentario" id="contenido_comentario" class="form-control" ng-model="contenido_comentario"></textarea>
-                                    <button ng-click="comentarActividad(arrayKeySelected)">Comentar</button>
+                                    <textarea rows="4" name="contenido_comentario" id="contenido_comentario" class="form-control iconic-textarea" ng-model="contenido_comentario"></textarea>
+                                    <a ng-click="comentarActividad(arrayKeySelected)" class="iconic-textarea"><i class="fa fa-paper-plane"></i></a>
+                                    <!--<button ng-click="comentarActividad(arrayKeySelected)">Comentar</button>-->
                                 </form>                                
-                            </div class="crear-comentario">
+                            </div>
                             
                            
                         </div>
@@ -176,16 +188,24 @@
                                     <div class="panel panel-inverse overflow-hidden custon-list" ng-repeat="(clave, sub_actividad) in activitySelected.subActividades" >
                                         <div class="panel-heading">
                                             <h3 class="panel-title list-title">
-                                                <a class="accordion-toggle accordion-toggle-styled collapsed" data-toggle="collapse" data-parent="#accordion" href="#sub_[[clave+1]]">
+                                                <!--<a class="accordion-toggle accordion-toggle-styled collapsed" data-toggle="collapse" data-parent="#accordion" href="#sub_[[clave+1]]">
                                                     <i class="fa fa-plus pull-right"></i> 
-                                                </a>    
+                                                </a>-->    
+                                                <div class="box-button-list" style="  margin-right: -5px;">
+                                                    <button class="btn btn-list">
+                                                        <i class="fa fa-check-square-o"></i>
+                                                    </button>
+                                                    <button class="btn btn-list">
+                                                        <a ng-href="{{ url( '/actividades/[[actividad.id_actividad]]/destroy' ) }}" data-toggle="tooltip" data-title="Eliminar" style="color: rgba(0,0,0,0.6);"><i class="fa fa-trash"></i></a>
+                                                    </button>
+                                                </div>
                                             </h3>
                                             <h3 class="panel-title list-title">
                                                 <div class="row">
-                                                    <div class="col-sm-10"> 
+                                                    <div class="col-sm-9"> 
                                                         <div class="row">
-                                                            <div class="col-sm-3"> [[clave+1]] </div>
-                                                            <div class="col-sm-9">
+                                                            <div class="col-sm-1"> [[clave+1]] </div>
+                                                            <div class="col-sm-8">
                                                                 [[sub_actividad.nombre_sub_actividad]]
                                                             </div>
                                                         </div>
@@ -233,9 +253,19 @@
                                 <legend>
                                     Comentarios
                                 </legend>
-                                <div class="comentario" ng-repeat="(clave, comentario) in activitySelected.comentarios" >
+                                <ul class="chats">
+                                    <li class="left" ng-repeat="(clave, comentario) in activitySelected.comentarios"><!-- right -->
+                                        <span class="date-time">11:23pm</span>
+                                        <a href="javascript:;" class="name">[[fullName(comentario.usuario)]]</a>
+                                        <a href="javascript:;" class="image"><img alt="" src="{{ url('/img/user.jpg') }}"></a>
+                                        <div class="message">
+                                            [[comentario.contenido_comentario]]
+                                        </div>
+                                    </li>
+                                </ul>
+                                <!--<div class="comentario" ng-repeat="(clave, comentario) in activitySelected.comentarios" >
                                     <label class="autor">
-                                       [[fullName(comentario.usuario)]]
+                                        [[fullName(comentario.usuario)]]  
                                     </label>
                                     <h3 class="panel-title list-title">
                                         <div class="row">
@@ -249,14 +279,16 @@
 
                                         </div>                               
                                     </h3>                               
-                                </div> 
+                                </div>--> 
                             </fieldset>
+                            <br>
                             <div class="crear-comentario">
                                 <form>
-                                    <textarea name="contenido_comentario" id="contenido_comentario" class="form-control" rows="5" ng-model="contenido_comentario"></textarea>
-                                    <button ng-click="comentarActividad(arrayKeySelected)">Comentar</button>
+                                    <textarea rows="4" name="contenido_comentario" id="contenido_comentario" class="form-control iconic-textarea" ng-model="contenido_comentario"></textarea>
+                                    <a ng-click="comentarActividad(arrayKeySelected)" class="iconic-textarea"><i class="fa fa-paper-plane"></i></a>
+                                    <!--<button ng-click="comentarActividad(arrayKeySelected)">Comentar</button>-->
                                 </form>                                
-                            </div class="crear-comentario">
+                            </div>
                         </div>
                     </div>
                 </div>
