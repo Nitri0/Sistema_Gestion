@@ -56,7 +56,7 @@
                                         <i class="fa fa-pencil"></i>
                                     </button>
                                     <button class="btn btn-list" data-toggle="modal" data-target="#adjunto">
-                                        <i class="fa fa-puzzle-piece"></i>
+                                        <i class="fa fa-paperclip"></i>
                                     </button>
                                     <button class="btn btn-list"  data-toggle="modal" data-target="#sub_actividad">
                                         <i class="fa fa-thumb-tack"></i>
