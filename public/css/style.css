@@ -642,6 +642,7 @@ body ,html{
     left: 50%;
     width: 100%;
     top: 50%;
+    padding: 0 .5em;
     transform: translate(-50%, -50%);
 }
 .home-content p {
@@ -713,6 +714,7 @@ p {
 .form-horizontal .form-group {
   font-size: 13px;
 }
+<<<<<<< HEAD
 .form-contol{
   border: 1px !important;
 }
@@ -851,4 +853,6 @@ p {
 .nav-tabs.nav-justified>.active>a, .nav-tabs.nav-justified>.active>a:focus, .nav-tabs.nav-justified>.active>a:hover, .nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover {
   color: #00acac;
 }
-
+.datepicker.dropdown-menu {
+    z-index: 10000 !important;
+}

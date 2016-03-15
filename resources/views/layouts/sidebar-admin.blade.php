@@ -2,6 +2,7 @@
 @section('controller')
 	<script src="{{ asset('/js/controllers/sidebarcontroller.js') }}"></script>
 	<script src="{{ asset('/bower_components/ng-flow/dist/ng-flow-standalone.min.js') }}"></script>
+
 @endsection
 
 <!-- begin #sidebar -->
@@ -24,6 +25,13 @@
 		<!-- begin sidebar nav -->
 		<ul class="nav">			
 
+
+			<li class="has-sub" id="mis_proyectos"><!-- ng-click="proyecto_active()" ng-class="{'': !proyecto, 'active': proyecto}"-->
+				<a href="{{ url('actividades')}}" >
+				    <i class="fa fa-star"></i>
+				    <span>Mis Actividades</span>
+			    </a>
+			</li>	
 
 			<li class="has-sub" id="mis_proyectos"><!-- ng-click="proyecto_active()" ng-class="{'': !proyecto, 'active': proyecto}"-->
 				<a href="{{ url('mis-proyectos')}}" >
