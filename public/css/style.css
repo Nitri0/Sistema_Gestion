@@ -856,3 +856,14 @@ p {
 .datepicker.dropdown-menu {
     z-index: 10000 !important;
 }
+.no-consulta i{
+  font-size: 140px;
+  color: rgb(159, 159, 159);
+}
+.no-consulta {
+  text-align: center;
+  border: 1px solid rgba(215, 215, 215, 0.53);
+  border-radius: 3px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}

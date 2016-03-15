@@ -146,6 +146,10 @@
                                 <legend>
                                     Comentarios
                                 </legend>
+                                <div class="no-consulta" ng-if="activitySelected.comentarios.length == 0">
+                                    <i class="fa fa-comments"></i>
+                                    <p >No tiene comentarios</p>
+                                </div>
                                 <ul class="chats">
                                     <li class="left" ng-repeat="(clave, comentario) in activitySelected.comentarios"><!-- right -->
                                         <span class="date-time">11:23pm</span>
@@ -188,6 +192,10 @@
                         <div role="tabpanel" class="tab-pane" id="sub_actividades">
                             <fieldset>
                                 <legend>Sub-actividades</legend>
+                                <div class="no-consulta" ng-if="activitySelected.subActividades.length == 0">
+                                    <i class="fa fa-thumb-tack"></i>
+                                    <p >No tiene Sub-actividades</p>
+                                </div>
                                 <div class="panel-group">
                                     <div class="panel panel-inverse overflow-hidden custon-list" ng-repeat="(clave, sub_actividad) in activitySelected.subActividades" >
                                         <div class="panel-heading">
@@ -235,10 +243,14 @@
                         <div role="tabpanel" class="tab-pane" id="adjuntos">
                             <fieldset class="adjunto-content">
                                 <legend>adjuntos</legend>
+                                <div class="no-consulta" ng-if="activitySelected.adjuntos.length == 0">
+                                    <i class="fa fa-paperclip"></i>
+                                    <p >No tiene archivos adjuntos</p>
+                                </div>
                                 <a href="../public/adjuntos/[[adjunto.url_adjunto]]" target="_blank" ng-repeat="(clave, adjunto) in activitySelected.adjuntos" class="adjunto">
                                     <div class="referencia_adjunto" ng-if="adjunto.tipo_adjunto == 'jpg' || adjunto.tipo_adjunto == 'png'" style="background-image:url('../public/adjuntos/[[adjunto.url_adjunto]]');"></div>
                                     <span class="tipo-adjunto">.[[adjunto.tipo_adjunto | uppercase]] </span>
-                                    <span class="tag-adjunto"> #[[adjunto.tag_adjunto]] </span>
+                                    <span class="tag-adjunto"> #[[adjunto.tag_adjunto]] </span>   
                                 </a>
                             </fieldset>
                         </div>
@@ -247,6 +259,10 @@
                                 <legend>
                                     Comentarios
                                 </legend>
+                                <div class="no-consulta" ng-if="activitySelected.comentarios.length == 0">
+                                    <i class="fa fa-comments"></i>
+                                    <p >No tiene comentarios</p>
+                                </div>
                                 <ul class="chats">
                                     <li class="left" ng-repeat="(clave, comentario) in activitySelected.comentarios"><!-- right -->
                                         <span class="date-time">11:23pm</span>
