@@ -303,7 +303,7 @@
                                                                     <p >No tiene archivos adjuntos</p>
                                                                 </div>
                                                                 <a href="../adjuntos/[[adjunto.url_adjunto]]" target="_blank" ng-repeat="(clave, adjunto) in activitySelected.adjuntos" class="adjunto">
-                                                                    <div class="referencia_adjunto" ng-if="adjunto.tipo_adjunto == 'jpg' || adjunto.tipo_adjunto == 'png'" style="background-image:url('../public/adjuntos/[[adjunto.url_adjunto]]');"></div>
+                                                                    <div class="referencia_adjunto" ng-if="adjunto.tipo_adjunto == 'jpg' || adjunto.tipo_adjunto == 'png'" style="background-image:url('../adjuntos/[[adjunto.url_adjunto]]');"></div>
                                                                     <span class="tipo-adjunto">.[[adjunto.tipo_adjunto | uppercase]] </span>
                                                                     <span class="tag-adjunto"> #[[adjunto.tag_adjunto]] </span>   
                                                                 </a>
