@@ -867,3 +867,26 @@ p {
   padding-top: 20px;
   padding-bottom: 20px;
 }
+.arrastrar-ng i{
+  font-size: 140px;
+  color: rgba(0, 172, 172, 0.62);
+}
+.arrastrar-ng {
+  text-align: center;
+  border: 1px solid rgba(215, 215, 215, 0.53);
+  border-radius: 3px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+.bg-griss-content {
+  background: #F0F0F0!important;
+}
+.bg-griss {
+  background: #FCFCFC!important;
+}
+.color-fa-star i{
+  color: #00acac;
+}
+.p-15, .wrapper-7 {
+  padding: 7px!important;
+}

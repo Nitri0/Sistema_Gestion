@@ -18,15 +18,18 @@ coreApp.controller('ActividadController', function ($scope, $log, $http, $window
 	$scope.usuario=0;
 	$scope.id_proyecto=null;
 	$scope.activityType=true;
+	$scope.nombre_proyecto_select=false;
 	$scope.initProyectos=function(Proyectos,actividadesPersonales,usuario){
 		/*Carga la lista de actividades apenas inicia el sistema*/
 		$scope.usuario=usuario;
 		$scope.proyectos=Proyectos;
 		$scope.personalActivity.actividades=actividadesPersonales;
 	}
-	$scope.initActividades=function(id_proyecto){
+	$scope.initActividades=function(id_proyecto , nombre_proyecto_select){
 		/*Carga la lista de actividades apenas inicia el sistema*/
 		//console.log($scope.proyectos[id_proyecto].actividades);
+		$scope.nombre_proyecto_select = nombre_proyecto_select;
+
 		if(id_proyecto!=null){
 			$scope.actividades=$scope.proyectos[id_proyecto].actividades;
 			$scope.id_proyecto=$scope.proyectos[id_proyecto].id_proyecto;
